@@ -1,0 +1,114 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+	<meta name="robots" content="all" />
+	<title>Pharo par l'Exemple</title>
+</head>
+<body>
+
+<link rel="stylesheet" href="Stylesheets/pbe.css"/>
+<div id="header">
+<div align="center"><img src="Images/pbe-title.jpg" width=60% border=0></div>
+</div>
+
+<div id="news">
+<!-- --- NEWS -------------------------------------------------- -->
+<h1>Actualit&eacute;</h1>
+<p><b>20 juin 2011</b>: publication de la premi&egrave;re &eacute;dition de <a target=blank_ href="http://gforge.inria.fr/frs/download.php/28665/PharoParLExemple-20-06-2011.pdf">Pharo par l'exemple</a>.</p>
+
+<!-- --- RESOURCES -------------------------------------------------- -->
+<h1>Ressources</h1>
+<ul>
+  <li><!--<a target=_blank href="http://www.lulu.com/content/paperback-book/pharo-by-example/7522128">Achetez le livre!</a> (lulu.com)--><em>Bient&ocirc;t disponible en version papier</em></li>
+<li><a target=blank_ href="http://gforge.inria.fr/frs/download.php/28665/PharoParLExemple-20-06-2011.pdf">T&eacute;l&eacute;chargez la derni&egrave;re version</a>
+	<br/>(386 pp., 15.3Mo pdf)</li>
+<li><a target=blank_ href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">licence Creative Commons</a></li>
+<li><a target=_blank href="http://www.pharocasts.com/2010/11/lightsout-game.html">Vid&eacute;o de l'exercice Lights Out</a></li>
+<li><a target=blank_ href="http://www.squeaksource.com/PharoByExample.html">Code source</a> (SqueakSource)</li>
+<li><a href="https://github.com/SquareBracketAssociates/PharoByExample-french/blob/master/pbe1-examples.txt">bribes de code</a> &agrave; copier/coller</li>
+<li><a href="https://github.com/SquareBracketAssociates/PharoByExample-french">sources LaTeX</a> (github)</li>
+</ul>
+<!-- p>PDF downloads to date: <img src="http://www.iam.unibe.ch/server-cntr/~scg/SBE/SBE.pdf?face=sgrey"></p> -->
+<!-- --- EXTERNAL -------------------------------------------------- -->
+<h1>T&eacute;l&eacute;charger Pharo</h1>
+<ul>
+	<li><a href="https://gforge.inria.fr/frs/download.php/28537/PBE-1.0-OneClick.zip">Archive Pharo par l'Example</a> (indispensable pour un bon usage du livre)</li>
+	<li><a target=blank_ href="http://www.pharo-project.org/">Site officiel de Pharo</a></li>
+</ul>
+<!-- --- AUTHORS -------------------------------------------------- -->
+<h1>Auteurs</h1>
+<ul>
+	<li><a target=blank_ href="http://web.cecs.pdx.edu/~black/">Andrew P. Black</a></li>
+	<li><a target=blank_ href="http://stephane.ducasse.free.fr/">St&eacute;phane Ducasse</a></li>
+	<li><a target=blank_ href="http://scg.unibe.ch/staff/oscar">Oscar Nierstrasz</a></li>
+	<li><a target=blank_ href="http://people.untyped.org/damien.pollet/">Damien Pollet</a></li>
+	<li><a target=blank_ href="http://damiencassou.seasidehosting.st/">Damien Cassou</a></li>
+	<li><a target=blank_ href="http://marcusdenker.de/">Marcus Denker</a></li>
+</ul>
+<!-- --- TRANSLATORS ----------------------------------------------- -->
+<h1>Traducteurs</h1>
+<ul>
+	<li>Martial Boniou</li>
+	<li>Ren&eacute; Mages</li>
+    <li><a href="http://blog.doesnotunderstand.org">Serge Stinckwich</a></li>
+</ul>
+<!-- --- EXTERNAL -------------------------------------------------- -->
+<h1>Autres sites</h1>
+<ul>
+  <li><a target=blank_ href="http://fr.wikipedia.org/wiki/Pharo">Pharo sur Wikip&eacute;dia</a></li>
+  <li><a target=blank href="https://groups.google.com/group/smalltalk-fr?hl=fr">Discussions smalltalk-fr</a></li>
+  <li><a target=blank href="http://www.pharocasts.com/">Screencasts</a> (en anglais)</li>
+    <li><a target=blank_ href="http://lists.gforge.inria.fr/mailman/listinfo/pharo-project">Pharo mailing list</a></li>
+    <li><a target=blank_ href="http://stephane.ducasse.free.fr/FreeBooks.html">livres gratuits sur Smalltalk</a></li>
+    <li><a target=blank_ href="http://stephane.ducasse.free.fr/Videos/2008-SmalltalkVideos/">Vid&eacute;o Smalltalk</a></li>
+    <li><a target=blank_ href="https://www.iam.unibe.ch/scg/svn_repos/Lectures/Smalltalk/">slides de lecture en libre acc&egrave;s</a> (ppt)</li>
+</ul>
+<p>Soutenu par <a target=blank_ href="http://www.esug.org"><img src="Images/esug-logo.png" width=50% border=0></a></p>
+</div>
+
+<div id="content">
+
+<!-- --- ABOUT -------------------------------------------------- -->
+<h1>&Agrave; propos de ce livre</h1>
+<p><!-- a target=blank_ href="http://www.lulu.com/content/paperback-book/pharo-by-example/7522128" --><img src="Images/pbe.jpg" width=25% align=left border=0>
+<a target=_blank href="http://pharo-project.org/">Pharo</a> est un environnement de d&eacute;veloppement moderne et libre, inspir&eacute; du langage de programmation <a target=_blank href="http://fr.wikipedia.org/wiki/Smalltalk">Smalltalk</a>. Bien qu'&eacute;tant le premier langage et environnement purement objet, Smalltalk est toujours en avance par de nombreux aspects sur ses successeurs gr&acirc;ce &agrave; son environnement enti&eacute;rement modifiable &agrave; l'ex&eacute;cution et dans lequel <em>tout est objet</em>.</p>
+
+<p><em>Pharo par l'Exemple</em> est destin&eacute; aux &eacute;tudiants et aux d&eacute;veloppeurs. Ce livre vous guidera dans la d&eacute;couverte du langage Pharo et de son environnement gr&acirc;ce &agrave; de nombreux exemples et exercices.</p>
+
+<!-- --- TOPICS -------------------------------------------------- -->
+<h2>Th&egrave;mes abord&eacute;s</h2>
+<p>Ce livre commence par <i>Une visite de Pharo</i> et vous guide ensuite dans la cr&eacute;ation d'<i>Une premi&egrave;re application</i>. Le langage Smalltalk est ensuite introduit dans les chapitres intitul&eacute;s <i>Un r&eacute;sum&eacute; de la syntaxe</i> et <i>Comprendre la syntaxe des messages</i>.
+
+<p>Le d&eacute;veloppement avec Pharo est couvert par les chapitres <i>Le mod&egrave;le objet de Smalltalk</i>, <i>L'environnement de programmation Pharo</i> et <i>SUnit</i> (l'outil de tests unitaires).
+Les classes principales sont pr&eacute;sent&eacute;es dans <i>Les classes de base</i>, <i>Les collections</i>, <i>Streams: les flux de donn&eacute;es</i>, <i>l'interface Morphic</i> sont aussi pr&eacute;sent&eacute;es &agrave; la fin de cette seconde partie. <i>Seaside par l'exemple</i> est le dernier chapitre de cette partie ax&eacute;e sur le d&eacute;veloppement avec Pharo.</p>
+
+<p>La premi&egrave;re &eacute;dition de ce livre de ce livre se termine par les chapitres sur les <i>Classes et m&eacute;ta-classes</i>, <i>La r&eacute;flexivit&eacute;</i> et, en annexe, par une <i>Foire Aux Questions</i>.</p>
+
+
+
+<!-- --- AN OPEN BOOK -------------------------------------------------- -->
+<h2>Un livre ouvert</h2>
+<p>Ce livre est ouvert selon plusieurs aspects:</p>
+
+<ul>
+	<li>Le livre est disponible compl&eacute;tement sous la forme d'un <a target=blank_ href="http://gforge.inria.fr/frs/download.php/28665/PharoParLExemple-20-06-2011.pdf">fichier PDF librement t&eacute;l&eacute;chargeable</a>.</li>
+    <li>Vous pouvez acqu&eacute;rir un exemplaire du livre sur <!--<a target=_blank href="http://www.lulu.com/content/paperback-book/pharo-by-example/xxx">-->Lulu (&agrave; venir)<!--</a>-->. <!--or <a target=_blank  href="http://www.amazon.com/Pharo-Example-Oscar-Nierstrasz/dp/3952334146/">Amazon</a>.-->
+</br>Vous pouvez &eacute;galement acheter la version PDF &agrave; partir du site Lulu, si vous pr&eacute;f&eacute;rez. C'est sans obligation! (mais nous serions heureux si vous vouliez apporter une contribution).</li>
+	<li>Le contenu de ce livre est disponible sous les termes de la licence <a target=blank_ href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">Creative Commons Attribution-ShareAlike</a>.
+En r&eacute;sum&eacute;, vous &ecirc;tes autoris&eacute; &agrave; partager et modifier librement ce livre, tant que vous respectez les <a target=blank_ href="http://creativecommons.org/licenses/by-sa/3.0/">conditions de la licence</a>.
+Vous pouvez t&eacute;l&eacute;charger les sources LaTeX librement disponibles sur le
+<a target=blank_ href="http://github.com/SquareBracketAssociates/PharoByExample-french">d&eacute;p&ocirc;t github</a>.</li>
+	<li>Le code source des diff&eacute;rents projets d&eacute;crits dans ce livre sont disponibles sous licence libre sur le d&eacute;p&ocirc;t de code 
+<a target=blank_ href="http://www.squeaksource.com/PharoByExample.html">SqueakSource</a>.</li>
+</ul>
+
+<p>Nous souhaitons que ce livre s'agrandisse! Nous vous encourageons &agrave;
+contribuer par l'&eacute;criture de chapitres sur les aspects de Pharo que n'avons pas 
+d&eacute;crits. Si vous voulez participer, contactez-nous.</p>
+
+<div id=pub>Publi&eacute; par <a target=_blank href="http://SquareBracketAssociates.org">Square Bracket Associates</a>, Kehrsatz, Suisse.</div>
+
+</div>
+</body>
+</html>
