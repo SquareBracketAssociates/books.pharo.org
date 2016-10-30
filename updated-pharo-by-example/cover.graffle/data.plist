@@ -125,7 +125,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{63.519985780879281, 110.46903030926779}, {212, 64}}</string>
+			<string>{{16.689355657333437, 73.17685631930118}, {212, 64}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -175,7 +175,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{60.484204438096754, 161.26255085370065}, {256.25686645507812, 31.169181823730469}}</string>
+			<string>{{13.653576480163196, 122.42572706464283}, {256.25686645507812, 31.169181823730469}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -247,13 +247,13 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{62, 19}, {435, 660}}</string>
+			<string>{{2, 161.4015417098999}, {556, 346}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
-			<integer>9</integer>
+			<integer>12</integer>
 			<key>ImageID</key>
-			<integer>1</integer>
+			<integer>2</integer>
 			<key>Shape</key>
 			<string>Rectangle</string>
 			<key>Style</key>
@@ -285,14 +285,14 @@
 	<key>HPages</key>
 	<integer>1</integer>
 	<key>ImageCounter</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>ImageLinkBack</key>
 	<array>
 		<dict/>
 	</array>
 	<key>ImageList</key>
 	<array>
-		<string>image1.jpg</string>
+		<string>image2.jpg</string>
 	</array>
 	<key>KeepToScale</key>
 	<false/>
@@ -331,7 +331,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2016-10-29 08:21:51 +0000</string>
+	<string>2016-10-30 19:23:22 +0000</string>
 	<key>Modifier</key>
 	<string>ducasse</string>
 	<key>NotesVisible</key>
