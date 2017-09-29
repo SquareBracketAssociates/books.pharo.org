@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Learning Object-Oriented Programming, Design with TDD in Pharo</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/sba.css" rel="stylesheet">
+	</head>
+	<body role="document">
+		<div class="container theme-showcase" role="main">
+
+			<!-- Main jumbotron for a primary marketing message or call to action -->
+			
+			<div class="jumbotron">
+				<h1>Learning Object-Oriented Programming, Design with TDD in Pharo</h1>
+				<p>Pharo is a clean, innovative, open-source, live-programming environment.</p>
+				<p><em>Learning Object-Oriented Programming, Design with TDD in Pharo</em> is a new book to learn object-oriented programming and in particular Test Driven Development and object-oriented design.</p>
+
+				<!-- PDF and Printed version buttons 
+				<div class="btn-toolbar">
+					<div class="btn-group">
+						<a class="btn btn-primary btn-large" role="button" href="http://files.pharo.org/books-pdfs/learning-oop/2017-09-29-LearningOOP.pdf">Download PDF of the whole book (milestone version)</a>
+					</div>-->
+
+					<!-- Printed version -->
+					<!--<div class="btn-group" title="Available now!!!">
+						<a class="btn btn-primary btn-large" role="button" href="http://www.lulu.com/shop/stéphane-ducasse-and-dmitri-zagidulin-and-nicolai-hess-and-dimitris-chloupis/pharo-by-example-50/paperback/product-23091325.html">Get printed!</a>
+					</div>
+				</div> -->
+
+            </div> <!-- jumbotron -->
+
+
+			<div class="row">
+				<p>
+				I started to write this book back in 1998 when I wrote around 900 pages in preparation for ''Learning Programming with Robots''.
+				Apparently I needed to write to understand what I wanted to explain and how.
+				From this I extracted ''Learning Programming with Robots'', which was a book to teach simple concepts such as variables, loops, procedures and to help people teach kids how to program.
+				But in fact, I got really frustrated because to be understandable by everyone I had to remove what I like: object-oriented programming and good object-oriented design.
+				At that time, I met Harald Wertz, who gave me nice ideas and pointers such as L-systems, then asked why I focused on procedural thinking and suggested that I teach object-oriented programming instead.
+				And he was right. This remark was like a bee in my bonnet for more than ten years.
+				In fact, it was my original objective but I was exhausted after my first attempt.
+
+				Now, nearly fifteen years later, I'm ready to write a book to start with object-oriented programming. In fact I rewrote everything I got from that time. I hope that you will enjoy it as much as I did — even if, for me, writing a book is a really long and daunting task because I want to make it great.</p>
+				
+				<p>I would like to present the concepts that I want to teach you and that hopefully you should acquire. What is key to understand is that I will focus on the ''key'' conceptual elements. It is easy for me because I will not explain OOP/D in general but within the context of Pharo and Pharo is the essence of Object-Oriented programming since its object model is minimal but it covers the key and essential aspect of OOP. For example we will not present method modifiers, types, overloading (which is a bad concept).</p>
+
+				We will focus on object-oriented ''programming'' concepts:
+				<ul>
+				<li>
+				Objects / Classes </li>
+				<li> Messages / Methods</li>
+				<li> self and its semantics</li>
+				<li> Inheritance</li>
+				<li> super and its semantics</li>
+			</ul>
+				…and on object-oriented ''design'' concepts:
+				<ul>
+				<li> Class responsibility collaboration</li>
+				<li> Delegation</li>
+				<li> Message sends are choice</li>
+				<li> Message sends are plans for reuse</li>
+				<li> The "Don't ask, tell" Principle</li>
+				<li> Tests are your life ensurance</li>
+				<li> Polymorphism</li>
+</ul>
+				In addition we will also present 
+				<ul>
+				<li> Tests</li>
+				<li> Software refactorings</li>
+</ul>
+
+				<p>
+
+				About growing software. Often books present a problem and its solution. Now for non trivial problems, the solution does not fall from the sky or get developed in one stroke but it is the constant evolution of a first solution that evolves over time. Such an evolution is often difficult and tedious because the developer jumps from one stable state to a situation where his code may not work anymore. This is where Test Driven Design and refactorings really help.
+				Test Driven Design helsp to focus on new features and captures them as executable entities: tests. Refactorings helps by transforming code without breaking its invariants.
+				Note that tests do not forbid to break code, they help identifying when previous invariants or constraints got violated. Sometimes violated tests identify a bug but they may be broken just because the requirements changed and that the tests should be updated. 
+				In this book, I wanted to see how software grows in little steps. This is is what I do frequently during my coding sessions and I think that this is important to cover the hidden paths in software creation.	</p>
+
+           
+                </div>
+                <div class="col-md-4">
+                    <h2>An Open Book</h2>
+                    <p>This book  is an open book:</p>
+
+                    <p>The full book is available
+                        <a target="blank_" href="http://files.pharo.org/books-pdfs/learning-oop/2017-09-29-LearningOOP.pdf"> as a free printable PDF download (milestone version)</a>.</p>
+            <p> <a target="blank_" href="https://github.com/SquareBracketAssociates/LearningOOPWithPharo">Latest version on our book farm is available</a>.</p>
+
+                    <p><a target="blank_" href="https://github.com/SquareBracketAssociates/UpdatedPharoByExample/">Contributions</a> are welcomed.</p>
+
+                    <p>The content of this book is released under a
+                        Creative Commons Attribution-NoCommercial-ShareAlike <a target="blank_"
+                           href="https://creativecommons.org/licenses/by-nc-sa/3.0/">license</a>.</p>
+                </div>
+
+                <div class="col-md-4">
+
+                    <h2>Authors</h2>
+                    <ul class="unstyled">
+
+                        <li><a target="blank_" href="http://stephane.ducasse.free.fr/">Stéphane Ducasse</a></li>
+			<li>Damien Pollet</li>
+		
+                    </ul>
+
+                </div>
+            </div> <!-- row -->
+
+            <hr>
+
+            <footer>
+                <p>&copy; Square Bracket Associates 2017</p>
+            </footer>
+
+
+        </div> <!-- /container -->
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery-1.11.3.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
