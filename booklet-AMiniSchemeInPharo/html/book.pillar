@@ -1,0 +1,20 @@
+!! Introduction
+In this booklet we will build together a little interpreter for a subset of the Scheme language, that we called Physche. The idea is to implement it as simply as possible to illustrate the key aspects and share with you the fun of building language interpreters.
+Doing so we will explore several concepts: 
+- limited parsing
+- basic interpreter, and  
+- closure concepts and implementation.
+
+As future readings, I suggest ''Structure and Interpretation of Computer Programs'' by Abselson, Sussman and Sussman. I simply love it. There is also the excellent book of Jacques Chazarain (which is one of the persons who taught me Lisp) "Programmer avec Scheme" by International Thomson Publishing.
+
+A more personal note. We will implement a subset of Scheme because the language is simple but not trivial, really powerful and also because I love it. And while Pharo is my favorite language, it always has the taste of a Lisp language but with lovely objects. Since I implemented several mini Schemes in Scheme, I got inspired by the (How to Write a (Lisp) Interpreter (in Python)) post of Peter Norvig to write one in Pharo for fun. 
+
+Thanks to Clément Béra for feedback on the early version and special thanks for Quentin D. for his great feedback on the understandibility and the copy edit suggestions.
+
+Please contact me if you noticed I wrote something wrong or not fully precise. 
+
+S. Ducasse (stephane.ducasse@inria.fr)
+7 June 2018
+
+${inputFile:path=Chapters/Scheme.pillar}$
+

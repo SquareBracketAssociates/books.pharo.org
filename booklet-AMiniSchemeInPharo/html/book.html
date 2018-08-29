@@ -1,0 +1,2272 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+<link href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/_support/html/css/font-awesome.min.css" rel="stylesheet">
+<link href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/_support/html/css/nucleus.css" rel="stylesheet">
+<link href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/_support/html/css/flex.css" rel="stylesheet">
+<link rel="stylesheet" href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/_support/html/highlightjs/styles/default.css">
+<link rel="stylesheet" href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/_support/html/css/highlight-commands.css">
+<link rel="stylesheet" href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/_support/html/css/bootstrap.min.css">
+<script src="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/_support/html/js/jquery-2.x.min.js"></script>
+<script src="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/_support/html/highlightjs/highlight.pack.js"></script>
+<script src="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/_support/html/js/highlight-commands.js"></script>
+<meta name="description" content="">
+<meta name="author" content="Stéphane Ducasse with Guillermo Polito">
+  </head>
+  <body>
+    <header>
+  <div class="logo">
+    <a class="baselink" href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html"></a>
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+  
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+   		<li data-nav-id="123" class="dd-item">
+    		<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html">
+		       <i class="fa fa-fw fa-home"></i>
+	    	</a>
+        </li>
+
+		
+		  <li class="dd-item ">
+			<div>
+			  <a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/book.html#introduction">
+					Introduction
+			  </a>
+			  
+			</div>
+			  <ul class="dd-item">
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#scheme in a (super) nutshell">
+					Scheme in a (super) nutshell
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#s-expressions">
+							S-Expressions
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#values">
+							Values
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#list operations">
+							List operations
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#function application">
+							Function application
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#variable definition">
+							Variable definition
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#defining and applying functions">
+							Defining and applying functions
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#closures">
+							Closures
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#quote">
+							Quote
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#list as data">
+							List as data
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#program as data">
+							Program as data
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#phsyche's overview">
+							Phsyche's overview
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#a simple parser for phsyche">
+					A simple parser for Phsyche
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#simple interpretation architecture">
+							Simple interpretation architecture
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#starting">
+							Starting
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#parsing input text">
+							Parsing input text
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#limited phsyche ">
+					Limited Phsyche 
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#evaluating elementary elements">
+							Evaluating elementary elements
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#defining a variable">
+							Defining a variable
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#introducing quote">
+							Introducing quote
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#setting up the primitives">
+							Setting up the primitives
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#primitive environment initialization">Primitive environment initialization</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#handling primitive evaluation">Handling primitive evaluation</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#some consideration">Some consideration</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#some more arithmetic primitives">Some more arithmetic primitives</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#adding substraction and division">Adding substraction and division</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#adding not">Adding not</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#adding list primitives">
+							Adding list primitives
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#adding if">
+							Adding if
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#function definition and application">
+					Function definition and application
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#about environments">
+							About environments
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#defining an environment class">
+							Defining an environment class
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#implement an environment class">
+							Implement an environment class
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#function definition">
+							Function definition
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#function application">
+							Function application
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#a first function application">A first function application</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#adding closures to phsyche">
+					Adding closures to Phsyche
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#studying a closure">
+							Studying a closure
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#about let">About let</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#implementing closure">
+							Implementing closure
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#adding set! and begin">
+							Adding set! and begin
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#implementing begin">
+							Implementing begin
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#a more complex test">A more complex test</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#fun with closures">
+							Fun with closures
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#conclusion">
+							Conclusion
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#phsycoo">
+					Phsycoo
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#reusing tests">
+							Reusing tests
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#phsycoo interpreter">
+							Phsycoo interpreter
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#modeling primitives and special forms">
+							Modeling primitives and special forms
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#the plus primitive">
+							The Plus primitive
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#the if special form">
+							The if special form
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#initializing the environment">
+							Initializing the environment
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#reconsidering eval:in:">
+							Reconsidering eval:in:
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/Chapters/Scheme.html#conclusion">
+							Conclusion
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+    </ul>
+  </aside>
+
+  <section class="page">
+    
+	<h1>Physche: A Little Scheme in Pharo</h1>
+		
+	<h2>Introduction</h2>
+<p>
+In this booklet we will build together a little interpreter for a subset of the Scheme language, that we called Physche. The idea is to implement it as simply as possible to illustrate the key aspects and share with you the fun of building language interpreters.
+Doing so we will explore several concepts: 
+</p><ul>
+<li>limited parsing</li>
+<li>basic interpreter, and  </li>
+<li>closure concepts and implementation.</li>
+</ul>
+
+<p>
+As future readings, I suggest <em>Structure and Interpretation of Computer Programs</em> by Abselson, Sussman and Sussman. I simply love it. There is also the excellent book of Jacques Chazarain (which is one of the persons who taught me Lisp) &quot;Programmer avec Scheme&quot; by International Thomson Publishing.
+</p>
+<p>
+A more personal note. We will implement a subset of Scheme because the language is simple but not trivial, really powerful and also because I love it. And while Pharo is my favorite language, it always has the taste of a Lisp language but with lovely objects. Since I implemented several mini Schemes in Scheme, I got inspired by the (How to Write a (Lisp) Interpreter (in Python)) post of Peter Norvig to write one in Pharo for fun. 
+</p>
+<p>
+Thanks to Clément Béra for feedback on the early version and special thanks for Quentin D. for his great feedback on the understandibility and the copy edit suggestions.
+</p>
+<p>
+Please contact me if you noticed I wrote something wrong or not fully precise. 
+</p>
+<p>
+S. Ducasse (stephane.ducasse@inria.fr)
+7 June 2018
+</p>
+<h2>Scheme in a (super) nutshell</h2>
+
+<p>
+We will start with a limited version of Phsyche, our small functional programming language inspired from Scheme. In the first version, we will not support the definition of new functions (also called procedures). In the second version, we will support function definition and  closures, in particular. We start by presenting the subset of Scheme that we will implement.
+</p>
+
+<p>
+Our objective here is not to write a Scheme following the latest language specification. We will just cover a tiny subset. Purists may not like what I will write but I take this tiny subset as a pretext for a first exploration. I will only present  the parts that we will implement. Phsyche does not support vectors, dotted pairs, continuations, macros.
+</p>
+<p>
+For a fast yet more complete description of Scheme I like <em>Teach yourself Scheme in fixnum days</em> by Dorai Sitaram <a href="http://ds26gte.github.io/tyscheme/index.html">http://ds26gte.github.io/tyscheme/index.html</a>.
+</p>
+<p>
+Here is simple function expressing the length of a list and one example. 
+</p>
+
+<figure><pre><code>(define len2 
+	(lambda (l)
+		(if (null? l)
+			0
+			(+ 1 (len2 (cdr l))))))</code></pre><figcaption></figcaption></figure>
+
+<p>
+There is another way to define functions, but for simplicity we will focus for now on definitions making an explicit use of <code>lambda</code>.
+</p>
+<p>
+Once we defined our function, we can call it as follows:
+</p>
+<figure><pre><code>(len2 (list 4 1 3 3))
+&gt;&gt;&gt; 4</code></pre><figcaption></figcaption></figure>
+
+<h4>S-Expressions</h4>
+<p>
+In Scheme, everything is a s-expression. A S-expression can be:
+</p><ul>
+<li>atomic for booleans (<code>#t</code>, <code>#f</code>), number (<code>1</code>), symbols (we will treat strings as atomic).</li>
+<li>compound as with lists:  A list starts with an opening parenthesis <code>(</code> and finishes by a closing one <code>)</code>. Lists  also represent function application.</li>
+<li>a function: functions can be normal (i.e., evaluating all their arguments) or special-forms (i.e., having special ways to evaluate their arguments. This is needed to build control-flow for example).</li>
+</ul>
+
+<h4>Values</h4>
+<p>
+We briefly present  booleans, numbers and symbols. Then we focus on function application since this is a much more interesting concept.
+</p>
+<p>
+Still there is one important point to raise: the value of an atomic expression is itself.
+We will see that the value of list is function application: it applies the value of the first element on the value of the rest of the list.
+</p>
+<figure><pre><code>#t 
+&gt;&gt;&gt; #t</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>11 
+&gt;&gt;&gt; 11</code></pre><figcaption></figcaption></figure>
+
+
+<h4>List operations</h4>
+
+<p>
+Scheme, in the path of Lisp, offers list operations such as <code>list</code> to create a list, <code>car</code> to access the first element of a list, <code>cdr</code> to access the rest of the list, <code>'()</code> to represent the empty list, and <code>cons</code> to add an element as first element of a list. Here are some examples showing their use. We do not present dotted list or pairs to keep the implementation to the bare minimum.
+</p>
+<figure><pre><code>(car (list 1 2 3 4))
+&gt;&gt;&gt; 1</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>(cdr (list 1 2 3 4))
+&gt;&gt;&gt; (2 3 4)</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>(cons 1 (list 2 3 4))
+&gt;&gt;&gt; (1 2 3 4)</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>(cons 1 '())
+&gt;&gt;&gt; (1)</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>(cdr (list 1))
+&gt;&gt;&gt; ()</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>(null? '())
+&gt;&gt;&gt; #t</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>(null? (list 1))
+&gt;&gt;&gt; #f</code></pre><figcaption></figcaption></figure>
+
+<h4>Function application</h4>
+<p>
+Scheme follows a prefixed syntax <code>(function args ...)</code> where the first element refers to a function and the rest are arguments whose <em>values</em> are passed to the function. A list represents function application.
+</p>
+<figure><pre><code>(+ (* 3 2) 5)
+&gt;&gt;&gt; 11</code></pre><figcaption></figcaption></figure>
+
+<p>
+In the code above, the function associated with the symbol <code>+</code> is looked up and the values of the arguments <code>(* 3 2)</code> and <code>5</code> are computed and passed to function.
+</p>
+<p>
+By default the evaluation of a function application (a list) evaluates all its components. The function returned as value of the first element is applied to the values returned for the rest of the list.
+</p>
+<p>
+So far, functions evaluate <em>all</em> their arguments before executing the function.
+However, we will see later on that some other forms that look like functions should not evaluate all their arguments.
+For example, this is the case of  <code>define</code>, <code>lambda</code>, <code>quote</code> and <code>if</code>.
+Such functions are called special-forms and we will have to define their semantics one by one.
+</p>
+<h4>Variable definition</h4>
+<p>
+To define  a variable and set its value, we use the <code>define</code> special form: it sets the value of the second argument to symbol represented by the first argument. Notice that <code>define</code> does not evaluate its first argument, only its second one. 
+</p>
+<figure><pre><code>(define pi 3.14)
+
+(define goldenRatio (/ (+ 1 (sqrt 5)) 2))
+
+pi 
+&gt;&gt;&gt; 3.14</code></pre><figcaption></figcaption></figure>
+
+<h4>Defining and applying functions</h4>
+<p>
+To define a function we use the <code>lambda</code> special form. Its first argument is a list representing the function arguments and the second argument the body of the function.
+</p>
+<figure><pre><code>(lambda (x)
+	(+ 2 x))</code></pre><figcaption></figcaption></figure>
+
+<p>
+To use this function, we need to apply it an argument using the form <code>(function args)</code>. The following piece of code shows how we can apply the argument 3.
+</p>
+<figure><pre><code>((lambda (x)
+	(+ 2 x))
+	3)
+&gt;&gt;&gt; 5</code></pre><figcaption></figcaption></figure>
+
+<p>
+To reuse a function in a program, we can assign a function to variable using <code>define</code>.
+</p><figure><pre><code>(define add2 (lambda (x) (+ 2 x)))
+
+(add2 3)
+&gt;&gt;&gt; 5
+
+(add2 33)
+&gt;&gt;&gt; 35</code></pre><figcaption></figcaption></figure>
+
+
+<h4>Closures</h4>
+<p>
+Now a closure is more than a function. A closure refers to its <em>definition</em>Phsyche environment. 
+The following example illustrates it. It defines a function that returns a function. This function (having <code>y</code> as a parameter) will add x to y and x is bound to 3 due to the application of the first function. 
+The function y is a closure that has an environment in which the variable x is bound to 3.
+</p>
+<figure><pre><code>(define fy3 
+	((lambda (x)
+		(lambda (y)
+			(+ x y)))
+		3))</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>(fy3 4)
+&gt;&gt;&gt; 7</code></pre><figcaption></figcaption></figure>
+
+<p>
+Similarly the following function shows that we can modify this definition environment during 
+function execution. 
+</p>
+<figure><pre><code>(define sy3 
+		((lambda (x)
+			(lambda (y)
+				(begin
+					(set x (+ x 2))
+					(+ x y))))
+			3))</code></pre><figcaption></figcaption></figure>
+
+<p>
+and now each time the function <code>sy3</code> is executed its definition environment is modified and the 
+value of <code>x</code> is incremented. 
+</p>
+<figure><pre><code>(sy3 5)
+&gt;&gt;&gt; 10
+(sy3 5)
+&gt;&gt;&gt; 12
+(sy3 5)
+&gt;&gt;&gt; 14</code></pre><figcaption></figcaption></figure>
+
+<h4>Quote</h4>
+<p>
+<code>quote</code> is an interesting special form: it does not evaluate its argument but instead returns it. It is useful when manipulating lists. 
+</p>
+<figure><pre><code>(quote 1)
+&gt;&gt;&gt; 1</code></pre><figcaption></figcaption></figure>
+
+<p>
+For example, the following expressions returns then a list which looks like a function application but it just a list.
+</p>
+<figure><pre><code>(quote (add2 17))
+&gt;&gt;&gt; (add2 17)</code></pre><figcaption></figcaption></figure>
+<figure><pre><code>(quote (quote 1))
+&gt;&gt;&gt; (quote 1)</code></pre><figcaption></figcaption></figure>
+
+<p>
+This operation is so current that it has a special syntax: <code>(quote x)</code> can be written <code>'x</code>. Phsyche will not support the <code>'</code> notation.
+</p>
+<h4>List as data</h4>
+<p>
+To manipulate a list we can simply quote it.
+</p>
+<p>
+The following primitive functions allow one to manipulate lists: <code>car</code> (to access the first element), <code>cdr</code> (to access the rest of the list), <code>cons</code> (to create a list) and <code>()</code> represents the empty list.
+</p>
+<figure><pre><code>(quote (1 2 3 4))
+&gt;&gt;&gt;  (1 2 3 4)</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>(car (quote (1 2 3 4)))
+&gt;&gt;&gt; 1</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>(cdr (quote (1 2 3 4)))
+&gt;&gt;&gt; (2 3 4)</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>(cons 1 (quote (2 3 4)))
+&gt;&gt;&gt; (1 2 3 4)</code></pre><figcaption></figcaption></figure>
+
+<h4>Program as data</h4>
+<p>
+What is particularly interesting is that the syntax of the language is centered on the syntax of lists and on the unification between lists as a data structure and function application. 
+</p>
+<p>
+In addition, what is really powerful is that <code>quote</code> is the bridge between function application and data structure. Indeed,  the special function <code>quote</code> we can turn a program into its abstract syntax tree and we can access its elements using 
+normal list operations such as <code>car</code> or <code>cdr</code>. 
+</p>
+<p>
+In the following example, we can access the argument of the <code>+</code> application by simply quoting the invocation. Then we can  access its elements using plain list operators such as <code>cdr</code>. 
+</p>
+<figure><pre><code>(cdr (quote (+ 2 3)))
+&gt;&gt;&gt; (2 3)</code></pre><figcaption></figcaption></figure>
+
+
+
+<h3>Phsyche's overview</h3>
+
+<p>
+Since we do not want to have to build a full parser, we will bend a bit the syntax of Phsyche to be compatible with the one of Pharo.
+</p><ul>
+<li>Booleans are represented as <code>true</code> and <code>false</code> instead of <code>#t</code> and <code>#f</code>.</li>
+<li>Numbers are the ones of Pharo.</li>
+<li>Symbols and strings will be the ones of Pharo:  <code>#pharo</code> and <code> 'pharo'</code>.</li>
+<li>Lists will be represented as arrays to be able to get benefit from the scanner facilities of Pharo as we will explain right after. The empty list is represented by <code>#()</code>.</li>
+</ul>
+
+
+<p>
+We are now ready to implement the first version of Phsyche.
+We will start with a first version that only let programmers to express function use and composition without having the possibility to define their own functions. Then in a second iteration we will add closures and function definition. 
+</p>
+
+
+<h2>A simple parser for Phsyche</h2>
+
+<p>
+We will start to implement an extremely simple parser. Then we will define an interpreter for a limited version of the language.
+</p>
+<h3>Simple interpretation architecture</h3>
+
+<p>
+When implementing language compilers, parsing is the process that takes a text as input and produces an abstract representation of the program (see Figure <a href="#naiveChain"></a>). This process is often composed of a scanner and a parser phase. The scanner cuts the text into a list of tokens. Then the parser consumes this list of tokens to build an intermediate representation such as an abstract syntax tree. This abstract syntax tree is then analyzed, annotated, and transformed by a compiler to finally generate different outputs (bytecode or assembly). The generated code embeds the semantics of the implemented language.
+</p>
+<p>
+<a id="naiveChain"></a>
+<figure>
+	<img src="Chapters/figures/naiveChain.pdf" width="60%" id="naiveChain" alt="A naive compilation chain."/>
+	<figcaption>A naive compilation chain.</figcaption>
+</figure>
+</p>
+<p>
+Besides having a compiler, we can also have an interpreter, i.e., a program that executes programs of the implemented language. The idea is that the interpreter will consume the intermediate representation and act adequately. For example, when it sees a variable definition, it will declare a binding for such variable in a structure (usually an environment).
+</p>
+<p>
+Note that the view depicted in Figure <a href="#naiveChain"></a> is naive in sense that the compiler may also emit abstract instructions (for example bytecode) that will be interpreted by an (bytecode) interpreter and may be converted on the fly to assembly code. This is what the Pharo Virtual Machine does.
+</p>
+<p>
+In our interpreter we will take a simpler route. Since Scheme syntax is simple we will just use a simple scanner and our interpreter will take as input the tokens produced by the scanner. We will use the natural structure of arrays as simple abstract syntax trees.
+</p>
+
+<h3>Starting</h3>
+<p>
+Let us start by defining some tests to drive the development of Phsyche's interpreter.
+</p>
+<figure><pre><code>TestCase subclass: #PhsycheTest
+	instanceVariableNames: 'ph'
+	classVariableNames: ''
+	package: 'Phsyche'</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PhsycheTest &gt;&gt; setUp
+	ph := Phsyche new</code></pre><figcaption></figcaption></figure>
+
+<p>
+In the following test we see that we use the natural nesting of arrays of Pharo to represent Scheme lists. 
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testParseLambda
+	self 
+		assert: (ph parse: '(define squared (lambda (x) (* x x)))') 
+		equals: #(#define #squared #(#lambda #(#x) #(* x x)))</code></pre><figcaption></figcaption></figure>
+
+<p>
+Here we check that an empty list is recognised as an empty array. 
+</p><figure><pre><code>PhsycheTest &gt;&gt; testParseEmptyList
+	self assert: (ph parse: '()') equals: #()</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PhsycheTest &gt;&gt; testParseFloat
+	self 
+		assert: (ph parse: '12.33')
+		equals: 12.33</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PhsycheTest &gt;&gt; testParseSymbol
+	self 
+		assert: (ph parse: 'r')
+		equals: #r</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PhsycheTest &gt;&gt; testParseIsNull
+	self assert: (ph parse: '(isNull (cons (quote a) #()))') equals: #(#isNull #(#cons #(#quote #a) #())).
+	self assert: (ph parse: '(isNull (cons (quote a) ()))') equals: #(#isNull #(#cons #(#quote #a) #()))</code></pre><figcaption></figcaption></figure>
+
+
+<h3>Parsing input text</h3>
+
+<p>
+Now we are ready to implement the <code>parse:</code> method. We create the class Phsyche which is the language interpreter.
+</p>
+<figure><pre><code>Object subclass: #Phsyche
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'Phsyche'</code></pre><figcaption></figcaption></figure>
+
+<p>
+To implement the <code>parse:</code> method, we take advantage of the Pharo's <code>Scanner</code> and the fact that we map list to arrays.
+</p>
+<p>
+Note that this implementation can really be bent and it is absolutely not robust but it serves our teaching purpose.
+</p>
+<figure><pre><code>Phsyche &gt;&gt; parse: aProgramString
+	aProgramString ifEmpty: [ ^ #() ].
+	^ (Scanner new scanTokens: aProgramString) first </code></pre><figcaption></figcaption></figure>
+
+<p>
+As an exercise, we suggest you to represent lists with pairs as in traditional Lisp and Scheme. To do so, you will need to define a better parser.
+</p>
+<p>
+Now we are ready to interpret the parsed programs.
+</p>
+
+<h2>Limited Phsyche </h2>
+
+<p>
+In this chapter we will build <em>Limited Phsyche</em>: a simple interpreter that can evaluate atomic elements and simple function application. It will not support function definition and closures.
+</p>
+
+<h3>Evaluating elementary elements</h3>
+
+<p>
+Let us start to specify the expected behavior of the language evaluation.
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalEmptyList
+	self assert: (ph parseAndEval: '()') equals: #()</code></pre><figcaption></figcaption></figure>
+
+
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalBoolean
+	self assert: (ph parseAndEval: 'true') equals: true.
+	self assert: (ph parseAndEval: 'false') equals: false.</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalNumber
+	self assert: (ph parseAndEval: '12') equals: 12.
+	self assert: (ph parseAndEval: '3.14') equals: 3.14.</code></pre><figcaption></figcaption></figure>
+
+
+<p>
+Now we can add the following methods to Phsyche
+</p>
+<figure><pre><code>Phsyche &gt;&gt; parseAndEval: anExpression
+
+	^ self eval: (self parse: anExpression)</code></pre><figcaption></figcaption></figure>
+
+<p>
+We define the <code>eval:</code> method. It is a short cut to the main <code>eval:in:</code> method.
+</p>
+<figure><pre><code>Phsyche &gt;&gt; eval: expression
+	^ self eval: expression in: nil</code></pre><figcaption></figcaption></figure>
+
+<p>
+The <code>eval:in:</code> method is central to the interpreter.
+For now, the <code>eval:in:</code> returns its argument. Quite limited and trivial so far.
+</p>
+<figure><pre><code>Phsyche &gt;&gt; eval: expression in: anEnvironment
+	^ expression </code></pre><figcaption></figcaption></figure>
+
+<h3>Defining a variable</h3>
+
+<p>
+We add support for the first special form: <code>define</code>. 
+We start by supporting variable definition.
+</p>
+<p>
+Here is a test showing the behavior we expect. 
+</p><figure><pre><code>PhsycheTest &gt;&gt; testDefineExpression
+	ph parseAndEval: '(define pi 3.14)'.
+	self 
+		assert: (ph  parseAndEval: 'pi')
+		equals:  3.14.</code></pre><figcaption></figcaption></figure>
+
+<p>
+First we should add a dictionary that holds defined variables and their values.
+</p>
+<figure><pre><code>Phsyche &gt;&gt; initialize
+	super initialize.
+	environment := Dictionary new</code></pre><figcaption></figcaption></figure>
+
+<p>
+We redefine the <code>eval:</code> method as follows: 
+</p>
+<figure><pre><code>Phsyche &gt;&gt; eval: expression
+	^ self eval: expression in: environment</code></pre><figcaption></figcaption></figure>
+
+<p>
+Now we define a better <code>eval:in:</code> method. If the expression is a symbol, we return the value of the expression in the enviroment. Note that we do not refer to the instance variable <code>environment</code> but the parameter <code>anEnvironment</code> because in the future we will show that we may want to look for values in a different environment than the one of the interpreter.
+</p>
+<figure><pre><code>Phsyche &gt;&gt; eval: expression in: anEnvironment
+	expression = #()
+		ifTrue: [ ^ expression ].
+	expression isSymbol
+		ifTrue: [ ^ anEnvironment at: expression ].	&quot;returns the variable value&quot;
+	expression isArray
+		ifFalse: [ &quot;returns literals boolean, string, number&quot; ^ expression ]
+		ifTrue: [ 
+			expression first = #define
+				ifTrue: [ ^ self evalDefineSpecialForm: expression in: anEnvironment ].</code></pre><figcaption></figcaption></figure>
+
+<p>
+When the expression is a variable definition, we define it. What you should see is that <code>define</code> is a special form since it does not evaluate its first parameter only the second one.
+This is what the method <code>evalDefineSpecialForm:in:</code> is doing.
+</p>
+<figure><pre><code>Phsyche &gt;&gt; evalDefineSpecialForm: expression in: anEnvironment
+	anEnvironment 
+		at: expression second 
+		put: (self eval: expression third in: anEnvironment).
+	^ #undefined</code></pre><figcaption></figcaption></figure>
+
+
+<p>
+The following test shows that  a variable points to a value. 
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalExpression2
+	ph parseAndEval: '(define pi 3.14)'.
+	ph parseAndEval: '(define pi2 pi)'.
+	ph parseAndEval: '(define pi 6.28)'.
+	self assert: (ph parseAndEval: 'pi2') equals: 3.14</code></pre><figcaption></figcaption></figure>
+
+<h3>Introducing quote</h3>
+
+<p>
+Quote is an interesting special form. It is the one that does not evaluate its argument.
+In addition as we mentioned in an earlier chapter, <code>quote</code> turns function application (<code>(prog args)</code>)
+into a manipulable data-structure: a list.
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalQuote
+	self 
+		assert: (ph parseAndEval: '(quote (* x x))') 
+		equals: #(#* #x #x).
+	self 
+		assert: (ph parseAndEval: '(quote (quote (* x x)))') 
+		equals: #(quote #(#* #x #x))</code></pre><figcaption></figcaption></figure>
+
+
+
+<figure><pre><code>Phsyche &gt;&gt; eval: expression in: anEnvironment
+	expression = #()
+		ifTrue: [ ^ expression ].
+	expression isSymbol
+		ifTrue: [ ^ anEnvironment at: expression ].	&quot;returns the variable value&quot;
+	expression isArray
+		ifFalse: [ &quot;returns literals boolean, string, number&quot; ^ expression ]
+		ifTrue: [ | first |
+			first := expression first. 
+			first = #define
+				ifTrue: [ ^ self evalDefineSpecialForm: expression in: anEnvironment ]
+			first = #quote
+				ifTrue: [ ^ expression second ]</code></pre><figcaption></figcaption></figure>
+
+<h3>Setting up the primitives</h3>
+
+<p>
+We will introduce some primitive behavior such as addition, multiplication, and list manipulation. In this implementation of Phsyche we will define them as block closures. A more object-oriented implementation reifying the operations is possible as we will show in the latest chapter of this booklet.
+</p>
+<p>
+We will use a dictionary to represent the environment that keep primitives names and their respective values. 
+But let us write a test first to specify what we want to get.
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalExpression
+	self assert: (ph parseAndEval: '(* 3 8)') equals: 24</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalMoreComplexExpression
+	self assert: (ph parseAndEval: '(* (+ 2 3) 8)') equals: 40.
+	self assert: (ph parseAndEval: '(* 8 (+ 2 3))') equals: 40</code></pre><figcaption></figcaption></figure>
+
+<p>
+We define the multiplication and addition as follows:
+</p><figure><pre><code>Phsyche &gt;&gt; multBinding
+	^ #* -&gt; [:e :v | e * v]</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Phsyche &gt;&gt; plusBinding
+	^ #+ -&gt;  [:e :v | e + v]</code></pre><figcaption></figcaption></figure>
+
+<p>
+The method <code>multBinding</code> returns a pair containing the primitive name and its associated Pharo closure.
+The environment will contain a binding whose value is the primitive name (<code>#+</code>) and whose value will be the corresponding block.
+</p>
+
+<h4>Primitive environment initialization</h4>
+
+<p>
+To represent the environment, the interpreter defines one instance variable <code>environment</code> initialized to a dictionary. It has a <code>primitives</code> collection to keep the names of the primitives. 
+</p><figure><pre><code>Object subclass: #Phsyche
+	instanceVariableNames: 'environment primitives'
+	classVariableNames: ''
+	package: 'Phsyche'</code></pre><figcaption></figcaption></figure>
+
+<p>
+We redefine the <code>initialize</code> method to initialize the environment, the primitive name data structure (here we use an ordered collection) and to call the <code>initializeEnvBindings</code> method.
+</p>
+<figure><pre><code>Phsyche &gt;&gt; initialize
+	super initialize.
+	environment := Dictionary new.
+	primitives := OrderedCollection new.
+	self initializeEnvBindings</code></pre><figcaption></figcaption></figure>
+
+<p>
+The <code>initializeEnvBindings</code> method automatically executes all the methods ending with <code>'Binding'</code>.
+We use the method <code>perform:</code> to execute a method whose name is given as argument. 
+We add a primitive bindings to the environment and the primitive name to the primitive name list.
+</p>
+<figure><pre><code>Phsyche &gt;&gt; initializeEnvBindings
+	(self class selectors select: [ :each | each endsWith: 'Binding' ])
+		do: [ :s | 
+				| binding |
+				binding := self perform: s.
+				primitives add: binding key.
+				environment at: binding key put: binding value ]</code></pre><figcaption></figcaption></figure>
+
+<p>
+The following expression returns the list of method selectors that ends with 'Binding'.
+</p>
+<figure><pre><code>(self class selectors select: [ :each | each endsWith: 'Binding' ])</code></pre><figcaption></figcaption></figure>
+
+
+<p>
+We take the opportunity to add the primitive name to the list of primitives since it will help use later during the evaluation.
+</p>
+<h4>Handling primitive evaluation</h4>
+
+<p>
+We are ready to implement the evaluation of a call <code>(primitive arg1 ... argn)</code>. The method <code>evalPrimitive:in:</code>  finds the block closure and  executes it with the values of the arguments. The method <code>valueWithPossibleArgs:</code> 
+executes a block closure paying attention to the possible multiple number of required arguments.
+</p>
+<figure><pre><code>Phsyche &gt;&gt; evalPrimitive: exp in: anEnvironment
+
+	^ (anEnvironment at: exp first) 
+			valueWithPossibleArgs: (exp allButFirst collect: [ :e | self eval: e in: anEnvironment])</code></pre><figcaption></figcaption></figure>
+
+<p>
+What is interesting in this method is that this is the place that defines the semantics of the evaluation of argument calls. Here we see that the arguments are all evaluated from left to right.
+</p>
+
+<p>
+We should change the <code>eval:in:</code> method to take into account that we have support for primitive call. What is interesting is that we have to be clear about the semantic of primitive execution, obviously. We know that we can get the closure associated to the primitive name in the environment, and a primitive should evaluate all its arguments and pass to the closure.
+</p>
+<figure><pre><code>Phsyche &gt;&gt; eval: expression in: anEnvironment
+	expression = #()
+		ifTrue: [ ^ expression ].
+	expression isSymbol
+		ifTrue: [ ^ anEnvironment at: expression ].	&quot;returns the variable value&quot;
+	expression isArray
+		ifFalse: [ &quot;returns literals boolean, string, number&quot; ^ expression ]
+		ifTrue: [ | first |
+			first := expression first.
+			(primitives includes: first)
+				ifTrue: [ ^ self evalPrimitive: expression in: anEnvironment ]
+				ifFalse: [ first = #define
+						ifTrue: [ ^ self evalDefineSpecialForm: expression in: anEnvironment ].
+					first = #quote
+						ifTrue: [ ^ expression second ]]</code></pre><figcaption></figcaption></figure>
+
+<p>
+At this point our tests should all pass.
+</p>
+<h4>Some consideration</h4>
+<p>
+Note that for now we consider that the mathematical operations are only working on pairs and not list of elements. Another point to consider is that explicit check for primitives in the environment prevents us to overload locally their definition and this could be changed.
+</p>
+
+<h4>Some more arithmetic primitives</h4>
+
+<p>
+Here are  definitions for more primitives
+</p>
+<figure><pre><code>Phsyche &gt;&gt; isEqualBinding
+	^ #equal -&gt; [ :e :v | e = v ]</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Phsyche &gt;&gt; greaterOrEqualBinding
+	^ #&gt;= -&gt; [ :e :v | e &gt;= v ]</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Phsyche &gt;&gt; isEqualBinding
+	^ #equal -&gt; [ :e :v | e = v ]</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Phsyche &gt;&gt; minusBinding
+	^ #- -&gt; [ :e :v | e - v ]</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Phsyche &gt;&gt; smallerBinding
+	^ #&lt; -&gt; [ :e :v | e &lt; v ]</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Phsyche &gt;&gt; smallerOrEqualBinding
+	^ #&lt; -&gt; [ :e :v | e &lt;= v ]</code></pre><figcaption></figcaption></figure>
+
+<h4>Adding substraction and division</h4>
+
+<figure><pre><code>Phsyche &gt;&gt; minusBinding
+	^ #- -&gt; [ :e :v | e - v ]</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Phsyche &gt;&gt; divisionBinding
+	^ #/ -&gt; [ :e :v | (e / v) asFloat ]</code></pre><figcaption></figcaption></figure>
+
+<p>
+We add 
+</p><figure><pre><code>PhsycheTest &gt;&gt; testDivision
+	self should: [ ph parseAndEval: '(/ 5 0)' ] raise: ZeroDivide</code></pre><figcaption></figcaption></figure>
+
+<h4>Adding not</h4>
+
+<figure><pre><code>PhsycheTest &gt;&gt; testNot
+	self assert: (ph parseAndEval: '(not false)').
+	self deny: (ph parseAndEval: '(not true)')</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PhsycheTest &gt;&gt; isNotBinding
+	^ #not -&gt; [ :a | a not ]</code></pre><figcaption></figcaption></figure>
+
+<h3>Adding list primitives</h3>
+
+<p>
+We should add some primitives to manage lists such as the elementary operations <code>cons</code>, <code>car</code>, and <code>cdr</code>.
+</p>
+<p>
+Here are some tests to make sure that such primitives are acting as expected.
+Note that we consider that <code>cons</code> is only working on lists and does not produce dotted pairs.
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalListExpression
+	self assert: (ph parseAndEval: '(cons (quote a) ())') equals: #(a)</code></pre><figcaption></figcaption></figure>
+
+
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalCarExpressionEvaluatesItsArgument
+	self
+		assert: (ph parseAndEval:  '(car (cons (quote a) (cons (quote b) ())))')
+		equals: #a</code></pre><figcaption></figcaption></figure>
+
+
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalCdrExpressionEvaluatesItsArgument
+	self assert: (ph parseAndEval: '(cdr (quote (quote a)))') equals: #(a)</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PhsycheTest &gt;&gt; testIsNull
+	self assert: (ph parseAndEval: '(isNull #())').
+	self assert: (ph parseAndEval: '(isNull (quote ()))').
+	self deny: (ph parseAndEval: '(isNull (cons (quote a) #()))')</code></pre><figcaption></figcaption></figure>
+
+
+<p>
+Here are the primitives definitions. 
+</p>
+<figure><pre><code>Phsyche &gt;&gt; carBinding
+	^ #car -&gt; [ :l | l first ]</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Phsyche &gt;&gt; cdrBinding
+	^ #cdr -&gt; [ :l | l allButFirst ]</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Phsyche &gt;&gt; consBinding
+	^ #cons -&gt; [ :e :l | {e} , l ]</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Phsyche &gt;&gt; isNullBinding
+	^ #isNull -&gt; [ :l | l = #() ]</code></pre><figcaption></figcaption></figure>
+
+<p>
+Now we can get back to the implementation of more special forms.
+</p>
+<h3>Adding if</h3>
+
+<p>
+We are ready to implement <code>if</code>. It has the following form: <code>(if condition iftrue iffalse)</code>. <code>if</code> is a special form since it does not evaluate all its arguments. Indeed, <code>if</code> should only evaluate the correct argument based on the boolean value. 
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalIf
+	self assert: (ph parseAndEval: '(if true 4 5)') equals: 4.
+	self assert: (ph parseAndEval: '(if false 4 5)') equals: 5</code></pre><figcaption></figcaption></figure>
+
+<p>
+Well we can do better. Since numbers are auto-evaluating, this test does not verify that only one branch is evaluated.
+</p>
+<p>
+Let us use a division by zero checks that for us as follows:
+</p><figure><pre><code>PhsycheTest &gt;&gt; testEvalIfNoSpurious
+	self assert: (ph eval: (ph parse: '(if true 4 (/ 5 0))')) equals: 4.
+	self assert: (ph eval: (ph parse: '(if false (/ 5 0) 5)')) equals: 5</code></pre><figcaption></figcaption></figure>
+
+<p>
+And we define the semantics of <code>if</code> as follows: 
+</p><figure><pre><code>Phsyche &gt;&gt; evalIfSpecialForm: expression in: anEnvironment
+	^ (self eval: expression second in: anEnvironment)
+		ifTrue: [ self eval: expression third in: anEnvironment ]
+		ifFalse: [ self eval: expression fourth in: anEnvironment ]</code></pre><figcaption></figcaption></figure>
+
+<p>
+And we can introduce this new method to the main <code>eval:in:</code> method as follows: 
+</p><figure><pre><code>Phsyche &gt;&gt; eval: expression in: anEnvironment
+	expression = #()
+		ifTrue: [ ^ expression ].
+	expression isSymbol
+		ifTrue: [ ^ anEnvironment at: expression ].	&quot;returns the variable value&quot;
+	expression isArray
+		ifFalse: [ &quot;returns literals boolean, string, number&quot; ^ expression ]
+		ifTrue: [ | first |
+			first := expression first.
+			(primitives includes: first)
+				ifTrue: [ ^ self evalPrimitive: expression in: anEnvironment ]
+				ifFalse: [ first = #define
+						ifTrue: [ ^ self evalDefineSpecialForm: expression in: anEnvironment ].
+								first = #if
+						ifTrue: [ ^ self evalIfSpecialForm: expression in: anEnvironment].
+					first = #quote
+						ifTrue: [ ^ expression second ]]
+					]</code></pre><figcaption></figcaption></figure>
+
+
+<p>
+All our lovely tests are passing. 
+</p>
+<p>
+As a short conclusion, our interpreter supports the execution of expression but it is really limited in the sense that we cannot add new functions. This is what we will address in the next chapter as well as the definition of closures (functions which refer to the defining environment).
+</p>
+
+<h2>Function definition and application</h2>
+
+<p>
+We will add user function (also called procedure in some languages) and function application to Phsyche.
+We go step by step to describe the different aspects of function definition and application. 
+In the next chapter we will introduce closures. 
+</p>
+<h3>About environments</h3>
+<p>
+Let us start with a first function definition.
+</p>
+<figure><pre><code>(define pi 3.14)
+(define area
+	(lambda (r)
+		(* pi (* r r))))</code></pre><figcaption></figcaption></figure>
+
+<p>
+We can execute the function: 
+</p><figure><pre><code>(area 10)
+&gt;&gt;&gt; 314</code></pre><figcaption></figcaption></figure>
+
+<p>
+Let us analyse the definition and application of the function <code>area</code>.
+What is important to see is that during the application <code>(area 10)</code>, the argument <code>r</code> acts as a local variable of the function. During <code>(area 10)</code> execution, <code>r</code> gets the value of the argument (here 10).
+</p>
+<p>
+The following program checks that the argument value takes precedence over variables defined in outer scope.
+</p>
+<figure><pre><code>(define r 5)
+(define pi 3.14)
+(define area
+	(lambda (r)
+		(* pi (* r r))))</code></pre><figcaption></figcaption></figure>
+
+<p>
+We define a variable <code>r</code> with 5 as value and the function <code>area</code> has an argument with the same name.
+</p>
+<figure><pre><code>(area 10)
+&gt;&gt;&gt; 314</code></pre><figcaption></figcaption></figure>
+
+<p>
+The execution of <code>(area 10)</code> shows several important points:
+</p><ol><li>During function application, an environment should be created with the parameter and its value. The body of the function should be evaluated within the context of such an environment.</li>
+<li>Second the argument value takes precedence over the value of <code>r</code> defined previously.</li>
+<li>Third, when executing the body of <code>area</code> we should be able to access variable defined in <em>outer</em> scope such as <code>pi</code>.</li>
+</ol>
+
+
+<p>
+We used a simple dictionary to represent an environment to store variables and their value. 
+But this is not sufficient because it makes the lookup of outer variables more cumbersome. We should use a list of bindings: an environment.
+This way the environment created during the function application can be linked to the global as shown in Figure <a href="#areaEnvi"></a>. With environments, we can also have function application nested into function application without any problems. 
+</p>
+
+<p>
+<a id="areaEnvi"></a>
+<figure>
+	<img src="Chapters/figures/areaEnvironment.pdf" width="60%" id="areaEnvi" alt="Function application creates an environment."/>
+	<figcaption>Function application creates an environment.</figcaption>
+</figure>
+</p>
+<h3>Defining an environment class</h3>
+
+<p>
+An environment is kind of linked list of bindings. It can also be seen as a dictionary that when a binding is not found locally continues the binding lookup in another environment (called its parent or outer scope). Figure <a href="#twoEnvironment"></a> shows an example of environments.
+</p>
+
+<p>
+<a id="twoEnvironment"></a>
+<figure>
+	<img src="Chapters/figures/twoEnvironments.pdf" width="60%" id="twoEnvironment" alt="Two graphical representations of environments."/>
+	<figcaption>Two graphical representations of environments.</figcaption>
+</figure>
+</p>
+<p>
+Let us define some tests first
+</p>
+<figure><pre><code>TestCase subclass: #PEnvironmentTest
+	instanceVariableNames: 'outer inner'
+	classVariableNames: ''
+	package: 'Phsyche'</code></pre><figcaption></figcaption></figure>
+
+<p>
+Our setup makes sure that the <code>inner</code> environment is pointing to another context called <code>outer</code> here.
+</p>
+<figure><pre><code>PEnvironmentTest &gt;&gt; setUp
+	outer := PEnvironment new.
+	inner := PEnvironment new.
+	inner outerEnvironment: outer</code></pre><figcaption></figcaption></figure>
+
+<p>
+The first test is to check that we can access the values set in each scope.
+</p>
+<figure><pre><code>PEnvironmentTest &gt;&gt; testLookupAtRightLevel
+	outer at: #dad put: 'donald'.
+	self assert: (outer at: #dad) equals: 'donald'.
+	inner at: #son put: 'riri'.
+	self assert: (inner at: #son) equals: 'riri'</code></pre><figcaption></figcaption></figure>
+
+<p>
+The second test is to check that we can reach the outer value from the inner scope.
+</p>
+<figure><pre><code>PEnvironmentTest &gt;&gt; testLookingOuterFromInner
+	outer at: #dad put: 'donald'.
+	inner at: #son put: 'riri'.
+	self assert: (inner at: #dad) equals: 'donald'</code></pre><figcaption></figcaption></figure>
+
+<p>
+The final test checks that unknown keys are not found.
+</p>
+<figure><pre><code>PEnvironmentTest &gt;&gt; testLookupInFails
+	outer at: #dad put: 'donald'.
+	inner at: #son put: 'riri'.
+	self should: [ outer at: #nodad ] raise: KeyNotFound.
+	self should: [ outer at: #noson ] raise: KeyNotFound.
+	self should: [ inner at: #nodad ] raise: KeyNotFound</code></pre><figcaption></figcaption></figure>
+
+<p>
+We will improve the environment implementation to cover the definition of new binding but we will do that when we will add functionality to change the value of binding (i.e., when we will  implement the primitive <code>set</code> for example).
+</p>
+
+<h3>Implement an environment class</h3>
+<p>
+There are multiple ways to implement an environment. 
+Our implementation is just one special kind of dictionary that when it does not find the value associated to a key, looks up in its father dictionary.
+We define the class <code>PEnvironment</code> as a subclass of <code>Dictionary</code> as follows: 
+</p>
+<figure><pre><code>Dictionary subclass: #PEnvironment
+	instanceVariableNames: 'outerEnvironment'
+	classVariableNames: ''
+	package: 'Phsyche'</code></pre><figcaption></figcaption></figure>
+
+<p>
+We need an accessor to set the outer context.
+</p>
+<figure><pre><code>PEnvironment &gt;&gt; outerEnvironment: anEnvironment
+	outerEnvironment := anEnvironment</code></pre><figcaption></figcaption></figure>
+
+<p>
+We redefine the method <code>at:</code> so that we first look up locally for a value. If the value is found, we return it, else when there is an outer environment we look the value in this outer environment. If there is no outer environment, we simply execute the default behavior which will lead to raise an error.
+</p>
+<figure><pre><code>PEnvironment &gt;&gt; at: aKey
+	| value |
+	value := self at: aKey ifAbsent: [ nil ].
+	^ value
+		ifNil: [ outerEnvironment 
+			ifNil: [ super at: aKey ] 
+			ifNotNil: [ outerEnvironment at: aKey ] ]
+		ifNotNil: [ :v | v ]</code></pre><figcaption></figcaption></figure>
+
+<p>
+Now we are ready to define what a function is.
+</p>
+<h3>Function definition</h3>
+
+<p>
+We need a way to represent a function. A function has a list of parameter and a body.
+Let us start to write a test. 
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testFunctionDefinition
+	| proc |
+	ph parseAndEval: '(define squared (lambda (x) (* x x)))'.
+	proc := ph parseAndEval: #squared.
+	self assert: proc parameters equals: #(#x).
+	self assert: proc body equals: #(#* #x #x)</code></pre><figcaption></figcaption></figure>
+
+<p>
+We define the class <code>PFunction</code> to represent functions. It is for now straightforward.
+</p>
+<figure><pre><code>Object subclass: #PFunction
+	instanceVariableNames: 'parameters body'
+	classVariableNames: ''
+	package: 'Phsyche'</code></pre><figcaption></figcaption></figure>
+
+<p>
+Define the accessors for its instance variables. Now we will extend the interpreter to create functions. When an expression starts with a lambda keyword, we should return a function.
+</p>
+
+<figure><pre><code>Phsyche &gt;&gt; eval: expression in: anEnvironment
+	expression = #()
+		ifTrue: [ ^ expression ].
+	expression isSymbol
+		ifTrue: [ ^ anEnvironment at: expression ].	&quot;returns the variable value&quot;
+	expression isArray
+		ifFalse: [ &quot;returns literals boolean, string, number&quot; ^ expression ]
+		ifTrue: [ | first |
+			first := expression first.
+			(primitives includes: first)
+				ifTrue: [ ^ self evalPrimitive: expression in: anEnvironment ]
+				ifFalse: [ first = #define
+						ifTrue: [ ^ self evalDefineSpecialForm: expression in: anEnvironment ].
+					first = #lambda
+						ifTrue: [ ^ self evalLambdaSpecialForm: expression in: anEnvironment ].
+					first = #if
+						ifTrue: [ ^ self evalIfSpecialForm: expression in: anEnvironment].
+					first = #quote
+						ifTrue: [ ^ expression second ] ] ]</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Phsyche &gt;&gt; evalLambdaSpecialForm: expression in: anEnvironment
+	^ PFunction new
+		parameters: expression second;
+		body: expression third</code></pre><figcaption></figcaption></figure>
+
+<p>
+Note that this implementation of <code>lambda</code> is not correct as it does not keep a reference to its defining environment but we will do it later when we will introduce closures.
+</p>
+<p>
+Now Phsyche supports the <em>definition</em> of functions but not their application. Let us look at that now.
+</p>
+<h3>Function application</h3>
+
+<p>
+As we saw languages following Lisp-like syntax follow the pattern <code>(proc args)</code> to mean that the function <code>proc</code> is applied to the arguments <code>args</code>. Such arguments are evaluated prior being passed to the function.
+</p>
+<p>
+Let us write tests to control such a behavior. 
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testLambdaFunctionExecution
+	self assert: (ph parseAndEval: '((lambda (x) (* x x)) 3)') equals: 9.</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PhsycheTest &gt;&gt; testFunctionExecution
+	ph parseAndEval: '(define squared (lambda (x) (* x x)))'.
+	self assert: (ph parseAndEval: '(squared 3)') equals: 9</code></pre><figcaption></figcaption></figure>
+
+<p>
+Again we will implement function application step by step to understand the different aspects.
+</p>
+<p>
+What is important to see is that while executing a function body,  we have to have access to the interpreter environment, for example, to access primitive definitions. 
+We have to define a new environment where we bind the arguments to their values. Such an environment will only be used for one application. It will be the inner environment of Figure <a href="#areaEnvi"></a>.
+</p>
+
+<h4>A first function application</h4>
+<p>
+The not really good implementation is then the following:
+</p>
+<figure><pre><code>Phsyche &gt;&gt; eval: expression in: anEnvironment
+	expression = #()
+		ifTrue: [ ^ expression ].
+	expression isSymbol
+		ifTrue: [ ^ anEnvironment at: expression ].	&quot;returns the variable value&quot;
+	expression isArray
+		ifFalse: [ &quot;returns literals boolean, string, number&quot; ^ expression ]
+		ifTrue: [ | first |
+			first := expression first.
+			(primitives includes: first)
+				ifTrue: [ ^ self evalPrimitive: expression in: anEnvironment ]
+				ifFalse: [ 
+						first = #define
+							ifTrue: [ ^ self evalDefineSpecialForm: expression in: anEnvironment ].
+						first = #lambda
+							ifTrue: [ ^ self evalLambdaSpecialForm: expression in: anEnvironment ].
+						first = #if
+							ifTrue: [ ^ self evalIfSpecialForm: expression in: anEnvironment].
+						first = #quote
+							ifTrue: [ ^ expression second ]
+							ifFalse: [
+								^ self evalApplicativeOrder: expression in: anEnvironment ] ] ]</code></pre><figcaption></figcaption></figure>
+
+
+<p>
+The following method <code>evalApplicativeOrder:in:</code> is responsible for the function application: it evaluates its first element, which will return a function.
+It creates an new environment with the parameters and the values of the arguments as values and execute the body of the function within this environment. 
+</p>
+<figure><pre><code>Phsyche &gt;&gt; evalApplicativeOrder: expression in: anEnvironment
+	&quot;Now we have function application ((lambda (x) (+ x 3)) (+ 9 1))&quot;
+	
+	| proc newEnv |
+	proc := self eval: expression first in: anEnvironment.
+	newEnv := proc
+		setEnvironmentForParameters: (expression allButFirst collect: [ :e | self eval: e in: anEnvironment ])
+		in: anEnvironment.
+	^ self eval: proc body in: newEnv</code></pre><figcaption></figcaption></figure>
+
+<p>
+Note that for function application, the application environment (<code>newEnv</code>) has  the global interpreter environment as parent. This will not be the case for closures as we will see later.
+</p>
+<p>
+The method <code>setEnvironmentForParameters:in:</code> is a simple helper function that creates a new environment based on the function parameters and their values, and an outer environment.
+</p>
+<figure><pre><code>PFunction &gt;&gt; setEnvironmentForParameters: values in: outerEnvironment
+	&quot;Create a new environment inheriting from the functino one, for the current application.&quot;
+	| applicationEnvironment |
+	applicationEnvironment := PEnvironment newFromKeys: self parameters andValues: values.
+	applicationEnvironment outerEnvironment: outerEnvironment.
+	^ applicationEnvironment</code></pre><figcaption></figcaption></figure>
+
+
+<p>
+The class method <code>newFromKeys:andValues:</code> only exists in Pharo 70. Here is its definition.
+</p>
+<figure><pre><code>Dictionary class &gt;&gt; newFromKeys: keys andValues: values
+	&quot;Create a dictionary from the keys and values arguments which should have the same length.&quot;	
+	&quot;(Dictionary newFromKeys: #(#x #y) andValues: #(3 6)) &gt;&gt;&gt; (Dictionary new at: #x put: 3; at: #y put: 6 ;yourself)&quot;
+	
+	| dict |
+	dict := self new.
+	keys with: values do: [ :k :v | dict at: k put: v ].
+	^ dict</code></pre><figcaption></figcaption></figure>
+
+<p>
+With such an implementation, all our current tests should pass.
+Now we are ready to implement closures.
+</p>
+
+
+
+
+
+<h2>Adding closures to Phsyche</h2>
+
+<p>
+In this chapter we add closures to Phsyche. A closure is a function capturing the environment in which it is defined. We start studying some examples and then we will implement on the closure semantics.
+</p>
+<h3>Studying a closure</h3>
+
+<p>
+A closure is a function which contains a reference to the environment at its definition time. Since evaluating a lambda defines a <em>temporary</em> environment in which the parameters are bound, we use this fact to create an environment local to a function. Let us have a look at a simple example:
+</p>
+<figure><pre><code>(
+ ((lambda (x)
+   (lambda (y)
+     (+ x y)))
+  3)
+ 7)
+&gt;&gt;&gt; 10</code></pre><figcaption></figcaption></figure>
+
+<p>
+This expression creates a lambda expression and apply to 7.
+The execution of this lambda expression leads to the creation of another lambda expression 
+applied to 3. 
+</p>
+<p>
+The following subexpression returns a function <code>lambda (y) ... </code> adding 3 to its parameter <code>y</code>. 
+</p>
+<figure><pre><code> ((lambda (x)
+   (lambda (y)
+     (+ x y)))
+  3)</code></pre><figcaption></figcaption></figure>
+
+<p>
+This is why the first expression result is 10. It does so by executing the first function with 3 as parameter value for <code>x</code>. This first execution creates an environment in which x is bound to 3. 
+Then it returns a function taking <code>y</code> as parameter and referring to this environment. This is why when <code>(+ x y)</code> is executed, <code>x</code> is bound to 3.
+</p>
+<p>
+The following expressions illustrate the same process by defining a function <code>fy</code>
+and executing such a function. 
+</p>
+<figure><pre><code>(define fy
+ ((lambda (x)
+   (lambda (y)
+     (+ x y)))
+  3))</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>(fy 7)
+&gt;&gt;&gt; 10</code></pre><figcaption></figcaption></figure>
+
+
+<h4>About let</h4>
+<p>
+In fact defining local environments is so frequent that Scheme and Lisp languages offer the <code>let</code> special form to define local environment as follow: 
+</p>
+<figure><pre><code>(let ((x 3) (+ x x)))
+	&lt;=&gt;
+((lambda (x) (+ x x)) 3)</code></pre><figcaption></figcaption></figure>
+
+<p>
+You can add <code>let</code> to Phsyche as an exercise.
+</p>
+
+<h3>Implementing closure</h3>
+<p>
+To support closures, the first point is that we should change the <code>lambda</code> special form to refer to the environment in which it is defined. Indeed at the time the function is created, it holds a reference to its defining environment.
+</p>
+<p>
+To test that <code>lambda</code> effectively creates an environment, we use this expression:
+</p>
+<figure><pre><code>(define fy3 
+  ((lambda (x)
+      (lambda (y)
+       x))
+	  3))
+
+(fy3 7)</code></pre><figcaption></figcaption></figure>
+
+<p>
+Here the nested function (with  y as parameter) is simply returning the value of x. And during the function execution, the value of x will be looked up in the created environment. Here is a first test. 
+</p>
+<p>
+Note that it is difficult to test the fact that a function declaration defines a <em>new</em> environment without using function application. This is why we are using basic introspection to access the value of the variable.
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testSimpleClosureIntrospection
+
+	| proc |
+	ph eval: (ph parseAndEval: '(define fy3 
+  ((lambda (x)
+   (lambda (y)
+      x))
+  3))').
+	proc := ph parseAndEval: '#fy3'.
+	self assert: proc parameters equals: #(y).
+	self assert: (proc environment at: #x) equals: 3.</code></pre><figcaption></figcaption></figure>
+
+<p>
+The following test uses function application to verify the creation of the environment.
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testSimpleClosure
+
+	| res |
+	res := ph eval: (ph parse: '(
+ ((lambda (x)
+   (lambda (y)
+     (+ x y)))
+  3)
+ 7)').
+	self assert: res equals: 10</code></pre><figcaption></figcaption></figure>
+
+<p>
+What is important to see is that the function <code>lambda (y)...</code> will be executed in an environment where <code>y</code> is bound to 7 and this environment will have as outer environment an environment with <code>x</code> bound to 3 as shown in Figure <a href="#envbinding"></a>
+</p>
+<p>
+<a id="envbinding"></a>
+<figure>
+	<img src="Chapters/figures/lambda.pdf" width="60%" id="envbinding" alt="Each function application creates an environment and is evaluated in its definition environment."/>
+	<figcaption>Each function application creates an environment and is evaluated in its definition environment.</figcaption>
+</figure>
+</p>
+<p>
+We add the environment instance variable to the class <code>PFunction</code> and set the current environment of the interpreter when creating the function in during execution of the lambda special form.
+</p>
+<figure><pre><code>Object subclass: #PFunction
+	instanceVariableNames: 'parameters body environment'
+	classVariableNames: ''
+	package: 'Pheme-Interpreters'</code></pre><figcaption></figcaption></figure>
+
+
+<figure><pre><code>Phsyche &gt;&gt; evalLambdaSpecialForm: expression in: anEnvironment
+	^ PFunction new
+		parameters: expression second;
+		body: expression third;
+		environment: anEnvironment</code></pre><figcaption></figcaption></figure>
+
+<p>
+Now we should revisit function evaluation to use the function environment instead of the one of the interpreter. 
+</p>
+<figure><pre><code>Phsyche &gt;&gt; evalApplicativeOrder: expression in: anEnvironment
+	&quot;Now we have function application ((lambda (x) (+ x 3)) (+ 9 1))&quot;
+	| proc newEnv |
+	proc := self eval: expression first in: anEnvironment.
+	newEnv := proc
+		setEnvironmentForParameters: (expression allButFirst collect: [ :e | self eval: e in: anEnvironment ])
+		in: proc environment.
+	^ self eval: proc body in: newEnv</code></pre><figcaption></figcaption></figure>
+
+<p>
+Here we create the <code>newEnv</code> using the function environment as expressed by <code>proc environment</code>. What is important to see with closure application is that the execution environment has as outer environment the one of the function. 
+</p>
+<figure><pre><code>Phsyche &gt;&gt; evalApplicativeOrder: expression in: anEnvironment
+	&quot;Now we have function application ((lambda (x) (+ x 3)) (+ 9 1))&quot;
+	| proc newEnv |
+	proc := self eval: expression first in: anEnvironment.
+	newEnv := proc
+		setEnvironmentForParameters: (expression allButFirst collect: [ :e | self eval: e in: anEnvironment ])
+		in: proc environment.
+	^ self eval: proc body in: newEnv</code></pre><figcaption></figcaption></figure>
+
+<p>
+We have implemented the most important aspect of closure semantics. Now we will add some support to modify environments and conclude with this first version of Phsyche.
+</p>
+<h3>Adding set! and begin</h3>
+<p>
+To be able to experiment more with closures, we add support for changing the value of a binding using the <code>set!</code> special form and performing a sequence of instructions using the <code>begin</code> special form.
+</p>
+<p>
+The following tests specify that any modification should happen in the environment defining the existing binding. Notice that when a binding is not in the current environment but in one of the outer environment, this is the environment that contains the binding that should be modified.
+</p>
+<figure><pre><code>PEnvironmentTest &gt;&gt; testSetAtRightLevel
+	
+	outer at: #dad put: 'donald'.
+	inner at: #son put: 'riri'.
+	self assert: (inner at: #son) = 'riri'.
+	inner lookupAt: #son put: 'fifi'.
+	
+	self assert: (outer at: #dad) = 'donald'.
+	outer lookupAt: #dad put: 'piscou'.
+	self assert: (outer at: #dad) = 'piscou'.</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PEnvironmentTest &gt;&gt; testSetLookup
+	outer at: #dad put: 'donald'.
+	inner at: #son put: 'riri'.
+	self assert: (inner at: #dad) = 'donald'.
+	inner lookupAt: #dad put: 'picsou'.
+	self assert: (outer at: #dad) = 'picsou'.
+	self assert: (inner at: #dad) = 'picsou'.
+	self deny: (inner keys includes: #dad)</code></pre><figcaption></figcaption></figure>
+
+
+<p>
+We implement a new method called <code>lookupAt:put:</code> as follows:  
+</p>
+<figure><pre><code>PEnvironment &gt;&gt; lookupAt: aKey put: aValue
+	&quot;Change the value of the binding whose key is aKey, but looking in the complete ancestor chain.
+	If the binding does not exist, it raises an error to indicate that we should define it first.&quot;
+	| found |
+	found := self at: aKey ifAbsent: nil.
+	found 
+		ifNil: [ outerEnvironment  
+					ifNotNil: [ outerEnvironment lookupAt: aKey put: aValue] 
+					ifNil: [ KeyNotFound signal: aKey , ' not found in the environment' ]]
+		ifNotNil: [ self at: aKey put: aValue ]</code></pre><figcaption></figcaption></figure>
+
+
+<p>
+The following simple test checks that we can change the value of a binding. We will add more complex tests once we get the <code>begin</code> primitives implemented.
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalSimpleSet
+	self assert: (ph parseAndEval: '(define x2 21') equals: #undefined.
+	self assert: (ph parseAndEval: '(set x2 22)') equals: #undefined.
+	self assert: (ph parseAndEval: 'x2') equals: 22.</code></pre><figcaption></figcaption></figure>
+
+<p>
+We are ready to implement <code>set!</code>.
+</p>
+<figure><pre><code>Phsyche &gt;&gt; eval: expression in: anEnvironment
+	...
+		first = #define
+			ifTrue: [ ^ self evalDefineSpecialForm: expression in: anEnvironment ].
+		first = #set
+			ifTrue: [ ^ self evalSetSpecialForm: expression in: anEnvironment ].
+		first = #lambda
+			ifTrue: [ ^ self evalLambdaSpecialForm: expression in: anEnvironment ].
+	...</code></pre><figcaption></figcaption></figure>
+
+
+<figure><pre><code>Phsyche &gt;&gt; evalSetSpecialForm: expression in: anEnvironment
+	anEnvironment 
+		lookupAt: expression second 
+		put: (self eval: expression third in: anEnvironment).
+	^ #undefined</code></pre><figcaption></figcaption></figure>
+
+<p>
+Our tests should pass.
+</p>
+<h3>Implementing begin</h3>
+<p>
+The special form <code>(begin exp1 exp2 ... expn)</code> evaluates one after another the expressions in the list and return the value of the last one. The following tests are super simple but makes sure that all the elements are evaluated and that the result of the last one is returned.
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalBegin
+	self assert: (ph parseAndEval: '(begin 1 2 3)') equals: 3</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalBeginSet
+	self assert: (ph parseAndEval:  '(begin (define x 1) (set x 2) x)') equals: 2</code></pre><figcaption></figcaption></figure>
+
+
+<p>
+Now the implementation of <code>begin</code> is the following one. 
+</p>
+<figure><pre><code>Phsyche &gt;&gt; eval: expression in: anEnvironment
+	...
+		first = #define
+			ifTrue: [ ^ self evalDefineSpecialForm: expression in: anEnvironment ].
+		first = #set
+			ifTrue: [ ^ self evalSetSpecialForm: expression in: anEnvironment ].
+		first = #lambda
+			ifTrue: [ ^ self evalLambdaSpecialForm: expression in: anEnvironment ].
+		first = #begin
+			ifTrue: [ ^ self evalBeginSpecialForm: expression in: anEnvironment ].
+	...</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Phsyche &gt;&gt; evalBeginSpecialForm: expression in: anEnvironment
+	| res |
+	expression allButFirst 
+		do: [ :each | res := self eval: each in: anEnvironment ].
+	^ res</code></pre><figcaption></figcaption></figure>
+
+<h4>A more complex test</h4>
+
+<p>
+The following test is a bit more complex. It shows that we can change the binding of a variable created over function application. The expression <code>(set x (+ x 2))</code> modifies the value of x created by the function application. This is why even if the first value of <code>x</code> is 3, it is then latter sets to 5. Then when the function <code>fy</code> is applied to 5, it returns 10.
+</p>
+<figure><pre><code>PhsycheTest &gt;&gt; testEvalSetAtCorrectLevel
+	| proc |
+	ph parseAndEval: '
+	(define fy3 
+		((lambda (x)
+			(lambda (y)
+					(begin
+						(set x (+ x 2))
+						(+ x y))))
+				3))
+	').
+	proc := ph eval: #fy3.
+	self assert: (ph parseAndEval: '(fy3 5)') equals: 10</code></pre><figcaption></figcaption></figure>
+
+<p>
+We are done.
+</p>
+<h3>Fun with closures</h3>
+<p>
+In this section, we will develop super naive and little account objects with an internal state, their balance. For this, we define a function whose captured environment will keep some state (a number) that can only be modified by an internal function. 
+</p>
+<p>
+The function <code>makeAccount</code> is a function with one parameter (<code>balance</code>). This function will return a function that has in its scope the <code>balance</code> variable and will be able to modify it. 
+</p>
+<figure><pre><code>(define makeAccount
+	(lambda (balance)
+		(lambda (amount)
+			(begin 
+				(set! balance (+ balance amount))
+				balance))))</code></pre><figcaption></figcaption></figure>
+
+<p>
+We can create several accounts each having its own state.
+</p>
+<figure><pre><code>(define ac1 (makeAccount 1000))
+(ac1 -200)
+&gt;&gt;&gt; 800
+(define ac2 (makeAccount 2000))
+(ac2 300)
+&gt;&gt;&gt; 2300</code></pre><figcaption></figcaption></figure>
+
+<p>
+Using the same principle you can create objects having multiple functions accessing their internal state. For this the returned function should act as a case based and execute corresponding function. In fact we prefer to use real objects such as the ones in Pharo instead of simulating them.
+</p>
+<h3>Conclusion</h3>
+
+<p>
+This ends our naive implementation of a subset of Scheme.
+In the following chapter we revisit the implementation to reduce the complexity of the <code>eval:in:</code> method. 
+</p>
+<h2>Phsycoo</h2>
+
+<p>
+This chapter is optional. In this alternate implementation we treat primitives and special forms the same way. Doing so we reduce the explicit switching logic of the <code>eval:in:</code> function. We show that the core of an interpreter can take advantage of dynamic dispatch.
+Basically we create an object for each case and give the object the possibility to specify the full evaluation. 
+</p>
+<h3>Reusing tests</h3>
+
+<p>
+To make sure that Phsycoo is implementing the same functionality than Phsyche, we define <code>PhsycooTest</code> as a subclass of <code>PhsycheTest</code>.
+</p>
+<figure><pre><code>PhsycheTest subclass: #PhsycooTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'Pheme-Tests'</code></pre><figcaption></figcaption></figure>
+
+<p>
+In the setup we create an instance of the Phsycoo instead of Phsyche.
+</p>
+<figure><pre><code>PhsycooTest &gt;&gt; setUp
+	super setUp.
+	ph := Phsycoo new</code></pre><figcaption></figcaption></figure>
+
+<p>
+Now using the TestRunner you will be able to run all the tests on a Phsycoo instance. 
+</p>
+<h3>Phsycoo interpreter</h3>
+
+<p>
+Phsycoo has the same structure and initialization than Phsyche except that primitives and special forms are uniformly represented by objects, instances of their corresponding class in the PhsycooPrimitives hierarchy as shown in Figure <a href="#Phsycoo"></a>
+</p>
+
+<figure><pre><code>Object subclass: #Phsycoo
+	instanceVariableNames: 'primitives environment'
+	classVariableNames: ''
+	package: 'Pheme-Phsycoo'</code></pre><figcaption></figcaption></figure>
+
+<p>
+<a id="Phsycoo"></a>
+<figure>
+	<img src="Chapters/figures/Phemoo.pdf" width="100%" id="Phsycoo" alt="Special forms and primitives are handled in a uniform way."/>
+	<figcaption>Special forms and primitives are handled in a uniform way.</figcaption>
+</figure>
+</p>
+
+<h3>Modeling primitives and special forms</h3>
+
+<p>
+Primitives and special forms are now expressed as subclasses of the root class <code>PhsycooPrimitives</code>. Each subclass should define <code>valueFor: aCollection with: anInterpreter environment: anEnvironment</code> and the class method <code>tag</code>.
+</p>
+<figure><pre><code>Object subclass: #PhsycooPrimitives
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'Pheme-Phsycoo'</code></pre><figcaption></figcaption></figure>
+
+<p>
+Given a collection representing a primitive or special form application, an interpreter and an environment, the method <code>valueFor:with:environment:</code> should return the corresponding value or modify the internal state of the interpreter.
+</p>
+<figure><pre><code>PhsycooPrimitives &gt;&gt; valueFor: aCollection 
+	with: anInterpreter 
+	environment: anEnvironment 
+	
+	^ self subclassResponsibility</code></pre><figcaption></figcaption></figure>
+
+<p>
+A tag is a simple identifier that will be used to define the primitive or special form in the interpreter environment. For plus it will be <code>#+</code>.
+</p>
+<figure><pre><code>PhsycooPrimitives class &gt;&gt; tag
+	^ self subclassResponsibility </code></pre><figcaption></figcaption></figure>
+
+<h3>The Plus primitive</h3>
+
+<p>
+For example the primitive <code>plus</code> is expressed as follows: 
+</p>
+<figure><pre><code>PhsycooPrimitives subclass: #PhPlus
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'Pheme-Phsycoo'</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PhPlus class &gt;&gt; tag
+	^ #+</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PhPlus &gt;&gt; valueFor: aCollection with: anInterpreter environment: anEnvironment 
+	^  (anInterpreter eval: aCollection first in: anEnvironment ) 
+			+ (anInterpreter eval: aCollection second in: anEnvironment )</code></pre><figcaption></figcaption></figure>
+
+<h3>The if special form</h3>
+
+<p>
+The special form <code>if</code> is expressed as a subclass of <code>PhsycooPrimitives</code>. 
+</p><figure><pre><code>PhsycooPrimitives subclass: #PhIf
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'Pheme-Phsycoo'</code></pre><figcaption></figcaption></figure>
+
+<p>
+The method <code>valueFor:with:environment:</code> defines the semantics of condition. 
+</p><figure><pre><code>PhIf &gt;&gt; valueFor: aCollection with: anInterpreter environment: anEnvironment 
+	&quot;aCollection: (if cond expr1 expr2)&quot;
+
+	| cond |
+	cond := anInterpreter eval: aCollection first in: anEnvironment.
+	^ cond
+		ifTrue: [ anInterpreter eval: aCollection second in: anEnvironment ]
+		ifFalse: [ anInterpreter eval: aCollection third in: anEnvironment ]</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>PhIf class &gt;&gt; tag
+
+	^ #if</code></pre><figcaption></figcaption></figure>
+
+<h3>Initializing the environment</h3>
+<p>
+Once we have defined the primitives and special forms we should add them to the interpreter environment. 
+For this,  we specialize the initialization of the interpreter as follows: 
+</p>
+<figure><pre><code>Phsycoo &gt;&gt; initializePrimitives
+	
+	^ PhsycooPrimitives allSubclasses 	
+			do: [ :cls | primitives add: cls tag. 
+					environment at: cls tag put: cls new ]</code></pre><figcaption></figcaption></figure>
+
+<p>
+This is where we see that the <code>tag</code> method is used to populate interpreter environment.
+</p>
+<h3>Reconsidering eval:in:</h3>
+<p>
+And we are ready to have a simpler and more systematic evaluation logic. 
+As you can see it is much more compact and regular. 
+</p>
+<figure><pre><code>Phsycoo &gt;&gt; eval: expression in: anEnvironment
+	expression = #()
+		ifTrue: [ ^ expression ].
+	expression isSymbol
+		ifTrue: [ ^ anEnvironment at: expression ].
+	expression isArray
+		ifFalse: [ ^ expression ]
+		ifTrue: [ (self isPrimitive: expression first)
+				ifTrue: [ ^ self evaluateNonApplicativeOrder: expression in: anEnvironment]
+				ifFalse: [ ^ self evaluateApplicativeOrder: expression in: anEnvironment] ]</code></pre><figcaption></figcaption></figure>
+
+
+<p>
+There are basically four cases
+</p><ul>
+<li>we get an empty array (list), we return it.</li>
+<li>we get a symbol (value), we look it up and return it. </li>
+<li>we get self-evaluating entities such as #t, number, we return them.</li>
+<li>we get a function application: we distinguish between applicative order (this is a user defined or primitive and special forms execution (non application order).</li>
+</ul>
+
+<p>
+The method <code>evaluateNonApplicativeOrder:in:</code> dispatches to the associate instance. Any primitive or special forms are executed via this calling point. 
+</p>
+<figure><pre><code>Phsycoo &gt;&gt; evaluateNonApplicativeOrder: expression in: anEnvironment
+	^ (anEnvironment at: expression first)
+		valueFor: expression allButFirst
+		with: self
+		environment: anEnvironment </code></pre><figcaption></figcaption></figure>
+
+<p>
+For applicative order, the method is the same as in Phsyche. 
+</p><figure><pre><code>Phsycoo &gt;&gt; evaluateApplicativeOrder: expression in: anEnvironment
+	&quot;Now we have function application ((lambda (x) (+ x 3)) (+ 9 1))&quot;
+	| proc applicationEnv |
+	proc := self eval: expression first in: anEnvironment.
+	applicationEnv := proc
+		setEnvironmentForParameters: (expression allButFirst collect: [ :e | self eval: e in: anEnvironment])
+		in: proc environment.	
+	^ self eval: proc body in: applicationEnv.</code></pre><figcaption></figcaption></figure>
+
+<p>
+If we let aside the possibility to redefine primitives and special forms, there is nothing more than in Phsyche. It is just expressed differently.
+</p>
+<h3>Conclusion</h3>
+
+<p>
+We have implemented a more modular implementation. Adding a new behavior is just defining a new subclass with two methods.
+
+</p>
+
+
+  </section>
+
+</article>
+
+<footer>
+
+<div class="footline">
+    <div class="github-link">
+      <a href="" target="blank"><i class="fa fa-code-fork"></i>Github</a>
+    </div>
+  </div>
+</footer>
+
+<script src="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/_support/html/js/clipboard.min.js"></script>
+
+<link href="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/_support/html/css/featherlight.min.css" rel="stylesheet">
+<script src="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/_support/html/js/featherlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="http://books.pharo.org/booklet-AMiniSchemeInPharo/html/_support/html/js/flex.js"></script>
+<!-- Prettify annotated paragraphs-->
+    <script src="http://books.pharo.org/booklet-AMiniSchemeInPharo/html_support/html/js/annotated-paragraphs.js"></script>
+
+  </body>
+</html>
