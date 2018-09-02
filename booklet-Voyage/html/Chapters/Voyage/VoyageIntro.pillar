@@ -1,0 +1,68 @@
+!! Voyage
+@cha:voyageintro
+
+
+Voyage is a small persistence framework developed by Esteban Lorenzano, constructed as a small layer between the objects and a persistency mechanism often a document noSql database.
+ 
+This booklet started as a number of blog posts by Esteban Lorenzano, which have been extensively reworked by Johan Fabry and Stéphane Ducasse, including additional information shared by Sabine Manaa and Norbert Hartl. This became the chapter in the Enterprise Pharo book available at *http://books.pharo.org>http://books.pharo.org*). Since this chapter was complex to edit without producing a complete version of the book and that extra material such as the super heroes tutorial written by Stephane Ducasse appeared the current booklet is a merge of all the sources and will be the most actively maintained documentation. 
+
+
+
+!!! What is Voyage?
+
+It is purely object-oriented and has as a goal to present a minimal API to most common development usages. Voyage is a common layer for different backends but currently it supports just two: an ''in-memory'' layer and a backend for the MongoDB database (*http://mongodb.org>http://mongodb.org/*) and UnqLite (*https://www.unqlite.org>https://www.unqlite.org*).
+
+The in-memory layer is useful to prototype applications quickly and for initial development without a database back-end, for example using the Pharo image as the persistency mechanism.
+
+
+The MongoDB database backend stores the objects in a document-oriented database. In MongoDB each stored entity is a JSON-style document. This document-centric nature allows for persisting complex object models in a fairly straightforward fashion. MongoDB is not an object database, like Gemstone, Magma or Omnibase, so there still is a small gap to be bridged between objects and documents. To bridge this gap, Voyage contains a mapper converting objects to and from documents. This mapper is equivalent to an Object-Relational Mapper (ORM) when using relational databases. While this mapper does not solve all the known impedance mismatch issues when going from objects to a database, we find that using a document database fits better with the object world than a combination of a ORM and a relational database. This is because document databases tend to provide better support for the dynamic nature of the object world.
+
+Voyage provides a default way in which objects are stored in the database. Fine-grained configuration of this can be performed using Magritte descriptions. Voyage also includes a query API, which allows specific objects to be retrieved from a MongoDB database. We will discuss each of these features in this text.
+
+
+
+!!! Voyage vision 
+
+Here are the design guidelines that drove Voyage development. 
+- ""It should be simple."" Voyage minimizes the descriptions to be given by the developer.
+- ""It should ensure object identity."" Voyage ensures that you cannot have inconsistencies by having one object reloaded with a different identity than the one it got. 
+- ""It should provide error-handling.""
+- ""It should minimize communication."" Voyage implements a connection pool. 
+
+
+Voyage does not define a Voyage Query Language but use the underlying back-end query language. You have to use the MongoDB query language even if you can use blocks to define queries you can also use JSON dictionaries to express queries since MongoDB internally uses JSON. 
+
+
+
+!!! Contents 
+
+This booklet has several chapters
+
+- One is a simple tutorial to get started with Voyage.
+- Then a more complete overview of the API is described.
+- Finally a chapter gathering tips and tricks is presented.
+
+!!! Load Voyage
+
+To install Voyage, including support for the MongoDB database, go to the Configurations Browser (in the World Menu/Tools) and load ConfigurationOfVoyageMongo. Or alternatively execute in a workspace:
+
+[[[
+Gofer it
+   url: 'http://smalltalkhub.com/mc/estebanlm/Voyage/main';
+   configurationOf: 'VoyageMongo';
+   loadStable.
+]]]
+
+This will load all that is needed to persist objects into a Mongo database.
+
+!!! Install your document databases
+
+!!!! MongoDB
+Next is to install the MongoDB database. How to do this depends on the operating system, and is outside of the scope of this text. We refer to the *MongoDB website>http://www.mongodb.org/downloads* for more information.
+
+
+
+
+% Local Variables:
+% eval: (flyspell-mode 1)
+% End:

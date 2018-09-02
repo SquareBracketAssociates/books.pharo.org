@@ -1,0 +1,74 @@
+! Miscellanous
+
+In this section we present some questions that occured on the Pharo mailing-list and may help you.
+
+!! Mongo collection 
+One question is if it Is  possible to retrieve data from Mongo collection if it was not created via Voyage.
+The answer is yes but you need to customize a bit.
+
+# Make sure you refer to the right collection.
+[[[
+descriptionContainer
+	<mongoContainer>
+	^ VOMongoContainer new
+		collectionName: 'yo'
+		yourself
+]]]
+#  For materializationyou should at least have some fields such ==\_id==.
+
+You can ask the serializer for the fields:
+[[[
+VOMongoSerializer fieldVersion (#version)
+VOMongoSerializer fieldType (#instanceOf)
+]]]
+
+You can probably add ==#version== and ==#instanceOf== to your existing objects.
+
+
+
+the solution to my initial issue is to create a class MyClass with two class side methods
+
+MyClass class >> isVoyageRoot
+	^ true
+
+MyClass class >> descriptionContainer
+    <voyageContainer>
+    ^ VOContainer new
+        collectionName: 'myCollection';
+        yourself
+
+Also, to properly read the data one should add instance variables to depending on what is in the database. For example:
+
+{ "_id" : ObjectId("5900a0175bc65a2b7973b48a"), "item" : "canvas", "qty" : 100, "tags" : [ "cotton" ] }
+
+In this case MyClass should have instanceVariables: 'item qty tags' and accessors.
+Plus, on the class side
+
+mongoItem
+	<mongoDescription>
+	^ VOToOneDescription new
+		attributeName: 'item';
+		kind: String;
+		yourself
+
+mongoQty
+	<mongoDescription>
+	^ VOToOneDescription new
+		attributeName: 'qty';
+		kind: Integer;
+		yourself
+
+mongoTags
+	<mongoDescription>
+	^ VOToOneDescription new
+		attributeName: 'tags';
+		kind: OrderedCollection;
+		yourself
+
+After that one can connect to database and get the information.
+
+| repository | 
+repository := VOMongoRepository database: 'databaseName'.
+repository selectAll: MyClass
+
+Big thanks to Sabine, Esteban and Holger!
