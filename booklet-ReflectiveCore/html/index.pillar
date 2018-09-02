@@ -1,0 +1,42 @@
+This book explains the design and the consequence of having a self-described reflective minimal kernel such as ObjVlisp.
+
+Doing so we will learn about objects, object creation instantiation, message lookup, delegation, inheritance and much more.
+
+
+${inputFile:path=Chapters/ObjVTheory/ObjVTheory.pillar}$
+
+${inputFile:path=Chapters/ObjV/ObjV.pillar}$
+
+!! Selected definitions
+
+Smith was the first to introduce reflection in a programming language with 3Lisp ${cite:ref=Smit84a}$. He defines reflection as:
+
+- An entity's integral ability to represent, operate on, and otherwise deal with itself in the same way that it represents, operates on and deals with its primary subject matter.
+
+In the context of meta-object protocols, Bobrow ${cite:ref=Bobr93a}$  refines the definition as follows:
+
+- Reflection is the ability of a program to manipulate as data something representing the state of the program during its own execution. There are two aspects of such manipulation: ''introspection'' and ''intercession'' (...) Both aspects require a mechanism for encoding execution state as data; providing such an encoding is called ''reification''. 
+
+
+Maes proposed some definitions for reflexive programming ${cite:ref=Maes87b}$:
+
+- A ''computational system'' is something that ''reasons'' about and ''acts'' upon some part of the world, called the ''domain'' of the system.
+
+- A computational system may also be ''causally connected'' to its domain. This means that the system and its domain are linked in such a way that if one of the two changes, this leads to an effect upon the other.
+
+- A ''meta-system'' is a computational system that has as its domain another computational system, called its ''object-system''. (...) A meta-system has a representation of its object-system in its data. Its program specifies ''meta-computation'' about the object-system and is therefore called a ''meta-program''.
+
+- ''Reflection'' is the process of reasoning about and/or acting upon oneself.
+
+- A ''reflective system'' is a causally connected meta-system that has as object-system itself. The data of a reflective system contain, besides the representation of some part of the external world, also a causally connected representation of itself, called ''self-representation'' of the system. [...] When a system is reasoning or acting upon itself, we speak of ''reflective computation''.
+
+- A language with a ''reflective architecture'' is a language in which all systems have access to a causally connected representation of themselves.
+
+- A programming environment has a ''meta-level architecture'' if it has an architecture which supports meta-computation, without supporting reflective computation.
+
+- The ''meta-object'' of an object X represents the explicit information about X (e.g. about its behavior and its implementation). The object X itself groups the information about the entity of domain it represents.
+
+{{{latex: 
+\bibliographystyle{abbrv}
+\bibliography{rmod}
+}}}
