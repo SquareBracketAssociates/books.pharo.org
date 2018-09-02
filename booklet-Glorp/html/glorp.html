@@ -1,0 +1,3487 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+<link href="/booklet-Glorp/html/glorp.html/_support/html/css/font-awesome.min.css" rel="stylesheet">
+<link href="/booklet-Glorp/html/glorp.html/_support/html/css/nucleus.css" rel="stylesheet">
+<link href="/booklet-Glorp/html/glorp.html/_support/html/css/flex.css" rel="stylesheet">
+<link rel="stylesheet" href="/booklet-Glorp/html/glorp.html/_support/html/highlightjs/styles/default.css">
+<link rel="stylesheet" href="/booklet-Glorp/html/glorp.html/_support/html/css/highlight-commands.css">
+<link rel="stylesheet" href="/booklet-Glorp/html/glorp.html/_support/html/css/bootstrap.min.css">
+<script src="/booklet-Glorp/html/glorp.html/_support/html/js/jquery-2.x.min.js"></script>
+<script src="/booklet-Glorp/html/glorp.html/_support/html/highlightjs/highlight.pack.js"></script>
+<script src="/booklet-Glorp/html/glorp.html/_support/html/js/highlight-commands.js"></script>
+<meta name="description" content="">
+<meta name="author" content="E. Maringolo, N. Pratt and R. Withney">
+  </head>
+  <body>
+    <header>
+  <div class="logo">
+    <a class="baselink" href="/booklet-Glorp/html/glorp.html"></a>
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+  
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+   		<li data-nav-id="123" class="dd-item">
+    		<a href="/booklet-Glorp/html/glorp.html">
+		       <i class="fa fa-fw fa-home"></i>
+	    	</a>
+        </li>
+
+		
+		  <li class="dd-item ">
+			<div>
+			  <a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#what is glorp?">
+					What is Glorp?
+			  </a>
+			  
+			</div>
+			  <ul class="dd-item">
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#installation">
+					Installation
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#database server">
+							Database server
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#database drivers">
+							Database drivers
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#native drivers">Native drivers</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#library wrapper drivers (ffi)">Library wrapper drivers (FFI)</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#a common driver api">A common driver API</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#available drivers">Available drivers</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#glorp with p3">Glorp with P3</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#glorp packages for garage">Glorp packages for Garage</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#glorp with udbc / sqlite3">Glorp with UDBC / SQLite3</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#running the tests">Running the tests</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#person: our first example class">
+					Person: Our First Example Class
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#class definition">
+							Class definition
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#instance methods">
+							Instance methods
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#defining a descriptorsystem">
+					Defining a DescriptorSystem
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#defining a descriptorsystem subclass">
+							Defining a DescriptorSystem subclass
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#class model">Class Model</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#table model">Table Model</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#expressing mappings">Expressing mappings</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#creating tables">
+							Creating tables
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#database accessor">
+							Database Accessor
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#login">
+							Login
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#verifying the connectivity.">Verifying the connectivity.</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#session object">
+							Session object
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#how the parts play together">How the Parts Play Together</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#saving/updating/deleting objects">
+							Saving/Updating/Deleting Objects
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#creating tables">Creating Tables</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#unit of work and transactions">
+					Unit of Work and Transactions
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#saving new instances">
+							Saving New Instances
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#reading instances">
+							Reading instances
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#reading one instance ">Reading one instance </a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#about blocks">
+							About blocks
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#translated selectors">Translated selectors</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#object update">
+							Object update
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#object deletion ">
+							Object deletion 
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#transactions">
+							Transactions
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#rolling back changes">Rolling back changes</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#manually managing transaction">Manually managing transaction</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#glorp configurations and additional concepts">
+					Glorp Configurations and Additional Concepts
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#class models">
+							Class models
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#attribute properties">
+							Attribute properties
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#table model">
+							Table model
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#adding fields to the table">Adding fields to the table</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#mappings (aka descriptor)">
+							Mappings (aka Descriptor)
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#direct mapping.">Direct mapping.</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#1:1 relationships.">1:1 relationships.</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#1:n relationships.">1:N relationships.</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#n:m relationships.">N:M relationships.</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#common properties of relationship mappings">
+							Common properties of relationship mappings
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#reference classes.">Reference Classes.</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#exclusivity.">Exclusivity.</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#collection type.">Collection type.</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#proxy.">Proxy.</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#a word about proxies.">
+							A Word about Proxies.
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#extending our basic example">
+					Extending our Basic Example
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#domain classes">
+							Domain classes
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#class model declarations">
+							Class Model Declarations
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#table declarations">Table Declarations</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#mapping declarations">
+							Mapping declarations
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#address">Address</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#invoice">Invoice</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#invoiceitem">InvoiceItem</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#person">Person</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#sample data">
+							Sample data
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#the query object">
+					The Query object
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#the read: message">
+							The read: message
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#simplequery">
+							SimpleQuery
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#attributes of queries">
+							Attributes of queries
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#where expression">WHERE expression</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#order by expression">ORDER BY expression</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#group by expression">GROUP BY expression</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#limit and offset expressions">LIMIT and OFFSET expressions</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#fetching referenced objects">
+							Fetching referenced objects
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#ensuring fresh data">
+							Ensuring fresh data
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#set operations">
+							Set operations
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#conclusion ">
+							Conclusion 
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#handling inheritance">
+					Handling inheritance
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#a table for each concrete class">
+							A table for each concrete class
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#class definitions">Class definitions</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#system description">System Description</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#handling inheritance">
+							Handling inheritance
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#type resolver ">Type resolver </a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#playing with instances">
+							Playing with instances
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#one table for all classes">
+							One table for all classes
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#about inheritance with type resolvers">About inheritance with Type Resolvers</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#under the hood">
+					Under the hood
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#how glorp expressions work">
+							How Glorp expressions work
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#about special selectors">
+							About special selectors
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#function expressions">
+							Function expressions
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#glorp class model diagram">
+							Glorp class model diagram
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#appendix a: basic relational databases concepts">
+					Appendix A: Basic Relational Databases Concepts
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#tables">
+							Tables
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#rows">
+							Rows
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#columns">
+							Columns
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#constraints">
+							Constraints
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#primary key">Primary Key</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#foreign keys">Foreign Keys</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#indexes">
+							Indexes
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#relations">
+							Relations
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#joins">Joins</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#inner joins">INNER JOINs</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#data manipulation language (dml) queries">
+							Data manipulation language (DML) queries
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#select">SELECT</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#insert">INSERT</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#update">UPDATE</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Glorp/html/glorp.html/Chapters/Glorp/Glorp.html#delete">DELETE</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+    </ul>
+  </aside>
+
+  <section class="page">
+    
+	<h1>Object-Relational Persistence with Glorp</h1>
+		
+	
+<p>
+This document describes the Glorp object-relational mapper. By reading it, you will learn how to map your objects to a relational database. It presents step by step how to use Glorp and its basic and advanced concepts in a tutorial. At the end we include an Appendix that revisits relational database concepts.
+We thank the authors of the previous Glorp tutorials R. Withney and N. Pratt for having granted us the right to use some of their material. This document has been written by E. Maringolo and edited by S. Ducasse.
+</p>
+<h2>What is Glorp?</h2>
+
+<p>
+Working in a live object environment such as Pharo is great. You can freely create your domain objects and compose them as you like. Sometimes those objects can be stored in a way that preserves the original design but in other cases you have to store your objects in a Relational Database Management System (a.k.a. <em>RDBMS</em>). This requires you to flatten your object graph into relational tables managed by the RDBMS.
+</p>
+<p>
+This process of mapping object to tables is called <em>Object-Relational Mapping</em> (<em>ORM</em>). It imposes certain constraints on the design of your object model to support persisting it in tables. Some models are easier to map onto tables than others, the difficulty lies in what is known as the <em><a href="https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch">Object-Relational Impedance Mismatch</a></em>.
+</p>
+<p>
+To work with relational databases, Pharo provides a battle-tested ORM created at CampSmalltalk a decade ago and maintained since then. Its name is Glorp for <em>Generic Lightweight Object-Relational Persistence</em>. It is usually called both GLORP (all caps, as an acronym), or Glorp (as a proper name).
+</p>
+<p>
+Glorp is a full-featured ORM which offers a number of features to reduce the <em>impedance</em> as much as possible. Amongst those features, you'll find some features saving you from writing SQL queries by hand, managing transactions that rollback the changes to the objects in your image or commit them to the database, writing simple and complex queries using plain Pharo syntax, and other features that we will cover in this introduction chapter and in the advanced topics chapter.
+</p>
+
+<h2>Installation</h2>
+
+<h3>Database server</h3>
+<p>
+Before installing Glorp you should already have installed the RDBMS of your choice on your machine or a reacheable server, it could be <a href="http://postgresql.org">PostgreSQL (http://postgresql.org)</a>, <a href="http://dev.mysql.com/">MySQL (http://dev.mysql.com/)</a>, <a href="http://sqlite.org">SQLite (http://sqlite.org)</a>, or any other of your preference (as long it is supported). Hereafter we will refer to this RDBMS of your choice as the <em>Platform</em>.
+</p>
+<h3>Database drivers</h3>
+<p>
+Along with your working installation of your RDBMS you should have installed in
+your image the database drivers required to connect to the server.
+</p>
+<h4>Native drivers</h4>
+<p>
+With Native drivers the raw protocol is written in Smalltalk and it uses Pharo
+sockets to write and read the data from the wire. This has the advantage of
+being self contained, because you don't depend on an external file or setup
+to connect to a server. Also, because everything is written in Smalltalk
+it is debuggable using Pharo tools down to a very low-level.
+</p>
+<h4>Library wrapper drivers (FFI)</h4>
+<p>
+Library Wrappers, as its name implies, wrap an underlying Operative System
+shared library like a <code>.dll</code> or <code>.so</code>, these wrappers will access
+the shared library functions by means of FFI
+(<em>Foreign Function Interface</em>) calls and data structures.
+</p>
+<p>
+Using an external library enables you to use an official client implementation
+of a proprietary protocol like Oracle, or you can be sure that even
+if the protocol spec is open you can use the official version of it.
+In order to use it in Pharo you need to implement the wrapper classes and methods.
+</p>
+<h4>A common driver API</h4>
+<p>
+There are plenty of drivers available in Pharo, however those drivers have
+different API's making their use not directly interchangeable. Making it hard
+to migrate to a different driver or to simultaneously support different RDBMS.
+</p>
+<p>
+To solve that there is Garage (aka <em>Garage Drivers</em>), that provides a common
+API for the different driver implementations. Garage is Pharo's analogous to
+ODBC, JDBC or ADO.NET drivers.
+</p>
+<p>
+Using this common API your code won't need to change if, for example, you decide
+to move from MySQL to PostgreSQL, as long as you don't use exclusive features,
+because all the implemented drivers will conform to the common Garage API.
+</p>
+<p>
+<a id="Garage diagram"></a>
+<figure>
+	<img src="Chapters/Glorp/figures/Glorp-UDBC.png" width="72%" id="Garage diagram" alt="Connectivity parts"/>
+	<figcaption>Connectivity parts</figcaption>
+</figure>
+</p>
+<h4>Available drivers</h4>
+<p>
+There are many drivers available drivers in different versions of Pharo, as
+the time of writing this, these are the currently supported drivers are:
+</p>
+<ul>
+<li>P3 (Native PostgreSQL v3 protocol)</li>
+<li>Garage<ul>
+<li>PostgreSQL (Native)</li>
+<li>MySQL (Native)</li>
+</ul>
+</li>
+<li>UDBC SQLite3</li>
+</ul>
+
+<h4>Glorp with P3</h4>
+<p>
+P3 is a modern, lean and mean PostgreSQL client for Pharo.
+</p>
+<p>
+P3Client uses frontend/backend protocol 3.0 (PostgreSQL version 7.4 [2003] and later), implementing the simple query cycle. It supports plaintext and md5 password authentication. When SQL queries return row data, it efficiently converts incoming data to objects. P3Client supports most common PostgreSQL types.
+</p>
+<p>
+More information can be found at <a href="https://github.com/svenvc/P3">its repository</a>.
+To load it first install it through Metacello.
+</p>
+<figure><pre><code>Metacello new
+   baseline: 'P3';
+   repository: 'github://svenvc/P3';
+   load: 'glorp'.</code></pre><figcaption></figcaption></figure>
+
+<h4>Glorp packages for Garage</h4>
+<p>
+Glorp provides a Metacello configuration configured to load the core classes
+and/or its tests.
+</p>
+<figure><pre><code>Metacello new
+	smalltalkhubUser: 'DBXTalk' project: 'Garage';
+	configuration: 'GarageGlorp';
+	version: #stable;
+	load.</code></pre><figcaption></figcaption></figure>
+
+<p>
+It may be the case that you want to load Garage in an alpha version, in such case, you should load the most recent version instead of a stable version 
+that may be not defined for a alpha stream.
+</p>
+<p>
+One package is the <code>Glorp-Core</code> and there is also a <code>Glorp-Tests</code> package.
+</p>
+<h4>Glorp with UDBC / SQLite3</h4>
+
+<p>
+Glorp may also be configured to work directly with the UDBC SQLite3
+driver in Pharo 5 (instead of the Garage drivers):
+</p>
+<figure><pre><code>Gofer it	 
+	smalltalkhubUser: 'TorstenBergmann' project: 'UDBC';
+	configuration; 
+	load.
+	(Smalltalk at: #ConfigurationOfUDBC) loadBleedingEdge.</code></pre><figcaption></figcaption></figure>
+<figure><pre><code>Gofer it 
+	smalltalkhubUser: 'DBXTalk' project: 'Garage';
+	configurationOf: 'GarageGlorp';
+	load. 
+	(Smalltalk at: #ConfigurationOfGarageGlorp) project stableVersion load.</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Gofer it 
+	smalltalkhubUser: 'DBXTalk' project: 'Glorp';
+	package: 'Glorp-SQLite3';
+	load.
+		
+	GlorpSQLite3CIConfiguration new configureSqlite3.
+	GlorpDemoTablePopulatorResource invalidateSetup.</code></pre><figcaption></figcaption></figure>
+
+
+<h4>Running the tests</h4>
+
+<p>
+Having loaded the database drivers and the Glorp packages, it is recommended to
+run the unit tests of Glorp, to ensure everything was loaded correctly and it
+is working properly.
+</p>
+<h2>Person: Our First Example Class</h2>
+
+
+<p>
+To put some of the concepts described previously into practice we will create
+a <code>Person</code> class and store it into a <code>PERSON</code> database table,
+all from within the Pharo environment.
+</p>
+<h3>Class definition</h3>
+
+<p>
+Let us define a simple class.
+</p>
+<figure><pre><code>Object subclass: #Person
+	instanceVariableNames: 'id firstName lastName birthDate'
+	classVariableNames: ''
+	package: 'Glorp-Book'</code></pre><figcaption></figcaption></figure>
+
+<h3>Instance methods</h3>
+
+<p>
+Let us define some stupid methods. 
+</p><figure><pre><code>Person &gt;&gt; firstName: aString
+	firstName := aString</code></pre><figcaption></figcaption></figure>
+<figure><pre><code>Person &gt;&gt; firstName
+	^ firstName</code></pre><figcaption></figcaption></figure>
+<figure><pre><code>Person &gt;&gt; lastName: aString
+	lastName := aString</code></pre><figcaption></figcaption></figure>
+<figure><pre><code>Person &gt;&gt; lastName
+	^lastName</code></pre><figcaption></figcaption></figure>
+<figure><pre><code>Person &gt;&gt; birthDate: aDate
+	birthDate := aDate</code></pre><figcaption></figcaption></figure>
+<figure><pre><code>Person &gt;&gt; birthDate
+	^birthDate</code></pre><figcaption></figcaption></figure>
+<figure><pre><code>Person &gt;&gt; initialize
+	super initialize.
+	birthDate := '1/1/1970' asDate</code></pre><figcaption></figcaption></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Defining a DescriptorSystem</h2>
+<p>
+As you can see the above created class and methods, don't have anything
+related to persistence and don't require you to inherit from a
+particular class.
+</p>
+<p>
+Glorp models all the involved concepts (such as tables, columns, classes, etc.)
+as first class objects, and then links instances of those objects in a <code>DescriptorSystem</code>.
+It is the core of a Glorp system, it holds all the Glorp metadata,
+such as the Tables, Descriptors and Class Models.
+</p>
+
+<p>
+By using a separate artifact (in this case, a class) to define all
+the metadata of your system, you can decouple your business models
+from their persistence information.
+This separation of concerns is a good practice,
+and helps with the maintainability of your code.
+</p>
+<p>
+Also, having an orthogonal description of your domain objects allows you
+to have more than one descriptor for the same business domain class.
+This is an important difference with patterns such as <em>ActiveRecord</em>
+where the persistence metadata is defined in the business domain class,
+and you can't reuse the same class for two different
+systems using different persistence configurations.
+</p>
+
+<h3>Defining a DescriptorSystem subclass</h3>
+
+<p>
+All the definitions and mappings are defined in a subclass of
+<code>DescriptorSystem</code>, and for that we will create our own subclass as follows:
+</p>
+<figure><pre><code>DescriptorSystem subclass: #GlorpBookDescriptorSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'Glorp-Book'</code></pre><figcaption></figcaption></figure>
+
+<p>
+We said before that Glorp has a whole metamodel that involves describing the
+mapped class, the table(s) where it is going to be mapped and the mapping
+itself. To define each one of those, Glorp follows a convention in
+the method naming. We will mention the conventions below.
+</p>
+<h4>Class Model</h4>
+<p>
+We start by describing the class <code>Person</code>, and the way to
+do it is by defining a method with the pattern <code>classModelFor<em>YourClass</em>:</code>.
+</p>
+<p>
+Here we describe the class model for the <code>Person</code> class.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; classModelForPerson: aClassModel
+	aClassModel newAttributeNamed: #id.
+	aClassModel newAttributeNamed: #firstName.
+	aClassModel newAttributeNamed: #lastName.
+	aClassModel newAttributeNamed: #birthDate</code></pre><figcaption></figcaption></figure>
+
+<p>
+Note that a class model is a Glorp representation of your domain class. Glorp uses it to
+store metadata about your domain objects. The descriptor system provides hooks to let you define
+such a class model. <code>classModelForPerson:</code> is one of these hooks. Based on the naming convention described
+before, Glorp automatically associates this class model to your domain class.
+</p>
+<h4>Table Model</h4>
+<p>
+The class <code>Person</code> will be stored in a single table (which is the usual case), and we
+provide the description of the table in a similar way as with the class
+model, i.e., by following the <code>tableFor<em>YOURTABLE</em></code> convention.
+Please notice the upper case of the table name.
+</p>
+<p>
+Here is the definition of the table model for PERSON table.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; tableForPERSON: aTable
+	(aTable createFieldNamed: 'id' type: platform serial)
+		bePrimaryKey.
+	aTable
+		createFieldNamed: 'firstName'
+		type: (platform varChar: 100).
+	aTable
+		createFieldNamed: 'lastName'
+		type: (platform varChar: 100).
+	aTable
+		createFieldNamed: 'birthDate'
+		type: platform date.</code></pre><figcaption></figcaption></figure>
+
+<p>
+If the table name is not uppercase, it is necessary to add
+the method <code>allTableNames</code> with the correct case, e.g.:
+</p>
+<p>
+For a non-uppercase table names we define the method <code>allTableNames</code>.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; allTableNames
+	&quot;Return a list of all the table names that this system uses.&quot;
+	^#('Person')</code></pre><figcaption></figcaption></figure>
+
+
+<p>
+The <em>serial</em> datatype, explained in detail below, is an autoincrementing
+integer datatype. Every time you save a new instance Glorp will obtain a
+new integer and assign it to your instance.
+</p>
+<h4>Expressing mappings</h4>
+<p>
+Once we have the class model and the table object, we should define the mappings
+between the class attributes and the table fields.
+</p>
+<p>
+In this simple example we use a <code>DirectMapping</code>, which is a class of
+mapping that takes the value in the column and assigns it to the attribute,
+and vice versa.
+</p>
+<p>
+Here is the definition of the mapping between the class and the table.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; descriptorForPerson: aDescriptor
+	| table |
+	table := self tableNamed: 'PERSON'.
+	aDescriptor table: table.
+	aDescriptor directMappingFor: #id.
+	(aDescriptor newMapping: DirectMapping)
+		from: #firstName
+		to: (table fieldNamed: 'firstName').
+	(aDescriptor newMapping: DirectMapping)
+		from: #lastName
+		to: (table fieldNamed: 'lastName').
+	(aDescriptor newMapping: DirectMapping)
+		from: #birthDate
+		to: (table fieldNamed: 'birthDate')</code></pre><figcaption></figcaption></figure>
+
+<p>
+In the above method we can see how the the descriptor <em>links</em> the class
+attribute to the field name.
+</p>
+<p>
+Although this is verbose and the advantages may not be visible in this simple example, here lies the
+power of the Glorp orthogonal descriptor system, you describe everything and then
+ link all the parts the way you want without modifying your domain object.
+</p>
+<h3>Creating tables</h3>
+
+<p>
+Assuming we haven't created the database tables externally, Glorp's metamodel
+allows you to perform DDL (<em>Data Definition Language</em>) commands such as
+<code>CREATE TABLE</code> or <code>CREATE CONSTRAINT</code> (among others) using plain
+Pharo objects, and it can even determine when to run those.
+</p>
+<p>
+To do that we must first connect to the database. We will explain how to do so in the following sections.
+We will be using a PostgreSQL server running on the same host as our Pharo image. We will then create the Login object and a	<code>DatabaseAccessor</code> for it to interact with the database.
+</p>
+<h3>Database Accessor</h3>
+<p>
+Glorp is programmed to be agnostic of the Smalltalk dialect and
+database driver. To achieve that instead of talking directly to the
+driver it uses an adapter object that acts as an intermediary between
+Glorp and the underlying driver. Each database driver requires its
+own subclass of <code>DatabaseAccessor</code>.
+</p>
+<p>
+We use the recommended accessor, which is the <em>Garage</em> accessor
+that is compatible with all the drivers supported by the library.
+</p>
+<p>
+To define it as the default driver we must execute once the following expression:
+</p>
+<figure><pre><code>&quot;Run this once&quot;
+GAGlorpDriver beGlorpDefaultDriver.</code></pre><figcaption></figcaption></figure>
+
+<p>
+When using P3, this is not necessary, instead execute:
+</p>
+<figure><pre><code>PharoDatabaseAccessor DefaultDriver: P3DatabaseDriver.</code></pre><figcaption></figcaption></figure>
+
+
+<h3>Login</h3>
+<p>
+All the information necessary to connect to the database is defined in an instance of the
+<code>Login</code> class. It is an abstraction for the connection parameters
+used to connect to the database server, like the <em>Plaform</em> used,
+hostname, port, username, password, database name and other parameters.
+</p>
+
+<p>
+Here is a login creation: 
+</p><figure><pre><code>login := Login new
+	database: PostgreSQLPlatform new;
+	username: 'postgres';
+	password: 'secret';
+	host: 'localhost';
+	port: '5432';
+	databaseName: 'glorpbook'.</code></pre><figcaption></figcaption></figure>
+
+<p>
+The database accessor requires an instance of the class <code>Login</code> to establish a connection
+to the database server specified in the login, using the platform specified.
+</p>
+<figure><pre><code>accessor := DatabaseAccessor forLogin: login.
+accessor login.</code></pre><figcaption></figcaption></figure>
+
+<p>
+You can make the <code>Login</code> <em>secure</em> by making its password <em>volatile</em>, so
+once the password was accessed the instance variable will be set to nil and
+the secret won't be stored in the image anymore. Note that if you want to
+use the same login instance for other connections, you must assign the
+password string again.
+</p>
+<p>
+Here we declare a secure Login
+</p>
+<figure><pre><code>login secure: true</code></pre><figcaption></figcaption></figure>
+
+
+<h4>Verifying the connectivity.</h4>
+<p>
+If everything goes fine, then executing <code>accessor isLoggedIn</code> should answer
+<em>true</em>. 
+</p>
+<figure><pre><code>accessor isLoggedIn
+&gt;&gt;&gt; true</code></pre><figcaption></figcaption></figure>
+
+<p>
+Another way to test it is performing a basic query like the following
+<code>(accessor basicExecuteSQLString: 'SELECT 3+4') contents first first</code> should
+return <em>7</em> as the result; and yes, the <code>contents first first</code> is dirty,
+but it is not meant to be used this way, we're doing it just to quickly verify that everything is working.
+</p>
+
+
+<h3>Session object</h3>
+
+<p>
+Once we're able to connect to the database we can start interacting with it using
+Glorp's objects. We will do that using an object that <em>orchestrates</em>
+ all the other objects, the <code>GlorpSession</code>. The easiest way to get a
+session is to ask the <code>DescriptorSystem</code> passing the <code>Login</code> instance
+instance as the argument.
+</p>
+<p>
+Here is how we access a session
+</p><figure><pre><code>session := GlorpBookDescriptorSystem sessionForLogin: login.
+session login.</code></pre><figcaption></figcaption></figure>
+
+<h4>How the Parts Play Together</h4>
+
+<p>
+Let us look into the implementation of the method <code>DescriptorSystem&gt;&gt;sessionForLogin:</code> to understand
+better how the parts interact.
+</p>
+<figure><pre><code>DescriptorSystem class &gt;&gt; sessionForLogin: aGlorpLogin
+	| system session |
+	system := self forPlatform: aGlorpLogin database.
+	session := GlorpSession new.
+	session accessor: (DatabaseAccessor forLogin: aGlorpLogin).
+	session system: system.
+	^ session</code></pre><figcaption></figcaption></figure>
+
+<p>
+First we get a <em>system</em> instantiating the receiver (in our case
+ <code>GlorpBookDescriptorSystem</code>) passing the platform as argument.
+The platform in the <em>system</em> is important because it will be used to
+generate <em>SQL</em> code using its particular syntax and data types.
+</p>
+<p>
+Then we instantiate a <code>GlorpSession</code> and store it in the <em>session</em> object.
+This <em>session</em> object is assigned a <code>DatabaseAccessor</code>. It uses this
+accessor to communicate to the database, hence the name, but to know what to
+send to the <em>db</em> it needs all the metadata defined in the <em>system</em> object
+defined before.
+</p>
+<p>
+Note we ask the abstract <code>DatabaseAccessor</code> class to return a concrete
+instance for <em>aGlorpLogin</em>, it will return an instance of the
+database accessor configured as default.
+</p>
+<h5>About the <em>Platform</em>.</h5>
+
+<p>
+In Glorp terminology a Platform is the RDBMS (for <em>Relational Database
+Management System</em>) platform itself. The abstract class <code>DatabasePlatform</code> defines the
+abstract methods to deal with differences of supported data types,
+test the support of certain features, and so on.
+</p>
+<p>
+In Pharo we have 
+<code>MySQLPlatform</code>, <code>OraclePlatform</code>, <code>PostgresPlatform</code>, <code>SQLServerPlatform</code>, <code>SQLite3Platform</code> and <code>UDBCSQLite3Platform</code>
+as subclass of <code>DatabasePlatform</code>.
+</p>
+
+
+
+<h3>Saving/Updating/Deleting Objects</h3>
+<p>
+It is time to put to work all the classes and schema we just created. To do it
+we will create and persist a few instances of our example class <code>Person</code>, and
+then read some of them back. We'll explain a little bit
+how Glorp decides what and when to <em>INSERT</em>, <em>UPDATE</em> or <em>DELETE</em> an object using
+the concept of Unit of Work. But we should create the required tables first.
+</p>
+<h4>Creating Tables</h4>
+<p>
+Now we have our working <em>session</em> object, we can perform our <em>DDL</em> queries
+extracting the data from the <em>system</em> and sending commands to
+the <em>accessor</em>. But before we should execute the following to create the tables:
+</p>
+<figure><pre><code>session createTables</code></pre><figcaption></figcaption></figure>
+
+<p>
+And <em>voilà</em>, it will send the required commands to the database to create our tables,
+sequences, constraints and so on.
+</p>
+
+
+
+
+
+
+
+<h2><em>Unit of Work</em> and Transactions</h2>
+
+<p>
+If you worked with RDBMS's before, you know you can use transactions that
+detach you from immediate writes to the database files, and enable you to
+rollback (undo) your changes, or do a batch of changes and commit
+them all at once.
+</p>
+<p>
+Glorp provides you with <em>automatic</em> handling of such database transactions.
+It also adds another concept, the <em>Unit of work</em> (aka <em>UOW</em> or <em>UnitOfWork</em>).
+This <em>UnitOfWork</em> keeps track of all the persisted objects, enabling
+you to commit or rollback changes <strong>at the object level</strong> while maintaining
+the database transaction in sync with it.
+</p>
+<h3>Saving New Instances</h3>
+
+<p>
+To save instances,  we should send the message <code>register: anInstance</code> to a session.
+Note that this operation should occur within a Unit of Work using the message
+<code>inUnitOfWorkDo:</code> as follows:
+</p>
+<figure><pre><code>session inUnitOfWorkDo: [
+	{
+		(Person new
+			firstName: 'John'; lastName: 'Locke';
+			birthDate: '1704-08-29' asDate).
+		(Person new
+			firstName: 'John'; lastName: 'Malkovich';
+			birthDate: '1953-12-09' asDate).
+		(Person new
+			firstName: 'George'; lastName: 'Lucas';
+			birthDate: '1944-05-14' asDate)
+	} do: [ :each | session register: each ]
+].</code></pre><figcaption></figcaption></figure>
+
+<p>
+As you can see, we didn't say if the instance needs to be inserted or updated,
+nor did we specify an <em>id</em> for each instance. The framework will determine that
+by <em>registering</em> the instance in the all-mighty <em>session</em>.
+</p>
+<p>
+Note that if we are registering an object that was read in a previous unit of
+work, the object cannot be modified prior to registration in the current
+unit of work.
+</p>
+<h3>Reading instances</h3>
+
+<p>
+We can now read back some of the persisted instances. Again we use
+the session object, sending it the message <code>read:</code> and the class as argument.
+This will return a collection of results.
+</p>
+<p>
+The following expression returns all read all instances of <code>Person</code>:
+</p><figure><pre><code>session read: Person</code></pre><figcaption></figcaption></figure>
+
+<p>
+Of course you don't always read all the instances from the database but
+want to filter the results. For that you can pass a block that will act as
+a filter.
+</p>
+<p>
+The following expression reads all instances of <code>Person</code> matching a criteria
+</p><figure><pre><code>session
+	read: Person
+	where: [:each | each firstName = 'John'].</code></pre><figcaption></figcaption></figure>
+
+<h4>Reading one instance </h4>
+
+<p>
+Another convenient way to retrieve a single instance instead of a Collection
+is to use the <code>readOneOf:</code> or <code>readOneOf:where:</code> message in an analogous
+way to <code>read:</code> and <code>read:where:</code>.
+</p>
+<h3>About blocks</h3>
+
+<p>
+The <code>read:where:</code> message might lead you to think you can pass any block to filter the results
+as you can do with <code>select:</code> in a regular collection, but that is not the case.
+</p>
+<p>
+Glorp uses blocks as a very clever way to build expressions that
+are later converted to SQL by the framework. You can do basic filtering
+using this feature, but keep in mind it doesn't work as a regular block.
+</p>
+<h4>Translated selectors</h4>
+
+<p>
+Next to regular operators such as <code></code>= and <code>&gt;</code>=, you can use some <em>special</em> selectors
+that get translated to their counterparts SQL operators.
+For instance the <code>similarTo:</code> selector gets converted to SQL's <code>LIKE</code>
+operator. 
+</p>
+
+<p>
+With this we can retrieve all the Persons with a given last name using an operator that gets <em>translated</em>: 
+</p><figure><pre><code>session
+	read: Person
+	where: [:each | each lastName similarTo: 'Malk%'].</code></pre><figcaption></figcaption></figure>
+
+
+
+<h3>Object update</h3>
+
+<p>
+We can also update one instance, i.e., to read one and update it. We do it
+in the context of a UnitOfWork using the message <code>inUnitOfWorkDo:</code>.
+</p>
+
+<p>
+Updating an object read within a UnitOfWork:
+</p><figure><pre><code>session inUnitOfWorkDo: [
+	| person |
+	person := session
+		readOneOf: Person
+		where: [:each | each lastName = 'Locke'].
+	person birthDate: Date today.
+	].</code></pre><figcaption></figcaption></figure>
+
+<p>
+Note that to update an object accessed from the database does not require you to
+send the message <code>register:</code> to the session object,
+as we did while populating the table.
+</p>
+<p>
+This is because when you're working inside a Unit of Work all the objects
+you read are automatically registered by the session, saving you from explicitly
+<em>registering</em> them (which is safe to do anyway, but it is not required).
+</p>
+<h3>Object deletion </h3>
+
+<p>
+So far we covered Creation, Read, and Update. We're only missing the Deletion of
+objects. This is as easy as it gets, just send the <code>delete:</code> to the session
+object with the object you want to delete as argument.
+</p>
+<p>
+The following snippet show how to delete an object inside of a UnitOfWork:
+</p><figure><pre><code>session inUnitOfWorkDo: [
+	| person |
+	person := session
+		readOneOf: Person
+		where: [:each | each lastName = 'Locke'].
+	session delete: person
+	].</code></pre><figcaption></figcaption></figure>
+
+<p>
+Another way to delete objects is passing a condition block:
+</p>
+<figure><pre><code>session inUnitOfWorkDo: [
+	session
+		delete: Person
+		where: [:each | each lastName = 'Locke'].
+	].</code></pre><figcaption></figcaption></figure>
+
+<p>
+You can delete an object without being inside of a UnitOfWork, this will
+cause the object to be deleted right away, without giving you the option
+to rollback such action unless you handle the transaction manually.
+</p>
+<h3>Transactions</h3>
+<p>
+Glorp lets you handle transactions automatically using a unit of work or
+manually as we will now show.
+</p>
+<h4>Rolling back changes</h4>
+<p>
+<a href="https://en.wikipedia.org/wiki/Atomicity_%28database_systems%29">Atomic</a>
+modifications to a database are important, and to achieve that you need transactions
+ that let you rollback changes if something fails.
+</p>
+<p>
+A Unit of Work handles the errors and other unexpected terminations of
+the block, so if something fails, it not only rollbacks any changes at the
+database level if necessary, but also, and more importantly
+it reverts the changes in your objects.
+</p>
+<p>
+The following example shows that the last name of the Locke object will not be modified
+and the database updated since the unit of work failed.
+</p>
+<figure><pre><code>session inUnitOfWorkDo: [
+	person := session
+		readOneOf: Person
+		where: [:each | each lastName = 'Locke'].
+	person lastName: 'Wayne'.
+	Error signal: 'This error will abort the Unit Of Work.'
+	]</code></pre><figcaption></figcaption></figure>
+
+<h4>Manually managing transaction</h4>
+
+<p>
+The <code>inUnitOfWorkDo:</code> message is a convenient way to isolate a block of execution
+within the context of a transaction at both object and database levels. However
+it has some limitations, like not being able to handle <em>nested</em> UnitOfWorks
+or transactions. Everything happens in the context of the outer context transaction
+in which it was evaluated.
+</p>
+<p>
+If for some reason you need to handle the start/end/rollback of the
+unit of work manually, you can do so by using the following messages:
+</p>
+<ul>
+<li><code>beginUnitOfWork</code></li>
+<li><code>commitUnitOfWork</code></li>
+<li><code>rollbackUnitOfWork</code></li>
+<li><code>commitUnitOfWorkAndContinue</code></li>
+</ul>
+
+<p>
+The first three have self-describing selectors, and can be used like in the following code snippet.
+</p>
+<figure><pre><code>person := session
+	readOneOf: Person
+	where: [:each | each firstName = 'George'].
+session beginUnitOfWork.
+session delete: person.
+session rollbackUnitOfWork.
+session beginUnitOfWork.
+person lastName: 'Lukas'.
+session register: person.
+session commitUnitOfWork.</code></pre><figcaption></figcaption></figure>
+
+<p>
+The message <code>commitUnitOfWorkAndContinue</code> needs some explanation,
+but the concept is simple: It commits the current unit of work, and then
+creates a new one migrating all the objects registered in the commited unit of
+work to the newly created, and still open, unit of work. If this paragraph
+confuses you, looking at its implementation might explain it better.
+</p>
+<p>
+It is useful for cases like batch loads or updates,
+where you want to commit changes every <em>n</em> instances or similar.
+</p>
+<p>
+Commiting and continuing the Unit Of Work: 
+</p><figure><pre><code>session beginUnitOfWork.
+10 to: 99 do: [ :index |
+	session register: (
+	Person new
+		firstName: 'Sample';
+		lastName: index printString).
+	(index \\ 10) isZero ifTrue: [
+		session commitUnitOfWorkAndContinue
+	].
+].
+session commitUnitOfWork.</code></pre><figcaption></figcaption></figure>
+
+<p>
+We can cleanup (delete) some sample instances by running:
+</p><figure><pre><code>session inUnitOfWorkDo: [
+		session
+			delete: Person
+			where: [:each | each firstName = 'Sample'].
+].</code></pre><figcaption></figcaption></figure>
+
+
+
+
+<h2>Glorp Configurations and Additional Concepts</h2>
+
+<p>
+In our previous example we created a simple class that mapped <em>1:1</em> with a
+table using simple data types, but Glorp provides many more features than
+an <em>ActiveRecord</em> like mapping. It lets you fine tune the persistence of
+your classes. We will go over the different configurations of class models,
+table data types and constraints and mappings of all sorts.
+</p>
+<h3>Class models</h3>
+
+<p>
+A class model defines the attributes of your domain objects, and how they
+compose. Each of your persisted objects should have an instance of
+<code>GlorpClassModel</code> in the descriptor system containing all the
+attributes of your class. By convention, these attributes are added by
+implementing <code>classModelForYourClass:</code> as we did previously for the Person example.
+</p>
+<p>
+The simplest way to add an attribute is using a series of convenience methods returning instances of <code>GlorpAttributeModel</code>,
+ described below:
+</p>
+<dl><dt><code>newAttributeNamed: #email</code></dt>
+<dd>Used to define simple scalar/literal values such as Numbers, Strings, Dates, etc.</dd>
+<dt><code>newAttributeNamed: #address type: Address</code></dt>
+<dd>Used to define 1:1 (one to one) relations with other objects of your domain model.</dd>
+<dt><code>newAttributeNamed: #invoices collectionOf: Invoice</code></dt>
+<dd>Used to define 1:n (one to many) and n:m (many to many) relations of your class model with other models.</dd>
+<dt><code>newAttributeNamed: #invoices collection: collectionClass of: Invoice</code></dt>
+<dd>Similar as the one above for 1:n and n:m relations, but you can define what kind of Collection is going to be used.</dd>
+<dt><code>newAttributeNamed: #counters dictionaryFrom: keyClass to: valueClass</code></dt>
+<dd>Used to define an attribute that is a Dictionary where the key is <code>keyClass</code> and its values are instances of <code>valueClass</code>.</dd>
+</dl>
+
+<h3>Attribute properties</h3>
+
+<p>
+The above described methods return instances of <code>GlorpAttributeModel</code>, which
+share common properties that you can configure using the following messages.
+</p>
+<dl><dt><code>useDirectAccess: aBoolean</code></dt>
+<dd>Let you define whether the access to the attribute described by the symbol of your domain model will be performed by directly accessing the instance variable (slot) instead of using a message send. This is the default, and lets you persist variables that don't have getters and setters. It's also useful where the getters and setters</dd>
+</dl>
+<p>
+have extra behavior that you don't want triggered by the persistence mechanisms. On the other hand, going through a message send allows you to persist things that don't correspond directly to a single instance variable.
+</p><dl><dt><code>beForPseudoVariable</code></dt>
+<dd>Useful for cases where you want to describe an attribute that won't be read nor written, but still described to be used on queries.</dd>
+</dl>
+
+
+<p>
+For example, in a later section we talk about mapping the position of an object in a collection to a field in the database, since databases don't
+maintain order. We could map that order field to a pseudo-variable and use it in queries, even though we don't want it stored in the object.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; classModelForPerson: aClassModel
+	(aClassModel newAttributeNamed: #id) useDirectAccess: true.
+	aClassModel newAttributeNamed: #firstName.
+	aClassModel newAttributeNamed: #lastName.
+	aClassModel newAttributeNamed: #birthDate.
+	aClassModel newAttributeNamed: #email.
+	aClassModel newAttributeNamed: #address type: Address.
+	aClassModel newAttributeNamed: #invoices collectionOf: Invoice.
+	aClassModel newAttributeNamed: #counters from: String to: Integer.</code></pre><figcaption></figcaption></figure>
+
+<h3>Table model</h3>
+
+<p>
+Glorp also models your database objects, such as tables, constraints, indexes,
+etc.. With this model it will be able to determine how to serialize the objects to
+SQL, how to perform joins to retrieve 1:1 or 1:n relations, and so on.
+</p>
+<p>
+The descriptor system follows a convention to define the tables,
+it uses the <code>tableForTABLENAME:</code> selector to configure <code>TABLENAME</code>, the
+argument of this method is an instance of <code>DatabaseTable</code>, and this
+method is responsible for describing your table in the relational
+database, including field names and their data types, contraints (primary keys
+and/or foreign keys), etc.
+</p>
+<h4>Adding fields to the table</h4>
+
+<p>
+Let's bring back our example from the beginning of this book
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; tableForPERSON: aTable
+	(aTable createFieldNamed: 'id' type: platform serial) bePrimaryKey.
+	aTable createFieldNamed: 'firstName' type: (platform varChar: 100).
+	aTable createFieldNamed: 'lastName' type: (platform varChar: 100).
+	aTable createFieldNamed: 'birthDate' type: platform date.</code></pre><figcaption></figcaption></figure>
+
+<p>
+As you can see, you can add a field by sending <code>createFieldNamed:type:</code> to
+the table object. The first argument of the method is name of the field
+(aka <em>column</em>) in your table, the second one is the datatype.
+</p>
+<p>
+For the datatype we're not specifying any particular implementation of the type
+but instead we send a message to the <em>platform</em> object, and in Glorp jargon
+the platform is the RDBMS we'll be using.
+</p>
+<p>
+Doing it this way enables our table model to be RDBMS agnostic, and, for instance,
+it will work with SQLite or PostgreSQL (or any other platform).
+E.g. if our platform is PostgreSQL then <code>platform varchar</code> will return
+<code>VARCHAR</code>, but if instead our platform is SQLite then it will return <code>TEXT</code>
+because SQLite only supports <code>TEXT</code> as datatype for character based fields.
+</p>
+<p>
+Going back to <code>createFieldNamed:type:</code>, it will return an instance of
+<code>DatabaseField</code>, which has properties of its own, such as if the field is
+<em>nullable</em>, <em>unique</em>, its default value, and some convenience methods such
+as <code>bePrimaryKey</code> which will create a <em>PK</em> (primary key) on the table
+for this field.
+</p>
+<p>
+Commonly used datatypes in alphabetic order are: 
+</p>
+<table style="border: solid thin"><tr><td style="text-align: center">selector</td>
+<td style="text-align: center"><em>SQL-92</em> datatype</td>
+<td style="text-align: center">Pharo class</td>
+</tr>
+<tr><td style="text-align: left">blob</td>
+<td style="text-align: left">BLOB</td>
+<td style="text-align: left">ByteArray</td>
+</tr>
+<tr><td style="text-align: left">boolean</td>
+<td style="text-align: left">BOOLEAN</td>
+<td style="text-align: left">Boolean</td>
+</tr>
+<tr><td style="text-align: left">date</td>
+<td style="text-align: left">DATE</td>
+<td style="text-align: left">Date</td>
+</tr>
+<tr><td style="text-align: left">decimal</td>
+<td style="text-align: left">NUMERIC</td>
+<td style="text-align: left">ScaledDecimal</td>
+</tr>
+<tr><td style="text-align: left">double</td>
+<td style="text-align: left">DOUBLE</td>
+<td style="text-align: left">Float</td>
+</tr>
+<tr><td style="text-align: left">float</td>
+<td style="text-align: left">REAL</td>
+<td style="text-align: left">Float</td>
+</tr>
+<tr><td style="text-align: left">integer</td>
+<td style="text-align: left">INTEGER</td>
+<td style="text-align: left">Integer</td>
+</tr>
+<tr><td style="text-align: left">serial</td>
+<td style="text-align: left">SERIAL</td>
+<td style="text-align: left">Integer</td>
+</tr>
+<tr><td style="text-align: left">time</td>
+<td style="text-align: left">TIME</td>
+<td style="text-align: left">Time</td>
+</tr>
+<tr><td style="text-align: left">timestamp</td>
+<td style="text-align: left">TIMESTAMP</td>
+<td style="text-align: left">DateAndTime</td>
+</tr>
+<tr><td style="text-align: left">varchar</td>
+<td style="text-align: left">VARCHAR</td>
+<td style="text-align: left">String</td>
+</tr>
+</table>
+
+<p>
+You can find more datatypes by browsing the <em>types</em> method category of
+<code>DatabasePlatform</code> or any of its subclasses, not all databases support all
+datatypes, and some platforms have their own datatype. If you decide to use
+a datatype that's only supported by a particular RDBMS you will lose the
+benefits of being platform agnostic, so it is a tradeoff.
+</p>
+<h3>Mappings (aka <em>Descriptor</em>)</h3>
+<p>
+Once we have the Class Model describing our business objects and the
+Table Models describing the tables where they will be stored, we need to
+describe how they are going to work together. To achieve that Glorp uses
+an instance of <code>Descriptor</code> that contains the mappings between the attributes
+of the class model and the fields of the tables involved.
+</p>
+<p>
+As expected, there is a convention to define Descriptors and, you guessed right,
+it is <code>descriptorFor<em>YourClass</em>:</code> that will receive as an argument a
+instance of <code>Descriptor</code> on which you will configure the mappings.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; descriptorForPerson: aDescriptor
+	| table |
+	table := self tableNamed: 'PERSON'.
+	(aDescriptor newMapping: DirectMapping) from: #id to: (table fieldNamed: 'id').
+	(aDescriptor newMapping: DirectMapping) from: #firstName to: (table fieldNamed: 'firstname').
+	&quot;snip...&quot;
+	(aDescriptor newMapping: OneToOneMapping) attributeName: #address.
+	(aDescriptor newMapping: ToManyMapping) attributeName: #invoices.</code></pre><figcaption></figcaption></figure>
+
+<p>
+As you can see, the usual practice is to get a reference to the tables involved
+(one in this example, could be more), and then add <em>mappings</em> to
+<code>aDescriptor</code> by sending it the message <code>newMapping:</code> with an instance of
+the class of mapping we want to use.
+</p>
+<p>
+There are many mappings that Glorp provides, but the most used ones are:
+</p>
+<h4>Direct mapping.</h4>
+<p>
+To map a number, a string, a date or any other <em>value</em> like object
+you use an instance of <code>DirectMapping</code>, specifying which attribute from
+your class model you want to map to a field of a table.
+</p>
+<p>
+Although many times they will be the same symbol, the argument you pass to
+the <code>from:</code> parameter is not the symbol of the selector
+but instead the name of attribute you have defined in your <code>classModelFor...:</code>
+method.
+</p>
+<h4>1:1 relationships.</h4>
+<p>
+When you're trying to map a single reference from one object to another,
+you use the class <code>OneToOneMapping</code> and specify the name of the attribute
+that this instance is mapping. If everything is as simple as this you don't
+have to specify further instructions and Glorp will determine how to retrieve
+the instances based on the information provided in the ClassModel, foreign keys,
+etc. If you need further instructions you can always define them, more on that later.
+</p>
+<h4>1:N relationships.</h4>
+<p>
+If you are trying to map a collection that belongs to a <em>parent/owner</em> object
+like the invoices of a Person or the items of such invoice to the invoice itself,
+then you have to use the <code>OneToManyMapping</code> class.
+It is commonly used when you have the rows of the tables at the <em>N side</em> of
+the relation have a field that <em>points back</em> to the the <em>1 side</em>.
+In our example, the invoices have a Foreign Key pointing back to the persons table.
+</p>
+<h4>N:M relationships.</h4>
+<p>
+The Many to Many relationships is similar to the previous one, but in this case
+the other side of the relation might <em>belong</em> to more than one owner.
+For instance, if you have Person and Tag, a Person might have many Tags,
+but these tags in turn belong to other instances of Person.
+In this case you use the <code>ManyToManyMapping</code> and also have to specify
+the <em>attributeName</em>.
+</p>
+<p>
+From your the Pharo point of view, you will continue to see a regular collection
+but when storing its elements it will require a third table to do it, called
+a <em>link table</em>, Glorp has a convention to name such link tables, and it is
+based on composing the names of both sides of the relations.
+Following our Person to Tag relation, the table name Glorp will expect is
+<code>TAG_ON_PERSON</code>, and this must also have its definition in the descriptor system,
+so in this case there must be a <code>tableForTAG_ON_PERSON:</code> method.
+</p>
+<h3>Common properties of relationship mappings</h3>
+
+<p>
+All <code>OneToOneMapping</code>, <code>OneToManyMapping</code> and <code>ManyToManyMapping</code> are
+convenience subclasses of <code>RelationshipMapping</code>, and as such they share
+common properties that can be modified.
+</p>
+<p>
+For instance, the only difference between <code>OneToManyMapping</code> and
+<code>ManyToManyMapping</code> is that the later is initialized to use a link table,
+but you can have a <code>OneToManyMapping</code> that uses a link table if you prefer,
+you simple send <code>useLinkTable</code> to it.
+</p>
+<h4>Reference Classes.</h4>
+<p>
+All <code>RelationshipMapping</code> instances can specify the class they reference
+by sending <code>referenceClass:</code> with the desired class as argument. This is
+used a lot, and is a convenience method that ends up modifying the attribute
+in the ClassModel. So you can specify it at either place you find more
+convenient.
+</p>
+<p>
+Note we only define the class referenced, because the other side of the
+relationship is the class for which we're defining the mapping itself.
+</p>
+<p>
+Other attribute common to all <code>RelationshipMapping</code> subclasses is that
+you can specify how it is suppose to join with other tables, it is,
+its <code>Join</code> object. More on this on the advanced section.
+</p>
+<h4>Exclusivity.</h4>
+<p>
+Another attribute is the exclusivity of relationships, enabled by sending
+<code>beExclusive</code> to the mapping. This handy method makes that once the <em>parent</em>
+(or <em>left</em>) side of the relation is deleted from the database, Glorp will
+manually delete the <em>child</em> (or <em>right</em>) side of it.
+In our Person example, if the relation with <code>Address</code> was exclusive,
+then deleting a Person would cause Glorp to delete its address as well.
+</p>
+<p>
+One caveat of this convenience approach, is that it doesn't play along with database
+foreign key actions like <code>ON DELETE CASCADE</code>, basically because one will
+happen without the other knowing it, and Glorp will try to delete an
+<em>exclusive</em> object that was already removed from the database
+by the <em>CASCADE</em> and because of that it will fail.
+</p>
+<h4>Collection type.</h4>
+<p>
+In the case of <em>to many</em> mappings you can specify the collection type
+of the mapping, for instance, you can send <code>collectionType: Set</code> to your
+mapping and have it initialized to a Set instead of the default <code>OrderedCollection</code>.
+</p>
+<h4>Proxy.</h4>
+<p>
+And last, but not least, you can specify whether to proxy or not such a relation.
+By sending <code>shouldProxy:</code> either <code>true</code> or <code>false</code>, Glorp will
+place proxies or immediately build an instance from the database. If you don't specify this, it will proxy by default.
+</p>
+<h3>A Word about Proxies.</h3>
+<p>
+To avoid reading the whole object graph every time you read an object that
+has any kind of relationship mapping, Glorp places a Proxy object instead
+of reading it from the database.
+This saves a lot of roundtrips to the database, bandwidth and CPU/memory
+in the image building objects that you may not ever use.
+</p>
+<p>
+However, there are cases when you know that certain objects reference
+other objects that you know that always will be used, if that is
+the case you can avoid the proxying, and instead force the immediate
+materialization.
+</p>
+<p>
+Once Glorp turns a proxy into one of your domain objects, it will store
+your object in the Session Cache (more on this later), so future references
+to the same object won't cause an additional read from the database, and instead
+use the instance in the cache.
+</p>
+<p>
+And also, Proxies are tricky animals, so beware when debugging something
+that involves them. Sometimes they can fool the development tools, making
+them believe they're something they're not!
+</p>
+
+
+
+
+
+<h2>Extending our Basic Example</h2>
+<p>
+Now that we explained in more detail the main parts of Glorp's descriptor system,
+we're ready to extend our basic example, we're going to create a minimal
+invoicing model to include the concepts just learnt.
+</p>
+<p>
+We will 
+</p><ul>
+<li>define new Pharo class</li>
+<li>describe such new classes to be handled by Glorp</li>
+<li>describe the table in which such class instances will be stored</li>
+<li>describe the mapping between the instances and the records.</li>
+</ul>
+
+<h3>Domain classes</h3>
+
+<p>
+To do so we will create the following classes <code>Person</code>,
+<code>Address</code>, <code>Invoice</code>, <code>InvoiceItem</code>, all inheriting from
+<code>GlorpBookObject</code>, as a convenience to factor the <em>id</em> attribute.
+</p>
+<p>
+We will omit the listing of accessor methods, but you should create them.
+Regarding the <em>id</em> attribute, Glorp doesn't require you to use it as
+the primary key of your objects.
+</p>
+<p>
+You can use as many attributes as you want, but for the sake of simplicity we
+will use it as a <a href="https://en.wikipedia.org/wiki/Surrogate_key">surrogate key</a>,
+which is a key that is a unique identifier, an object not derived from
+application data.
+</p>
+
+<p>
+Here is the hierarchy root of book classes.
+</p><figure><pre><code>Object subclass: #GlorpBookObject
+	instanceVariableNames: 'id'
+	classVariableNames: ''
+	package: 'Glorp-Book'.</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>GlorpBookObject subclass: #Person
+	instanceVariableNames: 'firstName lastName birthDate addresses invoices tags'
+	classVariableNames: ''
+	package: 'Glorp-Book'.</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>GlorpBookObject subclass: #Address
+	instanceVariableNames: 'street number city zip'
+	classVariableNames: ''
+	package: 'Glorp-Book'.</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>GlorpBookObject subclass: #Invoice
+	instanceVariableNames: 'issueDate person address items'
+	classVariableNames: ''
+	package: 'Glorp-Book'.</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>GlorpBookObject subclass: #InvoiceItem
+	instanceVariableNames: 'invoice description price'
+	classVariableNames: ''
+	package: 'Glorp-Book'.</code></pre><figcaption></figcaption></figure>
+
+<p>
+Aside from the accessors, when you're dealing with collections
+(to-many relations) that are going to persisted, it is recommended to
+early initialize all the instance variables that will reference such collections.
+Otherwise it could cause some failures because Glorp keeps a copy of the object
+attributes to enable rolling back changes on memory. Plus... having a <em>complete</em>
+instance is a good practice too.
+</p>
+<figure><pre><code>Person &gt;&gt; initialize
+	super initialize.
+	addresses := OrderedCollection new.
+	invoices := OrderedCollection new.</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Invoice &gt;&gt; initialize
+	super initialize.
+	items := OrderedCollection new.</code></pre><figcaption></figcaption></figure>
+
+<h3>Class Model Declarations</h3>
+<p>
+Let's create our <code>GlorpBookDescriptorSystem</code> to describe the new
+domain models.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; classModelForPerson: aClassModel
+	(aClassModel newAttributeNamed: #id) useDirectAccess: true.
+	aClassModel newAttributeNamed: #firstName.
+	aClassModel newAttributeNamed: #lastName.
+	aClassModel newAttributeNamed: #email.
+	aClassModel newAttributeNamed: #addresses collectionOf: Address.
+	aClassModel newAttributeNamed: #invoices collectionOf: Invoice.</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; classModelForAddress: aClassModel
+	(aClassModel newAttributeNamed: #id) useDirectAccess: true.
+	aClassModel newAttributeNamed: #street.
+	aClassModel newAttributeNamed: #zip</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; classModelForInvoice: aClassModel
+	(aClassModel newAttributeNamed: #id) useDirectAccess: true.
+	aClassModel newAttributeNamed: #issueDate.
+	aClassModel newAttributeNamed: #person type: Person.
+	aClassModel newAttributeNamed: #address type: Address.
+	aClassModel newAttributeNamed: #items collectionOf: InvoiceItem</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; classModelForInvoiceItem: aClassModel
+	(aClassModel newAttributeNamed: #id) useDirectAccess: true.
+	aClassModel newAttributeNamed: #invoice type: Invoice.
+	aClassModel newAttributeNamed: #description.
+	aClassModel newAttributeNamed: #price</code></pre><figcaption></figcaption></figure>
+
+
+<h4>Table Declarations</h4>
+
+<p>
+Then we should declare the tables that represent our domain.
+Here is the table models for the class <code>Person</code>, <code>Address</code> and <code>Invoice</code>.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; tableForPERSON: aTable
+	(aTable createFieldNamed: 'id' type: platform serial) bePrimaryKey.
+	aTable createFieldNamed: 'firstName' type: (platform varChar: 100).
+	aTable createFieldNamed: 'lastName' type: (platform varChar: 100).
+	aTable createFieldNamed: 'email' type: (platform varchar: 200).</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; tableForADDRESS: aTable
+	(aTable createFieldNamed: 'id' type: platform serial) bePrimaryKey.
+	aTable createFieldNamed: 'street' type: (platform varChar: 100).
+	aTable createFieldNamed: 'zip' type: platform integer.</code></pre><figcaption></figcaption></figure>
+
+
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; tableForINVOICE: aTable
+	| personField addressField |
+	(aTable createFieldNamed: 'id' type: platform serial)
+		bePrimaryKey.
+	aTable createFieldNamed: 'issueDate' type: platform date.
+	personField := aTable
+		createFieldNamed: 'person_id'
+		type: platform integer.
+	addressField := aTable
+	 	createFieldNamed: 'address_id'
+		type: platform integer.
+	aTable
+		addForeignKeyFrom: personField
+		to: ((self tableNamed: 'PERSON') fieldNamed: 'id').
+	aTable
+		addForeignKeyFrom: addressField
+		to: ((self tableNamed: 'ADDRESS') fieldNamed: 'id').</code></pre><figcaption></figcaption></figure>
+
+<p>
+As you can see in our <em>INVOICE</em> table, we not only added fields, but also
+added <em>Foreign Keys</em> (aka <em>FK</em>)
+to our table table model using the message <code>addForeignKeyFrom:to:</code>.
+This will add the foreign keys to the list of constraints of the table model, and will be used by Glorp to order writes/deletions and
+infer relations.
+</p>
+<p>
+Also notice that we need to pass the referenced field as argument.
+To obtain it we ask the descriptor system for the table of <em>PERSON</em>
+and <em>ADDRESS</em> by sending <code>tableNamed:</code> with the name of table we want
+as argument. This will return the <code>DatabaseTable</code> with that name,
+and to this object we will ask for the field named <em>id</em>.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; tableForINVOICEITEM: aTable
+	| invoiceField |
+	(aTable createFieldNamed: 'id' type: platform serial) bePrimaryKey.
+	invoiceField := aTable createFieldNamed: 'invoice_id' type: platform serial.
+	aTable createFieldNamed: 'description' type: (platform varchar: 150).
+	aTable createFieldNamed: 'price' type: platform decimal.
+	aTable createFieldNamed: 'position' type: platform integer.
+	aTable
+		addForeignKeyFrom: invoiceField
+		to: ((self tableNamed: 'INVOICE') fieldNamed: 'id').</code></pre><figcaption></figcaption></figure>
+
+
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; tableForPERSON_ON_ADDRESS: aTable
+	| personField addressField |
+	personField := aTable
+		createFieldNamed: 'person_id'
+		type: platform integer.
+	addressField := aTable
+		createFieldNamed: 'address_id'
+		type: platform integer.
+	personField bePrimaryKey.
+	addressField bePrimaryKey.
+	aTable
+		addForeignKeyFrom: personField
+		to: ((self tableNamed: 'PERSON') fieldNamed: 'id').
+	aTable
+		addForeignKeyFrom: addressField
+		to: ((self tableNamed: 'ADDRESS') fieldNamed: 'id').</code></pre><figcaption></figcaption></figure>
+
+<p>
+As you can see in the last method, we created a table model for the table
+<code>PERSON_ON_ADDRESS</code>. This table will be used as a link table. Because
+this link table references to other tables we also created Foreign Keys
+from each reference field using the same approach described before.
+</p>
+<h3>Mapping declarations</h3>
+
+<h5>Address</h5>
+<p>
+The mapping for the class and table address is simple since there is a direct
+mapping between the class model (the domain model) and the table.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; descriptorForAddress: aDescriptor
+	| table |
+	table := self tableNamed: 'ADDRESS'.
+	aDescriptor table: table.
+	(aDescriptor newMapping: DirectMapping)
+		from: #id
+		to: (table fieldNamed: 'id').
+	(aDescriptor newMapping: DirectMapping)
+		from: #street
+		to: (table fieldNamed: 'street').
+	(aDescriptor newMapping: DirectMapping)
+		from: #city
+		to: (table fieldNamed: 'zip').</code></pre><figcaption></figcaption></figure>
+
+
+<h5>Invoice</h5>
+<p>
+The mapping for invoice is a bit more elaborated, because it not only
+contains Direct Mappings, and one-to-one mappings for the <code>Person</code> and
+<code>Address</code>, but also contains a one-to-many relationship to its items.
+</p>
+<p>
+We introduced the <code>orderBy:</code> and <code>writeTheOrderField</code> attributes in
+the #items mappings. You can use the first attribute independently or both together.
+</p>
+<p>
+The <code>orderBy:</code> attribute instructs
+Glorp to read the elements from the database and <em>order</em> (aka <em>sort</em>) them
+by the field described in the block. This is useful so the collection that holds
+the references to the items (in this example) is always sorted the same way,
+because the order the rows come from the database is not always the same,
+and you can't trust they will return in the same order as they were written.
+</p>
+<p>
+The <code>writeTheOrderField</code> command will make Glorp save the index of the
+element in the collection as a field in the row. It will use the field defined
+in <code>orderBy:</code> as its target, in this case <em>position</em>. So if you have an
+OrderedCollection with five items, the first element one will have <code>1</code> stored
+in the <em>position</em> field, the second <code>2</code>, and so on. If you change the order
+of the elements in the collection, the <em>position</em> field will be saved with the
+new index.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; descriptorForInvoice: aDescriptor
+	| table |
+	table := self tableNamed: 'INVOICE'.
+	aDescriptor table: table.
+	(aDescriptor newMapping: DirectMapping)
+		from: #id
+		to: (table fieldNamed: 'id').
+	(aDescriptor newMapping: DirectMapping)
+		from: #issueDate
+		to: (table fieldNamed: 'issueDate').
+	(aDescriptor newMapping: OneToOneMapping)
+		attributeName: #person.
+	(aDescriptor newMapping: OneToOneMapping)
+		attributeName: #address.
+	(aDescriptor newMapping: ToManyMapping)
+		attributeName: #items;
+		orderBy: [:each |
+			(each getTable: 'INVOICEITEM') getField: 'position'];
+		writeTheOrderField.</code></pre><figcaption></figcaption></figure>
+
+<h5>InvoiceItem</h5>
+<p>
+The mapping for each invoice item is slightly different since an item is always
+part of an Invoice, and only that invoice; so because of that we have a
+<code>OneToOneMapping</code> referencing its invoice. This way we make the relation
+between Invoice and InvoiceItem bidirectional.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; descriptorForInvoiceItem: aDescriptor
+	| table |
+	table := self tableNamed: 'INVOICEITEM'.
+	aDescriptor table: table.
+	(aDescriptor newMapping: DirectMapping)
+		from: #id
+		to: (table fieldNamed: 'id').
+	(aDescriptor newMapping: DirectMapping)
+		from: #description
+		to: (table fieldNamed: 'description').
+	(aDescriptor newMapping: DirectMapping)
+		from: #price
+		to: (table fieldNamed: 'price').
+	(aDescriptor newMapping: OneToOneMapping)
+		attributeName: #invoice.</code></pre><figcaption></figcaption></figure>
+
+<h5>Person</h5>
+<p>
+The mapping for the class Person is more elaborate and worth some explanation
+of what happens in the last lines.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; descriptorForPerson: aDescriptor
+	| table linkTable |
+	table := self tableNamed: 'PERSON'.
+	aDescriptor table: table.
+	(aDescriptor newMapping: DirectMapping)
+		from: #id
+		to: (table fieldNamed: 'id').
+	(aDescriptor newMapping: DirectMapping)
+		from: #firstName
+		to: (table fieldNamed: 'firstName').
+	(aDescriptor newMapping: DirectMapping)
+		from: #lastName
+		to: (table fieldNamed: 'lastName').
+	(aDescriptor newMapping: DirectMapping)
+		from: #email
+		to: (table fieldNamed: 'email').
+
+	(aDescriptor newMapping: ToManyMapping)
+		attributeName: #invoices;
+		orderBy: [:each |
+			(each getTable: 'INVOICE') getField: 'issueDate'].
+
+	linkTable := self tableNamed: 'PERSON_ON_ADDRESS'.
+	(aDescriptor newMapping: ManyToManyMapping)
+		attributeName: #addresses;
+		referenceClass: Address;
+		beExclusive;
+		join: (Join
+			from: (table fieldNamed: 'id')
+			to: (linkTable fieldNamed: 'person_id')).</code></pre><figcaption>Class descriptors</figcaption></figure>
+
+<p>
+Here we introduce the explicit <code>join:</code> attribute of the Reference Mapping.
+Usually Glorp infers and creates such Join by looking at the Foreign Keys
+of the described or referenced class, but you can make that Join explicit,
+you just have to create a <code>Join</code> object with the source field and the
+referenced field as arguments. In this case the join is pretty straightforward
+and between two fields, but it could be between as many fields as you want.
+</p>
+
+<h3>Sample data</h3>
+
+<p>
+We will create some sample data for our example, and for the Persons we will
+save three instances named after famous Smalltalkers, with random addresses,
+so don't mail them.
+</p>
+<figure><pre><code>session inUnitOfWorkDo: [
+	| lastnames firstnames |
+	{ 'Dan'. 'Alan'. 'Adele' }
+		with: {'Ingalls'. 'Kay'. 'Goldberg'}
+		do: [ :firstName :lastName |
+			| person |
+			person := (Person new
+				firstName: firstName;
+				lastName: lastName).
+			person addresses add: (
+				Address new
+					street: (1 to: 1000) atRandom printString
+					, ' Random Avenue';
+					zip: (1000 to: 9000 by: 100) atRandom;
+					yourself).
+			session register: person
+	]
+].</code></pre><figcaption></figcaption></figure>
+
+<p>
+Now we created the sample Persons, let's add an extra address for Alan.
+</p>
+<figure><pre><code>session inUnitOfWorkDo: [
+	| alan |
+	alan := session
+		readOneOf: Person
+		where: [ :each | each firstName = 'Alan' ].
+	alan addresses
+		add: (Address new
+			street: '1025 Westwood Blv, 2nd Floor, Los Angeles, CA';
+			zip: 90024;
+			yourself)
+].</code></pre><figcaption></figcaption></figure>
+
+<p>
+As you can see, we didn't have to register the newly created address because
+the Person was read inside of a UnitOfWork. If we read the instance again
+and inspect its addresses we will find the new instance is there.
+</p>
+<figure><pre><code>(session
+	readOneOf: Person
+	where: [ :each | each firstName = 'Alan' ]) addresses inspect</code></pre><figcaption></figcaption></figure>
+
+<p>
+Before continuing and to make code simpler and more readable we'll
+create a few convenience methods:
+</p>
+<figure><pre><code>InvoiceItem class &gt;&gt; description: aString price: aNumber
+	^ self new
+			description: aString;
+			price: aNumber;
+			yourself</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Invoice &gt;&gt; addItem: anInvoiceItem
+	anInvoiceItem invoice: self.
+	self items add: anInvoiceItem</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Invoice &gt;&gt; totalPrice
+	^ self items sum: #price</code></pre><figcaption></figcaption></figure>
+
+<p>
+We can now procceed to create an few instances of Invoice. Let's create
+one invoice for each person in the database with two items describing
+donations to the <a href="http://consortium.pharo.org">Pharo Consortium</a> and
+<a href="http://association.pharo.org">Association</a> with randomized amounts
+(within a certain range) for each one.
+</p>
+<figure><pre><code>session inUnitOfWorkDo: [
+	(session read: Person) do: [:person |
+		| invoice |
+		invoice := Invoice new
+			issueDate: Date today;
+			person: person;
+			address: person addresses atRandom.
+		invoice
+			addItem: (InvoiceItem
+				description: 'Pharo Consortium donation'
+		price: (1000s to: 4000s by: 1000s) atRandom);
+			addItem: (InvoiceItem
+				description: 'Pharo Association donation'
+		price: (20s to: 100s by: 10s) atRandom); yourself.
+		session register: invoice.
+	]
+].</code></pre><figcaption></figcaption></figure>
+
+<p>
+As usual, you can read the Invoices by doing <code>session read: Invoice</code>, let's
+print how much each Person donated.
+</p>
+<figure><pre><code>(session read: Invoice) do: [:each |
+	Transcript
+		show: each person firstName, ' ', each person lastName;
+		show: ': ', each totalPrice printString;
+		cr.
+]</code></pre><figcaption></figcaption></figure>
+
+<p>
+When we presented the ReferenceMappings we mentioned how Glorp puts proxies
+in place of a referenced object to avoid performing unnecessary roundtrips
+to the database.
+</p>
+<p>
+In the example above, assuming all caches are empty, Glorp will perform one
+query to retrieve all the Invoices and then one extra query to retrieve
+the data to instantiate each Person. So if you retrieve Invoices for three
+different persons, Glorp will perform four queries, it is four roundtrips,
+to the database. Keep that in mind while we continue with other examples.
+</p>
+
+<figure><pre><code>(session read: Invoice) sum: #totalPrice</code></pre><figcaption></figcaption></figure>
+
+<p>
+The message <code>sum:</code> above will retrieve all the rows from the tables,
+instantiate an equivalent quantity of Invoice and then go over all
+the invoices' items to sum them. In our example, we only have a few instances
+but what if we had a million of them? Instantiating everything at the Pharo
+side wouldn't be convenient for such a simple sum. Performing an SQL <code>SUM()</code>
+at the database side would be more efficient, since we would only retrieve
+the total instead. But how to do such a query?
+</p>
+<h2>The Query object</h2>
+
+<p>
+So far we've been querying objects by means of sending <code>read:</code> or
+<code>read:where:</code> to the session object, but if you want to perform
+a particular query, like limiting the number of results, running an aggregate
+function like <code>SUM()</code>, <code>AVG()</code>, ordering the rows at the server side,
+performing subqueries and many other features then the session object
+doesn't provide you with an API for that.
+</p>
+<h3>The read: message</h3>
+<p>
+Everytime you sent a <code>read:</code> message to the session, the session created a
+simple <code>Query</code> object to read the class passed as parameter as in the following expression. 
+</p>
+<figure><pre><code>(session read: Invoice) executeIn: session</code></pre><figcaption></figcaption></figure>
+
+<p>
+But you can instantiate a Query object independently, configure it to fit your needs and
+execute it in the session. Enter the <code>Query</code> object! 
+</p>
+<h3>SimpleQuery</h3>
+<p>
+Let's say we want to know the sum of all the prices of our InvoiceItems,
+we can do that by using the <code>retrieve:</code> method and using an aggregate function
+like <code>sum</code>.
+</p>
+<figure><pre><code>((SimpleQuery read: InvoiceItem)
+	readsOneObject: true;
+	retrieve: [:each | each price sum ]) executeIn: session.</code></pre><figcaption></figcaption></figure>
+
+<p>
+The <code>retrieve:</code> method configures the query to return only the retrieved attributes
+of the read object. The query will return a collection with the objects
+retrieved instead of a collection of instances of the read class.
+</p>
+<p>
+If we know beforehand that our query will return a single row with a single
+field, i.e., a single object, we can configure the query to return that
+object directly by setting <code>readsOneObject:</code> to true.
+</p>
+<p>
+If you retrieve more than one object then the query will return a collection
+of collections, in the form of <em>#(#(...) #(...) ...)</em>.
+</p>
+<figure><pre><code>((SimpleQuery read: Person)
+	retrieve: [:each | each firstName ];
+	retrieve: [:each | each lastName]) executeIn: session.</code></pre><figcaption></figcaption></figure>
+
+<h3>Attributes of queries</h3>
+<p>
+The Query object models an SQL <code>SELECT</code> statement, and like that statement
+it can include a <code>WHERE</code>, <code>ORDER BY</code>, <code>GROUP BY</code>, <code>HAVING</code>, etc.
+</p>
+<h4><em>WHERE</em> expression</h4>
+<p>
+You can always include a <em>where</em> expression as you did when reading through the session object. Inside the <em>where</em> expression, you can filter by attributes of referenced objects.
+</p>
+<figure><pre><code>((SimpleQuery read: Invoice)
+	where: [:each | each person lastName = 'Goldberg' ]
+	) executeIn: session</code></pre><figcaption></figcaption></figure>
+
+<p>
+Or even by interacting with a referenced collection, i.e., retrieving only Invoices containing items with a price above 2000.
+</p>
+<figure><pre><code>((SimpleQuery read: Invoice)
+	where: [:invoice |
+		invoice items anySatisfy: [ :item |
+			item price &gt; 2000 ]]) executeIn: session</code></pre><figcaption></figcaption></figure>
+
+<h4><em>ORDER BY</em> expression</h4>
+<p>
+The <code>ORDER BY</code> expression in a Query object is set by sending <code>orderBy:</code> to
+the query object as many times, as fields you want to include in your ordering
+criteria.
+</p><figure><pre><code>((SimpleQuery read: InvoiceItem)
+	orderBy: [:each | each price descending];
+	orderBy: [:each | each invoice person lastName]
+	) executeIn: session</code></pre><figcaption></figcaption></figure>
+
+<h4><em>GROUP BY</em> expression</h4>
+<p>
+As shown in previous code samples you can also perform SQL's <em>aggregate</em>
+queries like <code>SUM()</code>, <code>COUNT()</code>, etc.; if you want to perform those
+aggregate functions grouped by certain expression, then the <code>groupBy:</code>
+option comes to the rescue.
+</p>
+<figure><pre><code>((SimpleQuery read: InvoiceItem)
+	retrieve: [ :e |
+	 	e invoice person firstName, '-', e invoice person lastName];
+	retrieve: [ :e | e price sum ];
+	groupBy: [ :e |
+		e invoice person firstName, '-', e invoice person lastName]
+	) executeIn: session.</code></pre><figcaption></figcaption></figure>
+
+<p>
+In the above example you can see we're retrieving two fields concatenated
+and grouped by the same concatenated value. Remember that when using
+an aggregate function, all the non-aggregated fields retrieved must be included
+in the <em>GROUP BY</em>. Notice here we're also grouping by a field in other table,
+Glorp resolves all the <em>JOINs</em> for you.
+</p>
+<p>
+Retrieving the average donation
+</p><figure><pre><code>((SimpleQuery read: InvoiceItem)
+	retrieve: [ :each | each description];
+	retrieve: [ :each | each price average ];
+	groupBy: [ :each | each description]) executeIn: session.</code></pre><figcaption></figcaption></figure>
+
+<p>
+Although the <em>GROUP BY</em> expression is used extensively in production systems,
+it only works for retrieving fields of the query and not full-fledged instances
+of your objects described in your DescriptorSystem.
+</p>
+<h4><em>LIMIT</em> and <em>OFFSET</em> expressions</h4>
+<p>
+You can also limit the number of rows returned by your Query, this is useful
+if you know your query will return one single row/object or if only want to
+retrieve a certain number of rows. The <em>LIMIT</em> expression varies between
+different databases, Glorp will make sure it generates the right SQL code
+for the plaform you're using.
+</p>
+<p>
+When the <em>LIMIT</em> expression is used in combination with the <em>OFFSET</em>
+expression it lets you implement simple pagination queries.
+</p>
+<figure><pre><code>((SimpleQuery read: InvoiceItem)
+	limit: 3;
+	offset: 3) executeIn: session.</code></pre><figcaption></figcaption></figure>
+
+<h3>Fetching referenced objects</h3>
+<p>
+We mentioned before that when you're querying the Invoices Glorp will
+place a Proxy object for each reference (e.g. Person) it doesn't have in
+the session cache, and then once the Proxy is hit by a message send it will
+materialize it by retrieving its contents by performing a database Query.
+</p>
+<p>
+Imagine this scenario for at least 1000 Invoices that reference a different
+Person each, that would be 1001 queries and their resulting I/O impact.
+</p>
+<p>
+In a regular SQL query you would solve that by doing a regular <em>JOIN</em> with
+the related table; when reading first class Objects with Glorp it makes it
+almost as easy as doing a <em>JOIN</em> in SQL.
+</p>
+<figure><pre><code>((SimpleQuery read: Invoice)
+	alsoFetch: [:each | each person ];
+	alsoFetch: [:each | each address]) executeIn: session.</code></pre><figcaption></figcaption></figure>
+
+<p>
+You can specify as many <code>alsoFetch:</code> references as you want, and Glorp
+will knit all together by using <em>JOIN</em> expressions created from the <em>Join</em>
+objects defined when configuring the reference mappings of the Class Descriptor.
+</p>
+<p>
+If nothing else is added to the <code>alsoFetch:</code> expression block it will perform
+<code>INNER JOIN</code> to knit the relations. If you're <em>also fetching</em> a
+reference that might be nil then the whole object/row would be excluded
+from the result. For instance, if an Invoice doesn't have an Address, then
+with the above example that invoice would be left out by the JOIN.
+</p>
+<p>
+You can save that by doing an <code>OUTER JOIN</code> on the field you're fetching
+by simply adding <code>asOuterJoin</code> to the field.
+</p>
+
+<p>
+Retrieving all at once with an OUTER JOIN
+</p><figure><pre><code>((SimpleQuery read: Invoice)
+	alsoFetch: [:each | each person ];
+	alsoFetch: [:each | each address asOuterJoin]) executeIn: session.</code></pre><figcaption></figcaption></figure>
+
+<p>
+The <code>alsoFetch:</code> is a powerful feature, and can be used in combination with
+all the above described Query attributes (except for <em>GROUP BY</em>).
+</p>
+<h3>Ensuring fresh data</h3>
+<p>
+Everytime you read an object inside a Glorp session, it will save it in the
+session cache keyed by an object representing the Primary Key in your database,
+in our example each ClassDescriptor will have a cache keyed by the <code>id</code> field,
+which happens to be our Public Key in the tables.
+</p>
+<p>
+This is great because, as any proper cache would, it avoids going
+outside of your image to retrieve something from the database,
+saving you from the extra roundtrips. However, when the objects are modified
+concurrently during the lifetime of your session, then you could end up with
+an old version of it, and even if you perform a new Query to the database
+Glorp will try to use the same object it had in the session Cache.
+</p>
+<p>
+As you might expect by now, Glorp provides a way to override this and force
+the update of the Cache with the newly read data. Just simply set
+<code>shouldRefresh: true</code>, and this will tell Glorp to ignore any attempt
+to read from the Cache and instead always use what is new.
+</p>
+<figure><pre><code>((SimpleQuery read: Invoice) shouldRefresh: true) executeIn: session.</code></pre><figcaption></figcaption></figure>
+
+
+<h3>Set operations</h3>
+<p>
+In addition to statements that affect the result set of the query,
+you can perform
+<a href="https://en.wikipedia.org/wiki/Set_operations_%28SQL%29">set operations</a>
+like <code>UNION ALL</code>, <code>INTERSECT</code> and <code>EXCLUDE</code> (aka <em>subtract</em>)
+between your query and other queries.
+</p>
+<figure><pre><code>((SimpleQuery read: InvoiceItem) except:
+	(SimpleQuery read: InvoiceItem where: [:each | each price &lt; 1000])
+	) executeIn: session.</code></pre><figcaption></figcaption></figure>
+
+<table style="border: solid thin"><tr><td style="text-align: center">SQL SET OPERATOR</td>
+<td style="text-align: center">Query selector</td>
+<td style="text-align: center"></td>
+</tr>
+<tr><td><code>UNION ALL</code></td>
+<td><code>union:</code></td>
+<td></td>
+</tr>
+<tr><td><code>INTERSECT</code></td>
+<td><code>intersect:</code></td>
+<td></td>
+</tr>
+<tr><td><code>EXCLUDE</code></td>
+<td><code>minus:</code></td>
+<td></td>
+</tr>
+</table>
+
+<h3>Conclusion </h3>
+<p>
+The SimpleQuery offers powerful logic and you should play with it to understand how to use it. 
+</p>
+
+
+
+
+
+
+<h2>Handling inheritance</h2>
+
+<p>
+In this chapter we will look at how Glorp help us handling object of different subclasses.
+When a class <code>Parent</code> has two subclasses <code>LeftChild</code> and
+<code>RightChild</code>, a polymorphic query is one where we can query on the
+<code>Parent</code> class and as a result get instances of <code>Parent</code>, <code>LeftChild</code>
+and <code>RightChild</code>.
+</p>
+<p>
+There are three common ways to support polymorphic queries with a
+relational database:
+</p><ul>
+<li>A table for each class (abstract or not)</li>
+<li>A table for each concrete class</li>
+<li>One table for all classes</li>
+</ul>
+
+<p>
+Glorp currently supports the  two latest options. We will illustrate these two approaches now. 
+</p>
+<h3>A table for each concrete class</h3>
+<p>
+In this approach each concrete class has its own table.
+</p>
+<p>
+That table holds all the instance variables for the class.
+As an example of this approach, let us imagine that the Parent class an abstract class.
+Therefore, we need two tables, which we call <code>LEFTCHILDTABLE</code> and
+<code>RIGHTCHILDTABLE</code>.
+</p>
+<h4>Class definitions</h4>
+<p>
+The class definitions are straightforward.
+</p><figure><pre><code>GlorpBookObject subclass: #Parent
+	instanceVariableNames: 'top'
+	classVariableNames: ''
+	package: 'Glorp-Book'</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Parent subclass: #LeftChild
+	instanceVariableNames: 'left'
+	classVariableNames: ''
+	package: 'Glorp-Book'</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>Parent subclass: #LeftChild
+	instanceVariableNames: 'right'
+	classVariableNames: ''
+	package: 'Glorp-Book'</code></pre><figcaption></figcaption></figure>
+
+<h4>System Description</h4>
+<p>
+We'll extend our System Descriptor to include the newly created classes.
+</p>
+<p>
+Class model for <code>LeftChild</code>.
+</p><figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; classModelForLeftChild: aClassModel
+	aClassModel newAttributeNamed: #left.
+	aClassModel newAttributeNamed: #top.
+	aClassModel newAttributeNamed: #id.</code></pre><figcaption></figcaption></figure>
+
+<p>
+Class model for <code>RightChild</code>.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; classModelForRightChild: aClassModel
+	aClassModel newAttributeNamed: #right.
+	aClassModel newAttributeNamed: #top.
+	aClassModel newAttributeNamed: #id</code></pre><figcaption></figcaption></figure>
+
+<p>
+Describing the tables.
+</p><figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; tableForLEFTCHILDTABLE: aTable
+	(aTable createFieldNamed: 'left_value' type: (platform varChar: 50)).
+	(aTable createFieldNamed: 'top' type: (platform varChar: 50)).
+	(aTable createFieldNamed: 'id' type: (self sequenceTypeNamed: 'parent_seq'))
+		bePrimaryKey.</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; tableForRIGHTCHILDTABLE: aTable
+	(aTable createFieldNamed: 'right_value' type: (platform varChar: 50)).
+	(aTable createFieldNamed: 'top' type: (platform varChar: 50)).
+	(aTable createFieldNamed: 'id' type: (self sequenceTypeNamed: 'parent_seq'))
+		bePrimaryKey.</code></pre><figcaption></figcaption></figure>
+
+<p>
+We introduced <code>sequenceTypeNamed:</code>, that we didn't use before. When using
+<code>sequence</code> or <code>serial</code> datatypes, Glorp will create a database sequence
+for each table if required, but because we're using a type resolver
+with inheritance, it is necessary that all the children classes that use
+a <code>serial</code> datatype share the same sequence. 
+</p>
+<p>
+The message <code>sequenceTypeNamed:</code> lookups in the Descriptor System for an existing sequence with that name,
+and if no one was registered before it will instantiate a new one with that name and register it for later use.
+</p>
+<h3>Handling inheritance</h3>
+
+<p>
+So far we created the class models for two classes, and a table model for each
+one of them, but nothing involving inheritance. Notice we don't have to create a
+class model for the <code>Parent</code> class, although we will have to create a
+class descriptor for it.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; descriptorForParent: aDescriptor
+	(self typeResolverFor: Parent) register: aDescriptor abstract: true.</code></pre><figcaption></figcaption></figure>
+
+<p>
+As you can see, we introduced a concept in the Class Descriptor that
+we never used, explicitly, before: a Type Resolver (or <em>resolver</em> for short).
+</p>
+<h4>Type resolver </h4>
+<p>
+Every Class Descriptor has a <em>resolver</em> that helps it determine which
+class to instantiate. If Glorp doesn't find one explicitly defined,  it 
+creates an <code>IdentityTypeResolver</code> for your class.
+</p>
+<p>
+You can define the resolver for your class by implementing a method
+named <code>typeResolverFor<em>YourClass</em></code> that returns an instance of TypeResolver.
+We will create one for our class <code>Parent</code>
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; typeResolverForParent
+	^ HorizontalTypeResolver forRootClass: Parent</code></pre><figcaption></figcaption></figure>
+
+<p>
+There are different classes of resolvers:
+</p><dl><dt>IdentityTypeResolver </dt>
+<dd>No inheritance</dd>
+<dt>HorizontalTypeResolver</dt>
+<dd>Each Class is persisted in a separate table</dd>
+<dt>FilteredTypeResolver</dt>
+<dd>All Classes are persisted in the same table</dd>
+</dl>
+
+<p>
+We chose the <code>HorizontalTypeResolver</code> because we're storing our instances
+in separate tables. <code>IdentityTypeResolver</code>  is the default one: it is for the case when there is no inheritance,
+where you map a class to a single table, or more than one table but always for a single class.
+and we will cover <code>FilteredTypeResolver</code> later.
+</p>
+<p class="todo">what is <code>IdentityTypeResolver</code></p>
+<p>
+Each of the class descriptor methods register a resolver.
+The method <code>typeResolverFor:</code> results in a call to <code>typeResolverForParent</code>.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; descriptorForLeftChild: aDescriptor
+	| leftTable |
+	leftTable := self tableNamed: 'LEFTCHILDTABLE'.
+	aDescriptor table: leftTable.
+	(aDescriptor newMapping: DirectMapping)
+		from: #id to: (leftTable fieldNamed: 'id').
+	(aDescriptor newMapping: DirectMapping)
+		from: #top to: (leftTable fieldNamed: 'top').
+	(aDescriptor newMapping: DirectMapping)
+		from: #left to: (leftTable fieldNamed: 'left_value').
+	(self typeResolverFor: Parent) register: aDescriptor.</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; descriptorForRightChild: aDescriptor
+	| rightTable |
+	rightTable := self tableNamed: 'RIGHTCHILDTABLE'.
+	aDescriptor table: rightTable.
+	(aDescriptor newMapping: DirectMapping)
+		from: #id to: (rightTable fieldNamed: 'id').
+	(aDescriptor newMapping: DirectMapping)
+		from: #top to: (rightTable fieldNamed: 'top').
+	(aDescriptor newMapping: DirectMapping)
+		from: #right to: (rightTable fieldNamed: 'right_value').
+	(self typeResolverFor: Parent) register: aDescriptor.</code></pre><figcaption></figcaption></figure>
+
+<p>
+If you look at the last line in the definition of Descriptors for <code>LeftChild</code>
+and <code>RightChild</code> you'll notice we're registering the Descriptor in the
+Type Resolver of the <code>Parent</code> class; both child classes, unless overriden,
+will continue having their default resolver.
+</p>
+
+<h3>Playing with instances</h3>
+
+<p>
+Now we can play with some sample instances
+</p><figure><pre><code>session inUnitOfWorkDo: [
+	session register: (LeftChild new top: 'Left top'; left: 'I am a left child').
+	session register: (RightChild new top: 'Right top'; right: 'I am a right child').
+].</code></pre><figcaption></figcaption></figure>
+
+<p>
+With the setup above, we can write queries like the following one which 
+query the <code>Parent</code> class:
+</p><figure><pre><code>(session read: Parent) 
+&gt;&gt;&gt; an OrderedCollection(a RightChild a LeftChild)</code></pre><figcaption></figcaption></figure>
+
+<p>
+We can still write queries directly on the subclasses
+</p><figure><pre><code>(session read: LeftChild)</code></pre><figcaption></figcaption></figure>
+
+<p>
+There is one restriction on polymorphic queries when using
+<code>HorizontalTypeResolver</code> (a table for each Concrete Class) which is one can
+not use <code>orderBy:</code>. The query makes multiple requests to the database as it
+has to read both tables, so we cannot have the database order the results
+for use. As a result the following request will raise an exception becausehorizontal resolvers can't order.
+</p><figure><pre><code>((Query read: Parent) orderBy: #top) executeIn: session</code></pre><figcaption></figcaption></figure>
+
+
+<h3>One table for all classes</h3>
+<p>
+In this alternate approach for table  organization, there is one table that holds the data
+for all objects in the hierarchy. In this example the one table is called
+<code>ALL_DATA</code>. We include an <code>object_type</code> column used to store the type
+of the object in the row.	This allows GLORP to create an instance of the
+correct class when it reads a row in the table. Note
+that regardless of what type of object is in a row, one column,
+either <code>left_value</code> or <code>right_value</code>, will be <code>null</code>.
+While this method does waste space in the database, performing a polymorphic
+query is faster as there is only one table to access.
+</p>
+<p>
+We start by describing the new Type Resolver for the <code>Parent</code> class.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; typeResolverForParent
+	^FilteredTypeResolver forRootClass: Parent</code></pre><figcaption></figcaption></figure>
+
+<p>
+The class definitions remain the same as in the Table for each concrete
+class example. The descriptor changes a bit.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; descriptorForParent: aDescriptor
+	| table |
+	table := self tableNamed: 'ALL_DATA'.
+	aDescriptor table: table.
+	(aDescriptor newMapping: DirectMapping)
+		from: #id to: (table fieldNamed: 'id').
+	(aDescriptor newMapping: DirectMapping)
+		from: #top to: (table fieldNamed: 'top').
+	(self typeResolverFor: Parent)
+		register: aDescriptor abstract: true</code></pre><figcaption></figcaption></figure>
+
+<p>
+Since we use a different resolver, we need to supply values for <code>object_type</code>
+column and need more information for the <code>Parent</code> class.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; descriptorForLeftChild: aDescriptor
+	| leftTable |
+	leftTable := self tableNamed: 'ALL_DATA'.
+	aDescriptor table: leftTable.
+	(aDescriptor newMapping: DirectMapping)
+		from: #id to: (leftTable fieldNamed: 'id').
+	(aDescriptor newMapping: DirectMapping)
+		from: #top to: (leftTable fieldNamed: 'top').
+	(aDescriptor newMapping: DirectMapping)
+		from: #left to: (leftTable fieldNamed: 'left_value').
+	(self typeResolverFor: Parent)
+		register: aDescriptor
+		keyedBy: 'L'
+		field: (leftTable fieldNamed: 'object_type').</code></pre><figcaption></figcaption></figure>
+
+<p>
+Note how to indicate the value of the <code>object_type</code> column for
+<code>LeftChild</code> objects with the resolver.
+The argument for the <code>keyedBy:</code> parameter is the String <code>'L'</code> but it could be any String of your preference, like the class name. Keep in mind that the shorter the key, the less storage space it will take, and also less bandwidth used.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; descriptorForRightChild: aDescriptor
+	| rightTable |
+	rightTable := self tableNamed: 'ALL_DATA'.
+	aDescriptor table: rightTable.
+	(aDescriptor newMapping: DirectMapping)
+		from: #id to: (rightTable fieldNamed: 'id').
+	(aDescriptor newMapping: DirectMapping)
+		from: #top to: (rightTable fieldNamed: 'top').
+	(aDescriptor newMapping: DirectMapping)
+		from: #right to: (rightTable fieldNamed: 'right_value').
+	(self typeResolverFor: Parent)
+		register: aDescriptor
+		keyedBy: 'R'
+		field: (rightTable fieldNamed: 'object_type').</code></pre><figcaption></figcaption></figure>
+
+<p>
+Even though <code>Parent</code> is still an abstract class, Glorp requires us to given
+the mappings for the <code>Parent</code> instance variables. If <code>Parent</code> were not abstract
+we would have to provide a key value for the column <code>object_type</code>.
+</p>
+<figure><pre><code>GlorpBookDescriptorSystem &gt;&gt; tableForALL_DATA: aTable
+	(aTable createFieldNamed: 'top' type: (platform varChar: 50)).
+	(aTable createFieldNamed: 'left_value' type: (platform varChar: 50)).
+	(aTable createFieldNamed: 'right_value' type: (platform varChar: 50)).
+	(aTable createFieldNamed: 'object_type' type: (platform varChar: 2)).
+	(aTable createFieldNamed: 'id' type: (platform sequence)) bePrimaryKey.</code></pre><figcaption></figcaption></figure>
+
+
+<h4>About inheritance with Type Resolvers</h4>
+<p>
+Although in our example with the class <code>Parent</code> was the superclass of both
+<code>LeftChild</code> and <code>RightChild</code>, in Glorp terms it is not required that
+child Descriptors share a common class ancestor, as far as they have the same
+class attributes as the parent Descriptor.
+</p>
+
+
+<h2>Under the hood</h2>
+
+<h3>How Glorp expressions work</h3>
+<p>
+At this point you might have noticed that we use blocks in many places
+to specify the <em>where</em> expression, <em>retrieve</em> a particular field, <em>order</em>
+the results, and many other things. 
+</p>
+<p>
+Although we use blocks for the convenience and readability they provide, once assigned to a Glorp object such as 
+<code>SimpleQuery</code>, Glorp converts the block to a <em>Glorp expression</em>, depending
+on the context it may be any of the subclasses of <code>GlorpExpression</code>.
+</p>
+<figure><pre><code>query where: [:each | each attribute &gt; 100]</code></pre><figcaption></figcaption></figure>
+
+<p>
+To convert the block to an expression, Glorp passes a <code>MessageArchiver</code> as the
+first argument of the block, the <em>message archiver</em> will intercept all the message sends vía <code>doesNotUnderstand:</code> hook,
+and will return another archiver, so the next message send is handled by the
+new archiver and so on. With this strategy it will construct a tree
+of instances of <code>GlorpExpression</code>.
+</p>
+<p>
+Using <em>each</em> as the block argument name can be misleading, but it is used
+by convention, but it has more sense in the context of a filtering expression
+than in a <code>retrieve:</code> or <code>groupBy:</code>.
+</p>
+<p>
+Because it uses <code>doesNotUnderstand:</code> as a way to build the expression tree,
+it is possible that some selectors will be highlighted by Pharo as not
+implemented, in particular salectors that are used to instantiate
+<code>FunctionExpression</code>'s.
+</p>
+<h3>About special selectors</h3>
+<p>
+When writing blocks that involve more than one condition, we don't use
+<code>and:</code> nor <code>or:</code> selectors, and instead we use <code>AND:</code> and <code>OR:</code>
+respectively. The same applies for <code>isNil</code> and <code>notNil</code>. This is so
+because the compiler optimizes certain message sends, including the ones
+mentioned before.
+</p>
+<p>
+Example of special selectors:
+</p><figure><pre><code>query where: [:each |
+ each attributeOne &gt; 100 OR: [
+	each attributeTwo notNIL AND: [
+		each attributeThree isNIL ] ] ]</code></pre><figcaption></figcaption></figure>
+
+<h3>Function expressions</h3>
+<p>
+The special selectors mentioned before are nothing but a particular case of a
+<code>FunctionExpression</code>, but as those there are many others, consider the
+following Glorp query:
+</p>
+<figure><pre><code>SimpleQuery read: Person where: [:each |
+	each lastName asUppercase similarTo: 'GOLD%' ]</code></pre><figcaption></figcaption></figure>
+
+<p>
+You can see there that we send the <code>asUppercase</code> message to the <code>lastName</code>
+<em>attribute</em> and then <code>similarTo:</code> to that result. The previous query will produce something like this:
+</p>
+<figure><pre><code>SELECT * FROM Person WHERE UPPER(lastName) LIKE 'GOLD%'</code></pre><figcaption></figcaption></figure>
+
+<p>
+It is very likely that the <code>similarTo:</code> selector will be highlighted
+as missing or not implemented in the current image. This is so because
+the <code>MessageArchiver</code> will resolve the symbol to an instance of one
+of the subclasses of <code>FunctionExpression</code>. It achieves it by rebuilding
+the <em>archiver</em> as it consumes the selectors, you can find how it does by
+looking for the implementors of <code>rebuildOn:startingFrom:withOuterScopeBase:</code>.
+</p>
+<p>
+In the middle of those implementors you'll find senders to
+<code>getFunction:arguments:</code>, this in turn will query the <em>platform</em>
+for the list of functions available, which will end up creating
+the list of default functions by sending <code>createBasicFunctionsFor:</code>
+in to the <code>FunctionExpression class</code>.
+</p>
+<p>
+If you ever need to add functions not supported by default, you can extend
+the functions in <code>FunctionExpression class &gt;&gt; createBasicFunctionsFor:</code>
+or by adding them to your current platform. Also you can read there the list
+of available symbol functions and their default mapping to SQL functions.
+</p>
+<h3>Glorp class model diagram</h3>
+<p>
+The following diagram <a href="#glorpObjectModel"></a> provides an outline of the most important classes and
+attributes of Glorp's object model.
+</p>
+<p>
+<a id="glorpObjectModel"></a>
+<figure>
+	<img src="Chapters/Glorp/figures/Glorp-Model.png" width="72%" id="glorpObjectModel" alt="Glorp objects UML Diagram"/>
+	<figcaption>Glorp objects UML Diagram</figcaption>
+</figure>
+</p>
+<h2>Appendix A: Basic Relational Databases Concepts</h2>
+<h3>Tables</h3>
+<p>
+A table is a collection of related data held in a structured format within a database.
+It consists of fields (columns), and rows.
+</p>
+<p>
+In relational databases and flat file databases, a table is a set of data
+elements (values) using a model of vertical columns (identifiable by name)
+and horizontal rows, the cell being the unit where a row and column intersect.
+</p>
+<p>
+A table has a specified number of columns, but can have any number of rows.
+Each row is identified by one or more values appearing in a particular column
+subset. The columns subset which uniquely identifies a row is called the
+primary key.
+</p>
+<h3>Rows</h3>
+
+<p>
+In the context of a relational database, a row —also called a <em>record</em> or
+<em>tuple</em>— represents a single, implicitly structured data item in a table.
+In simple terms, a database table can be thought of as consisting of rows
+and columns or fields. Each row in a table represents a set of related data,
+and every row in the table has the same structure.
+</p>
+<h3>Columns</h3>
+
+<p>
+For example, in a table that represents companies, each row would represent a
+single company. Columns might represent things like company name,
+company street address, whether the company is publicly held, its VAT number,
+etc.. In a table that represents the association of employees with departments,
+each row would associate one employee with one department.
+</p>
+<h3>Constraints</h3>
+
+<p>
+Constraints make it possible to further restrict the domain of an attribute. For
+instance, a constraint can restrict a given integer attribute to values between
+1 and 10. Constraints provide one method of implementing business rules in the
+database. SQL implements constraint functionality in the form of check
+constraints.
+</p>
+<p>
+Constraints restrict the data that can be stored in relations. These are usually
+defined using expressions that result in a boolean value, indicating whether or
+not the data satisfies the constraint. Constraints can apply to single
+attributes, to a tuple (restricting combinations of attributes) or to an entire
+relation.
+</p>
+<p>
+ Since every attribute has an associated domain, there are constraints (domain
+constraints). The two principal rules for the relational model are known as
+entity integrity and referential integrity.
+</p>
+<h4>Primary Key</h4>
+
+<p>
+A primary key uniquely specifies a tuple within a table. In order for an attribute to be a good primary key it must not repeat. While
+natural attributes (attributes used to describe the data being entered) are
+sometimes good primary keys, surrogate keys are often used instead.
+</p>
+<p>
+A surrogate key is an artificial attribute assigned to an object which uniquely
+identifies it (for instance, in a table of information about students at a
+school they might all be assigned a student ID in order to differentiate them).
+</p>
+<p>
+The surrogate key has no intrinsic (inherent) meaning, but rather is useful
+through its ability to uniquely identify a tuple. Another common occurrence,
+especially in regard to N:M cardinality is the composite key. A composite key is
+a key made up of two or more attributes within a table that (together) uniquely
+identify a record. (For example, in a database relating students, teachers, and
+classes. Classes could be uniquely identified by a composite key of their room
+number and time slot, since no other class could have exactly the same
+combination of attributes. In fact, use of a composite key such as this can be a
+form of data verification, albeit a weak one.
+</p>
+<h4>Foreign Keys</h4>
+
+<p>
+A foreign key is a field in a relational table that matches
+the primary key column of another table. The foreign key can be used to
+cross-reference tables. Foreign keys do not need to have unique values in the
+referencing relation. Foreign keys effectively use the values of attributes in
+the referenced relation to restrict the domain of one or more attributes in the
+referencing relation.
+</p>
+<h3>Indexes</h3>
+
+<p>
+An index is one way of providing quicker access to data. Indices can be created
+on any combination of attributes on a relation. Queries that filter using those
+attributes can find matching tuples randomly using the index, without having to
+check each tuple in turn. This is analogous to using the index of a book to go
+directly to the page on which the information you are looking for is found, so
+that you do not have to read the entire book to find what you are looking for.
+</p>
+<p>
+Relational databases typically supply multiple indexing techniques, each of
+which is optimal for some combination of data distribution, relation size, and
+typical access pattern.
+</p>
+<p>
+Indices are usually not considered part of the database, as they are considered
+an implementation detail, though indices are usually maintained by the same
+group that maintains the other parts of the database. It should be noted that
+use of efficient indexes on both primary and foreign keys can dramatically
+improve query performance.
+</p>
+<h3>Relations</h3>
+
+<h4>Joins</h4>
+
+<p>
+A SQL join clause combines records from two or more
+tables in a relational database. A JOIN is a means for combining fields from two
+tables (or more) by using values common to each
+</p>
+<p>
+ANSI-standard SQL specifies five types of JOIN: INNER, LEFT OUTER, RIGHT OUTER,
+FULL OUTER and CROSS. As a special case, a table (base table, view, or joined
+table) can JOIN to itself in a self-join.
+</p>
+<h4>INNER JOINs</h4>
+
+<p>
+An inner join requires each record in the two joined tables to
+have matching records, and is a commonly used join operation in applications but
+should not be assumed to be the best choice in all situations. Inner join
+creates a new result table by combining column values of two tables (A and B)
+based upon the join-predicate. The query compares each row of A with each row of
+B to find all pairs of rows which satisfy the join-predicate. When the
+join-predicate is satisfied by matching non-NULL values, column values for each
+matched pair of rows of A and B are combined into a result row.
+</p>
+<p>
+The result of the join can be defined as the outcome of first taking the
+Cartesian product (or Cross join) of all records in the tables (combining every
+record in table A with every record in table B) and then returning all records
+which satisfy the join predicate. Actual SQL implementations normally use other
+approaches, such as hash joins or sort-merge joins, since computing the
+Cartesian product is slower and would often require a prohibitively large memory
+space to store. 
+</p>
+<h5>OUTER JOINs </h5>
+<p>
+The joined table retains each record—even if no other matching record exists. Outer joins subdivide further into left outer
+joins, right outer joins, and full outer joins, depending on which table's rows
+are retained (left, right, or both).
+</p>
+<p>
+The result of a left outer join (or simply left join) for tables A and B always
+contains all records of the &quot;left&quot; table (A), even if the join-condition does
+not find any matching record in the &quot;right&quot; table (B). This means that if the ON
+clause matches 0 (zero) records in B (for a given record in A), the join will
+still return a row in the result (for that record)—but with NULL in each column
+from B. A left outer join returns all the values from an inner join plus all
+values in the left table that do not match to the right table, including rows
+with NULL (empty) values in the link field.
+</p>
+<p>
+For example, this allows us to find an employee's department, but still shows
+employees that have not been assigned to a department (contrary to the
+inner-join example above, where unassigned employees were excluded from the
+result).
+</p>
+<h3>Data manipulation language (DML) queries</h3>
+
+<h4>SELECT</h4>
+
+<p>
+A <code>SELECT</code> statement retrieves zero or more rows from one
+or more database tables or database views. In most applications, SELECT is the
+most commonly used data manipulation language (DML) command. As SQL is a
+declarative programming language, SELECT queries specify a result set, but do
+not specify how to calculate it. The database translates the query into a &quot;query
+plan&quot; which may vary between executions, database versions and database
+software. This functionality is called the &quot;query optimizer&quot; as it is
+responsible for finding the best possible execution plan for the query, within
+applicable constraints.
+</p>
+<h4>INSERT</h4>
+
+<p>
+An SQL <code>INSERT</code> statement adds one or more
+records to any single table in a relational database.
+</p>
+<p>
+The number of columns and values must be the same. If a column is not specified,
+the default value for the column is used. The values specified (or implied) by
+the INSERT statement must satisfy all the applicable constraints (such as
+primary keys, CHECK constraints, and NOT NULL constraints). If a syntax error
+occurs or if any constraints are violated, the new row is not added to the table
+and an error returned instead.
+</p>
+<h4>UPDATE</h4>
+
+<p>
+An SQL <code>UPDATE</code> statement changes the data of one or more records in a
+table. Either all the rows can be updated, or a subset may be chosen using a
+condition.
+</p>
+<p>
+In some databases, such as PostgreSQL, when a FROM clause is present, what
+essentially happens is that the target table is joined to the tables mentioned
+in the fromlist, and each output row of the join represents an update operation
+for the target table. When using FROM, one should ensure that the join produces
+at most one output row for each row to be modified. In other words, a target row
+shouldn't join to more than one row from the other table(s). If it does, then
+only one of the join rows will be used to update the target row, but which one
+will be used is not readily predictable.
+</p>
+<p>
+Because of this indeterminacy, referencing other tables only within sub-selects
+is safer, though often harder to read and slower than using a join.
+</p>
+<h4>DELETE</h4>
+
+<p>
+In the database structured query language (SQL), the <code>DELETE</code>
+statement removes one or more records from a table. A subset may be defined for
+deletion using a condition, otherwise all records are removed.
+</p>
+<p>
+Any rows that match the WHERE condition will be removed from the table. If the
+WHERE clause is omitted, all rows in the table are removed. The DELETE statement
+should thus be used with caution.
+</p>
+<p>
+The DELETE statement does not return any rows; that is, it will not generate a
+result set.
+
+</p>
+
+
+  </section>
+
+</article>
+
+<footer>
+
+<div class="footline">
+    <div class="github-link">
+      <a href="" target="blank"><i class="fa fa-code-fork"></i>Github</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/booklet-Glorp/html/glorp.html/_support/html/js/clipboard.min.js"></script>
+
+<link href="/booklet-Glorp/html/glorp.html/_support/html/css/featherlight.min.css" rel="stylesheet">
+<script src="/booklet-Glorp/html/glorp.html/_support/html/js/featherlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/booklet-Glorp/html/glorp.html/_support/html/js/flex.js"></script>
+<!-- Prettify annotated paragraphs-->
+    <script src="/booklet-Glorp/html/glorp.html_support/html/js/annotated-paragraphs.js"></script>
+
+  </body>
+</html>
