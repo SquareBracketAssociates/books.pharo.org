@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pharo books</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Pharo Books</h1>
+                <p><a href="http://www.pharo.org/">Pharo</a> is a
+                clean, innovative, open-source, live-programming
+                environment.</p>
+               <p>Contribute to the SquareBracketsAssociates community free books <a href="https://github.com/SquareBracketAssociates/">https://github.com/SquareBracketAssociates/</a></p>
+			   <p> Access <a href="https://ci.inria.fr/pharo-contribution/view/Books/">the book compilation farm</a>!</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row">
+
+                <div class="col-md-4">
+                    <!-- <h2>Pharo by Example</h2> -->
+                    <a href="./pharo-by-example/" title="Pharo by Example">
+                        <img src="pbe.jpg" alt="Pharo by example" class="img-thumbnail" style="height:500px">
+                    </a>
+                    <p><em>Pharo by Example</em>, intended for both students and developers, will guide you gently through the Pharo language and environment by means of a series of examples and exercises.</p>
+                    <p><a class="btn btn-default" title="Pharo by example" href="./pharo-by-example/" role="button">View details &raquo;</a></p>
+                </div>
+
+
+                <div class="col-md-4">
+                    <!-- <h2>Heading</h2> -->
+                    <a href="./deep-into-pharo/" title="Deep into Pharo">
+                        <img src="dip.jpg" alt="Deep into Pharo" class="img-thumbnail" style="height:500px">
+                    </a>
+
+                    <p><em>Deep into Pharo</em> is the second volume of a series of books covering Pharo. Whereas the first volume is intended for newcomers, this second volume covers deeper topics. </p>
+                    <p><a class="btn btn-default" href="./deep-into-pharo/" title="Deep into Pharo" role="button">View details &raquo;</a></p>
+                </div>
+
+
+                <div class="col-md-4">
+                    <!-- <h2>Heading</h2> -->
+
+                    <a href="./enterprise-pharo/" title="Enterprise Pharo: a Web perspective">
+                        <img src="pfte.jpg" alt="Enterprise Pharo: a Web perspective" class="img-thumbnail" style="height:500px">
+                    </a>
+
+                    <p><em>Enterprise Pharo</em> is the third volume
+                    of the series. This book covers libraries and
+                    frameworks for enterprises, and in particular
+                    those doing web development.</p>
+                    <p><a class="btn btn-default" title="Enterprise Pharo: a Web perspective" href="./enterprise-pharo/" role="button">View details &raquo;</a></p>
+                </div>
+			</div>
+			<div class="row">
+             <div class="col-md-4">
+                    <!-- <h2>Heading</h2> -->
+                    <a href="./numerical-methods/" title="Numerical Methods in Pharo">
+                       <img src="numerical.jpeg" alt="Enterprise Pharo: a Web perspective" class="img-thumbnail" style="height:500px">
+                    </a>
+               <p><em>Numerical Methods In Pharo</em> is a book from Didier Besset on numerical methods. It covers many topics related to data science: function interpolation, iteration, zeroes, linear algebra series, statistics, estimation, minimisation, data mining.</p>
+                  <p><a class="btn btn-default" title="Enterprise Pharo: a Web perspective" href="./numerical-methods/" role="button">View details &raquo;</a></p>
+                </div>
+				
+				
+			<div class="col-md-4">
+             <!-- <h2>Heading</h2> -->
+             <a href="./tinyblog-tutorial/" title="Tiny Blog Tutorial">
+				 <img src="tiny.jpg" alt="Tiny Blog Tutorial" class="img-thumbnail" style="height:500px">
+             </a>
+			 <p><em>Tiny Blog</em> is a tutorial from Olivier Auverlot and Stephane Ducasse. It brings you step by step through the building of a little web blog application.</p>
+             <p><a class="btn btn-default" title="Tiny Blog Tutorial" href="./tinyblog-tutorial/" role="button">View details &raquo;</a></p>
+             </div>
+			 
+			 
+			 
+             <div class="col-md-4">
+                 <!-- <h2>Pharo par  Example</h2> -->
+                 <a href="./pharo-par-lexemple/" title="Pharo par l'exemple">
+                     <img src="pbefr.jpg" alt="Pharo par l'exemple" class="img-thumbnail" style="height:500px">
+                 </a>
+                 <p><em>Pharo par l'exemple</em> est la traduction en de Pharo by example.</p>
+                 <p><a class="btn btn-default" title="Pharo par l'exemple" href="./pharo-par-lexemple/" role="button">View details &raquo;</a></p>
+             </div>
+			 
+		 </div>
+			 
+            
+
+			<div class="well well-lg">Under writing books</div>
+
+            <div class="col-md-4">
+                <!-- <h2>Pharo par  Example</h2> -->
+                <a href="https://github.com/SquareBracketAssociates/UpdatedPharoByExample" title="Updated Pharo by Example">
+                    <img src="pbe.jpg" alt="Updated Pharo by Example" class="img-thumbnail" style="height:500px">
+                </a>
+                <p><em>Updated Pharo by example</em> is a new version (ongoing effort) of Pharo by Example for Pharo5.0.</p>
+                <p><a class="btn btn-default" title="Pharo par l'exemple" href="https://github.com/SquareBracketAssociates/UpdatedPharoByExample" role="button">View details &raquo;</a></p>
+            </div>
+
+		</div>
+            <hr>
+
+         </div>
+        </div> <!-- /container -->
+    </body>
+</html>
