@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+<link href="/booklet-Smacc/html/_support/html/css/font-awesome.min.css" rel="stylesheet">
+<link href="/booklet-Smacc/html/_support/html/css/nucleus.css" rel="stylesheet">
+<link href="/booklet-Smacc/html/_support/html/css/flex.css" rel="stylesheet">
+<link rel="stylesheet" href="/booklet-Smacc/html/_support/html/highlightjs/styles/default.css">
+<link rel="stylesheet" href="/booklet-Smacc/html/_support/html/css/highlight-commands.css">
+<link rel="stylesheet" href="/booklet-Smacc/html/_support/html/css/bootstrap.min.css">
+<script src="/booklet-Smacc/html/_support/html/js/jquery-2.x.min.js"></script>
+<script src="/booklet-Smacc/html/_support/html/highlightjs/highlight.pack.js"></script>
+<script src="/booklet-Smacc/html/_support/html/js/highlight-commands.js"></script>
+<meta name="description" content="">
+<meta name="author" content="John Brant, Jason Lecerf,  Thierry Goubier, Stéphane Ducasse, and Andrew Black">
+  </head>
+  <body>
+    <header>
+  <div class="logo">
+    <a class="baselink" href="/booklet-Smacc/html"></a>
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+  
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+   		<li data-nav-id="123" class="dd-item">
+    		<a href="/booklet-Smacc/html">
+		       <i class="fa fa-fw fa-home"></i>
+	    	</a>
+        </li>
+
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Smacc/html/Chapters/Smacc/SmaccIntro.html#about this booklet">
+					About this Booklet
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccIntro.html#contents">
+							Contents
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccIntro.html#obtaining smacc">
+							Obtaining SmaCC
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccIntro.html#basics">
+							Basics
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTutorial.html#a first smacc tutorial">
+					A First SmaCC Tutorial
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTutorial.html#opening the tools">
+							Opening the Tools
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTutorial.html#first, the scanner">
+							First, the Scanner
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTutorial.html#ignoring whitespace">Ignoring Whitespace</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTutorial.html#second, the calculator grammar">
+							Second, the Calculator Grammar
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTutorial.html#compile the scanner and the parser">
+							Compile the Scanner and the Parser
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTutorial.html#testing our parser">
+							Testing our Parser
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTutorial.html#defining actions">
+							Defining Actions
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTutorial.html#named expressions">
+							Named Expressions
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTutorial.html#extending the language">
+							Extending the Language
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTutorial.html#handling priority">
+							Handling Priority
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTutorial.html#handling priority with directives">
+							Handling Priority with Directives
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Smacc/html/Chapters/Smacc/SmaccScanner.html#smacc scanner">
+					SmaCC Scanner
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccScanner.html#regular expression syntax">
+							Regular Expression Syntax
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccScanner.html#overlapping tokens">
+							Overlapping Tokens
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccScanner.html#token action methods">
+							Token Action Methods
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccScanner.html#unreferenced tokens">
+							Unreferenced Tokens
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccScanner.html#unicode characters">
+							Unicode Characters
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Smacc/html/Chapters/Smacc/SmaccParser.html#smacc parser">
+					SmaCC Parser
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccParser.html#production rules">
+							Production Rules
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccParser.html#named symbols">
+							Named Symbols
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccParser.html#error recovery">
+							Error Recovery
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccParser.html#shortcuts">
+							Shortcuts
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Smacc/html/Chapters/Smacc/SmaccDirectives.html#smacc directives">
+					SmaCC Directives
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccDirectives.html#start symbols">
+							Start Symbols
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccDirectives.html#id methods">
+							Id Methods
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccDirectives.html#case insensitive scanning">
+							Case Insensitive Scanning
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccDirectives.html#ast directives">
+							AST Directives
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccDirectives.html#dealing with ambiguous grammars">
+							Dealing with Ambiguous Grammars
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccDirectives.html#lr, lalr and ambiguous grammars">LR, LALR and Ambiguous Grammars</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccDirectives.html#precedence rules">Precedence Rules</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccDirectives.html#glr parsing">GLR Parsing</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAST.html#smacc abstract syntax trees">
+					SmaCC Abstract Syntax Trees
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAST.html#restarting">
+							Restarting
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAST.html#building nodes ">
+							Building Nodes 
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAST.html#variables and unnamed entities">
+							Variables and Unnamed Entities
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAST.html#unnamed symbols">
+							Unnamed Symbols
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAST.html#generating the ast">
+							Generating the AST
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAST.html#ast comparison">
+							AST Comparison
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAST.html#extending the visitor">
+							Extending the Visitor
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAdvanced.html#advanced features of smacc">
+					Advanced Features of SmaCC
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAdvanced.html#multi-state scanners">
+							Multi-state Scanners
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAdvanced.html#indentation-sensitive parsing">
+							Indentation-Sensitive Parsing
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAdvanced.html#using token actions to customize the scanner">Using Token Actions to Customize the Scanner</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAdvanced.html#using newlines to separate statements">Using Newlines to Separate Statements</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAdvanced.html#augmenting the state of the scanner">Augmenting the State of the Scanner</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAdvanced.html#unnamed tokens">Unnamed Tokens</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAdvanced.html#closing blocks">Closing Blocks</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAdvanced.html#continuation lines">Continuation Lines</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAdvanced.html#ignoring blank lines">Ignoring Blank Lines</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccAdvanced.html#the rest of the story">The Rest of the Story</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTransformations.html#smacc transformations">
+					SmaCC Transformations
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTransformations.html#defining transformations ">
+							Defining Transformations 
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTransformations.html#pattern matching expressions">
+							Pattern matching Expressions
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTransformations.html#example">
+							Example
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTransformations.html#parametrizing transformations">
+							Parametrizing Transformations
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccTransformations.html#restrictions and limitations">
+							Restrictions and Limitations
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Smacc/html/Chapters/Smacc/SmaccIdioms.html#grammar idioms">
+					Grammar Idioms
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccIdioms.html#managing lists">
+							Managing Lists
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccIdioms.html#using shortcuts">
+							Using Shortcuts
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccIdioms.html#expressing optional features">
+							Expressing Optional Features
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item ">
+			<div>
+			  <a href="/booklet-Smacc/html/Chapters/Smacc/SmaccConclusion.html#conclusion">
+					Conclusion
+			  </a>
+			  
+			</div>
+			  <ul class="dd-item">
+				
+			  </ul>
+		  
+		  </li>
+		
+		  <li class="dd-item  haschildren ">
+			<div>
+			  <a href="/booklet-Smacc/html/Chapters/Smacc/SmaccVocabulary.html#vocabulary">
+					Vocabulary
+			  </a>
+			   <i class="fa fa-angle-right fa-lg category-icon"></i> 
+			</div>
+			  <ul class="dd-item">
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccVocabulary.html#reference example ">
+							Reference Example 
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccVocabulary.html#metagrammar structure">
+							Metagrammar structure
+						</a>
+						
+					</div>
+
+					<ul class="dd-item">
+					
+					</ul>						
+				</li>
+				
+		   	  	<li class="dd-item  haschildren ">
+					<div>
+						<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccVocabulary.html#elements ">
+							Elements 
+						</a>
+						<i class="fa fa-angle-right fa-lg category-icon"></i>
+					</div>
+
+					<ul class="dd-item">
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccVocabulary.html#production rule">Production rule</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccVocabulary.html#tokens">Tokens</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccVocabulary.html#keywords">Keywords</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccVocabulary.html#non terminal">Non Terminal</a>
+						</li>
+							
+						<li class="dd-item">
+							<a href="/booklet-Smacc/html/Chapters/Smacc/SmaccVocabulary.html#variables">Variables</a>
+						</li>
+					
+					</ul>						
+				</li>
+				
+			  </ul>
+		  
+		  </li>
+		
+    </ul>
+  </aside>
+
+  <section class="page">
+    
+	<h1>Smacc: a Compiler-Compiler</h1>
+		
+	<h2>Advanced Features of SmaCC</h2>
+
+<p>
+This chapter addresses the problem of parsing a language with two interesting features:
+string interpolations and indentation.
+SmaCC can handle both, but doing so requires that we use some more advanced techniques.
+To deal with string interpolations we will use a scanner with multiple states; to deal with indentation will will add some custom token actions to the scanner.
+Lets look at these techniques one at a time.
+</p>
+
+<h3>Multi-state Scanners</h3>
+
+<p>
+To motivate the need for a multi-state scanner, let's look at a feature of the Grace programming language: string interpolations.
+Similar features are available in many other languages, including JavaScript and Scala.
+</p>
+<p>
+In Grace, a <code>StringLiteral</code> is a sequence of characters enclosed by double quotes; 
+a <code>StringConstructor</code> is like a string literal, but can also contain Grace expressions surrounded by braces.
+Here is an example.
+</p>
+<figure><pre><code>&quot;the value of count is {count}.&quot;</code></pre><figcaption></figcaption></figure>
+
+<p>
+The value of this string is determined by evaluating the variable <code>count</code>, converting the answer to a string (by sending it the <code>asString</code> message), 
+and interpolating the resulting string in place of the brace expression.
+So, if <code>count</code> is <code>19</code>, the final value of the constructed string will be:
+</p>
+<figure><pre><code>&quot;the value of count is 19.&quot;</code></pre><figcaption></figcaption></figure>
+
+<p>
+If the expressions between braces were restricted to simple identifiers, this would pose no problem for the scanner.
+However the Grace language allows arbitrary code to appear between the braces.
+Such code can contain matched string quotes and matched pairs of braces.
+(In Grace, outside of strings, braces are used to enclose blocks, i.e., they mean roughly the same as brackets in Smalltalk.)
+</p>
+<p>
+If you remember your formal language theory, you will know that the language of properly nested parentheses is not regular.
+So we cannot write simple regular expressions in the scanner that will correctly tokenize this language.
+In essence, the problem is that a regular expression, (or, more precisely, the finite state automaton that recognizes the language defined by that expression) can't maintain an unbounded counter.
+What should we do?
+</p>
+<p>
+SmaCC lets us solve this problem by building a scanner with two separate “states”: a special state for scanning strings, and a default state for the rest of the language.
+We declare the <code>string</code> state as follows:
+</p>
+<figure><pre><code>%states string ;</code></pre><figcaption></figcaption></figure>
+
+<p>
+The default state does not need to be declared explicitly.
+</p>
+<p>
+Scanner rules prefixed with the name of a state operate only in that state.
+For example:
+</p>
+<figure><pre><code>string &lt;stringSegment&gt; : ( [^\&quot;\{\\\x00-\x1F] | \xA0 | \\[nt\{\}\\\] ) + ;</code></pre><figcaption></figcaption></figure>
+
+<p>
+defines a <code>&lt;stringSegment&gt;</code> as one or more characters, <em>excluding</em> the double-quote, open-brace, backslash, or any of the control characters between <code>0</code> and hex <code>1F</code>, or the non-breaking space hex <code>A0</code>, or one of the backslash escapes n, t, {, }, &quot;, r, l, _ and \.
+However, this definition operates only in the <em>string</em> state, which stops it from matching, for example, identifiers.
+Similarly, identifiers and whitespace are recognized only in the <code>default</code> state (which stops them for matching the content of a string).
+We want double-quotes (which delimit strings) to be recognized in both states, so we prefix that rule with both names.
+</p>
+<figure><pre><code>default &lt;id&gt; : [a-zA-Z_] [a-zA-Z0-9_'] * ;
+default &lt;whitespace&gt;: ( \x20 | \xA0 ) + ;
+default string &lt;dquote&gt;:  [&quot;] ;</code></pre><figcaption></figcaption></figure>
+
+<p>
+What remains is to switch the scanner into the <code>string</code> state when an opening string quote is encountered.
+Then it needs to switch back to the <code>default</code> state either when it finds either the closing string quote, or an opening brace.
+How can we achieve this?
+</p>
+<p>
+One possibility is to write custom token methods in the scanner, which might count opening and closing braces and determine when the brace that closes the interpolation has been found.
+But there is a better solution, which takes advantage of the fact that SmaCC does not run the scanner and parser as separate passes.
+Instead, the parser calls the scanner when, and only when, the parser needs the next token.
+</p>
+<p>
+Here are the parser rules that change the scanner state:
+</p>
+<figure><pre><code>StartString
+    : { self state: #string. ^ nil }
+    ;
+RetDefault
+    : { self state: #default. ^ nil }
+    ;</code></pre><figcaption></figcaption></figure>
+
+<p>
+These rules both match the empty input, so they don't actually parse anything.
+Their only function is to force parser actions to be executed.
+The non-terminals that they define are used in the rules for <code>StringLiteral</code> and <code>StringConstructor</code>.
+</p>
+<figure><pre><code>StringLiteral
+    : StartString &lt;dquote&gt; &lt;stringSegment&gt; ? RetDefault &lt;dquote&gt;
+    ;
+StringConstructor
+    : StartString &lt;dquote&gt; &lt;stringSegment&gt; ? ( RetDefault &quot;{&quot; Expression StartString &quot;}&quot; &lt;stringSegment&gt; ? ) + RetDefault &lt;dquote&gt;
+    ;</code></pre><figcaption></figcaption></figure>
+
+<p>
+The first rule says that a <code>StringLiteral</code> starts with a <code>&lt;dquote&gt;</code> token, which is followed by an optional <code>&lt;stringSegment&gt;</code>, and a closing <code>&lt;dquote&gt;</code>.
+The initial <code>StartString</code> non-terminal can be thought of as a “call” of the <code>StartString</code> parser action, which, as we saw above, sets the scanner state to <code>string</code>.
+This action won't be executed until <em>after</em> the next token (<code>&lt;dquote&gt;</code>) is scanned, but when <code>&lt;stringSegment&gt;</code> is scanned,
+the scanner will be in state <code>string</code>, and thus the scanner rule for <code>&lt;stringSegment&gt;</code> will be applied.
+Similarly, after the end of the <code>&lt;stringSegment&gt;</code>, the <code>RetDefault</code> action will return the scanner to the <em>default</em> state.
+This won't happen until <em>after</em> the <code>&lt;dquote&gt;</code> is scanned, but since the rule for <code>&lt;dquote&gt;</code> is valid in both the default state and the string state, that's OK.
+</p>
+<p>
+The rule for <code>StringConstructor</code> is a bit more complicated, and it's for this one that we really need multiple states.
+This rule allows multiple interpolations enclosed between braces.
+The <code>RetDefault</code> production is used to return the scanner to the <em>default</em> state before each opening brace.
+Then the <code>StartString</code> production is used to return it to the <em>string</em> state at the closing brace that marks the end of the interpolation.
+Once again, because of the way that the parser works, there is a one token “delay” before the state-change takes effect.
+This is because the parser won't execute an action until the <em>next</em> token has been read, and the parser has determined that a reduce action is appropriate.
+</p>
+<p>
+The overall effect is as if there were two different scanners: one for strings, and one for the rest of the source program.
+The appropriate scanner is used for each part of the input, without further effort.
+</p>
+
+<h3>Indentation-Sensitive Parsing</h3>
+
+<p>
+In many languages, the layout of the source code matters.
+Some languages, like Haskell and Python, use layout to indicate the start and end of code blocks.
+A common way to describe the syntax of such languages is to imagine a pre-pass over the input that examines the layout and inserts <em>indent</em> and <em>outdent</em> tokens whenever the indentation changes.
+The grammar of the language is then written in terms of these tokens.
+Grace is somewhat simpler than Haskell and Python in that its code blocks are delimited by <code>{</code> braces <code>}</code>.
+It is similar, though, in that it requires the body of a code block to be indented more than the surrounding code.
+How can we enforce a rule like this using SmaCC?
+</p>
+
+<h4>Using Token Actions to Customize the Scanner</h4>
+
+<p>
+The key idea is to insert custom code into the scanner using SmaCC's <em>token actions</em>.
+Recall from Section <a href="#TokenActionMethods"></a> on <em>Token Action Methods</em> that, whenever a SmaCC scanner recognizes a token, a correspondingly-named method in the scanner will be executed—if such a method exists.
+Now consider the following token definitions from Grace's grammar:
+</p>
+<figure><pre><code>default &lt;whitespace&gt; :  ( \x20 | \xA0 ) + ;
+default &lt;newline&gt; :  ( \r | \n |  \r\n  | \x2028 ) &lt;whitespace&gt; ? ;</code></pre><figcaption></figcaption></figure>
+
+<p>
+Grace distinguishes between spaces and newlines.
+There is an inherited token action for <code>&lt;whitespace&gt;</code>
+that resets the scanner to start looking for a new token, but ignores the whitespace itself.
+This is fine for our purposes, so long as it applies only to spaces, and not to newlines.
+For the latter, we need to write a separate method; the <code>newline</code> method in <code>GraceScanner</code> starts like this.
+</p>
+<figure><pre><code>newline
+    &quot;a newline has been matched (including the spaces that follow it).
+    Depending on the state of the scanner, classify it as &lt;whitespace&gt; (when 
+    the following line is a continuation line) or a real &lt;newline&gt; token.&quot;
+
+    self checkAndRecordIndentStatus.
+    self isLineEmpty
+        ifTrue: [ ^ self whitespace ].
+    self isIndentationChangeOne
+        ifTrue: [ self lexicalError: 'a change of indentation of 1 is not permitted' ].
+    self terminateContinuationIfNecessary.
+    self isBlockStart ifTrue: [ 
+            self recordNewIndentation.
+            self saveDataForPriorLine.
+            ^ self priorLineEndsWithOpenBracket 
+                ifTrue: [ self whitespace ]
+                ifFalse: [ self createTokenFor: Character cr asString ] ].
+    ... &quot;more cases, omitted for brevity&quot;</code></pre><figcaption></figcaption></figure>
+
+<p>
+Depending on the state of the scanner, this method will do one of three things.
+</p>
+<ol><li>Return <code>self whitespace</code> if the newline is to be ignored, that is, to be treated like a space.</li>
+<li>Return a newline token; the grammar for Grace treats newlines as statement separators, so when the parser sees such a token, it recognizes the end of a statement.</li>
+<li>Signal an exception, which will be caught by the surrounding context and used to produce an error message for the user.</li>
+</ol>
+
+
+<h4>Using Newlines to Separate Statements</h4>
+
+<p>
+To use newlines to separate statements, the grammar for Grace defines the non-terminal <code>Ssep</code> (statement separator) like this:
+</p>
+<figure><pre><code>Ssep
+    : &quot;;&quot;
+    | &lt;newline&gt;
+    | Ssep 'ss' ( &quot;;&quot; | &lt;newline&gt; )
+    ;</code></pre><figcaption></figcaption></figure>
+
+<p>
+Hence, a semicolon, a newline, or any series of semicolons and newlines are all treated as statement separators.
+Other productions are then written using <code>Ssep</code>.
+For example, here is part of the definition of a <code>Block</code>, which is a sequence of statements.
+</p>
+<figure><pre><code>Block
+    : ...
+    | &quot;{&quot; Ssep '_' ? ( Statement 'item' ( Ssep '_' Statement  'item' ) * Ssep '_' ? ) ?  &quot;}&quot;</code></pre><figcaption></figcaption></figure>
+
+<p>
+Notice that the grammar is explicit about allowing (but not requiring) a newline (or a semicolon) after the <code>{</code> that opens the block, allowing (but not requiring) a newline (or a semicolon) before the <code>}</code> that closes the block, and requiring a newline or semicolon between the <code>Statement</code>s in the block.
+</p>
+
+<h4>Augmenting the State of the Scanner</h4>
+
+<p>
+What do we mean by “the state of the scanner”?
+That is very much up to you.
+You can introduce as many extra instance variables into the scanner as you need to track whatever language features you need to implement.
+</p>
+<p>
+In Grace, the rule is that indentation <em>must</em> increase after a <code>{</code>, and must return to the prior level with (or after) the matching <code>}</code>.
+This means, of course, that we need to keep track of the number of <code>{</code> and <code>}</code> tokens on the line that has just ended, so that we know if there were more of one than the other.
+To do this, we need to add a variable <code>currentLineBraceDepth</code> to <code>GraceScanner</code>.
+We can do this directly by editing the class definition for <code>GraceScanner</code>; there is no SmaCC directive to add scanner instance variables
+(This is unlike AST instance variables, where we must use the <code>%attributes</code> directive).
+We add an <code>initialize</code> method in <code>GraceScanner</code> to set the initial value of <code>currentLineBraceDepth</code> to 0, and add token action methods <code>leftBrace</code> and <code>rightBrace</code>.
+Here is the <code>leftBrace</code> method.
+</p>
+<figure><pre><code>leftBrace
+    (state = #default) ifTrue:  [ self incrementBraceDepth ].
+    ^ self createTokenFor: '{'</code></pre><figcaption></figcaption></figure>
+
+<p>
+Notice once again that, because it is a token action method, this method must return a token.
+Before it does so, it increments the brace depth—but only if the scanner is in the <code>default</code> state.
+If, for example we are in the <code>uninterpString</code> state, incrementing the brace depth would not be appropriate, because a <code>{</code> in an uninterpreted string does not start a code block.
+</p>
+<p>
+In contrast, in an <em>interpreted</em> string, <code>{</code> <em>does</em> start a code block;
+Grace handles that using the SmaCC parser action for starting a string interpolation:
+</p>
+<figure><pre><code>StartInterp: { self state: #default. scanner incrementBraceDepth. ^ nil } ;</code></pre><figcaption></figcaption></figure>
+
+<p>
+To ensure that indentation corresponds to brace depth, we also need to know the brace depth of the prior line.
+At the end of the <code>newline</code> method, we copy <code>currentLineBraceDepth</code> into another scanner variable, <code>priorLineBraceDepth</code>.
+For convenience, at the start of the <code>newline</code> method, we compute the <code>braceChange</code> as the difference between <code>currentLineBraceDepth</code> and <code>priorLineBraceDepth</code>.
+</p>
+
+<h4>Unnamed Tokens</h4>
+
+<p>
+These token actions for braces would work fine if Grace's grammar defined <code>leftBrace</code> and <code>rightBrace</code> as named tokens in the scanner, and then used those names in the grammar productions.
+This <em>is</em> what it does for newlines, but in fact Grace's grammar is written using literal <code>&quot;{&quot;</code> and <code>&quot;}&quot;</code> tokens.
+That is, we write:
+</p>
+<figure><pre><code>Block
+    : ...
+    | &quot;{&quot; Ssep '_' ? ( Statement 'item' ( Ssep '_' Statement  'item' ) * Ssep '_' ? ) ?  &quot;}&quot;</code></pre><figcaption></figcaption></figure>
+
+<p>
+and not
+</p>
+<figure><pre><code>    : ...
+    | &lt;leftBrace&gt; Ssep '_' ? ( Statement 'item' ( Ssep '_' Statement  'item' ) * Ssep '_' ? ) ?  &lt;rightBrace&gt;</code></pre><figcaption></figcaption></figure>
+
+<p>
+because the latter is harder to read.
+</p>
+<p>
+SmaCC happily turns literal tokens like <code>&quot;{&quot;</code> into scanner tokens; you can see them in the <em>Symbols</em> tab at the bottom of SmaCC's GUI.
+But it names these tokens with quoted strings.
+This is a problem because we can't write a Smalltalk token action method with a name such as <code>&quot;{&quot;</code>.
+What should we do to set up the connection between the <code>leftBrace</code> method and the <code>&quot;{&quot;</code> token?
+</p>
+<p>
+Before we can answer that question, we need to look and see how SmaCC sets up the connection between a <em>named</em> token and its token action method.
+To make this possible, SmaCC generates a method in the scanner called <code>tokenActions</code> that returns an array.
+Each entry in that array corresponds to a scanner token, using the numeric codes that you see in the <em>Scanner</em> tab of SmaCC's GUI.
+If the array entry is <code>nil</code>, there is no special action for the corresponding symbol; otherwise, the scanner performs the action specified.
+The code that implements this is found at the end of <code>SmaCCScanner&gt;&gt;reportLastMatch</code>.
+Here is a slightly simplified version:
+</p>
+<figure><pre><code>    action := self tokenActions at: matchActions first.
+    ^ action notNil
+        ifTrue: [ self perform: action ]
+        ifFalse: [ self createTokenFor: string ]</code></pre><figcaption></figcaption></figure>
+
+<p>
+In this code, <code>matchActions</code> is an <em>array</em> of scanner symbols that describe the token that has just been matched.
+Recall that SmaCC allows you to write overlapping symbol definitions; if you do so, this array will contain <em>all</em> those that match the input.
+If there is a single match, the array will have size 1.
+The array contains the numeric symbol codes used internally by the scanner; these codes are used to index into the <code>tokenActions</code> array.
+</p>
+<p>
+Let's assume that SmaCC happens to assign the numeric code 41 to <code>&lt;whiteSpace&gt;</code>, 42 to <code>&lt;comment&gt;</code> and 43 to <code>&lt;newline&gt;</code>.
+The <code>tokenActions</code> array generated by SmaCC will contain mostly <code>nil</code>, but elements 41, 42 and 43 will then be <code>#whitespace</code>, <code>#comment</code> and <code>#newline</code>, because SmaCC found methods with these names in the scanner when it generated the table.
+</p>
+<p>
+Now that we know about the <code>tokenActions</code> array, it's a fairly simple matter to patch-in the names of the <code>leftBrace</code> and <code>rightBrace</code> token action methods at the appropriate indexes.
+We do this in the <em>class side</em> initialization, so that it is done just once, not every time a scanner is run.
+Here are the methods.
+</p>
+<figure><pre><code>initialize
+    self patchTokenActions</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>patchTokenActions
+    | tokenActionsLiteral newTokenActions |
+    (GraceParser canUnderstand: #symbolNames) ifFalse: [ ^ self ]. 
+        &quot;this guard is here because when this code is first loaded, the generated method symbolNames will not yet exist&quot;
+    symbolNames := GraceParser new symbolNames.
+    tokenActionsLiteral := self new tokenActions.                        &quot;the old literal array object&quot;
+    newTokenActions := tokenActionsLiteral copy.
+    self patch: '&quot;{&quot;' withAction: #leftBrace inArray: newTokenActions.
+    self patch: '&quot;}&quot;' withAction: #rightBrace inArray: newTokenActions.
+    self patch: '&quot;:=&quot;' withAction: #assignmentSymbol inArray: newTokenActions.
+    self patchReservedWordsWithAction: #reservedWord inArray: newTokenActions.
+    
+    (newTokenActions = tokenActionsLiteral) ifFalse: [ 
+        self installNewTokenActionsArray: newTokenActions.
+    ]</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>patch: token withAction: action inArray: tokenActions
+    | location |
+    location := symbolNames indexOf: token.
+    tokenActions at: location put: action</code></pre><figcaption></figcaption></figure>
+
+<figure><pre><code>installNewTokenActionsArray: anArray
+    | newMethod |
+    newMethod := String streamContents: [ :s | 
+        s &lt;&lt; 'tokenActions' ; cr ; tab ; &lt;&lt; '^ '; &lt;&lt; anArray printString ]. 
+    self compile: newMethod classified: 'generated'</code></pre><figcaption></figcaption></figure>
+
+<p>
+Inconveniently, the list of symbol names is stored in an instance method of the parser, not in the scanner.
+We add a class instance variable <code>symbolNames</code> to cache this information in the scanner.
+You will notice that, in addition to patching-in actions for the left and right braces, we also patch-in actions for the assignment symbol and for reserved words.
+We will not discuss these actions here, because they are not related to handling layout.
+</p>
+<p>
+Having calculated the new token actions array, we need to get SmaCC to use it.
+If SmaCC had stored it in a variable, all that would be necessary would be to overwrite that variable.
+But it is stored as a literal in a method!
+We handle this problem by simply generating and compiling a modified version of that method.
+The ease with which Smalltalk lets us do meta-programming saves the day.
+</p>
+<p>
+There is actually an alternative to compiling a new method, which we will encourage you <em>not</em> to use!
+Because of what many people regard as a bug in the Smalltalk language specification, it is actually possible to modify an array literal.
+That is, rather than copying the literal as we have done, it is possible to perform <code>at:put:</code> operations on the literal itself!
+There are several problems with doing this, not the least of which is that when you read the code, you will see one thing, but when you execute it, you will get another.
+In our view, recompiling the method that returns the literal is a far better approach.
+</p>
+<p>
+Perhaps in a future version of SmaCC, there will be a directive to connect un-named tokens with token actions.
+Then, the work-around we have just described will not be necessary.
+Nevertheless, it does well-illustrate the amazing flexibility of SmaCC.
+</p>
+
+<h4>Closing Blocks</h4>
+
+<p>
+With brace depth being tracked by the <code>leftBrace</code> and <code>rightBrace</code> methods, the <code>newline</code> method has the information that it needs to check that the indentation increases after each left brace.
+We also need to check that indentation returns to the previous level with the matching right brace.
+This requires that we keep a stack of prior indentations, push the new indentation onto the stack then we see an increase, pop it when we see a decrease, and check that the new, decreased indentation is the same as the value on the top of the stack.
+This requires another scanner instance variable, which we call <code>indentStack</code>.
+</p>
+<p>
+There is a slight complication because Grace allows both of the following forms
+</p>
+<figure><pre><code>if (condition) then {
+    blockBody1
+    blockBody2 }
+nextStatement</code></pre><figcaption></figcaption></figure>
+
+<p>
+and
+</p>
+<figure><pre><code>if (condition) then {
+    blockBody1
+    blockBody2
+}
+nextStatement</code></pre><figcaption></figcaption></figure>
+
+<p>
+that is, a right brace can appear either at the <em>end</em> of the last line of a block, in which case the line containing the brace is indented, <em>or</em> at the <em>start</em> of the line that follows the block.
+In the latter case the right brace is <em>not</em> indented, but must be at the same indentation as the line that contains the corresponding left brace.
+The second case looks better, but is actually anomalous: when the line containing just the right brace starts, 
+the block has not yet been closed, so we would normally expect the line to be indented.
+It's fairly easy to make an exception for this case:
+</p>
+<figure><pre><code>checkAndRecordIndentStatus
+    currentCharacter = Character tab ifTrue: [ ^ self lexicalError: 'Please indent with spaces, not tabs' ].
+    braceChange := currentLineBraceDepth - priorLineBraceDepth.
+    currentCharacter = $} ifTrue: [ braceChange := braceChange - 1 ].
+    currentLineIndent := self calculateCurrentIndent</code></pre><figcaption></figcaption></figure>
+
+<p>
+The scanner variable <code>currentCharacter</code> is set by SmaCC to contain the character <em>following</em> those that make up the token that has just been matched—in our case, the character following the newline and the leading spaces.
+So it is easy to check if it is a right brace, and adjust <code>braceChange</code> if necessary.
+</p>
+<p>
+The scanner variable <code>outputStream</code> is a stream that contains all of the characters that SmaCC has determined make up the current token.
+In the case of a newline token, this will be the line end sequence itself, and the spaces that follow it.
+We use this variable to calculate the current indent:
+</p>
+<figure><pre><code>calculateCurrentIndent
+    | ch str |
+    str := ReadStream on: outputStream contents.
+    ch := str next.
+    self assert: [ (ch = Character lf) or: [ch = Character cr or: [ch = (Character codePoint: 16r2028)] ] ].
+    (ch = Character cr) ifTrue: [str peekFor: Character lf].
+    ^ str size - str position</code></pre><figcaption></figcaption></figure>
+
+<p>
+The Grace language specification says that a line feed following a carriage return is ignored, so we are careful not to include it when we calculate the indentation.
+It should also be possible to use the character position reported by <code>SmaCCLineNumberStream</code> to calculate the current indent.
+</p>
+
+<h4>Continuation Lines</h4>
+
+<p>
+If Grace changed indentation <em>only</em> to indicate an increase in the brace level, the <code>newline</code> token action method would be quite simple, and we would already have the all the pieces we need.
+However, Grace also uses indentation to indicate a continuation line, that is, two or more physical lines that should be treated as a single logical line.
+This is useful when a single statement is too long to fit on a line, and it is necessary to break it into several lines; the additional line breaks should <em>not</em> be treated as spaces.
+Python signals continuation lines by requiring that the programmer escape the intermediate newline by preceeding it with a backslash; this is simpler for the scanner, but uglier for the reader.
+</p>
+<p>
+Grace's rule is that an increase in indentation that does <em>not</em> correspond to the start of a code block signals a continuation line.
+Further lines with the same (or greater) indentation are part of the continuation; the end of the continuation is signalled by a return 
+to the previous indentation, or by an un-matched left brace.
+</p>
+<p>
+Dealing with continuations requires another state variable <code>indentOfLineBeingContinued</code>, which is <code>nil</code> if no line is being continued.
+Another variable, <code>maxIndentOfContinuation</code>, tracks the maximum indentation of the continuation.
+</p>
+
+<h4>Ignoring Blank Lines</h4>
+
+<p>
+Another of Grace's indentation rules says that blank lines are ignored for indentation purposes.
+If this were not so, the number of spaces on a line that appears blank would be significant—a problem since these trailing spaces are invisible, and are often removed by text editors.
+Lines that contain nothing but a comment are treated as blank for the same reason; it seems excessive to require that the <code>//</code> symbol that introduces the comment to be at a specific indentation.
+</p>
+<p>
+Implementing the first part of this rule is simple, but the part that treats comment lines as blank requires look-ahead.
+Here is how we implement the <code>isLineEmpty</code> check.
+</p>
+<figure><pre><code>isLineEmpty
+    &quot;answers true if the line that we just started is empty.
+    A line containing nothing but a comment is treated as empty,
+    so that comments do not reset the indentation.&quot;
+    
+    (newlineChars includes: currentCharacter) ifTrue: [ ^ true ].
+    ($/ ~= currentCharacter) ifTrue: [ ^ false ].
+    ^ stream explore: [ :s | 
+        s next.
+        ($/ = s next)
+    ]</code></pre><figcaption></figcaption></figure>
+
+<p>
+The first line returns early with <code>true</code> if there is nothing on the line but spaces; remember that any leading spaces will have been included as part of the <code>&lt;newline&gt;</code> token.
+The second line returns early with <code>false</code> if the first non-space character is not <code>/</code>, because in those cases we know that the line does not start with a comment.
+The remaining case is where the first non-space character <em>is</em> <code>/</code>; we need to see if it is followed by a second <code>/</code>, indicating a comment, or by some other character, in which case the initial <code>/</code> was an operator symbol.
+To do this we use <code>explore:</code> on <code>stream</code>, the scanner instance variable that names the inout stream.
+<code>explore: withABlock</code> saves the position of the stream, evaluate the code <code>withABlock</code>, and then resets the stream to the saved position.
+The method <code>explore:</code> is implemented in the wrapper class <code>SmaCCLineNumberStream</code>, but it is only as good as the <code>position:</code> method in the underlying stream.
+Currently, there are some issues with <code>position:</code> on streams that contain multiple-byte characters; the workaround is to read the whole stream into a string, and then create a stream on the string.
+</p>
+
+<h4>The Rest of the Story</h4>
+
+<p>
+If you wish to see all the details, the code for the Grace parser is available on <a href="https://github.com/apblack/GraceInPharo.git">github</a>.
+</p>
+
+
+  </section>
+
+</article>
+
+<footer>
+
+<div class="footline">
+    <div class="github-link">
+      <a href="" target="blank"><i class="fa fa-code-fork"></i>Github</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/booklet-Smacc/html/_support/html/js/clipboard.min.js"></script>
+
+<link href="/booklet-Smacc/html/_support/html/css/featherlight.min.css" rel="stylesheet">
+<script src="/booklet-Smacc/html/_support/html/js/featherlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/booklet-Smacc/html/_support/html/js/flex.js"></script>
+<!-- Prettify annotated paragraphs-->
+    <script src="/booklet-Smacc/html_support/html/js/annotated-paragraphs.js"></script>
+
+  </body>
+</html>
