@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Scraping HTML with XPath</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/sba.css" rel="stylesheet">
+	</head>
+	<body role="document">
+		<div class="container theme-showcase" role="main">
+
+			<!-- Main jumbotron for a primary marketing message or call to action -->
+			
+			<div class="jumbotron">
+				<h1>Pharo with Style</h1>
+				<p><em>Pharo with Style</em> presents some guidelines to improve your writing program skills. </p>
+				<!-- PDF and Printed version buttons -->
+				<div class="btn-toolbar">
+					<!-- HTML -->
+					<div class="btn-group">
+						<a class="btn btn-primary btn-large" role="button" href="http://books.pharo.org/booklet-WithStyle/pdf/2019-03-24-WithStyle.pdf">Download PDF of the whole book (milestone version)</a>
+					</div>
+
+					<!-- Printed version -->
+<!-- 					<div class="btn-group" title="HTML">
+						<a class="btn btn-primary btn-large" role="button" href="http://books.pharo.org/booklet-Scraping/html/scrapingbook.html">HTML online version</a>
+					</div>
+				</div> --> <!-- button group for PDF and printed versions -->
+            </div> <!-- jumbotron -->
+
+
+
+<div class="col-md-4">
+       <h2>About this book</h2>
+	  <p>Writing software is one thing. Writing software that we can read well and communicates well with other programmers is another thing. This book is about this huge difference. 
+ </p>
+</div>
+
+                <div class="col-md-4">
+                    <h2>An Open Book</h2>
+                    <p>This book  is an open book.</p>
+
+                    <p>The full book is available
+                        <a target="blank_" href="http://books.pharo.org/booklet-WithStyle/pdf/2019-03-24-withStyle.pdf"> as a free printable PDF download (milestone version)</a>.</p>
+            <p> <a target="blank_" href="https://github.com/SquareBracketAssociates/booklet-PharoWithStyle/">Latest version on our book farm is available</a>.</p>
+                    <p>The content of this book is released under a
+                        Creative Commons Attribution-NoCommercial-ShareAlike <a target="blank_"
+                           href="https://creativecommons.org/licenses/by-nc-sa/3.0/">license</a>.</p>
+                </div>
+
+                <div class="col-md-4">
+                    <h2>Authors</h2>
+                    <ul class="unstyled">
+                        <li><a target="blank_" href="http://stephane.ducasse.free.fr/">Stéphane Ducasse</a></li>
+			<li>Peter Kenny</li>
+                    </ul>
+					
+<p>Please contact me if you noticed I wrote something wrong or not fully precise.</p>
+
+You can support Stéphane Ducasse. <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="You can also support me via paypal!">
+<img alt="" border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+</form> Thanks in advance. 
+
+
+
+
+
+
+                </div>
+            <footer>
+                <p>&copy; Square Bracket Associates 2019</p>
+            </footer>
+			
+    </div> <!-- row -->
+	    <hr>
+          
+
+        </div> <!-- /container -->
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery-1.11.3.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
