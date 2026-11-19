@@ -1,0 +1,103 @@
+!!! InteractionModel
+
+A tool can define an interaction. 
+An interaction is a kind of API that can return information such as selector, class, receiver...
+An interaction model has a back pointer to the component it is attached. 
+It is then passed to the subcomponents of the main tool.
+
+For example, the StPlayground instantiates an interaction model dedicated for it: the PlaygroundInteractionModel.
+Such interaction model is then passed to the subcomponents of the tool such as the CodePresenter.
+
+Commands can then perform action on the StPlayground via its code presenter and the code presenter
+uses the interaction model he received from StPlayground.
+
+
+
+
+!!! About Handler
+FiletringList has a nice example of using eventHandler to create extended behavior.
+For example to show how to implement shift click in list.
+
+
+
+
+!!! For text chapter. 
+
+there is not anymore "action to perform" concept
+nor "accept" concept because there is not anymore the concept of "autoAccept"
+instead you have whenSubmitDo: (to perform "accept")  and whenResetDo: (to perform "cancel")
+they are there because we use it a lot so the convenience method have sense but if you see the implementation
+
+[[[
+SpCodePresenter >> whenSubmitDo: aBlock
+    "This method will add a 'submit' event to the widget. It will react when user presses meta+s 
+     key (this is for historical reasons) and with enter."
+
+    self 
+        bindKeyCombination: $s meta 
+        toAction: [ aBlock value: self text ]
+]]]
+
+in inputText this is different because it needs 
+
+[[[
+TextInputPresenter >> whenSubmitDo: aBlock
+    "This method will add a 'submit' event to the widget. It will react when user presses meta+s 
+     key (this is for historical reasons) and with enter."
+
+    self 
+        bindKeyCombination: Character cr asKeyCombination | $s meta 
+        toAction: aBlock
+]]]
+
+
+!!! Commands vs binding
+
+bindings are specific to a widget
+command are global to a window
+
+
+!!! 
+
+Esteban Lorenzano — 12/06/2022 9:23 PM
+how do you have a CmUICommandGroup ? That's abstract... you should have a CmCommandGroup or a SpCommandGroup there.
+in anycase, if this is the first case, then you do:
+
+
+myGroup asSpecGroup asMenuPresenter
+
+and if is the second (most likely)
+you just do
+
+myGroup asMenuPresenter
+
+Esteban Lorenzano — 12/06/2022 9:36 PM
+also, status of presenters are not updated all the time
+to get that, you need to pass the context menu as a block, not as a direct instance, e.g. :
+
+myPresenter
+  contextMenu; [ myGroup asMenuPresenter ];
+  yourself
+
+Yes, I have a SpecCommandGroup but I just got lost in this class hierarchy
+
+
+
+
+presenterAt: permet d'acceder au mapping depuis le cote classe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

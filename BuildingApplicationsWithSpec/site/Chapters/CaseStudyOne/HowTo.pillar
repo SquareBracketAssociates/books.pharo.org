@@ -1,0 +1,173 @@
+!! Focus Order
+
+default is the one of the layout tree
+If you want to change it
+
+[[[
+initializePresenters
+	self initializePackageList.
+	self initializeClassList.
+	self initializeProtocolList.
+	self initializeSelectorList.
+	self initializeMethodBodyPane.
+	
+	showClassSide := self newCheckBox.
+	showClassSide label: 'Class side'.
+	showClassSide state: false.
+	
+	"this is optional because it is the order of definition 
+	in the layout"
+	self focusOrder
+		add: packages;
+		add: classes;
+		add: protocols;
+		add: selectors;
+		add: method
+]]]
+
+
+[[[
+	defaultSpec
+		<spec: #default>
+
+		^ SpBoxLayout  
+				newTopToBottom 
+				add: 
+				 ( SpBoxLayout newLeftToRight
+						add:  
+						(SpBoxLayout newTopToBottom
+							add: #packages;
+							add: #showClassSide height: 16;
+							yourself);
+					 
+							add: #classes;
+							add: #protocols;
+							add: #selectors ;
+							yourself);
+					add: #method; 
+				yourself
+				
+]]]
+
+[[[
+initializePresenters
+	self initializePackageList.
+	self initializeClassList.
+	self initializeProtocolList.
+	self initializeSelectorList.
+	self initializeMethodBodyPane.
+	
+	showClassSide := self newCheckBox.
+	showClassSide label: 'Class side'.
+	showClassSide state: false
+]]]
+
+
+
+!! Menu
+
+
+contextMenu: [ ]
+	si dynamic
+	
+
+self newMenu
+	addItem
+on group per default
+
+
+!! Style
+
+Each presenter can add a style to the application style. 
+
+
+
+so, you want the text box to have a size, not the text inside?
+then you need to add a style
+textPresenter addStyle: 'aStyleName'
+the only real problem here is that styles need to be defined at "startup" time of your application
+you can check StPharoApplication as inspiration
+it had this method: 
+resetConfiguration
+    
+    self flag: #TODO. "Replace this with a proper initialization mechanism (which is not
+    implemented at the moment, and we need to choose the backend from it)"
+    self class environment 
+        at: #StPharoMorphicConfiguration
+        ifPresent: [ :aClass | self useBackend: #Morphic with: aClass new ]
+which is a bit overcomplicated
+but is to avoid false dependencies reports
+then the class: StPharoMorphicConfiguration has this methods: 
+StPharoMorphicConfiguration >> configureOSX: anApplication
+    
+    anApplication styleSheet: (self styleSheet, self styleSheetOSX)
+    
+StPharoMorphicConfiguration >> styleSheetOSX
+    "Just an example on how to build styles programatically ;)"
+
+    ^ SpStyle newApplication 
+        addClass: 'label' with: [ :label |
+            label addClass: 'shortcut' with: [ :shortcut |
+                shortcut addPropertyFontWith: [ :font |
+                    font name: 'Lucida Grande'; size: 10 ] ] ];
+        yourself
+So you could have 
+MyAppMorphicConfiguration >> myStyleSheet 
+
+  ^ SpStyleSTONReader fromString: '
+.application [
+  .aStyleName [
+    Geometry { 
+      #height: 100, 
+      #width: 100, 
+      #vResizing: false, 
+      #hResizing: false }
+  ]
+]
+' 
+which I know seems overwhelming for your small problem, but take into account this is the attempt of a general solution to style applications :wink:
+cool part is, once you define your stylesheet, changing appearances and/or sizes is just adding the desired style(s) to your widget.
+for example, for a personal project I have this extension method on SpPresenter :
+newSmallButton
+
+    ^ self newButton 
+        "addStyle: 'flat';"
+        addStyle: 'smallButton';
+        addStyle: 'smallFont';
+        addStyle: 'dim';
+        yourself
+
+
+!! Icon 
+
+n Spec we recently introduced the icon provider hierarchy
+where you can define your own (by inheritance)
+but we provide a couple of interesting pre-defined providers
+SpPharoThemeIconProvider will delegate to the current system icons (Same as doing Smalltalk ui icons)
+SpLocationIconProvider will alloyou to add a location (you can actually have a list of locations) from where to get your icons (externally to the image)
+and SpCompositeIconProvider will allow you to compose providers, so you can do things like  : myLocationProvider, defaultProvider
+SpApplication defines the methods
+iconNamed:, iconProvider and newIconProvider  which you can play to provide your own
+e.g. StPharoApplication defines 
+newIconProvider
+
+[[[
+    ^ StPharoDefaultIconProvider new
+and as an example, for the same application I have the newSmallButton extension, I have 
+newIconProvider
+
+    ^ (SpLocationIconProvider newLocation: self iconsDir), 
+        SgaGtkThemeIconProvider new
+so... the trick is again based on the correct definition of your application
+btw, my "iconsDir" method is defined like this (is temporal) : 
+ iconsDir
+
+    self flag: #TODO. "Refactor this into a production/development environments"
+    IceRepository registry 
+        detect: [ :each | each name = 'Crono' ]
+        ifFound: [ :each | ^ each location / 'resources' / 'icons'  ].
+    
+    ^ FileLocator imageDirectory / 'resources' / 'icons' 
+	
+	
+

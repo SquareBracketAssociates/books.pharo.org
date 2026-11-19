@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Concrete Case: A Mail Application</title>
+  <meta name="description" content="">
+  <meta name="author" content="K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Application Building with Spec 2.0</a>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <details open>
+        <summary>Contents</summary>
+        <ol>
+          
+          <li>
+            <a href="chaintroductions.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="all-spec-in-one-example.html"><span class="number">2</span> All Spec in One Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chaSmallExample.html"><span class="number">3</span> A 10 min small example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chacasestudyone.html"><span class="number">4</span> Most of Spec in one example</a>
+            
+          </li>
+          
+          <li>
+            <a href="spec-essentials.html"><span class="number">5</span> Spec Essentials</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_core.html"><span class="number">6</span> Spec core in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_testing.html"><span class="number">7</span> Testing Spec applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_fundamentals_of_spec.html"><span class="number">8</span> The dual aspects of presenters: Domain and interaction model</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_reuse.html"><span class="number">9</span> Reuse and composition at work</a>
+            
+          </li>
+          
+          <li>
+            <a href="lists-tables-and-trees.html"><span class="number">10</span> Lists, tables and trees</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_managing_windows.html"><span class="number">11</span> Managing windows</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_layout.html"><span class="number">12</span> Layouts</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_dynamic_presenter.html"><span class="number">13</span> Dynamic presenters</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="cha_mailapp.html" aria-current="page"><span class="number">14</span> A Concrete Case: A Mail Application</a>
+            
+            <ol>
+              
+              <li><a href="#the-models"><span class="number">14.1</span> The models</a></li>
+              
+              <li><a href="#email"><span class="number">14.2</span> Email</a></li>
+              
+              <li><a href="#mailfolder"><span class="number">14.3</span> MailFolder</a></li>
+              
+              <li><a href="#mailaccount"><span class="number">14.4</span> MailAccount</a></li>
+              
+              <li><a href="#the-presenters"><span class="number">14.5</span> The presenters</a></li>
+              
+              <li><a href="#the-emailpresenter"><span class="number">14.6</span> The EmailPresenter</a></li>
+              
+              <li><a href="#the-noemailpresenter"><span class="number">14.7</span> The NoEmailPresenter</a></li>
+              
+              <li><a href="#the-mailreaderpresenter"><span class="number">14.8</span> The MailReaderPresenter</a></li>
+              
+              <li><a href="#the-mailaccountpresenter"><span class="number">14.9</span> The MailAccountPresenter</a></li>
+              
+              <li><a href="#the-mailclientpresenter"><span class="number">14.10</span> The MailClientPresenter</a></li>
+              
+              <li><a href="#first-full-application"><span class="number">14.11</span> First full application</a></li>
+              
+              <li><a href="#conclusion-10"><span class="number">14.12</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="cha_menus.html"><span class="number">15</span> Menubar, Toolbar, Status Bar, and Context Menus</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-transmissions-and-ports.html"><span class="number">16</span> Using transmissions and ports</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_style.html"><span class="number">17</span> Styling applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-athens-and-roassal-in-spec.html"><span class="number">18</span> Using Athens and Roassal in Spec</a>
+            
+          </li>
+          
+          <li>
+            <a href="customizing-your-inspector.html"><span class="number">19</span> Customizing your Inspector</a>
+            
+          </li>
+          
+          <li>
+            <a href="working-with-commands.html"><span class="number">20</span> Working with Commands</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_commander.html"><span class="number">21</span> Commander: A powerful and simple command framework</a>
+            
+          </li>
+          
+        </ol>
+      </details>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">14</span> A Concrete Case: A Mail Application</h2><a id="cha_mailapp"></a>
+<p>We will build a small email client application that we will elaborate on and adapt in subsequent chapters. This small app brings together in real concrete ways much of what we have seen in the previous chapters. Figure <a href="#MailClient">14.1</a> shows the target application.</p>
+
+<p><figure id="MailClient"><img src="Chapters/MailApp/figures/MailClient.png" alt="The mail client. " style="width: 60%"><figcaption><span class="number">Figure 14.1</span> The mail client. </figcaption></img></figure></p>
+
+<p>The example is extensive, with a lot of classes and methods. We will implement the application bottom-up. We start with the models. Afterward, we will implement the presenters that compose the application. Let's dive in.</p>
+
+<h3 id="the-models"><span class="number">14.1</span> The models</h3>
+<p>To build the mail client, we need three models (see Figure <a href="#emailmodels">14.2</a>):</p>
+
+<ul>
+<li><code>Email</code> represents an email.</li>
+<li><code>MailFolder</code> represents a folder that holds emails, like "Inbox", "Draft", and "Sent".</li>
+<li><code>MailAccount</code> represents a mail account. It holds all the emails.</li>
+</ul>
+<p><figure id="emailmodels"><img src="Chapters/MailApp/figures/models.pdf" alt="A simple model. " style="width: 60%"><figcaption><span class="number">Figure 14.2</span> A simple model. </figcaption></img></figure></p>
+
+<h3 id="email"><span class="number">14.2</span> Email</h3>
+<p>In Figure <a href="#MailClient">14.1</a>, we see that the application shows four fields for an email. "From" holds sender. "To" holds the addressee. "Subject" holds the subject of an email. The nameless text field at the bottom-right holds the body of an email. Let's define an <code>Email</code> class to cover these fields.</p>
+
+<pre><code>Object &lt;&lt; #Email
+	slots: { #from . #to . #subject . #body . #status };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>We do not show the accessors for <code>from</code>, <code>to</code>, <code>subject</code>, and <code>body</code>. They are trivial.</p>
+
+<p>Note that there is a fifth instance variable called <code>status</code>. This instance variable will be used to keep track of the status of an email, either "received", "draft", or "sent". These statuses map onto the mail folders in the application, respectively "Inbox", "Draft", and "Sent". We define the following methods to change the status of an email. They will come in handy when we receive, create, or send emails.</p>
+
+<pre><code>Email &gt;&gt; beReceived
+
+	status := #received</code></pre>
+
+<pre><code>Email &gt;&gt; beDraft
+
+	status := #draft</code></pre>
+
+<pre><code>Email &gt;&gt; beSent
+
+	status := #sent</code></pre>
+
+<p>To know what the status of an email is, we define three more messages.</p>
+
+<pre><code>Email &gt;&gt; isReceived
+
+	^ status = #received</code></pre>
+
+<pre><code>Email &gt;&gt; isDraft
+
+	^ status = #draft</code></pre>
+
+<pre><code>Email &gt;&gt; isSent
+
+	^ status = #sent</code></pre>
+
+<p>We will not define accessors for the <code>status</code> instance variable. The six methods above keep the status nicely encapsulated.</p>
+
+<p>Now we can define the <code>initialize</code> method. It states that a new email is in draft status by default.</p>
+
+<pre><code>Email &gt;&gt; initialize
+
+	super initialize.
+	self beDraft</code></pre>
+
+<p>We define two final methods. They are related to including emails in a tree presenter. The first method answers the string that should be displayed in the list of emails.</p>
+
+<pre><code>Email &gt;&gt; displayName
+
+	^ subject</code></pre>
+
+<p>The second method answers what should be displayed as children in a tree presenter. While a folder has children, i.e. its emails, an email does not have any children, so this method returns an empty array. We do not use tree-related terminology, as it would not be appropriate. Therefore we use <code>content</code>, as in "the content of a folder".</p>
+
+<pre><code>Email &gt;&gt; content
+
+	^ Array new</code></pre>
+
+<h3 id="mailfolder"><span class="number">14.3</span> MailFolder</h3>
+<p>The tree on the left side of the window does not only displays emails. It also displays mail folders, which group emails according to their state. We will define the <code>MailFolder</code> model very simplisticly. It has a name and it holds emails.</p>
+
+<pre><code>Object &lt;&lt; #MailFolder
+	slots: { #emails . #name };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>At initialization time, a <code>MailFolder</code> does not have any emails, and its name is <code>New folder</code>.</p>
+
+<pre><code>MailFolder &gt;&gt; initialize
+
+	super initialize.
+	emails := OrderedCollection new.
+	name := 'New folder'</code></pre>
+
+<p>That defines the default state of a <code>MailFolder</code> instance, but an instance creation method is handy:</p>
+
+<pre><code>MailFolder class &gt;&gt; named: aString emails: aCollection
+
+	^ self new
+		name: aString;
+		emails: aCollection;
+		yourself</code></pre>
+
+<p>The method above needs these accessor methods:</p>
+
+<pre><code>MailFolder &gt;&gt; emails: aCollection
+
+	emails := aCollection</code></pre>
+
+<pre><code>MailFolder &gt;&gt; name: aString
+
+	name := aString</code></pre>
+
+<p>Similarly to the <code>Email</code> class, we need some tree-related methods:</p>
+
+<pre><code>MailFolder &gt;&gt; displayName
+
+	^ name</code></pre>
+
+<pre><code>MailFolder &gt;&gt; content
+
+	^ emails</code></pre>
+
+<p>From this implementation, you can see that a <code>MailFolder</code> is just a named container object for emails, which can be used to structure the display of emails in a tree presenter.</p>
+
+<h4 id="distinguishing-emails-and-folders"><span class="number">14.3.1</span> Distinguishing emails and folders</h4>
+<p>In our target application, folders and emails are shown in a tree. A selection in the tree can be a folder or an email. If a presenter has to act differently based on the type of the selection, it needs a way to distinguish folders and emails. To keep things simple, we will introduce two methods on the model classes that we have defined so far.</p>
+
+<pre><code>Email &gt;&gt; isEmail
+
+	^ true</code></pre>
+
+<pre><code>Folder &gt;&gt; isEmail
+
+	^ false</code></pre>
+
+<h3 id="mailaccount"><span class="number">14.4</span> MailAccount</h3>
+<p>A <code>MailAccount</code> holds all emails, so the definition of the class is simple:</p>
+
+<pre><code>Model &lt;&lt; #MailAccount
+	slots: { #emails };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>Note that this is the first email client model class that inherits from <code>Model</code>. To keep things simple, the email client application will depend only on a <code>MailAccount</code> instance, not on <code>Email</code> and <code>MailFolder</code> instances.</p>
+
+<p>Initialization is trivial:</p>
+
+<pre><code>MailAccount &gt;&gt; initialize
+
+	super initialize.
+	emails := OrderedCollection new</code></pre>
+
+<p>We know that emails have a status and that the status is used to split emails in separate folders. That is where the following methods come in:</p>
+
+<pre><code>MailAccount &gt;&gt; receivedEmails
+
+	^ emails select: [ :each | each isReceived ]</code></pre>
+
+<pre><code>MailAccount &gt;&gt; draftEmails
+
+	^ emails select: [ :each | each isDraft ]</code></pre>
+
+<pre><code>MailAccount &gt;&gt; sentEmails
+
+	^ emails select: [ :each | each isSent ]</code></pre>
+
+<p>Given that <code>MailAccount</code> is the main model of the application, it defines some actions.</p>
+
+<p>First of all, emails can be fetched. In a real application, emails come from a server. We do not want to go that far. Therefore, we put one email in the account.</p>
+
+<pre><code>MailAccount &gt;&gt; fetchMail
+
+	| email |
+	email := Email new
+		from: 'book@pharo.org';
+		to: 'readers@pharo.org';
+		subject: 'The Spec 2.0 book has been released';
+		body: 'Dear reader,
+The Spec 2.0 book is available.
+Best regards.';
+		beReceived;
+		yourself.
+	(emails includes: email) ifFalse: [ emails add: email ].
+	self changed</code></pre>
+
+<p>This method creates a new email, and gives it the "received" status. Then it adds the email to the emails it already holds. Adding is done conditionally because we do not want the same email appearing twice after fetching multiple times.</p>
+
+<p>Note <code>self changed</code> at the end. It notifies dependents that a <code>MailAccount</code> instance changed in a general way. Again, we like to keep things simple. More specific change messages are possible, but we do not need them in this example application.</p>
+
+<p>The user of the application can create new emails and save them. When they are saved, they are draft emails, as this method defines:</p>
+
+<pre><code>MailAccount &gt;&gt; saveAsDraft: anEmail
+
+	anEmail beDraft.
+	(emails includes: anEmail) ifFalse: [ emails add: anEmail ].
+	self changed</code></pre>
+
+<p>Saving a email as draft is implemented as changing the status to "draft" and adding it to the emails, if it is not present yet. The conditional addition allows saving an email multiple times without adding it multiple times.</p>
+
+<p>The method to send an email is similar to the method to save an email:</p>
+
+<pre><code>MailAccount &gt;&gt; send: anEmail
+
+	anEmail beSent.
+	(emails includes: anEmail) ifFalse: [ emails add: anEmail ].
+	self changed</code></pre>
+
+<p>Finally, an email can be deleted. The implementation is simple. Remove the email from the account and let dependents know.</p>
+
+<pre><code>MailAccount &gt;&gt; delete: anEmail
+
+	emails remove: anEmail.
+	self changed</code></pre>
+
+<p>That concludes our models. Now we can dig into the presenters.</p>
+
+<h3 id="the-presenters"><span class="number">14.5</span> The presenters</h3>
+<p>Many presenters are composed of smaller presenters. That is also the case here. We need a presenter to display an email. We also need a presenter to display the tree of emails. When no email is selected in the tree, we like to display an informational message. That is also a presenter. And the overall application, that ties everything together, is also a presenter. So we have five presenters:</p>
+
+<ul>
+<li><code>EmailPresenter</code> displays an <code>Email</code>, either editable or read-only. The fields are editable when the email is draft. The fields are read-only when the email is received or sent.</li>
+<li><code>NoEmailPresenter</code> displays an informative message to tell that no email has been selected.</li>
+<li><code>MailReaderPresenter</code> is responsible to show an email or the informational message. It uses the two presenters above to achieve that.</li>
+<li><code>MailAccountPresenter</code> displays the tree of folders and emails.</li>
+<li><code>MailClientPresenter</code> is the main presenter. It combines a <code>MailAccountPresenter</code> and a <code>MailReaderPresenter</code> to implement the email client functionality.</li>
+</ul>
+<h3 id="the-emailpresenter"><span class="number">14.6</span> The <code>EmailPresenter</code></h3>
+<p>This presenter is fairly easy. It is a view on an <code>Email</code>. Therefore it defines instance variables for all aspects of an <code>Email</code>, except the <code>status</code>.</p>
+
+<pre><code>SpPresenterWithModel &lt;&lt; #EmailPresenter
+	slots: { #from . #to . #subject . #body };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>Note that the presenter class inherits from <code>SpPresenterWithModel</code>, which means that <code>model</code> accessors are available. An instance of <code>EmailPresenter</code> cannot function without an email, as expressed by the <code>initialize</code> method. It sets the model to an empty <code>Email</code>. Remember that a new <code>Email</code> is in draft status by default.</p>
+
+<pre><code>EmailPresenter &gt;&gt; initialize
+
+	self model: Email new.
+	super initialize</code></pre>
+
+<p>As always, we have to define some crucial methods.</p>
+
+<pre><code>EmailPresenter &gt;&gt; initializePresenters
+
+	from := self newTextInput.
+	to := self newTextInput.
+	subject := self newTextInput.
+	body := self newText</code></pre>
+
+<pre><code>EmailPresenter &gt;&gt; defaultLayout
+
+	| toLine subjectLine fromLine |
+	fromLine := SpBoxLayout newTopToBottom
+		add: 'From:' expand: false;
+		add: from expand: false;
+		yourself.
+	toLine := SpBoxLayout newTopToBottom
+		add: 'To:' expand: false;
+		add: to expand: false;
+		yourself.
+	subjectLine := SpBoxLayout newTopToBottom
+		add: 'Subject:' expand: false;
+		add: subject expand: false;
+		yourself.
+	^ SpBoxLayout newTopToBottom
+			spacing: 10;
+			add: fromLine expand: false;
+			add: toLine expand: false;
+			add: subjectLine expand: false;
+			add: body;
+			yourself</code></pre>
+
+<p>The <code>from</code>, <code>to</code>, and <code>subject</code> fields and their associated labels have their own layout. Note that <code>body</code> does not have an associated label. It is clear from the context that the field holds the body of an email. The overall layout is a vertical box layout with 10 pixels white space between the fields.</p>
+
+<p>The method <code>connectPresenters</code> states that changes to fields should be stored in the email, which is held in the <code>model</code> of the <code>EmailPresenter</code>.</p>
+
+<pre><code>EmailPresenter &gt;&gt; connectPresenters
+
+	from whenTextChangedDo: [ :text | self model from: text ].
+	to whenTextChangedDo: [ :text | self model to: text ].
+	subject whenTextChangedDo: [ :text | self model subject: text ].
+	body whenTextChangedDo: [ :text | self model body: text ]</code></pre>
+
+<p><code>EmailPresenter</code> inherits from <code>SpPresenterWithModel</code>, which means that we have to state in the <code>modelChanged</code> method what should happen when the model changes. We set the text of the four fields.</p>
+
+<pre><code>EmailPresenter &gt;&gt; modelChanged
+
+	from text: (self model from ifNil: [ '' ]).
+	to text: (self model to ifNil: [ '' ]).
+	subject text: (self model subject ifNil: [ '' ]).
+	body text: (self model body ifNil: [ '' ])</code></pre>
+
+<p>For convenience later on, we define two extra methods to make the fields editable or read-only.</p>
+
+<pre><code>EmailPresenter &gt;&gt; beEditable
+
+	from editable: true.
+	to editable: true.
+	subject editable: true.
+	body editable: true</code></pre>
+
+<pre><code>EmailPresenter &gt;&gt; beReadOnly
+
+	from editable: false.
+	to editable: false.
+	subject editable: false.
+	body editable: false</code></pre>
+
+<h3 id="the-noemailpresenter"><span class="number">14.7</span> The <code>NoEmailPresenter</code></h3>
+<p>This presenter will be used when there is no selection in the tree of folders and emails. It is very simple, as it does not have any functionality.</p>
+
+<pre><code>SpPresenter &lt;&lt; #NoEmailPresenter
+	slots: { #message };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<pre><code>NoEmailPresenter &gt;&gt; initializePresenters
+
+	message := self newLabel
+		label: 'Select an email from the list to read it.';
+		yourself</code></pre>
+
+<p>We put the message in the center of the presenter by using <code>hAlignCenter</code> and <code>vAlignCenter</code>.</p>
+
+<pre><code>NoEmailPresenter &gt;&gt; defaultLayout
+
+	^ SpBoxLayout newTopToBottom
+		hAlignCenter;
+		vAlignCenter;
+		add: message;
+		yourself</code></pre>
+
+<p>That's all there is to it.</p>
+
+<h3 id="the-mailreaderpresenter"><span class="number">14.8</span> The <code>MailReaderPresenter</code></h3>
+<p>It is time to combine the two previous presenters. That is the responsibility of the <code>MailReaderPresenter</code>.
+This illustrates that we can change dynamically layouts to display different subpresenters.</p>
+
+<pre><code>SpPresenter &lt;&lt; #MailReaderPresenter
+	slots: { #content . #noContent };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>As you can see, there are two instance variables to hold instances of the two previous presenter classes. Note that the presenter class inherits from <code>SpPresenter</code>, not <code>SpPresenterWithModel</code>, which means that a <code>MailReaderPresenter</code> does not have a model. We assume that instances of <code>MailReaderPresenter</code> will be told to update themselves.</p>
+
+<pre><code>MailReaderPresenter &gt;&gt; initializePresenters
+
+	content := EmailPresenter new.
+	noContent := NoEmailPresenter new</code></pre>
+
+<p>The presenter has two states. Either there is an <code>Email</code>, or either there isn't. We have a layout for each state. When there is an email, we will use the <code>emailLayout</code>:</p>
+
+<pre><code>MailReaderPresenter &gt;&gt; emailLayout
+
+	^ SpBoxLayout newLeftToRight
+			add: content;
+			yourself</code></pre>
+
+<p>When there is no email, we will use the <code>noEmailLayout</code>:</p>
+
+<pre><code>MailReaderPresenter &gt;&gt; noEmailLayout
+
+	^ SpBoxLayout newLeftToRight
+			add: noContent;
+			yourself</code></pre>
+
+<p>By default, we assume there is no email. After all, no method initializes the email. So the <code>defaultLayout</code> is the <code>noEmailLayout</code>.</p>
+
+<pre><code>MailReaderPresenter &gt;&gt; defaultLayout
+
+	^ self noEmailLayout</code></pre>
+
+<p>As mentioned before, we assume that instances of <code>MailReaderPresenter</code> will be told to update themselves. <code>read:</code> is the message to tell them.</p>
+
+<pre><code>MailReaderPresenter &gt;&gt; read: folderOrEmail
+
+	(folderOrEmail isNotNil and: [ folderOrEmail isEmail ])
+		ifTrue: [ self updateLayoutForEmail: folderOrEmail ]
+		ifFalse: [ self updateLayoutForNoEmail ]</code></pre>
+
+<p>The method <code>read:</code> delegates to the methods that do the actual work.</p>
+
+<pre><code>MailReaderPresenter &gt;&gt; updateLayoutForEmail: email
+
+	content model: email.
+	self layout: self emailLayout.
+	email isDraft
+		ifTrue: [ content beEditable ]
+		ifFalse: [ content beReadOnly ]</code></pre>
+
+<pre><code>MailReaderPresenter &gt;&gt; updateLayoutForNoEmail
+
+	self layout: self noEmailLayout</code></pre>
+
+<p>These methods simply switch the layout. Note that the first one tells the <code>EmailPresenter</code> to be editable or read-only based on the draft status of an <code>Email</code>.</p>
+
+<h3 id="the-mailaccountpresenter"><span class="number">14.9</span> The <code>MailAccountPresenter</code></h3>
+<p>Now we define a crucial part of the functionality of the mail client application. The <code>MailAccountPresenter</code> holds a tree of folders and emails.</p>
+
+<pre><code>SpPresenterWithModel &lt;&lt; #MailAccountPresenter
+	slots: { #foldersAndEmails };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>Note that the presenter class inherits from <code>SpPresenterWithModel</code> because it will hold a <code>MailAccount</code> instance as its model, which holds the emails to show in the tree. The method <code>initializePresenters</code> defines the tree.</p>
+
+<pre><code>MailAccountPresenter &gt;&gt; initializePresenters
+
+	foldersAndEmails := self newTree
+		roots: Array new;
+		display: [ :node | node displayName ];
+		children: [ :node | node content ];
+		expandRoots</code></pre>
+
+<p>Let's dissect the method.</p>
+
+<ul>
+<li>By default, the tree has no roots. Later we will set as roots the draft, inbox, and sent elements (see method <code>modelChanged</code> below).</li>
+<li>The tree presenter uses the <code>display:</code> block to fetch a string representation of each tree node. In the block, we send the message <code>displayName</code> that we defined on the model classes <code>Email</code> and <code>Folder</code>.</li>
+<li>The tree presenter uses the <code>children</code> block to fetch the children of a tree node. Folders have children, Emails do not. In the block, we send <code>content</code>. Remember that a <code>Folder</code> instance will answer its emails, and an <code>Email</code> instance answers an empty array, which means that emails are the leaves of the tree.</li>
+<li>We send the message <code>expandRoots</code> to expand the whole tree.</li>
+</ul>
+<p>The layout is a simple box layout with the tree presenter:</p>
+
+<pre><code>MailAccountPresenter &gt;&gt; defaultLayout
+
+	^ SpBoxLayout newTopToBottom
+				add: foldersAndEmails;
+				yourself</code></pre>
+
+<p>By default, the tree is empty. When the model changes, the tree should be updated. Since the class <code>MailAccountPresenter</code> inherits from the class <code>SpPresenterWithModel</code>, we have the method <code>modelChanged</code> at our disposal.</p>
+
+<pre><code>MailAccountPresenter &gt;&gt; modelChanged
+
+	| inbox draft sent |
+	inbox := MailFolder named: 'Inbox' emails: self model receivedEmails.
+	draft := MailFolder named: 'Draft' emails: self model draftEmails.
+	sent := MailFolder named: 'Sent' emails: self model sentEmails.
+	foldersAndEmails
+		roots: { inbox . draft . sent };
+		expandRoots</code></pre>
+
+<p>The model is a <code>MailAccount</code> instance. The method filters the emails of that instance based on their status and creates folders, each holding emails with the same status. The method sends <code>receivedEmails</code>, <code>draftEmails</code>, and <code>sentEmails</code>. The corresponding methods were defined when we defined the <code>MailAccount</code> class. The three folders become the roots of the tree, and the roots are expanded with the <code>expandRoots</code> message so that the user sees the whole tree.</p>
+
+<p>When implementing a presenter with a tree, or any widget that has a selection, it is always a good idea to define a method that allows reacting to selection changes. We will need the method later to connect the <code>MailAccountPresenter</code> to the <code>MailReader</code>.</p>
+
+<pre><code>MailAccountPresenter &gt;&gt; whenSelectionChangedDo: aBlock
+
+	foldersAndEmails whenSelectionChangedDo: aBlock</code></pre>
+
+<p>The method simply delegates to the tree presenter held by <code>foldersAndEmails</code>.</p>
+
+<p>We define two extra methods related to selection that will come in handy later on. The first method returns a boolean that indicates whether an email is selected. We only have two levels in the tree, so if the path to the selection has two elements, we know that an email has been selected. The second method simply returns the selected item in the tree.</p>
+
+<pre><code>MailAccountPresenter &gt;&gt; hasSelectedEmail
+
+	^ foldersAndEmails selection selectedPath size = 2</code></pre>
+
+<pre><code>MailAccountPresenter &gt;&gt; selectedItem
+
+	^ foldersAndEmails selectedItem</code></pre>
+
+<p>Apart from making selections, the <code>MailAccountPresenter</code> does not provide any functionality. Not yet. We will introduce it later when we need it.</p>
+
+<p>We are almost there. One presenter to go.</p>
+
+<h3 id="the-mailclientpresenter"><span class="number">14.10</span> The <code>MailClientPresenter</code></h3>
+<p>This presenter combines all the presenters that we have introduced so far. We start with an initial version of the presenter class. In subsequent sections, we will elaborate on the class.</p>
+
+<pre><code>SpPresenterWithModel &lt;&lt; #MailClientPresenter
+	slots: { #account . #reader . #editedEmail };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>The class inherits from <code>SpPresenterWithModel</code>. The model is a <code>MailAccount</code> instance. There are three instance variables. The first two hold presenters. The third holds the email that is being edited.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; initializePresenters
+
+	account := MailAccountPresenter on: self model.
+	reader := MailReaderPresenter new</code></pre>
+
+<p>We use a paned layout, with 40% of the space allocated to the <code>MailAccountPresenter</code>:</p>
+
+<pre><code>MailClientPresenter &gt;&gt; defaultLayout
+
+	^ SpPanedLayout newLeftToRight
+			positionOfSlider: 40 percent;
+			add: account;
+			add: reader;
+			yourself</code></pre>
+
+<p>Let's connect the two presenters so that a selection in the tree on the left results in showing details of the selection on the right. We introduce two methods: <code>connectPresenters</code> and <code>updateAfterSelectionChangedTo:</code></p>
+
+<ul>
+<li>The method <code>connectPresenters</code> sends the selected tree item to the <code>reader</code> and uses the following method.</li>
+<li>The method <code>updateAfterSelectionChangedTo:</code> to allow for post selection actions.</li>
+</ul>
+<pre><code>MailClientPresenter &gt;&gt; connectPresenters
+
+	account whenSelectionChangedDo: [ :selection |
+		| selectedFolderOrEmail |
+		selectedFolderOrEmail := selection selectedItem.
+		reader read: selectedFolderOrEmail.
+		self updateAfterSelectionChangedTo: selectedFolderOrEmail ]</code></pre>
+
+<p>In the second method <code>updateAfterSelectionChangedTo:</code>, we use several messages that we defined earlier.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; updateAfterSelectionChangedTo: selectedFolderOrEmail
+
+	editedEmail := (self isDraftEmail: selectedFolderOrEmail)
+		ifTrue: [ selectedFolderOrEmail ]
+		ifFalse: [ nil ]</code></pre>
+
+<p><figure id="BasicClient"><img src="Chapters/MailApp/figures/BasicClient.png" alt="The basic mail client. " style="width: 60%"><figcaption><span class="number">Figure 14.3</span> The basic mail client. </figcaption></img></figure></p>
+
+<p>The method <code>updateAfterSelectionChangedTo:</code> keeps track of the email if it is a draft email, so that the presenter has it handy when needed. The method invokes the method <code>isDraftEmail:</code> (defined below) to determine whether the tree selection is a draft email.</p>
+
+<pre><code>
+	^ folderOrEmailOrNil isNotNil and: [ folderOrEmailOrNil isEmail and: [ folderOrEmailOrNil isDraft ] ]</code></pre>
+
+<p>The method states that the content of the <code>MailReaderPresenter</code> held by <code>reader</code> depends on the selection in the tree. If an email is selected, the reader shows its fields. If there is no selection, or a folder is selected, the reader shows the informational message. When a draft email is selected, we put it in the <code>editedMail</code> instance variable, which will be handy when we start performing actions on the selected email.</p>
+
+<p>Let's also define the method <code>initializeWindow</code>, so that the window has a title and it is big enough for reading emails easily.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; initializeWindow: aWindowPresenter
+
+	aWindowPresenter
+		title: 'Mail';
+		initialExtent: 650@500</code></pre>
+
+<h3 id="first-full-application"><span class="number">14.11</span> First full application</h3>
+<p>After typing all the code, it is time to open the mail client.</p>
+
+<pre><code>(MailClientPresenter on: MailAccount new) open</code></pre>
+
+<p>Figure <a href="#BasicClient">14.3</a> shows the result. There is nothing much to see. Only three empty folders. Selecting one will still show the informational message on the right.</p>
+
+<p>We can do better. Let's add a draft email with the <code>saveAsDraft:</code> message that we defined in <code>MailAccount</code>.</p>
+
+<pre><code>account := MailAccount new.
+email := Email new subject: 'My first email'.
+account saveAsDraft: email.
+(MailClientPresenter on: account) open</code></pre>
+
+<p>That opens a window with a draft email. After selecting it, the window looks as shown in Figure <a href="#BasicClientWithDraftEmail">14.4</a>.</p>
+
+<p><figure id="BasicClientWithDraftEmail"><img src="Chapters/MailApp/figures/BasicClientWithDraftEmail.png" alt="The basic mail client with a draft email. " style="width: 60%"><figcaption><span class="number">Figure 14.4</span> The basic mail client with a draft email. </figcaption></img></figure></p>
+
+<h3 id="conclusion-10"><span class="number">14.12</span> Conclusion</h3>
+<p>This was a long chapter with an extensive example with multiple models and multiple presenters. It lays the foundation for the next chapters, where we will extend the main presenter and adapt the subpresenters to explain more Spec functionality.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="cha_dynamic_presenter.html">← Dynamic presenters</a>
+        <a class="next" rel="next" href="cha_menus.html">Menubar, Toolbar, Status Bar, and Context Menus →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Application Building with Spec 2.0 · K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano</p>
+  </footer>
+</body>
+</html>

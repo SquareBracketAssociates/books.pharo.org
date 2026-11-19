@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layouts</title>
+  <meta name="description" content="">
+  <meta name="author" content="K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Application Building with Spec 2.0</a>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <details open>
+        <summary>Contents</summary>
+        <ol>
+          
+          <li>
+            <a href="chaintroductions.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="all-spec-in-one-example.html"><span class="number">2</span> All Spec in One Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chaSmallExample.html"><span class="number">3</span> A 10 min small example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chacasestudyone.html"><span class="number">4</span> Most of Spec in one example</a>
+            
+          </li>
+          
+          <li>
+            <a href="spec-essentials.html"><span class="number">5</span> Spec Essentials</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_core.html"><span class="number">6</span> Spec core in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_testing.html"><span class="number">7</span> Testing Spec applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_fundamentals_of_spec.html"><span class="number">8</span> The dual aspects of presenters: Domain and interaction model</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_reuse.html"><span class="number">9</span> Reuse and composition at work</a>
+            
+          </li>
+          
+          <li>
+            <a href="lists-tables-and-trees.html"><span class="number">10</span> Lists, tables and trees</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_managing_windows.html"><span class="number">11</span> Managing windows</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="cha_layout.html" aria-current="page"><span class="number">12</span> Layouts</a>
+            
+            <ol>
+              
+              <li><a href="#basic-principle-reminder"><span class="number">12.1</span> Basic principle reminder</a></li>
+              
+              <li><a href="#a-running-example"><span class="number">12.2</span> A running example</a></li>
+              
+              <li><a href="#boxlayout-spboxlayout-and-spboxconstraints"><span class="number">12.3</span> BoxLayout (SpBoxLayout and SpBoxConstraints)</a></li>
+              
+              <li><a href="#box-layout-alignment"><span class="number">12.4</span> Box layout alignment</a></li>
+              
+              <li><a href="#box-alignment-example"><span class="number">12.5</span> Box alignment example</a></li>
+              
+              <li><a href="#alignment-in-horizontal-box-layout"><span class="number">12.6</span> Alignment in horizontal box layout</a></li>
+              
+              <li><a href="#a-more-advanced-layout"><span class="number">12.7</span> A more advanced layout</a></li>
+              
+              <li><a href="#example-setup-for-layout-reuse"><span class="number">12.8</span> Example setup for layout reuse</a></li>
+              
+              <li><a href="#opening-with-a-layout"><span class="number">12.9</span> Opening with a layout</a></li>
+              
+              <li><a href="#better-design"><span class="number">12.10</span> Better design</a></li>
+              
+              <li><a href="#specifying-a-layout-when-reusing-a-presenter"><span class="number">12.11</span> Specifying a layout when reusing a presenter</a></li>
+              
+              <li><a href="#alternative-to-declare-subcomponent-layout-choice"><span class="number">12.12</span> Alternative to declare subcomponent layout choice</a></li>
+              
+              <li><a href="#dynamically-changing-a-layout"><span class="number">12.13</span> Dynamically changing a layout</a></li>
+              
+              <li><a href="#grid-layout-spgridlayout"><span class="number">12.14</span> Grid layout (SpGridLayout)</a></li>
+              
+              <li><a href="#paned-layout-sppanedlayout"><span class="number">12.15</span> Paned layout (SpPanedLayout)</a></li>
+              
+              <li><a href="#overlay-layout-spoverlaylayout"><span class="number">12.16</span> Overlay layout (SpOverlayLayout)</a></li>
+              
+              <li><a href="#conclusion-8"><span class="number">12.17</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="cha_dynamic_presenter.html"><span class="number">13</span> Dynamic presenters</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_mailapp.html"><span class="number">14</span> A Concrete Case: A Mail Application</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_menus.html"><span class="number">15</span> Menubar, Toolbar, Status Bar, and Context Menus</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-transmissions-and-ports.html"><span class="number">16</span> Using transmissions and ports</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_style.html"><span class="number">17</span> Styling applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-athens-and-roassal-in-spec.html"><span class="number">18</span> Using Athens and Roassal in Spec</a>
+            
+          </li>
+          
+          <li>
+            <a href="customizing-your-inspector.html"><span class="number">19</span> Customizing your Inspector</a>
+            
+          </li>
+          
+          <li>
+            <a href="working-with-commands.html"><span class="number">20</span> Working with Commands</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_commander.html"><span class="number">21</span> Commander: A powerful and simple command framework</a>
+            
+          </li>
+          
+        </ol>
+      </details>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">12</span> Layouts</h2><a id="cha_layout"></a>
+<p>In Spec, layouts are represented by instances of layout classes. The layout classes encode different positioning of elements such as box, paned, or grid.
+This chapter presents the available layouts, their definition, and how layouts can be reused when a presenter reuses other presenters.</p>
+
+<h3 id="basic-principle-reminder"><span class="number">12.1</span> Basic principle reminder</h3>
+<p>Spec expects that layout objects, instances of the layout classes, are associated with a presenter. Each presenter should describe the positioning of its subpresenters.</p>
+
+<p>Contrary to Spec 1.0, where layouts were only defined at the class level, in Spec 2.0, to define the layout of a presenter you can:</p>
+
+<ul>
+<li>Define the <code>defaultLayout</code> method on the instance side</li>
+<li>Use the message <code>layout:</code> in your <code>initializePresenters</code> method to set an instance of layout in the current presenter.</li>
+</ul>
+<p>The message <code>defaultLayout</code> returns a layout and <code>layout:</code> sets a layout, for example, an instance of <code>SpBoxLayout</code> or <code>SpPanedLayout</code>. These two methods are the preferred way to define layouts.</p>
+
+<p>Note that the possibility of defining a class-side accessor e.g. <code>defaultLayout</code> remains for those who prefer it.</p>
+
+<p>This new design reflects the dynamic nature of layouts in Spec, and the fact that you can compose them using presenter instances directly, not forcing you to declare subpresenters in instance variables upfront, and then use their names as it was done in Spec 1.0. It is, however, possible that there are cases where you want a layout "template"... so you can still do it.</p>
+
+<h3 id="a-running-example"><span class="number">12.2</span> A running example</h3>
+<p>To be able to play with the layouts defined in this chapter, we define a simple presenter named <code>TwoButtons</code>.</p>
+
+<pre><code>SpPresenter &lt;&lt; #TwoButtons
+	slots: { #button1 . #button2 };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>We define a simple <code>initializePresenters</code> method as follows:</p>
+
+<pre><code>TwoButtons &gt;&gt; initializePresenters
+
+	button1 := self newButton.
+	button2 := self newButton.
+	button1 label: '1'.
+	button2 label: '2'</code></pre>
+
+<h3 id="boxlayout-spboxlayout-and-spboxconstraints"><span class="number">12.3</span> BoxLayout (SpBoxLayout and SpBoxConstraints)</h3>
+<p>The class <code>SpBoxLayout</code> displays presenters in an ordered sequence of boxes. A box layout can be horizontal or vertical and presenters are ordered left to right and top to bottom respectively. A box layout can be composed of other layouts.</p>
+
+<p><figure id="TwoButtonsLeftToRight"><img src="Chapters/LayoutContruction/figures/TwoButtonsLeftToRight.png" alt="Two buttons placed horizontally from left to right. " style="width: 50%"><figcaption><span class="number">Figure 12.1</span> Two buttons placed horizontally from left to right. </figcaption></img></figure></p>
+
+<p>Let us define a first simple layout as follows and whose result is displayed in Figure <a href="#TwoButtonsLeftToRight">12.1</a>.</p>
+
+<pre><code>TwoButtons &gt;&gt; defaultLayout
+
+	^ SpBoxLayout newLeftToRight
+		add: button1;
+		add: button2;
+		yourself</code></pre>
+
+<p>What we see is that by default a subpresenter expands its size to fit the space of its container.</p>
+
+<p>An element in a vertical box will use all available horizontal space, and fill
+vertical space according to the rules. This is inversed in a horizontal box.</p>
+
+<p>We can refine this layout to indicate that the subpresenters should not expand to their container using the message <code>add:expand:</code>. The result is shown in Figure <a href="#TwoButtonsLeftToRightExpanded">12.2</a>.</p>
+
+<pre><code>TwoButtons &gt;&gt; defaultLayout
+
+	^ SpBoxLayout newLeftToRight
+		add: button1 expand: false;
+		add: button2 expand: false;
+		yourself</code></pre>
+
+<p><figure id="TwoButtonsLeftToRightExpanded"><img src="Chapters/LayoutContruction/figures/TwoButtonsLeftToRightNotExpanded.png" alt="Two buttons placed from left to right, but not expanded. " style="width: 50%"><figcaption><span class="number">Figure 12.2</span> Two buttons placed from left to right, but not expanded. </figcaption></img></figure></p>
+
+<p>The full message to add presenters is: <code>add:expand:fill:padding:</code></p>
+
+<ul>
+<li><code>expand:</code> argument - when true, the new child is to be given extra space allocated to the box. The extra space is divided evenly between all children that use this option.</li>
+<li><code>fill:</code> argument - when true, the space given to a child by the expand option is actually allocated to the child, rather than just padding it. This parameter has no effect if <code>expand</code> is set to <code>false</code>.</li>
+<li><code>padding:</code> argument  - extra space in pixels to put between this child and its neighbors, over and above the global amount specified by the <code>spacing</code> property. If a child is a widget at one of the reference ends of the box, then padding pixels are also put between the child and the reference edge of the box.</li>
+</ul>
+<p>To illustrate this API a bit, we change the <code>defaultLayout</code> method as follows. The result is shown in Fig <a href="#TwoButtonsTopToBottom">12.3</a>. We want to stress, however, that it is better not to use a fixed height or padding.</p>
+
+<pre><code>TwoButtons &gt;&gt; defaultLayout
+
+	^ SpBoxLayout newTopToBottom
+		spacing: 15;
+		add: button1 expand: false fill: true padding: 5;
+		add: button2 withConstraints: [ :constraints |
+			constraints height: 80; padding: 5 ];
+		yourself</code></pre>
+
+<p><figure id="TwoButtonsTopToBottom"><img src="Chapters/LayoutContruction/figures/TwoButtonsTopToBottom.png" alt="Two buttons placed from top to bottom playing with padding and fill options." class="TwoButtonsTopToBottom" style="width: 50%"><figcaption><span class="number">Figure 12.3</span> Two buttons placed from top to bottom playing with padding and fill options.</figcaption></img></figure></p>
+
+<p>The annotations in the figure indicate the padding in red, the height of <code>button2</code> in blue, and the spacing in green. Note that the padding of <code>button2</code> is included in the height of the button.</p>
+
+<p>The <code>defaultLayout</code> method sends the message <code>withConstraints: [ :constraints | constraints height: 80; padding: 5 ]</code>. This message allows setting constraints when the often used messages <code>add:</code>, <code>add:expand:</code>, and <code>add:expand:fill:padding:</code> do not cover your particular use case. The <code>constraints</code> argument of the block is an instance of the <code>SpBoxConstraints</code> class.</p>
+
+<h3 id="box-layout-alignment"><span class="number">12.4</span> Box layout alignment</h3>
+<p>A box layout can be configured with horizontal and vertical alignment of the children. These are the horizontal alignment options, which are messages that can be sent to a <code>SpBoxLayout</code> instance:</p>
+
+<ul>
+<li>hAlignStart</li>
+<li>hAlignCenter</li>
+<li>hAlignEnd</li>
+</ul>
+<p>These are the vertical layout options:</p>
+
+<ul>
+<li>vAlignStart</li>
+<li>vAlignCenter</li>
+<li>vAlignEnd</li>
+</ul>
+<h3 id="box-alignment-example"><span class="number">12.5</span> Box alignment example</h3>
+<p><figure id="AlignmentExampleWithVerticalTiles"><img src="Chapters/LayoutContruction/figures/AlignmentExampleWithVerticalTiles.png" alt="Nine tiles with different alignment options. " style="width: 60%"><figcaption><span class="number">Figure 12.4</span> Nine tiles with different alignment options. </figcaption></img></figure></p>
+
+<p>Let's see how this works in a small example as shown in Figure <a href="#AlignmentExampleWithVerticalTiles">12.4</a>. We will create a presenter with 9 subpresenters, which we call "tiles", laid out in 3 rows with 3 columns. Each subpresenter displays two label presenters with the labels 'One' and 'Two'. The presenter class defines nine instance variables. The names refer to the position of the content inside each tile.</p>
+
+<pre><code>SpPresenter &lt;&lt; #AlignmentExample
+	slots: {
+			 #northWest .
+			 #north .
+			 #northEast .
+			 #west .
+			 #center .
+			 #east .
+			 #southWest .
+			 #south .
+			 #southEast };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>As always, <code>initializePresenters</code> binds the instance variables that hold the subpresenters. It uses a helper method <code>newTile:</code> to create the tiles.</p>
+
+<pre><code>AlignmentExample &gt;&gt; initializePresenters
+
+	northWest := self newTile: [ :tileLayout |
+		tileLayout vAlignStart; hAlignStart ].
+	north := self newTile: [ :tileLayout |
+		tileLayout vAlignStart; hAlignCenter ].
+	northEast := self newTile: [ :tileLayout |
+		tileLayout vAlignStart; hAlignEnd ].
+	west := self newTile: [ :tileLayout |
+		tileLayout vAlignCenter; hAlignStart ].
+	center := self newTile: [ :tileLayout |
+		tileLayout vAlignCenter; hAlignCenter ].
+	east := self newTile: [ :tileLayout |
+		tileLayout vAlignCenter; hAlignEnd ].
+	southWest := self newTile: [ :tileLayout |
+		tileLayout vAlignEnd; hAlignStart ].
+	south := self newTile: [ :tileLayout |
+		tileLayout vAlignEnd; hAlignCenter ].
+	southEast := self newTile: [ :tileLayout |
+		tileLayout vAlignEnd; hAlignEnd ]</code></pre>
+
+<p>Note that the block argument of the <code>newTile:</code> message has a <code>titleLayout</code> argument, which is bound to an instance of <code>SpBoxLayout</code>. Inside the nine blocks, the alignment messages that we saw earlier are sent to configure the alignment inside the tiles. For instance, for the top-left tile called "northWest", <code>vAlignStart</code> is sent to align to the top side of the tile, and <code>hAlignStart</code> is sent to align to the left side of the tile.</p>
+
+<pre><code>AlignmentExample &gt;&gt; newTile: alignmentBlock
+
+	| tileLayout |
+	tileLayout := SpBoxLayout newTopToBottom
+		add: self newLabelOne;
+		add: self newLabelTwo;
+		yourself.
+	alignmentBlock value: tileLayout.
+	^ SpPresenter new
+		layout: tileLayout;
+		addStyle: 'tile';
+		yourself</code></pre>
+
+<p>The method <code>newTile:</code> uses two other helper methods:</p>
+
+<pre><code>AlignmentExample &gt;&gt; newLabelOne
+
+	^ self newLabel
+		label: 'One';
+		yourself</code></pre>
+
+<pre><code>AlignmentExample &gt;&gt; newLabelTwo
+
+	^ self newLabel
+		label: 'two';
+		yourself</code></pre>
+
+<p>The layout of the window is defined with:</p>
+
+<pre><code>AlignmentExample &gt;&gt; defaultLayout
+
+	^ SpBoxLayout newTopToBottom
+		spacing: 5;
+		add: (self rowWithAll: { northWest . north . northEast });
+		add: (self rowWithAll: { west . center . east });
+		add: (self rowWithAll: { southWest . south . southEast });
+		yourself</code></pre>
+
+<p>It answers a vertical box layout with three rows. It applies a spacing of 5 pixels between the rows. It sends <code>rowWithAll:</code> three times to create horizontal box layouts with three subpresenters each. <code>rowWithAll:</code> applies the same spacing of 5 pixels between the tiles in a row.</p>
+
+<pre><code>AlignmentExample &gt;&gt; rowWithAll: tiles
+
+	| row |
+	row := SpBoxLayout newLeftToRight
+		spacing: 5;
+		yourself.
+	tiles do: [ :tile | row add: tile ].
+	^ row</code></pre>
+
+<p>For demonstration purposes, we apply a stylesheet to display tiles with a white background and a black border.</p>
+
+<pre><code>AlignmentExample &gt;&gt; application
+
+	^ SpApplication new
+		addStyleSheetFromString: '.application [
+			.tile [
+				Container { #borderWidth: 2, #borderColor: #black },
+				Draw { #backgroundColor: #white } ]
+		]';
+		yourself</code></pre>
+
+<p>Now we have all the code we need to open the window with:</p>
+
+<pre><code>AlignmentExample new open</code></pre>
+
+<p>The result is shown in Figure <a href="#AlignmentExampleWithVerticalTiles">12.4</a>. Each tile displays the label presenters at another location. The label presenters are positioned vertically.</p>
+
+<p><figure id="AlignmentExampleWithHorizontalTiles"><img src="Chapters/LayoutContruction/figures/AlignmentExampleWithHorizontalTiles.png" alt="Nine tiles with the labels in a horizontal box layout." style="width: 60%"><figcaption><span class="number">Figure 12.5</span> Nine tiles with the labels in a horizontal box layout.</figcaption></img></figure></p>
+
+<h3 id="alignment-in-horizontal-box-layout"><span class="number">12.6</span> Alignment in horizontal box layout</h3>
+<p>Let's see what happens when we put the label presenters in a horizontal box layout.</p>
+
+<pre><code>AlignmentExample &gt;&gt; newTile: alignmentBlock
+
+	| tileLayout |
+	tileLayout := SpBoxLayout newLeftToRight
+		add: self newLabelOne;
+		add: self newLabelTwo;
+		yourself.
+	alignmentBlock value: tileLayout.
+	^ SpPresenter new
+		layout: tileLayout;
+		addStyle: 'tile';
+		yourself</code></pre>
+
+<p>Figure <a href="#AlignmentExampleWithHorizontalTiles">12.5</a> shows the result of opening the window again. Now the labels are positioned horizontally.</p>
+
+<h3 id="a-more-advanced-layout"><span class="number">12.7</span> A more advanced layout</h3>
+<p>Now that we know how to align nested presenters, let's have a look at a common use case. Suppose we like to arrange three buttons in a row of which two are positioned on the left side of the window, and one is positioned on the right side. That setup is very handy for button bars with buttons on the left side and on the right side, such as in the Repositories browser of Iceberg, as you can see in Figure <a href="#Repositories">12.6</a>. The bar has one button on the left side and two buttons on the right side.</p>
+
+<p><figure id="Repositories"><img src="Chapters/LayoutContruction/figures/Repositories.png" alt="Buttons on the left side and on the right side. " style="width: 60%"><figcaption><span class="number">Figure 12.6</span> Buttons on the left side and on the right side. </figcaption></img></figure></p>
+
+<p>Let's create a new presenter class called <code>ButtonBar</code>:</p>
+
+<pre><code>SpPresenter &lt;&lt; #ButtonBar
+	slots: { #button1 . #button2 . #button3 };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>We initialize the three buttons:</p>
+
+<pre><code>ButtonBar &gt;&gt; initializePresenters
+
+	button1 := self newButton.
+	button2 := self newButton.
+	button3 := self newButton.
+	button1 label: '1'.
+	button2 label: '2'.
+	button3 label: '3'</code></pre>
+
+<p>We use a layout that has two sublayouts, one for two buttons on the left, and one for the third button on the right. We apply a 15 pixel spacing between the buttons on the left.</p>
+
+<pre><code>ButtonBar &gt;&gt; defaultLayout
+
+	| left right |
+	left := SpBoxLayout newLeftToRight
+		spacing: 15;
+		add: button1 expand: false;
+		add: button2 expand: false;
+		yourself.
+	right := SpBoxLayout newLeftToRight
+		add: button3 expand: false;
+		yourself.
+	^ SpBoxLayout newLeftToRight
+		add: left;
+		add: right;
+		yourself</code></pre>
+
+<p>When opening this presenter with <code>ButtonBar new open</code>, we see the window shown in Figure <a href="#ThreeButtonsLeftAndRightWithoutAlignment">12.7</a>.</p>
+
+<p><figure id="ThreeButtonsLeftAndRightWithoutAlignment"><img src="Chapters/LayoutContruction/figures/ThreeButtonsLeftAndRightWithoutAlignment.png" alt="Three buttons split in a left and a right section." style="width: 60%"><figcaption><span class="number">Figure 12.7</span> Three buttons split in a left and a right section.</figcaption></img></figure></p>
+
+<p>The layout is not exactly what we had in mind. The third button is not positioned on the right side. That is where the alignment from the pevious section comes in. Let's change the <code>defaultLayout</code> method to align the button with the end of the right box layout. We add the message <code>hAlignEnd</code>:</p>
+
+<pre><code>ButtonBar &gt;&gt; defaultLayout
+
+	| left right |
+	left := SpBoxLayout newLeftToRight
+		spacing: 15;
+		add: button1 expand: false;
+		add: button2 expand: false;
+		yourself.
+	right := SpBoxLayout newLeftToRight
+		hAlignEnd;
+		add: button3 expand: false;
+		yourself.
+	^ SpBoxLayout newLeftToRight
+		add: left;
+		add: right;
+		yourself</code></pre>
+
+<p>When we open the presenter again, we see the window shown in Figure <a href="#ThreeButtonsLeftAndRightWithAlignment">12.8</a>. That is the layout we had in mind.</p>
+
+<p><figure id="ThreeButtonsLeftAndRightWithAlignment"><img src="Chapters/LayoutContruction/figures/ThreeButtonsLeftAndRightWithAlignment.png" alt="Three buttons with the third button aligned at the end." style="width: 60%"><figcaption><span class="number">Figure 12.8</span> Three buttons with the third button aligned at the end.</figcaption></img></figure></p>
+
+<p>This example shows that advanced layout requires nesting layouts to achieve the desired result.</p>
+
+<h3 id="example-setup-for-layout-reuse"><span class="number">12.8</span> Example setup for layout reuse</h3>
+<p>Before presenting some of the other layouts, we show an important aspect of Spec presenter composition: a composite can declare that it wants to reuse a presenter using a specific layout of a presenter.</p>
+
+<p>Consider our artificial example of a two-button UI. Let us use two layouts as follows. We define two class methods returning different layouts. Note that we could define such methods on the instance side to. We define them on the class side to be able to get the layouts without an instance of the class.</p>
+
+<pre><code>TwoButtons class &gt;&gt; buttonRow
+
+	^ SpBoxLayout newLeftToRight
+		add: #button1;
+		add: #button2;
+		yourself</code></pre>
+
+<pre><code>TwoButtons class &gt;&gt; buttonColumn
+
+	^ SpBoxLayout newTopToBottom
+		add: #button1;
+		add: #button2;
+		yourself</code></pre>
+
+<p>Note that when we define the layout at the class level, we use a symbol whose name is the corresponding instance variable. Hence we use <code>#button2</code> to refer to the presenter stored in the instance variable <code>button2</code>.</p>
+
+<h3 id="opening-with-a-layout"><span class="number">12.9</span> Opening with a layout</h3>
+<p>The message <code>openWithLayout:</code> lets you specify the layout you want to use when opening a presenter.
+Here are some examples:</p>
+
+<ul>
+<li><code>TwoButtons new openWithLayout: TwoButtons buttonRow</code> places the buttons in a row.</li>
+<li><code>TwoButtons new openWithLayout: TwoButtons buttonColumn</code> places them in a column.</li>
+</ul>
+<p>We define a <code>defaultLayout</code> method which invokes one of the previously defined methods so that the presenter can be opened without giving a layout.</p>
+
+<pre><code>TwoButtons &gt;&gt; defaultLayout
+
+	^ self class buttonRow</code></pre>
+
+<h3 id="better-design"><span class="number">12.10</span> Better design</h3>
+<p>We can do better and define two instance level methods to encapsulate the layout configuration.</p>
+
+<pre><code>TwoButtons &gt;&gt; beColumn
+
+	self layout: self class buttonColumn</code></pre>
+
+<pre><code>TwoButtons &gt;&gt; beRow
+
+	self layout: self class buttonRow</code></pre>
+
+<p>Then we can write the following script:</p>
+
+<pre><code>TwoButtons new
+	beColumn;
+	open</code></pre>
+
+<h3 id="specifying-a-layout-when-reusing-a-presenter"><span class="number">12.11</span> Specifying a layout when reusing a presenter</h3>
+<p>Having multiple layouts for a presenter implies that there is a way to specify the layout to use when a presenter is reused. This is simple. We use the method <code>layout:</code>. Here is an example. We create a new presenter named <code>ButtonAndListH</code>.</p>
+
+<pre><code>SpPresenter &lt;&lt; #ButtonAndListH
+	slots: { #buttons . #list };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<pre><code>ButtonAndListH &gt;&gt; initializePresenters
+
+	buttons := self instantiate: TwoButtons.
+	list := self newList.
+	list items: (1 to: 10)</code></pre>
+
+<pre><code>ButtonAndListH &gt;&gt; initializeWindow: aWindowPresenter
+
+	aWindowPresenter title: 'SuperWidget'</code></pre>
+
+<pre><code>ButtonAndListH &gt;&gt; defaultLayout
+
+	^ SpBoxLayout newLeftToRight
+		add: buttons;
+		add: list;
+		yourself</code></pre>
+
+<p>This <code>ButtonAndListH</code> class results in a SuperWidget window as shown in Figure <a href="#ButtonAndListH">12.9</a>. It reuses the <code>TwoButtons</code> presenter and places all three presenters in a horizontal order because the <code>TwoButtons</code> presenter  uses the <code>buttonRow</code> layout method by default.</p>
+
+<p><figure id="ButtonAndListH"><img src="Chapters/LayoutContruction/figures/ButtonAndListH.png" alt="Buttons placed horizontally." style="width: 50%"><figcaption><span class="number">Figure 12.9</span> Buttons placed horizontally.</figcaption></img></figure></p>
+
+<p>Alternatively, we can create <code>ButtonAndListV</code> class as a subclass of <code>ButtonAndListH</code> and only change the <code>initializePresenters</code> method as below. It specifies that the reused <code>buttons</code> widget should use the <code>buttonColumn</code> layout method, and hence results in the window shown in Figure <a href="#ButtonAndListV">12.10</a>.</p>
+
+<pre><code>ButtonAndListH &lt;&lt; #ButtonAndListV
+	slots: {};
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<pre><code>ButtonAndListV &gt;&gt; initializePresenters
+
+	super initializePresenters.
+	buttons beColumn</code></pre>
+
+<p><figure id="ButtonAndListV"><img src="Chapters/LayoutContruction/figures/ButtonAndListV.png" alt="Buttons placed vertically. " style="width: 50%"><figcaption><span class="number">Figure 12.10</span> Buttons placed vertically. </figcaption></img></figure></p>
+
+<h3 id="alternative-to-declare-subcomponent-layout-choice"><span class="number">12.12</span> Alternative to declare subcomponent layout choice</h3>
+<p>The alternative is to define a new method <code>defaultLayout</code> and to use the <code>add:layout:</code> message. We define a different presenter.</p>
+
+<pre><code>ButtonAndListH &lt;&lt; #ButtonAndListV2
+	slots: {};
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>We define a new <code>defaultLayout</code> method as follows:</p>
+
+<pre><code>ButtonAndListV2 &gt;&gt; defaultLayout
+
+	^ SpBoxLayout newTopToBottom
+		add: buttons layout: #buttonColumn;
+		add: list;
+		yourself</code></pre>
+
+<p>Note the use of the message <code>add:layout:</code> with the selector of the method returning the layout configuration: <code>#buttonColumn</code>. This is normal since we cannot access the state of a subcomponent at this moment. Let's open a window with:</p>
+
+<pre><code>ButtonAndListV2 new open</code></pre>
+
+<p>That opens the window shown in Figure <a href="#ButtonAndListV2">12.11</a>.</p>
+
+<p><figure id="ButtonAndListV2"><img src="Chapters/LayoutContruction/figures/ButtonAndListV2.png" alt="Buttons and list placed vertically. " style="width: 50%"><figcaption><span class="number">Figure 12.11</span> Buttons and list placed vertically. </figcaption></img></figure></p>
+
+<h3 id="dynamically-changing-a-layout"><span class="number">12.13</span> Dynamically changing a layout</h3>
+<p>It is possible to change the layout of a presenter dynamically, for example from an inspector. Open the presenter with:</p>
+
+<pre><code>ButtonAndListV new inspect open</code></pre>
+
+<p>That opens an inspector on the presenter, and a window with the buttons placed vertically as shown in Figure <a href="#ButtonAndListV">12.10</a>.</p>
+
+<p>Then select the 'buttons' instance variable in the inspector and do <code>self beRow</code>. The result is shown Figure <a href="#InteractiveTweaking">12.12</a>.</p>
+
+<p><figure id="InteractiveTweaking"><img src="Chapters/LayoutContruction/figures/InteractiveTweaking.png" alt="Tweaking and playing interactively with layouts from the inspector." style="width: 100%"><figcaption><span class="number">Figure 12.12</span> Tweaking and playing interactively with layouts from the inspector.</figcaption></img></figure></p>
+
+<h3 id="grid-layout-spgridlayout"><span class="number">12.14</span> Grid layout (SpGridLayout)</h3>
+<p>The class <code>SpGridLayout</code> arranges subpresenters in a grid according to certain layout properties such as:</p>
+
+<ul>
+<li>A position that is mandatory (<code>columnNumber@rowNumber</code>) and</li>
+<li>A span that can be added if desired (<code>columnExtension@rowExtension</code>)</li>
+</ul>
+<p><figure id="GridExample"><img src="Chapters/LayoutContruction/figures/GridExample.png" alt="A simple grid for a small form. " style="width: 60%"><figcaption><span class="number">Figure 12.13</span> A simple grid for a small form. </figcaption></img></figure></p>
+
+<p>The following example opens a window with a grid layout with several widgets, as shown in Figure <a href="#GridExample">12.13</a>.</p>
+
+<pre><code>SpPresenter &lt;&lt; #GridExample
+	slots: { #promptLabel . #nameText . #suggestionsText . #submitButton };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<pre><code>GridExample &gt;&gt; initializePresenters
+
+	promptLabel := self newLabel
+		label: 'Please enter your name and your suggestions.';
+		yourself.
+	nameText := self newTextInput.
+	suggestionsText := self newText.
+	submitButton := self newButton
+		label: 'Submit';
+		yourself</code></pre>
+
+<pre><code>GridExample &gt;&gt; defaultLayout
+
+	^ SpGridLayout new
+		add: #promptLabel at: 1@1 span: 3@1;
+		add: 'Name:' at: 1@2;
+		add: #nameText at: 2@2 span: 2@1;
+		add: 'Suggestions:' at: 1@3;
+		add: #suggestionsText at: 2@3 span: 2@1;
+		add: #submitButton at: 2@4 span: 1@1;
+		yourself</code></pre>
+
+<p>The layout defines a grid with three columns. The prompt 'Please enter your name and your suggestions.' spans the three columns. The labels of the two fields are put in the first column. The fields span the second and the third column. The button is put in the second column. The second field is a multi-line text field. That is why it is higher than the first field, which is a single-line text field.</p>
+
+<p>Here is a list of options:</p>
+
+<ul>
+<li><code>columnHomogeneous</code>: Whether presenters in a column will have the same size.</li>
+<li><code>rowHomogeneous</code>: Whether presenters a row will have the same size.</li>
+<li><code>colSpacing:</code>: The horizontal space between cells.</li>
+<li><code>rowSpacing:</code>: The vertical space between cells.</li>
+</ul>
+<p>The <code>defaultLayout</code> method of the example maybe hard to read, especially when the grid contains a lot of presenters. The reader has to compute the positions and the spans of the subpresenters. We can use a <code>SpGridLayoutBuilder</code> to make grid building easier. The class is not to be used directly. Instead send <code>build:</code> to a <code>SpGridLayout</code>. Below is an alternative <code>defaultlayout</code> method that produces the same result as before. By putting all presenters of one row on one line, it is clear that there are four rows, and it is clear which subpresenters are part of the same row.</p>
+
+<pre><code>GridExample &gt;&gt; defaultLayout
+
+	^ SpGridLayout build: [ :builder |
+		builder
+			add: #promptLabel span: 3@1; nextRow;
+			add: 'Name:'; add: #nameText span: 2@1; nextRow;
+			add: 'Suggestions:'; add: #suggestionsText span: 2@1; nextRow;
+			nextColumn; add: #submitButton ]</code></pre>
+
+<h3 id="paned-layout-sppanedlayout"><span class="number">12.15</span> Paned layout (SpPanedLayout)</h3>
+<p>A paned layout is like a box layout, but restricted to two children, which are the "panes". It places children in a vertical or horizontal fashion and adds a splitter in between, that the user can drag to resize the panes. The message <code>positionOfSlider:</code> indicates the original position of the splitter. It can be nil (then it defaults to 50%), or it can be a percentage (e.g. 70 percent), a <code>Float</code> (e.g. 0.7), or a <code>Fraction</code> (e.g. 7/10). We prefer simplicity and use floats because there are cheap and simple.</p>
+
+<p>Let's look at this simple example:</p>
+
+<pre><code>SpPresenter &lt;&lt; #PanedLayoutExample
+	slots: { #leftList . #rightList };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<pre><code>PanedLayoutExample &gt;&gt; initializePresenters
+
+	leftList := self newList
+		items: (1 to: 10);
+		yourself.
+	rightList := self newList
+		items: ($a to: $z);
+		yourself</code></pre>
+
+<pre><code>PanedLayoutExample &gt;&gt; defaultLayout
+
+	^ SpPanedLayout newLeftToRight
+		positionOfSlider: 0.7;
+		add: #leftList;
+		add: #rightList;
+		yourself</code></pre>
+
+<p>Let's open the presenter with:</p>
+
+<pre><code>PanedLayoutExample new open</code></pre>
+
+<p>Figure <a href="#PanedLayoutExample">12.14</a> shows the result. The left list takes 70% of the width of the window and the right list takes 30%.</p>
+
+<p><figure id="PanedLayoutExample"><img src="Chapters/LayoutContruction/figures/PanedLayoutExample.png" alt="A paned layout with two lists. " style="width: 50%"><figcaption><span class="number">Figure 12.14</span> A paned layout with two lists. </figcaption></img></figure></p>
+
+<h3 id="overlay-layout-spoverlaylayout"><span class="number">12.16</span> Overlay layout (SpOverlayLayout)</h3>
+<p>An overlay layout allows overlaying one presenter by other presenters.</p>
+
+<p>As an example, we will create a presenter that shows a button labeled 'Inbox', with a red indicator overlayed in the top-right corner (See Figure <a href="#OverlayLayoutExample">12.15</a>). A use case could be indicating that there are unread messages in the inbox.</p>
+
+<pre><code>SpPresenter &lt;&lt; #OverlayLayoutExample
+	slots: { #button . #indicator };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p><figure id="OverlayLayoutExample"><img src="Chapters/LayoutContruction/figures/OverlayLayoutExample.png" alt="An overlay layout with a button and a Roassal box. " style="width: 50%"><figcaption><span class="number">Figure 12.15</span> An overlay layout with a button and a Roassal box. </figcaption></img></figure></p>
+
+<p>The method <code>initializePresenters</code> creates the button and the indicator. The latter is a <code>SpRoassalPresenter</code>. We use a helper method to answer the shape that should be shown.</p>
+
+<pre><code>OverlayLayoutExample &gt;&gt; initializePresenters
+
+	button := self newButton
+		label: 'Inbox';
+		yourself.
+	indicator := (self instantiate: SpRoassalPresenter)
+		script: [ :view | view addShape: self indicatorShape ];
+		yourself</code></pre>
+
+<pre><code>OverlayLayoutExample &gt;&gt; indicatorShape
+
+	^ RSBox new
+			extent: 10@10;
+			color: Color red;
+			yourself</code></pre>
+
+<p>To make the structure of the layout clear, we have three methods. The <code>defaultLayout</code> is the layout of the window. For demonstration purposes, we put the button in the middle of the window. The button's dimensions are 50 by 50 pixels.</p>
+
+<pre><code>OverlayLayoutExample &gt;&gt; defaultLayout
+
+	| buttonVBox |
+	buttonVBox := SpBoxLayout newTopToBottom
+			vAlignCenter;
+			add: self buttonLayout height: 50;
+			yourself.
+	^ SpBoxLayout newLeftToRight
+			hAlignCenter;
+			add: buttonVBox width: 50;
+			yourself</code></pre>
+
+<p>The <code>defaultLayout</code> method sends the message <code>buttonLayout</code> to fetch the overlay layout for the button and the indicator.
+Let us define the method <code>buttonLayout</code> as follows:</p>
+
+<pre><code>OverlayLayoutExample &gt;&gt; buttonLayout
+
+	^ SpOverlayLayout new
+			child: button;
+			addOverlay: self indicatorLayout
+				withConstraints: [ :constraints |
+					constraints vAlignStart; hAlignEnd ];
+			yourself</code></pre>
+
+<p>The <code>child</code> is the presenter that we want to overlay with the indicator. It is possible to add multiple overlays. In this example, we have only one, which is defined by <code>indicatorLayout</code>. Note that <code>addOverlay:withConstraints:</code> is used to configure where the overlay presenter should be displayed. We display it in the top-right corner, by sending <code>vAlignStart</code> (top) and <code>hAlignEnd</code> (right).</p>
+
+<p>Now we define the method <code>indicatorLayout</code> as follows:</p>
+
+<pre><code>OverlayLayoutExample &gt;&gt; indicatorLayout
+
+	| counterVBox |
+	counterVBox := SpBoxLayout newTopToBottom
+			add: indicator withConstraints: [ :constraints |
+				constraints height: 12; padding: 2 ];
+			yourself.
+	^ SpBoxLayout newLeftToRight
+			add: counterVBox withConstraints: [ :constraints |
+				constraints width: 12; padding: 2 ];
+			yourself</code></pre>
+
+<p>The <code>indicatorLayout</code> method defines the layout for the indicator. To apply a vertical and a horizontal padding, we have to wrap a vertical box layout with a horizontal box layout. We could have wrapped a horizontal box layout with a vertical box layout to achieve the same result. We apply a padding of 2 pixels so that the indicator does not overlap the border of the button.</p>
+
+<p>With all these methods in place, we can open the presenter.</p>
+
+<pre><code>OverlayLayoutExample new open.</code></pre>
+
+<p>That opens the window shown in Figure <a href="#OverlayLayoutExample">12.15</a>.</p>
+
+<h3 id="conclusion-8"><span class="number">12.17</span> Conclusion</h3>
+<p>Spec offers several predefined layouts. Probably new ones will be added but in a compatible way. An important closing point is that layouts can be dynamically composed. It means that you are able to design applications that can adapt to specific conditions.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="cha_managing_windows.html">← Managing windows</a>
+        <a class="next" rel="next" href="cha_dynamic_presenter.html">Dynamic presenters →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Application Building with Spec 2.0 · K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano</p>
+  </footer>
+</body>
+</html>

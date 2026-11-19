@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Using Athens and Roassal in Spec</title>
+  <meta name="description" content="">
+  <meta name="author" content="K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Application Building with Spec 2.0</a>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <details open>
+        <summary>Contents</summary>
+        <ol>
+          
+          <li>
+            <a href="chaintroductions.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="all-spec-in-one-example.html"><span class="number">2</span> All Spec in One Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chaSmallExample.html"><span class="number">3</span> A 10 min small example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chacasestudyone.html"><span class="number">4</span> Most of Spec in one example</a>
+            
+          </li>
+          
+          <li>
+            <a href="spec-essentials.html"><span class="number">5</span> Spec Essentials</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_core.html"><span class="number">6</span> Spec core in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_testing.html"><span class="number">7</span> Testing Spec applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_fundamentals_of_spec.html"><span class="number">8</span> The dual aspects of presenters: Domain and interaction model</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_reuse.html"><span class="number">9</span> Reuse and composition at work</a>
+            
+          </li>
+          
+          <li>
+            <a href="lists-tables-and-trees.html"><span class="number">10</span> Lists, tables and trees</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_managing_windows.html"><span class="number">11</span> Managing windows</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_layout.html"><span class="number">12</span> Layouts</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_dynamic_presenter.html"><span class="number">13</span> Dynamic presenters</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_mailapp.html"><span class="number">14</span> A Concrete Case: A Mail Application</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_menus.html"><span class="number">15</span> Menubar, Toolbar, Status Bar, and Context Menus</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-transmissions-and-ports.html"><span class="number">16</span> Using transmissions and ports</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_style.html"><span class="number">17</span> Styling applications</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="using-athens-and-roassal-in-spec.html" aria-current="page"><span class="number">18</span> Using Athens and Roassal in Spec</a>
+            
+            <ol>
+              
+              <li><a href="#introduction"><span class="number">18.1</span> Introduction</a></li>
+              
+              <li><a href="#direct-integration-of-athens-with-spec"><span class="number">18.2</span> Direct integration of Athens with Spec</a></li>
+              
+              <li><a href="#roassal-spec-integration"><span class="number">18.3</span> Roassal Spec integration</a></li>
+              
+              <li><a href="#sproassalpresenter"><span class="number">18.4</span> SpRoassalPresenter</a></li>
+              
+              <li><a href="#hello-world-in-athens-via-morphic-objects"><span class="number">18.5</span> Hello world in Athens via Morphic objects</a></li>
+              
+              <li><a href="#handling-resizing"><span class="number">18.6</span> Handling resizing</a></li>
+              
+              <li><a href="#using-the-morph-with-spec"><span class="number">18.7</span> Using the morph with Spec</a></li>
+              
+              <li><a href="#conclusion-14"><span class="number">18.8</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="customizing-your-inspector.html"><span class="number">19</span> Customizing your Inspector</a>
+            
+          </li>
+          
+          <li>
+            <a href="working-with-commands.html"><span class="number">20</span> Working with Commands</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_commander.html"><span class="number">21</span> Commander: A powerful and simple command framework</a>
+            
+          </li>
+          
+        </ol>
+      </details>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="using-athens-and-roassal-in-spec"><span class="number">18</span> Using Athens and Roassal in Spec</h2>
+<p>A part of this chapter was originally written by Renaud de Villemeur. We thank him for his contribution. It shows how you can integrate vector graphic drawing within Spec components. This chapter shows how you can use Athens (a canvas using Cairo as backend) to draw using a low-level API on a canvas inside a Spec presenter. It then shows how you can use Roassal (a visualization engine) within a Spec presenter. Finally we show how you can integrate into a Spec component a Morph that draws into a Athens canvas.</p>
+
+<h3 id="introduction"><span class="number">18.1</span> Introduction</h3>
+<p>There are two different computer graphics: vector and raster graphics. Raster graphics represent images as a collection of pixels. Vector graphics uses geometric primitives such as points, lines, curves, or polygons to represent images. These primitives are created using mathematical equations.</p>
+
+<p>Both types of computer graphics have advantages and disadvantages. The advantages of vector graphics over raster are:</p>
+
+<ul>
+<li>smaller size,</li>
+<li>ability to zoom indefinitely,</li>
+<li>moving, scaling, filling, and rotating do not degrade the quality of an image.</li>
+</ul>
+<p>Ultimately, pictures on a computer are displayed on a screen with a specific display dimension. However, while raster graphics doesn't scale very well when the resolution differs too much from the picture resolution, vector graphics are rasterized to fit the display they will appear on. Rasterization is taking an image described in a vector graphics format and transforming it into a set of pixels for output on a screen.</p>
+
+<p>Morphic is using a raster approach. It converts the canvas contents into a pixel based structure (the class <code>Form</code>). Most graphics in Pharo are raster graphics: <code>Form</code> the low-level abstraction is used by Morphic.  Pharo, however, offers a vector graphics alternative. For this, it uses and exposes Cairo to the user.
+Two APIs are available:</p>
+
+<ul>
+<li>the older one, called Athens, is protecting more the developers from possible mistakes.</li>
+<li>Alexandrie is a new and more low-level API. It has been more aggressively optimized. It is the foundation for Bloc the replacement of Morphic.</li>
+</ul>
+<p>When you integrate Athens with Spec, you'll use its rendering engine to create your picture. It is transformed into a <code>Form</code> and displayed on the screen.</p>
+
+<h3 id="direct-integration-of-athens-with-spec"><span class="number">18.2</span> Direct integration of Athens with Spec</h3>
+<p>We first create a presenter named <code>AthensExamplePresenter</code>. This is the presenter that will support the actual rendering using Athens.</p>
+
+<pre><code>SpPresenter &lt;&lt; #AthensExamplePresenter
+	slots: { #athensPresenter };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>We define a simple layout to place the <code>athensPresenter</code>.</p>
+
+<pre><code>AthensExamplePresenter &gt;&gt; defaultLayout
+
+	^ SpBoxLayout newTopToBottom
+			add: athensPresenter;
+			yourself</code></pre>
+
+<p>This presenter creates and configures an <code>SpAthensPresenter</code> instance as follows:</p>
+
+<pre><code>AthensExamplePresenter &gt;&gt; initializePresenters
+
+	athensPresenter := self instantiate: SpAthensPresenter.
+	athensPresenter surfaceExtent: 600@400.
+	athensPresenter drawBlock: [ :canvas | self render: canvas ]</code></pre>
+
+<p>It configures the <code>AthensPresenter</code> to draw with the <code>render:</code> message.
+The <code>render:</code> method is a typical sequence of instructions to configure the canvas.</p>
+
+<pre><code>AthensExamplePresenter &gt;&gt; render: canvas
+	| surface font |
+	surface := canvas surface.
+	font := LogicalFont familyName: 'Source Sans Pro' pointSize: 10.
+	surface clear.
+	canvas 
+		setPaint: ((LinearGradientPaint from: 0@0  to: surface extent) 
+		colorRamp: {  0 -&gt; Color white. 1 -&gt; Color black }).
+	canvas drawShape: (0@0 extent: surface extent).
+	canvas setFont: font.
+	canvas setPaint: Color pink.
+	canvas 
+		pathTransform translateX: 20 Y: 20 + (font getPreciseAscent); 
+		scaleBy: 2; 
+		rotateByDegrees: 25.
+	canvas drawString: 'Hello Athens in Pharo/Morphic'</code></pre>
+
+<p>Executing <code>AthensExamplePresenter new open</code> produces Figure <a href="#athens3">18.1</a>.</p>
+
+<p><figure id="athens3"><img src="Chapters/AthensRoassal/figures/athens.png" alt="A Spec presenter using an  SpAthensPresenter . " class="athens3" style="width: 60%"><figcaption><span class="number">Figure 18.1</span> A Spec presenter using an <code>SpAthensPresenter</code>. </figcaption></img></figure></p>
+
+<p>This example is simple because we did not cover the rendering that may have to be invalidated if something changes, but it shows the key aspect of the architecture. You can do the same using the Alexandrie new canvas based on Cairo.
+Notice that here we directly draw on the canvas without manipulating Morphic objects. This is what we will do in a following section.</p>
+
+<h3 id="roassal-spec-integration"><span class="number">18.3</span> Roassal Spec integration</h3>
+<p>In this section, we describe how you can define a Spec presenter that lets you draw Roassal visualisations.</p>
+
+<p>Imagine that you want to draw using Roassal some shapes. Here we draw two boxes. But you can also draw paths and other graphical element.</p>
+
+<pre><code>| c blueBox redBox |
+c := RSCanvas new.
+blueBox := RSBox new
+	size: 80;
+	color: #blue.
+redBox := RSBox new
+	size: 80;	
+	color: #red.
+c
+	add: blueBox;
+	add: redBox.
+blueBox translateBy: 40 @ 20.
+c</code></pre>
+
+<h4 id="using-sproassalinspectorpresenter"><span class="number">18.3.1</span> Using <code>SpRoassalInspectorPresenter</code>.</h4>
+<p>Building a Roassal supporting Spec presenter is as simple as creating an instance of <code>SpRoassalInspectorPresenter</code> and passing it the canvas on which we draw the Roassal visualization.</p>
+
+<p><figure id="roassalSpec"><img src="Chapters/AthensRoassal/figures/roassalTwoBoxes.png" alt="A Spec application with an Athens presenter. " class="roassalSpec" style="width: 60%"><figcaption><span class="number">Figure 18.2</span> A Spec application with an Athens presenter. </figcaption></img></figure></p>
+
+<p>This is what the following expression is doing <code>SpRoassalInspectorPresenter new canvas: c; open</code></p>
+
+<p>Executing the following snippet should open a Spec window with a presenter inside as shown in Figure <a href="#roassalSpec">18.2</a>.</p>
+
+<pre><code>| c blueBox redBox |
+c := RSCanvas new.
+blueBox := RSBox new
+	size: 80;
+	color: #blue.
+redBox := RSBox new
+	 size: 80;	
+	 color: #red.
+c
+	add: blueBox;
+	add: redBox.
+blueBox translateBy: 40 @ 20.
+
+SpRoassalInspectorPresenter new canvas: c; open</code></pre>
+
+<h3 id="sproassalpresenter"><span class="number">18.4</span> SpRoassalPresenter</h3>
+<p>Spec proposes a presenter dedicated to Roassal visualizations.
+Such a presenter is called <code>SpRoassalPresenter</code> and you can use it using the <code>newRoassal</code> message in an <code>initializePresenter</code> method.
+Here is how the <code>SpColorPicker</code> uses it.</p>
+
+<pre><code>SpColorPicker &gt;&gt; defaultLayout
+
+	| sp sp2 |
+	sp := self newRoassal.
+	sp2 := self newPresenter.
+	sp2 layout: SpBoxLayout newTopToBottom.
+	sp canvas color: Color black translucent.
+	
+	^ SpBoxLayout newTopToBottom
+		add: colorMap height: 150;
+		add: colorSlider height: 25;
+		add: alphaSlider height: 25;
+		add: colorCodePresenter expand: false;
+		add: sp2 height: 10;
+		add: sp height: 1;
+		add: paletteChooser;
+		spacing: 1;
+		yourself.</code></pre>
+
+<p>The main API of <code>SpRoassalPresenter</code> are the method <code>canvas</code> and <code>script</code> as shown in the following test.
+You can interact with a Roassal canvas normally and the result gets displayed in the Roassal presenter.</p>
+
+<pre><code>testBasic
+	| spec value window |
+	self isValid ifFalse: [ ^ self ].
+	spec := SpRoassalPresenter new.
+	window := spec asWindow open.
+	value := 0.
+
+	spec script: [ :view | view addShape: RSBox new. value := value + 1 ].
+	self assert: value equals: 1.
+	spec script: [ :view | view addShape: RSBox new. value := 0 ].
+	self assert: value equals: 0.
+	window close</code></pre>
+
+<h3 id="hello-world-in-athens-via-morphic-objects"><span class="number">18.5</span> Hello world in Athens via Morphic objects</h3>
+<p>The Pharo development team is actively working to replace Morphic by Bloc a new graphical stack.
+Still we believe that the following approach is worth documenting. We show how we can define a Morph that draws inside a athens canvas and how such a morph can be rendered inside a Spec component.</p>
+
+<p>We show how to use Athens directly integrated with Morphic. This is why we create a <code>Morph</code> subclass. The expression <code>AthensHello new openInWindow</code> will display the same contents as the one of Figure <a href="#athens3">18.1</a>.</p>
+
+<p>First, we define a class which inherits from <code>Morph</code>:</p>
+
+<pre><code>Morph &lt;&lt; #AthensHello
+	slots: { #surface };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>During the initialization phase, we create an Athens surface:</p>
+
+<pre><code>AthensHello &gt;&gt; initialize
+
+	super initialize.
+	self extent: self defaultExtent.
+	surface := AthensCairoSurface extent: self extent</code></pre>
+
+<p>where <code>defaultExtent</code> is simply defined as</p>
+
+<pre><code>AthensHello &gt;&gt; defaultExtent
+
+	^ 400@400</code></pre>
+
+<p>The <code>drawOn:</code> method, mandatory in <code>Morph</code> subclasses, asks Athens to render its drawing and it will then display it in a Morphic canvas as a <code>Form</code> (a bitmap picture).</p>
+
+<pre><code>AthensHello &gt;&gt; drawOn: aCanvas
+
+	self renderAthens.
+	surface displayOnMorphicCanvas: aCanvas at: bounds origin</code></pre>
+
+<p>Our actual Athens code is located in the <code>renderAthens</code> method, and the result is stored in the <code>surface</code> instance variable.</p>
+
+<pre><code>AthensHello &gt;&gt; renderAthens
+
+	| font |
+	font := LogicalFont familyName: 'Arial' pointSize: 10.
+	surface drawDuring: [ :canvas |
+		surface clear.
+		canvas setPaint: ((LinearGradientPaint from: 0@0  to: self extent) colorRamp: {  0 -&gt; Color white. 1 -&gt; Color black }).
+		canvas drawShape: (0@0 extent: self extent).
+		canvas setFont: font.
+		canvas setPaint: Color pink.
+		canvas pathTransform translateX: 20 Y: 20 + (font getPreciseAscent); scaleBy: 2; rotateByDegrees: 25.
+		canvas drawString: 'Hello Athens in Pharo/Morphic' ]</code></pre>
+
+<p>Open the morph in a window with:</p>
+
+<pre><code>AthensHello new openInWindow</code></pre>
+
+<h3 id="handling-resizing"><span class="number">18.6</span> Handling resizing</h3>
+<p>You can create the window and see a nice gradient with a greeting text. You will notice, however, that when resizing the window, the Athens content is not resized. To fix this, we need one extra method.</p>
+
+<pre><code>AthensHello &gt;&gt; extent: aPoint
+
+	| newExtent |
+	newExtent := aPoint rounded.
+	(bounds extent closeTo: newExtent) ifTrue: [ ^ self ].
+	bounds := bounds topLeft extent: newExtent.
+	surface := AthensCairoSurface extent: newExtent.
+	self layoutChanged.
+	self changed</code></pre>
+
+<p>Congratulations, you have now created your first morphic window whose contents is rendered using Athens.
+Now we show how to integrate this morph object into a Spec presenter.</p>
+
+<h3 id="using-the-morph-with-spec"><span class="number">18.7</span> Using the morph with Spec</h3>
+<p>Now that we have a morph, we can use it in a presenter, instance of the class <code>SpMorphPresenter</code>, as follows.</p>
+
+<pre><code>SpPresenter &lt;&lt; #AthensHelloPresenter
+	slots: { #morphPresenter };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>We define a basic layout so that Spec knows where to place it.</p>
+
+<pre><code>AthensHelloPresenter &gt;&gt; defaultLayout
+
+	^ SpBoxLayout newTopToBottom
+			add: morphPresenter;
+			yourself</code></pre>
+
+<p>In <code>initializePresenters</code> we wrap the morph in a <code>SpMorphPresenter</code>.</p>
+
+<pre><code>AthensHelloPresenter &gt;&gt; initializePresenters
+
+	morphPresenter := self instantiate: SpMorphPresenter.
+	morphPresenter morph: AthensHello new</code></pre>
+
+<p>When we open the presenter it displays the morph:</p>
+
+<pre><code>AthensHelloPresenter new open</code></pre>
+
+<h3 id="conclusion-14"><span class="number">18.8</span> Conclusion</h3>
+<p>This chapter illustrated clearly that Spec can take advantage of canvas-related operations such as those proposed by Athens or Roassal to open the door to specific visuals.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="cha_style.html">← Styling applications</a>
+        <a class="next" rel="next" href="customizing-your-inspector.html">Customizing your Inspector →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Application Building with Spec 2.0 · K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,22 @@
+Here are some guidelines about writing style and spelling that resulted from discussion among Stéphane and Koen.
+
+* Use American English, e.g. "colors", not "colours". Pharo's class names and method selectors are written in American English too.
+* Write "Spec 2.0" only when needed, e.g. when comparing to Spec 1.0. If there is no ambiguity, write "Spec".
+* Use the Pharo Light theme to make screenshots.
+* Write "backend", not "back-end" or "back end".
+* Write "subpresenter", not "sub-presenter".
+* Methods without comment have an empty line after the method selector.
+* Methods do not have a period on the last line.
+* Do not put a space before a semicolon in a cascaded message.
+* Write "Pharo image", not "Pharo Image.
+* Do not use protocol references because they are not useful and may change.
+* Write "Section 6.1", not "section 6.1".
+* Write "Figure 6-2", not "figure 6-2".
+* Do not use a prefix "Sp" for example class names because the prefix is reserved for Spec classes.
+* Use sentence case for headers, e.g. "Editable tables", not "Editable Tables".
+* Use sentence case for chapter titles, e.g. "Testing Spec applications", not "Testing Spec Applications".
+* Start a note with "**Note.**".
+* I love musicians such as Metallica (it means that I do), I love musicians like Metallica (it does not mean I like Metallica).
+* For method `SpPresenter>>methodName` and not `SpPresenter>>#methodName`
+* Do not write a space before a colon, e.g. "the following code:", not "the following code :". In French one would write the space, but not in English.
+* Use tabs to indent code.

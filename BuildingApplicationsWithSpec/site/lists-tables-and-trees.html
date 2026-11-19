@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lists, tables and trees</title>
+  <meta name="description" content="">
+  <meta name="author" content="K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Application Building with Spec 2.0</a>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <details open>
+        <summary>Contents</summary>
+        <ol>
+          
+          <li>
+            <a href="chaintroductions.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="all-spec-in-one-example.html"><span class="number">2</span> All Spec in One Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chaSmallExample.html"><span class="number">3</span> A 10 min small example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chacasestudyone.html"><span class="number">4</span> Most of Spec in one example</a>
+            
+          </li>
+          
+          <li>
+            <a href="spec-essentials.html"><span class="number">5</span> Spec Essentials</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_core.html"><span class="number">6</span> Spec core in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_testing.html"><span class="number">7</span> Testing Spec applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_fundamentals_of_spec.html"><span class="number">8</span> The dual aspects of presenters: Domain and interaction model</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_reuse.html"><span class="number">9</span> Reuse and composition at work</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="lists-tables-and-trees.html" aria-current="page"><span class="number">10</span> Lists, tables and trees</a>
+            
+            <ol>
+              
+              <li><a href="#lists"><span class="number">10.1</span> Lists</a></li>
+              
+              <li><a href="#controlling-item-display"><span class="number">10.2</span> Controlling item display</a></li>
+              
+              <li><a href="#decorating-elements"><span class="number">10.3</span> Decorating elements</a></li>
+              
+              <li><a href="#about-single-multiple-selection"><span class="number">10.4</span> About single/multiple selection</a></li>
+              
+              <li><a href="#drag-and-drop"><span class="number">10.5</span> Drag and drop</a></li>
+              
+              <li><a href="#activation-clicks"><span class="number">10.6</span> Activation clicks</a></li>
+              
+              <li><a href="#filtering-lists"><span class="number">10.7</span> Filtering lists</a></li>
+              
+              <li><a href="#selectable-filtering-lists"><span class="number">10.8</span> Selectable filtering lists</a></li>
+              
+              <li><a href="#component-lists"><span class="number">10.9</span> Component lists</a></li>
+              
+              <li><a href="#trees"><span class="number">10.10</span> Trees</a></li>
+              
+              <li><a href="#tables"><span class="number">10.11</span> Tables</a></li>
+              
+              <li><a href="#first-table"><span class="number">10.12</span> First table</a></li>
+              
+              <li><a href="#sorting-headers"><span class="number">10.13</span> Sorting headers</a></li>
+              
+              <li><a href="#editable-tables"><span class="number">10.14</span> Editable tables</a></li>
+              
+              <li><a href="#tree-tables"><span class="number">10.15</span> Tree tables</a></li>
+              
+              <li><a href="#conclusion-6"><span class="number">10.16</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="cha_managing_windows.html"><span class="number">11</span> Managing windows</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_layout.html"><span class="number">12</span> Layouts</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_dynamic_presenter.html"><span class="number">13</span> Dynamic presenters</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_mailapp.html"><span class="number">14</span> A Concrete Case: A Mail Application</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_menus.html"><span class="number">15</span> Menubar, Toolbar, Status Bar, and Context Menus</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-transmissions-and-ports.html"><span class="number">16</span> Using transmissions and ports</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_style.html"><span class="number">17</span> Styling applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-athens-and-roassal-in-spec.html"><span class="number">18</span> Using Athens and Roassal in Spec</a>
+            
+          </li>
+          
+          <li>
+            <a href="customizing-your-inspector.html"><span class="number">19</span> Customizing your Inspector</a>
+            
+          </li>
+          
+          <li>
+            <a href="working-with-commands.html"><span class="number">20</span> Working with Commands</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_commander.html"><span class="number">21</span> Commander: A powerful and simple command framework</a>
+            
+          </li>
+          
+        </ol>
+      </details>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="lists-tables-and-trees"><span class="number">10</span> Lists, tables and trees</h2>
+<p>An important part of user interfaces is displaying lists of data. Such lists can be structured as tables, plain lists, but also trees supporting the nesting of data.</p>
+
+<p>Spec provides three main presenters: <code>SpListPresenter</code>, <code>SpTreePresenter</code>, and <code>SpTablePresenter</code>. In addition, it offers <code>SpComponentListPresenter</code> which allows one to embed any presenter in a list. In this chapter, we present some of the functionality of these presenters.</p>
+
+<h3 id="lists"><span class="number">10.1</span> Lists</h3>
+<p>Creating a list is as simple as instantiating a <code>SpListPresenter</code> and specifying a list of items that the list should display.
+The following script illustrates this and the result is shown in Figure <a href="#figSimpleList">10.1</a>.</p>
+
+<pre><code>SpListPresenter new
+	items: Collection withAllSubclasses;
+	open</code></pre>
+
+<p><figure id="figSimpleList"><img src="Chapters/ListTreeTable/figures/List1Simple.png" alt="A simple list showing class names. " style="width: 50%"><figcaption><span class="number">Figure 10.1</span> A simple list showing class names. </figcaption></img></figure></p>
+
+<p>We can change the header title of the list using the message <code>headerTitle:</code>. The header title can be hidden using the message <code>hideHeaderTitle</code>.</p>
+
+<h3 id="controlling-item-display"><span class="number">10.2</span> Controlling item display</h3>
+<p>By default a list item is displayed using the result of the <code>asStringOrText</code> message sent to the item.
+We can configure a list to apply a block to control the display of each item using the message <code>display:</code>.
+The following script configures a list presenter to display the name of the methods of the class <code>Point</code> instead of showing the result of <code>asStringOrText</code>. See Figure <a href="#figSimpleList2">10.2</a>.</p>
+
+<pre><code>SpListPresenter new
+	items: Point methods;
+	display: [ :item | item selector ];
+	open</code></pre>
+
+<p><figure id="figSimpleList2"><img src="Chapters/ListTreeTable/figures/List1SimpleDisplay.png" alt="A simple list controlling the way items are displayed." class="figSimpleList2" style="width: 50%"><figcaption><span class="number">Figure 10.2</span> A simple list controlling the way items are displayed.</figcaption></img></figure></p>
+
+<p>We can sort the items using the message <code>sortingBlock:</code>.</p>
+
+<pre><code>SpListPresenter new
+	items: Point methods;
+	display: [ :item | item selector ];
+	sortingBlock: [ :a :b | a selector &lt; b selector ];
+	open</code></pre>
+
+<h3 id="decorating-elements"><span class="number">10.3</span> Decorating elements</h3>
+<p>We can configure the way items are displayed in a more fine-grained way. The following example illustrates it. We can control the icon associated with the item using the message <code>displayIcon:</code>, and the item color using the message <code>displayColor:</code>. The format (bold, italic, underline) can be controlled by the corresponding messages <code>displayItalic:</code>, <code>displayBold:</code> and <code>displayUnderline:</code>. See Figure <a href="#figSimpleListDecorated">10.3</a>.</p>
+
+<pre><code>| presenter |
+presenter := SpListPresenter new.
+presenter
+	items: Collection withAllSubclasses;
+	displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
+	displayColor: [ :aClass |
+		(aClass name endsWith: 'Set')
+			ifTrue: [ Color green ]
+			ifFalse: [ presenter theme textColor ] ];
+	displayItalic: [ :aClass | aClass isAbstract ];
+	displayBold: [ :aClass | aClass hasSubclasses ];
+	displayUnderline: [ :aClass | aClass numberOfMethods &gt; 10 ];
+	open</code></pre>
+
+<p><figure id="figSimpleListDecorated"><img src="Chapters/ListTreeTable/figures/List1Decorated.png" alt="A decorated list: icons, text styling, and color." style="width: 50%"><figcaption><span class="number">Figure 10.3</span> A decorated list: icons, text styling, and color.</figcaption></img></figure></p>
+
+<h3 id="about-single-multiple-selection"><span class="number">10.4</span> About single/multiple selection</h3>
+<p>Lists support multiple selections. The message <code>beMultipleSelection</code> controls that aspect.</p>
+
+<pre><code>SpListPresenter new
+	items: Collection withAllSubclasses;
+	beMultipleSelection;
+	open</code></pre>
+
+<p>Since selection can hold multiple items, there is an impact on the protocol to react to selection changes. Indeed, lists, filtering lists, trees, and tables offer the <code>whenSelectionChangedDo:</code> API and not <code>whenSelectedItemDo:</code>. The argument of the block is an instance of <code>SpSingleSelectionMode</code>, <code>SpMultipleSelectionMode</code>, <code>SpTreeMultipleSelectionMode</code> or <code>SpTreeSingleSelectionMode</code>.</p>
+
+<p>Here is a typical use case of the method <code>whenSelectionChangedDo:</code>.</p>
+
+<pre><code>connectPresenters
+
+	changesTree whenSelectionChangedDo: [ :selection | | diff |
+		diff := selection selectedItem
+			ifNil: [ '' ]
+			ifNotNil: [ :item | self buildDiffFor: item ].
+		textArea text: diff ]</code></pre>
+
+<h3 id="drag-and-drop"><span class="number">10.5</span> Drag and drop</h3>
+<p>Lists and other container structures support drag and drop.
+The following script shows how to configure two lists to support dragging from one and dropping in another.</p>
+
+<pre><code>| list1 list2 |
+list1 := SpListPresenter new.
+list1
+	items: #( 'abc' 'def' 'xyz' );
+	dragEnabled: true.
+
+list2 := SpListPresenter new.
+list2 dropEnabled: true;
+	wantsDrop: [ :transfer | transfer passenger
+		allSatisfy: [:each | each isString ] ];
+	acceptDrop: [ :transfer | list2 items: list2 items , transfer passenger ].
+
+SpPresenter new
+	layout: (SpBoxLayout newLeftToRight
+		add: list1;
+		add: list2;
+		yourself);
+	open</code></pre>
+
+<p>The following script illustrates the API.</p>
+
+<ul>
+<li><code>dragEnabled:</code> configures the receiver to allow dragging of its items.</li>
+<li><code>dropEnabled:</code> configures the receiver to accept dropped items.</li>
+<li><code>wantsDrop: [ :transfer | transfer passenger allSatisfy: [:each | each isString ]</code>. With the message <code>wantsDrop:</code> we can specify a predicate to accept dropped elements.</li>
+<li><code>acceptDrop: [ :transfer | list2 items: list2 items , transfer passenger ]</code>. The message <code>acceptDrop:</code> specifies the treatment performed once the dropped items are accepted.</li>
+</ul>
+<h3 id="activation-clicks"><span class="number">10.6</span> Activation clicks</h3>
+<p>An element on a list can be <i>activated</i>, meaning it will trigger an event to execute an action on it. Note that an activation is different than a selection: one can <i>select</i> an element without activating it. The message <code>activateOnDoubleClick</code> configures the list to react to double click, while its counterpart is <code>activateOnSingleClick</code>.</p>
+
+<h3 id="filtering-lists"><span class="number">10.7</span> Filtering lists</h3>
+<p>Lists can also be filtered as shown in Figure <a href="#figFiltering">10.4</a>. The following script shows the use of the <code>SpFilteringListPresenter</code>.</p>
+
+<pre><code>SpFilteringListPresenter new
+	items: Collection withAllSubclasses;
+	open;
+	withWindowDo: [ :window |
+		window title: 'SpFilteringListPresenter example' ]</code></pre>
+
+<p><figure id="figFiltering"><img src="Chapters/ListTreeTable/figures/FilteringList.png" alt="A filtering list with bottom filter. " style="width: 50%"><figcaption><span class="number">Figure 10.4</span> A filtering list with bottom filter. </figcaption></img></figure></p>
+
+<p>The following script shows that the filter can be placed at the top.</p>
+
+<pre><code>SpFilteringListPresenter new
+	items: Collection withAllSubclasses;
+	openWithLayout: SpFilteringListPresenter topLayout;
+	withWindowDo: [ :window |
+		window title: 'SpFilteringListPresenter example' ]</code></pre>
+
+<p>Note that a filter can be declared upfront using the message <code>applyFilter:</code>.</p>
+
+<pre><code>SpFilteringListPresenter new
+	items: Collection withAllSubclasses;
+	openWithLayout: SpFilteringListPresenter topLayout;
+	applyFilter: 'set';
+	withWindowDo: [ :window |
+		window title: 'SpFilteringListPresenter prefiltered example' ]</code></pre>
+
+<h3 id="selectable-filtering-lists"><span class="number">10.8</span> Selectable filtering lists</h3>
+<p>Often lists are used to select items. This is what the class <code>SpFilteringSelectableListPresenter</code> offers. In addition to being able to filter items, it lets the user select items by ticking them as shown by Figure <a href="#figSelectable">10.5</a>.</p>
+
+<p><figure id="figSelectable"><img src="Chapters/ListTreeTable/figures/SelectableList.png" alt="A selectable filtering list with a filter at the top. " style="width: 50%"><figcaption><span class="number">Figure 10.5</span> A selectable filtering list with a filter at the top. </figcaption></img></figure></p>
+
+<p>The following script illustrates such a selectable list with filter.</p>
+
+<pre><code>(SpFilteringSelectableListPresenter new
+	items: Collection withAllSubclasses;
+	layout: SpFilteringListPresenter topLayout;
+	applyFilter: 'set';
+	asWindow)
+		title: 'SpFilteringSelectableListPresenter example';
+		open</code></pre>
+
+<h3 id="component-lists"><span class="number">10.9</span> Component lists</h3>
+<p>While the lists we saw until now are homogeneous in the sense that they all display strings, Spec offers the possibility to display a list of presenters. It means that elements in the list do not have the same size and can contain other presenters.</p>
+
+<p>This lets developers produce advanced user interfaces such as the one of the report builder of the ModMoose tool suite shown in Figure <a href="#figModMoose">10.6</a>.</p>
+
+<p><figure id="figModMoose"><img src="Chapters/ListTreeTable/figures/mooseQDScreenshot.png" alt="An example of a component list from the ModMoose platform." style="width: 80%"><figcaption><span class="number">Figure 10.6</span> An example of a component list from the ModMoose platform.</figcaption></img></figure></p>
+
+<p>The following script shows how to define a <code>SpComponentListPresenter</code> as shown in Figure <a href="#figCompo">10.7</a>.</p>
+
+<pre><code>| list |
+list := {
+	(SpLabelPresenter new
+		label: 'Test 1';
+		yourself).
+	(SpImagePresenter new
+		image: (self iconNamed: #smallOk);
+		yourself).
+	(SpButtonPresenter new
+		label: 'A button';
+		yourself).
+	(SpImagePresenter new
+		image: PolymorphSystemSettings pharoLogo asForm;
+		yourself) }.
+
+SpComponentListPresenter new
+	presenters: list;
+	open</code></pre>
+
+<p><figure id="figCompo"><img src="Chapters/ListTreeTable/figures/ComponentList.png" alt="A component list with several different presenters: a label, an image, a button, and an image. " style="width: 45%"><figcaption><span class="number">Figure 10.7</span> A component list with several different presenters: a label, an image, a button, and an image. </figcaption></img></figure></p>
+
+<h3 id="trees"><span class="number">10.10</span> Trees</h3>
+<p>Spec offers also trees. The following script shows how to list all the classes of Pharo using inheritance as shown by Figure <a href="#figTreeExpanded">10.8</a>.</p>
+
+<p><figure id="figTreeExpanded"><img src="Chapters/ListTreeTable/figures/TreeExpanded.png" alt="A Tree presenter showing the inheritance hierarchy of the class  Exception . " style="width: 45%"><figcaption><span class="number">Figure 10.8</span> A Tree presenter showing the inheritance hierarchy of the class <code>Exception</code>. </figcaption></img></figure></p>
+
+<pre><code>SpTreePresenter new
+	roots: { Object };
+	children: [ :aClass | aClass subclasses ];
+	displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
+	display: [ :aClass | aClass name ];
+	expandPath: #( 1 1 3 );
+	open</code></pre>
+
+<p>The message <code>expandPath:</code> shows that we can expand a specific item by a path.</p>
+
+<p><figure id="figTreemenu"><img src="Chapters/ListTreeTable/figures/TreeWithMenu.png" alt="A tree with a menu. " style="width: 45%"><figcaption><span class="number">Figure 10.9</span> A tree with a menu. </figcaption></img></figure></p>
+
+<p>The following script shows how to use a dynamic context menu. This is a dynamic menu because its content is recalculated.
+The dynamic aspect is expressed by a block. Figure <a href="#figTreemenu">10.9</a> shows the result.</p>
+
+<pre><code>| tree |
+tree := SpTreePresenter new.
+tree roots: { Object };
+	children: [ :aClass | aClass subclasses ];
+	displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
+	display: [ :aClass | aClass name ];
+	contextMenu: [
+		SpMenuPresenter new
+			addGroup: [ :group |
+				group addItem: [ :item | item name: tree selectedItem asString ] ] ];
+	open</code></pre>
+
+<p>The following script shows the use of the message <code>selectPathByItems:scrollToSelection:</code>, which allows selecting elements by specifying a list of items (a path from the root to the selected item) and asking the tree to scroll to the selection. Figure <a href="#figTreeselect">10.10</a> shows the result.</p>
+
+<pre><code>| pathToSpPresenter |
+pathToSpPresenter := SpTreePresenter withAllSuperclasses reversed allButFirst.
+SpTreePresenter new
+	roots: { Object };
+	children: [ :aClass | aClass subclasses ];
+	displayIcon: [ :aClass | self iconNamed: aClass systemIconName ];
+	display: [ :aClass | aClass name ];
+	open;
+	selectPathByItems: pathToSpPresenter scrollToSelection: true</code></pre>
+
+<p><figure id="figTreeselect"><img src="Chapters/ListTreeTable/figures/TreeSelectedItem.png" alt="A tree with a selected item and scrolling to display it. " style="width: 50%"><figcaption><span class="number">Figure 10.10</span> A tree with a selected item and scrolling to display it. </figcaption></img></figure></p>
+
+<h3 id="tables"><span class="number">10.11</span> Tables</h3>
+<p>Spec offers tables. A table can have multiple columns and a column can be composed of elementary elements. Tables have different kinds of columns that can be added to a table:</p>
+
+<ul>
+<li><code>SpStringTableColumn</code> offers cell items that are strings.</li>
+<li><code>SpCheckBoxTableColumn</code> lets us have cells with a checkbox.</li>
+<li><code>SpIndexTableColumn</code> displays the index of the current item.</li>
+<li><code>SpDropListTableColumn</code> lets us have a drop list in cells.</li>
+<li><code>SpImageTableColumn</code> offers cell items with forms (icons, graphics, ...).</li>
+<li><code>SpCompositeTableColumn</code> offers the possibility to compose a column out of different kinds of columns. For instance, it allows one to compose an icon (<code>SpImageTableColumn</code>) with a name (<code>SpStringTableColumn</code>).</li>
+</ul>
+<h3 id="first-table"><span class="number">10.12</span> First table</h3>
+<p>The following script shows how to define a simple table with two columns as shown in Figure <a href="#figSimpleTable">10.11</a>. The message <code>showColumnHeaders</code> will display the headers.</p>
+
+<pre><code>SpTablePresenter new
+	addColumn: (SpStringTableColumn title: 'Number' evaluated: #yourself);
+	addColumn: (SpStringTableColumn title: 'Hex' evaluated: #hex);
+	showColumnHeaders;
+	items: (1 to: 10);
+	open</code></pre>
+
+<p><figure id="figSimpleTable"><img src="Chapters/ListTreeTable/figures/Table.png" alt="A simple table with two columns. " style="width: 50%"><figcaption><span class="number">Figure 10.11</span> A simple table with two columns. </figcaption></img></figure></p>
+
+<p>Add <code>SpIndexTableColumn title: 'My index'</code> to the previous table to see the index column in action.</p>
+
+<p><figure id="figTableSorting"><img src="Chapters/ListTreeTable/figures/TableSorting.png" alt="A simple table with two columns that can be sorted. " style="width: 50%"><figcaption><span class="number">Figure 10.12</span> A simple table with two columns that can be sorted. </figcaption></img></figure></p>
+
+<h3 id="sorting-headers"><span class="number">10.13</span> Sorting headers</h3>
+<p>The following script presents how to define a table with two sortable columns. Figure <a href="#figTableSorting">10.12</a> shows the result after sorting the second column in descending order.</p>
+
+<pre><code>| classNameCompare methodCountSorter |
+classNameCompare := [ :c1 :c2 | c1 name &lt; c2 name ].
+methodCountSorter := [ :c1 :c2 |
+	c1 methodDictionary size threeWayCompareTo: c2 methodDictionary size ].
+
+SpTablePresenter new
+	addColumn: ((SpStringTableColumn title: 'Name' evaluated: #name)
+			compareFunction: classNameCompare);
+	addColumn: ((SpStringTableColumn
+			title: 'Methods'
+			evaluated: [ :c | c methodDictionary size ]) sortFunction: methodCountSorter);
+	items: Collection withAllSubclasses;
+	open</code></pre>
+
+<p><figure id="figEditableTable"><img src="Chapters/ListTreeTable/figures/EditableTable.png" alt="A table with an editable column. " style="width: 50%"><figcaption><span class="number">Figure 10.13</span> A table with an editable column. </figcaption></img></figure></p>
+
+<h3 id="editable-tables"><span class="number">10.14</span> Editable tables</h3>
+<p>The following script shows that table cells can be editable using the messages <code>beEditable</code> and <code>onAcceptEdition:</code>. The resulting table is shown in Figure <a href="#figEditableTable">10.13</a>.</p>
+
+<pre><code>| items |
+items := String methods.
+SpTablePresenter new
+	addColumn:
+		(SpStringTableColumn new
+			title: 'Editable selector name';
+			evaluated: [ :m | m selector ];
+			displayBold: [ :m | m selector isKeyword ];
+			beEditable;
+			onAcceptEdition: [ :m :t |
+				Transcript
+					nextPutAll: t;
+					cr;
+					endEntry ];
+			 yourself);
+	addColumn:
+		(SpStringTableColumn title: 'Size' evaluated: #size)
+			beSortable;
+			showColumnHeaders;
+			items: items;
+	open</code></pre>
+
+<p><figure id="figTreeTable"><img src="Chapters/ListTreeTable/figures/TreeTable.png" alt="A tree table with two columns: the first one is a composed column with an icon and a string. " style="width: 50%"><figcaption><span class="number">Figure 10.14</span> A tree table with two columns: the first one is a composed column with an icon and a string. </figcaption></img></figure></p>
+
+<h3 id="tree-tables"><span class="number">10.15</span> Tree tables</h3>
+<p>Spec offers a way to have a tree with extra columns. The class <code>SpTreeTablePresenter</code> encapsulates this behavior. Note that the first column is interpreted as a tree.</p>
+
+<p>The following script shows that the first column will be a tree whose element is composed of an icon and a name: <code>SpCompositeTableColumn</code>. Figure <a href="#figTreeTable">10.14</a> shows the window after expanding the root of the tree.</p>
+
+<pre><code>SpTreeTablePresenter new
+	beResizable;
+	addColumn:
+		(SpCompositeTableColumn new
+			title: 'Classes';
+			addColumn:
+				(SpImageTableColumn evaluated: [ :aClass |
+					self iconNamed: aClass systemIconName ]);
+			addColumn:
+				(SpStringTableColumn evaluated: [ :each | each name ] );
+			yourself);
+	addColumn:
+		(SpStringTableColumn new
+			title: 'Methods';
+			evaluated: [ :class | class methodDictionary size asString ]);
+	roots: { Object };
+	children: [ :aClass | aClass subclasses ];
+	open</code></pre>
+
+<p>Sending the messages <code>width:</code> and <code>beExpandable</code> to the <code>SpCompositeTableColumn</code> instance fixes the size of the column.</p>
+
+<p><figure id="figTreeTableSilly"><img src="Chapters/ListTreeTable/figures/TreeTableSilly.png" alt="A tree table with two columns. " style="width: 50%"><figcaption><span class="number">Figure 10.15</span> A tree table with two columns. </figcaption></img></figure></p>
+
+<pre><code>SpCompositeTableColumn new
+	title: 'Classes';
+	addColumn:
+		(SpImageTableColumn evaluated: [ :aClass |
+			self iconNamed: aClass systemIconName ]);
+	addColumn: (SpStringTableColumn evaluated: #name);
+	width: 250;
+	beExpandable;
+	yourself</code></pre>
+
+<p>You can try the following silly example which results in Figure <a href="#figTreeTableSilly">10.15</a>.</p>
+
+<pre><code>| compositeColumn |
+compositeColumn := SpCompositeTableColumn new title: 'Classes';
+	addColumn: (SpImageTableColumn evaluated: [ :aClass |
+			self iconNamed: aClass systemIconName ]);
+	addColumn: (SpStringTableColumn evaluated: [ :each | each name ] );
+	yourself.
+SpTreeTablePresenter new
+	beResizable;
+	addColumn: (SpStringTableColumn new
+			title: 'Methods';
+			evaluated: [ :class | class methodDictionary size asString ]);
+	addColumn: compositeColumn;
+	roots: { Object };
+	children: [ :aClass | aClass subclasses ];
+	open</code></pre>
+
+<h3 id="conclusion-6"><span class="number">10.16</span> Conclusion</h3>
+<p>In this chapter, we presented important containers: list, component list, and table presenters.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="cha_reuse.html">← Reuse and composition at work</a>
+        <a class="next" rel="next" href="cha_managing_windows.html">Managing windows →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Application Building with Spec 2.0 · K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano</p>
+  </footer>
+</body>
+</html>

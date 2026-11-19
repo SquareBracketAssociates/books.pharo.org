@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menubar, Toolbar, Status Bar, and Context Menus</title>
+  <meta name="description" content="">
+  <meta name="author" content="K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Application Building with Spec 2.0</a>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <details open>
+        <summary>Contents</summary>
+        <ol>
+          
+          <li>
+            <a href="chaintroductions.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="all-spec-in-one-example.html"><span class="number">2</span> All Spec in One Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chaSmallExample.html"><span class="number">3</span> A 10 min small example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chacasestudyone.html"><span class="number">4</span> Most of Spec in one example</a>
+            
+          </li>
+          
+          <li>
+            <a href="spec-essentials.html"><span class="number">5</span> Spec Essentials</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_core.html"><span class="number">6</span> Spec core in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_testing.html"><span class="number">7</span> Testing Spec applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_fundamentals_of_spec.html"><span class="number">8</span> The dual aspects of presenters: Domain and interaction model</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_reuse.html"><span class="number">9</span> Reuse and composition at work</a>
+            
+          </li>
+          
+          <li>
+            <a href="lists-tables-and-trees.html"><span class="number">10</span> Lists, tables and trees</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_managing_windows.html"><span class="number">11</span> Managing windows</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_layout.html"><span class="number">12</span> Layouts</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_dynamic_presenter.html"><span class="number">13</span> Dynamic presenters</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_mailapp.html"><span class="number">14</span> A Concrete Case: A Mail Application</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="cha_menus.html" aria-current="page"><span class="number">15</span> Menubar, Toolbar, Status Bar, and Context Menus</a>
+            
+            <ol>
+              
+              <li><a href="#adding-a-menubar-to-a-window"><span class="number">15.1</span> Adding a menubar to a window</a></li>
+              
+              <li><a href="#implementing-message-menu-commands"><span class="number">15.2</span> Implementing message menu commands</a></li>
+              
+              <li><a href="#installing-shortcuts"><span class="number">15.3</span> Installing shortcuts</a></li>
+              
+              <li><a href="#defining-actions"><span class="number">15.4</span> Defining actions</a></li>
+              
+              <li><a href="#adding-a-toolbar-to-a-window"><span class="number">15.5</span> Adding a toolbar to a window</a></li>
+              
+              <li><a href="#supporting-enablement"><span class="number">15.6</span> Supporting enablement</a></li>
+              
+              <li><a href="#adding-a-status-bar-to-a-window"><span class="number">15.7</span> Adding a status bar to a window</a></li>
+              
+              <li><a href="#adding-a-context-menu-to-a-presenter"><span class="number">15.8</span> Adding a context menu to a presenter</a></li>
+              
+              <li><a href="#enabling-blocks"><span class="number">15.9</span> Enabling blocks</a></li>
+              
+              <li><a href="#conclusion-11"><span class="number">15.10</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="using-transmissions-and-ports.html"><span class="number">16</span> Using transmissions and ports</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_style.html"><span class="number">17</span> Styling applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-athens-and-roassal-in-spec.html"><span class="number">18</span> Using Athens and Roassal in Spec</a>
+            
+          </li>
+          
+          <li>
+            <a href="customizing-your-inspector.html"><span class="number">19</span> Customizing your Inspector</a>
+            
+          </li>
+          
+          <li>
+            <a href="working-with-commands.html"><span class="number">20</span> Working with Commands</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_commander.html"><span class="number">21</span> Commander: A powerful and simple command framework</a>
+            
+          </li>
+          
+        </ol>
+      </details>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">15</span> Menubar, Toolbar, Status Bar, and Context Menus</h2><a id="cha_menus"></a>
+<p>Often application windows have a menubar that includes all commands provided by the application. Application windows may also have a toolbar, with buttons for commands that are used frequently. Some applications only have a toolbar. Apart from supporting a menubar and toolbar, Spec supports a status bar at the bottom of a window. Some widgets, such as text fields, tables, and lists, are equipped with context menus. All these aspects are the subject of this chapter.</p>
+
+<p>We will improve the email client application we built in Chapter <a href="cha_mailapp.html#cha_mailapp">14</a>. We will add a menubar, a toolbar, a status bar, and a context menu. Figure <a href="#MailClientWithDecorations">15.1</a> shows the result that we like to achieve.</p>
+
+<p><figure id="MailClientWithDecorations"><img src="Chapters/Menus/figures/MailClientWithDecorations.png" alt="The mail client with toolbar. " style="width: 60%"><figcaption><span class="number">Figure 15.1</span> The mail client with toolbar. </figcaption></img></figure></p>
+
+<h3 id="adding-a-menubar-to-a-window"><span class="number">15.1</span> Adding a menubar to a window</h3>
+<p>With all the models and presenters in place as described in the previous chapter, we can dive into the subject of this chapter -- remember that all the code is available as explained in Chapter <a href="chaintroductions.html#chaintroductions">1</a>. We start by adding a menubar with commands to manipulate emails.</p>
+
+<p>A menubar is part of a window presenter. Therefore it is configured in the <code>initializeWindow:</code> method. A <code>SpWindowPresenter</code> instance understands the message <code>menu:</code> to set the menubar.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; initializeWindow: aWindowPresenter
+
+	aWindowPresenter
+		title: 'Mail';
+		initialExtent: 650@500;
+		menu: menuBar</code></pre>
+
+<p>The instance variable <code>menuBar</code> is not defined yet, so let's do that first. We add it to the class definition.</p>
+
+<pre><code>SpPresenterWithModel &lt;&lt; #MailClientPresenter
+	slots: { #account . #reader . #editedEmail . #menuBar };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>Then we have to bind it. We elaborate the <code>initializePresenters</code> method to initialize the <code>menuBar</code> instance. The method delegates that responsibility to the method <code>initializeMenuBar</code>.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; initializePresenters
+
+	account := MailAccountPresenter on: self model.
+	reader := MailReaderPresenter new.
+	self initializeMenuBar</code></pre>
+
+<pre><code>MailClientPresenter &gt;&gt; initializeMenuBar
+
+	menuBar := self newMenuBar
+		addItem: [ :item |
+			item
+				name: 'Message';
+				subMenu: self messageMenu;
+				yourself ];
+		addItem: [ :item |
+			item
+				name: 'View';
+				subMenu: self viewMenu;
+				yourself ];
+		addItem: [ :item |
+			item
+				name: 'Format';
+				subMenu: self formatMenu;
+				yourself ];
+		yourself</code></pre>
+
+<p>The expression <code>self newMenuBar</code> creates a new <code>SpMenuBarPresenter</code> instance. We add three items to it. These items are the main menu items of the menubar. We configure each one with their name and their submenu.</p>
+
+<h3 id="implementing-message-menu-commands"><span class="number">15.2</span> Implementing message menu commands</h3>
+<p>In this chapter, we will implement the commands of the "Message" menu.</p>
+
+<p>The two other menus, "View" and "Format"  are included only to show you multiple menus in the menubar.
+But the method <code>viewMenu</code> and  <code>formatMenu</code> are basically empty and doing nothing besides creating empty menus.
+We start with the menus that we will not implement. They are short.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; viewMenu
+	"Empty placeholder Not defined in this chapter"
+	^ self newMenu
+			addItem: [ :item | item name: 'Show CC field' ];
+			addItem: [ :item | item name: 'Show BCC field' ];
+			yourself</code></pre>
+
+<pre><code>MailClientPresenter &gt;&gt; formatMenu
+	"Empty placeHolder. Not defined in this chapter"
+	^ self newMenu
+			addItem: [ :item | item name: 'Plain text' ];
+			addItem: [ :item | item name: 'Rich text' ];
+			yourself</code></pre>
+
+<p>Now we are ready to focus on the "Message" menu commands. We will implement all commands of the "Message" menu. That requires some code:</p>
+
+<pre><code>MailClientPresenter &gt;&gt; messageMenu
+
+	^ self newMenu
+		addGroup: [ :group |
+			group
+				addItem: [ :item |
+					item
+						name: 'New';
+						shortcut: $n meta;
+						action: [ self newMail ] ];
+				addItem: [ :item |
+					item
+						name: 'Save';
+						shortcut: $s meta;
+						enabled: [ self hasDraft ];
+						action: [ self saveMail ] ];
+				addItem: [ :item |
+					item
+						name: 'Delete';
+						shortcut: $d meta;
+						enabled: [ self hasSelectedEmail ];
+						action: [ self deleteMail ] ];
+				addItem: [ :item |
+					item
+						name: 'Send';
+						shortcut: $l meta;
+						enabled: [ self hasDraft ];
+						action: [ self sendMail ] ] ];
+		addGroup: [ :group |
+			group
+				addItem: [ :item |
+					item
+						name: 'Fetch';
+						shortcut: $f meta;
+						action: [ self fetchMail ] ];
+				yourself ]</code></pre>
+
+<p>While the first two menus included two commands, this menu includes several commands in two groups. With the <code>addGroup</code> message, we add the groups and we nest the menu items in the groups by sending the message <code>addItem:</code> to the groups. As you can see, the menu items have a name, a keyboard shortcut, and an action block. A few items have a block that defines whether they are enabled. The block argument of the <code>enabled:</code> message is evaluated each time the menu item is displayed, so that the menu item can be enabled or disabled dynamically. Note that block arguments of the <code>enabled:</code> messages send the messages <code>hasDraft</code> and <code>hasSelectedEmail</code>. We did not define the corresponding methods yet, so let's do that now. The implementations are straightforward.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; hasDraft
+
+	^ editedEmail isNotNil</code></pre>
+
+<pre><code>MailClientPresenter &gt;&gt; hasSelectedEmail
+
+	^ account hasSelectedEmail</code></pre>
+
+<p>Look at the shortcuts in the <code>messageMenu</code> method. <code>$n meta</code> means that the character "n" can be pressed together with the meta key (Command on macOS, Control on Windows and Linux) to trigger the command.</p>
+
+<h3 id="installing-shortcuts"><span class="number">15.3</span> Installing shortcuts</h3>
+<p>Adding shortcuts to menu items does not automatically install them. Keyboard shortcuts have to be installed explicitly. We adapt the <code>initializeWindow:</code> method to achieve that. <code>SpMenuPresenter</code>, which is the superclass of <code>SpMenuBarPresenter</code>, implements the method <code>addKeybindingsTo:</code>, which comes in handy here.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; initializeWindow: aWindowPresenter
+
+	aWindowPresenter
+		title: 'Mail';
+		initialExtent: 650@500;
+		menu: menuBar.
+		menuBar addKeybindingsTo: aWindowPresenter</code></pre>
+
+<h3 id="defining-actions"><span class="number">15.4</span> Defining actions</h3>
+<p>We keep the action blocks simple by sending a message. We have to implement them of course, so let's do that. Based on the models that we defined in the previous chapter, the implementation of the actions is fairly straightforward.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; newMail
+
+	editedEmail := Email new.
+	reader updateLayoutForEmail: editedEmail.
+	self modelChanged</code></pre>
+
+<pre><code>MailClientPresenter &gt;&gt; saveMail
+
+	account saveAsDraft: editedEmail.
+	editedEmail := nil.
+	self modelChanged</code></pre>
+
+<pre><code>MailClientPresenter &gt;&gt; deleteMail
+
+	account deleteMail.
+	self modelChanged</code></pre>
+
+<pre><code>MailClientPresenter &gt;&gt; sendMail
+
+	account sendMail: editedEmail.
+	editedEmail := nil.
+	self modelChanged</code></pre>
+
+<pre><code>MailClientPresenter &gt;&gt; fetchMail
+
+	account fetchMail.
+	self modelChanged</code></pre>
+
+<p>The last four methods above send messages to <code>account</code>, which is bound to a <code>MailAccountPresenter</code>. The corresponding methods were not implemented yet, so we do it now.</p>
+
+<pre><code>MailAccountPresenter &gt;&gt; saveAsDraft: draftEmail
+
+	self model saveAsDraft: draftEmail.
+	self modelChanged</code></pre>
+
+<pre><code>MailAccountPresenter &gt;&gt; deleteMail
+
+	| pathIndexes folder email |
+	pathIndexes := foldersAndEmails selection selectedPath.
+	folder := foldersAndEmails itemAtPath: (pathIndexes copyFrom: 1 to: 1).
+	email := foldersAndEmails itemAtPath: pathIndexes.
+	self model delete: email.
+	self modelChanged</code></pre>
+
+<pre><code>MailAccountPresenter &gt;&gt; sendMail: draftEmail
+
+	self model send: draftEmail.
+	self modelChanged</code></pre>
+
+<pre><code>MailAccountPresenter &gt;&gt; fetchMail
+
+	self model fetchMail.
+	self modelChanged</code></pre>
+
+<p>It is time to try it out. To see the menubar in action, let's open a window with:</p>
+
+<pre><code>(MailClientPresenter on: MailAccount new) open</code></pre>
+
+<p>Figure <a href="#MailClientWithMenuBar">15.2</a> shows the window. The menubar includes the three menus we defined. The figure shows the open "Message" menu. It has two groups of menu items, separated by a horizontal line. Two menu items are enabled. Three menu items are disabled because they are actions on an email but no email is selected.</p>
+
+<p><figure id="MailClientWithMenuBar"><img src="Chapters/Menus/figures/MailClientWithMenuBar.png" alt="The mail client with a menu opened from the menubar. " style="width: 60%"><figcaption><span class="number">Figure 15.2</span> The mail client with a menu opened from the menubar. </figcaption></img></figure></p>
+
+<h3 id="adding-a-toolbar-to-a-window"><span class="number">15.5</span> Adding a toolbar to a window</h3>
+<p>Some actions are so common that it is useful to have them one click away. That is where the toolbar comes in. A toolbar allows putting actions as buttons in the user interface (See Figure <a href="#MailClientWithToolBar">15.3</a>).</p>
+
+<p>Not surprisingly, like the menubar, the toolbar is part of a window presenter. So we have to revisit the <code>initializeWindow:</code> method. A <code>SpWindowPresenter</code> instance understands the message <code>toolbar:</code> to set the toolbar.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; initializeWindow: aWindowPresenter
+
+	aWindowPresenter
+		title: 'Mail';
+		initialExtent: 650@500;
+		menu: menuBar;
+		toolbar: toolBar.
+		menuBar addKeybindingsTo: aWindowPresenter</code></pre>
+
+<p><code>toolbar</code> is an instance variable, so we have to elaborate the class definition:</p>
+
+<pre><code>SpPresenterWithModel &lt;&lt; #MailClientPresenter
+	slots: { #account . #reader . #editedEmail . #menuBar . #toolBar };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>Similar to what we did for the menubar, we define a method <code>initializeToolBar</code> and use it in <code>initializePresenters</code>.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; initializePresenters
+
+	account := MailAccountPresenter on: self model.
+	reader := MailReaderPresenter new.
+	self initializeMenuBar.
+	self initializeToolBar</code></pre>
+
+<pre><code>MailClientPresenter &gt;&gt; initializeToolBar
+
+	| newButton fetchButton |
+	newButton := self newToolbarButton
+		label: 'New';
+		icon: (self iconNamed: #smallNew);
+		help: 'New email';
+		action: [ self newMail ];
+		yourself.
+	saveButton := self newToolbarButton
+		label: 'Save';
+		icon: (self iconNamed: #smallSave);
+		help: 'Save email';
+		action: [ self saveMail ];
+		yourself.
+	sendButton := self newToolbarButton
+		label: 'Send';
+		icon: (self iconNamed: #smallExport);
+		help: 'Send email';
+		action: [ self sendMail ];
+		yourself.
+	fetchButton := self newToolbarButton
+		label: 'Fetch';
+		icon: (self iconNamed: #refresh);
+		help: 'Fetch emails from server';
+		action: [ self fetchMail ];
+		yourself.
+	toolBar := self newToolbar
+		addItem: newButton;
+		addItem: saveButton;
+		addItem: sendButton;
+		addItemRight: fetchButton;
+	yourself</code></pre>
+
+<p>This method defines four buttons, of which two are held in instance variables. Shortly, it will become clear why. Of course, we have to adapt the class definition again:</p>
+
+<pre><code>SpPresenterWithModel &lt;&lt; #MailClientPresenter
+	slots: { #account . #reader . #editedEmail . #menuBar . #toolBar . #sendButton . #saveButton };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p><figure id="MailClientWithToolBar"><img src="Chapters/Menus/figures/MailClientWithToolBar.png" alt="The mail client with disabled buttons in a toolbar. " style="width: 60%"><figcaption><span class="number">Figure 15.3</span> The mail client with disabled buttons in a toolbar. </figcaption></img></figure></p>
+
+<p>The <code>initializeToolBar</code> method adds four buttons to the toolbar. A toolbar has two sections, one on the left and one on the right. With the message <code>addItem:</code> we add the first three buttons to the left section. With the message <code>addItemRight:</code> we add one button to the right section.</p>
+
+<p>Each button has a label, an icon, a help text, and an action. As we did in <code>initializeMenuBar</code>, we use simple action blocks that send a message to the mail client presenter. These are the same messages that we used in the action blocks of the menu items in the "Message" menu in the menubar. That means that we are done.</p>
+
+<h3 id="supporting-enablement"><span class="number">15.6</span> Supporting enablement</h3>
+<p>We said we were done but well, not really. The menu items had a block to determine whether they were enabled or disabled. That is not the case for toolbar buttons, because they are visible all the time. Therefore we have to manage enablement of the buttons explicitly. Every time the state of the mail client changes, we have to update the enablement of the toolbar buttons. We introduce a new method <code>updateToolBarButtons</code> to do that. Based on messages that were defined before, we can set the enablement state of the <code>saveButton</code> and the <code>sendButton</code>. That is why we defined both as instance variables. The two other buttons are always enabled, so it is not needed to hold them in instance variables.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; updateToolBarButtons
+
+	| hasSelectedDraft |
+	hasSelectedDraft := self hasDraft.
+	saveButton enabled: hasSelectedDraft.
+	sendButton enabled: hasSelectedDraft</code></pre>
+
+<p>To finish the toolbar functionality, we have to send <code>updateToolBarButtons</code> in the appropriate places. Everywhere the state of the mail client presenter changes, we have to send the message. You may think we have to do that in many places, but we have implemented the presenter class in such a way that there are only two places where it is required.</p>
+
+<p>First, <code>MailClientPresenter</code> inherits from <code>SpPresenterWithModel</code>, which means that every time the model of an instance changes, it sends <code>modelChanged</code>. So we can update the toolbar buttons in that method.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; modelChanged
+
+	self updateToolBarButtons</code></pre>
+
+<p>Second, we have to set the initial state of the toolbar buttons when the mail client presenter is initialized. The method <code>updateAfterSelectionChangedTo:</code>, invoked by the method <code>connectPresenters</code>, is a good place to update the toolbar buttons. We add an extra line at the bottom of the method that we defined before.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; updateAfterSelectionChangedTo: selectedFolderOrEmail
+
+	editedEmail := (self isDraftEmail: selectedFolderOrEmail)
+		ifTrue: [ selectedFolderOrEmail ]
+		ifFalse: [ nil ].
+	self updateToolBarButtons</code></pre>
+
+<p>As for the menubar, it required a lot of code to setup the toolbar and wire everything, but we are ready. Let's open the window again.</p>
+
+<pre><code>(MailClientPresenter on: MailAccount new) open</code></pre>
+
+<p>Figure <a href="#MailClientWithToolBar">15.3</a> shows the window. It has a menubar and a toolbar. Three toolbar buttons are placed on the left side, and one button is placed at the right side. That corresponds to our configuration of the toolbar. The save button and the send button are greyed out because they are disabled.</p>
+
+<p>Let's create a new email by pressing the toolbar button labeled "New" and see how the enablement state of the toolbar buttons changes. Figure <a href="#MailClientWithToolBarForEmail">15.4</a> shows that all the buttons are enabled.</p>
+
+<p><figure id="MailClientWithToolBarForEmail"><img src="Chapters/Menus/figures/MailClientWithToolBarForEmail.png" alt="The mail client with enabled buttons in a toolbar. " style="width: 60%"><figcaption><span class="number">Figure 15.4</span> The mail client with enabled buttons in a toolbar. </figcaption></img></figure></p>
+
+<h3 id="adding-a-status-bar-to-a-window"><span class="number">15.7</span> Adding a status bar to a window</h3>
+<p>After adding a menubar and a toolbar, we will add a status bar (see Figures <a href="#MailClientTest-2">15.5</a> and <a href="#MailClientTest-3">15.6</a>). A status bar is useful to show short messages for some time, or until the next message appears. We will elaborate the mail client presenter to show messages to inform the user that actions have been performed.</p>
+
+<p><figure id="MailClientTest-2"><img src="Chapters/Menus/figures/MailClientTest-2.png" alt="The email has been saved. " style="width: 60%"><figcaption><span class="number">Figure 15.5</span> The email has been saved. </figcaption></img></figure></p>
+
+<p><figure id="MailClientTest-3"><img src="Chapters/Menus/figures/MailClientTest-3.png" alt="The email has been sent. " style="width: 60%"><figcaption><span class="number">Figure 15.6</span> The email has been sent. </figcaption></img></figure></p>
+
+<p>The status bar appears at the bottom of the window. As with the menubar and the toolbar, we add it in the method <code>initializeWindow:</code>.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; initializeWindow: aWindowPresenter
+
+	aWindowPresenter
+		title: 'Mail';
+		initialExtent: 650@500;
+		menu: menuBar;
+		toolbar: toolBar;
+		statusBar: statusBar.
+		menuBar addKeybindingsTo: aWindowPresenter</code></pre>
+
+<p><code>statusBar</code> is a new instance variable, which we add to the class definition of the presenter.</p>
+
+<pre><code>SpPresenterWithModel &lt;&lt; #MailClientPresenter
+	slots: { #account . #reader . #editedEmail . #menuBar . #toolBar . #sendButton . #saveButton . #statusBar };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>As already done twice, we adapt the <code>initializePresenters</code> method. The message <code>newStatusBar</code> creates a new <code>SpStatusBarPresenter</code> instance.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; initializePresenters
+
+	account := MailAccountPresenter on: self model.
+	reader := MailReaderPresenter new.
+	self initializeMenuBar.
+	self initializeToolBar.
+	statusBar := self newStatusBar</code></pre>
+
+<p>The status bar is no more than a container for a text message. We will adapt some action methods to put messages in the status bar. A <code>SpStatusBarPresenter</code> instance responds to <code>pushMessage:</code> and <code>popMessage:</code>. Let's start with the method <code>fetchMail</code>. We push a message "Mail fetched." to indicate that the fetch action was successful.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; fetchMail
+
+	account fetchMail.
+	self modelChanged.
+	statusBar pushMessage: 'Mail fetched.'</code></pre>
+
+<p>Then we adapt the other action methods as well.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; saveMail
+
+	account saveAsDraft: editedEmail.
+	editedEmail := nil.
+	self modelChanged.
+	statusBar pushMessage: 'Mail saved to drafts.'</code></pre>
+
+<pre><code>MailClientPresenter &gt;&gt; sendMail
+
+	account sendMail: editedEmail.
+	editedEmail := nil.
+	self modelChanged.
+	statusBar pushMessage: 'Mail sent.'</code></pre>
+
+<pre><code>MailClientPresenter &gt;&gt; deleteMail
+
+	account deleteMail.
+	self modelChanged.
+	statusBar pushMessage: 'Mail deleted.'</code></pre>
+
+<p>To finish the status bar functionality, we start with a clean status bar. Therefore we adapt the method <code>updateAfterSelectionChangedTo:</code> again, in which we already bring the toolbar buttons in their initial enablement state. We send the message <code>popMessage</code> to ensure that the status bar is empty.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; updateAfterSelectionChangedTo: selectedFolderOrEmail
+
+	editedEmail := (self isDraftEmail: selectedFolderOrEmail)
+		ifTrue: [ selectedFolderOrEmail ]
+		ifFalse: [ nil ].
+	self updateToolBarButtons.
+	statusBar popMessage</code></pre>
+
+<p>Let's test the mail client presenter by opening it again.</p>
+
+<pre><code>(MailClientPresenter on: MailAccount new) open</code></pre>
+
+<p>We will test a full scenario.</p>
+
+<ul>
+<li>After opening the window, press the "New" button and fill in the fields of the new email. Figure <a href="#MailClientTest-1">15.7</a> shows the initial state before we start manipulating the email.</li>
+<li>When the fields are filled in, we save the email by pressing the save button. See Figure <a href="#MailClientTest-2">15.5</a>. The status bar shows "Mail saved to drafts." and we see the subject of the email nested under the "Draft" folder in the list on the left.</li>
+<li>After selecting the email in the list and pressing the "Send" button, we see the situation in Figure <a href="#MailClientTest-3">15.6</a>. The email has moved from the "Draft" folder to the "Sent" folder, and the status bar shows "Mail sent.".</li>
+<li>After pressing the "Fetch" button, the fetched email appears under the "Inbox" folder in the list. The status bar shows "Mail fetched.". See Figure <a href="#MailClientTest-4">15.8</a>.</li>
+<li>After selecting the email in the "Inbox" and choosing "Delete" from the "Message" menu, the email is removed from the list, and the status bar shows "Mail deleted.". See Figure <a href="#MailClientTest-5">15.9</a>.</li>
+</ul>
+<p><figure id="MailClientTest-1"><img src="Chapters/Menus/figures/MailClientTest-1.png" alt="A new email. " style="width: 60%"><figcaption><span class="number">Figure 15.7</span> A new email. </figcaption></img></figure></p>
+
+<p><figure id="MailClientTest-4"><img src="Chapters/Menus/figures/MailClientTest-4.png" alt="Email has been fetched. " style="width: 60%"><figcaption><span class="number">Figure 15.8</span> Email has been fetched. </figcaption></img></figure></p>
+
+<p><figure id="MailClientTest-5"><img src="Chapters/Menus/figures/MailClientTest-5.png" alt="The email has been deleted. " style="width: 60%"><figcaption><span class="number">Figure 15.9</span> The email has been deleted. </figcaption></img></figure></p>
+
+<p>All actions that change the status bar have been tested.</p>
+
+<h3 id="adding-a-context-menu-to-a-presenter"><span class="number">15.8</span> Adding a context menu to a presenter</h3>
+<p>The final step to complete the mail client presenter is the addition of a context menu. We will add a context menu to the tree with the folders and emails. We will not add a big context menu. For demonstration purposes, we will restrict the menu to two menu items, one to delete an email and one to send an email.</p>
+
+<p>The tree includes folders and emails, so the desired menu items should be disabled when a folder is selected. They should also be disabled when no selection has been made. On top of that condition, the send command can only be applied to emails that are in the "Draft" folder because received and sent mails cannot be sent.</p>
+
+<p>Typically, a presenter adds a context menu to a subpresenter. Given that the tree of folders and emails is a subpresenter of the <code>MailAccountPresenter</code>, we would expect the <code>MailAccountPresenter</code> to install a context menu on the tree presenter. However, the <code>MailAccountPresenter</code> cannot decide what needs to be done for deleting or sending an email. What needs to be done is the responsibility of the <code>MailClientPresenter</code>, which defines the methods <code>deleteMail</code> and <code>sendMail</code>. Both methods do what they have to do to perform the action, and then send the <code>modelChanged</code> message and update the status bar.</p>
+
+<p>Therefore <code>MailClientPresenter</code> defines the menu.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; accountMenu
+
+	^ self newMenu
+			addItem: [ :item |
+				item
+					name: 'Delete';
+					enabled: [ self hasSelectedEmail ];
+					action: [ self deleteMail ] ];
+			addItem: [ :item |
+				item
+					name: 'Send';
+					enabled: [ self hasSelectedEmail
+											and: [ account selectedItem isDraft] ];
+					action: [ self sendMail ] ];
+			yourself</code></pre>
+
+<p>The action blocks are simple, like the action blocks of the menu items in the menubar and the buttons in the toolbar. They send the action messages <code>deleteMail</code> and <code>sendMail</code> we have defined before.</p>
+
+<h3 id="enabling-blocks"><span class="number">15.9</span> Enabling blocks</h3>
+<p>More interestingly are the <code>enabled:</code> blocks, which define the enablement of the menu items. Deleting an email is possible only when an email is selected. That is expressed by the <code>enabled:</code> block of the "Delete" menu item. As described in the introduction of this section, sending an email is possible only if the selected email is a draft email. That is exactly what the <code>enabled:</code> block for the "Send" menu item expresses.</p>
+
+<p>Note the name of the method. We use the name <code>accountMennu</code> because the context menu will be installed on the <code>MailAccountPresenter</code>. However, the context menu has to be installed on the tree presenter with the folders and the emails. Therefore <code>MailAccountPresenter</code> delegates to the tree presenter. Let's realise that in code. First, from within <code>initializePresenters</code> of <code>MailClientPresenter</code>, we send the <code>contextMenu:</code> message to install the context menu on the <code>MailAccountPresenter</code>.</p>
+
+<pre><code>MailClientPresenter &gt;&gt; initializePresenters
+
+	account := MailAccountPresenter on: self model.
+	account contextMenu: [ self accountMenu ].
+	reader := MailReaderPresenter new.
+	self initializeMenuBar.
+	self initializeToolBar.
+	statusBar := self newStatusBar</code></pre>
+
+<p>Then we implement the <code>contextMenu:</code> on <code>MailAccountPresenter</code>. It delegates to the tree presenter,</p>
+
+<pre><code>MailAccountPresenter &gt;&gt; contextMenu: aBlock
+
+	foldersAndEmails contextMenu: aBlock</code></pre>
+
+<p>That concludes the implementation. It is time to open the window again and try the new context menu.</p>
+
+<pre><code>(MailClientPresenter on: MailAccount new) open</code></pre>
+
+<p>When clicking the right-button mouse button, the context menu appears. Figure <a href="#ContextMenuDisabled">15.10</a> shows that the two menu items are disabled when a folder is selected</p>
+
+<p><figure id="ContextMenuDisabled"><img src="Chapters/Menus/figures/ContextMenuDisabled.png" alt="Context menu items are disabled. " style="width: 60%"><figcaption><span class="number">Figure 15.10</span> Context menu items are disabled. </figcaption></img></figure></p>
+
+<p>After fetching email and selecting the received email, the menu includes an enabled "Delete" menu item and a disabled "Send" menu item, as shown in Figure <a href="#ContextMenuSendDisabled">15.11</a>.</p>
+
+<p><figure id="ContextMenuSendDisabled"><img src="Chapters/Menus/figures/ContextMenuSendDisabled.png" alt="Sending a received email is not allowed. " style="width: 60%"><figcaption><span class="number">Figure 15.11</span> Sending a received email is not allowed. </figcaption></img></figure></p>
+
+<p>As a final test, we create a new email, save it, and select it. It is a draft email, so it can be sent. That is what we see in the context menu in Figure <a href="#ContextMenuEnabled">15.12</a>. Both menu items are enabled.</p>
+
+<p><figure id="ContextMenuEnabled"><img src="Chapters/Menus/figures/ContextMenuEnabled.png" alt="Sending a draft email is allowed. " style="width: 60%"><figcaption><span class="number">Figure 15.12</span> Sending a draft email is allowed. </figcaption></img></figure></p>
+
+<h3 id="conclusion-11"><span class="number">15.10</span> Conclusion</h3>
+<p>We have described how to add a menubar and a toolbar to a window. It required quite some code to define the menu items and the toolbar buttons. We have also described how messages can be shown in the status bar at the bottom of a window. At the end, we also described how to add a context menu to a tree presenter.</p>
+
+<p>An important aspect of menu items and toolbar buttons is their enablement based on the state of the presenter in a window. We have shown how to apply enablement, and we illustrated the behavior in several figures.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="cha_mailapp.html">← A Concrete Case: A Mail Application</a>
+        <a class="next" rel="next" href="using-transmissions-and-ports.html">Using transmissions and ports →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Application Building with Spec 2.0 · K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano</p>
+  </footer>
+</body>
+</html>

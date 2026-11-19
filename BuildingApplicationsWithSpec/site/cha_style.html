@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Styling applications</title>
+  <meta name="description" content="">
+  <meta name="author" content="K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Application Building with Spec 2.0</a>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <details open>
+        <summary>Contents</summary>
+        <ol>
+          
+          <li>
+            <a href="chaintroductions.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="all-spec-in-one-example.html"><span class="number">2</span> All Spec in One Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chaSmallExample.html"><span class="number">3</span> A 10 min small example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chacasestudyone.html"><span class="number">4</span> Most of Spec in one example</a>
+            
+          </li>
+          
+          <li>
+            <a href="spec-essentials.html"><span class="number">5</span> Spec Essentials</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_core.html"><span class="number">6</span> Spec core in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_testing.html"><span class="number">7</span> Testing Spec applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_fundamentals_of_spec.html"><span class="number">8</span> The dual aspects of presenters: Domain and interaction model</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_reuse.html"><span class="number">9</span> Reuse and composition at work</a>
+            
+          </li>
+          
+          <li>
+            <a href="lists-tables-and-trees.html"><span class="number">10</span> Lists, tables and trees</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_managing_windows.html"><span class="number">11</span> Managing windows</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_layout.html"><span class="number">12</span> Layouts</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_dynamic_presenter.html"><span class="number">13</span> Dynamic presenters</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_mailapp.html"><span class="number">14</span> A Concrete Case: A Mail Application</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_menus.html"><span class="number">15</span> Menubar, Toolbar, Status Bar, and Context Menus</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-transmissions-and-ports.html"><span class="number">16</span> Using transmissions and ports</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="cha_style.html" aria-current="page"><span class="number">17</span> Styling applications</a>
+            
+            <ol>
+              
+              <li><a href="#in-a-nutshell"><span class="number">17.1</span> In a nutshell</a></li>
+              
+              <li><a href="#how-do-styles-work"><span class="number">17.2</span> How do styles work?</a></li>
+              
+              <li><a href="#stylesheets"><span class="number">17.3</span> Stylesheets</a></li>
+              
+              <li><a href="#style-declaration"><span class="number">17.4</span> Style declaration</a></li>
+              
+              <li><a href="#stylesheet-examples"><span class="number">17.5</span> Stylesheet examples</a></li>
+              
+              <li><a href="#anatomy-of-a-style"><span class="number">17.6</span> Anatomy of a style</a></li>
+              
+              <li><a href="#environment-variables"><span class="number">17.7</span> Environment variables</a></li>
+              
+              <li><a href="#top-level-changes"><span class="number">17.8</span> Top-level changes</a></li>
+              
+              <li><a href="#defining-an-application-and-its-style"><span class="number">17.9</span> Defining an application and its style</a></li>
+              
+              <li><a href="#applying-styles-2"><span class="number">17.10</span> Applying styles</a></li>
+              
+              <li><a href="#dynamically-applying-styles"><span class="number">17.11</span> Dynamically applying styles</a></li>
+              
+              <li><a href="#conclusion-13"><span class="number">17.12</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="using-athens-and-roassal-in-spec.html"><span class="number">18</span> Using Athens and Roassal in Spec</a>
+            
+          </li>
+          
+          <li>
+            <a href="customizing-your-inspector.html"><span class="number">19</span> Customizing your Inspector</a>
+            
+          </li>
+          
+          <li>
+            <a href="working-with-commands.html"><span class="number">20</span> Working with Commands</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_commander.html"><span class="number">21</span> Commander: A powerful and simple command framework</a>
+            
+          </li>
+          
+        </ol>
+      </details>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">17</span> Styling applications</h2><a id="cha_style"></a>
+<p>In this chapter, we describe how to declare and use styles in Spec applications.</p>
+
+<p>First, we present stylesheets and styles and then we apply styles to the Mail Application we introduced in Chapter <a href="cha_mailapp.html#cha_mailapp">14</a>. We will illustrate how Spec manages styles and how you can adapt the look of a presenter.</p>
+
+<p>There are two ways to express stylesheets: one for Morphic expressed using an extended version of STON, and CSS for GTK. In this chapter, we focus on the Morphic stylesheets for Pharo 12. We give some basis before showing how to effectively use styles to enhance the look and feel of an application.</p>
+
+<h3 id="in-a-nutshell"><span class="number">17.1</span> In a nutshell</h3>
+<h4 id="an-application-stylesheet"><span class="number">17.1.1</span> An application stylesheet</h4>
+<p>In Spec, an application has a stylesheet that can be set using the message <code>styleSheet:</code>. Each application can then refine its stylesheet.</p>
+
+<pre><code>app styleSheet: styleSheet.</code></pre>
+
+<h4 id="declaring-styles"><span class="number">17.1.2</span> Declaring styles</h4>
+<p>For the Morphic backend (as opposed to the GTK one), a stylesheet is defined as a special version of a STON string that is parsed and turned into style elements. The following snippet creates a stylesheet where all the fonts are bold, and three drawing styles <code>red</code>, <code>bgGray</code>, and <code>blue</code> are defined.</p>
+
+<pre><code>(SpStyleVariableSTONReader fromString:
+	'.application [
+		Font { #bold: true },
+		.red [ Draw { #color: #red } ],
+		.bgGray [ Draw { #backgroundColor: #E2E2E2 } ],
+		.blue [ Draw { #color: #blue } ]
+	]')</code></pre>
+
+<h4 id="applying-styles"><span class="number">17.1.3</span> Applying styles</h4>
+<p>Each presenter can apply a stylesheet using the messages <code>addStyle:</code> and <code>removeStyle:</code>. The following example changes the color of the text of a label presenter by applying the <code>red</code> style.</p>
+
+<pre><code>label := presenter newLabel.
+label label: 'I am a label'.
+label addStyle: 'red'</code></pre>
+
+<h3 id="how-do-styles-work"><span class="number">17.2</span> How do styles work?</h3>
+<p>Styles in Spec work like CSS. They are stylesheets in which the properties for displaying a presenter are defined. Examples of properties are colors, width, height, and font. As a general principle, it is better to use styles instead of fixed constraints, because your application will be more responsive.</p>
+
+<p>Note, however, that a stylesheet does not cover all aspects of a widget and you may need properties that are not covered in the current version of Spec. When moving to Toplo widgets in the future, Spec will revisit its style support and it will improve the coverage.</p>
+
+<h3 id="stylesheets"><span class="number">17.3</span> Stylesheets</h3>
+<p>Spec collects the style for a presenter, then collects the styles for its subpresenters.</p>
+
+<h4 id="root-level"><span class="number">17.3.1</span> Root level</h4>
+<p>A stylesheet always has a root element and this root element has to be called <code>.application</code>. The following stylesheet declares that the font for the application (i.e., for all the presenters if not redefined in another style) is 10 pixels and Source Sans Pro.</p>
+
+<pre><code>.application [
+	Font { #name: "Source Sans Pro", #size: 10 },
+	...</code></pre>
+
+<h4 id="subpresenter"><span class="number">17.3.2</span> Subpresenter</h4>
+<p>Each style follows a cascading style, starting from <code>.application</code>. Here are three styles:</p>
+
+<pre><code>.application.label.header
+.application.link
+.application.checkBox</code></pre>
+
+<h3 id="style-declaration"><span class="number">17.4</span> Style declaration</h3>
+<p>Morphic styles are declared using STON. STON is a textual object notation. It is described in a dedicated chapter in the <i>Enterprise Pharo</i> book available at <a target="_blank" href="https://books.pharo.org/"><a target="_blank" href="https://books.pharo.org/">https://books.pharo.org</a></a>.</p>
+
+<p>Spec styles support five properties: Geometry, Draw, Font, Container, and Text,  as shown by the following example.</p>
+
+<pre><code>Geometry { #hResizing: true }
+Draw { #color:  Color { #red: 1, #green: 0, #blue: 0, #alpha: 1}}
+Draw { #color: #blue}
+Font { #name: "Lucida Grande", #size: 10, #bold: true }
+Container { #borderColor: Color { #rgb: 0, #alpha: 0 }, 
+		#borderWidth: 2, 
+		#padding: 5 }</code></pre>
+
+<p>You can define your style globally at the level of your application, and apply it to a specific presenter with the message <code>addStyle:</code>.
+For example <code>aPresenter addStyle: 'section'</code> selects the <code>.section</code> style and assigns it to the receiver.</p>
+
+<h3 id="stylesheet-examples"><span class="number">17.5</span> Stylesheet examples</h3>
+<p>Here are two examples of stylesheets.</p>
+
+<pre><code>styleSheet
+
+ ^ SpStyleVariableSTONReader fromString: '
+	.application [
+		Font { #name: "Source Sans Pro", #size: 10 },
+		Geometry { #height: 25 },
+		.label [
+			Geometry { #hResizing: true } ],
+		.headerError [Draw { #color:  Color{ #red: 1, #green: 0, #blue: 0, #alpha: 1}}  ],
+		.headerSuccess [Draw { #color: Color{ #red: 0, #green: 1, #blue: 0, #alpha: 1}}  ],
+		.header [
+			Draw { #color: Color{ #rgb: 622413393 }},
+			Font { #name: "Lucida Grande", #size: 10, #bold: true } ],
+		.shortcut [
+			Draw { #color: Color{ #rgb: 622413393 } },
+			Font { #name: "Lucida Grande", #size: 10 } ],
+		.fixed [
+			Geometry { #hResizing: false, #width: 100 } ],
+		.dim [
+			Draw { #color : Color{ #rgb: 708480675 } } ]
+	]'</code></pre>
+
+<p>The next one extends the default stylesheet that is returned by the expression <code>SpStyle defaultStyleSheet</code>.</p>
+
+<pre><code>styleSheet
+
+	^ SpStyle defaultStyleSheet, (SpStyleVariableSTONReader fromString: '
+	.application [
+		Draw { #backgroundColor: #lightRed},
+		.section [
+			Draw { #color: #green, #backgroundColor: #lightYellow},
+			Font {  #name: "Verdana", #size: 12, #italic: true, #bold: true}],
+		.disabled [ Draw { #backgroundColor: #lightGreen} ],
+		.textInputField [ Draw { #backgroundColor: #blue} ],
+		.label [
+			Font {  #name: "Verdana", #size: 10, #italic: false, #bold: true},
+			Draw { #color: #red, #backgroundColor: #lightBlue} ]
+	]')</code></pre>
+
+<h3 id="anatomy-of-a-style"><span class="number">17.6</span> Anatomy of a style</h3>
+<p>Each style element kind uses specific properties defined by its associated classes which subclass <code>SpPropertyStyle</code>. <code>SpPropertyStyle</code> has 5 subclasses: <code>SpContainerStyle</code>, <code>SpDrawStyle</code>, <code>SpFontStyle</code>, <code>SpTextStyle</code>, and <code>SpGeometryStyle</code>.</p>
+
+<p>These subclasses define the 5 types of properties that exist.</p>
+
+<ul>
+<li>Container: <code>SpContainerStyle</code> - It manages the alignment of the presenters. Usually the style is set by the parent presenter, which is the one that contains and arranges the subpresenters.</li>
+<li>Draw: <code>SpDrawStyle</code> - It modifies the properties related to the drawing of the presenter, such as the color and the background color.</li>
+<li>Font: <code>SpFontStyle</code> - It defines properties related to fonts.</li>
+<li>Text: <code>SpTextStyle</code> - It controls the properties of the <code>SpTextInputFieldPresenter</code>.</li>
+<li>Geometry: <code>SpGeometryStyle</code> - It defines sizes, like width, height, minimum height, etc.</li>
+</ul>
+<p>If you want to be sure that you browse the adequate class, just send the message <code>stonName</code> to the class. It will return the symbol used in the STON notation. For example, <code>SpDrawStyle stonName</code> returns <code>#Draw</code>.</p>
+
+<h4 id="example"><span class="number">17.6.1</span> Example</h4>
+<p>If we want to change the color of a presenter, we need to create a string and use the <code>SpDrawStyle</code> property. For setting the color, we can use either the hexadecimal code of the color, or a method selector of the <code>Color</code> class.</p>
+
+<p>Here we define two styles: <code>lightGreen</code> and <code>lightBlue</code> that can be applied to any presenter.</p>
+
+<pre><code>'.application [
+	.lightGreen [ Draw { #color: #B3E6B5 } ],
+	.lightBlue [ Draw { #color: #lightBlue } ] ]'</code></pre>
+
+<h3 id="environment-variables"><span class="number">17.7</span> Environment variables</h3>
+<p>We can also use environment variables to get the values of the predefined colors and fonts of the current UI theme. For example, we can create two styles for changing the font of the text and one for the background color of a presenter:</p>
+
+<pre><code>'.application [
+	.codeFont [ Font { #name: EnvironmentFont(#code) } ],
+	.textFont [ Font { #name: EnvironmentFont(#default) } ],
+	.bg [ Draw { #color: EnvironmentColor(#background) } ]'
+]'</code></pre>
+
+<p>Check the subclasses of <code>SpStyleEnvironmentVariable</code>.</p>
+
+<h3 id="top-level-changes"><span class="number">17.8</span> Top-level changes</h3>
+<p>We can change the styles for all the presenters. For instance, we can display all the text in bold by default with this style:</p>
+
+<pre><code>'.application [
+	Font { #bold: true }
+]'</code></pre>
+
+<h3 id="defining-an-application-and-its-style"><span class="number">17.9</span> Defining an application and its style</h3>
+<p>Suppose we like to style the Mail Application we introduced in Chapter <a href="cha_mailapp.html#cha_mailapp">14</a> and extend in Chapter <a href="cha_menus.html#cha_menus">15</a>.
+Let's say that we like the labels in the mail editing part of the UI to use a bigger font and a blue color. Furthermore, let's say that we like to use a light yellow background for fields and that we want a black border around the field to edit the body of a mail. That brings us to this stylesheet:</p>
+
+<pre><code>'.application [
+		.fieldLabel [ Font { #size: 12 }, Draw { #color: #blue } ],
+		.field [ Draw { #backgroundColor: #lightYellow } ],
+		.bodyField [ Container { #borderWidth: 1, #borderColor: #black} ]
+	]'</code></pre>
+
+<p>The style <code>.fieldLabel</code> defines a 12-pixel blue font. The style <code>.field</code> defines a light yellow background color. The style <code>.bodyField</code> defines a black 1-pixel border.</p>
+
+<p>To use styles, we need to associate the main presenter with an application.
+One way of achieving that would be this way:</p>
+
+<pre><code>| mailClient application styleSheet |
+mailClient := MailClientPresenter on: MailAccount new.
+application := SpApplication new.
+mailClient application: application.
+
+styleSheet := SpStyle defaultStyleSheet,
+	(SpStyleVariableSTONReader fromString:
+	'.application [
+		.fieldLabel [ Font { #size: 12 }, Draw { #color: #blue } ],
+		.field [ Draw { #backgroundColor: #lightYellow } ],
+		.bodyField [ Container { #borderWidth: 1, #borderColor: #black } ]
+	]').
+
+application styleSheet: SpStyle defaultStyleSheet , styleSheet.</code></pre>
+
+<p>But this way of working requires creating the stylesheet outside the context of the Mail Application. Instead, we will introduce a new application class and we override the method <code>styleSheet</code>.</p>
+
+<pre><code>SpApplication &lt;&lt; #MailClientApplication
+	slots: {};
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<pre><code>MailClientApplication &gt;&gt; styleSheet
+
+	| customStyleSheet |
+	customStyleSheet := SpStyleVariableSTONReader fromString:
+		'.application [
+			.fieldLabel [ Font { #size: 12 }, Draw { #color: #blue } ],
+			.field [ Draw { #backgroundColor: #lightYellow } ],
+			.bodyField [ Container { #borderWidth: 1, #borderColor: #black } ]
+		]'.
+	^ super styleSheet , customStyleSheet</code></pre>
+
+<p>Note that this method includes a super send. <code>SpApplication &gt;&gt; styleSheet</code> answers the default stylesheet, which is the same as <code>SpStyle defaultStyleSheet</code> that we saw before. By combining the default stylesheet and our own stylesheet with the <code>,</code> message, we ensure that all the default styles for all presenters are still applied, and our styles are applied on top of the default styles.</p>
+
+<p>To open the Mail Application easily, we define the <code>start</code> method:</p>
+
+<pre><code>MailClientApplication &gt;&gt; start
+
+	(MailClientPresenter on: MailAccount new)
+		application: self;
+		open</code></pre>
+
+<p>With this code in place, we can open the Mail Application with:</p>
+
+<pre><code>MailClientApplication new start</code></pre>
+
+<p>Of course, that would not have much effect. After all, we did not apply the styles yet.</p>
+
+<h3 id="applying-styles-2"><span class="number">17.10</span> Applying styles</h3>
+<p>The styles we defined in the previous section were intended for the <code>EmailPresenter</code> class, which defines a form-like UI to edit a mail. The original implementation of <code>defaultLayout</code> was:</p>
+
+<pre><code>EmailPresenter &gt;&gt; defaultLayout
+
+	| toLine subjectLine fromLine |
+	fromLine := SpBoxLayout newTopToBottom
+		add: 'From:' expand: false;
+		add: from expand: false;
+		yourself.
+	toLine := SpBoxLayout newTopToBottom
+		add: 'To:' expand: false;
+		add: to expand: false;
+		yourself.
+	subjectLine := SpBoxLayout newTopToBottom
+		add: 'Subject:' expand: false;
+		add: subject expand: false;
+		yourself.
+	^ SpBoxLayout newTopToBottom
+		spacing: 10;
+		add: fromLine expand: false;
+		add: toLine expand: false;
+		add: subjectLine expand: false;
+		add: body;
+		yourself</code></pre>
+
+<p>To style the fields, we have to make some changes. The implementation above is based on the method <code>add:expand:</code> which, out of convenience, allows the first argument to be a string, e.g. <code>add: 'From:' expand: false</code>. We cannot style a string. We can only style presenters, so we have to create the label presenters ourselves. Then we can add the required styles to the three label presenters by sending <code>addStyle: 'fieldLabel'</code>. Note that the definition of the style uses <code>.fieldLabel</code>. When sending the message <code>addStyle:</code>, the leading period is omitted in the argument string representing the style.</p>
+
+<pre><code>EmailPresenter &gt;&gt; defaultLayout
+
+	| toLine subjectLine fromLine fromLabel toLabel subjectLabel |
+	fromLabel := self newLabel
+		label: 'From:';
+		addStyle: 'fieldLabel';
+		yourself.
+	fromLine := SpBoxLayout newTopToBottom
+		add: fromLabel expand: false;
+		add: from expand: false;
+		yourself.
+	toLabel := self newLabel
+		label: 'To:';
+		addStyle: 'fieldLabel';
+		yourself.
+	toLine := SpBoxLayout newTopToBottom
+		add: toLabel expand: false;
+		add: to expand: false;
+		yourself.
+	subjectLabel := self newLabel
+		label: 'Subject:';
+		addStyle: 'fieldLabel';
+		yourself.
+	subjectLine := SpBoxLayout newTopToBottom
+		add: subjectLabel expand: false;
+		add: subject expand: false;
+		yourself.
+	^ SpBoxLayout newTopToBottom
+			spacing: 10;
+			add: fromLine expand: false;
+			add: toLine expand: false;
+			add: subjectLine expand: false;
+			add: body;
+			yourself</code></pre>
+
+<p>Now that the labels are styled, the next step is to style the fields. We adapt the method <code>initializePresenters</code>, where they are initialized. Originally, the method included the first four statements. We add four more to add the styles.</p>
+
+<pre><code>EmailPresenter &gt;&gt; initializePresenters
+
+	from := self newTextInput.
+	to := self newTextInput.
+	subject := self newTextInput.
+	body := self newText.
+	from addStyle: 'field'.
+	to addStyle: 'field'.
+	subject addStyle: 'field'.
+	body addStyle: 'field'; addStyle: 'bodyField'</code></pre>
+
+<p>While we add one style for the <code>from</code>, <code>to</code>, and <code>subject</code> presenters, we add two styles to the <code>body</code> presenter. The <code>field</code> style will apply the background color. The <code>bodyField</code> style will apply the black border.</p>
+
+<p>With <code>MailClientApplication new start</code> we can open the Mail Application and see styling in action. Figure <a href="#StyledMailApplication">17.1</a> shows the window.</p>
+
+<p><figure id="StyledMailApplication"><img src="Chapters/Style/figures/StyledMailApplication.png" alt="The stylesheet has been applied to the label and the fields. " style="width: 60%"><figcaption><span class="number">Figure 17.1</span> The stylesheet has been applied to the label and the fields. </figcaption></img></figure></p>
+
+<h3 id="dynamically-applying-styles"><span class="number">17.11</span> Dynamically applying styles</h3>
+<p>Suppose that we like to see a different background color for the fields if the edited mail is a draft mail. That is where dynamic styling comes in.</p>
+
+<p>We can add and remove styles at runtime when the state of the application changes. Let's do that for the styles of the fields.</p>
+
+<p>First, we adapt the method <code>styleSheet</code> of our application class to add new styles. We add the style <code>.draftMail</code>  with a nested style <code>.field</code> that specifies a pink background color. The nesting expresses that the <code>.field</code> style applies in the context of the <code>.draftMail</code> style.</p>
+
+<pre><code>MailClientApplication &gt;&gt; styleSheet
+
+	| customStyleSheet |
+	customStyleSheet := SpStyleVariableSTONReader fromString:
+		'.application [
+			.fieldLabel [ Font { #size: 12 }, Draw { #color: #blue } ],
+			.field [ Draw { #backgroundColor: #lightYellow } ],
+			.draftMail [
+				.field [ Draw { #backgroundColor: #pink } ]
+				],
+			.bodyField [ Container { #borderWidth: 1, #borderColor: #black } ]
+		]'.
+	^ super styleSheet , customStyleSheet</code></pre>
+
+<p>The next step is to apply the new style. <code>EmailPresenter</code> instances have a <code>model</code>. When it changes, the presenter is notified via the <code>modelChanged</code> method. The original implementation was:</p>
+
+<pre><code>EmailPresenter &gt;&gt; modelChanged
+
+	from text: (self model from ifNil: [ '' ]).
+	to text: (self model to ifNil: [ '' ]).
+	subject text: (self model subject ifNil: [ '' ]).
+	body text: (self model body ifNil: [ '' ])</code></pre>
+
+<p>We can easily extend it to apply different styles depending on the kind of model, which holds an instance of the <code>Email</code> class.</p>
+
+<pre><code>EmailPresenter &gt;&gt; modelChanged
+
+	from text: (self model from ifNil: [ '' ]).
+	to text: (self model to ifNil: [ '' ]).
+	subject text: (self model subject ifNil: [ '' ]).
+	body text: (self model body ifNil: [ '' ]).
+	self model isDraft
+		ifTrue: [
+			from addStyle: 'draftMail.field'.
+			to addStyle: 'draftMail.field'.
+			subject addStyle: 'draftMail.field'.
+			body addStyle: 'draftMail.field' ]
+		ifFalse: [
+			from removeStyle: 'draftMail.field'.
+			to removeStyle: 'draftMail.field'.
+			subject removeStyle: 'draftMail.field'.
+			body removeStyle: 'draftMail.field' ]</code></pre>
+
+<p>Let's open the Mail Application again and select different kinds of mail. Figure <a href="#DynamicStyling">17.2</a> shows the two styles.</p>
+
+<p><figure id="DynamicStyling"><img src="Chapters/Style/figures/DynamicStyling.png" alt="A different style for different kinds of mail. " style="width: 100%"><figcaption><span class="number">Figure 17.2</span> A different style for different kinds of mail. </figcaption></img></figure></p>
+
+<h3 id="conclusion-13"><span class="number">17.12</span> Conclusion</h3>
+<p>Using styles in Spec is a nice feature. It makes it easier to have a consistent design as we can add the same style to several presenters. If we want to change some style, we only edit the stylesheet. We can dynamically change how a presenter looks.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="using-transmissions-and-ports.html">← Using transmissions and ports</a>
+        <a class="next" rel="next" href="using-athens-and-roassal-in-spec.html">Using Athens and Roassal in Spec →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Application Building with Spec 2.0 · K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano</p>
+  </footer>
+</body>
+</html>

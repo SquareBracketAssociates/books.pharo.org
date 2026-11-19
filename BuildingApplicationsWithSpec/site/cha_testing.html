@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Testing Spec applications</title>
+  <meta name="description" content="">
+  <meta name="author" content="K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Application Building with Spec 2.0</a>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <details open>
+        <summary>Contents</summary>
+        <ol>
+          
+          <li>
+            <a href="chaintroductions.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="all-spec-in-one-example.html"><span class="number">2</span> All Spec in One Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chaSmallExample.html"><span class="number">3</span> A 10 min small example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chacasestudyone.html"><span class="number">4</span> Most of Spec in one example</a>
+            
+          </li>
+          
+          <li>
+            <a href="spec-essentials.html"><span class="number">5</span> Spec Essentials</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_core.html"><span class="number">6</span> Spec core in a nutshell</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="cha_testing.html" aria-current="page"><span class="number">7</span> Testing Spec applications</a>
+            
+            <ol>
+              
+              <li><a href="#testing-presenters"><span class="number">7.1</span> Testing presenters</a></li>
+              
+              <li><a href="#spec-user-example"><span class="number">7.2</span> Spec user example</a></li>
+              
+              <li><a href="#tests"><span class="number">7.3</span> Tests</a></li>
+              
+              <li><a href="#testing-your-application"><span class="number">7.4</span> Testing your application</a></li>
+              
+              <li><a href="#known-limitations-and-conclusion"><span class="number">7.5</span> Known limitations and conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="cha_fundamentals_of_spec.html"><span class="number">8</span> The dual aspects of presenters: Domain and interaction model</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_reuse.html"><span class="number">9</span> Reuse and composition at work</a>
+            
+          </li>
+          
+          <li>
+            <a href="lists-tables-and-trees.html"><span class="number">10</span> Lists, tables and trees</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_managing_windows.html"><span class="number">11</span> Managing windows</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_layout.html"><span class="number">12</span> Layouts</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_dynamic_presenter.html"><span class="number">13</span> Dynamic presenters</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_mailapp.html"><span class="number">14</span> A Concrete Case: A Mail Application</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_menus.html"><span class="number">15</span> Menubar, Toolbar, Status Bar, and Context Menus</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-transmissions-and-ports.html"><span class="number">16</span> Using transmissions and ports</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_style.html"><span class="number">17</span> Styling applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-athens-and-roassal-in-spec.html"><span class="number">18</span> Using Athens and Roassal in Spec</a>
+            
+          </li>
+          
+          <li>
+            <a href="customizing-your-inspector.html"><span class="number">19</span> Customizing your Inspector</a>
+            
+          </li>
+          
+          <li>
+            <a href="working-with-commands.html"><span class="number">20</span> Working with Commands</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_commander.html"><span class="number">21</span> Commander: A powerful and simple command framework</a>
+            
+          </li>
+          
+        </ol>
+      </details>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">7</span> Testing Spec applications</h2><a id="cha_testing"></a>
+<p>Developers often think that testing a user interface is difficult. It is true that fully testing the placement and layout of widgets can be tedious. However, testing the logic of an application and in particular the interaction logic is possible. That is what we will show in this chapter. We will show that testing a Spec application is simple and effective.</p>
+
+<h3 id="testing-presenters"><span class="number">7.1</span> Testing presenters</h3>
+<p>Tests are key to ensuring that everything works correctly. In addition, they free us from the fear of breaking something without being warned about it. Tests support refactorings. While such facts are general and applicable to many domains, they are also true for user interfaces.</p>
+
+<h4 id="spec-architecture"><span class="number">7.1.1</span> Spec architecture</h4>
+<p>Spec is based on an architecture with three different layers as shown in Figure <a href="#Architecture">7.1</a>:</p>
+
+<ul>
+<li><strong>Presenters:</strong> Presenters define the interaction logic and manipulate domain objects. They access backend widgets but via an API that is specified by Adapters.</li>
+<li><strong>Adapters:</strong> Adapters are objects exposing low-level backend widgets. They are a bridge between presenters and low-level widgets.</li>
+<li><strong>Backend widgets</strong>. Backend widgets are plain widgets that can be used without Spec.</li>
+</ul>
+<p><figure id="Architecture"><img src="Chapters/TestingInSpec/figures/ArchitectureSpec2.pdf" alt="Spec Architecture: three layers Presenters - Adapters - Backends. " style="width: 95%"><figcaption><span class="number">Figure 7.1</span> Spec Architecture: three layers Presenters - Adapters - Backends. </figcaption></img></figure></p>
+
+<h4 id="three-roles-and-concerns"><span class="number">7.1.2</span> Three roles and concerns</h4>
+<p>To help you understand the different possibilities of testing that you can engage in, we identify the following roles and their related concerns.</p>
+
+<ul>
+<li><strong>Spec Users.</strong> Spec users are developers who build a new application. They define the logic of the application by assembling presenters and domain objects. We believe that this is the role that you will play most of the time.</li>
+<li><strong>Spec Developers.</strong> Spec developers are more concerned with the development of new Spec presenters and their link with the adapters.</li>
+<li><strong>Widget Developers.</strong> Widget developers are concerned about the logic and working of a given widget for a given backend.</li>
+</ul>
+<h4 id="spec-user-perspective"><span class="number">7.1.3</span> Spec user perspective</h4>
+<p>We will focus on the first role. For the reader interested in the second role, the class <code>SpAbstractBackendForTest</code> is a good starting place.</p>
+
+<p>As a Spec user, you should consider that the backends are working and your responsibility is to test the logic of the user interface components. You should make sure that when the model changes, the user interface components reflect the changes. Inversely when the user interface components change, you should ensure that the model is updated. Let's give an example.</p>
+
+<h3 id="spec-user-example"><span class="number">7.2</span> Spec user example</h3>
+<p>We will test a simple spec application, as shown in Figure <a href="#exampleapplication">7.2</a>. The model for this application is an instance of the <code>Color</code> class. The application shows a list of colors from which the user can choose one. After choosing a color, the application shows the color in a big box, and it shows the <code>printString</code> of the color, together with the hexadecimal code. The application also provides two buttons to make the chosen color lighter or darker.</p>
+
+<p><figure id="exampleapplication"><img src="Chapters/TestingInSpec/figures/ExampleApplication.png" alt="A Spec application. " style="width: 70%"><figcaption><span class="number">Figure 7.2</span> A Spec application. </figcaption></img></figure></p>
+
+<p>The presenter is defined as described below. The class has six instance variables. The first five instance variables hold subpresenters that compose the application window. The sixth instance variable holds the color that serves as the model of the application.</p>
+
+<pre><code>SpPresenter &lt;&lt; #ColorChooser
+	slots: { #colorList . #colorDetails . #colorBox . #lighterButton . #darkerButton . #currentColor };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>The method <code>initializePresenters</code> initializes the subpresenters. <code>colorList</code> holds a list presenter with the colors. <code>colorBox</code> displays the chosen color in a <code>SpRoassalPresenter</code>. <code>colorDetails</code> holds a text presenter that shows information about the color. <code>lighterButton</code> and <code>darkerButton</code> are the buttons to make the current color lighter or darker.</p>
+
+<pre><code>ColorChooser &gt;&gt; initializePresenters
+
+	colorList := self newList
+		display: [ :color | '' ];
+		displayBackgroundColor: [ :color | color ];
+		yourself.
+	colorBox := self instantiate: SpRoassalPresenter.
+	lighterButton := self newButton
+		label: 'Lighter';
+		action: [ self lighter ];
+		yourself.
+	darkerButton := self newButton
+		label: 'Darker';
+		action: [ self darker ];
+		yourself.
+	colorDetails := self newText</code></pre>
+
+<p>The instance variable <code>currentColor</code> is not initialized by <code>initializePresenters</code>. It is initialized in <code>setModelBeforeInitialization:</code> because a color can be given when creating a new <code>ColorChooser</code> instance.</p>
+
+<pre><code>ColorChooser &gt;&gt; setModelBeforeInitialization: aColor
+
+	currentColor := aColor</code></pre>
+
+<p>The method <code>defaultLayout</code> defines the layout with a left side and a right side. The left side is the color list. The right side consists of the color box, the two buttons, and the color details. Composition with horizontal and vertical <code>BoxLayout</code>s, together with a 5-pixel spacing, results in the window shown in Figure <a href="#exampleapplication">7.2</a>.</p>
+
+<pre><code>ColorChooser &gt;&gt; defaultLayout
+
+	| colorBoxAndDetails buttons |
+	buttons := SpBoxLayout newLeftToRight
+		spacing: 5;
+		add: lighterButton;
+		add: darkerButton;
+		yourself.
+	colorBoxAndDetails := SpBoxLayout newTopToBottom
+		spacing: 5;
+		add: colorBox;
+		add: buttons expand: false;
+		add: colorDetails;
+		yourself.
+	^ SpBoxLayout newLeftToRight
+		spacing: 5;
+		add: colorList expand: false;
+		add: colorBoxAndDetails;
+		yourself</code></pre>
+
+<p>The method <code>initializeWindow:</code> sets the title and the initial dimensions of the window.</p>
+
+<pre><code>ColorChooser &gt;&gt; initializeWindow: aWindowPresenter
+
+	aWindowPresenter
+		title: 'Color Chooser';
+		initialExtent: 400@294</code></pre>
+
+<p>Connecting the subpresenters is expressed easily. When a selection in the color list is made, the color is updated.</p>
+
+<pre><code>ColorChooser &gt;&gt; connectPresenters
+
+	colorList whenSelectionChangedDo: [ :selection |
+		self updateColor: selection selectedItem ]</code></pre>
+
+<p>The method <code>connectPresenters</code> delegates to <code>updateColor:</code> to update the color box and the color details. As you can see, <code>updateColor:</code> takes care of a possible <code>nil</code> value for <code>currentColor</code>.</p>
+
+<pre><code>ColorChooser &gt;&gt; updateColor: color
+
+	| details |
+	currentColor := color.
+	colorBox canvas
+		background: (currentColor ifNil: [ Color transparent ]);
+		signalUpdate.
+	details := currentColor
+		ifNil: [ '' ]
+		ifNotNil: [ self detailsFor: currentColor ].
+	colorDetails text: details</code></pre>
+
+<p>The method <code>updateColor:</code> delegates the responsibility of producing the text with color details to <code>detailsFor:</code>.</p>
+
+<pre><code>ColorChooser &gt;&gt; detailsFor: color
+
+	^ String streamContents: [ :stream |
+		stream
+			print: color; cr; cr; nextPut: $#;
+			nextPutAll: color asHexString ]</code></pre>
+
+<p>We also define <code>updatePresenter</code> to set the initial state of the subpresenters. It populates the color list with default colors, as defined by <code>defaultColors</code>, and the initial color is set with <code>updateColor:</code>.</p>
+
+<pre><code>ColorChooser &gt;&gt; updatePresenter
+
+	| initialColor |
+	initialColor := currentColor.
+	colorList items: self defaultColors.
+	self updateColor: initialColor</code></pre>
+
+<p>Note that keeping the initial color with <code>initialColor := currentColor</code> is necessary because <code>colorList items: self defaultColors</code> resets the selection in the list, which triggers the block in <code>connectPresenters</code>. That block sends <code>updateColor: nil</code> because there is no selection. So this method keeps the initial color and applies it with <code>self updateColor: initialColor</code>.</p>
+
+<p>To keep things simple, <code>defaultColors</code> answers only a handful of colors. This method can be changed easily to answer a different collection of colors. For instance, you could try <code>Color red wheel: 20</code>.</p>
+
+<pre><code>ColorChooser &gt;&gt; defaultColors
+
+	^ {
+		Color red .
+		Color orange .
+		Color yellow .
+		Color green .
+		Color magenta .
+		Color cyan .
+		Color blue .
+		Color purple .
+		Color pink .
+		Color brown .
+		Color white .
+		Color gray .
+		Color black }</code></pre>
+
+<p>There are only two methods missing from the code above to complete the class implementation. The method <code>initializePresenters</code> sets actions for the buttons, which invoke the following two methods. These methods delegate to the method <code>updateColor:</code> to do the heavy lifting.</p>
+
+<pre><code>ColorChooser &gt;&gt; lighter
+
+	self updateColor: currentColor lighter</code></pre>
+
+<pre><code>ColorChooser &gt;&gt; darker
+
+	self updateColor: currentColor darker</code></pre>
+
+<p>With the code above in place, we can open the application. Let's start with opening the default with:</p>
+
+<pre><code>ColorChooser new open</code></pre>
+
+<p>In this case, there is no initial color, which results in the window shown in Figure <a href="#defaultapplication">7.3</a>. The color box does not show a color and the color details are empty.</p>
+
+<p><figure id="defaultapplication"><img src="Chapters/TestingInSpec/figures/DefaultApplication.png" alt="The default ColorChooser. " style="width: 70%"><figcaption><span class="number">Figure 7.3</span> The default ColorChooser. </figcaption></img></figure></p>
+
+<p>Let's see what happens when we provide a color with:</p>
+
+<pre><code>(ColorChooser on: Color yellow) open</code></pre>
+
+<p>In this case, yellow is given as the initial color that should be shown when the window opens. Note that <code>on:</code> has not been defined as a class method by <code>ColorChooser</code>. The class method is inherited from the superclass <code>SpAbstractPresenter</code>. The result is shown in Figure <a href="#initializedapplication">7.4</a>.</p>
+
+<p><figure id="initializedapplication"><img src="Chapters/TestingInSpec/figures/InitializedApplication.png" alt="The ColorChooser opened on the color yellow. " class="initializedapplication" style="width: 70%"><figcaption><span class="number">Figure 7.4</span> The ColorChooser opened on the color yellow. </figcaption></img></figure></p>
+
+<h3 id="tests"><span class="number">7.3</span> Tests</h3>
+<p>With all the code in place, it is time to write some tests. First, we define the test class.</p>
+
+<pre><code>TestCase &lt;&lt; #ColorChooserTest
+	slots: { #chooser };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>Each test will open a new instance of <code>ColorChooser</code>. It is expected that the instance variable <code>chooser</code> will hold the instance used in a test. To ensure that the instance is cleaned up, we define <code>tearDown</code>. It takes into account that a test can fail before <code>chooser</code> is bound to an instance of <code>ColorChooser</code>.</p>
+
+<pre><code>ColorChooserTest &gt;&gt; tearDown
+
+	chooser ifNotNil: [ chooser delete ].
+	super tearDown</code></pre>
+
+<p>With that infrastructure in place, we can write our tests.</p>
+
+<h4 id="opening-the-default-application"><span class="number">7.3.1</span> Opening the default application</h4>
+<p>Our first test describes the state of the application after opening the default application.</p>
+
+<pre><code>ColorChooserTest &gt;&gt; testDefault
+	"When a ColorChooser opens without a color,
+	 the color box shows a transparent color and the details are empty."
+
+	chooser := ColorChooser new.
+	chooser open.
+
+	self assert: chooser boxColor equals: Color transparent.
+	self assert: chooser detailsText equals: ''</code></pre>
+
+<p>We have to add a few so-called 'test support' methods to make this work. These methods belong to the test api of the <code>ColorChooser</code>, because they are intended to be used for testing purposes only.</p>
+
+<pre><code>ColorChooser &gt;&gt; boxColor
+
+	^ colorBox canvas color</code></pre>
+
+<pre><code>ColorChooser &gt;&gt; detailsText
+
+	^ colorDetails text</code></pre>
+
+<h4 id="correct-initialization"><span class="number">7.3.2</span> Correct initialization</h4>
+<p>The second test describes the state of the application after opening the application with a color.</p>
+
+<pre><code>ColorChooserTest &gt;&gt; testInitialization
+	"When a ColorChooser opens on a color,
+	 the color box shows that color
+	 and the details show the print string and the HEX code."
+
+	chooser := ColorChooser on: Color palePeach.
+	chooser open.
+
+	self assert: chooser boxColor equals: Color palePeach.
+	self assert: chooser detailsText equals: 'Color palePeach\\#FFEDD5' withCRs</code></pre>
+
+<h4 id="choosing-a-color"><span class="number">7.3.3</span> Choosing a color</h4>
+<p>The third test describes what happens when the user chooses a color.</p>
+
+<p>First, the test selects the first color in the list and verifies the state of the subpresenters. Then it selects the seventh color in the list and verifies the expected state changes in the subpresenters.</p>
+
+<pre><code>ColorChooserTest &gt;&gt; testChooseColor
+	"When the user chooses a color in the list,
+	 the color box shows the color
+	 and the details show the print string and the HEX code."
+
+	chooser := ColorChooser new.
+	chooser open.
+
+	chooser clickColorAtIndex: 1.
+	self assert: chooser boxColor equals: Color red.
+	self assert: chooser detailsText equals: 'Color red\\#FF0000' withCRs.
+
+	chooser clickColorAtIndex: 7.
+	self assert: chooser boxColor equals: Color blue.
+	self assert: chooser detailsText equals: 'Color blue\\#0000FF' withCRs</code></pre>
+
+<p>This test uses an extra test support method to click on a color in the list.</p>
+
+<pre><code>ColorChooser &gt;&gt; clickColorAtIndex: index
+
+	colorList clickAtIndex: index</code></pre>
+
+<h4 id="making-the-current-color-lighter"><span class="number">7.3.4</span> Making the current color lighter</h4>
+<p>Now, it is time to describe the application behavior after clicking the 'Lighter' button.</p>
+
+<p>The test consists of four parts. First, the first color in the list is clicked. That results in an update of the color box and the color details. After a click on the button, the test verifies the changed state of the color box and the color details. Then it clicks the button a second time to describe that the current color can be made lighter over and over again. Finally, the test selects the seventh color in the list and verifies the expected state changes in the subpresenters.</p>
+
+<pre><code>ColorChooserTest &gt;&gt; testLighter
+	"When the user presses the 'Lighter' button,
+	 the color box shows the ligher color
+	 and the details show the print string and the HEX code."
+
+	chooser := ColorChooser new.
+	chooser open.
+
+	chooser clickColorAtIndex: 1.
+	chooser clickLighterButton.
+	self 
+		assert: chooser boxColor 
+		equals: (Color r: 1.0 g: 0.030303030303030304 b: 0.030303030303030304 alpha: 1.0).
+	self 
+		assert: chooser detailsText 
+		equals: '(Color r: 1.0 g: 0.030303030303030304 b: 0.030303030303030304 alpha: 1.0)\\#FF0707' withCRs.
+
+	chooser clickLighterButton.
+	self 
+		assert: chooser boxColor 
+		equals: (Color r: 1.0 g: 0.06060606060606061 b: 0.06060606060606061 alpha: 1.0).
+	self 
+		assert: chooser detailsText 
+		equals: '(Color r: 1.0 g: 0.06060606060606061 b: 0.06060606060606061 alpha: 1.0)\\#FF0F0F' withCRs.
+
+	chooser clickColorAtIndex: 7.
+	chooser clickLighterButton.
+	self 
+		assert: chooser boxColor 
+		equals: (Color r: 0.030303030303030304 g: 0.030303030303030304 b: 1.0 alpha: 1.0).
+	self 
+		assert: chooser detailsText 
+		equals: '(Color r: 0.030303030303030304 g: 0.030303030303030304 b: 1.0 alpha: 1.0)\\#0707FF' withCRs</code></pre>
+
+<p>As the other tests, this test requires an extra test support method.</p>
+
+<pre><code>ColorChooser &gt;&gt; clickLighterButton
+
+	lighterButton click</code></pre>
+
+<h4 id="making-the-current-color-darker"><span class="number">7.3.5</span> Making the current color darker</h4>
+<p>This test is very similar to the previous test. Instead of clicking the 'Lighter' button, this test clicks the 'Darker' button.</p>
+
+<pre><code>ColorChooserTest &gt;&gt; testDarker
+	"When the user presses the 'Darker' button,
+	 the color box shows the darker color
+	 and the details show the print string and the HEX code."
+
+	chooser := ColorChooser new.
+	chooser open.
+
+	chooser clickColorAtIndex: 1.
+	chooser clickDarkerButton.
+	self 
+		assert: chooser boxColor 
+		equals: (Color r: 0.9198435972629521 g: 0.0 b: 0.0 alpha: 1.0).
+	self 
+		assert: chooser detailsText 
+		equals: '(Color r: 0.9198435972629521 g: 0.0 b: 0.0 alpha: 1.0)\\#EB0000' withCRs.
+
+	chooser clickDarkerButton.
+	self 
+		assert: chooser boxColor 
+		equals: (Color r: 0.8396871945259042 g: 0.0 b: 0.0 alpha: 1.0).
+	self 
+		assert: chooser detailsText 
+		equals: '(Color r: 0.8396871945259042 g: 0.0 b: 0.0 alpha: 1.0)\\#D60000' withCRs.
+
+	chooser clickColorAtIndex: 7.
+	chooser clickDarkerButton.
+	self 
+		assert: chooser boxColor 
+		equals: (Color r: 0.0 g: 0.0 b: 0.9198435972629521 alpha: 1.0).
+	self 
+		assert: chooser detailsText 
+		equals: '(Color r: 0.0 g: 0.0 b: 0.9198435972629521 alpha: 1.0)\\#0000EB' withCRs</code></pre>
+
+<p>Again, this test requires an extra test support method. Note that such a method is not mandatory and could be replaced by a simple access to the button using an accessor. Using such a helper method factors the logic.</p>
+
+<pre><code>ColorChooser &gt;&gt; clickDarkerButton
+
+	darkerButton click</code></pre>
+
+<h4 id="verifying-window-properties"><span class="number">7.3.6</span> Verifying window properties</h4>
+<p>Now we want to check that the window is built correctly. We will verify that the title and the initial extent of the window are correct.</p>
+
+<pre><code>ColorChooserTest &gt;&gt; testInitializeWindow
+
+	| window |
+	chooser := ColorChooser new.
+	window := chooser open.
+	self assert: window isBuilt.
+	self assert: window title equals: 'Color Chooser'.
+	self assert: window initialExtent equals: 400@294</code></pre>
+
+<h3 id="testing-your-application"><span class="number">7.4</span> Testing your application</h3>
+<p>In Spec, an application is responsible to run and gather the windows of your application. The pattern is to override the <code>start</code> method of your application. The method <code>start</code> is a hook method that is invoked when you execute your application using the <code>run</code> message as in <code>ColorChooserApplication new run</code>.</p>
+
+<p>It is important to see that in the <code>start</code> method you should configure the presenter you are opening so that it knows its application. This is important so that the application knows the windows it is opening.</p>
+
+<p>In a TDD fashion, we define the test class first:</p>
+
+<pre><code>TestCase &lt;&lt; #ColorChooserApplicationTest
+	slots: { #application };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<pre><code>ColorChooserApplicationTest &gt;&gt; setUp
+
+	super setUp.
+	application := ColorChooserApplication new</code></pre>
+
+<pre><code>ColorChooserApplicationTest &gt;&gt; tearDown
+
+	application ifNotNil: [ application closeAllWindows ].
+	super tearDown</code></pre>
+
+<pre><code>ColorChooserApplicationTest &gt;&gt; testWindowRegistration
+
+	self assert: application windows size equals: 0.
+	application start.
+	self assert: application windows size equals: 1.
+	application start.
+	self assert: application windows size equals: 2</code></pre>
+
+<p>The method <code>testWindowRegistration</code> describes the expected behavior of our application. When opened windows are correctly registered, the application should have access to all the opened windows. The test opens two windows and verifies that the number of windows increases.</p>
+
+<p>The test fails, because <code>ColorChooserApplication</code> does not exist yet. Let's define it:</p>
+
+<pre><code>SpApplication &lt;&lt; #ColorChooserApplication
+	slots: {};
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>The test still fails. It fails in the second assertion because the application does not register the open windows. Let's implement the <code>start</code> method to register the windows.</p>
+
+<pre><code>ColorChooserApplication &gt;&gt; start
+
+	ColorChooser new
+		application: self;
+		open</code></pre>
+
+<p>Tada! The test passes.</p>
+
+<h3 id="known-limitations-and-conclusion"><span class="number">7.5</span> Known limitations and conclusion</h3>
+<p>In this chapter we showed that you can take advantage of Spec to define tests that will help you to evolve the visual part of your application. This is really key for modern software development and to lower your stress in the future. So take advantage of agile development.</p>
+
+<p>Currently, Spec does not offer a way to script and control popup windows. It is not possible to script a button that opens a dialog for a value. Future versions of Spec should cover this missing feature.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="cha_core.html">← Spec core in a nutshell</a>
+        <a class="next" rel="next" href="cha_fundamentals_of_spec.html">The dual aspects of presenters: Domain and interaction model →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Application Building with Spec 2.0 · K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano</p>
+  </footer>
+</body>
+</html>

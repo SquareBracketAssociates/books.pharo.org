@@ -1,0 +1,299 @@
+!! Tips and how tos 
+
+!!! Registering to focus event
+
+A presenter does not offer a specific API to get  access to event registration on focus. 
+What you should do instead is to do it via the presenter eventHandler as follows:
+
+[[[
+aPresenter eventHandler whenFocusReceivedDo: [ :anEvent | ... ]
+]]]
+
+!!! Table with sorting 
+
+[[[
+SpPresenter subclass: #SpClassPresenter
+	slots: { #table }
+	classVariables: {  }
+	package: 'Spec2-TutorialThree'
+]]]
+
+[[[
+SpClassPresenter >> initializePresenters 
+
+	table := self newTable
+        items: self class environment allClasses ;
+        addColumn:
+            ((SpStringTableColumn title: 'Name' evaluated: #name)
+                width: 250;
+                yourself);
+        addColumn:
+            ((SpStringTableColumn title: '#methods' evaluated: #numberOfMethods)
+                width: 80;
+                yourself);
+        beResizable;
+        beMultipleSelection;
+        yourself.
+]]]
+
+[[[
+SpClassPresenter class >>defaultLayout
+
+	^ SpBoxLayout newVertical
+		add: #table
+		yourself
+]]]
+
+
++Ascending table .>file://figures/FirstClass1-Ascending.png+
+
+
+
+!!!! Initialize sorting
+
+==sortingBlock: == defines the default sorting of elements. 
+Here ==#name descending== specifies that the
+
+[[[
+SpClassPresenter >> initializePresenters 
+
+   table := self newTable
+        items: self class environment allClasses ;
+        sortingBlock: #name descending;
+        addColumn:
+            ((SpStringTableColumn title: 'Name' evaluated: #name)
+                width: 250;
+                yourself);
+        addColumn:
+            ((SpStringTableColumn title: '#methods' evaluated: #numberOfMethods)
+                width: 80;
+                yourself);
+        beResizable;
+        beMultipleSelection;
+        yourself.
+]]]
+
++Descending table .>file://figures/FirstClass2-Descending.png+
+
+
+!!!! More explicit value computation
+
+
+
+[[[
+SpClassPresenter >> initializePresenters 
+
+		table := self newTable
+	        items: (self class environment allClasses first: 100) ;
+	        sortingBlock: #name descending;
+	        addColumn:
+	            ((SpStringTableColumn title: 'Name' evaluated: #name)
+	                width: 250;
+	                yourself);
+	        addColumn:
+	            ((SpStringTableColumn title: '#methods' evaluated: #numberOfMethods)
+	                width: 80;
+	                yourself);
+			 addColumn:
+	            ((SpStringTableColumn 
+						title: '#LOC' 
+						evaluated: [:each | each methods inject: 0 into: [:s :m| s + m linesOfCode]])
+	                width: 80;
+	                yourself);
+	        beResizable;
+	        beMultipleSelection;
+	        yourself.
+]]]
+
+By default, if you do not set ==sortFunction: ==it will compare what the evaluation block returns.
+
+
++With more explicit item value computation.>file://figures/FirstClass3-LOC.png+
+
+!!!! Specific column-level sorting
+The message ==sortFunction:== lets us define how a specific column wants to be sorted.
+Here ==sortFunction: [ :cl | cl allSubclasses size ] ascending== is telling that the subclass column should be sorted using the number of subclasses.
+
+[[[
+SpClassPresenter >> initializePresenters 
+
+	table := self newTable
+			items: self class environment allClasses ;
+			  sortingBlock: #name descending;
+	        addColumn:
+	            ((SpStringTableColumn title: 'Name' evaluated: #name)
+	                width: 250;
+	                yourself);
+				addColumn:
+	            ((SpStringTableColumn title: '#subclass' evaluated: [:each | each allSubclasses size])
+                   sortFunction: [ :cl | cl allSubclasses size ] ascending;
+	                width: 250;
+	                yourself);
+
+	        addColumn:
+	            ((SpStringTableColumn title: '#methods' evaluated: #numberOfMethods)
+	                width: 80;
+	                yourself);
+	        beResizable;
+	        beMultipleSelection;
+	        yourself.
+]]]
+
++With subclasses.>file://figures/FirstClass4-Subclasses.png+
++Sorted based on subclass number.>file://figures/FirstClass5-SubclassesSorted.png+
+
+
+Note that previous example shows that the current implementation forces us to recompute the value while it is not needed.
+
+!!! Command reuse
+With commander2 you can reuse commands. The same commander class can return command instance configured differently.
+
+A simple 
+[[[
+asSpecCommand
+	...
+	iconProvider: self
+]]]
+
+[[[
+iconNamed: aSymbol
+	^ (super iconNamed: aSymbol) asGrey
+]]]
+
+
+!!! Alternate color
+
+
+[[[
+
+	whenBuiltDo: [ :tree| tree widget alternateRowsColor ] 
+
+]]]
+
+
+!!! How to use your values to initialize your widgets
+
+The ==initializePresenters== hook method is called in the ==initialize== phase of the presenter.
+It means that you may have problem to pass the values of your contructors before. 
+Your code may be as follows: 
+
+[[[
+PRExportPresenter class >> withParser: aParser
+	^ self new
+		setParser: aParser;
+		yourself
+]]]
+
+The problem with above is that your ==initializeWidgets== method may want to use the value passed (==withParser:==) when 
+creating your presenter
+
+For example something like that: 
+[[[
+PRExportPresenter >> initializePresenters
+
+    syntaxScreen := self newLabel label: 'Input syntax: ', self parser name.
+]]]
+
+If you want to use your values you have to pass them before initialize is called y
+several ways for that
+
+!!!! Define your own initialize method.
+
+Write your own initialize method and set your values before calling the ==initialize==.
+
+[[[
+PRExportPresenter class >> withParser: aParser
+
+	^ self basicnew
+		setParser: aParser;
+		initialize; 
+		yourself
+]]]
+
+This is not really nice because if you forget to call ==initialize== you may break Spec2 logic. 
+A better solution is the following one.
+
+!!!! Use on: and setModelBeforeInitialization: 
+
+Pass your model to the presenter (this is a single object) when you create your presenter calling ==on:== instead ==new== 
+and you need to implement the method ==setModelBeforeInitialization:==.
+
+[[[
+PRExportPresenter class >> withParser: aParser
+	^ self on: aParser
+]]]
+
+[[[
+PRExportPresenter >> setModelBeforeInitialization: aParser
+    self setParser: aParser
+]]]
+
+!!! Roassal inside
+
+[[[
+SpMorphPresenter new
+	morph: view canvas createMorph;
+	yourself
+]]]
+
+
+!!! How to load icons?
+ThemeIcons >> loadIconsFromUrl. 
+Here's a simplistic approach to load icons from PNGs in a local ZIP archive
+
+[[[
+| themeIcons newIcons |
+newIcons := IdentityDictionary new.
+themeIcons := ThemeIcons new.
+
+((FileSystem zip: 'C:\icons\a.zip' asFileReference) 
+    open workingDirectory allChildrenMatching: '*.png') do:
+        [ :each | newIcons 
+            at: each base asSymbol
+            put: (themeIcons readPNGFrom: each )].
+newIcons.
+]]]
+
+The class ThemeIcons offers more support. 
+
+
+Another way that is a bit more low-level is to use the ==ImageForm== directly.
+
+[[[
+	| newIcons |
+
+	newIcons := IdentityDictionary new.
+	((FileSystem zip: 'C:\icons\a.zip' asFileReference) 
+	    open workingDirectory allChildrenMatching: '*.png') do:
+	        [ :each | newIcons 
+	            at: each base asSymbol
+	            put: (ImageForm open: each )].
+
+	SpToolBarButton new 
+	   label: 'Go!';
+	   icon: (newIcons at: #iconFileName).
+
+]]]
+
+!!! Can we draw custom widgets with spec
+
+you can
+you have two possibilities
+- you do a morph and you use ==SpMorphPresenter==
+- you draw it with athens and you use ==SpAthensStaticPresenter==
+maybe (2) needs some work to be really usable, it was never tried. Also, it needs a rename to ==SpAthensPresenter==
+
+
+[[[
+SpListPresenter new
+		items: self environment allClasses;
+		displayIcon: [ :aClass | self iconNamed: aClass systemIconName  ];
+		displayColor: [ :aClass | 
+			(aClass name endsWith: 'Test')
+				ifTrue: [ Color green ]
+				ifFalse: [ Smalltalk ui theme textColor ] ];
+		displayItalic: [ :aClass | aClass name includesSubstring: 'abstract' caseSensitive: false ];
+		displayBold: [ :aClass | aClass hasSubclasses ];
+		displayUnderline: [ :aClass | aClass numberOfMethods > 10 ];
+		openWithSpec
+]]]

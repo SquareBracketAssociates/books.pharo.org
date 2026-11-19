@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A 10 min small example</title>
+  <meta name="description" content="">
+  <meta name="author" content="K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Application Building with Spec 2.0</a>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <details open>
+        <summary>Contents</summary>
+        <ol>
+          
+          <li>
+            <a href="chaintroductions.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="all-spec-in-one-example.html"><span class="number">2</span> All Spec in One Example</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="chaSmallExample.html" aria-current="page"><span class="number">3</span> A 10 min small example</a>
+            
+            <ol>
+              
+              <li><a href="#seccustomersatisfaction"><span class="number">3.1</span> A customer satisfaction UI</a></li>
+              
+              <li><a href="#create-the-class-of-the-ui"><span class="number">3.2</span> Create the class of the UI</a></li>
+              
+              <li><a href="#instantiate-and-configure-subpresenters"><span class="number">3.3</span> Instantiate and configure subpresenters</a></li>
+              
+              <li><a href="#define-a-title-and-window-size-open-and-close-the-ui"><span class="number">3.4</span> Define a title and window size, open and close the UI</a></li>
+              
+              <li><a href="#conclusion"><span class="number">3.5</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="chacasestudyone.html"><span class="number">4</span> Most of Spec in one example</a>
+            
+          </li>
+          
+          <li>
+            <a href="spec-essentials.html"><span class="number">5</span> Spec Essentials</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_core.html"><span class="number">6</span> Spec core in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_testing.html"><span class="number">7</span> Testing Spec applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_fundamentals_of_spec.html"><span class="number">8</span> The dual aspects of presenters: Domain and interaction model</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_reuse.html"><span class="number">9</span> Reuse and composition at work</a>
+            
+          </li>
+          
+          <li>
+            <a href="lists-tables-and-trees.html"><span class="number">10</span> Lists, tables and trees</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_managing_windows.html"><span class="number">11</span> Managing windows</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_layout.html"><span class="number">12</span> Layouts</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_dynamic_presenter.html"><span class="number">13</span> Dynamic presenters</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_mailapp.html"><span class="number">14</span> A Concrete Case: A Mail Application</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_menus.html"><span class="number">15</span> Menubar, Toolbar, Status Bar, and Context Menus</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-transmissions-and-ports.html"><span class="number">16</span> Using transmissions and ports</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_style.html"><span class="number">17</span> Styling applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-athens-and-roassal-in-spec.html"><span class="number">18</span> Using Athens and Roassal in Spec</a>
+            
+          </li>
+          
+          <li>
+            <a href="customizing-your-inspector.html"><span class="number">19</span> Customizing your Inspector</a>
+            
+          </li>
+          
+          <li>
+            <a href="working-with-commands.html"><span class="number">20</span> Working with Commands</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_commander.html"><span class="number">21</span> Commander: A powerful and simple command framework</a>
+            
+          </li>
+          
+        </ol>
+      </details>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">3</span> A 10 min small example</h2><a id="chaSmallExample"></a>
+<p>We will construct a small but complete user interface. This will allow you to build basic user interfaces.</p>
+
+<p>After completing this chapter you may read Chapter <a href="cha_reuse.html#cha_reuse">9</a> about the reuse of Spec presenters, which is the key behind the power of Spec. With these two chapters, you should be able to construct Spec user interfaces as intended. You could use the rest of this book as reference material, but nonetheless, we recommend you to at least give a brief look at the other chapters as well.</p>
+
+<h3><span class="number">3.1</span> A customer satisfaction UI</h3><a id="seccustomersatisfaction"></a>
+<p><figure id="figCustomersBasic"><img src="Chapters/FirstContact/figures/CustomersBasic.png" alt="A screenshot of the customer satisfaction survey UI. " style="width: 50%"><figcaption><span class="number">Figure 3.1</span> A screenshot of the customer satisfaction survey UI. </figcaption></img></figure></p>
+
+<p>We construct a simple customer satisfaction survey UI, which allows a user to give feedback about a service by clicking on one of three buttons. This feedback should be recorded and processed, but that is outside of the scope of this example. Figure <a href="#figCustomersBasic">3.1</a> shows a screenshot of the UI.</p>
+
+<h3 id="create-the-class-of-the-ui"><span class="number">3.2</span> Create the class of the UI</h3>
+<p>All user interfaces in Spec are subclasses of <code>SpPresenter</code>, so the first step in creating the UI is subclassing that class:</p>
+
+<pre><code>SpPresenter &lt;&lt; #CustomerSatisfactionPresenter
+	slots: { #buttonHappy . #buttonNeutral . #buttonBad . #result};
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<p>The instance variables of the class hold the <i>presenters</i> the UI contains, the so-called <i>subpresenters</i>. In this case, we have three buttons and a text to show the result of the survey.</p>
+
+<p>The methods of the class provide the initialization and configuration of the presenters, e.g., labels and actions, as well as the logic of their interaction. The basic design of our GUI, i.e., how the presenters are laid out, is defined by the class as well.</p>
+
+<h3 id="instantiate-and-configure-subpresenters"><span class="number">3.3</span> Instantiate and configure subpresenters</h3>
+<p>A subclass of <code>SpPresenter</code> has the responsibility to define the <code>initializePresenters</code> method,
+which instantiates and configures the presenters used in the user interface. We will discuss it piece by piece. Note that since this method may be a bit long we will split it into pieces that represent
+their intent.</p>
+
+<h4 id="presenter-creation"><span class="number">3.3.1</span> Presenter creation</h4>
+<pre><code>CustomerSatisfactionPresenter &gt;&gt; initializePresenters
+
+	result := self newLabel.
+	buttonHappy := self newButton.
+	buttonNeutral := self newButton.
+	buttonBad := self newButton.</code></pre>
+
+<p><code>SpPresenter</code> defines messages for the creation of standard presenters: <code>newButton</code>, <code>newCheckBox</code>, <code>newDropList</code>, … All of these are defined in the <code>scripting - widgets</code> protocol of the <code>SpTPresenterBuilder</code> trait. They are shortcuts to create presenters.</p>
+
+<p>The following method shows how <code>newButton</code> is defined.</p>
+
+<pre><code>SpPresenter &gt;&gt; newButton
+
+	^ self instantiate: SpButtonPresenter</code></pre>
+
+<p>Note that the naming may be a bit confusing since we write <code>newButton</code> while it will create a button <i>presenter</i> and not a button <i>widget</i>, which Spec will take care by itself. Spec provides <code>newButton</code> because it is easier to use than <code>newButtonPresenter</code>.</p>
+
+<p><strong>Do not</strong> call <code>new</code> to instantiate a presenter that is part of your UI. An alternative way to instantiate presenters is to use the message <code>instantiate:</code> with a presenter class as an argument. For example <code>result := self instantiate: SpLabelPresenter</code>. This allows one to instantiate standard and non-standard presenters.</p>
+
+<h4 id="presenter-configuration"><span class="number">3.3.2</span> Presenter configuration</h4>
+<p>The next step is configuring the buttons of our UI. The message <code>label:</code> sets the button label and the message <code>icon:</code> specifies the icon that will be displayed near the label.</p>
+
+<pre><code>CustomerSatisfactionPresenter &gt;&gt; initializePresenters
+
+	... continued ...
+	result label: 'Please give us your feedback.'.
+	buttonHappy
+		label: 'Happy';
+		icon: (self iconNamed: #thumbsUp).
+	buttonNeutral
+		label: 'Neutral';
+		icon: (self iconNamed: #user).
+	buttonBad
+		label: 'Bad';
+		icon: (self iconNamed: #thumbsDown)</code></pre>
+
+<p>The method <code>iconNamed:</code> of <code>SpPresenter</code> uses an icon provider to fetch the icon with the given name. You can browse the Spec icon provider by looking at <code>SpPharoThemeIconProvider</code>, which is a subclass of <code>SpIconProvider</code>. Each application is able to define its own icon provider by defining a subclass of <code>SpIconProvider</code>.</p>
+
+<h4 id="presenter-interaction-logic"><span class="number">3.3.3</span> Presenter interaction logic</h4>
+<p>Now we define what will happen when the user presses a button. We define this in a separate method called <code>connectPresenters</code>:</p>
+
+<pre><code>CustomerSatisfactionPresenter &gt;&gt; connectPresenters
+
+	buttonHappy action: [ result label: buttonHappy label ].
+	buttonNeutral action: [ result label: buttonNeutral label ].
+	buttonBad action: [ result label: buttonBad label ]</code></pre>
+
+<p>We use the message <code>action:</code> to specify the action that is performed when the button is clicked. In this case, we change the content of the result text to inform the user that the choice has been registered. Note that the message <code>action:</code> is part of the button API. In other situations, you will specify that when a given event occurs, some message should be sent to a subpresenter.</p>
+
+<p><strong>To summarize:</strong></p>
+
+<ul>
+<li>Specialize <code>initializePresenters</code> to define and configure the presenters that are the elements of your UI.</li>
+<li>Specialize <code>connectPresenters</code> to connect those presenters together and specify their interaction.</li>
+</ul>
+<h4 id="specifying-the-presenter-layout"><span class="number">3.3.4</span> Specifying the presenter layout</h4>
+<p>The presenters have been defined and configured, but their placement in the UI has not yet been specified. This is the role of the method <code>defaultLayout</code>.</p>
+
+<pre><code>CustomerSatisfactionPresenter &gt;&gt; defaultLayout
+
+	^ SpBoxLayout newTopToBottom
+		add: (SpBoxLayout newLeftToRight
+				add: buttonHappy;
+				add: buttonNeutral;
+				add: buttonBad;
+				yourself);
+		add: result;
+		yourself</code></pre>
+
+<p>In this layout, we add two rows to the UI, one with the buttons and one with the result text. Defining presenter layout is a complex process with many different possible requirements, hence in this chapter we do not talk in detail about layout specification. For more information we refer to Chapter <a href="cha_layout.html#cha_layout">12</a>.</p>
+
+<p><figure id="figFirstCut"><img src="Chapters/FirstContact/figures/FirstCut.png" alt="A first version of the customer satisfaction UI. " style="width: 50%"><figcaption><span class="number">Figure 3.2</span> A first version of the customer satisfaction UI. </figcaption></img></figure></p>
+
+<p>Once the method <code>defaultLayout</code> is defined, you can open your UI with <code>CustomerSatisfactionPresenter new open</code>. You should see a window similar to the one shown in Figure <a href="#figFirstCut">3.2</a>.</p>
+
+<h3 id="define-a-title-and-window-size-open-and-close-the-ui"><span class="number">3.4</span> Define a title and window size, open and close the UI</h3>
+<p>To set the window title and the initial size of your presenter, you have to specialize the method <code>initializeWindow:</code> as follows:</p>
+
+<pre><code>CustomerSatisfactionPresenter &gt;&gt; initializeWindow: aWindowPresenter
+
+	super initializeWindow: aWindowPresenter.
+	aWindowPresenter
+		title: 'Customer Satisfaction Survey';
+		initialExtent: 400@100</code></pre>
+
+<p>You are free to use helper methods to return the title and extent of your presenter. When you reopen your presenter, and you click the "Happy" button, you should see the window shown in Fig. <a href="#figSecondCut">3.3</a>.</p>
+
+<p><figure id="figSecondCut"><img src="Chapters/FirstContact/figures/SecondCut.png" alt="A final version of the customer satisfaction UI. " style="width: 50%"><figcaption><span class="number">Figure 3.3</span> A final version of the customer satisfaction UI. </figcaption></img></figure></p>
+
+<p>Sending the <code>open</code> message to a presenter will open a window and return an instance of <code>SpWindowPresenter</code>, which allows the window to be closed from code.</p>
+
+<pre><code>| ui |
+ui := CustomerSatisfactionPresenter new open.
+[ ... do a lot of stuff until the UI needs to be closed ...]
+ui close</code></pre>
+
+<p>Note that to update the contents of your window once it is open, you have the method <code>SpPresenter&gt;&gt;withWindowDo:</code>, but we will discuss it later in this book. More information about managing windows, e.g., opening dialog boxes or setting the about text is present in Chapter <a href="cha_managing_windows.html#cha_managing_windows">11</a>.</p>
+
+<p>This concludes our first example of a Spec user interface. In the next chapter, we continue with more examples on how to configure the different presenters that can be used in a user interface.</p>
+
+<h3 id="conclusion"><span class="number">3.5</span> Conclusion</h3>
+<p>In this chapter, we have given you a small example of Spec user interfaces. We have shown you what the different steps are to build a user interface with Spec.</p>
+
+<p>More examples of Spec user interfaces are found in the Pharo image. Since all Spec user interfaces are subclasses of <code>SpPresenter</code>, they are easy to find and each of them may serve as an example. Furthermore, experimentation with presenters and user interfaces is made easy because all presenters can be opened as standalone windows.</p>
+
+<p>We recommend that you at least read Chapter <a href="cha_reuse.html#cha_reuse">9</a> about reuse of Spec presenters, which is the key reason behind the power of Spec. This knowledge will help you in building UIs faster through better reuse, and also allow your own UIs to be reused.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="all-spec-in-one-example.html">← All Spec in One Example</a>
+        <a class="next" rel="next" href="chacasestudyone.html">Most of Spec in one example →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Application Building with Spec 2.0 · K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano</p>
+  </footer>
+</body>
+</html>

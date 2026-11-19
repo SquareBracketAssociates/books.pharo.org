@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Managing windows</title>
+  <meta name="description" content="">
+  <meta name="author" content="K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Application Building with Spec 2.0</a>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <details open>
+        <summary>Contents</summary>
+        <ol>
+          
+          <li>
+            <a href="chaintroductions.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="all-spec-in-one-example.html"><span class="number">2</span> All Spec in One Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chaSmallExample.html"><span class="number">3</span> A 10 min small example</a>
+            
+          </li>
+          
+          <li>
+            <a href="chacasestudyone.html"><span class="number">4</span> Most of Spec in one example</a>
+            
+          </li>
+          
+          <li>
+            <a href="spec-essentials.html"><span class="number">5</span> Spec Essentials</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_core.html"><span class="number">6</span> Spec core in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_testing.html"><span class="number">7</span> Testing Spec applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_fundamentals_of_spec.html"><span class="number">8</span> The dual aspects of presenters: Domain and interaction model</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_reuse.html"><span class="number">9</span> Reuse and composition at work</a>
+            
+          </li>
+          
+          <li>
+            <a href="lists-tables-and-trees.html"><span class="number">10</span> Lists, tables and trees</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="cha_managing_windows.html" aria-current="page"><span class="number">11</span> Managing windows</a>
+            
+            <ol>
+              
+              <li><a href="#a-working-example"><span class="number">11.1</span> A working example</a></li>
+              
+              <li><a href="#opening-a-window-or-a-dialog-box"><span class="number">11.2</span> Opening a window or a dialog box</a></li>
+              
+              <li><a href="#preventing-window-close"><span class="number">11.3</span> Preventing window close</a></li>
+              
+              <li><a href="#acting-on-window-close"><span class="number">11.4</span> Acting on window close</a></li>
+              
+              <li><a href="#sec_win_size_decoration"><span class="number">11.5</span> Window size and decoration</a></li>
+              
+              <li><a href="#getting-values-from-a-dialog-window"><span class="number">11.6</span> Getting values from a dialog window</a></li>
+              
+              <li><a href="#little-modal-dialog-presenters"><span class="number">11.7</span> Little modal dialog presenters</a></li>
+              
+              <li><a href="#placing-a-presenter-inside-a-dialog-window"><span class="number">11.8</span> Placing a presenter inside a dialog window</a></li>
+              
+              <li><a href="#setting-keyboard-focus"><span class="number">11.9</span> Setting keyboard focus</a></li>
+              
+              <li><a href="#acting-on-window-opening"><span class="number">11.10</span> Acting on window opening</a></li>
+              
+              <li><a href="#conclusion-7"><span class="number">11.11</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="cha_layout.html"><span class="number">12</span> Layouts</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_dynamic_presenter.html"><span class="number">13</span> Dynamic presenters</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_mailapp.html"><span class="number">14</span> A Concrete Case: A Mail Application</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_menus.html"><span class="number">15</span> Menubar, Toolbar, Status Bar, and Context Menus</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-transmissions-and-ports.html"><span class="number">16</span> Using transmissions and ports</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_style.html"><span class="number">17</span> Styling applications</a>
+            
+          </li>
+          
+          <li>
+            <a href="using-athens-and-roassal-in-spec.html"><span class="number">18</span> Using Athens and Roassal in Spec</a>
+            
+          </li>
+          
+          <li>
+            <a href="customizing-your-inspector.html"><span class="number">19</span> Customizing your Inspector</a>
+            
+          </li>
+          
+          <li>
+            <a href="working-with-commands.html"><span class="number">20</span> Working with Commands</a>
+            
+          </li>
+          
+          <li>
+            <a href="cha_commander.html"><span class="number">21</span> Commander: A powerful and simple command framework</a>
+            
+          </li>
+          
+        </ol>
+      </details>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">11</span> Managing windows</h2><a id="cha_managing_windows"></a>
+<p>So far we have described the reuse of <code>SpPresenter</code>s, discussed the fundamental functioning of Spec, and presented how to layout the widgets of a user interface. Yet what is still missing for a working user interface is showing all these widgets inside of a window. In our examples until now we have only shown a few of the features of Spec for managing windows, basically restricting ourselves to opening a window.</p>
+
+<p>In this chapter, we provide a more complete overview of how Spec allows for the management of windows. We will show opening and closing, the built-in dialog box facility, the sizing of windows, and all kinds of window decoration.</p>
+
+<h3 id="a-working-example"><span class="number">11.1</span> A working example</h3>
+<p>To illustrate the window configuration options that are available, we use a simple <code>WindowExamplePresenter</code> class that has two buttons placed side by side. These buttons do not have any behavior associated yet. The behavior will be added in an example further down this chapter.</p>
+
+<p><figure id="windowExample1"><img src="Chapters/ManagingWindow/figures/WindowExamplePresenterWindow.png" alt="A rather simple window on WindowExamplePresenter. " style="width: 50%"><figcaption><span class="number">Figure 11.1</span> A rather simple window on WindowExamplePresenter. </figcaption></img></figure></p>
+
+<pre><code>SpPresenter &lt;&lt; #WindowExamplePresenter
+	slots: { #minusButton . #plusButton };
+	package: 'CodeOfSpec20Book'</code></pre>
+
+<pre><code>WindowExamplePresenter &gt;&gt; initializePresenters
+
+	plusButton := self newButton.
+	minusButton := self newButton.
+	plusButton label: '+'.
+	minusButton label: '-'</code></pre>
+
+<pre><code>WindowExamplePresenter &gt;&gt; defaultLayout
+
+	^ SpBoxLayout newLeftToRight
+		add: #plusButton;
+		add: #minusButton;
+		yourself</code></pre>
+
+<h3 id="opening-a-window-or-a-dialog-box"><span class="number">11.2</span> Opening a window or a dialog box</h3>
+<p>A user interface can be opened as a normal window or opened as a dialog box, i.e. without decoration and with 'Ok' and 'Cancel' buttons. We will show how this is done, including the configuration options specific to dialog boxes. See also Section <a href="#sec_win_size_decoration">11.5</a> for more information about window decoration.</p>
+
+<h4 id="opening-a-window"><span class="number">11.2.1</span> Opening a window</h4>
+<p>As we have shown in previous chapters, to open a user interface you have to instantiate the <code>SpPresenter</code> for that interface and send the <code>open</code> message to the instance. That results in the creation of an instance of <code>SpWindowPresenter</code> which points to the window containing the user interface, and showing it in a window on the screen.</p>
+
+<p>We have also seen the <code>openWithLayout:</code> method that takes a layout (instance of SpLayout subclasses) as an argument. Instead of using the default layout, the opened UI will use the layout passed as an argument.</p>
+
+<p>Below we show the two ways we can open a window for our <code>WindowExamplePresenter</code>. The code snippet opens two identical windows as shown in Figure <a href="#windowExample1">11.1</a>.</p>
+
+<pre><code>| presenter |
+presenter := WindowExamplePresenter new.
+presenter open.
+presenter openWithLayout: presenter defaultLayout</code></pre>
+
+<h4 id="opening-a-dialog-box"><span class="number">11.2.2</span> Opening a dialog box</h4>
+<p>Spec provides an easy way to open a UI as a simple dialog box with 'Ok' and 'Cancel' buttons. A dialog box does not have icons for resizing and closing, nor a window menu. To open a dialog box, send the message <code>openDialog</code>:</p>
+
+<pre><code>| presenter dialog |
+presenter := WindowExamplePresenter new.
+dialog := presenter openDialog</code></pre>
+
+<p>The answer of sending <code>openDialog</code>, assigned to the <code>dialog</code> variable above, is an instance of the <code>SpDialogWindowPresenter</code> class (a subclass of <code>SpWindowPresenter</code>). Figure <a href="#windowDialog">11.2</a> shows the dialog.</p>
+
+<p><figure id="windowDialog"><img src="Chapters/ManagingWindow/figures/WindowExamplePresenterDialog" alt="A rather simple dialog on WindowExamplePresenter. " style="width: 50%"><figcaption><span class="number">Figure 11.2</span> A rather simple dialog on WindowExamplePresenter. </figcaption></img></figure></p>
+
+<p>The <code>SpDialogWindowPresenter</code> instance can be configured in multiple ways. To execute code when the user clicks on a button, send it the <code>okAction:</code> or <code>cancelAction:</code> message with a zero-argument block.</p>
+
+<pre><code>| presenter dialog |
+presenter := WindowExamplePresenter new.
+dialog := presenter openDialog
+	okAction: [ 'okAction' crTrace ];
+	cancelAction: [ 'cancelAction' crTrace ]</code></pre>
+
+<p>The message <code>canceled</code> sent to <code>dialog</code> will return <code>true</code> if the dialog is closed by clicking on the 'Cancel' button.</p>
+
+<h3 id="preventing-window-close"><span class="number">11.3</span> Preventing window close</h3>
+<p>Spec provides a way to check if a window can effectively be closed when the user clicks on the close box. <code>SpWindowPresenter&gt;&gt;whenWillCloseDo:</code> takes a block that decides whether the window can be closed. We can change our  <code>WindowExamplePresenter</code> as follows:</p>
+
+<pre><code>WindowExamplePresenter &gt;&gt; initializeWindow: aWindowPresenter
+
+	aWindowPresenter whenWillCloseDo: [ :announcement |
+		announcement denyClose ]</code></pre>
+
+<p>The block has an <code>announcement</code> argument. It will be bound to an instance of <code>SpWindowWillClose</code>. That class has two interesting methods: <code>allowClose</code> and <code>denyClose</code>. The code snippet above sends <code>denyClose</code> to the announcement. By doing so, we have effectively created an unclosable window!</p>
+
+<p>To be able to close this window, we have to change the implementation of the above method. By default a window can be closed, so the block should only send <code>denyClose</code> in case the window cannot be closed. Let's adapt the block to ask whether the user is sure about closing the window.</p>
+
+<pre><code>WindowExamplePresenter &gt;&gt; initializeWindow: aWindowPresenter
+
+	aWindowPresenter whenWillCloseDo: [ :announcement |
+		(self confirm: 'Are you sure that you want to close the window?')
+			ifFalse: [ announcement denyClose ] ]</code></pre>
+
+<p>Of course, the example method above is extremely simplistic and not very useful. Instead, it should use application-dependent logic of what to check on window close.</p>
+
+<h3 id="acting-on-window-close"><span class="number">11.4</span> Acting on window close</h3>
+<p>It is also possible to perform an action whenever a window is closed, both with a plain window or a dialog window.</p>
+
+<h4 id="with-a-window"><span class="number">11.4.1</span> With a window</h4>
+<p>When you want to be notified that a window is closed, you should redefine the <code>initializeWindow:</code> method in the class of your presenter as follows:</p>
+
+<pre><code>WindowExamplePresenter &gt;&gt; initializeWindow: aWindowPresenter
+
+	aWindowPresenter whenClosedDo: [ self inform: 'When closed' ]</code></pre>
+
+<p>The following snippet programmatically opens and closes a window and you should see the notification triggered on close.</p>
+
+<pre><code>| presenter window |
+presenter := WindowExamplePresenter new.
+window := presenter open.
+window close</code></pre>
+
+<h4 id="with-a-dialog-window"><span class="number">11.4.2</span> With a dialog window</h4>
+<p>When you want the same behavior with a dialog window you can either use the mechanism as described previously (i.e. declare your interest in window closing in the method <code>initializeWindow:</code>) or configure the dialog presenter returned by the message <code>openDialog</code>.</p>
+
+<pre><code>| presenter dialog |
+presenter := WindowExamplePresenter new.
+dialog := presenter openDialog.
+dialog
+	okAction: [ 'okAction' crTrace ];
+	cancelAction: [ 'cancelAction' crTrace ];
+	whenClosedDo: [ self inform: 'Bye bye!' ]</code></pre>
+
+<h4 id="action-with-window"><span class="number">11.4.3</span> Action with Window</h4>
+<p>The message <code>withWindowDo:</code> makes sure that the presenter that scheduled the window still exists or is in a state that makes sense.</p>
+
+<pre><code>presenter withWindowDo: [ :window | window title: 'MyTitle' ]</code></pre>
+
+<h3><span class="number">11.5</span> Window size and decoration</h3><a id="sec_win_size_decoration"></a>
+<p>Now we focus on sizing a window before and after opening it, and then describe removing the different control widgets that decorate the window.</p>
+
+<h4 id="setting-initial-size-and-changing-size"><span class="number">11.5.1</span> Setting initial size and changing size</h4>
+<p>To set the initial size of a window when it opens, send the <code>initialExtent:</code> message to the corresponding <code>SpWindowPresenter</code> before opening, for example like this:</p>
+
+<pre><code>| windowPresenter |
+ windowPresenter := WindowExamplePresenter new asWindow.
+ windowPresenter initialExtent: 300@80.
+ windowPresenter open</code></pre>
+
+<p>The common way to specify the initial size of the window is to use the message <code>initialExtent:</code> as follows:</p>
+
+<pre><code>WindowExamplePresenter &gt;&gt; initializeWindow: aWindowPresenter
+
+  aWindowPresenter initialExtent: 80@100</code></pre>
+
+<p>Note that you can also set an initial position using the message <code>initialPosition:</code>.</p>
+
+<p>After a window is opened, it can also be resized by sending the <code>resize:</code> message to the window of the UI. For example, we can change our example's <code>initializePresenters</code> method so that the window resizes itself depending on which button is clicked.</p>
+
+<pre><code>WindowExamplePresenter &gt;&gt; initializePresenters
+
+	plusButton := self newButton.
+	minusButton := self newButton.
+	plusButton label: '+'.
+	minusButton label: '-'.
+	plusButton action: [ self window resize: 500@200].
+	minusButton action: [ self window resize: 200@100]</code></pre>
+
+<p>You have also <code>centered</code>, <code>centeredRelativeTo:</code> and <code>centeredRelativeToTopWindow</code> to help you place the windows relative to world/other windows.</p>
+
+<h4 id="fixed-size"><span class="number">11.5.2</span> Fixed size</h4>
+<p>The size of a window can be fixed, so that the user cannot resize it by dragging the sides or corners as follows:</p>
+
+<pre><code>| presenter |
+presenter := WindowExamplePresenter new open.
+presenter window beUnresizeable</code></pre>
+
+<h4 id="removing-window-decoration"><span class="number">11.5.3</span> Removing window decoration</h4>
+<p>Sometimes it makes sense to have a window without decoration, i.e. without control widgets. Currently, this configuration cannot be performed on the <code>SpWindowPresenter</code> of that window, but the underlying widget library may allow it. Below we show how to get the <code>SpWindow</code> of our example and instruct it to remove the different control widgets:</p>
+
+<pre><code>| presenter |
+presenter := WindowExamplePresenter new open.
+presenter window
+   removeCollapseBox;
+   removeExpandBox;
+   removeCloseBox;
+   removeMenuBox</code></pre>
+
+<q id="note">This window is still closable using the halo menus or by calling <code>close</code> on the <code>SpWindowPresenter</code> instance (<code>presenter</code> in the example above).</q>
+<h4 id="setting-and-changing-the-title"><span class="number">11.5.4</span> Setting and changing the title</h4>
+<p>By default, the title of a new window is 'Untitled window'. Of course, this can be changed. The first way is to specialize the method <code>initializeWindow:</code>
+to send the message <code>title:</code> to the <code>windowPresenter</code> as follows:</p>
+
+<pre><code>WindowExamplePresenter &gt;&gt; initializeWindow: aWindowPresenter
+
+	aWindowPresenter title: 'Click to grow or shrink.'</code></pre>
+
+<p>In addition, you can set the title of any UI after it has been opened (even if it specifies a <code>title</code> method) by sending the <code>title:</code> message with the new title as an argument to the window of the UI. An example is:</p>
+
+<pre><code>| presenter |
+presenter := WindowExamplePresenter new.
+presenter open.
+presenter window title: 'I am different!'</code></pre>
+
+<h4 id="setting-the-about-text"><span class="number">11.5.5</span> Setting the about text</h4>
+<p>The about text of a window can be used by application developers to give a description of the application, and to list its contributors. The about text can be opened by selecting 'About' from the pop-up menu in the top-right corner of a window, as shown in Figure <a href="#about">11.3</a>.</p>
+
+<p><figure id="about"><img src="Chapters/ManagingWindow/figures/About.png" alt="Opening the about text of a window." style="width: 60%"><figcaption><span class="number">Figure 11.3</span> Opening the about text of a window.</figcaption></img></figure></p>
+
+<p>To set the about text of a window, either override the <code>aboutText</code> method of the corresponding <code>SpPresenter</code> so that it returns the new about text, or send the instance the <code>aboutText:</code> message before opening, for example as below.</p>
+
+<pre><code>| windowPresenter |
+ windowPresenter := WindowExamplePresenter new asWindow.
+ windowPresenter aboutText: 'Click + to grow, - to shrink.'.
+ windowPresenter open</code></pre>
+
+<p>After opening the window with the code snippet above, and after choosing 'About' from the window menu, the about window opens with the configured about text, as shown in Figure <a href="#abouttext">11.4</a>.</p>
+
+<p><figure id="abouttext"><img src="Chapters/ManagingWindow/figures/AboutText.png" alt="The about text of a window. " style="width: 60%"><figcaption><span class="number">Figure 11.4</span> The about text of a window. </figcaption></img></figure></p>
+
+<h3 id="getting-values-from-a-dialog-window"><span class="number">11.6</span> Getting values from a dialog window</h3>
+<p>Sending the message <code>openDialog</code> to a presenter will return the dialog window itself so that you can easily send it the message <code>isOk</code>. When <code>isOk</code> answers <code>true</code>, the dialog is in a state to provide the data it has collected from the user.</p>
+
+<p>Let's look at an example. We will open a dialog to select some colors.</p>
+
+<p>Configuring the UI makes up for the largest part of the code below, but the interesting part is at the end. The canceled state is the default state of a dialog so we have to tell the dialog that it is not canceled. We do that in the <code>okAction</code> block, where the dialog receives the message <code>beOk</code>.</p>
+
+<p>Then in the <code>whenClosedDo:</code> block, we send <code>isOk</code> to the dialog. If that message answers <code>true</code>, it makes sense to process the selection of colors. For the sake of simplicity of this example, we just inspect the selected colors.</p>
+
+<pre><code>| selectedColors presenter colorTable dialogPresenter |
+selectedColors := Set new.
+presenter := SpPresenter new.
+colorTable := presenter newTable
+	items: (Color red wheel: 10);
+	addColumn: (SpCheckBoxTableColumn new
+		evaluated: [ :color | selectedColors includes: color ];
+		onActivation: [ :color | selectedColors add: color];
+		onDeactivation: [ :color | selectedColors remove: color];
+		width: 20;
+		yourself);
+	addColumn: (SpStringTableColumn new
+		evaluated: [ :color | '' ];
+		displayBackgroundColor: [ :color | color ];
+		yourself);
+	hideColumnHeaders;
+	yourself.
+presenter layout: (SpBoxLayout newTopToBottom
+	add: colorTable;
+	yourself).
+dialogPresenter := presenter openDialog.
+dialogPresenter
+	title: 'Select colors';
+	okAction: [ :dialog | dialog beOk ];
+	whenClosedDo: [ dialogPresenter isOk
+		ifTrue: [ selectedColors inspect ] ]</code></pre>
+
+<h3 id="little-modal-dialog-presenters"><span class="number">11.7</span> Little modal dialog presenters</h3>
+<p>A modal dialog is a window that takes control of the entire Pharo user interface, making it impossible for the user to select another window while it is open.</p>
+
+<p>Spec provides some little predefined dialogs to inform or request information from the users. Most of them inherit from <code>SpDialogPresenter</code>. They offer a builder API to configure them.</p>
+
+<p>The simplest dialog is an alert.</p>
+
+<pre><code>SpAlertDialog new
+	title: 'Inform example';
+	label: 'You are seeing an inform dialog!';
+	acceptLabel: 'Close this!';
+	openModal</code></pre>
+
+<p>Confirm dialogs are created as follows:</p>
+
+<pre><code>SpConfirmDialog new
+	title: 'Confirm example';
+	label: 'Are you sure?';
+	acceptLabel: 'Sure!';
+	cancelLabel: 'No, forget it';
+	onAccept: [ :dialog| dialog alert: 'Yes!' ];
+	onCancel: [ :dialog| dialog alert: 'No!' ];
+	openModal</code></pre>
+
+<p>The idiomatic way to use them is to access them via the application of your presenter class:</p>
+
+<pre><code>self application newAlert
+	title: 'Inform example';
+	label: 'You are seeing an inform dialog!';
+	acceptLabel: 'Close this!';
+	openModal</code></pre>
+
+<p><code>SpApplication</code> offers the following API: <code>newConfirm</code>, <code>newAlert</code>, <code>newJobList</code>, <code>newRequest</code>, <code>newSelect</code>, <code>newRequestText</code>.</p>
+
+<h3 id="placing-a-presenter-inside-a-dialog-window"><span class="number">11.8</span> Placing a presenter inside a dialog window</h3>
+<p>Any presenter can be placed in a dialog window by specializing the method <code>SpAbstractPresenter&gt;&gt;initializeDialogWindow:</code>, which is implemented like this:</p>
+
+<pre><code>WindowExamplePresenter &gt;&gt; initializeDialogWindow: aDialogWindowPresenter
+	"Used to initialize the model in the case of the use into a dialog window.
+	 Override this to set buttons other than the default (Ok, Cancel)."
+
+	aDialogWindowPresenter
+		addButton: 'Cancel' do: [ :presenter |
+			presenter triggerCancelAction.
+			presenter close ];
+		addDefaultButton: 'Ok' do: [ :presenter |
+			presenter triggerOkAction.
+			presenter close ]</code></pre>
+
+<p>Override this method to define how your presenter will behave when it is open in a dialog window.</p>
+
+<h3 id="setting-keyboard-focus"><span class="number">11.9</span> Setting keyboard focus</h3>
+<p>Some widgets can take keyboard focus. All text editing widgets come to mind, but lists can also take keyboard focus. Buttons too. In principle, when a presenter responds to keyboard events, it is able to take keyboard focus.</p>
+
+<p>Widgets indicate that they have keyboard focus, typically by displaying a lightblue border around them. Figure <a href="#windowExample1">11.1</a> shows that the plus button on the left has the keyboard focus. A widget takes keyboard focus when the user clicks the widget with the mouse, or by pressing the tab key.</p>
+
+<p>By pressing the tab key, the user makes the keyboard focus move forward from widget to widget according to the keyboard focus order of the widgets. By pressing shift-tab, the focus moves backward according to the focus order. By default, the focus order is the same as the order in which widgets are added to a user interface. Sometimes that order is not the desired order. In that case, the focus order has to be configured explicitly. A presenter can do that in the method <code>initializePresenters</code> by sending <code>focusOrder:</code> or by adding presenters to the answer of sending <code>focusOrder</code>. Let's try that in the <code>WindowExamplePresenter</code>.</p>
+
+<pre><code>WindowExamplePresenter &gt;&gt; initializePresenters
+
+	plusButton := self newButton.
+	minusButton := self newButton.
+	plusButton label: '+'.
+	minusButton label: '-'.
+	self focusOrder
+		add: minusButton;
+		add: plusButton</code></pre>
+
+<p>Figure <a href="#WindowExampleKeyboardFocus">11.5</a> shows the result after opening the window. The minus button has the keyboard focus.</p>
+
+<p><figure id="WindowExampleKeyboardFocus"><img src="Chapters/ManagingWindow/figures/WindowExampleKeyboardFocus.png" alt="Reversed keyboard focus order. " style="width: 50%"><figcaption><span class="number">Figure 11.5</span> Reversed keyboard focus order. </figcaption></img></figure></p>
+
+<h3 id="acting-on-window-opening"><span class="number">11.10</span> Acting on window opening</h3>
+<p>Some state of presenters or their subpresenters can only be set after the window has been opened. That is the case when setting the state is delegated to the backend widgets. Those widgets are only available when the window is open. In Chapter <a href="cha_menus.html#cha_menus">15</a>, we will see that keyboard bindings for menu items in the menubar can only be assigned after opening the window. Here we will describe another use case, related to the previous section.</p>
+
+<p>While defining the keyboard focus order does not require the window to be open, setting the initially focussed presenter does. Setting the initially focussed presenter is needed when the default keyboard focus order is not appropriate. That typically happens when using nested presenters that define a focus order, either implicitly or explicitly.</p>
+
+<p>To demonstrate this, we will revert the method <code>initializePresenters</code> of <code>WindowExamplePresenter</code> from the previous section, and we will adapt <code>initializeWindow:</code>.</p>
+
+<pre><code>WindowExamplePresenter &gt;&gt; initializePresenters
+
+	plusButton := self newButton.
+	minusButton := self newButton.
+	plusButton label: '+'.
+	minusButton label: '-'</code></pre>
+
+<p>To set the initial keyboard focus on the minus button, we send <code>takeKeyboardFocus</code> to the presenter in the <code>whenOpenedDo:</code> block, which will be evaluated after opening the window.</p>
+
+<pre><code>WindowExamplePresenter &gt;&gt; initializeWindow: aWindowPresenter
+
+	aWindowPresenter whenOpenedDo: [ minusButton takeKeyboardFocus ]</code></pre>
+
+<p>After opening the window, we see the keyboard focus on the minus button, as shown in <a href="#WindowExampleKeyboardFocus">11.5</a>.</p>
+
+<p>We can go one step further. When opening an instance of <code>WindowExamplePresenter</code> in a dialog with <code>WindowExamplePresenter new openDialog</code>, the plus button has the keyboard focus because it is the first presenter in the default keyboard focus order. See Figure <a href="#windowDialog">11.2</a>.</p>
+
+<p>In case of a dialog, the initial keyboard focus on the plus button may not be desired. Probably it is more logical to put the keyboard focus on the Ok button of the dialog, so that the user can press the Enter key or the Space key to confirm the dialog immediately if no other interaction with the dialog is necessary. Let's do that. Instead of changing the method <code>initializeWindow:</code>, we change the method <code>initializeDialogWindow:</code>.</p>
+
+<pre><code>WindowExamplePresenter &gt;&gt; initializeDialogWindow: aDialogWindowPresenter
+
+	super initializeDialogWindow: aDialogWindowPresenter.
+	aDialogWindowPresenter whenOpenedDo: [ aDialogWindowPresenter defaultButton takeKeyboardFocus ]</code></pre>
+
+<p><code>aDialogWindowPresenter</code>, which is bound to an instance of <code>SpDialogWindowPresenter</code>, understands the message <code>defaultButton</code>, which answers the Ok button. We send the message <code>takeKeyboardFocus</code> to the button. After opening the dialog with <code>WindowExamplePresenter new openDialog</code>, we see a dialog as shown in Figure <a href="#DialogWithFocusOnOkButton">11.6</a>, with the keyboard focus on the Ok button.</p>
+
+<p><figure id="DialogWithFocusOnOkButton"><img src="Chapters/ManagingWindow/figures/DialogWithFocusOnOkButton.png" alt="Keyboard focus on the Ok button of the dialog. " style="width: 50%"><figcaption><span class="number">Figure 11.6</span> Keyboard focus on the Ok button of the dialog. </figcaption></img></figure></p>
+
+<h3 id="conclusion-7"><span class="number">11.11</span> Conclusion</h3>
+<p>In this chapter, we treated the features of Spec that have to do with windows. First we described opening and closing windows as well as how to open a window as a dialog box. That was followed by configuring the window's size and its decorating widgets. After highlighting small yet important details of the window like its title and the about text, the chapter ended with handling dialogs.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="lists-tables-and-trees.html">← Lists, tables and trees</a>
+        <a class="next" rel="next" href="cha_layout.html">Layouts →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Application Building with Spec 2.0 · K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano</p>
+  </footer>
+</body>
+</html>
