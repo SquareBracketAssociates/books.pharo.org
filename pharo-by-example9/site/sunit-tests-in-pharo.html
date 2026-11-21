@@ -156,12 +156,10 @@
 As might be guessed from its name, the design of SUnit focussed on <i>Unit Tests</i>, but in fact it can be used for integration tests and
 functional tests as well.
 SUnit was originally developed by Kent Beck and subsequently extended by Joseph Pelrine and many contributors.
-SUnit is the mother of all the other xUnit frameworks.</p>
-
-<p>This chapter is as short as possible to show you that tests are simple.
-For a more in depth description of SUnit and different approaches of testing you can read the book: <i>Testing in Pharo</i> available at <a target="_blank" href="http://books.pharo.org/"><a target="_blank" href="http://books.pharo.org/">http://books.pharo.org</a></a>.</p>
-
-<p>In this chapter we start by discussing why we test, and what makes a good test.
+SUnit is the mother of all the other xUnit frameworks.
+This chapter is as short as possible to show you that tests are simple.
+For a more in depth description of SUnit and different approaches of testing you can read the book: <i>Testing in Pharo</i> available at <a target="_blank" href="http://books.pharo.org/"><a target="_blank" href="http://books.pharo.org/">http://books.pharo.org</a></a>.
+In this chapter we start by discussing why we test, and what makes a good test.
 We then present a series of small examples showing how to use SUnit.
 Finally, we look at the implementation of SUnit, so that you can understand how Pharo uses the power of reflection in supporting its tools. Note that the version documented in this chapter and used in Pharo is a modified version of SUnit3.3.</p>
 
@@ -169,13 +167,11 @@ Finally, we look at the implementation of SUnit, so that you can understand how 
 <p>The interest in testing and Test-Driven Development is not limited to Pharo.
 Automated testing has become a hallmark of the <i>Agile software development</i> movement, and any software developer concerned with improving
 software quality would do well to adopt it.
-Indeed, developers in many languages have come to appreciate the power of unit testing, and versions of <i>xUnit</i> now exist for every programming language.</p>
-
-<p>Neither testing, nor the building of test suites, is new.
+Indeed, developers in many languages have come to appreciate the power of unit testing, and versions of <i>xUnit</i> now exist for every programming language.
+Neither testing, nor the building of test suites, is new.
 By now, everybody knows that tests are a good way to catch errors.
-eXtreme Programming, by making testing a core practice and by emphasizing <i>automated</i> tests, has helped to make testing productive and fun, rather than a chore that programmers dislike.</p>
-
-<p>SUnit is valuable because it allows us to write <i>executable</i> tests that are self-checking:
+eXtreme Programming, by making testing a core practice and by emphasizing <i>automated</i> tests, has helped to make testing productive and fun, rather than a chore that programmers dislike.
+SUnit is valuable because it allows us to write <i>executable</i> tests that are self-checking:
 the test itself defines what the correct result should be.
 It also helps us to organize tests into groups, to describe the context in which the tests must run, and to run a group of tests automatically. In less than two minutes you can write tests using SUnit, so instead of writing small code snippets in a playground, we encourage you to use SUnit and get all the advantages of stored and automatically executable tests.</p>
 
@@ -189,21 +185,18 @@ future, then indeed tests are a waste of your time.
 However, this most likely also means that your application is trivial, or that it is not used by you or
 anyone else.
 Think of tests as an investment for the future: having a suite of tests is quite useful now, but it will be <i>extremely</i> useful when your
-application, or the environment in which it runs, changes in the future.</p>
-
-<p>Tests play several roles. First, they provide documentation of the functionality
+application, or the environment in which it runs, changes in the future.
+Tests play several roles. First, they provide documentation of the functionality
 that they cover.
 This documentation is active: watching the tests pass tells you that the documentation is up to date.
 Second, tests help developers to confirm that some changes that they have just made to a package have not broken anything
 else in the system, and to find the parts that break when that confidence turns out to be misplaced.
 Finally, writing tests during, or even before, programming forces you to think about the functionality that you want to design, <i>and how
-it should appear to the client code</i>, rather than about how to implement it.</p>
-
-<p>By writing the tests first, i.e., before the code, you are compelled to state the context in which your functionality will run, the way it will
+it should appear to the client code</i>, rather than about how to implement it.
+By writing the tests first, i.e., before the code, you are compelled to state the context in which your functionality will run, the way it will
 interact with the client code, and the expected results.
-Your code will improve. Try it.</p>
-
-<p>We cannot test all aspects of any realistic application.
+Your code will improve. Try it.
+We cannot test all aspects of any realistic application.
 Covering a complete application is simply impossible and should not be the goal of testing.
 Even with a good test suite some bugs will still creep into the application, where they can lay dormant waiting for an opportunity to damage your system.
 If you find that this has happened, take advantage of it!
@@ -227,9 +220,8 @@ or the set-up of a test, it is likely to cause all of the tests to fail.</p>
 <h3 id="sunit-step-by-step"><span class="number">12.4</span> SUnit step by step</h3>
 <p>Writing tests is not difficult in itself.
 Now let's write our first test, and show you the benefits of using SUnit.
-We use an example that tests the class <code>Set</code>.</p>
-
-<p>We will:</p>
+We use an example that tests the class <code>Set</code>.
+We will:</p>
 
 <ul>
 <li>Define a class to group of tests and benefit from SUnit behavior.</li>
@@ -252,17 +244,15 @@ Add two instance variables so that your new class looks like this:</p>
 class <code>Set</code>.
 It defines the context in which the tests will run.
 Here the context is described by the two instance variables <code>full</code> and <code>empty</code> that
-we will use to represent a full and an empty set.</p>
-
-<p>The name of the class is not critical, but by convention it should end in <code>Test</code>.
+we will use to represent a full and an empty set.
+The name of the class is not critical, but by convention it should end in <code>Test</code>.
 If you define a class called <code>Pattern</code> and call the corresponding test class <code>PatternTest</code>, the two classes will be alphabetized together in the browser (assuming that they are in the same package).
 It <i>is</i> critical that your class is a subclass of <code>TestCase</code>.</p>
 
 <h3 id="step-2-initialize-the-test-context"><span class="number">12.6</span> Step 2: Initialize the test context</h3>
 <p>The message <code>TestCase &gt;&gt; setUp</code> defines the context in which the tests will run, a bit like an initialize method.
-<code>setUp</code> is invoked before the execution of each test method defined in the test class.</p>
-
-<p>Define the <code>setUp</code> method as follows, to initialize the <code>empty</code> variable to refer to an empty set and the <code>full</code> variable to refer to a set containing two elements.</p>
+<code>setUp</code> is invoked before the execution of each test method defined in the test class.
+Define the <code>setUp</code> method as follows, to initialize the <code>empty</code> variable to refer to an empty set and the <code>full</code> variable to refer to a set containing two elements.</p>
 
 <pre><code>MyExampleSetTest &gt;&gt; setUp
 	empty := Set new.
@@ -275,9 +265,8 @@ It <i>is</i> critical that your class is a subclass of <code>TestCase</code>.</p
 Each method represents one test.
 The names of the methods should start with the string <code>'test'</code> so that SUnit will collect them into
 test suites.
-Test methods take no arguments.</p>
-
-<p>Define the following test methods.
+Test methods take no arguments.
+Define the following test methods.
 The first test, named <code>testIncludes</code>, tests the <code>includes:</code> method of <code>Set</code>.
 The test says that sending the message <code>includes: 5</code> to a set containing 5 should return <code>true</code>.
 Clearly, this test relies on the fact that the <code>setUp</code> method has already run.</p>
@@ -311,18 +300,14 @@ not be true.
 <p>The easiest way to run the tests is directly from the browser.
 Simply click on the icon of the class name, or on an individual test method, and select <i>Run
 tests (t)</i> or press the icon.
-The test methods will be flagged green or red, depending on whether they pass or not (as shown in Figure  <a href="#fig:browsertests">12.1</a>).</p>
+The test methods will be flagged green or red, depending on whether they pass or not (as shown in Figure  <a href="#fig:browsertests">12.1</a>).
+<figure id="fig:browsertests"><img src="Chapters/SUnit/figures/updatedBrowserTests.png" alt="Running SUnit tests from the System Browser." class="fig:browsertests" style="width: 80%"><figcaption><span class="number">Figure 12.1</span> Running SUnit tests from the System Browser.</figcaption></img></figure>
+You can also select sets of test suites to run, and obtain a more detailed log of the results using the SUnit Test Runner, which you can open by selecting <code>World &gt; Test Runner</code>.</p>
 
-<p><figure id="fig:browsertests"><img src="Chapters/SUnit/figures/updatedBrowserTests.png" alt="Running SUnit tests from the System Browser." class="fig:browsertests" style="width: 80%"><figcaption><span class="number">Figure 12.1</span> Running SUnit tests from the System Browser.</figcaption></img></figure></p>
-
-<p>You can also select sets of test suites to run, and obtain a more detailed log of the results using the SUnit Test Runner, which you can open by selecting <code>World &gt; Test Runner</code>.</p>
-
-<p>Open a Test Runner, select the package <i>MySetTest</i>, and click the <code>Run Selected</code> button.</p>
-
-<p>You can also run a single test (and print the usual pass/fail result summary) by
-executing a <i>Print it</i> on the following code: <code>MyExampleSetTest run: #testRemove</code>.</p>
-
-<p>Some people include an executable comment in their test methods that allows
+<p>Open a Test Runner, select the package <i>MySetTest</i>, and click the <code>Run Selected</code> button.
+You can also run a single test (and print the usual pass/fail result summary) by
+executing a <i>Print it</i> on the following code: <code>MyExampleSetTest run: #testRemove</code>.
+Some people include an executable comment in their test methods that allows
 running a test method with a <i>Do it</i> from the browser, as shown below.</p>
 
 <pre><code>MyExampleSetTest &gt;&gt; testRemove
@@ -350,9 +335,8 @@ MyExampleSetTest debug: #testRemove</code></pre>
 <p>The method <code>assert:</code> is defined in the class <code>TestAsserter</code>.
 This is a superclass of <code>TestCase</code> and therefore all other <code>TestCase</code> subclasses and is responsible for all kind of test result assertions.
 The <code>assert:</code> method expects a boolean argument, usually the value of a tested expression.
-When the argument is true, the test passes; when the argument is false, the test fails.</p>
-
-<p>There are actually three possible outcomes of a test: <i>passing</i>, <i>failing</i>, and <i>raising an error</i>.</p>
+When the argument is true, the test passes; when the argument is false, the test fails.
+There are actually three possible outcomes of a test: <i>passing</i>, <i>failing</i>, and <i>raising an error</i>.</p>
 
 <ul>
 <li><strong>Passing</strong>. The outcome that we hope for is that all of the assertions in the test are true, in which case the test passes. Visually test runner tools, use green to indicate that a test passes.</li>
@@ -392,9 +376,8 @@ For example, the following test uses it to define a conditional test.</p>
 
 <h3 id="asserting-exceptions"><span class="number">12.12</span> Asserting exceptions</h3>
 <p>SUnit provides two additional important methods, <code>TestAsserter &gt;&gt; should:raise:</code>
-and <code>TestAsserter &gt;&gt; shouldnt:raise:</code> for testing exception raising.</p>
-
-<p>For example, you would use <code>self should: aBlock raise: anException</code> to test
+and <code>TestAsserter &gt;&gt; shouldnt:raise:</code> for testing exception raising.
+For example, you would use <code>self should: aBlock raise: anException</code> to test
 that a particular exception is raised during the execution of <code>aBlock</code>. The
 method below illustrates the use of <code>should:raise:</code>.</p>
 
@@ -419,9 +402,8 @@ can execute <code>TestRunner open</code>. You can also run a single test as foll
 <h4 id="running-all-the-tests-in-a-test-class">Running all the tests in a test class</h4>
 <p>Any subclass of <code>TestCase</code> responds to the message <code>suite</code>, which will build
 a test suite that contains all the methods in the class whose names start with
-the string <i>test</i>.</p>
-
-<p>To run the tests in the suite, send it the message <code>run</code>. For example:</p>
+the string <i>test</i>.
+To run the tests in the suite, send it the message <code>run</code>. For example:</p>
 
 <pre><code>MyExampleSetTest suite run
 &gt;&gt;&gt; 4 run, 4 passed, 0 failed, 0 errors</code></pre>
@@ -456,7 +438,7 @@ not afraid that we will forget something important.</p>
   </div>
 
   <footer class="site-footer">
-    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21</p>
+    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21 by <a href="https://github.com/pillar-markup/pillar">Pillar</a></p>
   </footer>
 </body>
 </html>

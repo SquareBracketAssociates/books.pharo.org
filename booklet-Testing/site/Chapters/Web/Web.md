@@ -511,7 +511,7 @@ EPTest >> testPageEntry
 Remember that if we run Parasol tests we must first run the Selenium server. 
 With the Selenium server and the test running, we can see that our browser was opened and can see the home of our tested page:
 
-![The Mercury Tours WebSite.](figures/newtours width=80&label=newtours.pdf)
+![The Mercury Tours WebSite.%width=80&anchor=newtours](figures/newtours.pdf)
 
 
 After the web browser is closed, we can see that the test passed because our page has the title _Welcome: Mercury Tours_ in our tab. 
@@ -648,7 +648,7 @@ EPRegisterUserTest >> setUp
 With this little change, the first step that each test will perform is to move to the _REGISTER_ form.
 You may see the _REGISTER_ form in Figure *@registerForm@*.
 
-![Registration From](figures/registerForm width=80&label=registerForm.pdf)
+![Registration From%width=80&anchor=registerForm](figures/registerForm.pdf)
 
 Now, we are prepared to create tests in `EPRegisterUserTest`.
 Our first test is to verify if we are in the correct page when we click on the register button. 
@@ -757,7 +757,7 @@ EPRegisterUserTest >> testIntroduceInformationInContactSection
 If we run the test we can see how Parasol introduces the information to the fields \(see Figure *@contactInfo@*\).
 
 
-![Filling fields using Parasol.](figures/contactInfo width=80&label=contactInfo.pdf)
+![Filling fields using Parasol.%width=80&anchor=contactInfo](figures/contactInfo.pdf)
 
 
 Now, we can create tests to fill in the information to other sections. 
@@ -798,7 +798,7 @@ EPRegisterUserTest >> clickInSubmitButton
 
 In the page, when you register a user you obtain the following view:
 
-![Registration successful view.](figures/endRegistration width=80&label=endRegistration.pdf)
+![Registration successful view.%width=80&anchor=endRegistration](figures/endRegistration.pdf)
 
 
 We have two options to assert if the user is registered:

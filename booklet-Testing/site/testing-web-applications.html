@@ -486,7 +486,7 @@ With the <code>setUp</code> and <code>tearDown</code> method, we are able to do 
 <p>Remember that if we run Parasol tests we must first run the Selenium server.
 With the Selenium server and the test running, we can see that our browser was opened and can see the home of our tested page:</p>
 
-<p><figure id="newtours.pdf"><img src="Chapters/Web/figures/newtours" alt="The Mercury Tours WebSite." class="newtours.pdf" style="width: 80%"><figcaption><span class="number">Figure 9.1</span> The Mercury Tours WebSite.</figcaption></img></figure></p>
+<p><figure id="newtours"><img src="Chapters/Web/figures/newtours.pdf" alt="The Mercury Tours WebSite." style="width: 80%"><figcaption><span class="number">Figure 9.1</span> The Mercury Tours WebSite.</figcaption></img></figure></p>
 
 <p>After the web browser is closed, we can see that the test passed because our page has the title <i>Welcome: Mercury Tours</i> in our tab.
 So it's time to do something more complex.</p>
@@ -596,9 +596,9 @@ Therefore, we will create a method that emulates a click in the <i>REGISTER</i> 
 	self clickInRegisterButton</code></pre>
 
 <p>With this little change, the first step that each test will perform is to move to the <i>REGISTER</i> form.
-You may see the <i>REGISTER</i> form in Figure <a href="#registerForm">registerForm</a>.</p>
+You may see the <i>REGISTER</i> form in Figure <a href="#registerForm">9.2</a>.</p>
 
-<p><figure id="registerForm.pdf"><img src="Chapters/Web/figures/registerForm" alt="Registration From" class="registerForm.pdf" style="width: 80%"><figcaption><span class="number">Figure 9.2</span> Registration From</figcaption></img></figure></p>
+<p><figure id="registerForm"><img src="Chapters/Web/figures/registerForm.pdf" alt="Registration From" style="width: 80%"><figcaption><span class="number">Figure 9.2</span> Registration From</figcaption></img></figure></p>
 
 <p>Now, we are prepared to create tests in <code>EPRegisterUserTest</code>.
 Our first test is to verify if we are in the correct page when we click on the register button.
@@ -691,9 +691,9 @@ We use the message <code>sendKeys</code> to set the information that we want.</p
 	self assert: (self phoneField getAttribute: 'value') equals: '10276123'.
 	self assert: (self emailField getAttribute: 'value') equals: 'example@mail.com'</code></pre>
 
-<p>If we run the test we can see how Parasol introduces the information to the fields (see Figure <a href="#contactInfo">contactInfo</a>).</p>
+<p>If we run the test we can see how Parasol introduces the information to the fields (see Figure <a href="#contactInfo">9.3</a>).</p>
 
-<p><figure id="contactInfo.pdf"><img src="Chapters/Web/figures/contactInfo" alt="Filling fields using Parasol." class="contactInfo.pdf" style="width: 80%"><figcaption><span class="number">Figure 9.3</span> Filling fields using Parasol.</figcaption></img></figure></p>
+<p><figure id="contactInfo"><img src="Chapters/Web/figures/contactInfo.pdf" alt="Filling fields using Parasol." style="width: 80%"><figcaption><span class="number">Figure 9.3</span> Filling fields using Parasol.</figcaption></img></figure></p>
 
 <p>Now, we can create tests to fill in the information to other sections.
 An important observation is the select box in the mailing information section.
@@ -725,7 +725,7 @@ If you didn't, you need to create these methods.</p>
 
 <p>In the page, when you register a user you obtain the following view:</p>
 
-<p><figure id="endRegistration.pdf"><img src="Chapters/Web/figures/endRegistration" alt="Registration successful view." class="endRegistration.pdf" style="width: 80%"><figcaption><span class="number">Figure 9.4</span> Registration successful view.</figcaption></img></figure></p>
+<p><figure id="endRegistration"><img src="Chapters/Web/figures/endRegistration.pdf" alt="Registration successful view." style="width: 80%"><figcaption><span class="number">Figure 9.4</span> Registration successful view.</figcaption></img></figure></p>
 
 <p>We have two options to assert if the user is registered:</p>
 
@@ -775,7 +775,7 @@ You should now be able to find elements in a website, fill in the information in
   </div>
 
   <footer class="site-footer">
-    <p>Testing in Pharo · Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval · Generated on 2026-11-21</p>
+    <p>Testing in Pharo · Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval · Generated on 2026-11-21 by <a href="https://github.com/pillar-markup/pillar">Pillar</a></p>
   </footer>
 </body>
 </html>
