@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Collections</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo 9 by Example</a>
+    <p class="site-authors">Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">2</span> Getting Started with  Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-quick-tour-of-pharo.html"><span class="number">3</span> A quick tour of Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="finding-information-in.html"><span class="number">4</span> Finding information in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">5</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="building-a-little-game.html"><span class="number">6</span> Building a little game</a>
+            
+          </li>
+          
+          <li>
+            <a href="publishing-and-packaging.html"><span class="number">7</span> Publishing and packaging your first Pharo project</a>
+            
+          </li>
+          
+          <li>
+            <a href="syntax-in-a-nutshell.html"><span class="number">8</span> Syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="understanding-message.html"><span class="number">9</span> Understanding message syntax</a>
+            
+          </li>
+          
+          <li>
+            <a href="the-pharo-object-model.html"><span class="number">10</span> The Pharo object model</a>
+            
+          </li>
+          
+          <li>
+            <a href="traits-reusable-class.html"><span class="number">11</span> Traits: reusable class fragments</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-tests-in-pharo.html"><span class="number">12</span> SUnit: Tests in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="basic-classes.html"><span class="number">13</span> Basic classes</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="collections.html" aria-current="page"><span class="number">14</span> Collections</a>
+            
+            <ol>
+              
+              <li><a href="#sec:varieties"><span class="number">14.1</span> High-order functions</a></li>
+              
+              <li><a href="#sec:varieties2"><span class="number">14.2</span> The varieties of collections</a></li>
+              
+              <li><a href="#sec:implementation"><span class="number">14.3</span> Collection implementations</a></li>
+              
+              <li><a href="#examples-of-key-classes"><span class="number">14.4</span> Examples of key classes</a></li>
+              
+              <li><a href="#common-creation-protocol"><span class="number">14.5</span> Common creation protocol</a></li>
+              
+              <li><a href="#array"><span class="number">14.6</span> Array</a></li>
+              
+              <li><a href="#orderedcollection"><span class="number">14.7</span> OrderedCollection</a></li>
+              
+              <li><a href="#interval"><span class="number">14.8</span> Interval</a></li>
+              
+              <li><a href="#dictionary"><span class="number">14.9</span> Dictionary</a></li>
+              
+              <li><a href="#identitydictionary"><span class="number">14.10</span> IdentityDictionary</a></li>
+              
+              <li><a href="#set"><span class="number">14.11</span> Set</a></li>
+              
+              <li><a href="#sortedcollection"><span class="number">14.12</span> SortedCollection</a></li>
+              
+              <li><a href="#strings-2"><span class="number">14.13</span> Strings</a></li>
+              
+              <li><a href="#sec:iterators"><span class="number">14.14</span> Collection iterators</a></li>
+              
+              <li><a href="#collecting-results-collect"><span class="number">14.15</span> Collecting results (collect:)</a></li>
+              
+              <li><a href="#selecting-and-rejecting-elements"><span class="number">14.16</span> Selecting and rejecting elements</a></li>
+              
+              <li><a href="#other-high-order-messages"><span class="number">14.17</span> Other high-order messages</a></li>
+              
+              <li><a href="#a-common-mistake-using-add-result"><span class="number">14.18</span> A common mistake: using add: result</a></li>
+              
+              <li><a href="#a-common-mistake-removing-an-element-while-iterating"><span class="number">14.19</span> A common mistake: Removing an element while iterating</a></li>
+              
+              <li><a href="#a-common-mitaske-redefining-but-not-hash"><span class="number">14.20</span> A common mitaske: Redefining = but not hash</a></li>
+              
+              <li><a href="#chapter-summary-8"><span class="number">14.21</span> Chapter summary</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="streams.html"><span class="number">15</span> Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="morphic.html"><span class="number">16</span> Morphic</a>
+            
+          </li>
+          
+          <li>
+            <a href="classes-and-metaclasses.html"><span class="number">17</span> Classes and metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="reflection.html"><span class="number">18</span> Reflection</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">14</span> Collections</h2><a id="cha:collections"></a>
+<p>To make good use of the collection classes, the reader needs at least a superficial knowledge of the wide variety of collections that exist, and their commonalities and differences. This is what this chapter is about.</p>
+
+<p>The collection classes form a loosely-defined group of general-purpose subclasses of <code>Collection</code> and <code>Stream</code>. Some of these subclasses such as <code>Bitmap</code>,  or <code>CompiledMethod</code> are special-purpose classes crafted for use in other parts of the system or in applications, and hence not categorized as <i>Collections</i> by the system organization.</p>
+
+<p>In this chapter, we use the term <i>Collection Hierarchy</i> to mean <code>Collection</code> and its subclasses that are <i>also</i> in the packages labelled <code>Collections-*</code>. We use the term <i>Stream Hierarchy</i> to mean <code>Stream</code> and its subclasses that are <i>also</i> in the <code>Collections-Streams</code> packages.</p>
+
+<p>In this chapter we focus mainly on the subset of collection classes shown in Figure <a href="#fig:CollClassesTree">14.1</a>. Streams will be discussed separately in Chapter <a href="streams.html#cha:streams">15</a>.</p>
+
+<p>Pharo by default provide a good set of collections. In addition, the project "Containers" available at <a target="_blank" href="http://www.github.com/Pharo-Containers/"><a target="_blank" href="http://www.github.com/Pharo-Containers/">http://www.github.com/Pharo-Containers/</a></a> proposes alternate implementations or new collections and data structures.</p>
+
+<p><figure id="fig:CollClassesTree"><img src="Chapters/Collections/figures/CollectionHierarchy.png" alt="Some of the key collection classes in Pharo." class="fig:CollClassesTree"><figcaption><span class="number">Figure 14.1</span> Some of the key collection classes in Pharo.</figcaption></img></figure></p>
+
+<p>Let us start with an important point about the design of the collections in Pharo. Their APIs heavily use high-order functions: so while we can use for loops like in old Java, most of the time Pharo developers will use iterator style based on high-order functions.</p>
+
+<h3><span class="number">14.1</span> High-order functions</h3><a id="sec:varieties"></a>
+<p>Programming with collections using high-order functions rather than individual elements is an important way to raise the level of abstraction of a program. The Lisp function <code>map</code>, which applies an argument function to every element of a list and returns a new list containing the results is an early example of this style. Following its Smalltalk root, Pharo adopts this collection-based high-order programming as a central tenet. Modern functional programming languages such as ML and Haskell have followed Smalltalk's lead.</p>
+
+<p>Why is this a good idea? Let us suppose you have a data structure containing a collection of student records, and wish to perform some action on all of the students that meet some criteria. Programmers raised to use an imperative language will immediately reach for a loop, but the Pharo programmer will
+write:</p>
+
+<pre><code>students
+	select: [ :each | each gpa &lt; threshold ]</code></pre>
+
+<p>This expression returns a new collection containing precisely those elements of <code>students</code> for which the block (the bracketed function) returns <code>true</code>. The block can be thought of as a lambda-expression defining an anonymous function <code>x. x gpa &lt; threshold</code>. This code has the simplicity and elegance of a
+domain-specific query language.</p>
+
+<p>The message <code>select:</code> is understood by <i>all</i> collections in Pharo. There is no need to find out if the student data structure is an array or a linked list: the <code>select:</code> message is understood by both. Note that this it's quite different from using a loop, where one must know whether <code>students</code> is an array or a linked list before the loop can be set up.</p>
+
+<p>In Pharo, when one speaks of a collection without being more specific about the kind of collection, one means an object that supports well-defined protocols for testing membership and enumerating the elements. <i>All</i> collections understand the <code>testing</code> messages <code>includes:</code>, <code>isEmpty</code> and <code>occurrencesOf:</code>. <i>All</i> collections understand the <code>enumeration</code> messages <code>do:</code>, <code>select:</code>, <code>reject:</code> (which is the opposite of <code>select:</code>), <code>collect:</code> (which is like Lisp's <code>map</code>), <code>detect:ifNone:</code>, <code>inject:into:</code> (which performs a left fold) and many more. It is the ubiquity
+of this protocol, as well as its variety, that makes it so powerful.</p>
+
+<p>The table below summarizes the standard protocols supported by most of the classes in the collection hierarchy. These methods are defined, redefined, optimized or occasionally even forbidden by subclasses of <code>Collection</code>.</p>
+
+<table>
+<tr><th>Protocol</th><th>Methods</th><th></th></tr>
+<tr><td><code>accessing</code></td><td><code>size</code>, <code>capacity</code>, <code>at:</code>, <code>at:put:</code></td><td></td></tr>
+<tr><td><code>testing</code></td><td><code>isEmpty</code>, <code>includes:</code>, <code>contains:</code>, <code>occurrencesOf:</code></td><td></td></tr>
+<tr><td><code>adding</code></td><td><code>add:</code>, <code>addAll:</code></td><td></td></tr>
+<tr><td><code>removing</code></td><td><code>remove:</code>, <code>remove:ifAbsent:</code>, <code>removeAll:</code></td><td></td></tr>
+<tr><td><code>enumerating</code></td><td><code>do:</code>, <code>collect:</code>, <code>select:</code>, <code>reject:</code></td><td></td></tr>
+<tr><td></td><td><code>detect:</code>, <code>detect:ifNone:</code>, <code>inject:into:</code></td><td></td></tr>
+<tr><td><code>converting</code></td><td><code>asBag</code>, <code>asSet</code>, <code>asOrderedCollection</code>, <code>asSortedCollection</code>,</td><td></td></tr>
+<tr><td></td><td><code>asArray</code>, <code>asSortedCollection:</code></td><td></td></tr>
+<tr><td><code>creation</code></td><td><code>with:</code>, <code>with:with:</code>, <code>with:with:with:</code>,</td><td></td></tr>
+<tr><td></td><td><code>with:with:with:with:</code>, <code>withAll:</code></td><td></td></tr>
+</table>
+<h3><span class="number">14.2</span> The varieties of collections</h3><a id="sec:varieties2"></a>
+<p>Beyond this basic uniformity, there are many different kinds of collections either supporting different protocols or providing different behaviour for the same requests. Let us briefly observe some of the key differences:</p>
+
+<p><code>Sequenceable:</code>
+Instances of all subclasses of <code>SequenceableCollection</code> start from a <code>first</code> element and proceed in a well-defined order to a <code>last</code> element. Instances of <code>Set</code>, <code>Bag</code> and <code>Dictionary</code>, on the other hand, are not sequenceable.</p>
+
+<p><code>Sortable:</code>
+A <code>SortedCollection</code> maintains its elements in sort order.</p>
+
+<p><code>Indexable:</code>
+Most sequenceable collections are also indexable, that is, elements can be retrieved with message <code>at: anIndex</code>. <code>Array</code> is the familiar indexable data structure with a fixed size; <code>anArray at: n</code> retrieves the nth element of <code>anArray</code>, and <code>anArray at: n put: v</code> changes the nth element to <code>v</code>. <code>LinkedList</code>s is sequenceable but not indexable, that is, they understand <code>first</code> and <code>last</code>, but not the message <code>at:</code>.</p>
+
+<p><code>Keyed:</code>
+Instances of <code>Dictionary</code> and its subclasses are accessed by keys instead of indices.</p>
+
+<p><code>Mutable:</code>
+Most collections are mutable, but <code>Interval</code>s and <code>Symbol</code>s are not. An <code>Interval</code> is an immutable collection representing a range of <code>Integer</code>s. For example, <code>5 to: 16 by: 2</code> is an interval that contains the elements 5, 7, 9, 11, 13 and 15. It is indexable with message <code>at: anIndex</code>, but cannot be changed with message <code>at: anIndex put: aValue</code>.</p>
+
+<p><code>Growable:</code>
+Instances of <code>Interval</code> and <code>Array</code> are always of a fixed size. Other kinds of collections (sorted collections, ordered collections, and linked lists) can grow after creation. The class <code>OrderedCollection</code> is more general than <code>Array</code>; the size of an <code>OrderedCollection</code> grows on demand, and it defines messages <code>addFirst: anElement</code> and <code>addLast: anElement</code> as well as messages <code>at: anIndex</code> and <code>at: anIndex put: aValue</code>.</p>
+
+<p><code>Accepts duplicates:</code>
+A <code>Set</code> filters out duplicates, but a <code>Bag</code> does not. Classes <code>Dictionary</code>, <code>Set</code> and <code>Bag</code> use the <code>=</code> method provided by the elements; the <code>Identity</code> variants of these classes use the <code>==</code> method, which tests whether the arguments are the same object, and the <code>Pluggable</code> variants use an arbitrary equivalence relation supplied by the creator of the collection.</p>
+
+<p><code>Heterogeneous:</code>
+Most collections will hold any kind of element. A <code>String</code>, <code>CharacterArray</code> or <code>Symbol</code>, however, only holds <code>Character</code>s. An <code>Array</code> will hold any mix of objects, but a <code>ByteArray</code> only holds Bytes. A <code>LinkedList</code> is constrained to hold elements that conform to the <code>Link</code> <code>accessing</code> protocol.</p>
+
+<h3><span class="number">14.3</span> Collection implementations</h3><a id="sec:implementation"></a>
+<p><figure id="fig:collsByImpl"><img src="Chapters/Collections/figures/CollectionsByImpl.png" alt="Some collection classes categorized by implementation technique." class="fig:collsByImpl" style="width: 100%"><figcaption><span class="number">Figure 14.2</span> Some collection classes categorized by implementation technique.</figcaption></img></figure></p>
+
+<p>These categorizations by functionality are not our only concern; we must also consider how the collection classes are implemented. As shown in Figure <a href="#fig:collsByImpl">14.2</a>, five main implementation techniques are employed.</p>
+
+<ul>
+<li>Arrays store their elements in the (indexable) instance variables of the collection object itself; as a consequence, arrays must be of a fixed size, but can be created with a single memory allocation.</li>
+<li><code>OrderedCollections</code> and <code>SortedCollections</code> store their elements in an array that is referenced by one of the instance variables of the collection. Consequently, the internal array can be replaced with a larger one if the collection grows beyond its storage capacity.</li>
+<li>The various kinds of set and dictionary also reference a subsidiary array for storage, but use the array as a hash table. Bags use a subsidiary <code>Dictionary</code>, with the elements of the bag as keys and the number of occurrences as values.</li>
+<li>LinkedLists use a standard singly-linked representation.</li>
+<li>Intervals are represented by three integers that record the two endpoints and the step size.</li>
+</ul>
+<p>In addition to these classes, there are also <i>weak</i> variants of <code>Array</code>, <code>Set</code> and of the various kinds of dictionary. These collections hold onto  their elements weakly, i.e., in a way that does not prevent the elements from being garbage collected. The Pharo virtual machine is aware of these classes and handles them specially.</p>
+
+<h3 id="examples-of-key-classes"><span class="number">14.4</span> Examples of key classes</h3>
+<p>We present now the most common or important collection classes using simple code examples. The main protocols of collections are:</p>
+
+<ul>
+<li>messages <code>at:</code>, <code>at:put:</code> — to access an element,</li>
+<li>messages <code>add:</code>, <code>remove:</code> — to add or remove an element,</li>
+<li>messages <code>size</code>, <code>isEmpty</code>, <code>include:</code> — to get some information about the collection,</li>
+<li>messages <code>do:</code>, <code>collect:</code>, <code>select:</code> — to iterate over the collection.</li>
+</ul>
+<p>Each collection may implement (or not) such protocols, and when they do, they interpret them to fit with their semantics. We suggest you to browse the classes themselves in order to identify specific and more advanced protocols.</p>
+
+<p>We will focus on the most common collection classes: <code>OrderedCollection</code>, <code>Set</code>, <code>SortedCollection</code>, <code>Dictionary</code>, <code>Interval</code>, and <code>Array</code>.</p>
+
+<h3 id="common-creation-protocol"><span class="number">14.5</span> Common creation protocol</h3>
+<p>There are several ways to create instances of collections. The most generic ones
+use the message <code>new: aSize</code> and <code>with: anElement</code>.</p>
+
+<ul>
+<li><code>new: anInteger</code> creates a collection of size <code>anInteger</code> whose elements will all be <code>nil</code>.</li>
+<li><code>with:</code> <code>anObject</code> creates a collection and adds <code>anObject</code> to the created collection.</li>
+</ul>
+<p>Different collections will realize this behaviour differently.</p>
+
+<p>You can create collections with initial elements using the methods <code>with:</code>, <code>with:with:</code> etc. for up to six elements.</p>
+
+<pre><code>Array with: 1
+&gt;&gt;&gt; #(1)</code></pre>
+
+<pre><code>Array with: 1 with: 2
+&gt;&gt;&gt; #(1 2)</code></pre>
+
+<pre><code>Array with: 1 with: 2 with: 3
+&gt;&gt;&gt; #(1 2 3)</code></pre>
+
+<pre><code>Array with: 1 with: 2 with: 3 with: 4
+&gt;&gt;&gt; #(1 2 3 4)</code></pre>
+
+<pre><code>Array with: 1 with: 2 with: 3 with: 4 with: 5
+&gt;&gt;&gt; #(1 2 3 4 5)</code></pre>
+
+<pre><code>Array with: 1 with: 2 with: 3 with: 4 with: 5 with: 6
+&gt;&gt;&gt; #(1 2 3 4 5 6)</code></pre>
+
+<p>You can also use message <code>addAll: aCollection</code> to add all elements of one kind
+of collection to another kind:</p>
+
+<pre><code>(1 to: 5) asOrderedCollection addAll: '678'; yourself
+&gt;&gt;&gt; an OrderedCollection(1 2 3 4 5 6 7 8)</code></pre>
+
+<p>Take care that <code>addAll:</code> returns its argument, and not the receiver!</p>
+
+<p>You can also create many collections with <code>withAll: aCollection</code>.</p>
+
+<pre><code>Array withAll: #(7 3 1 3)
+&gt;&gt;&gt; #(7 3 1 3)</code></pre>
+
+<pre><code>OrderedCollection withAll: #(7 3 1 3)
+&gt;&gt;&gt; an OrderedCollection(7 3 1 3)</code></pre>
+
+<pre><code>SortedCollection withAll: #(7 3 1 3)
+&gt;&gt;&gt; a SortedCollection(1 3 3 7)</code></pre>
+
+<pre><code>Set withAll: #(7 3 1 3)
+&gt;&gt;&gt; a Set(7 1 3)</code></pre>
+
+<pre><code>Bag withAll: #(7 3 1 3)
+&gt;&gt;&gt; a Bag(7 1 3 3)</code></pre>
+
+<h3 id="array"><span class="number">14.6</span> <code>Array</code></h3>
+<p>An <code>Array</code> is a fixed-sized collection of elements accessed by integer indices. Contrary to the C convention in Pharo, the first element of an array is at position 1 and not 0. The main protocol to access array elements is the method <code>at:</code> and <code>at:put:</code>.</p>
+
+<ul>
+<li><code>at: anInteger</code> returns the element at index <code>anInteger</code>.</li>
+<li><code>at: anInteger put: anObject</code> puts <code>anObject</code> at index <code>anInteger</code>.</li>
+</ul>
+<p>Arrays are fixed-size collections therefore we cannot add or remove elements at the end of an array. The following code creates an array of size 5, puts values in the first 3 locations and returns the first element.</p>
+
+<pre><code>| anArray |
+anArray := Array new: 5.
+anArray at: 1 put: 4.
+anArray at: 2 put: 3/2.
+anArray at: 3 put: 'ssss'.
+anArray at: 1
+&gt;&gt;&gt; 4</code></pre>
+
+<p>There are several ways to create instances of the class <code>Array</code>.
+We can use</p>
+
+<ul>
+<li><code>new:</code>, <code>with:</code>,</li>
+<li><code>#( )</code> construct - literal arrays and</li>
+<li><code>{ . }</code> dynamic compact syntax.</li>
+</ul>
+<h4 id="creation-with-new">Creation with <code>new:</code></h4>
+<p>The message <code>new: anInteger</code> creates an array of size <code>anInteger</code>. <code>Arraynew: 5</code> creates an array of size 5.</p>
+
+<q id="note">The value of each element is initialized to <code>nil</code>.</q>
+<h4 id="creation-using-with">Creation using <code>with:</code></h4>
+<p>The <code>with:*</code> messages allow one to specify the value of the elements. The following code creates an array of three elements consisting of the number <code>4</code>, the fraction <code>3/2</code> and the string <code>'lulu'</code>.</p>
+
+<pre><code>Array with: 4 with: 3/2 with: 'lulu'
+&gt;&gt;&gt;  {4. (3/2). 'lulu'}</code></pre>
+
+<h4 id="literal-creation-with">Literal creation with <code>#()</code></h4>
+<p>The expression <code>#()</code> creates literal arrays with constants or <i>literal</i> elements that have to be known when the expression is compiled, and not when it is executed. The following code creates an array of size 2 where the first element is the (literal) number <code>1</code> and the second the (literal) string <code>'here'</code>.</p>
+
+<pre><code>#(1 'here') size
+&gt;&gt;&gt; 2</code></pre>
+
+<p>Now, if you execute the expression <code>#(1+2)</code>, you do not get an array with a single element <code>3</code> but instead you get the array <code>#(1 #+ 2)</code> i.e., with three elements: <code>1</code>, the symbol <code>#+</code> and the number <code>2</code>.</p>
+
+<pre><code>#(1+2)
+&gt;&gt;&gt;  #(1 #+ 2)</code></pre>
+
+<p>This occurs because the construct <code>#()</code> does not execute the expressions it contains.  The elements are only objects that are created when parsing the expression (called literal objects). The expression is scanned and the resulting elements are fed to a new array. Literal arrays contain numbers, <code>nil</code>,
+<code>true</code>, <code>false</code>, symbols, strings and other literal arrays. During the execution of <code>#()</code> expressions, there are no messages sent.</p>
+
+<h4 id="dynamic-creation-with">Dynamic creation with <code>{ . }</code></h4>
+<p>Finally, you can create a dynamic array using the construct <code>{ . }</code>. The expression <code>{ a . b }</code> is totally equivalent to <code>Array with: a with: b</code>. This means in particular that the expressions enclosed by <code>{</code> and <code>}</code> are executed (contrary to the case of <code>#()</code>).</p>
+
+<pre><code>{ 1 + 2 }
+&gt;&gt;&gt; #(3)</code></pre>
+
+<pre><code>{(1/2) asFloat} at: 1
+&gt;&gt;&gt; 0.5</code></pre>
+
+<pre><code>{10 atRandom. 1/3} at: 2
+&gt;&gt;&gt; (1/3)</code></pre>
+
+<h4 id="element-access">Element Access</h4>
+<p>Elements of all sequenceable collections can be accessed with messages <code>at: anIndex</code> and <code>at: anIndex put: anObject</code>.</p>
+
+<pre><code>| anArray |
+anArray := #(1 2 3 4 5 6) copy.
+anArray at: 3 &gt;&gt;&gt; 3
+anArray at: 3 put: 33.
+anArray at: 3
+&gt;&gt;&gt; 33</code></pre>
+
+<p>Be careful: general principle is that literal arrays are not be modified! Literal arrays are kept in compiled method literal frames (a space where literals appearing in a method are stored), therefore unless you copy the array, the second time you execute the code your <i>literal</i> array may not have the value you expect. In the example, without copying the array, the second time around, the literal <code>#(1 2 3 4 5 6)</code> will actually be <code>#(1 2 33 4 5 6)</code>! Dynamic arrays do not have this problem because they are not stored in literal frames.</p>
+
+<h3 id="orderedcollection"><span class="number">14.7</span> <code>OrderedCollection</code></h3>
+<p><code>OrderedCollection</code> is one of the collections that can grow, and to which elements can be added sequentially. It offers a variety of messages such as <code>add:</code>, <code>addFirst:</code>, <code>addLast:</code>, and <code>addAll:</code>.</p>
+
+<pre><code>| ordCol |
+ordCol := OrderedCollection new.
+ordCol add: 'Seaside'; add: 'SmalltalkHub'; addFirst: 'GitHub'.
+ordCol
+&gt;&gt;&gt; an OrderedCollection('GitHub' 'Seaside' 'SmalltalkHub')</code></pre>
+
+<h4 id="removing-elements">Removing Elements</h4>
+<p>The message <code>remove:</code> <code>anObject</code> removes the first occurrence of an object from the collection. If the collection does not include such an object, it raises an error.</p>
+
+<pre><code>ordCol add: 'GitHub'.
+ordCol remove: 'GitHub'.
+ordCol
+&gt;&gt;&gt; an OrderedCollection('Seaside' 'SmalltalkHub' 'GitHub')</code></pre>
+
+<p>There is a variant of <code>remove:</code> named <code>remove:ifAbsent:</code> that allows one to specify as second argument a block that is executed in case the element to be removed is not in the collection.</p>
+
+<pre><code>result := ordCol remove: 'zork' ifAbsent: [33].
+result
+&gt;&gt;&gt; 33</code></pre>
+
+<h4 id="conversion">Conversion</h4>
+<p>It is possible to get an <code>OrderedCollection</code> from an <code>Array</code> (or any other collection) by sending the message <code>asOrderedCollection</code>:</p>
+
+<pre><code>#(1 2 3) asOrderedCollection
+&gt;&gt;&gt; an OrderedCollection(1 2 3)</code></pre>
+
+<pre><code>'hello' asOrderedCollection
+&gt;&gt;&gt; an OrderedCollection($h $e $l $l $o)</code></pre>
+
+<h3 id="interval"><span class="number">14.8</span> <code>Interval</code></h3>
+<p>The class <code>Interval</code> represents ranges of numbers. For example, the interval of numbers from 1 to 100 is defined as follows:</p>
+
+<pre><code>Interval from: 1 to: 100
+&gt;&gt;&gt; (1 to: 100)</code></pre>
+
+<p>The result of <code>printString</code> reveals that the class <code>Number</code> provides us with a convenience method called <code>to:</code> to generate intervals:</p>
+
+<pre><code>(Interval from: 1 to: 100) = (1 to: 100)
+&gt;&gt;&gt; true</code></pre>
+
+<p>We can use <code>Interval class&gt;&gt;from:to:by:</code> or <code>Number&gt;&gt;to:by:</code> to specify the step between two numbers as follow:</p>
+
+<pre><code>(Interval from: 1 to: 100 by: 0.5) size
+&gt;&gt;&gt; 199</code></pre>
+
+<pre><code>(1 to: 100 by: 0.5) at: 198
+&gt;&gt;&gt; 99.5</code></pre>
+
+<pre><code>(1/2 to: 54/7 by: 1/3) last
+&gt;&gt;&gt; (15/2)</code></pre>
+
+<h3 id="dictionary"><span class="number">14.9</span> <code>Dictionary</code></h3>
+<p>Dictionaries are important collections whose elements are accessed using keys. Among the most commonly used messages of dictionary you will find <code>at: aKey</code>, <code>at: aKey put: aValue</code>, <code>at: aKey ifAbsent: aBlock</code>, <code>keys</code>, and <code>values</code>.</p>
+
+<pre><code>| colors |
+colors := Dictionary new.
+colors at: #yellow put: Color yellow.
+colors at: #blue put: Color blue.
+colors at: #red put: Color red.
+colors at: #yellow
+&gt;&gt;&gt; Color yellow</code></pre>
+
+<pre><code>colors keys
+&gt;&gt;&gt; #(#red #blue #yellow)</code></pre>
+
+<pre><code>colors values
+&gt;&gt;&gt; {Color red . Color blue . Color yellow}</code></pre>
+
+<p>Dictionaries compare keys by equality. Two keys are considered to be the same if they return true when compared using <code>=</code>. A common and difficult to spot bug is to use as key an object whose <code>=</code> method has been redefined but not its <code>hash</code> method. Both methods are used in the implementation of dictionary and when comparing objects.</p>
+
+<p>In its implementation, a <code>Dictionary</code> can be seen as consisting of a set of (key value) associations created using the message <code>-&gt;</code>. We can create a <code>Dictionary</code> from a collection of associations, or we may convert a dictionary to an array of associations.</p>
+
+<pre><code>| colors |
+colors := Dictionary newFrom: { #blue-&gt;Color blue . #red-&gt;Color red . #yellow-&gt;Color yellow }.
+colors removeKey: #blue.
+colors associations
+&gt;&gt;&gt; {#yellow-&gt;Color yellow. #red-&gt;Color red}</code></pre>
+
+<h3 id="identitydictionary"><span class="number">14.10</span> <code>IdentityDictionary</code></h3>
+<p>While a dictionary uses the result of the messages <code>=</code> and <code>hash</code> to determine if two keys are the same, the class <code>IdentityDictionary</code> uses the identity (message <code>==</code>) of the key instead of its values, i.e., it considers two keys to be equal <i>only</i> if they are the same object.</p>
+
+<p>Often <code>Symbol</code>s are used as keys, in which case it is natural to use an <code>IdentityDictionary</code>, since a <code>Symbol</code> is guaranteed to be globally unique. If, on the other hand, your keys are <code>String</code>s, it is better to use a plain <code>Dictionary</code>, or you may get into trouble:</p>
+
+<pre><code>a := 'foobar'.
+b := a copy.
+trouble := IdentityDictionary new.
+trouble at: a put: 'a'; at: b put: 'b'.
+trouble at: a
+&gt;&gt;&gt; 'a'</code></pre>
+
+<pre><code>trouble at: b
+&gt;&gt;&gt; 'b'</code></pre>
+
+<pre><code>trouble at: 'foobar'
+&gt;&gt;&gt; 'a'</code></pre>
+
+<p>Since <code>a</code> and <code>b</code> are different objects, they are treated as different objects. Interestingly, the literal <code>'foobar'</code> is allocated just once, so is really the same object as <code>a</code>. You don't want your code to depend on behaviour like this! A plain <code>Dictionary</code> would give the same value for any key equal to
+<code>'foobar'</code>.</p>
+
+<p>Use only globally unique objects (like <code>Symbol</code>s or <code>SmallInteger</code>s) as keys for an <code>IdentityDictionary</code>, and <code>String</code>s (or other objects) as keys for a plain <code>Dictionary</code>.</p>
+
+<h4 id="identitydictionary-example">IdentityDictionary example</h4>
+<p>The expression <code>Smalltalk globals</code> returns an instance of <code>SystemDictionary</code>, a subclass of <code>IdentityDictionary</code>, hence all its keys are <code>ByteSymbol</code>s (<code>ByteSymbol</code> is a subclass of <code>Symbol</code>).</p>
+
+<pre><code>Smalltalk globals keys collect: [ :each | each class ] as: Set
+&gt;&gt;&gt; a Set(ByteSymbol)</code></pre>
+
+<p>Here we are using <code>collect:as:</code> to specify the result collection to be of class <code>Set</code>, that way we collect each kind of class used as a key only once.</p>
+
+<h3 id="set"><span class="number">14.11</span> <code>Set</code></h3>
+<p>The class <code>Set</code> is a collection which behaves as a mathematical set, i.e., as a collection with no duplicate elements and without any order. In a <code>Set</code>, elements are added using the message <code>add:</code> and they cannot be accessed using the message <code>at:</code>. Objects put in a set should implement the methods <code>hash</code> and <code>=</code>.</p>
+
+<pre><code>s := Set new.
+s add: 4/2; add: 4; add:2.
+s size
+&gt;&gt;&gt; 2</code></pre>
+
+<p>You can also create sets using <code>Set class&gt;&gt;newFrom:</code> or the conversion message <code>Collection&gt;&gt;asSet</code>:</p>
+
+<pre><code>(Set newFrom: #( 1 2 3 1 4 )) = #(1 2 3 4 3 2 1) asSet
+&gt;&gt;&gt; true</code></pre>
+
+<p><code>asSet</code> offers us a convenient way to eliminate duplicates from a collection:</p>
+
+<pre><code>{ Color black. Color white. (Color red + Color blue + Color green) } asSet size
+&gt;&gt;&gt; 2</code></pre>
+
+<q id="note"><strong>red</strong> <code>+</code> <strong>blue</strong> <code>+</code> <strong>green</strong> <code>=</code> <strong>white</strong>.</q>
+<p>A <code>Bag</code> is much like a <code>Set</code> except that it does allow duplicates:</p>
+
+<pre><code>{ Color black. Color white. (Color red + Color blue + Color green) } asBag size
+&gt;&gt;&gt; 3</code></pre>
+
+<p>The set operations <i>union</i>, <i>intersection</i> and <i>membership test</i> are implemented by the <code>Collection</code> messages <code>union:</code>, <code>intersection:</code>, and <code>includes:</code>. The receiver is first converted to a <code>Set</code>, so these operations work for all kinds of collections!</p>
+
+<pre><code>(1 to: 6) union: (4 to: 10)
+&gt;&gt;&gt; a Set(1 2 3 4 5 6 7 8 9 10)</code></pre>
+
+<pre><code>'hello' intersection: 'there'
+&gt;&gt;&gt; 'eh'</code></pre>
+
+<pre><code>#Pharo includes: $a
+&gt;&gt;&gt; true</code></pre>
+
+<p>As we explain below, elements of a set are accessed using iterators (see Section <a href="#sec:iterators">14.14</a>).</p>
+
+<h3 id="sortedcollection"><span class="number">14.12</span> <code>SortedCollection</code></h3>
+<p>In contrast to an <code>OrderedCollection</code>, a <code>SortedCollection</code> maintains its elements in sort order. By default, a sorted collection uses the message <code>&lt;=</code> to establish sort order, so it can sort instances of subclasses of the abstract class <code>Magnitude</code>, which defines the protocol of comparable objects (<code>&lt;</code>,
+<code>=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>between:and:</code>...). (See Chapter <a href="basic-classes.html#cha:basicClasses">13</a>).</p>
+
+<p>You can create a <code>SortedCollection</code> by creating a new instance and adding elements to it:</p>
+
+<pre><code>SortedCollection new add: 5; add: 2; add: 50; add: -10; yourself.
+&gt;&gt;&gt; a SortedCollection(-10 2 5 50)</code></pre>
+
+<p>More usually, though, one will send the conversion message <code>asSortedCollection</code> to an existing collection:</p>
+
+<pre><code>#(5 2 50 -10) asSortedCollection
+&gt;&gt;&gt; a SortedCollection(-10 2 5 50)</code></pre>
+
+<pre><code>'hello' asSortedCollection
+&gt;&gt;&gt; a SortedCollection($e $h $l $l $o)</code></pre>
+
+<p>How do you get a <code>String</code> back from this result? <code>asString</code> unfortunately returns the <code>printString</code> representation, which is not what we want:</p>
+
+<pre><code>'hello' asSortedCollection asString
+&gt;&gt;&gt; 'a SortedCollection($e $h $l $l $o)'</code></pre>
+
+<p>The correct answer is to either use <code>String class&gt;&gt;newFrom:</code>, <code>String class&gt;&gt;withAll:</code> or <code>Object&gt;&gt;as:</code>.</p>
+
+<pre><code>'hello' asSortedCollection as: String
+&gt;&gt;&gt; 'ehllo'</code></pre>
+
+<pre><code>String newFrom: 'hello' asSortedCollection
+&gt;&gt;&gt; 'ehllo'</code></pre>
+
+<pre><code>String withAll: 'hello' asSortedCollection
+&gt;&gt;&gt; 'ehllo'</code></pre>
+
+<p>It is possible to have different kinds of elements in a <code>SortedCollection</code> as long as they are all comparable. For example, we can mix different kinds of numbers such as integers, floats and fractions:</p>
+
+<pre><code>{ 5 . 2/ -3 . 5.21 } asSortedCollection
+&gt;&gt;&gt; a SortedCollection((-2/3) 5 5.21)</code></pre>
+
+<p>Imagine that you want to sort objects that do not define the method <code>&lt;=</code> or that you would like to have a different sorting criterion. You can do this by supplying a two argument block, called a sortblock, to the sorted collection. For example, the class <code>Color</code> is not a Magnitude and it does not implement the method <code>&lt;=</code>, but we can specify a block stating that the colors should be sorted according to their luminance (a measure of brightness).</p>
+
+<pre><code>col := SortedCollection
+         sortBlock: [ :c1 :c2 | c1 luminance &lt;= c2 luminance ].
+col addAll: { Color red . Color yellow . Color white . Color black }.
+col
+&gt;&gt;&gt; a SortedCollection(Color black Color red Color yellow Color white)</code></pre>
+
+<h3 id="strings-2"><span class="number">14.13</span> <code>Strings</code></h3>
+<p>In Pharo, a <code>String</code> is a collection of <code>Character</code>s. It is sequenceable, indexable, mutable and homogeneous, containing only <code>Character</code> instances. Like <code>Array</code>s, <code>String</code>s have a dedicated syntax, and are normally created by directly specifying a <code>String</code> literal within single quotes, but the usual collection creation methods will work as well.</p>
+
+<pre><code>'Hello'
+&gt;&gt;&gt; 'Hello'</code></pre>
+
+<pre><code>String with: $A
+&gt;&gt;&gt; 'A'</code></pre>
+
+<pre><code>String with: $h with: $i with: $!
+&gt;&gt;&gt; 'hi!'</code></pre>
+
+<pre><code>String newFrom: #($h $e $l $l $o)
+&gt;&gt;&gt; 'hello'</code></pre>
+
+<p>In actual fact, <code>String</code> is abstract. When we instantiate a <code>String</code> we actually get either an 8-bit <code>ByteString</code> or a 32-bit <code>WideString</code>. To keep things simple, we usually ignore the difference and just talk about instances of <code>String</code>.</p>
+
+<p>While strings are delimited by single quotes, a string can contain a single quote: to define a string with a single quote we should type it twice. Note that the string will contain only one element and not two as shown below:</p>
+
+<pre><code>'l''idiot' at: 2
+&gt;&gt;&gt; $'</code></pre>
+
+<pre><code>'l''idiot' at: 3
+&gt;&gt;&gt; $i</code></pre>
+
+<p>The message <code>,</code> concatenates two instances of <code>String</code>. Such messages can chained as follows:</p>
+
+<pre><code>s := 'no', ' ', 'worries'.
+s
+&gt;&gt;&gt; 'no worries'</code></pre>
+
+<p>Since a string is a mutable collection we can also change it using the message <code>at:put:</code>. From a design point of view better avoid mutating strings since strings are often shared over method execution.</p>
+
+<pre><code>s at: 4 put: $h; at: 5 put: $u.
+s
+&gt;&gt;&gt; 'no hurries'</code></pre>
+
+<p>Note that the comma method is defined by <code>Collection</code>, so it will work for any kind of collection!</p>
+
+<pre><code>(1 to: 3), '45'
+&gt;&gt;&gt; #(1 2 3 $4 $5)</code></pre>
+
+<p>We can also modify an existing string using <code>replaceAll:with:</code> or <code>replaceFrom:to:with:</code> as shown below. Note that the number of characters and the interval should have the same size.</p>
+
+<pre><code>s replaceAll: $n with: $N.
+s
+&gt;&gt;&gt; 'No hurries'</code></pre>
+
+<pre><code>s replaceFrom: 4 to: 5 with: 'wo'.
+s
+&gt;&gt;&gt; 'No worries'</code></pre>
+
+<p>In contrast to the methods described above, the method <code>copyReplaceAll:</code> creates a new string. (Curiously, here the arguments are substrings rather than individual characters, and their sizes do not have to match.)</p>
+
+<pre><code>s copyReplaceAll: 'rries' with: 'mbats'
+&gt;&gt;&gt; 'No wombats'</code></pre>
+
+<p>A quick look at the implementation of these methods reveals that they are defined not only for <code>String</code>s, but for any kind of <code>SequenceableCollection</code>, so the following also works:</p>
+
+<pre><code>(1 to: 6) copyReplaceAll: (3 to: 5) with: { 'three' . 'etc.' }
+&gt;&gt;&gt; #(1 2 'three' 'etc.' 6)</code></pre>
+
+<h4 id="string-matching">String matching</h4>
+<p>It is possible to ask whether a pattern matches a string by sending the <code>match:</code> message. The pattern can use <code>*</code> to match an arbitrary series of characters and <code>#</code> to match a single character. Note that <code>match:</code> is sent to the pattern and not the string to be matched.</p>
+
+<pre><code>'Linux *' match: 'Linux mag'
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>'GNU#Linux #ag' match: 'GNU/Linux tag'
+&gt;&gt;&gt; true</code></pre>
+
+<p>More advanced pattern matching facilities are also available in the <code>Regex</code> package.</p>
+
+<h4 id="substrings">Substrings</h4>
+<p>For substring manipulation we can use messages like <code>first</code>, <code>first:</code>, <code>allButFirst:</code>, <code>copyFrom:to:</code> and others, defined in <code>SequenceableCollection</code>.</p>
+
+<pre><code>'alphabet' at: 6
+&gt;&gt;&gt; $b</code></pre>
+
+<pre><code>'alphabet' first
+&gt;&gt;&gt; $a</code></pre>
+
+<pre><code>'alphabet' first: 5
+&gt;&gt;&gt; 'alpha'</code></pre>
+
+<pre><code>'alphabet' allButFirst: 3
+&gt;&gt;&gt; 'habet'</code></pre>
+
+<pre><code>'alphabet' copyFrom: 5 to: 7
+&gt;&gt;&gt; 'abe'</code></pre>
+
+<pre><code>'alphabet' copyFrom: 3 to: 3
+&gt;&gt;&gt; 'p' (not $p)</code></pre>
+
+<p>Be aware that result type can be different, depending on the method used. Most of the substring-related methods return <code>String</code> instances. But the messages that always return one element of the <code>String</code> collection, return a <code>Character</code> instance (for example, <code>'alphabet' at: 6</code> returns the character
+<code>$b</code>). For a complete list of substring-related messages, browse the <code>SequenceableCollection</code> class (especially the <code>accessing</code> protocol).</p>
+
+<h4 id="some-predicates-on-strings">Some predicates on strings</h4>
+<p>The following examples illustrate the use of <code>isEmpty</code>, <code>includes:</code> and
+<code>anySatisfy:</code> which are also messages defined not only on Strings but more
+generally on collections.</p>
+
+<pre><code>'Hello' isEmpty
+&gt;&gt;&gt; false</code></pre>
+
+<pre><code>'Hello' includes: $a
+&gt;&gt;&gt; false</code></pre>
+
+<pre><code>'JOE' anySatisfy: [ :c | c isLowercase ]
+&gt;&gt;&gt; false</code></pre>
+
+<pre><code>'Joe' anySatisfy: [ :c | c isLowercase ]
+&gt;&gt;&gt; true</code></pre>
+
+<h4 id="string-templating">String templating</h4>
+<p>There are three messages that are useful to manage string templating: <code>format:</code>, <code>expandMacros</code>, and <code>expandMacrosWith:</code>.</p>
+
+<pre><code>'{1} is {2}' format: {'Pharo' . 'cool'}
+&gt;&gt;&gt; 'Pharo is cool'</code></pre>
+
+<p>The messages of the <code>expandMacros</code> family offer variable substitution, using <code>&lt;n&gt;</code> for carriage return, <code>&lt;t&gt;</code> for tabulation, <code>&lt;1s&gt;</code>, <code>&lt;2s&gt;</code>, <code>&lt;3s&gt;</code> for arguments (<code>&lt;1p&gt;</code>, <code>&lt;2p&gt;</code>, surrounds the string with single quotes), and <code>&lt;1?value1:value2&gt;</code> for conditional.</p>
+
+<pre><code>'look-&lt;t&gt;-here' expandMacros
+&gt;&gt;&gt; 'look-   -here'</code></pre>
+
+<pre><code>'&lt;1s&gt; is &lt;2s&gt;' expandMacrosWith: 'Pharo' with: 'cool'
+&gt;&gt;&gt; 'Pharo is cool'</code></pre>
+
+<pre><code>'&lt;2s&gt; is &lt;1s&gt;' expandMacrosWith: 'Pharo' with: 'cool'
+&gt;&gt;&gt; 'cool is Pharo'</code></pre>
+
+<pre><code>'&lt;1p&gt; or &lt;1s&gt;' expandMacrosWith: 'Pharo' with: 'cool'
+&gt;&gt;&gt; '''Pharo'' or Pharo'</code></pre>
+
+<pre><code>'&lt;1?Quentin:Thibaut&gt; plays' expandMacrosWith: true
+&gt;&gt;&gt; 'Quentin plays'</code></pre>
+
+<pre><code>'&lt;1?Quentin:Thibaut&gt; plays' expandMacrosWith: false
+&gt;&gt;&gt; 'Thibaut plays'</code></pre>
+
+<h4 id="some-other-utility-methods">Some other utility methods</h4>
+<p>The class <code>String</code> offers numerous other utilities including the messages <code>asLowercase</code>, <code>asUppercase</code> and <code>capitalized</code>.</p>
+
+<pre><code>'XYZ' asLowercase
+&gt;&gt;&gt; 'xyz'</code></pre>
+
+<pre><code>'xyz' asUppercase
+&gt;&gt;&gt; 'XYZ'</code></pre>
+
+<pre><code>'tintin' capitalized
+&gt;&gt;&gt; 'Tintin'</code></pre>
+
+<pre><code>'Tintin' uncapitalized
+&gt;&gt;&gt; 'tintin'</code></pre>
+
+<pre><code>'1.54' asNumber
+&gt;&gt;&gt; 1.54</code></pre>
+
+<pre><code>'this sentence is without a doubt far too long' contractTo: 20
+&gt;&gt;&gt; 'this sent...too long'</code></pre>
+
+<h4 id="asstring-vs-printstring"><code>asString</code> vs. <code>printString</code></h4>
+<p>Note that there is generally a difference between asking an object its string representation by sending the message <code>printString</code> and converting it to a string by sending the message <code>asString</code>. Here is an example of the difference.</p>
+
+<pre><code>#ASymbol printString
+&gt;&gt;&gt; '#ASymbol'</code></pre>
+
+<pre><code>#ASymbol asString
+&gt;&gt;&gt; 'ASymbol'</code></pre>
+
+<p>A symbol is similar to a string but is guaranteed to be globally unique. For this reason symbols are preferred to strings as keys for dictionaries, in particular for instances of <code>IdentityDictionary</code>. See also Chapter <a href="basic-classes.html#cha:basicClasses">13</a> for more about <code>String</code> and <code>Symbol</code>.</p>
+
+<h3><span class="number">14.14</span> Collection iterators</h3><a id="sec:iterators"></a>
+<p>In Pharo loops and conditionals are simply messages sent to collections or other objects such as integers or blocks (see also Chapter <a href="understanding-message.html#chapterUnderstandingMessage">9</a>). In addition to low-level messages such as <code>to:do:</code> which evaluates a block with an argument ranging from an initial to a final number, the collection hierarchy offers various high-level iterators. Using such iterators will make your code more robust and compact.</p>
+
+<h4 id="iterating-do">Iterating (<code>do:)</code></h4>
+<p>The method <code>do:</code> is the basic collection iterator. It applies its argument (a
+block taking a single argument) to each element of the receiver. The following
+example prints all the strings contained in the receiver to the transcript.</p>
+
+<pre><code>#('bob' 'joe' 'toto') do: [:each | Transcript show: each; cr].</code></pre>
+
+<h4 id="variants">Variants</h4>
+<p>There are a lot of variants of <code>do:</code>, such as <code>do:without:</code>, <code>doWithIndex:</code> and <code>reverseDo:</code>.</p>
+
+<p>For the indexed collections (<code>Array</code>, <code>OrderedCollection</code>, <code>SortedCollection</code>) the message <code>doWithIndex:</code> also gives access to the current index. This message is related to <code>to:do:</code> which is defined in class <code>Number</code>.</p>
+
+<pre><code>#('bob' 'joe' 'toto')
+    doWithIndex: [ :each :i | (each = 'joe') ifTrue: [ ^ i ] ]
+&gt;&gt;&gt; 2</code></pre>
+
+<p>For ordered collections, the message <code>reverseDo:</code> walks the collection in the reverse order.</p>
+
+<p>The following code shows an interesting message: <code>do:separatedBy:</code> which executes the second block only in between two elements.</p>
+
+<pre><code>| res |
+res := ''.
+#('bob' 'joe' 'toto')
+   do: [ :e | res := res, e ]
+   separatedBy: [ res := res, '.' ].
+res
+&gt;&gt;&gt; 'bob.joe.toto'</code></pre>
+
+<p>Note that this code is not especially efficient since it creates intermediate
+strings and it would be better to use a write stream to buffer the result (see
+Chapter <a href="streams.html#cha:streams">15</a>):</p>
+
+<pre><code>String streamContents: [ :stream |
+   #('bob' 'joe' 'toto') asStringOn: stream delimiter: '.' ]
+&gt;&gt;&gt; 'bob.joe.toto'</code></pre>
+
+<h4 id="dictionaries">Dictionaries</h4>
+<p>When the message <code>do:</code> is sent to a dictionary, the elements taken into account are the values, not the associations. The proper messages to use are <code>keysDo:</code>, <code>valuesDo:</code>, and <code>associationsDo:</code>, which iterate respectively on keys, values or associations.</p>
+
+<pre><code>colors := Dictionary newFrom: { #yellow -&gt; Color yellow. #blue -&gt; Color blue. #red -&gt; Color red }.
+colors keysDo: [ :key | Transcript show: key; cr ].
+colors valuesDo: [ :value | Transcript show: value; cr ].
+colors associationsDo: [:value | Transcript show: value; cr].</code></pre>
+
+<h3 id="collecting-results-collect"><span class="number">14.15</span> Collecting results (<code>collect:</code>)</h3>
+<p>If you want to apply a function to the elements of a collection and get a new collection with the results, rather than using <code>do:</code>, you are probably better off using <code>collect:</code>, or one of the other iterator methods. Most of these can be found in the <code>enumerating</code> protocol of <code>Collection</code> and its subclasses.</p>
+
+<p>Imagine that we want a collection containing the doubles of the elements in another collection. Using the method <code>do:</code> we must write the following:</p>
+
+<pre><code>| double |
+double := OrderedCollection new.
+#(1 2 3 4 5 6) do: [ :e | double add: 2 * e ].
+double
+&gt;&gt;&gt; an OrderedCollection(2 4 6 8 10 12)</code></pre>
+
+<p>The message <code>collect:</code> executes its argument block for each element and returns a new collection containing the results. Using <code>collect:</code> instead, the code is much simpler:</p>
+
+<pre><code>#(1 2 3 4 5 6) collect: [ :e | 2 * e ]
+&gt;&gt;&gt; #(2 4 6 8 10 12)</code></pre>
+
+<p>The advantages of <code>collect:</code> over <code>do:</code> are even more important in the following example, where we take a collection of integers and generate as a result a collection of absolute values of these integers:</p>
+
+<pre><code>aCol :=  #( 2 -3 4 -35 4 -11).
+result := aCol species new: aCol size.
+1 to: aCol size do: [ :each |
+	result at: each put: (aCol at: each) abs ].
+result
+&gt;&gt;&gt; #(2 3 4 35 4 11)</code></pre>
+
+<p>Contrast the above with the much simpler following expression:</p>
+
+<pre><code>#( 2 -3 4 -35 4 -11) collect: [ :each | each abs ]
+&gt;&gt;&gt; #(2 3 4 35 4 11)</code></pre>
+
+<p>A further advantage of the second solution is that it will also work for sets and bags. Generally you should avoid using <code>do:</code>, unless you want to send messages to each of the elements of a collection.</p>
+
+<p>Note that sending the message <code>collect:</code> returns the same kind of collection as the receiver. For this reason the following code fails. (A <code>String</code> cannot hold integer values.)</p>
+
+<pre><code>'abc' collect: [ :ea | ea asciiValue ]
+&gt;&gt;&gt; "error!"</code></pre>
+
+<p>Instead we must first convert the string to an <code>Array</code> or an <code>OrderedCollection</code>:</p>
+
+<pre><code>'abc' asArray collect: [ :ea | ea asciiValue ]
+&gt;&gt;&gt; #(97 98 99)</code></pre>
+
+<p>Actually <code>collect:</code> is not guaranteed to return a collection of exactly the same class as the receiver, but only the same <i>species</i>. In the case of an <code>Interval</code>, the species is an <code>Array</code>!</p>
+
+<pre><code>(1 to: 5) collect: [ :ea | ea * 2 ]
+&gt;&gt;&gt; #(2 4 6 8 10)</code></pre>
+
+<h3 id="selecting-and-rejecting-elements"><span class="number">14.16</span> Selecting and rejecting elements</h3>
+<p>The message <code>select:</code> returns the elements of the receiver that satisfy a particular condition:</p>
+
+<pre><code>(2 to: 20) select: [ :each | each isPrime ]
+&gt;&gt;&gt; #(2 3 5 7 11 13 17 19)</code></pre>
+
+<p>The message <code>reject:</code> does the opposite:</p>
+
+<pre><code>(2 to: 20) reject: [ :each | each isPrime ]
+&gt;&gt;&gt; #(4 6 8 9 10 12 14 15 16 18 20)</code></pre>
+
+<h4 id="identifying-an-element-with-detect">Identifying an element with <code>detect:</code></h4>
+<p>The message <code>detect:</code> returns the first element of the receiver that matches block argument.</p>
+
+<pre><code>'through' detect: [ :each | each isVowel ]
+&gt;&gt;&gt; $o</code></pre>
+
+<p>The message <code>detect:ifNone:</code> is a variant of the method <code>detect:</code>. Its second block is evaluated when there is no element matching the block.</p>
+
+<pre><code>Smalltalk globals allClasses
+    detect: [:each | '*cobol*' match: each asString]
+    ifNone: [ nil ]
+&gt;&gt;&gt; nil</code></pre>
+
+<h4 id="accumulating-results-with-inject-into">Accumulating results with <code>inject:into:</code></h4>
+<p>Functional programming languages often provide a higher-order function called <i>fold</i> or <i>reduce</i> to accumulate a result by applying some binary operator iteratively over all elements of a collection. In Pharo this is done by <code>Collection&gt;&gt;inject:into:</code>.</p>
+
+<p>The first argument is an initial value, and the second argument is a two-argument block which is applied to the result this far, and each element in turn.</p>
+
+<p>A trivial application of <code>inject:into:</code> is to produce the sum of a collection of numbers. In Pharo we could write this expression to sum the first 100 integers:</p>
+
+<pre><code>(1 to: 100) inject: 0 into: [ :sum :each | sum + each ]
+&gt;&gt;&gt; 5050</code></pre>
+
+<p>Another example is the following one-argument block which computes factorials:</p>
+
+<pre><code>factorial := [ :n | 
+	(1 to: n) 
+		inject: 1 
+		into: [ :product :each | product * each ] ].
+factorial value: 10
+&gt;&gt;&gt; 3628800</code></pre>
+
+<h3 id="other-high-order-messages"><span class="number">14.17</span> Other high-order messages</h3>
+<p>There are many other iterator messages. You can check the <code>Collection</code> class. Here is a selection.</p>
+
+<h6 class="paragraph" id="count"><code>count:</code></h6>
+<p>The message <code>count:</code> returns the number of elements satisfying a condition. The condition is represented as a boolean block.</p>
+
+<pre><code>Smalltalk globals allClasses
+   count: [ :each | 'Collection*' match: each asString ]
+&gt;&gt;&gt; 10</code></pre>
+
+<h6 class="paragraph" id="includes"><code>includes:</code></h6>
+<p>The message <code>includes:</code> checks whether the argument is contained in the collection.</p>
+
+<pre><code>| colors |
+colors := {Color white . Color yellow .  Color blue . Color orange}.
+colors includes: Color blue.
+&gt;&gt;&gt; true</code></pre>
+
+<h6 class="paragraph" id="anysatisfy"><code>anySatisfy:</code></h6>
+<p>The message <code>anySatisfy:</code> answers true if at least one element of the collection satisfies the condition represented by the argument.</p>
+
+<pre><code>colors anySatisfy: [ :c | c red &gt; 0.5 ]
+&gt;&gt;&gt; true</code></pre>
+
+<h3 id="a-common-mistake-using-add-result"><span class="number">14.18</span> A common mistake: using <code>add:</code> result</h3>
+<p>The following error is one of the most frequent Smalltalk mistakes.</p>
+
+<pre><code>| collection |
+collection := OrderedCollection new add: 1; add: 2.
+collection
+&gt;&gt;&gt; 2</code></pre>
+
+<p>Here the variable <code>collection</code> does not hold the newly created collection but rather the last number added. This is because the method <code>add:</code> returns the element added and not the receiver.</p>
+
+<p>The following code yields the expected result:</p>
+
+<pre><code>| collection |
+collection := OrderedCollection new.
+collection add: 1; add: 2.
+collection
+&gt;&gt;&gt; an OrderedCollection(1 2)</code></pre>
+
+<p>You can also use the message <code>yourself</code> to return the receiver of a cascade of messages:</p>
+
+<pre><code>| collection |
+collection := OrderedCollection new add: 1; add: 2; yourself
+&gt;&gt;&gt; an OrderedCollection(1 2)</code></pre>
+
+<h3 id="a-common-mistake-removing-an-element-while-iterating"><span class="number">14.19</span> A common mistake: Removing an element while iterating</h3>
+<p>Another mistake you may make is to remove an element from a collection you are currently iterating over. The bugs created but such mistakes can be really difficult to spot because the iterating order may be change depending on the storage strategy of the collection.</p>
+
+<pre><code>| range |
+range := (2 to: 20) asOrderedCollection.
+range do: [ :aNumber | aNumber isPrime
+                            ifFalse: [ range remove: aNumber ] ].
+range
+&gt;&gt;&gt; "error!"</code></pre>
+
+<p>The solution is to copy the collection before going over it.</p>
+
+<pre><code>| range |
+range := (2 to: 20) asOrderedCollection.
+range copy do: [ :aNumber | aNumber isPrime
+                              ifFalse: [ range remove: aNumber ] ].
+range
+&gt;&gt;&gt; an OrderedCollection(2 3 5 7 11 13 17 19)</code></pre>
+
+<h3 id="a-common-mitaske-redefining-but-not-hash"><span class="number">14.20</span> A common mitaske: Redefining <code>=</code> but not <code>hash</code></h3>
+<p>A difficult error to spot is when you redefine <code>=</code> but not <code>hash</code>. The symptoms are that you will lose elements that you put in sets or other strange behaviour. One solution proposed by Kent Beck is to use <code>bitXor:</code> to redefine <code>hash</code>. Suppose that we want two books to be considered equal if their titles
+and authors are the same. Then we would redefine not only <code>=</code> but also <code>hash</code> as follows:</p>
+
+<figure class="code"><pre><code>Book &gt;&gt; = aBook
+   self class = aBook class ifFalse: [ ^ false ].
+   ^ title = aBook title and: [ authors = aBook authors ]
+
+Book &gt;&gt; hash
+   ^ title hash bitXor: authors hash</code></pre><figcaption><span class="number">Listing 14.1</span> Redefining <code></code>= and <code>hash</code>.</figcaption></figure>
+
+<p>Another nasty problem arises if you use a mutable object, i.e., an object that can change its hash value over time, as an element of a <code>Set</code> or as a key to a <code>Dictionary</code>. Don't do this unless you love debugging!</p>
+
+<h3 id="chapter-summary-8"><span class="number">14.21</span> Chapter summary</h3>
+<p>The collection hierarchy provides a common vocabulary for uniformly manipulating a variety of different kinds of collections.</p>
+
+<ul>
+<li>A key distinction is between <code>SequenceableCollection</code>s, which maintain their elements in a given order, <code>Dictionary</code> and its subclasses, which maintain key-to-value associations, and <code>Set</code>s and <code>Bag</code>s, which are unordered.</li>
+<li>You can convert most collections to another kind of collection by sending them the messages <code>asArray</code>, <code>asOrderedCollection</code>, etc...</li>
+<li>To sort a collection, send it the message <code>asSortedCollection</code>.</li>
+<li><code>#( ... )</code> creates arrays containing only literal objects (i.e., objects created without sending messages). <code>{ ... }</code> creates dynamic arrays using a compact form.</li>
+<li>A <code>Dictionary</code> compares keys by equality. It is most useful when keys are instances of <code>String</code>. An <code>IdentityDictionary</code> instead uses object identity to compare keys. It is more suitable when <code>Symbol</code>s are used as keys, or when mapping object references to values.</li>
+<li><code>String</code>s also understand the usual collection messages. In addition, a <code>String</code> supports a simple form of pattern-matching. For more advanced application, look instead at the RegEx package.</li>
+<li>The basic iteration message is <code>do:</code>. It is useful for imperative code, such as modifying each element of a collection, or sending each element a message.</li>
+<li>Instead of using <code>do:</code>, it is more common to use <code>collect:</code>, <code>select:</code>, <code>reject:</code>, <code>includes:</code>, <code>inject:into:</code> and other higher-level messages to process collections in a uniform way.</li>
+<li>Never remove an element from a collection you are iterating over. If you must modify it, iterate over a copy instead.</li>
+<li>If you override <code>=</code>, remember to override <code>hash</code> as well!</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="basic-classes.html">← Basic classes</a>
+        <a class="next" rel="next" href="streams.html">Streams →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

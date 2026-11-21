@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About this book</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo 9 by Example</a>
+    <p class="site-authors">Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li class="current">
+            <a href="about-this-book.html" aria-current="page"><span class="number">1</span> About this book</a>
+            
+            <ol>
+              
+              <li><a href="#what-is-pharo"><span class="number">1.1</span> What is Pharo?</a></li>
+              
+              <li><a href="#who-should-read-this-book"><span class="number">1.2</span> Who should read this book?</a></li>
+              
+              <li><a href="#a-word-of-advice"><span class="number">1.3</span> A word of advice</a></li>
+              
+              <li><a href="#an-open-book"><span class="number">1.4</span> An open book</a></li>
+              
+              <li><a href="#the-pharo-community"><span class="number">1.5</span> The Pharo community</a></li>
+              
+              <li><a href="#examples-and-exercises"><span class="number">1.6</span> Examples and exercises</a></li>
+              
+              <li><a href="#typographic-conventions"><span class="number">1.7</span> Typographic conventions</a></li>
+              
+              <li><a href="#acknowledgments"><span class="number">1.8</span> Acknowledgments</a></li>
+              
+              <li><a href="#hyper-special-acknowledgments"><span class="number">1.9</span> Hyper special acknowledgments</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">2</span> Getting Started with  Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-quick-tour-of-pharo.html"><span class="number">3</span> A quick tour of Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="finding-information-in.html"><span class="number">4</span> Finding information in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">5</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="building-a-little-game.html"><span class="number">6</span> Building a little game</a>
+            
+          </li>
+          
+          <li>
+            <a href="publishing-and-packaging.html"><span class="number">7</span> Publishing and packaging your first Pharo project</a>
+            
+          </li>
+          
+          <li>
+            <a href="syntax-in-a-nutshell.html"><span class="number">8</span> Syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="understanding-message.html"><span class="number">9</span> Understanding message syntax</a>
+            
+          </li>
+          
+          <li>
+            <a href="the-pharo-object-model.html"><span class="number">10</span> The Pharo object model</a>
+            
+          </li>
+          
+          <li>
+            <a href="traits-reusable-class.html"><span class="number">11</span> Traits: reusable class fragments</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-tests-in-pharo.html"><span class="number">12</span> SUnit: Tests in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="basic-classes.html"><span class="number">13</span> Basic classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="collections.html"><span class="number">14</span> Collections</a>
+            
+          </li>
+          
+          <li>
+            <a href="streams.html"><span class="number">15</span> Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="morphic.html"><span class="number">16</span> Morphic</a>
+            
+          </li>
+          
+          <li>
+            <a href="classes-and-metaclasses.html"><span class="number">17</span> Classes and metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="reflection.html"><span class="number">18</span> Reflection</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="about-this-book"><span class="number">1</span> About this book</h2>
+<p>This version of the book is based on the previous version authored by Andrew P. Black, Stéphane Ducasse, Oscar Nierstrasz, Damien Pollet, Damien Cassou and Marcus Denker called, <i>Pharo by Example</i>. It also builds on the version that was issued for Pharo 50, <i>Updated Pharo by Example</i>, authored by Stéphane Ducasse and edited by Dmitri Zagidulin, Nicolai Hess, and Dimitris Chloupis.</p>
+
+<p>Many aspects of Pharo's tooling have changed since the last edition, and we have worked hard to cover these changes:</p>
+
+<ul>
+<li>We have reorganized the beginning of the book to get shorter chapters.</li>
+<li>We have introduced a new 'first contact' chapter with a simple counter example. This lets the reader see the most important operations to define a class, its tests, and save its code.</li>
+<li>We briefly cover the new system browser, Calypso, as well as the Pharo Launcher.</li>
+<li>We have introduced a new chapter covering Iceberg and package management. A larger book on Pharo and git is available at <a target="_blank" href="http://books.pharo.org/"><a target="_blank" href="http://books.pharo.org/">http://books.pharo.org</a></a>.</li>
+<li>We added a new chapter on Traits.</li>
+<li>We have simplified the SUnit chapter, since a companion book is now available at <a target="_blank" href="http://books.pharo.org/"><a target="_blank" href="http://books.pharo.org/">http://books.pharo.org/</a></a>.</li>
+<li>We have revised parts of the book that were wrong in previous editions, such as the Morphic chapter; the current version is a considerable improvement over <i>Pharo by Example 5</i>.</li>
+</ul>
+<p><i>Pharo by Example</i> has received many edits, modifications and updates to bring it into line with the current version of Pharo. It does not magically update itself; improvements are the result of many people's hard work; one does not simply change a '5.0' to a '9'. This is why I decided, as one of the original and main authors of the book over the years, to invite Sebastijan, Gordana and Quentin to be listed as authors of <i>Pharo by Example 9</i>.</p>
+
+<h3 id="what-is-pharo"><span class="number">1.1</span> What is Pharo?</h3>
+<p>Pharo is a modern, open-source, dynamically-typed language that supports live coding and is inspired by Smalltalk. Pharo and its ecosystem are composed of six fundamental elements:</p>
+
+<ul>
+<li>A dynamically-typed language with a minimalist syntax, similar to natural language writing, that can fit on a postcard and be read by people who are unfamiliar with it.</li>
+<li>A live coding environment that allows the programmer to seamlessly modify their code as it executes.</li>
+<li>A powerful IDE providing tools to help manage complex code and promote good design.</li>
+<li>A rich library that creates an environment so powerful that it can be viewed as a virtual OS, including a very fast JITing VM and full access to OS libraries and features via its FFI.</li>
+<li>A culture where changes and improvements are encouraged and highly valued.</li>
+<li>A community that welcomes coders from any corner of the world, of any skill level or experience, in any programming language.</li>
+</ul>
+<p>Pharo strives to offer a lean, open platform for professional software development, as well as a robust and stable platform for research and development into dynamic languages and environments. Pharo serves as the reference implementation for the Seaside web development framework, available at <a target="_blank" href="http://www.seaside.st/"><a target="_blank" href="http://www.seaside.st/">http://www.seaside.st</a></a>.</p>
+
+<p>Pharo's core contains only code that has been contributed under the MIT license. The Pharo project started in March 2008 as a fork of Squeak (a modern implementation of Smalltalk-80), and the first 1.0 beta version was released on July 31, 2009. Since then, Pharo has reached a new version every year or year and a half. The current version is Pharo 9.0, released in July 2021.</p>
+
+<p>Pharo is highly portable. Pharo can run on macOS, Windows, Linux, Android, iOS, and Raspberry Pi. Its virtual machine is written entirely in a subset of Pharo, making it easy to simulate, debug, analyze, and change from within Pharo itself. Pharo is the vehicle for a wide range of innovative projects, from multimedia applications and educational platforms to commercial web development environments.</p>
+
+<p>There is an important principle behind Pharo: Pharo does not just copy the past, it <i>reinvents</i> the essence of Smalltalk. However, we realize that BigBang style approaches that start from scratch rarely succeed. Pharo instead favors evolutionary and incremental changes. Rather than leaping for the perfect solution in one big step, a multitude of small changes keeps even the bleeding edge relatively stable while allowing us to experiment with important new features and libraries. This facilitates contributions and rapid feedback from the community, which Pharo relies on for its success. Finally, Pharo is not read-only: changes from the community are integrated daily. Pharo has around 100 contributors, based all over the world. You can have an impact on Pharo too! Just take a look at <a target="_blank" href="http://github.com/pharo-project/pharo"><a target="_blank" href="http://github.com/pharo-project/pharo">http://github.com/pharo-project/pharo</a></a>.</p>
+
+<h3 id="who-should-read-this-book"><span class="number">1.2</span> Who should read this book?</h3>
+<p>This book will not teach you how to program. The reader should have some familiarity with programming languages. Some background in object-oriented programming would also be helpful.</p>
+
+<p>The current book will introduce the Pharo programming environment, the language, and the associated tools. You will be exposed to common idioms and practices, but the focus is on the technology, not on object-oriented design. We will show you good, illustrative examples as often as possible.</p>
+
+<h4 id="the-pharo-mooc">The Pharo MOOC</h4>
+<p>An excellent MOOC (Massive open online course) for Pharo is freely available  at <a target="_blank" href="http://mooc.pharo.org/"><a target="_blank" href="http://mooc.pharo.org/">http://mooc.pharo.org</a></a>. The MOOC makes for a good introduction to Pharo and object-oriented programming, and complements this book well.</p>
+
+<h4 id="further-reading">Further reading</h4>
+<p>This book will not teach you everything you need, or want, to learn about Pharo. Here is a short commented list of other books that you can find at <a target="_blank" href="http://books.pharo.org/"><a target="_blank" href="http://books.pharo.org/">http://books.pharo.org</a></a>:</p>
+
+<ul>
+<li><i>Learning Object-Oriented Programming, Design and TDD with Pharo</i>. This book teaches the key aspects of object-oriented design and test-driven development. A good book to learn about object-oriented programming.</li>
+<li><i>Pharo with Style</i>. This book is a must-read. It discusses how to write good and readable Pharo code. In just one hour, you will boost the standard of your code.</li>
+<li><i>The Spec UI framework</i>. This book will show you how to develop standard user interface applications in Pharo.</li>
+</ul>
+<p>More technical books are:</p>
+
+<ul>
+<li><i>Managing your code with Iceberg</i>. This book covers how to manage your code with git in further detail.</li>
+<li><i>Enterprise Pharo</i>. This book contains different chapters relating to the web, converters, reporting, and documentation that you need for delivering applications.</li>
+<li><i>Deep into Pharo</i>. This book covers more advanced topics than <i>Pharo by Example</i>.</li>
+</ul>
+<p>And there are also books to expand your mind:</p>
+
+<ul>
+<li><i>A simple reflective object kernel</i> revisits all the fundamental points of "objects all the way down" by taking you on a little journey to build a reflective language core. It is truly excellent.</li>
+</ul>
+<p>In addition, there are numerous other books on Smalltalk freely available at <a target="_blank" href="http://stephane.ducasse.free.fr/FreeBooks.html"><a target="_blank" href="http://stephane.ducasse.free.fr/FreeBooks.html">http://stephane.ducasse.free.fr/FreeBooks.html</a></a>.</p>
+
+<h3 id="a-word-of-advice"><span class="number">1.3</span> A word of advice</h3>
+<p>Do not be frustrated by parts of Pharo that you do not immediately understand: <i>You do not have to know everything</i>. Alan Knight expresses this as follows:</p>
+
+<p><strong><i>Try not to care</i>.</strong>  Beginning Pharo programmers often have trouble because they think they need to understand all the details of how a thing works before they can use it. This means it takes quite a while before they can master <code>Transcript show: 'Hello World'</code>. One of the great leaps in OO [object-oriented programming] is to be able to answer the question "How does this work?" with "I don't care".</p>
+
+<p>When you do not understand something, simple or complex, do not hesitate to ask us on our mailing lists (pharo-users@lists.pharo.org or pharo-dev@lists.pharo.org), IRC and Discord. We love questions and we welcome people of any skill.</p>
+
+<h3 id="an-open-book"><span class="number">1.4</span> An open book</h3>
+<p>This book is an open book in the following senses:</p>
+
+<ul>
+<li>The content of this book is released under the Creative Commons Attribution-ShareAlike (by-sa) license. In short, you are allowed to freely share and adapt this book, as long as you respect the conditions of the license available at the following URL <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/"><a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a></a>.</li>
+<li>This book just describes the core of Pharo. We encourage others to contribute chapters on the parts of Pharo that we have not described. If you would like to participate in this effort, please contact us. We would like to see more books about Pharo!</li>
+<li>It is also possible to contribute directly to this book via GitHub. Just follow the instructions there and ask any questions you have on the mailing list, IRC or Discord. You can find the GitHub repo at <a target="_blank" href="https://github.com/SquareBracketAssociates/PharoByExample90"><a target="_blank" href="https://github.com/SquareBracketAssociates/PharoByExample90">https://github.com/SquareBracketAssociates/PharoByExample90</a></a></li>
+</ul>
+<h3 id="the-pharo-community"><span class="number">1.5</span> The Pharo community</h3>
+<p>The Pharo community is friendly and active. Here is a short list of resources that you may find useful:</p>
+
+<ul>
+<li><a target="_blank" href="http://www.pharo.org/"><a target="_blank" href="http://www.pharo.org/">http://www.pharo.org</a></a> is the main website of Pharo.</li>
+<li><a target="_blank" href="http://www.github.com/pharo-project/pharo"><a target="_blank" href="http://www.github.com/pharo-project/pharo">http://www.github.com/pharo-project/pharo</a></a> is the main GitHub account for Pharo.</li>
+<li>Pharo has an active on Discord server - a platform for chat based on IRC, just ask for an invitation on Pharo's website <a target="_blank" href="http://pharo.org/community"><a target="_blank" href="http://pharo.org/community">http://pharo.org/community</a></a>, in the Discord section. Everybody is welcome.</li>
+<li>Pharoers started a wiki on Pharo: <a target="_blank" href="https://github.com/pharo-open-documentation/pharo-wiki"><a target="_blank" href="https://github.com/pharo-open-documentation/pharo-wiki">https://github.com/pharo-open-documentation/pharo-wiki</a></a></li>
+<li>An Awesome catalog is maintained with projects: <a target="_blank" href="https://github.com/pharo-open-documentation/awesome-pharo"><a target="_blank" href="https://github.com/pharo-open-documentation/awesome-pharo">https://github.com/pharo-open-documentation/awesome-pharo</a></a></li>
+<li>If you hear about SmalltalkHub, <a target="_blank" href="http://www.smalltalkhub.com/"><a target="_blank" href="http://www.smalltalkhub.com/">http://www.smalltalkhub.com/</a></a> was the equivalent of SourceForge/GitHub for Pharo projects for about 10 years. Many extra packages and projects for Pharo lived there. Now the community is mainly using Git repositories such as GitHub, GitLab, and Bitbucket.</li>
+</ul>
+<h3 id="examples-and-exercises"><span class="number">1.6</span> Examples and exercises</h3>
+<p>We have tried to provide as many examples as possible. In particular, there are examples that show a fragment of code which can be evaluated. We use a long arrow to indicate the result you obtain when you select an expression and from its context menu and choose <strong>print it</strong>:</p>
+
+<figure class="code" id="scr:script1"><pre><code>3 + 4
+&gt;&gt;&gt; 7 "if you select 3+4 and 'print it', you will see 7"</code></pre><figcaption><span class="number">Listing 1.1</span> Small example</figcaption></figure>
+
+<p>In case you want to play with these code snippets in Pharo, you can download a plain text file with all the example code from the Resources sidebar of the original book's website: <a target="_blank" href="http://books.pharo.org/pharo-by-example"><a target="_blank" href="http://books.pharo.org/pharo-by-example">http://books.pharo.org/pharo-by-example</a></a>.</p>
+
+<h3 id="typographic-conventions"><span class="number">1.7</span> Typographic conventions</h3>
+<p>We always prefix the method source code with the class of the method. This way you can also know which class the method is.</p>
+
+<p>For example, the book shows a method as:</p>
+
+<pre><code>MyExampleSetTest &gt;&gt; testIncludes
+    | full empty |
+    full := Set with: 5 with: 6.
+    empty := Set new.
+    self assert: (full includes: 5).
+    self assert: (full includes: 6).
+    self assert: (empty includes: 5) not</code></pre>
+
+<p>And if you want to type it into Pharo you should type the following in the corresponding class.</p>
+
+<pre><code>testIncludes
+    | full empty |
+    full := Set with: 5 with: 6.
+    empty := Set new.
+    self assert: (full includes: 5).
+    self assert: (full includes: 6).
+    self assert: (empty includes: 5) not</code></pre>
+
+<h3 id="acknowledgments"><span class="number">1.8</span> Acknowledgments</h3>
+<p>We would like to thank Alan Kay, Dan Ingalls and their team for making Squeak, an amazing Smalltalk development environment, that became the open-source project from which Pharo took root. Pharo also would not be possible without the incredible work of the Squeak developers.</p>
+
+<p>We would also like to thank Hilaire Fernandes and Serge Stinckwich who allowed us to translate parts of their columns on Smalltalk, and Damien Cassou for contributing the chapter on Streams. We especially thank Alexandre Bergel, Orla Greevy, Fabrizio Perin, Lukas Renggli, Jorge Ressia and Erwann Wernli for their detailed reviews. We thank the University of Bern, Switzerland, for graciously supporting this open-source project and for hosting the website of this book for some years.</p>
+
+<p>We also thank the Pharo community for their enthusiastic support of this book project, as well as for all the translations of the first edition of <i>Pharo by Example</i>.</p>
+
+<h3 id="hyper-special-acknowledgments"><span class="number">1.9</span> Hyper special acknowledgments</h3>
+<p>We want to thank the original authors of this book! Without the initial version, it would have been difficult to make this one. <i>Pharo by Example</i> is a central book for Pharo to welcome newcomers, it has immense value.</p>
+
+<p>Special thanks to David Wickes for his massive copy-edit pass and Serhiy Yaroshko for his Ukrainian translation and all the remarks that improved the book's contents.</p>
+
+<p>Thanks to Adrian Sampaleanu, Manfred Kröhnert, Markus Schlager, Werner Kassens, Michael OKeefe, Aryeh Hoffman, Paul MacIntosh, Gaurav Singh, Jigyasa Grover, Craig Allen, Serge Stinckwich, avh-on1, Yuriy Timchuk, zio-pietro, Vivien Moreau, Liwei Chou, cwfoo,  for the typos and feedback. Special thanks to Damien Cassou and Cyril Ferlicot for their great help in the book update.</p>
+
+<p>Finally, we want to thank Inria for its steady and important financial support, and the RMoD team members for the constant energy pushing Pharo forward. We want to thank also the Pharo consortium members.</p>
+
+<p>Super special thanks to Damien Pollet for this great book template and Joseph Guégan for giving us the right to use his great picture of the Eckmuhl lighthouse' staircase.</p>
+
+<p>S. Ducasse, S. Kaplar, Gordana Rakic, and Q. Ducasse</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="index.html">← Pharo 9 by Example</a>
+        <a class="next" rel="next" href="getting-started-with.html">Getting Started with  Pharo →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

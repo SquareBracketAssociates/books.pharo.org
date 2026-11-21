@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Basic classes</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo 9 by Example</a>
+    <p class="site-authors">Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">2</span> Getting Started with  Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-quick-tour-of-pharo.html"><span class="number">3</span> A quick tour of Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="finding-information-in.html"><span class="number">4</span> Finding information in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">5</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="building-a-little-game.html"><span class="number">6</span> Building a little game</a>
+            
+          </li>
+          
+          <li>
+            <a href="publishing-and-packaging.html"><span class="number">7</span> Publishing and packaging your first Pharo project</a>
+            
+          </li>
+          
+          <li>
+            <a href="syntax-in-a-nutshell.html"><span class="number">8</span> Syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="understanding-message.html"><span class="number">9</span> Understanding message syntax</a>
+            
+          </li>
+          
+          <li>
+            <a href="the-pharo-object-model.html"><span class="number">10</span> The Pharo object model</a>
+            
+          </li>
+          
+          <li>
+            <a href="traits-reusable-class.html"><span class="number">11</span> Traits: reusable class fragments</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-tests-in-pharo.html"><span class="number">12</span> SUnit: Tests in Pharo</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="basic-classes.html" aria-current="page"><span class="number">13</span> Basic classes</a>
+            
+            <ol>
+              
+              <li><a href="#object"><span class="number">13.1</span> Object</a></li>
+              
+              <li><a href="#object-printing"><span class="number">13.2</span> Object printing</a></li>
+              
+              <li><a href="#representation-and-self-evaluating-representation"><span class="number">13.3</span> Representation and self-evaluating representation</a></li>
+              
+              <li><a href="#identity-and-equality"><span class="number">13.4</span> Identity and equality</a></li>
+              
+              <li><a href="#class-membership"><span class="number">13.5</span> Class membership</a></li>
+              
+              <li><a href="#about-iskindof-and-respondto"><span class="number">13.6</span> About isKindOf: and respondTo:</a></li>
+              
+              <li><a href="#shallow-copying-objects"><span class="number">13.7</span> Shallow copying objects</a></li>
+              
+              <li><a href="#deep-copying-objects"><span class="number">13.8</span> Deep copying objects</a></li>
+              
+              <li><a href="#debugging"><span class="number">13.9</span> Debugging</a></li>
+              
+              <li><a href="#error-handling"><span class="number">13.10</span> Error handling</a></li>
+              
+              <li><a href="#testing"><span class="number">13.11</span> Testing</a></li>
+              
+              <li><a href="#initialize"><span class="number">13.12</span> Initialize</a></li>
+              
+              <li><a href="#sec:Numbers"><span class="number">13.13</span> Numbers</a></li>
+              
+              <li><a href="#magnitude"><span class="number">13.14</span> Magnitude</a></li>
+              
+              <li><a href="#numbers"><span class="number">13.15</span> Numbers</a></li>
+              
+              <li><a href="#floats"><span class="number">13.16</span> Floats</a></li>
+              
+              <li><a href="#fractions"><span class="number">13.17</span> Fractions</a></li>
+              
+              <li><a href="#integers"><span class="number">13.18</span> Integers</a></li>
+              
+              <li><a href="#characters"><span class="number">13.19</span> Characters</a></li>
+              
+              <li><a href="#strings"><span class="number">13.20</span> Strings</a></li>
+              
+              <li><a href="#booleans"><span class="number">13.21</span> Booleans</a></li>
+              
+              <li><a href="#chapter-summary-7"><span class="number">13.22</span> Chapter summary</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="collections.html"><span class="number">14</span> Collections</a>
+            
+          </li>
+          
+          <li>
+            <a href="streams.html"><span class="number">15</span> Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="morphic.html"><span class="number">16</span> Morphic</a>
+            
+          </li>
+          
+          <li>
+            <a href="classes-and-metaclasses.html"><span class="number">17</span> Classes and metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="reflection.html"><span class="number">18</span> Reflection</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">13</span> Basic classes</h2><a id="cha:basicClasses"></a>
+<p>Pharo is a really simple language but powerful language. Part of its power is
+not in the language but in its class libraries. To program effectively in it,
+you will need to learn how the class libraries support the language and
+environment. The class libraries are entirely written in Pharo, and can easily
+be extended. (Recall that a package may add new functionality to a class even if
+it does not define this class.)</p>
+
+<p>Our goal here is not to present in tedious detail the whole of the Pharo class
+library, but rather to point out the key classes and methods that you will need
+to use (or subclass/override) to program effectively. In this chapter, we will
+cover the basic classes that you will need for nearly every application:
+<code>Object</code>, <code>Number</code> and its subclasses, <code>Character</code>, <code>String</code>,
+<code>Symbol</code>, and <code>Boolean</code>.</p>
+
+<h3 id="object"><span class="number">13.1</span> Object</h3>
+<p>For all intents and purposes, <code>Object</code> is the root of the inheritance
+hierarchy. Actually, in Pharo the true root of the hierarchy is <code>ProtoObject</code>,
+which is used to define minimal entities that masquerade as objects, but we can
+ignore this point for the time being.</p>
+
+<p><code>Object</code> defines almost 400 methods (in other words, every class that you
+define will automatically provide all those methods). <i>Note:</i> You can count
+the number of methods in a class like so:</p>
+
+<pre><code>Object selectors size         "Count the instance methods in Object"
+Object class selectors size   "Count the class methods"</code></pre>
+
+<p>Class <code>Object</code> provides default behaviour common to all normal objects, such
+as access, copying, comparison, error handling, message sending, and reflection.
+Also utility messages that all objects should respond to are defined here.
+<code>Object</code> has no instance variables, nor should any be added. This is due to
+several classes of objects that inherit from <code>Object</code> that have special
+implementations (<code>SmallInteger</code> and <code>UndefinedObject</code> for example) that the
+VM knows about and depends on the structure and layout of certain standard
+classes.</p>
+
+<p>If we begin to browse the method protocols on the instance side of <code>Object</code>
+we will start to see some of the key behaviour it provides.</p>
+
+<h3 id="object-printing"><span class="number">13.2</span> Object printing</h3>
+<p>Every object can return a printed form of itself. You can select any expression
+in a textpane and select the <code>Print it</code> menu item: this executes the
+expression and asks the returned object to print itself. In fact this sends the
+message <code>printString</code> to the returned object. The method <code>printString</code>,
+which is a template method, at its core sends the message <code>printOn:</code> to its
+receiver. The message <code>printOn:</code> is a hook that can be specialized.</p>
+
+<p>Method <code>Object&gt;&gt;printOn:</code> is very likely one of the methods that you will most
+frequently override. This method takes as its argument a <code>Stream</code> on which a
+<code>String</code> representation of the object will be written. The default
+implementation simply writes the class name preceded by <i><code>a</code></i> or <i><code>an</code></i>.
+<code>Object&gt;&gt;printString</code> returns the <code>String</code> that is written.</p>
+
+<p>For example, the class <code>OpalCompiler</code> does not redefine the method
+<code>printOn:</code> and sending the message <code>printString</code> to an instance executes the
+methods defined in <code>Object</code>.</p>
+
+<pre><code>OpalCompiler new printString
+&gt;&gt;&gt; 'an OpalCompiler'</code></pre>
+
+<p>The class <code>Color</code> shows an example of <code>printOn:</code> specialization. It prints
+the name of the class followed by the name of the class method used to generate
+that color.</p>
+
+<figure class="code"><pre><code>Color &gt;&gt; printOn: aStream
+	| name |
+	(name := self name).
+	name = #unnamed
+		ifFalse: [
+			^ aStream
+				nextPutAll: 'Color ';
+				nextPutAll: name ].
+	self storeOn: aStream</code></pre><figcaption><span class="number">Listing 13.1</span> printOn: redefinition.</figcaption></figure>
+
+<pre><code>Color red printString
+&gt;&gt;&gt; 'Color red'</code></pre>
+
+<h4 id="printon-vs-displaystringon">printOn: vs. displayStringOn:</h4>
+<p>You should consider that the message <code>printOn:</code> is to better describe your objects when you are developing.
+Indeed when you are using the inspector or the debugger, it is a lot more efficient to see a precise description of your object instead of the generic one.
+Now <code>printOn:</code> is not done to be used to nicely display objects in UI lists for example, because you usually
+want to display a different kind of information.
+For this purpose you should use <code>displayStringOn:</code>.
+The default implementation of <code>displayStringOn:</code> is to invoke <code>printOn:</code>.</p>
+
+<p>Note that the introduction of <code>displayStringOn:</code> is recent so many libraries are still not making this distinction.
+It is not really a problem but when you write new code, you should be aware of this.</p>
+
+<h4 id="printon-vs-storeon">printOn: vs. storeOn:</h4>
+<p>Note that the message <code>printOn:</code> is not the same as <code>storeOn:</code>. The message
+<code>storeOn:</code> writes to its argument stream an expression that can be used to
+recreate the receiver. This expression is executed when the stream is read using
+the message <code>readFrom:</code>. On the other hand, the message <code>printOn:</code> just
+returns a textual version of the receiver. Of course, it may happen that this
+textual representation may represent the receiver as a self-evaluating
+expression.</p>
+
+<h3 id="representation-and-self-evaluating-representation"><span class="number">13.3</span> Representation and self-evaluating representation</h3>
+<p>In functional programming, expressions return values when executed.
+In Pharo, message sends (expressions) return objects (values). Some objects have the
+nice property that their value is themselves.
+For example, the value of the object <code>true</code> is itself i.e., the object <code>true</code>.
+We call such objects <i>self-evaluating objects</i>.
+You can see a <i>printed</i> version of an object value when you print the object in a playground.
+Here are some examples of such
+self-evaluating expressions.</p>
+
+<pre><code>true
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>3@4
+&gt;&gt;&gt; (3@4)</code></pre>
+
+<pre><code>$a
+&gt;&gt;&gt; $a</code></pre>
+
+<pre><code>#(1 2 3)
+&gt;&gt;&gt; #(1 2 3)</code></pre>
+
+<pre><code>Color red
+&gt;&gt;&gt; Color red</code></pre>
+
+<p>Note that some objects such as arrays are self-evaluating or not depending on
+the objects they contain.
+For example, an array of booleans is self-evaluating,
+whereas an array of persons is not.
+The following example shows that a dynamic array is self-evaluating only if its elements are:</p>
+
+<pre><code>{10@10. 100@100}
+&gt;&gt;&gt; {(10@10). (100@100)}</code></pre>
+
+<pre><code>{OpalCompiler new . 100@100}
+&gt;&gt;&gt; an Array(an OpalCompiler (100@100))</code></pre>
+
+<p>Remember that literal arrays can only contain literals. Hence the following
+array does not contain two points but rather six literal elements.</p>
+
+<pre><code>#(10@10 100@100)
+&gt;&gt;&gt; #(10 #@ 10 100 #@ 100)</code></pre>
+
+<p>Lots of <code>printOn:</code> method specializations implement self-evaluating behavior.
+The implementations of <code>Point&gt;&gt;printOn:</code> and <code>Interval&gt;&gt;printOn:</code> are self-evaluating.</p>
+
+<figure class="code"><pre><code>Point &gt;&gt; printOn: aStream
+	"The receiver prints on aStream in terms of infix notation."
+
+	aStream nextPut: $(.
+	x printOn: aStream.
+	aStream nextPut: $@.
+	(y notNil and: [y negative])
+		ifTrue: [
+			"Avoid ambiguous @- construct"
+			aStream space ].
+	y printOn: aStream.
+	aStream nextPut: $).</code></pre><figcaption><span class="number">Listing 13.2</span> Self-evaluation of <code>Point</code></figcaption></figure>
+
+<figure class="code"><pre><code>Interval &gt;&gt; printOn: aStream
+    aStream nextPut: $(;
+        print: start;
+        nextPutAll: ' to: ';
+        print: stop.
+    step ~= 1 ifTrue: [aStream nextPutAll: ' by: '; print: step].
+    aStream nextPut: $)</code></pre><figcaption><span class="number">Listing 13.3</span> Self-evaluation of <code>Interval</code></figcaption></figure>
+
+<pre><code>1 to: 10
+&gt;&gt;&gt; (1 to: 10)    "intervals are self-evaluating"</code></pre>
+
+<h3 id="identity-and-equality"><span class="number">13.4</span> Identity and equality</h3>
+<p>In Pharo, the message <code>=</code> tests object <i>equality</i> while the message <code>==</code> tests object <i>identity</i>.
+The former is used to check whether two objects represent the same value, while the latter is used to check whether two expressions represent the same object.</p>
+
+<p>The default implementation of object equality is to test for object identity:</p>
+
+<figure class="code"><pre><code>Object &gt;&gt; = anObject
+    "Answer whether the receiver and the argument represent the same object.
+    If = is redefined in any subclass, consider also redefining the message hash."
+
+    ^ self == anObject</code></pre><figcaption><span class="number">Listing 13.4</span> Object equality</figcaption></figure>
+
+<p>If you override <code></code>=, you should consider overriding <code>hash</code>. If instances of
+your class are ever used as keys in a <code>Dictionary</code>, then you should make sure
+that instances that are considered to be equal have the same hash value.</p>
+
+<p>Although you should override <code>=</code> and <code>hash</code> together, you should <i>never</i>
+override <code>==</code>. The semantics of object identity is the same for all
+classes. Message <code>==</code> is a primitive method of <code>ProtoObject</code>.</p>
+
+<p>Note that Pharo has some strange equality behaviour compared to other
+Smalltalks. For example a symbol and a string can be equal. (We consider this to
+be a bug, not a feature.)</p>
+
+<pre><code>#'lulu' = 'lulu'
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>'lulu' = #'lulu'
+&gt;&gt;&gt; true</code></pre>
+
+<h3 id="class-membership"><span class="number">13.5</span> Class membership</h3>
+<p>Several methods allow you to query the class of an object.</p>
+
+<h4 id="class"><code>class</code></h4>
+<p>You can ask any object about its class using the message <code>class</code>.</p>
+
+<pre><code>1 class
+&gt;&gt;&gt; SmallInteger</code></pre>
+
+<h4 id="iskindof"><code>isKindOf:</code></h4>
+<p><code>Object&gt;&gt;isKindOf:</code> answers whether the receiver's class is either the same
+as, or a subclass of the argument class.</p>
+
+<pre><code>1 isKindOf: SmallInteger
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>1 isKindOf: Integer
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>1 isKindOf: Number
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>1 isKindOf: Object
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>1 isKindOf: String
+&gt;&gt;&gt; false</code></pre>
+
+<pre><code>1/3 isKindOf: Number
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>1/3 isKindOf: Integer
+&gt;&gt;&gt; false</code></pre>
+
+<p><code>1/3</code> which is a <code>Fraction</code> is a kind of <code>Number</code>, since the class
+<code>Number</code> is a superclass of the class <code>Fraction</code>, but <code>1/3</code> is not an
+<code>Integer</code>.</p>
+
+<h4 id="respondsto"><code>respondsTo:</code></h4>
+<p><code>Object&gt;&gt;respondsTo:</code> answers whether the receiver understands the message
+selector given as an argument.</p>
+
+<pre><code>1 respondsTo: #,
+&gt;&gt;&gt; false</code></pre>
+
+<h3 id="about-iskindof-and-respondto"><span class="number">13.6</span> About <code>isKindOf:</code> and <code>respondTo:</code></h3>
+<p>A note on the usage of <code>isKindOf:</code> and <code>respondsTo:</code>.
+Normally it is a bad idea to query an object for its class, or to ask it which messages it understands.
+Instead of making decisions based on the class of object, you should simply send a message
+to the object and let it decide (on the basis of its class) how it should
+behave.
+Client of an object should not query the object to decide which messages to send it.
+The "Don't Ask, Tell" is an important cornerstone of good object-oriented design.
+So watch out if you need to use these messages.</p>
+
+<h3 id="shallow-copying-objects"><span class="number">13.7</span> Shallow copying objects</h3>
+<p>Copying objects introduces some subtle issues. Since instance variables are
+accessed by reference, a <i>shallow copy</i> of an object shares its
+references to instance variables with the original object:</p>
+
+<pre><code>a1 := { { 'harry' } }.
+a1
+&gt;&gt;&gt; #(#('harry'))</code></pre>
+
+<pre><code>a2 := a1 shallowCopy.
+a2
+&gt;&gt;&gt; #(#('harry'))</code></pre>
+
+<pre><code>(a1 at: 1) at: 1 put: 'sally'.
+a1
+&gt;&gt;&gt; #(#('sally'))</code></pre>
+
+<pre><code>a2
+&gt;&gt;&gt; #(#('sally'))    "the subarray is shared!"</code></pre>
+
+<p><code>Object&gt;&gt;shallowCopy</code> is a primitive method that creates a shallow copy of an
+object.
+Since <code>a2</code> is only a shallow copy of <code>a1</code>, the two arrays share a reference to the nested <code>Array</code> that they contain.</p>
+
+<h3 id="deep-copying-objects"><span class="number">13.8</span> Deep copying objects</h3>
+<p>There are two ways to address the problems of sharing raised by shallow copy: (1) using <code>deepCopy</code>, (2) specializing <code>postCopy</code> and using <code>copy</code>.</p>
+
+<h4 id="deepcopy"><code>deepCopy</code></h4>
+<p><code>Object&gt;&gt;deepCopy</code> makes an arbitrarily deep copy of an object.</p>
+
+<pre><code>a1 := { { { 'harry' } } } .
+a2 := a1 deepCopy.
+(a1 at: 1) at: 1 put: 'sally'.
+a1
+&gt;&gt;&gt; #(#('sally'))</code></pre>
+
+<pre><code>a2
+&gt;&gt;&gt; #(#(#('harry')))</code></pre>
+
+<p>The problem with <code>deepCopy</code> is that it will not terminate when applied to a
+mutually recursive structure:</p>
+
+<pre><code>a1 := { 'harry' }.
+a2 := { a1 }.
+a1 at: 1 put: a2.
+a1 deepCopy
+&gt;&gt;&gt; !''... does not terminate!''!</code></pre>
+
+<h4 id="copy"><code>copy</code></h4>
+<p>The other solution is to use message <code>copy</code>.
+It is implemented on <code>Object</code> as follows: the method <code>postCopy</code> is sent to the result of the message <code>shallowCopy</code>.</p>
+
+<figure class="code"><pre><code>Object &gt;&gt; copy
+	"Answer another instance just like the receiver.
+	Subclasses typically override postCopy;
+	they typically do not override shallowCopy."
+
+	^ self shallowCopy postCopy</code></pre><figcaption><span class="number">Listing 13.5</span> Copying objects as a template method</figcaption></figure>
+
+<pre><code>Object &gt;&gt; postCopy
+	^ self</code></pre>
+
+<p>By default <code>postCopy</code> returns self.
+It means that by default <code>copy</code> is doing the same as <code>shallowCopy</code> but each subclass can decide to customise the <code>postCopy</code> method which acts as a hook.
+You should override <code>postCopy</code> to copy any instance variables that should not be shared.
+In addition there is a good chance that <code>postCopy</code> should always do a <code>super postCopy</code> to ensure
+that state of the superclass is also copied.</p>
+
+<h3 id="debugging"><span class="number">13.9</span> Debugging</h3>
+<p><code>Object</code> defines also some methods related to debugging.</p>
+
+<h4 id="halt"><code>halt</code></h4>
+<p>The most important method here is <code>halt</code>.
+To set a breakpoint in a method, simply insert the expression <code>self halt</code> at some point in the body of the
+method. Note that since <code>halt</code> is defined on <code>Object</code> you can also write
+<code>1 halt</code>.</p>
+
+<p>When this message is sent, execution will be interrupted and a
+debugger will open to this point in your program.</p>
+
+<p>You can also use <code>Halt once</code> or <code>Halt if: aCondition</code>.
+Have a look at the class <code>Halt</code> which is an exception dedicated to debugging.</p>
+
+<h4 id="assert"><code>assert:</code></h4>
+<p>The next most important message is <code>assert:</code>, which expects a block as its
+argument.
+If the block evaluates to <code>true</code>, execution continues.
+Otherwise an <code>AssertionFailure</code> exception will be raised. If this exception is not
+otherwise caught, the debugger will open to this point in the execution.
+<code>assert:</code> is especially useful to support <i>design by contract</i>. The most
+typical usage is to check non-trivial pre-conditions to public methods of
+objects. <code>Stack&gt;&gt;pop</code> could easily have been implemented as follows (note
+that this definition is anhypothetical example and not in the Pharo 8.0 system):</p>
+
+<figure class="code"><pre><code>Stack &gt;&gt; pop
+    "Return the first element and remove it from the stack."
+
+    self assert: [ self isNotEmpty ].
+    ^ self linkedList removeFirst element</code></pre><figcaption><span class="number">Listing 13.6</span> Checking a pre-condition</figcaption></figure>
+
+<p>Do not confuse <code>Object&gt;&gt;assert:</code> with <code>TestCase&gt;&gt;assert:</code>, which occurs in
+the SUnit testing framework (see Chapter <a href="sunit-tests-in-pharo.html#cha:sunit">12</a>).
+While the former expects a block as its argument (actually, it will take any argument that understands
+<code>value</code>, including a <code>Boolean</code>), the latter expects a <code>Boolean</code>. Although
+both are useful for debugging, they each serve a very different purpose.</p>
+
+<h3 id="error-handling"><span class="number">13.10</span> Error handling</h3>
+<p>This protocol contains several methods useful for signaling run-time errors.</p>
+
+<h4 id="doesnotunderstand"><code>doesNotUnderstand:</code></h4>
+<p>The message <code>doesNotUnderstand:</code> (commonly abbreviated in discussions as DNU or MNU)
+is sent whenever message lookup fails.
+The default implementation, i.e., <code>Object&gt;&gt;doesNotUnderstand:</code> will trigger the
+debugger at this point. It may be useful to override <code>doesNotUnderstand:</code> to
+provide some other behaviour.</p>
+
+<h4 id="error"><code>error</code></h4>
+<p><code>Object&gt;&gt;error</code> and <code>Object&gt;&gt;error:</code> are generic methods that can be used to
+raise exceptions. Generally it is better to raise your own custom exceptions,
+so you can distinguish errors arising from your code from those coming from
+kernel classes.</p>
+
+<h4 id="subclassresponsibility"><code>subclassResponsibility</code></h4>
+<p>Abstract methods are implemented by convention with the body <code>selfsubclassResponsibility</code>.
+Should an abstract class be instantiated by accident, then calls to abstract methods will result in <code>Object&gt;&gt;subclassResponsibility</code> being executed.</p>
+
+<figure class="code"><pre><code>Object &gt;&gt; subclassResponsibility
+    "This message sets up a framework for the behavior of the class' subclasses.
+    Announce that the subclass should have implemented this message."
+
+    SubclassResponsibility signalFor: thisContext sender selector</code></pre><figcaption><span class="number">Listing 13.7</span> Signaling that a method is abstract</figcaption></figure>
+
+<p><code>Magnitude</code>, <code>Number</code>, and <code>Boolean</code> are classical examples of abstract
+classes that we shall see shortly in this chapter.</p>
+
+<pre><code>Number new + 1
+&gt;&gt;&gt; !''Error: Number is an abstract class. Make a concrete subclass.''!</code></pre>
+
+<h4 id="shouldnotimplement"><code>shouldNotImplement</code></h4>
+<p><code>self shouldNotImplement</code> is sent by convention to signal that an inherited
+method is not appropriate for this subclass. This is generally a sign that
+something is not quite right with the design of the class hierarchy.
+Due to the limitations of single inheritance, however, sometimes it is very hard to avoid
+such workarounds.</p>
+
+<p>A typical example is <code>Collection&gt;&gt;remove:</code> which is inherited by
+<code>Dictionary</code> but flagged as not implemented. A <code>Dictionary</code> provides
+<code>removeKey:</code> instead.</p>
+
+<h4 id="deprecated-and-related"><code>deprecated:</code> and related</h4>
+<p>Sending <code>self deprecated:</code> signals that the current method should no longer be used, if deprecation has been turned on.
+You can turn it on/off in the Debugging section using the Settings browser.
+The argument should describe an alternative.
+Look for senders of the message <code>deprecated:</code> and other related messages to get an idea.</p>
+
+<h3 id="testing"><span class="number">13.11</span> Testing</h3>
+<p>Testing methods have nothing to do with SUnit testing!
+A testing method is one that lets you ask a question about the state of the receiver and returns a <code>Boolean</code>.</p>
+
+<p>Numerous testing methods are provided by <code>Object</code>.
+There are <code>isArray</code>, <code>isBoolean</code>, <code>isBlock</code>, <code>isCollection</code> and so on. Generally such methods
+are to be avoided since querying an object for its class is a form of violation of encapsulation. They are often used as an alternative to <code>isKindOf:</code> but they show the same limit in the design.
+Instead of testing an object for its class, one should simply send a message and let the object decide how to handle it.</p>
+
+<p>Nevertheless some of these testing methods are undeniably useful.
+The most useful are probably <code>ProtoObject&gt;&gt;isNil</code> and <code>Object&gt;&gt;notNil</code>.
+The Null Object design pattern can obviate the need for even these methods but it is often not possible and not the right choice.</p>
+
+<h3 id="initialize"><span class="number">13.12</span> Initialize</h3>
+<p>A final key method that occurs not in <code>Object</code> but in <code>ProtoObject</code> is
+<code>initialize</code>.</p>
+
+<figure class="code"><pre><code>ProtoObject &gt;&gt; initialize
+   "Subclasses should redefine this method to perform initializations on instance creation"</code></pre><figcaption><span class="number">Listing 13.8</span> <code>initialize</code> as an empty hook method</figcaption></figure>
+
+<p>The reason this is important is that in Pharo, the default <code>new</code> method
+defined for every class in the system will send <code>initialize</code> to newly created
+instances.</p>
+
+<figure class="code"><pre><code>Behavior &gt;&gt; new
+    "Answer a new initialized instance of the receiver (which is a class) with no indexable
+    variables. Fail if the class is indexable."
+    ^ self basicNew initialize</code></pre><figcaption><span class="number">Listing 13.9</span> <code>new</code> as a class-side template method</figcaption></figure>
+
+<p>This means that simply by overriding the <code>initialize</code> hook method, new
+instances of your class will automatically be initialized. The <code>initialize</code>
+method should normally perform a <code>super initialize</code> to establish the class
+invariant for any inherited instance variables.</p>
+
+<h3><span class="number">13.13</span> Numbers</h3><a id="sec:Numbers"></a>
+<p>Numbers in Pharo are not primitive data values but true objects.
+Of course numbers are implemented efficiently in the virtual machine, but the
+<code>Number</code> hierarchy is as perfectly accessible and extensible as any other
+portion of the class hierarchy.</p>
+
+<p><figure><img src="Chapters/BasicClasses/figures/NumberHierarchy.png" alt="The number hierarchy."><figcaption><span class="number">Figure 13.1</span> The number hierarchy.</figcaption></img></figure></p>
+
+<p>The abstract root of this hierarchy is <code>Magnitude</code>, which represents all kinds
+of classes supporting comparison operators. <code>Number</code> adds various arithmetic
+and other operators as mostly abstract methods. <code>Float</code> and <code>Fraction</code>
+represent, respectively, floating point numbers and fractional values. <code>Float</code>
+subclasses (<code>BoxedFloat64</code> and <code>SmallFloat64</code>) represent Floats on certain
+architectures. For example <code>BoxedFloat64</code> is only available for 64 bit
+systems.
+<code>Integer</code> is also abstract, thus distinguishing between subclasses
+<code>SmallInteger</code>, <code>LargePositiveInteger</code> and <code>LargeNegativeInteger</code>.
+For the most part, users do not need to be aware of the difference between the three
+<code>Integer</code> classes, as values are automatically converted as needed.</p>
+
+<h3 id="magnitude"><span class="number">13.14</span> Magnitude</h3>
+<p><code>Magnitude</code> is the parent not only of the <code>Number</code> classes, but also of
+other classes supporting comparison operations, such as <code>Character</code>,
+<code>Duration</code> and <code>Timespan</code>.</p>
+
+<p>Methods <code>&lt;</code> and <code></code>= are abstract. The remaining operators are generically
+defined.
+For example:</p>
+
+<figure class="code"><pre><code>Magnitude &gt;&gt; &lt; aMagnitude
+    "Answer whether the receiver is less than the argument."
+
+    ^ self subclassResponsibility
+
+Magnitude &gt;&gt; &gt; aMagnitude
+    "Answer whether the receiver is greater than the argument."
+
+    ^ aMagnitude &lt; self</code></pre><figcaption><span class="number">Listing 13.10</span> Abstract comparison methods</figcaption></figure>
+
+<h3 id="numbers"><span class="number">13.15</span> Numbers</h3>
+<p>Similarly, <code>Number</code> defines <code>+</code>, <code>-</code>, <code>*</code> and <code>/</code> to be abstract, but
+all other arithmetic operators are generically defined.</p>
+
+<p>All <code>Number</code> objects support various <i>converting</i> operators, such as
+<code>asFloat</code> and <code>asInteger</code>. There are also numerous <i>shortcut constructor
+methods</i> which generate <code>Duration</code>s, such as <code>hour</code>, <code>day</code> and <code>week</code>.</p>
+
+<p><code>Numbers</code> directly support common <i>math functions</i> such as <code>sin</code>, <code>log</code>,
+<code>raiseTo:</code>, <code>squared</code>, <code>sqrt</code> and so on.</p>
+
+<p>The method <code>Number&gt;&gt;printOn:</code> is implemented in terms of the abstract method
+<code>Number&gt;&gt;printOn:base:</code>. (The default base is 10.)</p>
+
+<p>Testing methods include <code>even</code>, <code>odd</code>, <code>positive</code> and <code>negative</code>.
+Unsurprisingly <code>Number</code> overrides <code>isNumber</code>.
+More interestingly, <code>isInfinite</code> is defined to return <code>false</code>.</p>
+
+<p><i>Truncation</i> methods include <code>floor</code>, <code>ceiling</code>, <code>integerPart</code>, <code>fractionPart</code> and so on.</p>
+
+<pre><code>1 + 2.5
+&gt;&gt;&gt; 3.5             "Addition of two numbers"</code></pre>
+
+<pre><code>3.4 * 5
+&gt;&gt;&gt; 17.0           "Multiplication of two numbers"</code></pre>
+
+<pre><code>8 / 2
+&gt;&gt;&gt; 4                 "Division of two numbers"</code></pre>
+
+<pre><code>10 - 8.3
+&gt;&gt;&gt; 1.7              "Subtraction of two numbers"</code></pre>
+
+<pre><code>12 = 11
+&gt;&gt;&gt; false           "Equality between two numbers"</code></pre>
+
+<pre><code>12 ~= 11
+&gt;&gt;&gt; true            "Test if two numbers are different"</code></pre>
+
+<pre><code>12 &gt; 9
+&gt;&gt;&gt; true            "Greater than"</code></pre>
+
+<pre><code>12 &gt;= 10
+&gt;&gt;&gt; true            "Greater or equal  than"</code></pre>
+
+<pre><code>12 &lt; 10
+&gt;&gt;&gt; false           "Smaller than"</code></pre>
+
+<pre><code>100@10
+&gt;&gt;&gt; 100@10    "Point creation"</code></pre>
+
+<p>The following example works surprisingly well in Pharo:</p>
+
+<pre><code>1000 factorial / 999 factorial
+&gt;&gt;&gt; 1000</code></pre>
+
+<p>Note that <code>1000 factorial</code> is really calculated, which in many other languages can be quite difficult to compute.
+This is an excellent example of automatic coercion and exact handling of a number.</p>
+
+<q id="todo">Try to display the result of <code>1000 factorial</code>. It takes more time to display it than to calculate it!</q>
+<h3 id="floats"><span class="number">13.16</span> Floats</h3>
+<p><code>Float</code> implements the abstract <code>Number</code> methods for floating point numbers.</p>
+
+<p>More interestingly, <code>Float class</code> (i.e., the class-side of <code>Float</code>)
+provides methods to return the following <i>constants</i>: <code>e</code>, <code>infinity</code>,
+<code>nan</code> and <code>pi</code>.</p>
+
+<pre><code>Float pi
+&gt;&gt;&gt; 3.141592653589793</code></pre>
+
+<pre><code>Float infinity
+&gt;&gt;&gt; Float infinity</code></pre>
+
+<pre><code>Float infinity isInfinite
+&gt;&gt;&gt; true</code></pre>
+
+<h3 id="fractions"><span class="number">13.17</span> Fractions</h3>
+<p><code>Fraction</code>s are represented by instance variables for the numerator and
+denominator, which should be <code>Integer</code>s. <code>Fraction</code>s are normally created by
+<code>Integer</code> division (rather than using the constructor method
+<code>Fraction&gt;&gt;numerator:denominator:</code>):</p>
+
+<pre><code>6/8
+&gt;&gt;&gt; (3/4)</code></pre>
+
+<pre><code>(6/8) class
+&gt;&gt;&gt; Fraction</code></pre>
+
+<p>Multiplying a <code>Fraction</code> by an <code>Integer</code> or another <code>Fraction</code> may yield
+an <code>Integer</code>:</p>
+
+<pre><code>6/8 * 4
+&gt;&gt;&gt; 3</code></pre>
+
+<h3 id="integers"><span class="number">13.18</span> Integers</h3>
+<p><code>Integer</code> is the abstract parent of three concrete integer implementations.
+In addition to providing concrete implementations of many abstract <code>Number</code>
+methods, it also adds a few methods specific to integers, such as <code>factorial</code>,
+<code>atRandom</code>, <code>isPrime</code>, <code>gcd:</code> and many others.</p>
+
+<p><code>SmallInteger</code> is special in that its instances are represented compactly --
+instead of being stored as a reference, a <code>SmallInteger</code> is represented
+directly using the bits that would otherwise be used to hold a reference.
+The first bit of an object reference indicates whether the object is a
+<code>SmallInteger</code> or not.
+The virtual machine abstracts that from you,
+therefore you cannot see this directly when inspecting the object.</p>
+
+<p>The class methods <code>minVal</code> and <code>maxVal</code> tell us the range of a
+<code>SmallInteger</code>, note that it varies depending on the size of your image
+from either <code>(2 raisedTo: 30) - 1</code> for a 32-bits image or
+<code>(2 raisedTo: 60) - 1</code> for a 64-bits one.</p>
+
+<pre><code>SmallInteger maxVal = ((2 raisedTo: 30) - 1)
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>SmallInteger minVal = (2 raisedTo: 30) negated
+&gt;&gt;&gt; true</code></pre>
+
+<p>When a <code>SmallInteger</code> goes out of this range, it is automatically converted to
+a <code>LargePositiveInteger</code> or a <code>LargeNegativeInteger</code>, as needed:</p>
+
+<pre><code>(SmallInteger maxVal + 1) class
+&gt;&gt;&gt; LargePositiveInteger</code></pre>
+
+<pre><code>(SmallInteger minVal - 1) class
+&gt;&gt;&gt; LargeNegativeInteger</code></pre>
+
+<p>Large integers are similarly converted back to small integers when appropriate.</p>
+
+<p>As in most programming languages, integers can be useful for specifying
+iterative behaviour. There is a dedicated method <code>timesRepeat:</code> for
+evaluating a block repeatedly. We have already seen a similar example in
+Chapter <a href="syntax-in-a-nutshell.html#cha:syntax">8</a>.</p>
+
+<pre><code>| n |
+n := 2.
+3 timesRepeat: [ n := n * n ].
+n
+&gt;&gt;&gt; 256</code></pre>
+
+<h3 id="characters"><span class="number">13.19</span> Characters</h3>
+<p><code>Character</code> is defined a subclass of <code>Magnitude</code>.
+Printable characters are represented in Pharo as <code>$&lt;char&gt;</code>.
+For example:</p>
+
+<pre><code>$a &lt; $b
+&gt;&gt;&gt; true</code></pre>
+
+<p>Non-printing characters can be generated by various class methods. <code>Characterclass&gt;&gt;value:</code> takes the Unicode (or ASCII) integer value as argument and
+returns the corresponding character.
+The protocol <code>accessing untypeable characters</code> contains a number of convenience constructor methods such as
+<code>backspace</code>, <code>cr</code>, <code>escape</code>, <code>euro</code>, <code>space</code>, <code>tab</code>, and so on.</p>
+
+<pre><code>Character space = (Character value: Character space asciiValue)
+&gt;&gt;&gt; true</code></pre>
+
+<p>The <code>printOn:</code> method is clever enough to know which of the three ways to
+generate characters offers the most appropriate representation:</p>
+
+<pre><code>Character value: 1
+&gt;&gt;&gt; Character home</code></pre>
+
+<pre><code>Character value: 2
+&gt;&gt;&gt; Character value: 2</code></pre>
+
+<pre><code>Character value: 32
+&gt;&gt;&gt; Character space</code></pre>
+
+<pre><code>Character value: 97
+&gt;&gt;&gt; $a</code></pre>
+
+<p>Various convenient <i>testing</i> methods are built in: <code>isAlphaNumeric</code>,
+<code>isCharacter</code>, <code>isDigit</code>, <code>isLowercase</code>, <code>isVowel</code>, and so on.</p>
+
+<p>To convert a <code>Character</code> to the string containing just that character, send
+<code>asString</code>.
+In this case <code>asString</code> and <code>printString</code> yield different results:</p>
+
+<pre><code>$a asString
+&gt;&gt;&gt; 'a'</code></pre>
+
+<pre><code>$a
+&gt;&gt;&gt; $a</code></pre>
+
+<pre><code>$a printString
+&gt;&gt;&gt; '$a'</code></pre>
+
+<p>Like <code>SmallInteger</code>, a <code>Character</code> is a immediate value not a object
+reference.
+Most of the time you won't see any difference and can use objects of class <code>Character</code> like any other too.
+But this means, equal value characters are always <i>identical</i>:</p>
+
+<pre><code>(Character value: 97) == $a
+&gt;&gt;&gt; true</code></pre>
+
+<h3 id="strings"><span class="number">13.20</span> Strings</h3>
+<p>A <code>String</code> is an indexed <code>Collection</code> that holds only <code>Character</code>s.</p>
+
+<p><figure id="fig:strings"><img src="Chapters/BasicClasses/figures/StringHierarchy.png" alt="The String Hierarchy." class="fig:strings" style="width: 40%"><figcaption><span class="number">Figure 13.2</span> The String Hierarchy.</figcaption></img></figure></p>
+
+<p>In fact, <code>String</code> is abstract and Pharo strings are actually instances of
+the concrete class <code>ByteString</code>.</p>
+
+<pre><code>'hello world' class
+&gt;&gt;&gt; ByteString</code></pre>
+
+<p>The other important subclass of <code>String</code> is <code>Symbol</code>. The key difference is
+that there is only ever one single instance of <code>Symbol</code> with a given value.
+(This is sometimes called <i>the unique instance property</i>). In contrast, two
+separately constructed <code>String</code>s that happen to contain the same sequence of
+characters will often be different objects.</p>
+
+<pre><code>'hel','lo' == 'hello'
+&gt;&gt;&gt; false</code></pre>
+
+<pre><code>('hel','lo') asSymbol == #hello
+&gt;&gt;&gt; true</code></pre>
+
+<p>Another important difference is that a <code>String</code> is mutable, whereas a
+<code>Symbol</code> is immutable. Note that it is a bad idea to mutate literal strings because they can be shared between
+multiple method execution.</p>
+
+<pre><code>'hello' at: 2 put: $u; yourself
+&gt;&gt;&gt; 'hullo'</code></pre>
+
+<pre><code>#hello at: 2 put: $u
+&gt;&gt;&gt; Error: symbols can not be modified.</code></pre>
+
+<p>It is easy to forget that since strings are collections, they understand the
+same messages that other collections do:</p>
+
+<pre><code>#hello indexOf: $o
+&gt;&gt;&gt; 5</code></pre>
+
+<p>Although <code>String</code> does not inherit from <code>Magnitude</code>, it does support the
+usual <code>comparing</code> methods, <code>&lt;</code>, <code></code>= and so on.
+In addition, <code>String&gt;&gt;match:</code> is useful for some basic glob-style pattern-matching:</p>
+
+<pre><code>'*or*' match: 'zorro'
+&gt;&gt;&gt; true</code></pre>
+
+<p>Strings support a rather large number of conversion methods.
+Many of these are shortcut constructor methods for other classes, such as <code>asDate</code>, <code>asInteger</code> and so on.
+There are also a number of useful methods for converting a string to another string, such as <code>capitalized</code> and
+<code>translateToLowercase</code>.</p>
+
+<p>For more on strings and collections, see Chapter <a href="collections.html#cha:collections">14</a>.</p>
+
+<h3 id="booleans"><span class="number">13.21</span> Booleans</h3>
+<p>The class <code>Boolean</code> offers a fascinating insight into how much of the
+Pharo language has been pushed into the class library.
+<code>Boolean</code> is the abstract superclass of the singleton classes <code>True</code> and <code>False</code>.</p>
+
+<p><figure id="fig:booleans"><img src="Chapters/BasicClasses/figures/BooleanHierarchy.png" alt="The Boolean Hierarchy." class="fig:booleans" style="width: 40%"><figcaption><span class="number">Figure 13.3</span> The Boolean Hierarchy.</figcaption></img></figure></p>
+
+<p>Most of the behaviour of <code>Boolean</code>s can be understood by considering the
+method <code>ifTrue:ifFalse:</code>, which takes two <code>Blocks</code> as arguments.</p>
+
+<pre><code>4 factorial &gt; 20
+	ifTrue: [ 'bigger' ]
+	ifFalse: [ 'smaller' ]
+&gt;&gt;&gt; 'bigger'</code></pre>
+
+<p>The method <code>ifTrue:ifFalse:</code> is abstract in class <code>Boolean</code>. The
+implementations in its concrete subclasses are both trivial:</p>
+
+<figure class="code"><pre><code>True &gt;&gt; ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock
+    ^ trueAlternativeBlock value
+
+False &gt;&gt; ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock
+    ^ falseAlternativeBlock value</code></pre><figcaption><span class="number">Listing 13.11</span> Implementations of <code>ifTrue:ifFalse:</code></figcaption></figure>
+
+<p>Each of them execute the correct block depending on the receiver of the message.
+In fact, this is the essence of OOP: when a message is sent to an object, the
+object itself determines which method will be used to respond.
+In this case an instance of <code>True</code> simply executes the <i>true</i> alternative, while an
+instance of <code>False</code> executes the <i>false</i> alternative.
+All the abstract <code>Boolean</code> methods are implemented in this way for <code>True</code> and <code>False</code>.
+For example the implementation of negation (message <code>not</code>) is defined the same
+way:</p>
+
+<figure class="code"><pre><code>True &gt;&gt; not
+    "Negation--answer false since the receiver is true."
+    ^ false
+
+False &gt;&gt; not
+    "Negation--answer true since the receiver is false."
+    ^ true</code></pre><figcaption><span class="number">Listing 13.12</span> Implementing negation</figcaption></figure>
+
+<p><code>Boolean</code>s offer several useful convenience methods, such as <code>ifTrue:</code>,
+<code>ifFalse:</code>, and <code>ifFalse:ifTrue</code>.
+You also have the choice between eager and lazy conjunctions and disjunctions.</p>
+
+<p>In the first example below, both <code>Boolean</code> subexpressions are executed, since <code>&amp;</code>
+takes a <code>Boolean</code> argument. Even if <code>(1 &gt; 2 )</code> is obviously false and there is no need to check <code>( 3 &lt; 4)</code>, <code>&amp;</code>
+execute its arguments.</p>
+
+<pre><code>( 1 &gt; 2 ) &amp; ( 3 &lt; 4 )
+&gt;&gt;&gt; false    "Eager, must evaluate both sides"</code></pre>
+
+<p>In the second and third examples, only the receiver expression <code> 1 &gt; 2 </code> is executed and false -- the argument closure is not executed.
+Notice that the message <code>and:</code> expects a closure as <code>argument</code>.
+In the third example, the expression <code>[ 1 / 0 ]</code> is not executed and does not raise an error, because <code>and:</code> only execute is argument if the receiver <code>true</code>.</p>
+
+<pre><code>( 1 &gt; 2 ) and: [ 3 &lt; 4 ]
+&gt;&gt;&gt; false    "Lazy, only evaluate receiver"</code></pre>
+
+<pre><code>( 1 &gt; 2 ) and: [ 1 / 0 ]
+&gt;&gt;&gt; false    "argument block is never executed, so no exception"</code></pre>
+
+<p>A lazy <code>or:</code> is also offering the similar behavior.
+It only executes the argument in this case, when the receiver is <code>false</code>.</p>
+
+<p>Try to imagine how <code>and:</code> and <code>or:</code> are implemented.
+Check the implementations in <code>Boolean</code>, <code>True</code> and <code>False</code>.</p>
+
+<h3 id="chapter-summary-7"><span class="number">13.22</span> Chapter summary</h3>
+<ul>
+<li>If you override <code></code>= then you should override <code>hash</code> as well.</li>
+<li>Override <code>postCopy</code> to correctly implement copying for your objects.</li>
+<li>Use <code>self halt.</code> to set a breakpoint.</li>
+<li>Return <code>self subclassResponsibility</code> to make a method abstract.</li>
+<li>To give an object a <code>String</code> representation you should override <code>printOn:</code>.</li>
+<li>Override the hook method <code>initialize</code> to properly initialize instances.</li>
+<li><code>Number</code> methods automatically convert between <code>Float</code>s, <code>Fraction</code>s and <code>Integer</code>s.</li>
+<li><code>Fraction</code>s truly represent rational numbers rather than floats.</li>
+<li>All <code>Character</code>s are like unique instances.</li>
+<li><code>String</code>s are mutable; <code>Symbol</code>s are not. Take care not to mutate string literals, however!</li>
+<li><code>Symbol</code>s are unique; <code>String</code>s are not.</li>
+<li><code>String</code>s and <code>Symbol</code>s are <code>Collection</code>s and therefore support the usual <code>Collection</code> methods.</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="sunit-tests-in-pharo.html">← SUnit: Tests in Pharo</a>
+        <a class="next" rel="next" href="collections.html">Collections →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

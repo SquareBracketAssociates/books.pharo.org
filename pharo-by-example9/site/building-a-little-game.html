@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Building a little game</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo 9 by Example</a>
+    <p class="site-authors">Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">2</span> Getting Started with  Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-quick-tour-of-pharo.html"><span class="number">3</span> A quick tour of Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="finding-information-in.html"><span class="number">4</span> Finding information in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">5</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="building-a-little-game.html" aria-current="page"><span class="number">6</span> Building a little game</a>
+            
+            <ol>
+              
+              <li><a href="#the-lights-out-game"><span class="number">6.1</span> The Lights Out game</a></li>
+              
+              <li><a href="#fstApp:Packages"><span class="number">6.2</span> Creating a new package</a></li>
+              
+              <li><a href="#defining-the-class-locell"><span class="number">6.3</span> Defining the class LOCell</a></li>
+              
+              <li><a href="#creating-a-new-class"><span class="number">6.4</span> Creating a new class</a></li>
+              
+              <li><a href="#about-comments"><span class="number">6.5</span> About comments</a></li>
+              
+              <li><a href="#adding-methods-to-a-class"><span class="number">6.6</span> Adding methods to a class</a></li>
+              
+              <li><a href="#inspecting-an-object"><span class="number">6.7</span> Inspecting an object</a></li>
+              
+              <li><a href="#defining-the-class-logame"><span class="number">6.8</span> Defining the class LOGame</a></li>
+              
+              <li><a href="#initializing-our-game"><span class="number">6.9</span> Initializing our game</a></li>
+              
+              <li><a href="#taking-advantage-of-the-debugger"><span class="number">6.10</span> Taking advantage of the Debugger</a></li>
+              
+              <li><a href="#studying-the-initialize-method"><span class="number">6.11</span> Studying the initialize method</a></li>
+              
+              <li><a href="#organizing-methods-into-protocols"><span class="number">6.12</span> Organizing methods into protocols</a></li>
+              
+              <li><a href="#finishing-the-game"><span class="number">6.13</span> Finishing the game</a></li>
+              
+              <li><a href="#final-locell-methods"><span class="number">6.14</span> Final LOCell methods</a></li>
+              
+              <li><a href="#using-the-debugger"><span class="number">6.15</span> Using the Debugger</a></li>
+              
+              <li><a href="#accessor-conventions"><span class="number">6.16</span> Accessor conventions</a></li>
+              
+              <li><a href="#about-the-debugger"><span class="number">6.17</span> About the debugger</a></li>
+              
+              <li><a href="#saving-and-sharing-pharo-code"><span class="number">6.18</span> Saving and sharing Pharo code</a></li>
+              
+              <li><a href="#chapter-summary-3"><span class="number">6.19</span> Chapter summary</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="publishing-and-packaging.html"><span class="number">7</span> Publishing and packaging your first Pharo project</a>
+            
+          </li>
+          
+          <li>
+            <a href="syntax-in-a-nutshell.html"><span class="number">8</span> Syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="understanding-message.html"><span class="number">9</span> Understanding message syntax</a>
+            
+          </li>
+          
+          <li>
+            <a href="the-pharo-object-model.html"><span class="number">10</span> The Pharo object model</a>
+            
+          </li>
+          
+          <li>
+            <a href="traits-reusable-class.html"><span class="number">11</span> Traits: reusable class fragments</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-tests-in-pharo.html"><span class="number">12</span> SUnit: Tests in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="basic-classes.html"><span class="number">13</span> Basic classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="collections.html"><span class="number">14</span> Collections</a>
+            
+          </li>
+          
+          <li>
+            <a href="streams.html"><span class="number">15</span> Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="morphic.html"><span class="number">16</span> Morphic</a>
+            
+          </li>
+          
+          <li>
+            <a href="classes-and-metaclasses.html"><span class="number">17</span> Classes and metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="reflection.html"><span class="number">18</span> Reflection</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">6</span> Building a little game</h2><a id="cha:firstApp"></a>
+<p>In this chapter we will develop a simple game: Lights Out (<a target="_blank" href="http://en.wikipedia.org/wiki/Lights_Out_(game"><a target="_blank" href="http://en.wikipedia.org/wiki/Lights%5C_Out%5C_(game)">http://en.wikipedia.org/wiki/Lights\_Out\_(game)</a></a>)). In doing so, we will increase our familiarity with the Browser, the Inspector, the Debugger, and versioning code with Iceberg. It's important to become proficient with these core tools. Once again, we will encourage you to take a test-first approach to developing this game by using Test-Driven Development.</p>
+
+<p><figure id="fig:gameLO"><img src="Chapters/FirstApplication/figures/gameLO.png" alt="The Lights Out game board. " style="width: 30%"><figcaption><span class="number">Figure 6.1</span> The Lights Out game board. </figcaption></img></figure></p>
+
+<p>A word of warning: this chapter contains a few deliberate mistakes in order for us to demonstrate how to handle errors and find bugs. Sorry if you find this a bit frustrating, but do try and follow along, as these are also important techniques that we need to see in action.</p>
+
+<h3 id="the-lights-out-game"><span class="number">6.1</span> The Lights Out game</h3>
+<p>The game board consists of a rectangular array of light yellow cells. When you click on one of the cells, the cell and its four surrounding cells turn blue. Click again, and they toggle back to light yellow. The object of the game is to turn as many cells blue as possible.
+"Lights Out" is made up of two kinds of objects: the game board itself, and 100 individual cell objects. The Pharo code to implement the game will contain two classes: one for the game and one for the cells.</p>
+
+<h3><span class="number">6.2</span> Creating a new package</h3><a id="fstApp:Packages"></a>
+<p>We'll need to define a package, which we'll do once again in the Browser. If you need a reminder of how to do this, consult Chapter <a href="a-quick-tour-of-pharo.html#cha:tour">3</a> and Chapter <a href="a-first-tutorial-developing.html#cha:counter">5</a>.</p>
+
+<p>We'll call this package <code>PBE-LightsOut</code>. It might be a good idea to filter the package list once you've created the new package: just type <code>PBE</code> into the filter and you should only see our package.</p>
+
+<p><figure id="fig:createPackageFiltered"><img src="Chapters/FirstApplication/figures/createPackageFullFiltered.png" alt="Filtering our package to work more efficiently." class="fig:createPackageFiltered" style="width: 90%"><figcaption><span class="number">Figure 6.2</span> Filtering our package to work more efficiently.</figcaption></img></figure></p>
+
+<h3 id="defining-the-class-locell"><span class="number">6.3</span> Defining the class <code>LOCell</code></h3>
+<p>At this point there are, of course, no classes in the new package. However, the main editing pane displays a template to make it easy to create a new class (see Figure <a href="#fig:createPackageFiltered">6.2</a>). Let's fill it in with what we need.</p>
+
+<h3 id="creating-a-new-class"><span class="number">6.4</span> Creating a new class</h3>
+<p>The code in <a href="#scr:ClassLOCell">6.1</a> contains the new class definition we're going to use:</p>
+
+<figure class="code" id="scr:ClassLOCell"><pre><code>SimpleSwitchMorph subclass: #LOCell
+	instanceVariableNames: 'mouseAction'
+	classVariableNames: ''
+	package: 'PBE-LightsOut'</code></pre><figcaption><span class="number">Listing 6.1</span> <code>LOCell</code> class definition</figcaption></figure>
+
+<p>Let's think for a minute about what you're looking at with this template. Is this a special form we fill in to create a class? Is it a new syntax? No, it's just another message being sent to another object! The message is <code>subclass:instanceVariableNames:classVariableNames:package</code>, which is a bit of a mouthful, and we're sending it to the class <code>SimpleSwitchMorph</code>. The arguments are all strings, apart from the name of the subclass we're creating, which is the symbol <code>#LOCell</code>. The package is our new package, and the <code>mouseAction</code> instance variable is going to be used to define what action the cell should take when it gets clicked on.</p>
+
+<p>So why are we subclassing <code>SimpleSwitchMorph</code> rather than <code>Object</code>? We'll see the benefits of subclassing already specialized classes very soon. And we'll find out what that <code>mouseAction</code> instance variable is all about.</p>
+
+<p>To send the message, accept the code either through the menu or the <code>Cmd-S</code> shortcut. The message is sent, the new class compiles, and we get something like <a href="#fig:pannelAtNewClass">6.3</a>.</p>
+
+<p><figure id="fig:pannelAtNewClass"><img src="Chapters/FirstApplication/figures/pannelAtNewClass.png" alt="The newly-created class LOCell. " style="width: 100%"><figcaption><span class="number">Figure 6.3</span> The newly-created class LOCell. </figcaption></img></figure></p>
+
+<p>The new class appears in the class pane of the browser, and the editing pane now shows the class definition. At the bottom of the window you'll get the Quality Assistant's feedback: it automatically runs some quality checks on your code and reports them. Don't worry about it too much for now.</p>
+
+<h3 id="about-comments"><span class="number">6.5</span> About comments</h3>
+<p>Pharoers put a very high value on the readability of their code to help explain what's going on, but also on good comments.</p>
+
+<h4 id="method-comments">Method comments</h4>
+<p>There's been a tendency in the recent past to believe that well-written, expressive methods don't need comments; the intent and meaning should be obvious just by reading it. This is just plain wrong and encourages sloppiness. Of course, crufty and hard-to-understand code should be worked on, renamed, and refactored.
+A good comment does not excuse hard to read code. And obviously, writing comments for trivial methods makes no sense; a comment should not just be the code written again in English. Your comments should aim to be an explanation of what the method is doing, its context, and possibly the rationale behind its implementation. A reader should be comforted by your comment, it should show that what they assumed about the code was correct and should dispel any confusion they might have.</p>
+
+<h4 id="class-comments">Class comments</h4>
+<p>For the class comment, Pharo offers you a template with some suggestions on what makes a good class comment. So, read it! The format is based on Class (or Candidate) Responsibility Collaborator cards (CRC cards), developed by K. Beck and W. Cunningham. In a nutshell, the idea is to  state the <i>responsibility</i> of the class in a couple of sentences, and how it <i>collaborates</i> with other classes to achieve this. In addition, we can state the class' API (the main messages an object understands), give an example of the class being used (usually in Pharo we define examples as class methods), and some details about the internal representation or the rationale behind the implementation.</p>
+
+<h3 id="adding-methods-to-a-class"><span class="number">6.6</span> Adding methods to a class</h3>
+<p>Now let's add some methods to our class. First, let's add the Listing <a href="#scr:InitLOCell">6.2</a> as instance side method:</p>
+
+<figure class="code" id="scr:InitLOCell"><pre><code>LOCell &gt;&gt; initialize
+	super initialize.
+	self label: ''.
+	self borderWidth: 2.
+	bounds := 0 @ 0 corner: 16 @ 16.
+	offColor := Color paleYellow.
+	onColor := Color paleBlue darker.
+	self useSquareCorners.
+	self turnOff</code></pre><figcaption><span class="number">Listing 6.2</span> Initializing instance of LOCell</figcaption></figure>
+
+<p>Recall from previous chapters that we use the syntax <code>ClassName &gt;&gt; methodName</code> to explicitly show which class the method is defined in.
+Note that the characters <code> on line 3 are two separate single quotes with nothing between them, not a double quote! </code> is the empty string. Another way to create an empty string is <code>String new.</code> Do not forget to compile the method!
+<figure id="fig:initialize"><img src="Chapters/FirstApplication/figures/initialize.png" alt="The newly-created method  initialize ." class="fig:initialize" style="width: 100%"><figcaption><span class="number">Figure 6.4</span> The newly-created method <code>initialize</code>.</figcaption></img></figure>
+There's a lot going on in this method, let's go through it all.</p>
+
+<h5 class="paragraph" id="initialize-methods">Initialize methods</h5>
+<p>First off, it's another <code>initialize</code> method as we saw with our counter in the last chapter. As a reminder, these methods are special as, by convention, they're executed straight after an instance is created.  So, when we execute <code>LOCell new</code>, the message <code>initialize</code> is sent automatically to the newly created object. <code>initialize</code> methods are used to set up the state of objects, typically to set their instance variables, and this is exactly what we are doing here.</p>
+
+<h5 class="paragraph" id="invoking-superclass-initialization">Invoking superclass initialization</h5>
+<p>But the first thing this method does is to execute the <code>initialize</code> method of its superclass, <code>SimpleSwitchMorph</code>. The idea here is that any inherited state from the superclass will be properly initialized by the <code>initialize</code> method of the superclass. It is <i>always</i> a good idea to initialize inherited state by sending a <code>super initialize</code> before doing anything else. We don't know exactly what <code>SimpleSwitchMorph</code>’s <code>initialize</code> method will do when we call it, <i>and we don't care</i>, but it's a fair bet that it will set up some instance variables to hold reasonable default values that a <code>SimpleSwitchMorph</code> is going to need. So we had better call it, or we risk our new object starting off in an invalid state.
+The rest of the method sets up the state of this object. Sending <code>self label: ''</code>, for example, sets the label of this object to the empty string.</p>
+
+<h5 class="paragraph" id="about-point-and-rectangle-creation">About point and rectangle creation</h5>
+<p>The expression <code>0@0 corner: 16@16</code> needs some explanation. <code>0@0</code> constructs a <code>Point</code> object with its <code>x</code> and <code>y</code> coordinates both set to 0. In fact, <code>0@0</code> sends the message <code>@</code> to the number <code>0</code> with argument <code>0</code>. The effect will be that the number <code>0</code> will ask the <code>Point</code> class to create a new instance with the coordinates <code>(0,0)</code>. Now we send this newly created point the message <code>corner: 16@16</code>, which causes it to create a <code>Rectangle</code> with corners <code>0@0</code> and <code>16@16</code>. This newly created rectangle will be assigned to the <code>bounds</code> variable, inherited from the superclass. And this <code>bounds</code> variable determines how big our Morph is going to be - in effect we're just saying "be a 16 by 16 pixel square".
+Note that the origin of the Pharo screen is at the top left, and the <code>y</code> coordinate increases as we go down the screen.</p>
+
+<h5 class="paragraph" id="about-the-rest">About the rest</h5>
+<p>The rest of the method should be self-explanatory. Part of the art of writing good Pharo code is picking good method names so that the code can be read like (very basic) English. You should be able to imagine the object talking to itself and saying "Self, use square corners!", "Self, turn off!".
+Notice that there is a little green arrow next to your method (see Figure <a href="#fig:initialize">6.4</a>). This means the method exists in the superclass and is overridden in your class.</p>
+
+<h3 id="inspecting-an-object"><span class="number">6.7</span> Inspecting an object</h3>
+<p>You can immediately test the effect of the code you have written by creating a new <code>LOCell</code> object and inspecting it: Open a Playground, type the expression <code>LOCell new</code>, and inspect it.
+<figure id="fig:inspectLOCell"><img src="Chapters/FirstApplication/figures/inspectLOCell.png" alt="The inspector used to examine a  LOCell  object." class="fig:inspectLOCell" style="width: 80%"><figcaption><span class="number">Figure 6.5</span> The inspector used to examine a <code>LOCell</code> object.</figcaption></img></figure>
+In the <strong>Raw</strong> tab of the Inspector The left-hand column shows a list of instance variables, and the value of the instance variable is shown in the right column (see Figure <a href="#fig:inspectLOCell">6.5</a>). Other tabs show other aspects of the <code>LOCell</code>, take a look at them and experiment.
+<figure id="fig:inspectBounds"><img src="Chapters/FirstApplication/figures/inspectBounds.png" alt="When we click on an instance variable, we inspect its value (another object)." class="fig:inspectBounds" style="width: 80%"><figcaption><span class="number">Figure 6.6</span> When we click on an instance variable, we inspect its value (another object).</figcaption></img></figure>
+If you click on an instance variable, the Inspector will open a new pane with the details of the instance variable (see Figure <a href="#fig:inspectBounds">6.6</a>).</p>
+
+<h5 class="paragraph" id="executing-expressions">Executing expressions</h5>
+<p>The bottom pane of the Inspector acts as a mini-playground. It's useful because in this playground the pseudo-variable <code>self</code> is bound to the object selected.
+Go to that Playground at the bottom of the pane and type the text <code>self bounds: (200 @ 200 corner: 250 @ 250)</code> and then "Do it". The values should refresh automatically, if this is not the case, click on the <code>refresh</code> button (the blue little circle with arrows) at the top right of the pane. The <code>bounds</code> variable should change in the inspector. Now type the text <code>self openInWorld</code> in the mini-playground and <strong>Do it</strong>.</p>
+
+<h5 class="paragraph" id="the-morphic-halo">The Morphic Halo</h5>
+<p>The cell should appear near the top left-hand corner of the screen and exactly where its bounds say that it should appear - i.e. 200 pixels down from the top and 200 pixels in from the left.
+Meta-click (<code>Option-Shift-Click</code>) on the cell to bring up the <strong>Morphic Halo</strong>. The Morphic halo represents a visual way to interact with a Morph, using the 'handles' that now surround the Morph. Rotate the cell with the blue handle (next to the bottom-left) and resize it with the yellow handle (bottom-right). Notice how the bounds reported by the inspector also change (you may have to click refresh to see the new bounds value). Delete the cell by clicking on the <code>x</code> in the pink handle.</p>
+
+<h3 id="defining-the-class-logame"><span class="number">6.8</span> Defining the class <code>LOGame</code></h3>
+<p>Now let's create the other class that we need for the game, <code>LOGame</code>.
+Make the class definition template visible in the Browser main window. Do this by clicking on the package name, or right-clicking on the Class pane. Edit the code so that it reads as in Listing <a href="#scr:DefineLOGame">6.3</a>, and accept it.</p>
+
+<figure class="code" id="scr:DefineLOGame"><pre><code>BorderedMorph subclass: #LOGame
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'PBE-LightsOut'</code></pre><figcaption><span class="number">Listing 6.3</span> Defining the LOGame class</figcaption></figure>
+
+<p>Here, we subclass <code>BorderedMorph</code>. <code>Morph</code> is the superclass of all of the graphical shapes in Pharo. We've already seen a <code>SimpleSwitchMorph</code>, which is a <code>Morph</code> that can be toggled on and off, and (unsurprisingly) a <code>BorderedMorph</code> is a <code>Morph</code> with a border. We could also insert the names of the instance variables between the quotes on the second line, but for now, let's just leave that list empty.</p>
+
+<h3 id="initializing-our-game"><span class="number">6.9</span> Initializing our game</h3>
+<p>Let's define an <code>initialize</code> method for <code>LOGame</code>. Type the contents of Listing <a href="#scr:InitiGame">6.4</a> into the Browser as a method for <code>LOGame</code> and <strong>Accept</strong> it.</p>
+
+<figure class="code" id="scr:InitiGame"><pre><code>LOGame &gt;&gt; initialize
+	| sampleCell width height n |
+	super initialize.
+	n := self cellsPerSide.
+	sampleCell := LOCell new.
+	width := sampleCell width.
+	height := sampleCell height.
+	self bounds: (5 @ 5 extent: (width * n) @ (height * n) + (2 * self borderWidth)).
+	cells := Array2D
+        new: n
+        tabulate: [ :i :j | self newCellAt: i at: j ]</code></pre><figcaption><span class="number">Listing 6.4</span> Initialize the game</figcaption></figure>
+
+<p><figure id="fig:doesntKnowCell"><img src="Chapters/FirstApplication/figures/doesntKnowCell.png" alt="Declaring  cells  as a new instance variable." class="fig:doesntKnowCell" style="width: 60%"><figcaption><span class="number">Figure 6.7</span> Declaring <code>cells</code> as a new instance variable.</figcaption></img></figure>
+That's a lot, but don't worry about it for now. We're going to fill in the details as we go on.
+Pharo will complain that it doesn't know the meaning of <code>cells</code> (see Figure <a href="#fig:doesntKnowCell">6.7</a>). It will offer you a number of ways to fix this. Choose <strong>Declare new instance variable</strong>, because we want <code>cells</code> to be an instance variable.</p>
+
+<h3 id="taking-advantage-of-the-debugger"><span class="number">6.10</span> Taking advantage of the Debugger</h3>
+<p>At this stage if you open a <code>Playground</code>, type <code>LOGame new</code>, and <strong>Do it</strong>, Pharo will complain that it doesn't know the meaning of some of the terms in the method (see Figure <a href="#fig:doesntKnowCellsPerSide">6.8</a>). It will tell you that <code>LOGame</code> doesn't understand the message <code>cellsPerSide</code>, it will open a Debugger. But <code>cellsPerSide</code> is not a mistake; it is just a method that we haven't yet defined. We will do so.
+<figure id="fig:doesntKnowCellsPerSide"><img src="Chapters/FirstApplication/figures/doesntKnowCellsPerSide.png" alt="Pharo detecting an unknown selector." class="fig:doesntKnowCellsPerSide" style="width: 100%"><figcaption><span class="number">Figure 6.8</span> Pharo detecting an unknown selector.</figcaption></img></figure>
+Do not close the Debugger. Click on the button <code>Create</code> in the Debugger and, when prompted, select <code>LOGame</code>, the class which will contain the method. Click on <strong>Ok</strong>, then when prompted for a method protocol enter <code>accessing</code>. The Debugger will create the method <code>cellsPerSide</code> on the fly and invoke it immediately. The default implementation of a method generated this way is to with a body of <code>self shouldBeImplemented</code>. This is then evaluated, which raises an exception and opens the Debugger again on the method definition (Figure <a href="#fig:cellsPerSideShould">6.9</a>).
+<figure id="fig:cellsPerSideShould"><img src="Chapters/FirstApplication/figures/cellsPerSideShould.png" alt="The system created a new method with a body to be defined." class="fig:cellsPerSideShould" style="width: 100%"><figcaption><span class="number">Figure 6.9</span> The system created a new method with a body to be defined.</figcaption></img></figure>
+Here you can write your new method's definition. This method could hardly be simpler: it always returns the number <code>10</code>. One advantage of representing constants as methods is that, if the program evolves so that the constant then depends on some other features, the method can be changed to calculate this value.</p>
+
+<pre><code>LOGame &gt;&gt; cellsPerSide
+	"The number of cells along each side of the game"
+	^ 10</code></pre>
+
+<p><figure id="fig:cellPerSideInDebugger"><img src="Chapters/FirstApplication/figures/cellPerSideInDebugger.png" alt="Defining  cellsPerSide  in the debugger." class="fig:cellPerSideInDebugger" style="width: 80%"><figcaption><span class="number">Figure 6.10</span> Defining <code>cellsPerSide</code> in the debugger.</figcaption></img></figure>
+Do not forget to compile the method definition by using <strong>Accept</strong> when you've written it. You should end up with something looking like Figure <a href="#fig:cellPerSideInDebugger">6.10</a>. If you press the button <strong>Proceed</strong> the program will continue its execution, and it will stop again as we haven't defined the method <code>newCellAt:at:</code>.
+We could use the same process but for now we'll stop to explain what we've done so far. Close the Debugger, and look at the class definition once again (which you can do by clicking on <strong>LOGame</strong> on the second pane of the <strong>System Browser</strong>). You will see that the browser has modified it to include the instance variable <code>cells</code>.</p>
+
+<h3 id="studying-the-initialize-method"><span class="number">6.11</span> Studying the initialize method</h3>
+<p>Let's take a closer look at the <code>initialize</code> method on a <code>LOGame</code>.</p>
+
+<figure class="code" id="scr:InitiGame2"><pre><code>LOGame &gt;&gt; initialize
+	| sampleCell width height n |
+	super initialize.
+	n := self cellsPerSide.
+	sampleCell := LOCell new.
+	width := sampleCell width.
+	height := sampleCell height.
+	self bounds: (50 @ 50 extent: (width * n) @ (height * n) + (2 * self borderWidth)).
+	cells := Array2D 
+		new: n 
+		tabulate: [ :i :j | self newCellAt: i at: j ]</code></pre><figcaption><span class="number">Listing 6.5</span> Initialize the game</figcaption></figure>
+
+<h5 class="paragraph" id="line-2">Line 2</h5>
+<p>At line 2, the expression <code>| sampleCell width height n |</code> declares four temporary variables. They are called temporary variables because their scope and lifetime are entirely limited to the method. Well named temporary variables can be helpful in making code more readable. Lines 4-7 set the value of these variables.</p>
+
+<h5 class="paragraph" id="line-4">Line 4</h5>
+<p>How big should our game board be? Big enough to hold some number of cells, and big enough to draw a border around them. And how many cells is the right number? 5? 10? 100? We just don't know yet, and if even if we thought we did know, we'd probably want change our minds later on. So we delegate the responsibility for knowing that number to a method, <code>cellsPerSide</code>, which we'll write in a bit. Don't be put off by this: it's very good practice to write code by referring to other methods that we haven't yet defined. Why? Well, it wasn't until we started writing the <code>initialize</code> method that we realized that we needed it. So when we realize that we're going to need it we can just give it a meaningful name and then move on to defining the rest of our method without interrupting our flow of thoughts. Deferring these decisions and implementations is a superpower.
+And so line 4, <code>n := self cellsPerSide.</code>, sends the message <code>cellsPerSide</code> to <code>self</code>. The response, which will be the number of cells per side of the game board, is assigned to the temporary variable <code>n</code>.
+The next three lines create a new <code>LOCell</code> object, and then we assign its width and height our <code>width</code> and <code>height</code> temporary variables. Why? We're using this instance of <code>LOCell</code> to find out what the dimensions of a cell are, because the most appropriate place to hold that information is in a <code>LOCell</code> itself.</p>
+
+<h5 class="paragraph" id="line-8">Line 8</h5>
+<p>Line 8 sets the bounds of our new <code>LOGame</code>. Without worrying too much about the details just yet, believe us that the expression in parentheses creates a square with its origin (i.e., its top-left corner) at the point (50,50) and its bottom-right corner far enough away to allow space for the right number of cells.</p>
+
+<h5 class="paragraph" id="last-line">Last line</h5>
+<p>The last line sets the <code>LOGame</code> object's instance variable <code>cells</code> to a newly created <code>Array2D</code> with the right number of rows and columns. We do this by sending the message <code>new:tabulate:</code> to the <code>Array2D</code> class. We know that <code>new:tabulate:</code> takes two arguments because it has two colons (<code>:</code>) in its name. The arguments go after each of the colons. If you are used to languages that put all of the arguments together inside parentheses, this may seem weird at first. Don't panic, it's only syntax! It turns out to be a very good syntax because the name of the method can be used to explain the roles of the arguments. For example, it is pretty clear that <code>Array2D rows: 5 columns: 2</code> has 5 rows and 2 columns, and not 2 rows and 5 columns.
+<code>Array2D new: n tabulate: [ :i :j | self newCellAt: i at: j ]</code> creates a new n by n two-dimensional array (a matrix), and initializes its elements. The initial value of each element will depend on its coordinates. The <i>(i,j)</i>th element will be initialized to the result of evaluating <code>self newCellAt: i at: j</code>.</p>
+
+<h3 id="organizing-methods-into-protocols"><span class="number">6.12</span> Organizing methods into protocols</h3>
+<p>Before we define any more methods, let's take a quick look at the third pane at the top of the browser. In the same way that the first pane of the browser lets us categorize classes into packages, the protocol pane lets us categorize methods so that we are not overwhelmed by a very long list of method names in the method pane. These groups of methods are called "protocols".
+By default, you will have the <code>instance side</code> virtual protocol, which contains all of the methods in the class.
+If you have followed along with this example, the protocol pane may well contain the <code>initialization</code> and <code>overrides</code> protocols. These protocols are added automatically when you override <code>initialize</code>. The Pharo Browser organizes the methods automatically, and adds them to the appropriate protocol whenever possible.
+How does the Browser know that this is the right protocol? Well, in general Pharo can't know exactly. But if, for example, there is also an <code>initialize</code> method in the superclass, it will assume that our <code>initialize</code> method should be in the same protocol as the method it overrides.
+The protocol pane may also contain the protocol <strong>as yet unclassified</strong>. Methods that aren't organized into protocols can be found here. You can right-click in the protocol pane and select <strong>categorize all uncategorized</strong> to fix this, or you can just organize things yourself manually.</p>
+
+<h3 id="finishing-the-game"><span class="number">6.13</span> Finishing the game</h3>
+<p>Now let's define the other methods that are used by <code>LOGame &gt;&gt; initialize</code>. You could either do this through the Browser or through the Debugger, but either way let's start with <code>LOGame &gt;&gt; newCellAt:at:</code>, in the <code>initialization</code> protocol:</p>
+
+<pre><code>LOGame &gt;&gt; newCellAt: i at: j
+	"Create a cell for position (i,j) and add it to my on-screen representation at the appropriate screen position. Answer the new cell"
+
+	| c origin |
+	c := LOCell new.
+	origin := self innerBounds origin.
+	self addMorph: c.
+	c position: ((i - 1) * c width) @ ((j - 1) * c height) + origin.
+	c mouseAction: [ self toggleNeighboursOfCellAt: i at: j ].</code></pre>
+
+<p>Note: the previous code is not correct. It will produce an error - this is on purpose.</p>
+
+<h5 class="paragraph" id="formatting">Formatting</h5>
+<p>As you can see there is some indentation and empty lines in our method definition. Pharo can take care of this formatting for you: you can right-click on the method edit area and click on <code>Format</code> (or use <code>Cmd-Shift-F</code> shortcut). This will format your method nicely.</p>
+
+<h5 class="paragraph" id="toggle-neighbors">Toggle neighbors</h5>
+<p>The method defined above created a new <code>LOCell</code>, initialized to position <i>(i, j)</i> in the <code>Array2D</code> of cells. The last line defines the new cell's <code>mouseAction</code> to be the block <code>[ self toggleNeighboursOfCellAt: i at: j ]</code>. In effect, this defines the callback behavior to perform when the mouse is clicked. And so the corresponding method also needs to be defined:</p>
+
+<figure class="code" id="scr:Toggle"><pre><code>LOGame &gt;&gt; toggleNeighboursOfCellAt: i at: j
+
+	i &gt; 1
+		ifTrue: [ (cells at: i - 1 at: j) toggleState ].
+	i &lt; self cellsPerSide
+		ifTrue: [ (cells at: i + 1 at: j) toggleState ].
+	j &gt; 1
+		ifTrue: [ (cells at: i at: j - 1) toggleState ].
+	j &lt; self cellsPerSide
+		ifTrue: [ (cells at: i at: j + 1) toggleState ]</code></pre><figcaption><span class="number">Listing 6.6</span> The callback method</figcaption></figure>
+
+<p>The method <code>toggleNeighboursOfCellAt:at:</code> toggles the state of the four cells to the north, south, west and east of cell <i>(i, j)</i>. The only complication is that the board is finite, so we have to make sure that a neighboring cell exists before we toggle its state.</p>
+
+<h3 id="final-locell-methods"><span class="number">6.14</span> Final <code>LOCell</code> methods</h3>
+<p>To complete the Lights Out game, we need to define two more methods in class
+<code>LOCell</code> this time to handle mouse events.
+First, <code>mouseAction:</code> in Listing <a href="#scr:TypicalSetter">6.7</a> is a simple accessor method:</p>
+
+<figure class="code" id="scr:TypicalSetter"><pre><code>LOCell &gt;&gt; mouseAction: aBlock
+	mouseAction := aBlock</code></pre><figcaption><span class="number">Listing 6.7</span> A typical setter method</figcaption></figure>
+
+<p>Finally, we need to override the <code>mouseUp:</code> method. This will be called automatically by the GUI framework if the mouse button is released while the cursor is over this cell on the screen:</p>
+
+<figure class="code" id="scr:MouseUp"><pre><code>LOCell &gt;&gt; mouseUp: anEvent
+
+    self toggleState.
+    mouseAction value</code></pre><figcaption><span class="number">Listing 6.8</span> An event handler</figcaption></figure>
+
+<p>First, this method toggles the state of the current cell. Then it sends the message <code>value</code> to the object stored in the instance variable <code>mouseAction</code>. In <code>LOGame &gt;&gt; newCellAt: i at: j</code> we created the block <code>[self toggleNeighboursOfCellAt: i at: j ]</code> which will all the neighbors of a cell when it is evaluated, and we assigned this block to the <code>mouseAction</code> instance variable of the cell. Therefore sending the <code>value</code> message causes this block to be evaluated, and consequently the state of the neighboring cells will toggle.</p>
+
+<h3 id="using-the-debugger"><span class="number">6.15</span> Using the Debugger</h3>
+<p>That's it: the Lights Out game is complete! If you have followed all of the steps, you should be able to play the game, consisting of just two classes and seven methods. In a Playground, type <code>LOGame new openInHand</code> and <strong>Do it</strong> .
+The game will open, and you should be able to click on the cells and see how it works. Well, so much for theory... When you click on a cell, a Debugger will appear. In the upper part of the debugger window you can see the execution stack, showing all the active methods. Selecting any one of them will show, in the middle pane, the code being executed in that method, with the part that triggered the error highlighted.
+Click on the line labeled <code>LOGame &gt;&gt; toggleNeighboursOfCellAt: at:</code> (near the top). The Debugger will show you the execution context within this method where the error occurred (see Figure <a href="#fig:debuggerHighlight">6.11</a>).
+<figure id="fig:debuggerHighlight"><img src="Chapters/FirstApplication/figures/debuggerHighlight.png" alt="The Debugger, with the method  toggleNeighboursOfCell:at:  selected." class="fig:debuggerHighlight" style="width: 85%"><figcaption><span class="number">Figure 6.11</span> The Debugger, with the method <code>toggleNeighboursOfCell:at:</code> selected.</figcaption></img></figure>
+At the bottom of the Debugger is an area for all the variables in scope. You can inspect the object that is the receiver of the message that caused the selected method to execute, so you see here the values of the instance variables. You can also see the values of the method arguments, as well as intermediate values that have been calculated during execution.
+Using the Debugger, you can evaluate the code step by step, inspect objects in parameters and local variables, evaluate code just as you can in a playground, and, most surprisingly to those used to other debuggers, actually change the code while it is being debugged. Some Pharoers program in the Debugger rather than the Browser almost all the time. The advantage of this is that you see the method that you are writing as it will be executed, with real parameters in the actual execution context.
+In this case we can see in the first line of the top panel that the <code>toggleState</code> message has been sent to an instance of <code>LOGame</code>, while it should clearly have been an instance of <code>LOCell</code>. The problem is most likely with the initialization of the cells matrix. Browsing the code of <code>LOGame &gt;&gt; initialize</code> shows that <code>cells</code> is filled with the return values of <code>newCellAt:at:</code>, but when we look at that method, we see that there is no return statement there! By default, a method returns <code>self</code>, which in the case of <code>newCellAt:at:</code> is indeed an instance of <code>LOGame</code>. The syntax to return a value from a method in Pharo is <code>^</code>.
+Close the Debugger window and add the expression <code>^ c</code> to the end of the method <code>LOGame &gt;&gt; newCellAt:at:</code> so that it returns <code>c</code>:</p>
+
+<figure class="code" id="scr:BugFix"><pre><code>LOGame &gt;&gt; newCellAt: i at: j
+	"Create a cell for position (i,j) and add it to my on-screen representation at the appropriate screen position. Answer the new cell"
+
+	| c origin |
+	c := LOCell new.
+	origin := self innerBounds origin.
+	self addMorph: c.
+	c position: ((i - 1) * c width) @ ((j - 1) * c height) + origin.
+	c mouseAction: [ self toggleNeighboursOfCellAt: i at: j ].
+	^ c</code></pre><figcaption><span class="number">Listing 6.9</span> Fixing the bug.</figcaption></figure>
+
+<p>Often, you can fix the code directly in the Debugger window and click <code>Proceed</code> to continue running the application. In our case, because the bug was in the initialization of an object, rather than in the method that failed, the easiest thing to do is to close the Debugger window, destroy the running instance of the game (by opening the halo with <code>Alt-Shift-Click</code> and selecting the pink <code>x</code>), and then create a new one.
+Execute <code>LOGame new openInHand</code> again because if you use the old game instance it will still contain the blocks with the old logic.
+Now the game should work properly... or nearly so. If we happen to move the mouse between clicking and releasing, then the cell the mouse is over will also be toggled. This turns out to be behavior that we inherit from <code>SimpleSwitchMorph</code>. We can fix this simply by overriding <code>mouseMove:</code> to do nothing as in Listing <a href="#scr:MouseMove">6.10</a></p>
+
+<figure class="code" id="scr:MouseMove"><pre><code>LOCell &gt;&gt; mouseMove: anEvent</code></pre><figcaption><span class="number">Listing 6.10</span> Overriding mouse move actions</figcaption></figure>
+
+<p>And now finally we are done!</p>
+
+<h3 id="accessor-conventions"><span class="number">6.16</span> Accessor conventions</h3>
+<p>If you are used to getters and setters in other programming languages, you might expect these methods to be called <code>setMouseAction</code> and <code>getMouseAction</code>. The Pharo convention is different. A getter always has the same name as the variable it gets, and a setter is named similarly, but with a trailing ":" to allow it to take an argument, hence <code>mouseAction</code> and <code>mouseAction:</code>. Collectively, setters and getters are called <i>accessor methods</i>, and by convention they should be placed in the <code>accessing</code> protocol. In Pharo, <i>all</i> instance variables are private to the object that owns them, so the only way for another object to read or write those variables is through accessor methods. Instance variables can of course be accessed in subclasses too, but you can never access another object's instance variables - not even ones in another instance of your class, or the class object itself.</p>
+
+<h3 id="about-the-debugger"><span class="number">6.17</span> About the debugger</h3>
+<p>By default, when an error occurs in Pharo, the system displays a Debugger. However, we can fully control this behavior and make it do something else. For example, we can write the error to a file, or we can even serialize the execution stack to a file, zip it and then reopen it in another Pharo image. When we are developing our software, the Debugger is available to let us go as fast as possible. But in a production system, developers will often want to control the Debugger to prevent their mistakes interfering too much with their users' work.</p>
+
+<h4 id="and-if-all-else-fails">And if all else fails...</h4>
+<p>First, do not stress! It's perfectly normal to make a mess of things when you program. If anything, it's the rule and not the exception. Probably the most annoying thing that can happen when you're starting to experiment with graphical elements in Pharo is that the screen becomes cluttered with seemingly indestructible widgets. Don't panic. Try and get an Inspector up on one of them by using a meta-click (<code>Option-Shift-Click</code> or equivalent) to open the Morphic halo, select the menu handle, "debug > inspect". Once you get an Inspector open you're home free:</p>
+
+<ul>
+<li>if you are inspecting the game itself: <code>self delete</code>.</li>
+<li>if you are inspect a game cell: <code>self owner delete</code>.</li>
+</ul>
+<h3 id="saving-and-sharing-pharo-code"><span class="number">6.18</span> Saving and sharing Pharo code</h3>
+<p>Now that you have <strong>Lights Out</strong> working, you probably want to save it somewhere so that you can archive it and share it with your friends. Of course, you can save your whole Pharo image and show off your first program by running it, but your friends probably have their own code in their images, and don't want to give that up to use your image. Pharo and its entire community uses Git to version source code and provides Iceberg a powerful tool to hide some low-level details from you.</p>
+
+<h4 id="use-iceberg-and-git-to-version-your-code">Use Iceberg and Git to version your code</h4>
+<p>When developing the counter example in the previous chapter, we showed you the basics of using Iceberg and Git to save, share, and version your projects, and you should really do the same with Lights Out. Using Git to save Pharo code is by far the best solution. If you would like to learn more about Iceberg, and you're feeling impatient, then you should feel free to skip ahead to Chapter <a href="publishing-and-packaging.html#cha:Iceberg">7</a>.</p>
+
+<h4 id="optional-writing-code-to-files">(Optional) Writing code to files</h4>
+<p>While saving your code with Git is the best way to do it, Pharo also offers a way to write code to files on your disc.  It is rudimentary and does not actually version the code but it can be handy on certain occasions.
+You can also save the code of your package by writing it to a file, an action commonly called "filing out" by all Pharoers and related communities. The right-click menu in the Package pane will give you the option to select <strong>Extra > File Out</strong> the whole of the <code>PBE-LightsOut</code> package. The resulting file is more or less human readable. You can email this file to your friends, and they can "file it in" with their own image.
+<figure id="fig:fileOut"><img src="Chapters/FirstApplication/figures/fileOut.png" alt="File out the  PBE-LightsOut  package." class="fig:fileOut" style="width: 85%"><figcaption><span class="number">Figure 6.12</span> File out the <code>PBE-LightsOut</code> package.</figcaption></img></figure>
+File out the <code>PBE-LightsOut</code> package (see Figure <a href="#fig:fileOut">6.12</a>). You should now find a file named <code>PBE-LightsOut.st</code> in the same folder on disk where your image is saved. Have a look at this file with a text editor to get a feel for what the code looks like when it's in a file. If you don't want to leave Pharo to look at the file, try inspecting <code>'PBE-LightsOut.st' asFileReference'</code> in a Playground.
+<figure id="fig:fileBrowser"><img src="Chapters/FirstApplication/figures/fileBrowser.png" alt="Import your code with the file browser." class="fig:fileBrowser" style="width: 100%"><figcaption><span class="number">Figure 6.13</span> Import your code with the file browser.</figcaption></img></figure>
+You can import this file using the <strong>File Browser</strong> tool (<strong>System > File Browser</strong>) (see Figure <a href="#fig:fileBrowser">6.13</a>). Now better use Git!</p>
+
+<h3 id="chapter-summary-3"><span class="number">6.19</span> Chapter summary</h3>
+<p>In this chapter, we've had a chance to reinforce what we've learned about Pharo so far, and to apply it to writing a simple game using the Morphic framework. We've learned how to open the Morphic halo around graphical elements on the screen, how to manipulate them, and (importantly) how to get rid of them.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="a-first-tutorial-developing.html">← A first tutorial: Developing a simple counter</a>
+        <a class="next" rel="next" href="publishing-and-packaging.html">Publishing and packaging your first Pharo project →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Getting Started with  Pharo</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo 9 by Example</a>
+    <p class="site-authors">Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="getting-started-with.html" aria-current="page"><span class="number">2</span> Getting Started with  Pharo</a>
+            
+            <ol>
+              
+              <li><a href="#installing-pharo"><span class="number">2.1</span> Installing Pharo</a></li>
+              
+              <li><a href="#file-components"><span class="number">2.2</span> File components</a></li>
+              
+              <li><a href="#launching-pharo-with-the-pharo-launcher"><span class="number">2.3</span> Launching Pharo with the Pharo Launcher</a></li>
+              
+              <li><a href="#launching-pharo-via-the-command-line"><span class="number">2.4</span> Launching Pharo via the command line</a></li>
+              
+              <li><a href="#saving-quitting-and-restarting-a-pharo-session"><span class="number">2.5</span> Saving, quitting, and restarting a Pharo session</a></li>
+              
+              <li><a href="#for-the-fast-and-furious"><span class="number">2.6</span> For the fast and furious</a></li>
+              
+              <li><a href="#chapter-summary"><span class="number">2.7</span> Chapter summary</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="a-quick-tour-of-pharo.html"><span class="number">3</span> A quick tour of Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="finding-information-in.html"><span class="number">4</span> Finding information in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">5</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="building-a-little-game.html"><span class="number">6</span> Building a little game</a>
+            
+          </li>
+          
+          <li>
+            <a href="publishing-and-packaging.html"><span class="number">7</span> Publishing and packaging your first Pharo project</a>
+            
+          </li>
+          
+          <li>
+            <a href="syntax-in-a-nutshell.html"><span class="number">8</span> Syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="understanding-message.html"><span class="number">9</span> Understanding message syntax</a>
+            
+          </li>
+          
+          <li>
+            <a href="the-pharo-object-model.html"><span class="number">10</span> The Pharo object model</a>
+            
+          </li>
+          
+          <li>
+            <a href="traits-reusable-class.html"><span class="number">11</span> Traits: reusable class fragments</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-tests-in-pharo.html"><span class="number">12</span> SUnit: Tests in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="basic-classes.html"><span class="number">13</span> Basic classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="collections.html"><span class="number">14</span> Collections</a>
+            
+          </li>
+          
+          <li>
+            <a href="streams.html"><span class="number">15</span> Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="morphic.html"><span class="number">16</span> Morphic</a>
+            
+          </li>
+          
+          <li>
+            <a href="classes-and-metaclasses.html"><span class="number">17</span> Classes and metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="reflection.html"><span class="number">18</span> Reflection</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">2</span> Getting Started with  Pharo</h2><a id="cha:getting"></a>
+<p>In this chapter, you will learn how to start Pharo and the different files that make up a Pharo system and the roles they perform, learn about the different ways of interacting with the system, and discover some of the basic tools. You will also learn how to define a new method, create an object, and send it messages.
+The chapter shows (1) how to install Pharo and (2) how to launch Pharo.</p>
+
+<h3 id="installing-pharo"><span class="number">2.1</span> Installing Pharo</h3>
+<p>Pharo does not need to install anything in your system, as it's perfectly capable of running standalone. As will be explained later, Pharo consists of a virtual machine (VM), an image, a set of changes and a set of sources. There are a number of different ways of getting these installed and set up on your system.</p>
+
+<h4 id="the-pharo-launcher">The Pharo Launcher</h4>
+<p>Pharo Launcher is a cross-platform application that facilitates the management of multiple Pharo images and VMs. It is available as a free download from <a target="_blank" href="http://pharo.org/download"><a target="_blank" href="http://pharo.org/download">http://pharo.org/download</a></a>.  Click the button for your operating system to download the appropriate Pharo Launcher; it contains everything you need to run Pharo.</p>
+
+<h4 id="zeroconf-scripts">Zeroconf scripts</h4>
+<p>Alternatively, <a target="_blank" href="https://get.pharo.org/"><a target="_blank" href="https://get.pharo.org/">https://get.pharo.org/</a></a> offers a collection of scripts to download specific versions of Pharo. This is really handy for automating the installation of Pharo, or if you prefer to work using your operating system's command line interface.</p>
+
+<p>To download the latest Pharo 9.0 full system, use the following snippet:</p>
+
+<pre><code>wget -O- get.pharo.org/90+vm | bash</code></pre>
+
+<p>Then you can execute the following to start the image:</p>
+
+<pre><code>./pharo-ui Pharo.image</code></pre>
+
+<p>At present these scripts will only work on a a macOS or Linux system.</p>
+
+<h3 id="file-components"><span class="number">2.2</span> File components</h3>
+<p>Pharo consists of four main component files. Although you do not need to deal with them directly for the purposes of this book, it is useful to understand the role that they each play.</p>
+
+<p><strong>1.</strong> The <strong>virtual machine</strong> (VM) is the only component that is different for each operating system. The VM is the execution engine (similar to the Java Virtual Machine). It takes Pharo bytecode that is generated each time a user compiles a piece of code, converts it to machine code, and then executes it. Pharo comes with the Cog VM, a very fast JITing VM.</p>
+
+<p>The VM executable is named:</p>
+
+<ul>
+<li><code>Pharo.exe</code> for Windows,</li>
+<li><code>pharo</code> for Linux, and</li>
+<li><code>Pharo</code> for macOS (inside a package also named <code>Pharo.app</code>).</li>
+</ul>
+<p>The other components listed below are portable across operating systems, and can be copied and run on any appropriate virtual machine.</p>
+
+<p><strong>2.</strong> The <strong>image</strong> file provides a snapshot of a running Pharo system. It's a cross-platform format: an image file on one operating system can be used on any other operating system with a compatible VM. An image file contains all the objects of a running system and their state at a given point in time, including all the classes and the compiled methods (since they are objects too). An image is basically a virtual object container.</p>
+
+<p>The image file is named for the release (so <code>Pharo9.0.image</code> for a Pharo 9.0 image) and it is synced with the <strong>changes</strong> file.</p>
+
+<p><strong>3.</strong> The <strong>changes</strong> file logs of all source code modifications (such as the changes you make while programming in Pharo) made to the Pharo system. Each release provides a nearly empty file named for the release, for example, <code>Pharo9.0.changes</code>. This file supports a per-method history which can be used for showing diffs or reverting changes. It means that even if you did not manage to save the image file before a crash (or you just forgot), you can still recover your changes from this file. A changes file is always coupled with an image file. They work as a pair. Do not mess with it. Even if Pharo can run without it, you could lose all of your work if haven't saved it with git.</p>
+
+<p><strong>4.</strong> The <strong>sources</strong> file contains the source code for parts of Pharo that do not change frequently. This file is important because the image file format stores only objects including compiled methods and their bytecode and not their source code. Typically a new <strong>sources</strong> file is generated once per major release of Pharo. For Pharo 9.0, this file is named <code>PharoV90.sources</code>.</p>
+
+<h4 id="image-changes-pair">Image/Changes pair</h4>
+<p>The <code>.image</code> and <code>.changes</code> files provided by a Pharo release are the starting point for a live environment that you will adapt to suit your needs. These files are modified as you work with Pharo, so you need to make sure that they are writable. It's also a good idea to stop your anti-virus software from scanning these files. The <code>.image</code> and <code>.changes</code> files are intimately linked and should always be kept together, with matching base filenames. <i>Never</i> edit them directly with a text editor, as <code>.image</code> holds your live object runtime memory, which indexes into the <code>.changes</code> files for the source. It is a good idea to keep a backup copy of the downloaded <code>.image</code> and <code>.changes</code> files so you can always start from a fresh image and reload your code. However, the most efficient way to back up code is to use Iceberg with Git (a version control system): it provides an easy and powerful way to both backup and track your changes.</p>
+
+<h4 id="common-setup">Common setup</h4>
+<p>The four main component files above can be placed in the same directory, but it's a common practice to put the virtual machine and sources file in a separate directory where everyone has read-only access to them.</p>
+
+<p>Do whatever works best for your style of working and your operating system. If you're just starting out with Pharo it's better to use the Pharo Launcher, since it will manage everything for you.</p>
+
+<h3 id="launching-pharo-with-the-pharo-launcher"><span class="number">2.3</span> Launching Pharo with the Pharo Launcher</h3>
+<p>Pharo Launcher is a tool that helps you download and manage Pharo images. It is very useful for getting new versions of Pharo (as well as updates to the existing versions that contain important bug fixes). It also gives you access to images preloaded with specific libraries that make it very easy to use those tools without having to manually install and configure them.</p>
+
+<p>Pharo Launcher can be found at <a target="_blank" href="https://pharo.org/download"><a target="_blank" href="https://pharo.org/download">https://pharo.org/download</a></a> together with installation instructions and download links depending on your platform.</p>
+
+<p><figure id="fig:PharoLauncher"><img src="Chapters/PharoTour/figures/PharoLauncher.png" alt="Pharo Launcher - the easy way to manage your Pharo images. " style="width: 70%"><figcaption><span class="number">Figure 2.1</span> Pharo Launcher - the easy way to manage your Pharo images. </figcaption></img></figure></p>
+
+<p>After installing Pharo Launcher and opening it (like you would do for any Pharo image), you should get a GUI similar to Figure <a href="#fig:PharoLauncher">2.1</a>.  Here we clicked on the top left <strong>New</strong> icon to download a new Pharo image from the server.</p>
+
+<p>The back column lists images that live locally on your machine (usually in a shared system folder). You can launch any local image directly (either by double-clicking, or by selecting it and pressing the <strong>Launch</strong> button). A right-click context menu provides several useful functions like copying and renaming your images, as well as locating them on the file system.</p>
+
+<p>You can use your own local images with Pharo Launcher, in addition to working with the images you downloaded. To do so, simply import your <code>.image</code> and its associated <code>.changes</code> files using the launcher.</p>
+
+<p><figure id="fig:started"><img src="Chapters/PharoTour/figures/Pharo80.png" alt="When Pharo opens you should see the following. " style="width: 80%"><figcaption><span class="number">Figure 2.2</span> When Pharo opens you should see the following. </figcaption></img></figure></p>
+
+<h3 id="launching-pharo-via-the-command-line"><span class="number">2.4</span> Launching Pharo via the command line</h3>
+<p>If you are using a standalone version do whatever your operating system expects: drag the <code>.image</code> file onto the icon of the virtual machine, or double-click on the <code>.image</code> file, or at the command line type the name of the virtual machine followed by the path to the <code>.image</code> file.</p>
+
+<ul>
+<li>On <strong>macOS</strong>, double click the <code>Pharo9.0.app</code> bundle in the unzipped download.</li>
+<li>On <strong>Linux</strong>, double-click (or invoke from the command line) the <code>pharo</code> executable <code>Bash</code> script from the unzipped Pharo folder.</li>
+<li>On <strong>Windows</strong>, enter the unzipped Pharo folder and double click <code>Pharo.exe</code>.</li>
+</ul>
+<p>In general, Pharo tries to "do the right thing". If you double-click on the VM, it looks for an image file in the default location. If you double-click on an <code>.image</code> file, it tries to find the nearest VM to launch it with.</p>
+
+<p>If you have multiple VMs installed on your machine, the operating system may no longer be able to guess the right one. In this case, it is safer to specify exactly which ones you meant to launch, either by dragging and dropping the image file onto the VM, or specifying the image on the command line (see the next section).</p>
+
+<p>The general pattern for launching Pharo from the command line is:</p>
+
+<pre><code>&lt;Pharo executable&gt; &lt;path to Pharo image&gt;</code></pre>
+
+<h4 id="linux-command-line">Linux command line</h4>
+<p>Assuming you're in the directory where the Zeroconf script downloaded the required files:</p>
+
+<pre><code>./pharo Pharo.image</code></pre>
+
+<h4 id="macos-command-line">macOS command line</h4>
+<p>Again, assuming you downloaded Pharo using Zeroconf:</p>
+
+<pre><code>./pharo Pharo.image</code></pre>
+
+<h4 id="windows-command-line">Windows command line</h4>
+<p>As we mentioned, Zeroconf won't work with a Windows system, so you will have to download the right VM and image files yourself. But running it should be just as easy:</p>
+
+<pre><code>Pharo.exe Pharo.image</code></pre>
+
+<h3 id="saving-quitting-and-restarting-a-pharo-session"><span class="number">2.5</span> Saving, quitting, and restarting a Pharo session</h3>
+<p>You can exit Pharo at any point by closing the Pharo window just as you do with any other application window. Additionally, you can use the menu bar, or the World Menu, and select either <strong>Save and quit</strong> or <strong>Quit</strong>.</p>
+
+<p>In either case, Pharo will display a prompt to ask you about saving your image. If you do save your image and reopen it, you will see that things are <i>exactly</i> as you left them: the running programs, the open windows, the <i>positions</i> of the open windows. This happens because the image file stores <i>all</i> the objects (the edited text, the added methods, the window positions... because they are <i>all</i> objects) that Pharo has loaded into your memory so that <i>nothing</i> is lost on exit.</p>
+
+<p>When you start Pharo for the first time, the Pharo virtual machine loads the image file that you specified. This file contains a snapshot of a large number of objects, including a vast amount of pre-existing code and programming tools (all of which are also, you guessed it, objects). As you work with Pharo, you will send messages to these objects, you will create new objects (by sending messages to objects!), and some of these objects will 'die' and their memory will be reclaimed (garbage collected).</p>
+
+<p>When you quit Pharo, you will normally save a snapshot that contains all of your objects. If you save normally, you will overwrite your old image file with the new snapshot. Alternatively, you may save the image under a new name.</p>
+
+<p>When you save your image the <code>.image</code> file is updated with the snapshot of your running Pharo system. The <code>.changes</code> file will also be updated: it will have a log of all the changes you've made to the image since the last update appended to it. As we've seen above, the <code>.changes</code> file can be very useful for recovering from errors, or replaying lost changes. More about this later!</p>
+
+<p>It may seem like the image file should be the key mechanism for storing and managing software projects, but in practice that is not the case at all. There are much better tools for managing code and sharing software that is developed in a team. Images are useful, but you should be very cavalier about creating and throwing away images. Versioning tools such as Iceberg offer us a much better way to manage and share code. In addition, if you need to persist objects, you can use a package such as Fuel (a fast object binary serializer) or STON (a textual object serializer), or even a database.</p>
+
+<h3 id="for-the-fast-and-furious"><span class="number">2.6</span> For the fast and furious</h3>
+<p>Sometimes reading long chapters about a system that's as full of features as Pharo can be, well, <i>boring</i>. If you've already got a working Pharo system installed on your computer, and you know a little bit about how everything works, you might want to learn the basics by using ProfStef and then skip forward to the next chapter: a tutorial to define a simple counter and its associated tests. You can also watch the corresponding video available at <a target="_blank" href="http://mooc.pharo.org/"><a target="_blank" href="http://mooc.pharo.org/">http://mooc.pharo.org</a></a>.</p>
+
+<p>To launch ProfStef type the following expression:</p>
+
+<pre><code>ProfStef go</code></pre>
+
+<p>in a <strong>Playground</strong>, and then execute it by performing a <strong>Do it</strong>, as shown in Figure <a href="#fig:pharotutorial">2.3</a>.</p>
+
+<p>If all of that means nothing to you, then don't worry: it will soon enough. Just read on...</p>
+
+<p><figure id="fig:pharotutorial"><img src="Chapters/PharoTour/figures/PharoTutorialOption.png" alt="Executing an expression is simple with the  Do it  menu item. " style="width: 60%"><figcaption><span class="number">Figure 2.3</span> Executing an expression is simple with the <strong>Do it</strong> menu item. </figcaption></img></figure></p>
+
+<p>This expression will trigger the <strong>ProfStef</strong> tutorial (as shown in Figure <a href="#fig:ProfStef">2.4</a>), which is a great place to start to get a feel for Pharo syntax.</p>
+
+<p>Congratulations! You have just sent your first message! Pharo is based on the concept of sending messages to objects. The Pharo objects are like your soldiers, just waiting for you to send them a message they can understand. We will see exactly how an object understands a message later on.</p>
+
+<p><figure id="fig:ProfStef"><img src="Chapters/PharoTour/figures/ProfStef.png" alt="ProfStef is a simple interactive tutorial to learn about Pharo syntax. " style="width: 60%"><figcaption><span class="number">Figure 2.4</span> ProfStef is a simple interactive tutorial to learn about Pharo syntax. </figcaption></img></figure></p>
+
+<h3 id="chapter-summary"><span class="number">2.7</span> Chapter summary</h3>
+<ul>
+<li>Pharo systems can be managed on your computer using the Pharo Launcher. Alternatively, you can download Pharo using the Zeroconf scripts.</li>
+<li>A running Pharo system consists of a <strong>virtual machine</strong>, a <strong>source file</strong> (<code>.sources</code>), an <strong>image file</strong> (<code>.image</code>) and a <strong>changes file</strong> (<code>.changes</code>). Only these last two change, as they record the latest snapshot of your running system.</li>
+<li>When you open a Pharo image, you will find yourself in exactly the same state (i.e., with exactly the same running objects) that you had when you last saved that image.</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="about-this-book.html">← About this book</a>
+        <a class="next" rel="next" href="a-quick-tour-of-pharo.html">A quick tour of Pharo →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

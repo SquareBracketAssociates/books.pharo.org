@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Pharo object model</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo 9 by Example</a>
+    <p class="site-authors">Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">2</span> Getting Started with  Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-quick-tour-of-pharo.html"><span class="number">3</span> A quick tour of Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="finding-information-in.html"><span class="number">4</span> Finding information in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">5</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="building-a-little-game.html"><span class="number">6</span> Building a little game</a>
+            
+          </li>
+          
+          <li>
+            <a href="publishing-and-packaging.html"><span class="number">7</span> Publishing and packaging your first Pharo project</a>
+            
+          </li>
+          
+          <li>
+            <a href="syntax-in-a-nutshell.html"><span class="number">8</span> Syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="understanding-message.html"><span class="number">9</span> Understanding message syntax</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="the-pharo-object-model.html" aria-current="page"><span class="number">10</span> The Pharo object model</a>
+            
+            <ol>
+              
+              <li><a href="#sec:rules"><span class="number">10.1</span> The rules of the core model</a></li>
+              
+              <li><a href="#everything-is-an-object"><span class="number">10.2</span> Everything is an Object</a></li>
+              
+              <li><a href="#instance-structure-and-behavior"><span class="number">10.3</span> Instance structure and behavior</a></li>
+              
+              <li><a href="#every-class-has-a-superclass"><span class="number">10.4</span> Every class has a superclass</a></li>
+              
+              <li><a href="#everything-happens-by-sending-messages"><span class="number">10.5</span> Everything happens by sending messages</a></li>
+              
+              <li><a href="#sending-a-message-a-two-step-process"><span class="number">10.6</span> Sending a message: a two-step process</a></li>
+              
+              <li><a href="#method-lookup-follows-the-inheritance-chain"><span class="number">10.7</span> Method lookup follows the inheritance chain</a></li>
+              
+              <li><a href="#method-execution"><span class="number">10.8</span> Method execution</a></li>
+              
+              <li><a href="#message-not-understood"><span class="number">10.9</span> Message not understood</a></li>
+              
+              <li><a href="#about-returning-self"><span class="number">10.10</span> About returning self</a></li>
+              
+              <li><a href="#overriding-and-extension"><span class="number">10.11</span> Overriding and extension</a></li>
+              
+              <li><a href="#self-and-super-sends"><span class="number">10.12</span> Self and super sends</a></li>
+              
+              <li><a href="#stepping-back-2"><span class="number">10.13</span> Stepping back</a></li>
+              
+              <li><a href="#the-instance-and-class-sides"><span class="number">10.14</span> The instance and class sides</a></li>
+              
+              <li><a href="#class-methods"><span class="number">10.15</span> Class methods</a></li>
+              
+              <li><a href="#class-instance-variables"><span class="number">10.16</span> Class instance variables</a></li>
+              
+              <li><a href="#example-class-instance-variables-and-subclasses"><span class="number">10.17</span> Example: Class instance variables and subclasses</a></li>
+              
+              <li><a href="#stepping-back-3"><span class="number">10.18</span> Stepping back</a></li>
+              
+              <li><a href="#example-defining-a-singleton"><span class="number">10.19</span> Example: Defining a Singleton</a></li>
+              
+              <li><a href="#a-note-on-lazy-initialization"><span class="number">10.20</span> A note on lazy initialization</a></li>
+              
+              <li><a href="#shared-variables"><span class="number">10.21</span> Shared variables</a></li>
+              
+              <li><a href="#sec:classVars"><span class="number">10.22</span> Class variables: Shared variables</a></li>
+              
+              <li><a href="#pool-variables"><span class="number">10.23</span> Pool variables</a></li>
+              
+              <li><a href="#abstract-methods-and-abstract-classes"><span class="number">10.24</span> Abstract methods and abstract classes</a></li>
+              
+              <li><a href="#example-the-abstract-class-magnitude"><span class="number">10.25</span> Example: the abstract class Magnitude</a></li>
+              
+              <li><a href="#chapter-summary-6"><span class="number">10.26</span> Chapter summary</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="traits-reusable-class.html"><span class="number">11</span> Traits: reusable class fragments</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-tests-in-pharo.html"><span class="number">12</span> SUnit: Tests in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="basic-classes.html"><span class="number">13</span> Basic classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="collections.html"><span class="number">14</span> Collections</a>
+            
+          </li>
+          
+          <li>
+            <a href="streams.html"><span class="number">15</span> Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="morphic.html"><span class="number">16</span> Morphic</a>
+            
+          </li>
+          
+          <li>
+            <a href="classes-and-metaclasses.html"><span class="number">17</span> Classes and metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="reflection.html"><span class="number">18</span> Reflection</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">10</span> The Pharo object model</h2><a id="cha:model"></a>
+<p>The Pharo language model is inspired by the one of Smalltalk. It is simple and uniform: everything is an object, and objects communicate only by sending messages to each other. Instance variables are private to the object and methods are all public and dynamically looked up (late-bound).
+In this chapter, we present the core concepts of the Pharo object model. We sorted the sections of this chapter to make sure that the most important points appear first. We revisit concepts such as <code>self</code>, <code>super</code> and precisely define their semantics. Then we discuss the consequences of representing classes as objects. This will be extended in Chapter: <a href="classes-and-metaclasses.html#cha:metaclasses">17</a>.</p>
+
+<h3><span class="number">10.1</span> The rules of the core model</h3><a id="sec:rules"></a>
+<p>The object model is based on a set of simple rules that are applied <i>uniformly</i> and systematically without any exception. The rules are as follows:</p>
+
+<p>Rule 1
+Everything is an object.
+Rule 2
+Every object is an instance of a class.
+Rule 3
+Every class has a superclass.
+Rule 4
+Everything happens by sending messages.
+Rule 5
+Method lookup follows the inheritance chain.
+Rule 6
+Classes are objects too and follow exactly the same rules.
+Let us look at each of these rules in detail.</p>
+
+<h3 id="everything-is-an-object"><span class="number">10.2</span> Everything is an Object</h3>
+<p>The mantra <i>everything is an object</i> is highly contagious. After only a short while working with Pharo, you will be surprised how this rule simplifies everything you do. Integers, for example, are objects too, so you send messages to them, just as you do to any other object.</p>
+
+<figure class="code" id="ret7"><pre><code>3 + 4
+&gt;&gt;&gt; 7</code></pre><figcaption><span class="number">Listing 10.1</span> Sending <code>+ 4</code> to <code>3</code> yields the object <code>7</code>.</figcaption></figure>
+
+<figure class="code" id="20fact"><pre><code>20 factorial
+&gt;&gt;&gt; 2432902008176640000</code></pre><figcaption><span class="number">Listing 10.2</span> Sending <code>factorial</code> to <code>20</code> yields a large number.</figcaption></figure>
+
+<p>Listing <a href="#ret7">10.1</a>  and <a href="#20fact">10.2</a> are two examples.
+The object <code>7</code> is different than the object returned by <code>20 factorial</code>. <code>7</code> is an instance of <code>SmallInteger</code> while <code>20 factorial</code> is an instance of <code>LargePositiveInteger</code>. But because they are both polymorphic objects (they know how to answer to the same set of messages), none of the code, not even the implementation of <code>factorial</code>, needs to know about this.</p>
+
+<p>Coming back to <i>everything is an object</i> rule, perhaps the most fundamental consequence of this rule is that classes are objects too. Classes are not second-class objects: they are really first-class objects that you can send messages to, inspect, and change as any object.</p>
+
+<p>From the point of view of sending a message, there is no difference between an instance such as <code>7</code> and a class. The following example (in Listing <a href="#today">10.3</a>) shows that we can send the message <code>today</code> to the class <code>Date</code> to obtain the current date of the system.</p>
+
+<figure class="code" id="today"><pre><code>Date today printString
+&gt;&gt;&gt; '24 July 2021'</code></pre><figcaption><span class="number">Listing 10.3</span> Sending <code>today</code> to class <code>Date</code> yields the current date</figcaption></figure>
+
+<p>The following Listing <a href="#allInst">10.4</a> shows that we can ask a class for the instance variable names its instances will have. Note that the message <code>allInstVarNames</code> returns the inherited instance variable names too.</p>
+
+<figure class="code" id="allInst"><pre><code>Date allInstVarNames 
+&gt;&gt;&gt; #(#start #duration)</code></pre><figcaption><span class="number">Listing 10.4</span> Getting all the instance variable names of <code>Date</code> class.</figcaption></figure>
+
+<q id="important">Classes are objects too. We interact the same way with classes and objects, simply by sending messages to them.
+## Every object is an instance of a class
+very object has a class and you can find out which one by sending message
+class<code> to it.</code><code>example=trueclass&gt;&gt; SmallInteger</code>`</q>
+<pre><code>20 factorial class
+&gt;&gt;&gt; LargePositiveInteger</code></pre>
+
+<pre><code>'hello' class
+&gt;&gt;&gt; ByteString</code></pre>
+
+<pre><code>(4@5) class
+&gt;&gt;&gt; Point</code></pre>
+
+<pre><code>Object new class
+&gt;&gt;&gt; Object</code></pre>
+
+<p>A class defines the <i>structure</i> of its instances via instance variables, and the <i>behavior</i> of its instances via methods. Each method has a name, called its <i>selector</i>, which is unique within the class.
+Since <i>classes are objects</i>, and <i>every object is an instance of a class</i>, it follows that classes must also be instances of classes. A class whose instances are classes is called a <i>metaclass</i>. Whenever you create a class, the system automatically creates a metaclass for you. The metaclass defines the structure and behavior of the class that is its instance. You will not need to think about metaclasses 99% of the time, and may happily ignore them. We will have a closer look at metaclasses in Chapter
+<a href="classes-and-metaclasses.html#cha:metaclasses">17</a>.</p>
+
+<h3 id="instance-structure-and-behavior"><span class="number">10.3</span> Instance structure and behavior</h3>
+<p>Now we will briefly present how we specify the structure and behavior of instances.</p>
+
+<h4 id="instance-variables">Instance variables</h4>
+<p>Instance variables are accessed by name in any of the instance methods of the class that defines them, and also in the methods defined in its subclasses. This means that Pharo instance variables are similar to <i>protected</i> variables in C++ and Java. However, we prefer to say that they are private, because it is considered bad style in Pharo to access an instance variable directly from a subclass.</p>
+
+<h4 id="instance-based-encapsulation">Instance-based encapsulation</h4>
+<p>Instance variables in Pharo are private to the <i>instance</i> itself. This is in contrast to Java and C++, which let instance variables (also known as <i>fields</i> or <i>member variables</i>) to be accessed by any other instance that happens to be of the same class. We say that the <i>encapsulation boundary</i> of objects in Java and C++ is the class, whereas in Pharo it is the instance.</p>
+
+<p>In Pharo, two instances of the same class cannot access each other's instance variables unless the class defines <i>accessor methods</i>. There is no language syntax that provides direct access to the instance variables of any other object. Actually, a mechanism called reflection provides a way to ask another object for the values of its instance variables. Reflection is at the root of meta-programming which is used for writing tools like the object inspector.</p>
+
+<h4 id="instance-encapsulation-example">Instance encapsulation example</h4>
+<p>The method <code>distanceTo:</code> of the class <code>Point</code> computes the distance between the receiver and another point (see Listing <a href="#distanceTo">10.5</a>). The instance variables <code>x</code> and <code>y</code> of the receiver are accessed directly by the method body. However, the instance variables of the other point must be accessed by sending it the messages <code>x</code> and <code>y</code>.</p>
+
+<figure class="code" id="distanceTo"><pre><code>Point &gt;&gt; distanceTo: aPoint
+    "Answer the distance between aPoint and the receiver."
+
+    | dx dy |
+    dx := aPoint x - x.
+    dy := aPoint y - y.
+    ^ ((dx * dx) + (dy * dy)) sqrt</code></pre><figcaption><span class="number">Listing 10.5</span> Distance between two points.</figcaption></figure>
+
+<pre><code>1@1 dist: 4@5
+&gt;&gt;&gt; 5.0</code></pre>
+
+<p>The key reason to prefer instance-based encapsulation to class-based encapsulation is that it enables different implementations of the same abstraction to coexist. For example, the method <code>distanceTo:</code> doesn't need to know or care whether the argument <code>aPoint</code> is an instance of the same class as the receiver.
+The argument object might be represented in polar coordinates, or as a record in a database, or on another computer in a distributed system. As long as it can respond to the messages <code>x</code> and <code>y</code>, the code of method <code>distanceTo:</code> (see Listing <a href="#distanceTo">10.5</a>) will still work.</p>
+
+<h4 id="methods">Methods</h4>
+<p>All methods are <i>public</i> and <i>virtual</i> (i.e., dynamically looked up). There is no static methods in Pharo. Methods can access all instance variables of the object. Some developers prefer to access instance variables only through accessors. This practice has some value, but it also clutters the interface of your classes, and worse, exposes its private state to the world.
+To ease class browsing, methods are grouped into <i>protocols</i> that indicate their intent. Protocols have no semantics from the language view point. They are just folders in which methods are stored. Some common protocol names have been established by convention, for example, <code>accessing</code> for all accessor methods and <code>initialization</code> for establishing a consistent initial state for the object.
+The protocol <code>private</code> is sometimes used to group methods that should not be relied on. Nothing, however, prevents you from sending a message that is implemented by such a "private" method. However, it means that the developer may change or remove such private method.</p>
+
+<h3 id="every-class-has-a-superclass"><span class="number">10.4</span> Every class has a superclass</h3>
+<p>Each class in Pharo inherits its behaviour and the description of its structure from a single <i>superclass</i>. This means that Pharo offers single inheritance.
+Here are some examples showing how can we navigate the hierarchy.</p>
+
+<pre><code>SmallInteger superclass
+&gt;&gt;&gt; Integer</code></pre>
+
+<pre><code>Integer superclass
+&gt;&gt;&gt; Number</code></pre>
+
+<pre><code>Number superclass
+&gt;&gt;&gt; Magnitude</code></pre>
+
+<pre><code>Magnitude superclass
+&gt;&gt;&gt; Object</code></pre>
+
+<pre><code>Object superclass
+&gt;&gt;&gt; ProtoObject</code></pre>
+
+<pre><code>ProtoObject superclass
+&gt;&gt;&gt; nil</code></pre>
+
+<p>Traditionally the root of the inheritance hierarchy is the class <code>Object</code>, since everything is an object. Most classes inherit from <code>Object</code>, which defines many additional messages that almost all objects understand and respond to.</p>
+
+<p>In Pharo, the root of the inheritance tree is actually the class <code>ProtoObject</code>, but you will normally not pay any attention to this class.</p>
+
+<p>The class <code>ProtoObject</code> encapsulates the minimal set of messages that all objects <i>must</i> have and <code>ProtoObject</code> is designed to raise as many as possible errors (to support proxy definition).
+Unless you have a very good reason to do otherwise, when creating application classes you should normally subclass <code>Object</code>, or one of its subclasses.</p>
+
+<p>A new class is normally created by sending the message <code>subclass: instanceVariableNames: ...</code> to an existing class as shown in <a href="#scr:point">10.6</a>. There are a few other methods to create classes. To see what they are, have a look at <code>Class</code> and its <code>subclass creation</code> protocol.</p>
+
+<figure class="code" id="scr:point"><pre><code>Object subclass: #Point
+	instanceVariableNames: 'x y'
+	classVariableNames: ''
+	package: 'Kernel-BasicObjects'</code></pre><figcaption><span class="number">Listing 10.6</span> The definition of the class <code>Point</code>.</figcaption></figure>
+
+<h3 id="everything-happens-by-sending-messages"><span class="number">10.5</span> Everything happens by sending messages</h3>
+<p>This rule captures the essence of programming in Pharo.
+In procedural programming (and in some static features of some object-oriented languages such as Java), the choice of which method to execute when a procedure is called is made by the caller. The caller chooses the procedure to execute <i>statically</i>, by name. In such a case there is no lookup or dynamicity involved.
+In Pharo when we send a message, the caller does not decide which method will be executed. Instead, we <i>tell</i> an object to do something by sending it a message.
+A message is nothing but a name and a list of arguments. The <i>receiver</i> then decides how to respond by selecting its own <i>method</i> for doing what was asked. Since different objects may have different methods for responding to the same message, the method must be chosen <i>dynamically</i>, when the message is received.</p>
+
+<p>As a consequence, we can send the <i>same message</i> to different objects, each of which may have <i>its own method</i> for responding to the message.
+In the examples shown in Listing <a href="#get7">10.7</a> and <a href="#getPoint">10.8</a>, we do not decide how the <code>SmallInteger</code> <code>3</code> or the <code>Point</code> <code>(1@2)</code> should respond to the message <code>+ 4</code>. We let the objet decide: Each has its own method for <code>+</code>, and responds to <code>+ 4</code> accordingly.</p>
+
+<figure class="code" id="get7"><pre><code>3 + 4
+&gt;&gt;&gt; 7</code></pre><figcaption><span class="number">Listing 10.7</span> Sending message <code>+</code> with argument 4 to integer 3.</figcaption></figure>
+
+<figure class="code" id="getPoint"><pre><code>(1@2) + 4
+&gt;&gt;&gt; 5@6</code></pre><figcaption><span class="number">Listing 10.8</span> Sending message + with argument 4 to point (1@2).</figcaption></figure>
+
+<h4 id="vocabulary-point">Vocabulary point</h4>
+<p>In Pharo, we do <i>not</i>  say that we "invoke methods". Instead, we <i>send messages.</i>
+This is just a vocabulary point but it is significant. It implies that this is not the responsibility of the client to select the method to be executed, it is the one of the receiver of the message.</p>
+
+<h4 id="about-other-computation">About other computation</h4>
+<p><i>Nearly</i> everything in Pharo happens by sending messages.</p>
+
+<p>At some point action must take place:</p>
+
+<ul>
+<li><i>Variable declarations</i> are not message sends. In fact, variable declarations are not even executable. Declaring a variable just causes space to be allocated for an object reference.</li>
+<li><i>Variable accesses</i> are just accesses to the value of a variable.</li>
+<li><i>Assignments</i> are not message sends. An assignment to a variable causes that variable name to be freshly bound to the result of the expression in the scope of its definition.</li>
+<li><i>Returns</i> are not message sends. A return simply causes the computed result to be returned to the sender.</li>
+<li><i>Primitives</i> are not message sends. They are implemented in the virtual machine.</li>
+<li><i>Pragmas</i> are not message sends. They are method annotations.</li>
+</ul>
+<p>Other than these few exceptions, pretty much everything else does truly happen by sending messages.</p>
+
+<h4 id="about-object-oriented-programming">About object-oriented programming.</h4>
+<p>One of the consequences of Pharo's model of message sending is that it encourages a style in which objects tend to have very small methods and delegate tasks to other objects, rather than implementing huge, procedural methods that assume too much responsibility.
+Joseph Pelrine expresses this principle succinctly as follows:</p>
+
+<q id="note">Don't do anything that you can push off onto someone else.
+any object-oriented languages provide both static and dynamic operations for objects. In Pharo there are only dynamic message sends. For example, instead of providing static class operations, we simply send messages to classes (which are simply objects).
+n particular, since there are no <i>public fields</i> in Pharo, the only way to update an instance variable of another object is to send it a message asking that it update its own field. Of course, providing setter and getter methods for all the instance variables of an object is not good object-oriented style, because clients can access to the internal state of objects.
+oseph Pelrine also states this very nicely:
+!note Don't let anyone else play with your data.</q>
+<h3 id="sending-a-message-a-two-step-process"><span class="number">10.6</span> Sending a message: a two-step process</h3>
+<p>What exactly happens when an object receives a message?
+This is a two-step process: <i>method lookup</i> and <i>method execution</i>.</p>
+
+<ul>
+<li><strong>Lookup.</strong> First, the method having the same name as the message is looked up.</li>
+<li><strong>Method Execution.</strong> Second, the found method is applied to the receiver with the message arguments: When the method is found, the arguments are bound to the parameters of the method, and the virtual machine executes it.</li>
+</ul>
+<p>The lookup process is quite simple:</p>
+
+<ol>
+<li>The class of the receiver looks up the method to use to handle the message.</li>
+<li>If this class does not have that method defined, it asks its superclass, and so on, up the inheritance chain.</li>
+</ol>
+<p>It is essentially as simple as that.</p>
+
+<p>Nevertheless there are a few questions that need some care to answer:</p>
+
+<ul>
+<li><i>What happens when a method does not explicitly return a value?</i></li>
+<li><i>What happens when a class reimplements a superclass method?</i></li>
+<li><i>What is the difference between <code>self</code> and <code>super</code> sends?</i></li>
+<li><i>What happens when no method is found?</i></li>
+</ul>
+<p>The rules for method lookup that we present here are conceptual; virtual machine implementors use all kinds of tricks and optimizations to speed up method lookup.
+First let us look at the basic lookup strategy, and then consider these further questions.</p>
+
+<h3 id="method-lookup-follows-the-inheritance-chain"><span class="number">10.7</span> Method lookup follows the inheritance chain</h3>
+<p>Suppose we create an instance of <code>EllipseMorph</code>.</p>
+
+<pre><code>anEllipse := EllipseMorph new.</code></pre>
+
+<p>If we send the message <code>defaultColor</code> to this object now, we get the result <code>Color yellow</code>.</p>
+
+<pre><code>anEllipse defaultColor
+&gt;&gt;&gt; Color yellow</code></pre>
+
+<p>The class <code>EllipseMorph</code> implements <code>defaultColor</code> (See Listing <a href="#EDefaultColor">10.9</a>), so the appropriate method is found immediately.</p>
+
+<figure class="code" id="EDefaultColor"><pre><code>EllipseMorph &gt;&gt; defaultColor
+     "Answer the default color/fill style for the receiver"
+     ^ Color yellow</code></pre><figcaption><span class="number">Listing 10.9</span> A locally implemented method.</figcaption></figure>
+
+<p>In contrast, if we send the message <code>openInWorld</code> to <code>anEllipse</code>, the method is not immediately found, since the class <code>EllipseMorph</code> does not implement <code>openInWorld</code>. The search therefore continues in the superclass, <code>BorderedMorph</code>, and so on, until an <code>openInWorld</code> method is found in the class <code>Morph</code> (see Listing <a href="#MopenInWorld">10.10</a> and Figure <a href="#fig:openInWorldLookup">10.1</a>).</p>
+
+<figure class="code" id="MopenInWorld"><pre><code>Morph &gt;&gt; openInWorld
+     "Add this morph to the world."
+     self openInWorld: self currentWorld</code></pre><figcaption><span class="number">Listing 10.10</span> An inherited method.</figcaption></figure>
+
+<p><figure id="fig:openInWorldLookup"><img src="Chapters/PharoObjectModel/figures/openInWorldLookup.png" alt="Method lookup follows the inheritance hierarchy. " style="width: 80%"><figcaption><span class="number">Figure 10.1</span> Method lookup follows the inheritance hierarchy. </figcaption></img></figure></p>
+
+<h3 id="method-execution"><span class="number">10.8</span> Method execution</h3>
+<p>We mentioned that sending a message is a two-step process:</p>
+
+<ul>
+<li><strong>Lookup.</strong> First, the method having the same name as the message is looked up.</li>
+<li><strong>Method Execution.</strong> Second, the found method is applied to the receiver with the message arguments: When the method is found, the arguments are bound to the parameters of the method, and the virtual machine executes it.</li>
+</ul>
+<p>Now we explain the second point: the method execution.
+When the lookup returns a method, the receiver of the message is bound to <code>self</code>, and the arguments of the message to the method parameters. Then the system executes the method body. This is true wherever the method that should be executed is found. Imagine that we send the message <code>EllipseMorph new closestPointTo: 100@100</code> and that the method is defined as in Listing <a href="#scr:closestPoing">10.11</a>.</p>
+
+<figure class="code" id="scr:closestPoing"><pre><code>EllipseMorph &gt;&gt; closestPointTo: aPoint
+	^ self intersectionWithLineSegmentFromCenterTo: aPoint</code></pre><figcaption><span class="number">Listing 10.11</span> Another locally implemented method.</figcaption></figure>
+
+<p>The variable <code>self</code> will point to the new ellipse we created and <code>aPoint</code> will refer to the point <code>100@100</code>.
+Now exactly the same process will happen and this even if the method found by the method lookup finds the method in a superclass.</p>
+
+<p>When we send the message <code>EllipseMorph new openInWorld</code>.
+The method <code>openInWorld</code> is found in the <code>Morph</code> class.
+Still the variable <code>self</code> is bound to the newly created ellipse.
+This is why we say that <code>self</code> always represents the receiver of the message and this independently of the class in which the method was found.
+This is why there are two different steps during a message send: looking up the method within the class hierarchy of the message receiver and the method execution on the message receiver.</p>
+
+<h3 id="message-not-understood"><span class="number">10.9</span> Message not understood</h3>
+<p>What happens if the method we are looking for is not found?
+Suppose we send the message <code>foo</code> to our ellipse. First the normal method lookup will go through the inheritance chain all the way up to <code>Object</code> (or rather <code>ProtoObject</code>) looking for this method. When this method is not found, the virtual machine will cause the object to send <code>self doesNotUnderstand: #foo</code> (See Figure <a href="#fig:fooNotFound">10.2</a>).</p>
+
+<p><figure id="fig:fooNotFound"><img src="Chapters/PharoObjectModel/figures/fooNotFound.png" alt="Message  foo  is not understood. " style="width: 95%"><figcaption><span class="number">Figure 10.2</span> Message <code>foo</code> is not understood. </figcaption></img></figure></p>
+
+<p>Now, this is a perfectly ordinary, dynamic message send, so the lookup starts again from the class <code>EllipseMorph</code>, but this time searching for the method <code>doesNotUnderstand:</code>. As it turns out, <code>Object</code> implements <code>doesNotUnderstand:</code>. This method will create a new <code>MessageNotUnderstood</code> object which is capable of starting a Debugger in the current execution context.
+Why do we take this convoluted path to handle such an obvious error?
+Well, this offers developers an easy way to intercept such errors and take alternative action. One could easily override the method <code>Object&gt;&gt;doesNotUnderstand:</code> in any subclass of <code>Object</code> and provide a different way of handling the error.
+In fact, this can be an easy way to implement automatic delegation of messages from one object to another. A delegating object could simply delegate all messages it does not understand to another object whose responsibility it is to handle them, or raise an error itself!</p>
+
+<h3 id="about-returning-self"><span class="number">10.10</span> About returning self</h3>
+<p>Notice that the method <code>defaultColor</code> of the class <code>EllipseMorph</code> explicitly returns <code>Color yellow</code> (see Listing <a href="#EDefaultColor">10.9</a>), whereas the method <code>openInWorld</code> of <code>Morph</code> does not appear to return anything (see Listing <a href="#MopenInWorld">10.10</a>).
+Actually a method <i>always</i> answers a message with a value (which is, of course, an object). The answer may be defined by the <code>^</code> construct in the method, but if execution reaches the end of the method without executing a <code>^</code>, the method still answers a value -- it answers the object that received the message. We usually say that the method <i>answers self</i>, because in Pharo the pseudo-variable <code>self</code> represents the receiver of the message, much like the keyword <code>this</code> in Java. Other languages, such as Ruby, by default return the value of the last statement in the method. Again, this is not the case in Pharo, instead you can imagine that a method without an explicit return ends with <code>^ self</code>.</p>
+
+<q id="important"><code>self</code> always represents the receiver of the message.
+his suggests that <code>openInWorld</code> as defined in Listing <a href="#MopenInWorld">10.10</a> is equivalent to the hypothical method <code>openInWorldReturnSelf</code> defined in Listing <a href="#scr:openInWorldReturnSelf">10.12</a>.</q>
+<figure class="code" id="scr:openInWorldReturnSelf"><pre><code>Morph &gt;&gt; openInWorldReturnSelf
+    "Add this morph to the world."
+    self openInWorld: self currentWorld
+    ^ self</code></pre><figcaption><span class="number">Listing 10.12</span> Explicitly returning <code>self</code>.</figcaption></figure>
+
+<p>Why is explicitly writing <code>^ self</code> not a so good thing to do?
+When you return something explicitly, you are communicating that you are returning something of interest to the sender. When you explicitly return <code>self</code>, you are saying that you expect the sender to use the returned value. This is not the case here, so it is best not to explicitly return <code>self</code>. We only return <code>self</code> on special case to stress that the receiver is returned.
+This is a common idiom in Pharo, which Kent Beck refers to as <i>Interesting return value</i>: <i>"Return a value only when you intend for the sender to use the value."</i></p>
+
+<q id="important">By default (if not specified differently) a method returns the message receiver.</q>
+<h3 id="overriding-and-extension"><span class="number">10.11</span> Overriding and extension</h3>
+<p>If we look again at the <code>EllipseMorph</code> class hierarchy in Figure <a href="#fig:openInWorldLookup">10.1</a>, we see that the classes <code>Morph</code> and <code>EllipseMorph</code> both implement <code>defaultColor</code>. In fact, if we open a new morph (<code>Morph new openInWorld</code>) we see that we get a blue morph, whereas an ellipse will be yellow by default.
+We say that <code>EllipseMorph</code> <i>overrides</i> the <code>defaultColor</code> method that it inherits from <code>Morph</code>.
+The inherited method no longer exists from the point of view of <code>anEllipse</code>.
+Sometimes we do not want to override inherited methods, but rather <i>extend</i> them with some new functionality, that is, we would like to be able to invoke the overridden method <i>in addition to</i> the new functionality we are defining in the subclass. In Pharo, as in many object-oriented languages that support single inheritance, this can be done with the help of <code>super</code> sends.
+A frequent application of this mechanism is in the <code>initialize</code> method. Whenever a new instance of a class is initialized, it is critical to also initialize any inherited instance variables. However, the knowledge of how to do this is already captured in the <code>initialize</code> methods of each of the superclass in the inheritance chain. The subclass has no business even trying to initialize inherited instance variables!
+It is therefore good practice whenever implementing an <code>initialize</code> method to send <code>super initialize</code> before performing any further initialization as shown in Listing <a href="#scr:morphinit">10.13</a>.</p>
+
+<figure class="code" id="scr:morphinit"><pre><code>BorderedMorph &gt;&gt; initialize
+    "Initialize the state of the receiver"
+
+    super initialize.
+    self borderInitialize</code></pre><figcaption><span class="number">Listing 10.13</span> Super initialize.</figcaption></figure>
+
+<p>We need <code>super</code> sends to compose inherited behaviour that would otherwise be overridden.</p>
+
+<q id="important">It is a good practice that an <code>initialize</code> method starts by sending <code>super initialize</code>.</q>
+<h3 id="self-and-super-sends"><span class="number">10.12</span> Self and super sends</h3>
+<p><code>self</code> represents the receiver of the message and the lookup of the method starts in the class of the receiver. Now what is <code>super</code>? <code>super</code> is <i>not</i> the superclass! It is a common and natural mistake to think this. It is also a mistake to think that lookup starts in the superclass of the class of the receiver.</p>
+
+<q id="important"><code>self</code> represents the receiver of the message and the method lookup starts in the class of the receiver.</q>
+<h5 class="paragraph" id="how-do-self-sends-differ-from-super-sends">How do <code>self</code> sends differ from <code>super</code> sends?</h5>
+<p>Like <code>self</code>, <code>super</code> represents the receiver of the message. Yes you read it well! The only thing that changes is the method lookup. Instead of lookup starting in the class of the receiver, it starts in the <i>superclass of the class of the method where the <code>super</code> send occurs</i>.</p>
+
+<q id="important"><code>super</code> represents the receiver of the message and the method lookup starts in the superclass of the class of the method where the <code>super</code> send occurs.
+e shall see in the following example precisely how this works.
+magine that we define the following three methods: <code>Morph&gt;&gt;fullPrintOn:</code>, <code>Morph &gt;&gt; constructorString</code>, and <code>BorderedMorph &gt;&gt; fullPrintOn:</code></q>
+<p>First in Listing <a href="#scr:morphfullPrintOn">10.14</a>, we define the method <code>fullPrintOn:</code> on class <code>Morph</code> that just adds to the stream the name of the class followed by the string ' new' - the idea is that we could execute the resulting string and get back an instance similar to the receiver.</p>
+
+<figure class="code" id="scr:morphfullPrintOn"><pre><code>Morph &gt;&gt; fullPrintOn: aStream
+	aStream nextPutAll: self class name, ' new'</code></pre><figcaption><span class="number">Listing 10.14</span> A <code>self</code> send.</figcaption></figure>
+
+<p>Second we define the method <code>constructorString</code> that sends the message <code>fullPrintOn:</code> (see Listing <a href="#scr:constructorString">10.15</a>).</p>
+
+<figure class="code" id="scr:constructorString"><pre><code>Morph &gt;&gt; constructorString
+    ^ String streamContents: [ :s | self fullPrintOn: s  ].</code></pre><figcaption><span class="number">Listing 10.15</span> A <code>self</code> send.</figcaption></figure>
+
+<p>Finally, we define the method <code>fullPrintOn:</code> on the class <code>BorderedMorph</code>
+superclass of <code>EllipseMorph</code>. This new method extends the superclass behavior:
+it invokes it and adds extra behavior (see Listing <a href="#scr:fullPrintOn">10.16</a>).</p>
+
+<figure class="code" id="scr:fullPrintOn"><pre><code>BorderedMorph &gt;&gt; fullPrintOn: aStream
+    aStream nextPutAll: '('.
+    super fullPrintOn: aStream.
+    aStream
+        nextPutAll: ') setBorderWidth: ';
+        print: borderWidth;
+        nextPutAll: ' borderColor: ', (self colorString: borderColor)</code></pre><figcaption><span class="number">Listing 10.16</span> Combining <code>super</code> and <code>self</code> sends.</figcaption></figure>
+
+<p>Consider the message <code>constructorString</code> sent to an instance of <code>EllipseMorph</code>:</p>
+
+<pre><code>EllipseMorph new constructorString
+&gt;&gt;&gt; (EllipseMorph new) setBorderWidth: 1 borderColor: Color black'</code></pre>
+
+<p>How exactly is this result obtained through a combination of <code>self</code> and
+<code>super</code> sends?
+First, <code>anEllipse constructorString</code> will cause the method <code>constructorString</code> to be found in the class <code>Morph</code>, as shown in Figure <a href="#fig:constructorStringLookup">10.3</a>.</p>
+
+<p><figure id="fig:constructorStringLookup"><img src="Chapters/PharoObjectModel/figures/constructorStringLookup.png" alt="self  and  super  sends. " style="width: 95%"><figcaption><span class="number">Figure 10.3</span> <code>self</code> and <code>super</code> sends. </figcaption></img></figure></p>
+
+<p>The method <code>constructorString</code> of <code>Morph</code> performs a <code>self</code> send of <code>fullPrintOn:</code>.
+The method <code>fullPrintOn:</code> is looked up starting in the class <code>EllipseMorph</code>, and the method <code>fullPrintOn:</code> <code>BorderedMorph</code> is found in <code>BorderedMorph</code> (see Figure <a href="#fig:constructorStringLookup">10.3</a>).
+What is critical to notice is that the <code>self</code> send causes the method lookup to start again in the class of the receiver, namely the class of <code>anEllipse</code>.
+At this point, the method <code>fullPrintOn:</code>  of <code>BorderedMorph</code> does a <code>super</code> send to extend the <code>fullPrintOn:</code> behavior it inherits from its superclass.
+Because this is a <code>super</code> send, the lookup now starts in the superclass of the class where the <code>super</code> send occurs, namely in <code>Morph</code>. We then immediately find and execute the method <code>fullPrintOn:</code> of the class <code>Morph</code>.</p>
+
+<h3 id="stepping-back-2"><span class="number">10.13</span> Stepping back</h3>
+<p>A <code>self</code> send is dynamic in the sense that by looking at the method containing it, we cannot predict which method will be executed. Indeed an instance of a subclass may receive the message containing the self expression and redefine the method in that subclass. Here <code>EllipseMorph</code> could redefine the method <code>fullPrintOn:</code> and this method would be executed by method <code>constructorString</code>. Note that by only looking at the method <code>constructorString</code>, we cannot predict which <code>fullPrintOn:</code> method (either the one of <code>EllipseMorph</code>, <code>BorderedMorph</code>, or <code>Morph</code>) will be executed when executing the method <code>constructorString</code>, since it depends on the receiver the <code>constructorString</code> message.</p>
+
+<q id="important">A <code>self</code> send triggers a <i>method lookup starting in the class of the receiver.</i> A <code>self</code> send is dynamic in the sense that by looking at the method containing it, we cannot predict which method will be executed.</q>
+<p>Note that the <code>super</code> lookup did not start in the superclass of the receiver.
+This would have caused lookup to start from <code>BorderedMorph</code>, resulting in an infinite loop!
+If you think carefully about <code>super</code> send and Figure <a href="#fig:constructorStringLookup">10.3</a>, you will realize that <code>super</code> bindings are static: all that matters is the class in which the text of the <code>super</code> send is found. By contrast, the meaning of <code>self</code> is dynamic: it always represents the receiver of the currently executing message. This means that <i>all</i> messages sent to <code>self</code> are looked up by starting in the receiver's class.</p>
+
+<q id="important">A <code>super</code> send triggers a method lookup starting in the <i>superclass of the class of the method performing the <code>super</code> send</i>. We say that super sends are <i>static</i> because just looking at the method we know the class where the lookup should start (the class above the class containing the method).</q>
+<h3 id="the-instance-and-class-sides"><span class="number">10.14</span> The instance and class sides</h3>
+<p>Since classes are objects, they have their own instance variables and their own methods. We call these <i>class instance variables</i> and <i>class methods</i>, but they are really no different from ordinary instance variables and methods: They simply operate on different objects (classes in this case).
+An instance variable describes instance state and a method describes instance behavior.
+Similarly, class instance variables are just instance variables defined by a metaclass:</p>
+
+<ul>
+<li><i>Class instance variables</i> describe the state of classes. An example is the superclass instance variable that describes the superclass of a given class.</li>
+<li><i>Class methods</i> are just methods defined by a metaclass and that will be executed on classes. Sending the message <code>now</code> to the class <code>Time</code> is defined on the (meta)class <code>Time class</code>. This method is executed with the class <code>Time</code> as receiver.</li>
+</ul>
+<p>A class and its metaclass are two separate classes, even though the former is an instance of the latter. However, this is largely irrelevant to you as a programmer: you are concerned with defining the behavior of your objects and the classes that create them.</p>
+
+<p><figure id="fig:colorInstanceClassSide"><img src="Chapters/PharoObjectModel/figures/colorInstanceClassSide.png" alt="Browsing a class and its metaclass." style="width: 90%"><figcaption><span class="number">Figure 10.4</span> Browsing a class and its metaclass.</figcaption></img></figure>
+For this reason, the browser helps you to browse both class and metaclass as if they were a single thing with two "sides": the <i>instance side</i> and the <i>class side</i>, as shown in Figure <a href="#fig:colorInstanceClassSide">10.4</a>.</p>
+
+<ul>
+<li>By default, when you select a class in the browser, you're browsing the <i>instance side</i> i.e., the methods that are executed when messages are sent to an <i>instance</i> of <code>Color</code>.</li>
+<li>Clicking on the <strong>Class side</strong> button switches you over to the <i>class side</i>: the methods that will be executed when messages are sent to the <i>class</i> <code>Color</code> itself.</li>
+</ul>
+<p>For example, <code>Color paleBlue</code> sends the message <code>paleBlue</code> to the class <code>Color</code> (see Listing <a href="#paleBlue">10.17</a>). You will therefore find the method <code>paleBlue</code> defined on the <i>class side</i> of <code>Color</code>, not on the instance side.</p>
+
+<figure class="code" id="paleBlue"><pre><code>Color paleBlue
+&gt;&gt;&gt; Color paleBlue
+"Color instances are self-evaluating"</code></pre><figcaption><span class="number">Listing 10.17</span> The class method <code>blue</code> (defined on the class-side).</figcaption></figure>
+
+<p>Note that the class <code>Color</code> also defines an instance side method <code>blue</code> to access the blue component of a color. So you can send the message <code>blue</code> to the <code>Color</code> instance returned by the expression <code>Color paleBlue</code> as in Listing <a href="#paleblueblue">10.18</a>.</p>
+
+<figure class="code" id="paleblueblue"><pre><code>Color paleBlue blue
+&gt;&gt;&gt;  0.9951124144672532</code></pre><figcaption><span class="number">Listing 10.18</span> Using the accessor method <code>blue</code> (defined on the instance-side).</figcaption></figure>
+
+<h4 id="metaclass-creation">Metaclass creation</h4>
+<p>You define a class by filling in the template proposed on the instance side. When you compile this template, the system creates not just the class that you defined, but also the corresponding metaclass (which you can then edit by clicking on the <strong>Class side</strong> button). The only part of the metaclass creation template that makes sense for you to edit directly is the list of the metaclass's instance variable names.
+Once a class has been created, browsing its instance side lets you edit and browse the methods that will be possessed by instances of that class (and of its subclasses).</p>
+
+<h3 id="class-methods"><span class="number">10.15</span> Class methods</h3>
+<p>Class methods can be quite useful, you can browse <code>Color class</code> for some good examples: You will see that there are two kinds of methods defined on a class: <i>instance creation methods</i>, like the class method <code>blue</code> in the class <code>Color class</code>, and those that perform a utility function, like <code>Color class&gt;&gt;wheel:</code>. This is typical, although you will occasionally find class methods used in other ways.
+It is convenient to place utility methods on the class side because they can be executed without having to create any additional objects first. Indeed, many of them will contain a comment designed to make it easy to execute them.
+Browse method <code>Color class&gt;&gt;wheel:</code>, double-click just at the beginning of the comment <code>"(Color wheel: 12) inspect"</code> and press <code>CMD-d</code>. You will see the effect of executing this method.
+For those familiar with Java and C++, class methods may seem similar to static methods. However, the uniformity of the Pharo object model (where classes are just regular objects) means that they are somewhat different: Whereas Java static methods are really just statically-resolved procedures, Pharo class methods are dynamically-dispatched methods. This means that inheritance, overriding and super-sends work for class methods in Pharo, whereas they don't work for static methods in Java.</p>
+
+<h3 id="class-instance-variables"><span class="number">10.16</span> Class instance variables</h3>
+<p>With ordinary <i>instance</i> variables, all the instances of a class have the same set of variables (though each instance has its own private set of values), and the instances of its subclasses inherit those variables.
+The story is exactly the same with <i>class</i> instance variables: a class is an object instance of another class. Therefore the class instance variables are defined on such classes and each class has its own private values for the class instance variables.
+Instance variables also work. Class instance variables are inherited: A subclass will inherit those class instance variables, <i>but a subclass will have its own private copies of those variables</i>. Just as objects don't share instance variables, neither do classes and their subclasses share class instance variables.
+For example, you could use a class instance variable called <code>count</code> to keep track of how many instances you create of a given class. However, any subclass would have its own <code>count</code> variable, so subclass instances would be counted separately. The following section presents an example.</p>
+
+<h3 id="example-class-instance-variables-and-subclasses"><span class="number">10.17</span> Example: Class instance variables and subclasses</h3>
+<p>Suppose we define the class <code>Dog</code>, and its subclass <code>Hyena</code>. Suppose that we add a <code>count</code> class instance variable to the class <code>Dog</code> (i.e., we define it on the metaclass <code>Dog class</code>). <code>Hyena</code> will naturally inherit the class instance variable <code>count</code> from <code>Dog</code>.</p>
+
+<figure class="code"><pre><code>Object subclass: #Dog
+    instanceVariableNames: ''
+    classVariableNames: ''
+    package: 'Example'</code></pre><figcaption><span class="number">Listing 10.19</span> Dog class definition.</figcaption></figure>
+
+<figure class="code"><pre><code>Dog class
+    instanceVariableNames: 'count'</code></pre><figcaption><span class="number">Listing 10.20</span> Adding a class instance variable.</figcaption></figure>
+
+<figure class="code"><pre><code>Dog subclass: #Hyena
+    instanceVariableNames: ''
+    classVariableNames: ''
+    package: 'Example'</code></pre><figcaption><span class="number">Listing 10.21</span> Hyena class definition.</figcaption></figure>
+
+<p>Now suppose we define class methods for <code>Dog</code> to initialize its <code>count</code> to <code>0</code>, and to increment it when new instances are created:</p>
+
+<figure class="code" id="scr:dogCount"><pre><code>Dog class &gt;&gt; initialize
+    count := 0.</code></pre><figcaption><span class="number">Listing 10.22</span> Initialize the count of dogs.</figcaption></figure>
+
+<figure class="code"><pre><code>Dog class &gt;&gt; new
+    count := count +1.
+    ^ super new</code></pre><figcaption><span class="number">Listing 10.23</span> Keeping count of new dogs.</figcaption></figure>
+
+<figure class="code"><pre><code>Dog class &gt;&gt; count
+    ^ count</code></pre><figcaption><span class="number">Listing 10.24</span> Accessing to count.</figcaption></figure>
+
+<p>Now when we create a new <code>Dog</code>, the <code>count</code> value of the class <code>Dog</code> is incremented, and so is that of the class <code>Hyena</code> (but the hyenas are counted separately).</p>
+
+<h4 id="about-class-initialize">About class <code>initialize</code></h4>
+<p>When you instantiate an object such as <code>Dog new</code>, <code>initialize</code> is called automatically as part of the <code>new</code> message send (you can see for yourself by browsing the method <code>new</code> in the class <code>Behavior</code>). But with classes, simply defining them does not automatically call <code>initialize</code> because it is not clear to the system if a class is fully working. So we have to call <code>initialize</code> explicitly here.
+By default class <code>initialize</code> methods are automatically executed only when classes are loaded. See also the discussion about lazy initialization, below.</p>
+
+<figure class="code" id="scr:dogCount2"><pre><code>Dog initialize.
+Hyena initialize.
+Dog count
+&gt;&gt;&gt; 0</code></pre><figcaption><span class="number">Listing 10.25</span> </figcaption></figure>
+
+<pre><code>Hyena count
+&gt;&gt;&gt; 0</code></pre>
+
+<pre><code>| aDog |
+aDog := Dog new.
+Dog count
+&gt;&gt;&gt; 1  "Incremented"</code></pre>
+
+<pre><code>Hyena count
+&gt;&gt;&gt; 0  "Still the same"</code></pre>
+
+<h3 id="stepping-back-3"><span class="number">10.18</span> Stepping back</h3>
+<p>Class instance variables are private to a class in exactly the same way that instance variables are private to an instance. Since classes and their instances are different objects, this has the following consequences:
+<strong>1.</strong> A class does not have access to the instance variables of its own instances. So, the class <code>Color</code> does not have access to the variables of an object instantiated from it, <code>aColorRed</code>. In other words, just because a class was used to create an instance (using <code>new</code> or a helper instance creation method like <code>Color red</code>), it doesn't give <i>the class</i> any special direct access to that instance's variables. The class instead has to go through the accessor methods (a public interface) just like any other object.
+<strong>2.</strong> The reverse is also true: an <i>instance</i> of a class does not have access to the class instance variables of its class. In our example above, <code>aDog</code> (an individual instance) does not have direct access to the <code>count</code> variable of the <code>Dog</code> class (except, again, through an accessor method).</p>
+
+<q id="important">A class does not have access to the instance variables of its own instances. An instance of a class does not have access to the class instance variables of its class.
+or this reason, instance initialization methods must always be defined on the instance side, the class side has no access to instance variables, and so cannot initialize them! All that the class can do is to send initialization messages, using accessors, to newly created instances.
+ava has nothing equivalent to class instance variables. Java and C++ static variables are more like Pharo class variables (discussed in Section <a href="#sec:classVars">10.22</a>), since in those languages all of the subclasses and
+ll of their instances share the same static variable.</q>
+<h3 id="example-defining-a-singleton"><span class="number">10.19</span> Example: Defining a Singleton</h3>
+<p>Singleton is the most misunderstood design pattern. When wrongly applied, it favors procedural style promoting single global access. However, the Singleton pattern provides a typical example of the use of class instance variables and class methods.
+Imagine that we would like to implement a class <code>WebServer</code>, and to use the Singleton pattern to ensure that it has only one instance.
+First, we define the class <code>WebServer</code> as follows:</p>
+
+<pre><code>Object subclass: #WebServer
+    instanceVariableNames: 'sessions'
+    classVariableNames: ''
+    package: 'Web'</code></pre>
+
+<p>Then, clicking on the <strong>Class side</strong> button, we add the (class) instance variable <code>uniqueInstance</code>.</p>
+
+<pre><code>WebServer class
+    instanceVariableNames: 'uniqueInstance'</code></pre>
+
+<p>As a result, the class <code>WebServer class</code> will have a new instance variable (in addition to the variables that it inherits from <code>Behavior</code>, such as <code>superclass</code> and <code>methodDict</code>). It means that the value of this extra instance variable will describe the instance of the class <code>WebServer class</code> i.e., the class <code>WebServer</code>. The following code snippets show you the difference between the variables of the class <code>Object</code> and the class <code>WebServer</code>.</p>
+
+<pre><code>Object class allInstVarNames
+&gt;&gt;&gt;  #(#superclass #methodDict #format #layout #organization 
+#subclasses #name #classPool #sharedPools #environment #category)</code></pre>
+
+<pre><code>WebServer class allInstVarNames
+&gt;&gt;&gt;  #(#superclass #methodDict #format #layout #organization 
+#subclasses #name #classPool #sharedPools #environment #category #uniqueInstance)</code></pre>
+
+<p>We can now define a class method named <code>uniqueInstance</code>.</p>
+
+<figure class="code" id="scr:uniqueInstance"><pre><code>WebServer class &gt;&gt; uniqueInstance
+     uniqueInstance ifNil: [ uniqueInstance := self new ].
+     ^ uniqueInstance</code></pre><figcaption><span class="number">Listing 10.26</span> </figcaption></figure>
+
+<p>This method first checks whether <code>uniqueInstance</code> has been initialized. If it has not, the method creates an instance and assigns it to the class instance variable <code>uniqueInstance</code>. Finally the value of <code>uniqueInstance</code> is returned.</p>
+
+<p>Since <code>uniqueInstance</code> is a class instance variable, this method can directly access it.
+The first time that <code>WebServer uniqueInstance</code> is executed, an instance of the class <code>WebServer</code> will be created and assigned to the <code>uniqueInstance</code> variable. The next time, the previously created instance will be returned instead of creating a new one. (This pattern, checking if a variable is nil in an accessor method, and initializing its value if it is nil, is called <i>lazy initialization</i>).</p>
+
+<p>Note that the instance creation code in the code above. Script <a href="#scr:uniqueInstance">10.26</a> is written as <code>self new</code> and not as <code>WebServer new</code>. What is the difference? Since the <code>uniqueInstance</code> method is defined in <code>WebServer class</code>, you might think that there is no difference. And indeed, until someone creates a subclass of <code>WebServer</code>, they are the same. But suppose that <code>ReliableWebServer</code> is a subclass of <code>WebServer</code>, and inherits the <code>uniqueInstance</code> method. We would clearly expect <code>ReliableWebServer uniqueInstance</code> to answer a <code>ReliableWebServer</code>.</p>
+
+<p>Using <code>self</code> ensures that this will happen, since <code>self</code> will be bound to the respective receiver, here the classes <code>WebServer</code> and <code>ReliableWebServer</code>. Note also that <code>WebServer</code> and <code>ReliableWebServer</code> will each have a different value for their <code>uniqueInstance</code> instance variable.</p>
+
+<h3 id="a-note-on-lazy-initialization"><span class="number">10.20</span> A note on lazy initialization</h3>
+<p>The setting of initial values for instances of objects generally belongs in the <code>initialize</code> method.
+Putting initialization calls only in <code>initialize</code> helps from a readability perspective -- you don't have to hunt through all the accessor methods to see what the initial values are. Although it may be tempting to instead initialize instance variables in their respective accessor methods (using <code>ifNil:</code>
+checks), avoid this unless you have a good reason.
+<i>Do not over-use the lazy initialization pattern.</i>
+For example, in our <code>uniqueInstance</code> method above, we used lazy initialization because users won't typically expect to call <code>WebServer initialize</code>. Instead, they expect the class to be "ready" to return new unique instances. Because of this, lazy initialization makes sense. Similarly, if a variable is expensive to initialize (opening a database connection or a network socket, for example), you will sometimes choose to delay that initialization until you actually need it.</p>
+
+<h3 id="shared-variables"><span class="number">10.21</span> Shared variables</h3>
+<p>Now we will look at an aspect of Pharo that is not so easily covered by our rules: shared variables.
+Pharo provides three kinds of shared variables:
+<strong>1.</strong> <i>Globally</i> shared variables.
+<strong>2.</strong> <i>Class variables</i>: variables shared between instances and classes. (Not to be confused with class instance variables, discussed earlier).
+<strong>3.</strong> <i>Pool variables</i>: variables shared amongst a group of classes,
+The names of all of these shared variables start with a capital letter, to warn us that they are indeed shared between multiple objects.</p>
+
+<h4 id="global-variables">Global variables</h4>
+<p>In Pharo, all global variables are stored in a namespace called <code>Smalltalk globals</code>, which is implemented as an instance of the class <code>SystemDictionary</code>. Global variables are accessible everywhere. Every class is named by a global variable. In addition, a few globals are used to name special or commonly useful objects.
+The variable <code>Processor</code> refers to an instance of <code>ProcessorScheduler</code>, the main process scheduler of Pharo.</p>
+
+<pre><code>Processor class
+&gt;&gt;&gt; ProcessorScheduler</code></pre>
+
+<h4 id="other-useful-global-variables">Other useful global variables</h4>
+<p><strong><code>Smalltalk</code></strong> is the instance of <code>SmalltalkImage</code>. It contains many functionality to manage the system. In particular it holds a reference to the main namespace <code>Smalltalk globals</code>. This namespace includes <code>Smalltalk</code> itself since it is a global variable. The keys to this namespace are the symbols that name the global objects in Pharo code. So, for example:</p>
+
+<pre><code>Smalltalk globals at: #Boolean
+&gt;&gt;&gt; Boolean</code></pre>
+
+<p>Since <code>Smalltalk</code> is itself a global variable:</p>
+
+<pre><code>Smalltalk globals at: #Smalltalk
+&gt;&gt;&gt; Smalltalk</code></pre>
+
+<pre><code>(Smalltalk globals at: #Smalltalk) == Smalltalk
+&gt;&gt;&gt; true</code></pre>
+
+<p><strong><code>World</code></strong> is an instance of <code>PasteUpMorph</code> that represents the screen. <code>World bounds</code> answers a rectangle that defines the whole screen space; all Morphs on the screen are submorphs of <code>World</code>.
+<strong><code>Undeclared</code></strong> is another dictionary, which contains all the undeclared variables.
+If you write a method that references an undeclared variable starting with an uppercase, the browser will normally prompt you to declare it, for example as a global, class or class variable. However, if you later delete the declaration, the code will then reference an undeclared variable. Inspecting <code>Undeclared</code> can sometimes help explain strange behavior!</p>
+
+<h4 id="using-globals-in-your-code">Using globals in your code</h4>
+<p>The recommended practice is to strictly limit the use of global variables. It is
+usually better to use class instance variables or class variables and to provide class methods to access them. Indeed, if Pharo were to be implemented from scratch today, most of the global variables that are not classes would be replaced by singletons or others.
+The usual way to define a global is just to perform <code>Do it</code> on an assignment to a capitalized but undeclared identifier. The parser will then offer to declare the global for you. If you want to define a global programmatically, just execute <code>Smalltalk globals at: #AGlobalName put: nil</code>. To remove it, execute <code>Smalltalk globals removeKey: #AGlobalName</code>.</p>
+
+<h3><span class="number">10.22</span> Class variables: Shared variables</h3><a id="sec:classVars"></a>
+<p>Sometimes we need to share some data amongst all the instances of a class and the class itself. This is possible using <i>class variables</i>. The term <i>class variable</i> indicates that the lifetime of the variable is the same as that of the class. However, what the term does not convey is that these variables are shared amongst all the instances of a class as well as the class itself, as shown in Figure <a href="#fig:privateSharedVar">10.5</a>.</p>
+
+<p>Indeed, a better name would have been <i>shared variables</i> since this expresses more clearly their role, and also warns of the danger of using them, particularly if they are modified.</p>
+
+<p><figure id="fig:privateSharedVar"><img src="Chapters/PharoObjectModel/figures/privateSharedVarColor.png" alt="Instance and class methods accessing different variables. " style="width: 80%"><figcaption><span class="number">Figure 10.5</span> Instance and class methods accessing different variables. </figcaption></img></figure></p>
+
+<p>In Figure <a href="#fig:privateSharedVar">10.5</a> we see that <code>rgb</code> and <code>cachedDepth</code> are
+instance variables of <code>Color</code>, hence only accessible to instances of <code>Color</code>.
+We also see that <code>superclass</code>, <code>subclass</code>, <code>methodDict</code> and so on are <i>class instance variables</i>, i.e., instance variables only accessible to the <code>Color</code> class.
+But we can also see something new: <code>ColorRegistry</code> and <code>CachedColormaps</code> are
+<i>class variables</i> defined for <code>Color</code>. The capitalization of these variables
+gives us a hint that they are shared. In fact, not only may all instances of
+<code>Color</code> access these shared variables, but also the <code>Color</code> class itself,
+<i>and any of its subclasses</i>. Both instance methods and class methods can
+access these shared variables.</p>
+
+<p>A class variable is declared in the class definition template. For example, the
+class <code>Color</code> defines a large number of class variables to speed up color
+creation; its definition is show in the Script <a href="#scr:classDefColor">10.27</a>.</p>
+
+<figure class="code" id="scr:classDefColor"><pre><code>Object subclass: #Color
+	instanceVariableNames: 'rgb cachedDepth cachedBitPattern alpha'
+	classVariableNames: 'BlueShift CachedColormaps ColorRegistry ComponentMask ComponentMax GrayToIndexMap GreenShift HalfComponentMask IndexedColors MaskingMap RedShift'
+	package: 'Colors-Base'</code></pre><figcaption><span class="number">Listing 10.27</span> Color and its class variables.</figcaption></figure>
+
+<p>The class variable <code>ColorRegistry</code> is an instance of <code>IdentityDictionary</code> containing the frequently-used colors, referenced by name. This dictionary is shared by all the instances of <code>Color</code>, as well as the class itself. It is accessible from all the instance and class methods.</p>
+
+<h5 class="paragraph" id="class-initialization">Class initialization</h5>
+<p>The presence of class variables raises the question: how do we initialize them?
+One solution is lazy initialization (discussed earlier in this chapter). This
+can be done by introducing an accessor method which, when executed, initializes
+the variable if it has not yet been initialized (as shown in Listing <a href="#colornames">10.28</a>).
+This implies that we must use the accessor all the time and never use the class variable directly.
+This furthermore imposes the cost of the accessor send and the initialization test.</p>
+
+<figure class="code" id="colornames"><pre><code>ColorNames
+   ColorNames ifNil: [ self initializeNames ].
+   ^ ColorNames</code></pre><figcaption><span class="number">Listing 10.28</span> Using Lazy initialization.</figcaption></figure>
+
+<p>Another solution is to override the class method <code>initialize</code> (we've seen this
+before in the Dog example).</p>
+
+<figure class="code" id="scr:colorClassInit2"><pre><code>Color class &gt;&gt; initialize
+    ...
+    self initializeColorRegistry.
+    ...</code></pre><figcaption><span class="number">Listing 10.29</span> Initializing the <code>Color</code> class.</figcaption></figure>
+
+<p>If you adopt this solution, you will need to remember to invoke the <code>initialize</code> method after you define it (by evaluating <code>Color initialize</code>). Although class side <code>initialize</code> methods are executed automatically when code is loaded into memory (from a Monticello repository, for example), they are
+<i>not</i> executed automatically when they are first typed into the browser and compiled, or when they are edited and re-compiled.</p>
+
+<h3 id="pool-variables"><span class="number">10.23</span> Pool variables</h3>
+<p>Pool variables are variables that are shared between several classes that may not be related by inheritance. Pool variables should be defined as class variables of dedicated classes (subclasses of <code>SharedPool</code> as shown below). Our advice is to avoid them; you will need them only in rare and specific circumstances. Our goal here is therefore to explain pool variables just enough so that you can understand them when you are reading code.</p>
+
+<p>A class that accesses a pool variable must mention the pool in its class definition.
+For example, the class <code>Text</code> indicates that it is using the pool <code>TextConstants</code>, which contains all the text constants such as <code>CR</code> and <code>LF</code>.
+<code>TextConstants</code> defines the variable <code>CR</code> that is bound to the value <code>Character cr</code>, i.e., the carriage return character.</p>
+
+<figure class="code" id="scr:textPoolDict"><pre><code>ArrayedCollection subclass: #Text
+        instanceVariableNames: 'string runs'
+        classVariableNames: ''
+        poolDictionaries: 'TextConstants'
+        package: 'Collections-Text'</code></pre><figcaption><span class="number">Listing 10.30</span> Pool dictionaries in the <code>Text</code> class.</figcaption></figure>
+
+<p>This allows methods of the class <code>Text</code> to access the variables of the shared pool in the method body <i>directly</i>. For example, we can write the following method. We see that even though <code>Text</code> does not define a variable <code>CR</code>, since it declared that it uses the shared pool <code>TextConstants</code>, it can directly access it.</p>
+
+<figure class="code" id="scr:textTestCR"><pre><code>Text &gt;&gt; testCR
+    ^ CR == Character cr</code></pre><figcaption><span class="number">Listing 10.31</span> <code>Text&gt;&gt;testCR</code>.</figcaption></figure>
+
+<p>Here is how <code>TextConstants</code> is created. <code>TextConstants</code> is a special class subclass of <code>SharedPool</code> and it holds class variables.</p>
+
+<pre><code>SharedPool subclass: #TextConstants
+	instanceVariableNames: ''
+	classVariableNames: 'BS BS2 Basal Bold CR Centered Clear CrossedX CtrlA CtrlB CtrlC 
+	CtrlD CtrlDigits CtrlE CtrlF CtrlG CtrlH 
+	CtrlI CtrlJ CtrlK CtrlL CtrlM CtrlN CtrlO CtrlOpenBrackets CtrlP CtrlQ CtrlR CtrlS CtrlT 
+	CtrlU CtrlV CtrlW CtrlX CtrlY CtrlZ Ctrla Ctrlb Ctrlc Ctrld Ctrle Ctrlf Ctrlg Ctrlh Ctrli 
+	Ctrlj Ctrlk Ctrll Ctrlm Ctrln Ctrlo Ctrlp Ctrlq Ctrlr Ctrls Ctrlt Ctrlu Ctrlv Ctrlw 
+	Ctrlx Ctrly Ctrlz DefaultBaseline DefaultFontFamilySize DefaultLineGrid DefaultMarginTabsArray 
+	DefaultMask DefaultRule DefaultSpace DefaultTab DefaultTabsArray ESC EndOfRun Enter Italic 
+	Justified LeftFlush LeftMarginTab RightFlush RightMarginTab Space Tab TextSharedInformation'
+	package: 'Text-Core-Base'</code></pre>
+
+<p>Once again, we recommend that you avoid the use of pool variables and pool dictionaries.</p>
+
+<h3 id="abstract-methods-and-abstract-classes"><span class="number">10.24</span> Abstract methods and abstract classes</h3>
+<p>An abstract class is a class that exists to be subclassed, rather than to be
+instantiated. An abstract class is usually incomplete, in the sense that it does
+not define all of the methods that it uses. The "placeholder" methods, those
+that the other methods assume to be (re)defined are called abstract methods.
+Pharo has no dedicated syntax to specify that a method or a class is abstract.
+Instead, by convention, the body of an abstract method consists of the expression <code>self subclassResponsibility</code>. This indicates that subclasses have the responsibility to define a concrete version of the method. <code>self subclassResponsibility</code> methods should always be overridden, and thus should never be executed. If you forget to override one, and it is executed, an exception will be raised.
+Similarly, a class is considered abstract if one of its methods is abstract. Nothing actually prevents you from creating an instance of an abstract class; everything will work until an abstract method is invoked.</p>
+
+<h3 id="example-the-abstract-class-magnitude"><span class="number">10.25</span> Example: the abstract class <code>Magnitude</code></h3>
+<p><code>Magnitude</code> is an abstract class that helps us to define objects that can be compared to each other. Subclasses of <code>Magnitude</code> should implement the methods <code>&lt;</code>, <code></code>= and <code>hash</code>. Using such messages, <code>Magnitude</code> defines other methods such as <code>&gt;</code>, <code>&gt;</code>=, <code>&lt;</code>=, <code>max:</code>, <code>min:</code> <code>between:and:</code> and others for comparing objects. Such methods are inherited by subclasses. The method <code>Magnitude&gt;&gt;&lt;</code> is abstract using the message <code>subclassResponsibility</code>, and defined as follows:</p>
+
+<figure class="code" id="scr:MagnitudeLessThan"><pre><code>Magnitude &gt;&gt; &lt; aMagnitude
+    "Answer whether the receiver is less than the argument."
+
+    ^self subclassResponsibility</code></pre><figcaption><span class="number">Listing 10.32</span> <code>Magnitude&gt;&gt; &lt;</code>.</figcaption></figure>
+
+<p>By contrast, the method <code>&gt;</code>= is concrete, and is defined in terms of <code>&lt;</code>.</p>
+
+<figure class="code" id="scr:MagnitudeGTE"><pre><code>Magnitude &gt;&gt; &gt;= aMagnitude
+    "Answer whether the receiver is greater than or equal to the argument."
+
+    ^(self &lt; aMagnitude) not</code></pre><figcaption><span class="number">Listing 10.33</span> <code>Magnitude&gt;&gt; &gt;</code>=.</figcaption></figure>
+
+<p>The same is true of the other comparison methods (they are all defined in terms
+of the abstract method <code>&lt;</code>).
+<code>Character</code> is a subclass of <code>Magnitude</code>; it overrides the <code>&lt;</code> method with its own version (see the method definition below). Remember that this method is declared as abstract in the class <code>Magnitude</code>.
+<code>Character</code> also explicitly defines methods <code></code>= and <code>hash</code>; it inherits from <code>Magnitude</code> the methods <code>&gt;</code>=, <code>&lt;</code>=, <code>~</code>= and others.</p>
+
+<figure class="code" id="scr:characterLessThan"><pre><code>Character &gt;&gt; &lt; aCharacter
+    "Answer true if the receiver's value &lt; aCharacter's value."
+
+    ^self asciiValue &lt; aCharacter asciiValue</code></pre><figcaption><span class="number">Listing 10.34</span> <code>Character&gt;&gt; &lt;</code>=.</figcaption></figure>
+
+<h3 id="chapter-summary-6"><span class="number">10.26</span> Chapter summary</h3>
+<p>The object model of Pharo is both simple and uniform. Everything is an object, and pretty much everything happens by sending messages.</p>
+
+<ul>
+<li>Everything is an object. Primitive entities like integers are objects, but also classes are first-class objects.</li>
+<li>Every object is an instance of a class. Classes define the structure of their instances via <i>private</i> instance variables and the behavior of their instances via <i>public</i> methods. Each class is the unique instance of its metaclass. Class variables are private variables shared by the class and all the instances of the class. Classes cannot directly access instance variables of their instances, and instances cannot access instance variables of their class. Accessors must be defined if this is needed.</li>
+<li>Every class has a superclass. The root of the single inheritance hierarchy is <code>ProtoObject</code>. Classes you define, however, should normally inherit from <code>Object</code> or its subclasses. There is no syntax for defining abstract classes. An abstract class is simply a class with an abstract method (one whose implementation consists of the expression <code>self subclassResponsibility</code>). Although Pharo supports only single inheritance, it is easy to share implementations of methods by packaging them as <i>traits</i> as explained in the next chapter.</li>
+<li>Everything happens by sending messages. We do not <i>call methods</i>, we <i>send messages</i>. The receiver then chooses its own method for responding to the message.</li>
+<li>Method lookup follows the inheritance chain; <code>self</code> sends are dynamic and start the method lookup in the class of the receiver, whereas <code>super</code> sends start the method lookup in the superclass of class in which the <code>super</code> send is written. From this perspective <code>super</code> sends are more static than <code>self</code> sends.</li>
+<li>There are three kinds of shared variables. Global variables are accessible everywhere in the system. Class variables are shared between a class, its subclasses and its instances. Pool variables are shared between a selected set of classes. You should avoid shared variables as much as possible.</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="understanding-message.html">← Understanding message syntax</a>
+        <a class="next" rel="next" href="traits-reusable-class.html">Traits: reusable class fragments →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

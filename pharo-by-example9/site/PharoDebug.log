@@ -1,0 +1,3387 @@
+THERE_BE_DRAGONS_HERE
+Identifier conflict (requestedFile)
+6 August 2025 12:15:07.159551 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.695.sha.6103a275f1acabf1b4db65b335ed82e6dd9f1e87 (64 Bit)]
+
+ClapCommandSpec(ClapParameterized)>>signalIdentifierConflictOf:with:
+	Receiver: a ClapCommandSpec(referenceCheck)
+	Arguments and temporary variables: 
+		newParameter: 	a ClapPositional(requestedFile)
+		currentParameter: 	a ClapPositional(requestedFile)
+	Receiver's instance variables: 
+		identifier: 	#referenceCheck
+		canonicalName: 	nil
+		description: 	'Check the duplicated or unknown references as well as missing[..]
+		multiple: 	false
+		meaningBlock: 	nil
+		validationBlock: 	nil
+		implicitMeaningBlock: 	nil
+		parameters: 	an OrderedDictionary(#requestedFile->a ClapPositional(requested[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFile))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help))
+		subcommands: 	an OrderedCollection()
+		commandClass: 	ClapMicrodownBookReferenceCheckerCommand
+
+
+[ :param | self signalIdentifierConflictOf: aParameter with: param ] in ClapCommandSpec(ClapParameterized)>>add:
+	Receiver: a ClapCommandSpec(referenceCheck)
+	Arguments and temporary variables: 
+		aParameter: 	a ClapPositional(requestedFile)
+		param: 	a ClapPositional(requestedFile)
+	Receiver's instance variables: 
+		identifier: 	#referenceCheck
+		canonicalName: 	nil
+		description: 	'Check the duplicated or unknown references as well as missing[..]
+		multiple: 	false
+		meaningBlock: 	nil
+		validationBlock: 	nil
+		implicitMeaningBlock: 	nil
+		parameters: 	an OrderedDictionary(#requestedFile->a ClapPositional(requested[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFile))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help))
+		subcommands: 	an OrderedCollection()
+		commandClass: 	ClapMicrodownBookReferenceCheckerCommand
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :param | self signalIdentifierConflictOf: aParameter with: param ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapPositional(requestedFile)
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandSpec(ClapParameterized)>>add:
+		compiledBlock: 	a CompiledBlock: [ :param | self signalIdentifierConflictOf:[..]
+		numArgs: 	1
+		receiver: 	a ClapCommandSpec(referenceCheck)
+
+
+[:v | ^ aPresentBlock cull: v] in Dictionary>>at:ifPresent:ifAbsent:
+	Receiver: a Dictionary(#requestedFile->a ClapPositional(requestedFile) )
+	Arguments and temporary variables: 
+		key: 	#requestedFile
+		aPresentBlock: 	[ :param | self signalIdentifierConflictOf: aParameter with:[..]
+		anAbsentBlock: 	[ self at: aKey put: anAbsentBlock value ]
+		v: 	a ClapPositional(requestedFile)
+	Receiver's instance variables: 
+		tally: 	1
+		array: 	an Array(#requestedFile->a ClapPositional(requestedFile) nil nil nil[..]
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [:v | ^ aPresentBlock cull: v]
+	Arguments and temporary variables: 
+		anArg: 	a ClapPositional(requestedFile)
+	Receiver's instance variables: 
+		outerContext: 	Dictionary>>at:ifPresent:ifAbsent:
+		compiledBlock: 	a CompiledBlock: [:v | ^ aPresentBlock cull: v]
+		numArgs: 	1
+		receiver: 	a Dictionary(#requestedFile->a ClapPositional(requestedFile) )
+
+
+Dictionary>>at:ifPresent:
+	Receiver: a Dictionary(#requestedFile->a ClapPositional(requestedFile) )
+	Arguments and temporary variables: 
+		key: 	#requestedFile
+		aBlock: 	[:v | ^ aPresentBlock cull: v]
+		assoc: 	#requestedFile->a ClapPositional(requestedFile)
+	Receiver's instance variables: 
+		tally: 	1
+		array: 	an Array(#requestedFile->a ClapPositional(requestedFile) nil nil nil[..]
+
+
+Dictionary>>at:ifPresent:ifAbsent:
+	Receiver: a Dictionary(#requestedFile->a ClapPositional(requestedFile) )
+	Arguments and temporary variables: 
+		key: 	#requestedFile
+		aPresentBlock: 	[ :param | self signalIdentifierConflictOf: aParameter with:[..]
+		anAbsentBlock: 	[ self at: aKey put: anAbsentBlock value ]
+	Receiver's instance variables: 
+		tally: 	1
+		array: 	an Array(#requestedFile->a ClapPositional(requestedFile) nil nil nil[..]
+
+
+OrderedDictionary>>at:ifPresent:ifAbsentPut:
+	Receiver: an OrderedDictionary(#requestedFile->a ClapPositional(requestedFile))
+	Arguments and temporary variables: 
+		aKey: 	#requestedFile
+		aPresentBlock: 	[ :param | self signalIdentifierConflictOf: aParameter with:[..]
+		anAbsentBlock: 	a ClapPositional(requestedFile)
+	Receiver's instance variables: 
+		dictionary: 	a Dictionary(#requestedFile->a ClapPositional(requestedFile) )
+		orderedKeys: 	#(#requestedFile nil nil nil nil nil nil nil nil nil)
+
+
+ClapCommandSpec(ClapParameterized)>>add:
+	Receiver: a ClapCommandSpec(referenceCheck)
+	Arguments and temporary variables: 
+		aParameter: 	a ClapPositional(requestedFile)
+	Receiver's instance variables: 
+		identifier: 	#referenceCheck
+		canonicalName: 	nil
+		description: 	'Check the duplicated or unknown references as well as missing[..]
+		multiple: 	false
+		meaningBlock: 	nil
+		validationBlock: 	nil
+		implicitMeaningBlock: 	nil
+		parameters: 	an OrderedDictionary(#requestedFile->a ClapPositional(requested[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFile))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help))
+		subcommands: 	an OrderedCollection()
+		commandClass: 	ClapMicrodownBookReferenceCheckerCommand
+
+
+ClapMicrodownBookReferenceCheckerCommand class>>commandSpecification
+	Receiver: ClapMicrodownBookReferenceCheckerCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		superclass: 	ClapPillarCommand
+		methodDict: 	a MethodDictionary(#execute->ClapMicrodownBookReferenceCheckerC[..]
+		format: 	65538
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (execution) - 3 selector(s))
+		subclasses: 	nil
+		name: 	#ClapMicrodownBookReferenceCheckerCommand
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	8250635
+		packageTag: 	a PackageTag(Uncategorized)
+
+
+[ :pragma |
+			| theClass theSelector |
+			theClass := pragma method methodClass.
+			theSelector := pragma method selector.
+			self assert: [ theSelector isUnary ].
+			
+			theClass instanceSide
+				perform: theSelector ] in ClapContext class>>pragmaCommands
+	Receiver: ClapContext
+	Arguments and temporary variables: 
+		pragma: 	<commandline>
+		theClass: 	ClapMicrodownBookReferenceCheckerCommand class
+		theSelector: 	#commandSpecification
+	Receiver's instance variables: 
+		superclass: 	ClapExpression
+		methodDict: 	a MethodDictionary(#allValidations->ClapContext>>#allValidation[..]
+		format: 	65544
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (validation) - 4 selector(s) Protocol (accessi[..]
+		subclasses: 	nil
+		name: 	#ClapContext
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663568
+		packageTag: 	a PackageTag(Activation)
+
+
+Array(SequenceableCollection)>>collect:
+	Receiver: an Array(<commandline> <commandline> <commandline> <commandline> <commandline> <comman[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :pragma |
+			| theClass theSelector |
+			theClass := pragma metho[..]
+		newCollection: 	#(nil nil nil nil nil nil nil nil nil nil nil nil nil nil ni[..]
+		index: 	1
+	Receiver's instance variables: 
+an Array(<commandline> <commandline> <commandline> <commandline> <commandline> <comman[..]
+
+ClapContext class>>pragmaCommands
+	Receiver: ClapContext
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		superclass: 	ClapExpression
+		methodDict: 	a MethodDictionary(#allValidations->ClapContext>>#allValidation[..]
+		format: 	65544
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (validation) - 4 selector(s) Protocol (accessi[..]
+		subclasses: 	nil
+		name: 	#ClapContext
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663568
+		packageTag: 	a PackageTag(Activation)
+
+
+ClapContext class>>withPragmaCommands
+	Receiver: ClapContext
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		superclass: 	ClapExpression
+		methodDict: 	a MethodDictionary(#allValidations->ClapContext>>#allValidation[..]
+		format: 	65544
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (validation) - 4 selector(s) Protocol (accessi[..]
+		subclasses: 	nil
+		name: 	#ClapContext
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663568
+		packageTag: 	a PackageTag(Activation)
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+ClapCommandSpec(ClapParameterized)>>signalIdentifierConflictOf:with:
+[ :param | self signalIdentifierConflictOf: aParameter with: param ] in ClapCommandSpec(ClapParameterized)>>add:
+FullBlockClosure(BlockClosure)>>cull:
+[:v | ^ aPresentBlock cull: v] in Dictionary>>at:ifPresent:ifAbsent:
+FullBlockClosure(BlockClosure)>>cull:
+Dictionary>>at:ifPresent:
+Dictionary>>at:ifPresent:ifAbsent:
+OrderedDictionary>>at:ifPresent:ifAbsentPut:
+ClapCommandSpec(ClapParameterized)>>add:
+ClapMicrodownBookReferenceCheckerCommand class>>commandSpecification
+[ :pragma |
+			| theClass theSelector |
+			theClass := pragma method methodClass.
+			theSelector := pragma method selector.
+			self assert: [ theSelector isUnary ].
+			
+			theClass instanceSide
+				perform: theSelector ] in ClapContext class>>pragmaCommands
+Array(SequenceableCollection)>>collect:
+ClapContext class>>pragmaCommands
+ClapContext class>>withPragmaCommands
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+
+7 August 2025 11:49:04.841157 am
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: 60d66b41-80dd-0d00-bdda-516c033ccd3c Sep  2 2024
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: 60d66b41-80dd-0d00-bdda-516c033ccd3c Sep  2 2024
+v10.3.1 - Commit: 6cdb1e5d - Date: 2024-09-02 09:56:37 +0200
+
+Image: Pharo12.0.0SNAPSHOT [Build information: Pharo-12.0.0+SNAPSHOT.build.1577.sha.27ee66a01aa0ab8fb76a15367547e56dc6a6567b (64 Bit)]
+
+PRPDFDocument(Object)>>halt
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		project: 	a PRProject[341540352]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument>>postWriteTransform:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		aFile: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Pharo[..]
+		relativePath: 	nil
+		outputFileReference: 	nil
+	Receiver's instance variables: 
+		project: 	a PRProject[341540352]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument(PRAbstractOutputDocument)>>buildOn:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		aPRProject: 	a PRProject[341540352]
+		parsedDocument: 	a MicRootBlock
+		transformedDocument: 	a MicRootBlock
+		writtenFile: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing[..]
+	Receiver's instance variables: 
+		project: 	a PRProject[341540352]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRPdfOutput(PRTarget)>>buildOn:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		aProject: 	a PRProject[341540352]
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		status: 	a PRSuccess
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+Set>>do:
+	Receiver: a Set(MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writin[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+		each file exists ifTrue: [ 
+			status := status and: (([..]
+		index: 	4
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+	Receiver's instance variables: 
+		tally: 	1
+		array: 	an Array(nil nil nil MicMicrodownInputDocument(/Users/ducasse/Worksp[..]
+
+
+PRPdfOutput(PRTarget)>>buildOn:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		status: 	a PRSuccess
+		aProject: 	a PRProject[341540352]
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+PRProject>>build:
+	Receiver: a PRProject[341540352]
+	Arguments and temporary variables: 
+		output: 	a PRPdfOutput
+	Receiver's instance variables: 
+		properties: 	nil
+		baseDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		templatable: 	false
+		toc: 	nil
+
+
+PRPdfOutput(PRTarget)>>buildWithClapArguments:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		project: 	a PRProject[341540352]
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+[ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			args at: #templatable ifPresent: [(args at: #templatable) value ].
+			"here, default strategy is mainRoot and the following order give strategies a priority order"
+			isWithPositionals ifTrue: [ 
+			(args at: #requestedFiles ) isExplicit ifTrue:[ 
+				target buildStrategy: (PRBuildListStrategy list: (args occurrencesOf: #requestedFiles collect: #value) )
+				] ].
+			args at: #all ifPresent: [ :strat | target buildStrategy: strat value ].
+			args at: #mainRoot ifPresent: [ :strat | target buildStrategy: strat value].
+			
+			target buildWithClapArguments: project ] in PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:withPositionals:
+	Receiver: PRPdfOutput
+	Arguments and temporary variables: 
+		anId: 	#pdf
+		isWithPositionals: 	true
+		target: 	a PRPdfOutput
+		project: 	a PRProject[341540352]
+		command: 	nil
+		args: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		superclass: 	PRWritingTarget
+		methodDict: 	a MethodDictionary(#documentFor:->PRPdfOutput>>#documentFor: #e[..]
+		format: 	65538
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (building) - 1 selector(s) Protocol (accessing[..]
+		subclasses: 	nil
+		name: 	#PRPdfOutput
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemDictionary(lots of globals)
+		commentSourcePointer: 	nil
+		packageTag: 	a PackageTag(Uncategorized)
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			arg[..]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:wit[..]
+		compiledBlock: 	a CompiledBlock: [ :args |
+			args at: #helpFlag ifPresent: [..]
+		numArgs: 	1
+		receiver: 	PRPdfOutput
+
+
+FullBlockClosure(BlockClosure)>>cull:cull:
+	Receiver: [ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			arg[..]
+	Arguments and temporary variables: 
+		firstArg: 	a ClapNamedMatch
+		secondArg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index[..]
+	Receiver's instance variables: 
+		outerContext: 	PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:wit[..]
+		compiledBlock: 	a CompiledBlock: [ :args |
+			args at: #helpFlag ifPresent: [..]
+		numArgs: 	1
+		receiver: 	PRPdfOutput
+
+
+ClapCommand(ClapParameter)>>valueFor:with:
+	Receiver: a ClapCommand(pdf)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pdf
+		canonicalName: 	nil
+		description: 	'Build your Pillar documents in pdf format'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #templatable->[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFiles))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(templatable) a Clap[..]
+		subcommands: 	an OrderedCollection()
+
+
+[ super valueFor: aMatch with: arg ] in ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pdf)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pdf
+		canonicalName: 	nil
+		description: 	'Build your Pillar documents in pdf format'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #templatable->[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFiles))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(templatable) a Clap[..]
+		subcommands: 	an OrderedCollection()
+
+
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapWordMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		array: 	an Array(a ClapWordMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pdf)
+		parent: 	a ClapNamedMatch
+		startIndex: 	3
+		children: 	an OrderedCollection(a ClapWordMatch)
+		keyword: 	'pdf'
+
+
+ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pdf)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pdf
+		canonicalName: 	nil
+		description: 	'Build your Pillar documents in pdf format'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #templatable->[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFiles))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(templatable) a Clap[..]
+		subcommands: 	an OrderedCollection()
+
+
+ClapNamedMatch(ClapExpression)>>value:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pdf)
+		parent: 	a ClapNamedMatch
+		startIndex: 	3
+		children: 	an OrderedCollection(a ClapWordMatch)
+		keyword: 	'pdf'
+
+
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(build)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		sub: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		identifier: 	#build
+		canonicalName: 	nil
+		description: 	'Export format not found in pillar.config. Please edit it and [..]
+		multiple: 	false
+		meaningBlock: 	[ :args |
+				args at: #helpFlag ifPresent: [ :help | help va[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help))
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help))
+		subcommands: 	an OrderedCollection(a ClapCommand(checkBook) a ClapCommand(cr[..]
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :sub | sub value: arg ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapCommand>>valueFor:with:
+		compiledBlock: 	a CompiledBlock: [ :sub | sub value: arg ]
+		numArgs: 	1
+		receiver: 	a ClapCommand(build)
+
+
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+		cmdMatch: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(build)
+		parent: 	a ClapNamedMatch
+		startIndex: 	2
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'build'
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :cmdMatch | foundBlock cull: cmdMatch ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+		compiledBlock: 	a CompiledBlock: [ :cmdMatch | foundBlock cull: cmdMatch ]
+		numArgs: 	1
+		receiver: 	a ClapNamedMatch
+
+
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+		each: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection>>do:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: [..]
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(build)
+		parent: 	a ClapNamedMatch
+		startIndex: 	2
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'build'
+
+
+ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(build)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#build
+		canonicalName: 	nil
+		description: 	'Export format not found in pillar.config. Please edit it and [..]
+		multiple: 	false
+		meaningBlock: 	[ :args |
+				args at: #helpFlag ifPresent: [ :help | help va[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help))
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help))
+		subcommands: 	an OrderedCollection(a ClapCommand(checkBook) a ClapCommand(cr[..]
+
+
+ClapNamedMatch(ClapExpression)>>value:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(build)
+		parent: 	a ClapNamedMatch
+		startIndex: 	2
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'build'
+
+
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pillar)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		sub: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		identifier: 	#pillar
+		canonicalName: 	nil
+		description: 	'Pillar is a markup syntax and associated tools to write and g[..]
+		multiple: 	false
+		meaningBlock: 	[ :args | 
+		args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #version->a Cl[..]
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(version))
+		subcommands: 	an OrderedCollection(a ClapCommand(archetype) a ClapCommand(bu[..]
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :sub | sub value: arg ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapCommand>>valueFor:with:
+		compiledBlock: 	a CompiledBlock: [ :sub | sub value: arg ]
+		numArgs: 	1
+		receiver: 	a ClapCommand(pillar)
+
+
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+		cmdMatch: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pillar)
+		parent: 	a ClapCompositeMatch
+		startIndex: 	1
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'pillar'
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :cmdMatch | foundBlock cull: cmdMatch ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+		compiledBlock: 	a CompiledBlock: [ :cmdMatch | foundBlock cull: cmdMatch ]
+		numArgs: 	1
+		receiver: 	a ClapNamedMatch
+
+
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+		each: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection>>do:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: [..]
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pillar)
+		parent: 	a ClapCompositeMatch
+		startIndex: 	1
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'pillar'
+
+
+ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pillar)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pillar
+		canonicalName: 	nil
+		description: 	'Pillar is a markup syntax and associated tools to write and g[..]
+		multiple: 	false
+		meaningBlock: 	[ :args | 
+		args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #version->a Cl[..]
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(version))
+		subcommands: 	an OrderedCollection(a ClapCommand(archetype) a ClapCommand(bu[..]
+
+
+ClapNamedMatch(ClapExpression)>>value:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pillar)
+		parent: 	a ClapCompositeMatch
+		startIndex: 	1
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'pillar'
+
+
+[ :sub | sub value: arg ] in ClapRoot(ClapCommand)>>valueFor:with:
+	Receiver: a ClapRoot(clap)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapCompositeMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		sub: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		identifier: 	#clap
+		canonicalName: 	nil
+		description: 	'Entry point for commands implemented with Clap'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help |
+				help[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #helpCommand->[..]
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(save) a ClapFlag(no[..]
+		subcommands: 	an OrderedCollection(a ClapCommand(help) a ClapCommand(evaluat[..]
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :sub | sub value: arg ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapRoot(ClapCommand)>>valueFor:with:
+		compiledBlock: 	a CompiledBlock: [ :sub | sub value: arg ]
+		numArgs: 	1
+		receiver: 	a ClapRoot(clap)
+
+
+
+--- The full stack ---
+PRPDFDocument(Object)>>halt
+PRPDFDocument>>postWriteTransform:
+PRPDFDocument(PRAbstractOutputDocument)>>buildOn:
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRPdfOutput(PRTarget)>>buildOn:
+Set>>do:
+PRPdfOutput(PRTarget)>>buildOn:
+PRProject>>build:
+PRPdfOutput(PRTarget)>>buildWithClapArguments:
+[ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			args at: #templatable ifPresent: [(args at: #templatable) value ].
+			"here, default strategy is mainRoot and the following order give strategies a priority order"
+			isWithPositionals ifTrue: [ 
+			(args at: #requestedFiles ) isExplicit ifTrue:[ 
+				target buildStrategy: (PRBuildListStrategy list: (args occurrencesOf: #requestedFiles collect: #value) )
+				] ].
+			args at: #all ifPresent: [ :strat | target buildStrategy: strat value ].
+			args at: #mainRoot ifPresent: [ :strat | target buildStrategy: strat value].
+			
+			target buildWithClapArguments: project ] in PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:withPositionals:
+FullBlockClosure(BlockClosure)>>cull:
+FullBlockClosure(BlockClosure)>>cull:cull:
+ClapCommand(ClapParameter)>>valueFor:with:
+[ super valueFor: aMatch with: arg ] in ClapCommand>>valueFor:with:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+ClapCommand>>valueFor:with:
+ClapNamedMatch(ClapExpression)>>value:
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+FullBlockClosure(BlockClosure)>>cull:
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+FullBlockClosure(BlockClosure)>>cull:
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+OrderedCollection>>do:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+ClapCommand>>valueFor:with:
+ClapNamedMatch(ClapExpression)>>value:
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+FullBlockClosure(BlockClosure)>>cull:
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+FullBlockClosure(BlockClosure)>>cull:
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+OrderedCollection>>do:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+ClapCommand>>valueFor:with:
+ClapNamedMatch(ClapExpression)>>value:
+[ :sub | sub value: arg ] in ClapRoot(ClapCommand)>>valueFor:with:
+FullBlockClosure(BlockClosure)>>cull:
+ - - - - - - - - - - - - - - -
+			- - - - - - - - - - - - - - - - - -
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapCompositeMatch>>matchedSubcommand:ifNone:
+FullBlockClosure(BlockClosure)>>cull:
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+OrderedCollection>>do:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapCompositeMatch>>matchedSubcommand:ifNone:
+ClapRoot(ClapCommand)>>valueFor:with:
+ClapCompositeMatch(ClapExpression)>>value:
+[ :m |
+				m value: self.
+				self exitSuccess ] in [
+		self rememberSession;
+			ifMatch: [ :m |
+				m value: self.
+				self exitSuccess ]
+			ifMismatch: [ self noneMatched ]
+	] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>cull:
+ClapCompositeMatch(ClapSubExpression)>>ifMatch:ifMismatch:
+ClapContext>>ifMatch:ifMismatch:
+[
+		self rememberSession;
+			ifMatch: [ :m |
+				m value: self.
+				self exitSuccess ]
+			ifMismatch: [ self noneMatched ]
+	] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+
+7 August 2025 11:50:19.986169 am
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: 60d66b41-80dd-0d00-bdda-516c033ccd3c Sep  2 2024
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: 60d66b41-80dd-0d00-bdda-516c033ccd3c Sep  2 2024
+v10.3.1 - Commit: 6cdb1e5d - Date: 2024-09-02 09:56:37 +0200
+
+Image: Pharo12.0.0SNAPSHOT [Build information: Pharo-12.0.0+SNAPSHOT.build.1577.sha.27ee66a01aa0ab8fb76a15367547e56dc6a6567b (64 Bit)]
+
+PRPDFDocument(Object)>>halt
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		project: 	a PRProject[703851776]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument>>postWriteTransform:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		aFile: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Pharo[..]
+		relativePath: 	nil
+		outputFileReference: 	nil
+	Receiver's instance variables: 
+		project: 	a PRProject[703851776]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument(PRAbstractOutputDocument)>>buildOn:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		aPRProject: 	a PRProject[703851776]
+		parsedDocument: 	a MicRootBlock
+		transformedDocument: 	a MicRootBlock
+		writtenFile: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing[..]
+	Receiver's instance variables: 
+		project: 	a PRProject[703851776]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRPdfOutput(PRTarget)>>buildOn:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		aProject: 	a PRProject[703851776]
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		status: 	a PRSuccess
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+Set>>do:
+	Receiver: a Set(MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writin[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+		each file exists ifTrue: [ 
+			status := status and: (([..]
+		index: 	1
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+	Receiver's instance variables: 
+		tally: 	1
+		array: 	an Array(MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCir[..]
+
+
+PRPdfOutput(PRTarget)>>buildOn:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		status: 	a PRSuccess
+		aProject: 	a PRProject[703851776]
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+PRProject>>build:
+	Receiver: a PRProject[703851776]
+	Arguments and temporary variables: 
+		output: 	a PRPdfOutput
+	Receiver's instance variables: 
+		properties: 	nil
+		baseDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		templatable: 	false
+		toc: 	nil
+
+
+PRPdfOutput(PRTarget)>>buildWithClapArguments:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		project: 	a PRProject[703851776]
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+[ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			args at: #templatable ifPresent: [(args at: #templatable) value ].
+			"here, default strategy is mainRoot and the following order give strategies a priority order"
+			isWithPositionals ifTrue: [ 
+			(args at: #requestedFiles ) isExplicit ifTrue:[ 
+				target buildStrategy: (PRBuildListStrategy list: (args occurrencesOf: #requestedFiles collect: #value) )
+				] ].
+			args at: #all ifPresent: [ :strat | target buildStrategy: strat value ].
+			args at: #mainRoot ifPresent: [ :strat | target buildStrategy: strat value].
+			
+			target buildWithClapArguments: project ] in PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:withPositionals:
+	Receiver: PRPdfOutput
+	Arguments and temporary variables: 
+		anId: 	#pdf
+		isWithPositionals: 	true
+		target: 	a PRPdfOutput
+		project: 	a PRProject[703851776]
+		command: 	nil
+		args: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		superclass: 	PRWritingTarget
+		methodDict: 	a MethodDictionary(#documentFor:->PRPdfOutput>>#documentFor: #e[..]
+		format: 	65538
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (building) - 1 selector(s) Protocol (accessing[..]
+		subclasses: 	nil
+		name: 	#PRPdfOutput
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemDictionary(lots of globals)
+		commentSourcePointer: 	nil
+		packageTag: 	a PackageTag(Uncategorized)
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			arg[..]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:wit[..]
+		compiledBlock: 	a CompiledBlock: [ :args |
+			args at: #helpFlag ifPresent: [..]
+		numArgs: 	1
+		receiver: 	PRPdfOutput
+
+
+FullBlockClosure(BlockClosure)>>cull:cull:
+	Receiver: [ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			arg[..]
+	Arguments and temporary variables: 
+		firstArg: 	a ClapNamedMatch
+		secondArg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index[..]
+	Receiver's instance variables: 
+		outerContext: 	PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:wit[..]
+		compiledBlock: 	a CompiledBlock: [ :args |
+			args at: #helpFlag ifPresent: [..]
+		numArgs: 	1
+		receiver: 	PRPdfOutput
+
+
+ClapCommand(ClapParameter)>>valueFor:with:
+	Receiver: a ClapCommand(pdf)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pdf
+		canonicalName: 	nil
+		description: 	'Build your Pillar documents in pdf format'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #templatable->[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFiles))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(templatable) a Clap[..]
+		subcommands: 	an OrderedCollection()
+
+
+[ super valueFor: aMatch with: arg ] in ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pdf)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pdf
+		canonicalName: 	nil
+		description: 	'Build your Pillar documents in pdf format'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #templatable->[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFiles))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(templatable) a Clap[..]
+		subcommands: 	an OrderedCollection()
+
+
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapWordMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		array: 	an Array(a ClapWordMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pdf)
+		parent: 	a ClapNamedMatch
+		startIndex: 	3
+		children: 	an OrderedCollection(a ClapWordMatch)
+		keyword: 	'pdf'
+
+
+ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pdf)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pdf
+		canonicalName: 	nil
+		description: 	'Build your Pillar documents in pdf format'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #templatable->[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFiles))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(templatable) a Clap[..]
+		subcommands: 	an OrderedCollection()
+
+
+ClapNamedMatch(ClapExpression)>>value:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pdf)
+		parent: 	a ClapNamedMatch
+		startIndex: 	3
+		children: 	an OrderedCollection(a ClapWordMatch)
+		keyword: 	'pdf'
+
+
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(build)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		sub: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		identifier: 	#build
+		canonicalName: 	nil
+		description: 	'Export format not found in pillar.config. Please edit it and [..]
+		multiple: 	false
+		meaningBlock: 	[ :args |
+				args at: #helpFlag ifPresent: [ :help | help va[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help))
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help))
+		subcommands: 	an OrderedCollection(a ClapCommand(checkBook) a ClapCommand(cr[..]
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :sub | sub value: arg ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapCommand>>valueFor:with:
+		compiledBlock: 	a CompiledBlock: [ :sub | sub value: arg ]
+		numArgs: 	1
+		receiver: 	a ClapCommand(build)
+
+
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+		cmdMatch: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(build)
+		parent: 	a ClapNamedMatch
+		startIndex: 	2
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'build'
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :cmdMatch | foundBlock cull: cmdMatch ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+		compiledBlock: 	a CompiledBlock: [ :cmdMatch | foundBlock cull: cmdMatch ]
+		numArgs: 	1
+		receiver: 	a ClapNamedMatch
+
+
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+		each: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection>>do:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: [..]
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(build)
+		parent: 	a ClapNamedMatch
+		startIndex: 	2
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'build'
+
+
+ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(build)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#build
+		canonicalName: 	nil
+		description: 	'Export format not found in pillar.config. Please edit it and [..]
+		multiple: 	false
+		meaningBlock: 	[ :args |
+				args at: #helpFlag ifPresent: [ :help | help va[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help))
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help))
+		subcommands: 	an OrderedCollection(a ClapCommand(checkBook) a ClapCommand(cr[..]
+
+
+ClapNamedMatch(ClapExpression)>>value:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(build)
+		parent: 	a ClapNamedMatch
+		startIndex: 	2
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'build'
+
+
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pillar)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		sub: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		identifier: 	#pillar
+		canonicalName: 	nil
+		description: 	'Pillar is a markup syntax and associated tools to write and g[..]
+		multiple: 	false
+		meaningBlock: 	[ :args | 
+		args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #version->a Cl[..]
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(version))
+		subcommands: 	an OrderedCollection(a ClapCommand(archetype) a ClapCommand(bu[..]
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :sub | sub value: arg ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapCommand>>valueFor:with:
+		compiledBlock: 	a CompiledBlock: [ :sub | sub value: arg ]
+		numArgs: 	1
+		receiver: 	a ClapCommand(pillar)
+
+
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+		cmdMatch: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pillar)
+		parent: 	a ClapCompositeMatch
+		startIndex: 	1
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'pillar'
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :cmdMatch | foundBlock cull: cmdMatch ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+		compiledBlock: 	a CompiledBlock: [ :cmdMatch | foundBlock cull: cmdMatch ]
+		numArgs: 	1
+		receiver: 	a ClapNamedMatch
+
+
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+		each: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection>>do:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: [..]
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pillar)
+		parent: 	a ClapCompositeMatch
+		startIndex: 	1
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'pillar'
+
+
+ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pillar)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pillar
+		canonicalName: 	nil
+		description: 	'Pillar is a markup syntax and associated tools to write and g[..]
+		multiple: 	false
+		meaningBlock: 	[ :args | 
+		args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #version->a Cl[..]
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(version))
+		subcommands: 	an OrderedCollection(a ClapCommand(archetype) a ClapCommand(bu[..]
+
+
+ClapNamedMatch(ClapExpression)>>value:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pillar)
+		parent: 	a ClapCompositeMatch
+		startIndex: 	1
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'pillar'
+
+
+[ :sub | sub value: arg ] in ClapRoot(ClapCommand)>>valueFor:with:
+	Receiver: a ClapRoot(clap)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapCompositeMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		sub: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		identifier: 	#clap
+		canonicalName: 	nil
+		description: 	'Entry point for commands implemented with Clap'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help |
+				help[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #helpCommand->[..]
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(save) a ClapFlag(no[..]
+		subcommands: 	an OrderedCollection(a ClapCommand(help) a ClapCommand(evaluat[..]
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :sub | sub value: arg ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapRoot(ClapCommand)>>valueFor:with:
+		compiledBlock: 	a CompiledBlock: [ :sub | sub value: arg ]
+		numArgs: 	1
+		receiver: 	a ClapRoot(clap)
+
+
+
+--- The full stack ---
+PRPDFDocument(Object)>>halt
+PRPDFDocument>>postWriteTransform:
+PRPDFDocument(PRAbstractOutputDocument)>>buildOn:
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRPdfOutput(PRTarget)>>buildOn:
+Set>>do:
+PRPdfOutput(PRTarget)>>buildOn:
+PRProject>>build:
+PRPdfOutput(PRTarget)>>buildWithClapArguments:
+[ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			args at: #templatable ifPresent: [(args at: #templatable) value ].
+			"here, default strategy is mainRoot and the following order give strategies a priority order"
+			isWithPositionals ifTrue: [ 
+			(args at: #requestedFiles ) isExplicit ifTrue:[ 
+				target buildStrategy: (PRBuildListStrategy list: (args occurrencesOf: #requestedFiles collect: #value) )
+				] ].
+			args at: #all ifPresent: [ :strat | target buildStrategy: strat value ].
+			args at: #mainRoot ifPresent: [ :strat | target buildStrategy: strat value].
+			
+			target buildWithClapArguments: project ] in PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:withPositionals:
+FullBlockClosure(BlockClosure)>>cull:
+FullBlockClosure(BlockClosure)>>cull:cull:
+ClapCommand(ClapParameter)>>valueFor:with:
+[ super valueFor: aMatch with: arg ] in ClapCommand>>valueFor:with:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+ClapCommand>>valueFor:with:
+ClapNamedMatch(ClapExpression)>>value:
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+FullBlockClosure(BlockClosure)>>cull:
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+FullBlockClosure(BlockClosure)>>cull:
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+OrderedCollection>>do:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+ClapCommand>>valueFor:with:
+ClapNamedMatch(ClapExpression)>>value:
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+FullBlockClosure(BlockClosure)>>cull:
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+FullBlockClosure(BlockClosure)>>cull:
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+OrderedCollection>>do:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+ClapCommand>>valueFor:with:
+ClapNamedMatch(ClapExpression)>>value:
+[ :sub | sub value: arg ] in ClapRoot(ClapCommand)>>valueFor:with:
+FullBlockClosure(BlockClosure)>>cull:
+ - - - - - - - - - - - - - - -
+			- - - - - - - - - - - - - - - - - -
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapCompositeMatch>>matchedSubcommand:ifNone:
+FullBlockClosure(BlockClosure)>>cull:
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+OrderedCollection>>do:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapCompositeMatch>>matchedSubcommand:ifNone:
+ClapRoot(ClapCommand)>>valueFor:with:
+ClapCompositeMatch(ClapExpression)>>value:
+[ :m |
+				m value: self.
+				self exitSuccess ] in [
+		self rememberSession;
+			ifMatch: [ :m |
+				m value: self.
+				self exitSuccess ]
+			ifMismatch: [ self noneMatched ]
+	] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>cull:
+ClapCompositeMatch(ClapSubExpression)>>ifMatch:ifMismatch:
+ClapContext>>ifMatch:ifMismatch:
+[
+		self rememberSession;
+			ifMatch: [ :m |
+				m value: self.
+				self exitSuccess ]
+			ifMismatch: [ self noneMatched ]
+	] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+command latexmk failed
+7 August 2025 11:53:13.205116 am
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: 60d66b41-80dd-0d00-bdda-516c033ccd3c Sep  2 2024
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: 60d66b41-80dd-0d00-bdda-516c033ccd3c Sep  2 2024
+v10.3.1 - Commit: 6cdb1e5d - Date: 2024-09-02 09:56:37 +0200
+
+Image: Pharo12.0.0SNAPSHOT [Build information: Pharo-12.0.0+SNAPSHOT.build.1577.sha.27ee66a01aa0ab8fb76a15367547e56dc6a6567b (64 Bit)]
+
+PRPDFDocument(Object)>>error:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		aString: 	'command latexmk failed'
+	Receiver's instance variables: 
+		project: 	a PRProject[703851776]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument>>executeOnUnixCommand:arguments:workingDirectory:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		command: 	'latexmk'
+		arguments: 	#('-pdflatex=lualatex' '-pdf' '-ps-' '-f' '-interaction=nonstopm[..]
+		aWorkingDirectory: 	'/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing[..]
+		process: 	OSSUnixSubprocess(Command: latexmk; Pid: 31835; Status: Not finished)
+	Receiver's instance variables: 
+		project: 	a PRProject[703851776]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument>>executeCommand:arguments:workingDirectory:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		command: 	'latexmk'
+		arguments: 	#('-pdflatex=lualatex' '-pdf' '-ps-' '-f' '-interaction=nonstopm[..]
+		aWorkingDirectory: 	'/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing[..]
+	Receiver's instance variables: 
+		project: 	a PRProject[703851776]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument>>postWriteTransform:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		aFile: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Pharo[..]
+		relativePath: 	Path * 'index.md'
+		outputFileReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk[..]
+	Receiver's instance variables: 
+		project: 	a PRProject[703851776]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument(PRAbstractOutputDocument)>>buildOn:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		aPRProject: 	a PRProject[703851776]
+		parsedDocument: 	a MicRootBlock
+		transformedDocument: 	a MicRootBlock
+		writtenFile: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing[..]
+	Receiver's instance variables: 
+		project: 	a PRProject[703851776]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRPdfOutput(PRTarget)>>buildOn:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		aProject: 	a PRProject[703851776]
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		status: 	a PRSuccess
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+Set>>do:
+	Receiver: a Set(MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writin[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+		each file exists ifTrue: [ 
+			status := status and: (([..]
+		index: 	1
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+	Receiver's instance variables: 
+		tally: 	1
+		array: 	an Array(MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCir[..]
+
+
+PRPdfOutput(PRTarget)>>buildOn:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		status: 	a PRSuccess
+		aProject: 	a PRProject[703851776]
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+PRProject>>build:
+	Receiver: a PRProject[703851776]
+	Arguments and temporary variables: 
+		output: 	a PRPdfOutput
+	Receiver's instance variables: 
+		properties: 	nil
+		baseDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		templatable: 	false
+		toc: 	nil
+
+
+PRPdfOutput(PRTarget)>>buildWithClapArguments:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		project: 	a PRProject[703851776]
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+[ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			args at: #templatable ifPresent: [(args at: #templatable) value ].
+			"here, default strategy is mainRoot and the following order give strategies a priority order"
+			isWithPositionals ifTrue: [ 
+			(args at: #requestedFiles ) isExplicit ifTrue:[ 
+				target buildStrategy: (PRBuildListStrategy list: (args occurrencesOf: #requestedFiles collect: #value) )
+				] ].
+			args at: #all ifPresent: [ :strat | target buildStrategy: strat value ].
+			args at: #mainRoot ifPresent: [ :strat | target buildStrategy: strat value].
+			
+			target buildWithClapArguments: project ] in PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:withPositionals:
+	Receiver: PRPdfOutput
+	Arguments and temporary variables: 
+		anId: 	#pdf
+		isWithPositionals: 	true
+		target: 	a PRPdfOutput
+		project: 	a PRProject[703851776]
+		command: 	nil
+		args: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		superclass: 	PRWritingTarget
+		methodDict: 	a MethodDictionary(#documentFor:->PRPdfOutput>>#documentFor: #e[..]
+		format: 	65538
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (building) - 1 selector(s) Protocol (accessing[..]
+		subclasses: 	nil
+		name: 	#PRPdfOutput
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemDictionary(lots of globals)
+		commentSourcePointer: 	nil
+		packageTag: 	a PackageTag(Uncategorized)
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			arg[..]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:wit[..]
+		compiledBlock: 	a CompiledBlock: [ :args |
+			args at: #helpFlag ifPresent: [..]
+		numArgs: 	1
+		receiver: 	PRPdfOutput
+
+
+FullBlockClosure(BlockClosure)>>cull:cull:
+	Receiver: [ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			arg[..]
+	Arguments and temporary variables: 
+		firstArg: 	a ClapNamedMatch
+		secondArg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index[..]
+	Receiver's instance variables: 
+		outerContext: 	PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:wit[..]
+		compiledBlock: 	a CompiledBlock: [ :args |
+			args at: #helpFlag ifPresent: [..]
+		numArgs: 	1
+		receiver: 	PRPdfOutput
+
+
+ClapCommand(ClapParameter)>>valueFor:with:
+	Receiver: a ClapCommand(pdf)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pdf
+		canonicalName: 	nil
+		description: 	'Build your Pillar documents in pdf format'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #templatable->[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFiles))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(templatable) a Clap[..]
+		subcommands: 	an OrderedCollection()
+
+
+[ super valueFor: aMatch with: arg ] in ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pdf)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pdf
+		canonicalName: 	nil
+		description: 	'Build your Pillar documents in pdf format'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #templatable->[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFiles))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(templatable) a Clap[..]
+		subcommands: 	an OrderedCollection()
+
+
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapWordMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		array: 	an Array(a ClapWordMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pdf)
+		parent: 	a ClapNamedMatch
+		startIndex: 	3
+		children: 	an OrderedCollection(a ClapWordMatch)
+		keyword: 	'pdf'
+
+
+ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pdf)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pdf
+		canonicalName: 	nil
+		description: 	'Build your Pillar documents in pdf format'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #templatable->[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFiles))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(templatable) a Clap[..]
+		subcommands: 	an OrderedCollection()
+
+
+ClapNamedMatch(ClapExpression)>>value:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pdf)
+		parent: 	a ClapNamedMatch
+		startIndex: 	3
+		children: 	an OrderedCollection(a ClapWordMatch)
+		keyword: 	'pdf'
+
+
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(build)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		sub: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		identifier: 	#build
+		canonicalName: 	nil
+		description: 	'Export format not found in pillar.config. Please edit it and [..]
+		multiple: 	false
+		meaningBlock: 	[ :args |
+				args at: #helpFlag ifPresent: [ :help | help va[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help))
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help))
+		subcommands: 	an OrderedCollection(a ClapCommand(checkBook) a ClapCommand(cr[..]
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :sub | sub value: arg ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapCommand>>valueFor:with:
+		compiledBlock: 	a CompiledBlock: [ :sub | sub value: arg ]
+		numArgs: 	1
+		receiver: 	a ClapCommand(build)
+
+
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+		cmdMatch: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(build)
+		parent: 	a ClapNamedMatch
+		startIndex: 	2
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'build'
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :cmdMatch | foundBlock cull: cmdMatch ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+		compiledBlock: 	a CompiledBlock: [ :cmdMatch | foundBlock cull: cmdMatch ]
+		numArgs: 	1
+		receiver: 	a ClapNamedMatch
+
+
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+		each: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection>>do:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: [..]
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(build)
+		parent: 	a ClapNamedMatch
+		startIndex: 	2
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'build'
+
+
+ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(build)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#build
+		canonicalName: 	nil
+		description: 	'Export format not found in pillar.config. Please edit it and [..]
+		multiple: 	false
+		meaningBlock: 	[ :args |
+				args at: #helpFlag ifPresent: [ :help | help va[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help))
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help))
+		subcommands: 	an OrderedCollection(a ClapCommand(checkBook) a ClapCommand(cr[..]
+
+
+ClapNamedMatch(ClapExpression)>>value:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(build)
+		parent: 	a ClapNamedMatch
+		startIndex: 	2
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'build'
+
+
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pillar)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		sub: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		identifier: 	#pillar
+		canonicalName: 	nil
+		description: 	'Pillar is a markup syntax and associated tools to write and g[..]
+		multiple: 	false
+		meaningBlock: 	[ :args | 
+		args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #version->a Cl[..]
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(version))
+		subcommands: 	an OrderedCollection(a ClapCommand(archetype) a ClapCommand(bu[..]
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :sub | sub value: arg ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapCommand>>valueFor:with:
+		compiledBlock: 	a CompiledBlock: [ :sub | sub value: arg ]
+		numArgs: 	1
+		receiver: 	a ClapCommand(pillar)
+
+
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+		cmdMatch: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pillar)
+		parent: 	a ClapCompositeMatch
+		startIndex: 	1
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'pillar'
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :cmdMatch | foundBlock cull: cmdMatch ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+		compiledBlock: 	a CompiledBlock: [ :cmdMatch | foundBlock cull: cmdMatch ]
+		numArgs: 	1
+		receiver: 	a ClapNamedMatch
+
+
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+		each: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection>>do:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: [..]
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pillar)
+		parent: 	a ClapCompositeMatch
+		startIndex: 	1
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'pillar'
+
+
+ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pillar)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pillar
+		canonicalName: 	nil
+		description: 	'Pillar is a markup syntax and associated tools to write and g[..]
+		multiple: 	false
+		meaningBlock: 	[ :args | 
+		args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #version->a Cl[..]
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(version))
+		subcommands: 	an OrderedCollection(a ClapCommand(archetype) a ClapCommand(bu[..]
+
+
+ClapNamedMatch(ClapExpression)>>value:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pillar)
+		parent: 	a ClapCompositeMatch
+		startIndex: 	1
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'pillar'
+
+
+
+--- The full stack ---
+PRPDFDocument(Object)>>error:
+PRPDFDocument>>executeOnUnixCommand:arguments:workingDirectory:
+PRPDFDocument>>executeCommand:arguments:workingDirectory:
+PRPDFDocument>>postWriteTransform:
+PRPDFDocument(PRAbstractOutputDocument)>>buildOn:
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRPdfOutput(PRTarget)>>buildOn:
+Set>>do:
+PRPdfOutput(PRTarget)>>buildOn:
+PRProject>>build:
+PRPdfOutput(PRTarget)>>buildWithClapArguments:
+[ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			args at: #templatable ifPresent: [(args at: #templatable) value ].
+			"here, default strategy is mainRoot and the following order give strategies a priority order"
+			isWithPositionals ifTrue: [ 
+			(args at: #requestedFiles ) isExplicit ifTrue:[ 
+				target buildStrategy: (PRBuildListStrategy list: (args occurrencesOf: #requestedFiles collect: #value) )
+				] ].
+			args at: #all ifPresent: [ :strat | target buildStrategy: strat value ].
+			args at: #mainRoot ifPresent: [ :strat | target buildStrategy: strat value].
+			
+			target buildWithClapArguments: project ] in PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:withPositionals:
+FullBlockClosure(BlockClosure)>>cull:
+FullBlockClosure(BlockClosure)>>cull:cull:
+ClapCommand(ClapParameter)>>valueFor:with:
+[ super valueFor: aMatch with: arg ] in ClapCommand>>valueFor:with:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+ClapCommand>>valueFor:with:
+ClapNamedMatch(ClapExpression)>>value:
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+FullBlockClosure(BlockClosure)>>cull:
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+FullBlockClosure(BlockClosure)>>cull:
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+OrderedCollection>>do:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+ClapCommand>>valueFor:with:
+ClapNamedMatch(ClapExpression)>>value:
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+FullBlockClosure(BlockClosure)>>cull:
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+FullBlockClosure(BlockClosure)>>cull:
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+OrderedCollection>>do:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+ClapCommand>>valueFor:with:
+ClapNamedMatch(ClapExpression)>>value:
+ - - - - - - - - - - - - - - -
+			- - - - - - - - - - - - - - - - - -
+[ :sub | sub value: arg ] in ClapRoot(ClapCommand)>>valueFor:with:
+FullBlockClosure(BlockClosure)>>cull:
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapCompositeMatch>>matchedSubcommand:ifNone:
+FullBlockClosure(BlockClosure)>>cull:
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+OrderedCollection>>do:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapCompositeMatch>>matchedSubcommand:ifNone:
+ClapRoot(ClapCommand)>>valueFor:with:
+ClapCompositeMatch(ClapExpression)>>value:
+[ :m |
+				m value: self.
+				self exitSuccess ] in [
+		self rememberSession;
+			ifMatch: [ :m |
+				m value: self.
+				self exitSuccess ]
+			ifMismatch: [ self noneMatched ]
+	] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>cull:
+ClapCompositeMatch(ClapSubExpression)>>ifMatch:ifMismatch:
+ClapContext>>ifMatch:ifMismatch:
+[
+		self rememberSession;
+			ifMatch: [ :m |
+				m value: self.
+				self exitSuccess ]
+			ifMismatch: [ self noneMatched ]
+	] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+
+7 August 2025 11:53:18.073981 am
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: 60d66b41-80dd-0d00-bdda-516c033ccd3c Sep  2 2024
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: 60d66b41-80dd-0d00-bdda-516c033ccd3c Sep  2 2024
+v10.3.1 - Commit: 6cdb1e5d - Date: 2024-09-02 09:56:37 +0200
+
+Image: Pharo12.0.0SNAPSHOT [Build information: Pharo-12.0.0+SNAPSHOT.build.1577.sha.27ee66a01aa0ab8fb76a15367547e56dc6a6567b (64 Bit)]
+
+PRPDFDocument(Object)>>halt
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		project: 	a PRProject[741990912]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument>>postWriteTransform:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		aFile: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Pharo[..]
+		relativePath: 	nil
+		outputFileReference: 	nil
+	Receiver's instance variables: 
+		project: 	a PRProject[741990912]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument(PRAbstractOutputDocument)>>buildOn:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		aPRProject: 	a PRProject[741990912]
+		parsedDocument: 	a MicRootBlock
+		transformedDocument: 	a MicRootBlock
+		writtenFile: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing[..]
+	Receiver's instance variables: 
+		project: 	a PRProject[741990912]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRPdfOutput(PRTarget)>>buildOn:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		aProject: 	a PRProject[741990912]
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		status: 	a PRSuccess
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+Set>>do:
+	Receiver: a Set(MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writin[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+		each file exists ifTrue: [ 
+			status := status and: (([..]
+		index: 	6
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+	Receiver's instance variables: 
+		tally: 	1
+		array: 	an Array(nil nil nil nil nil MicMicrodownInputDocument(/Users/ducass[..]
+
+
+PRPdfOutput(PRTarget)>>buildOn:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		status: 	a PRSuccess
+		aProject: 	a PRProject[741990912]
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+PRProject>>build:
+	Receiver: a PRProject[741990912]
+	Arguments and temporary variables: 
+		output: 	a PRPdfOutput
+	Receiver's instance variables: 
+		properties: 	nil
+		baseDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		templatable: 	false
+		toc: 	nil
+
+
+PRPdfOutput(PRTarget)>>buildWithClapArguments:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		project: 	a PRProject[741990912]
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+[ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			args at: #templatable ifPresent: [(args at: #templatable) value ].
+			"here, default strategy is mainRoot and the following order give strategies a priority order"
+			isWithPositionals ifTrue: [ 
+			(args at: #requestedFiles ) isExplicit ifTrue:[ 
+				target buildStrategy: (PRBuildListStrategy list: (args occurrencesOf: #requestedFiles collect: #value) )
+				] ].
+			args at: #all ifPresent: [ :strat | target buildStrategy: strat value ].
+			args at: #mainRoot ifPresent: [ :strat | target buildStrategy: strat value].
+			
+			target buildWithClapArguments: project ] in PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:withPositionals:
+	Receiver: PRPdfOutput
+	Arguments and temporary variables: 
+		anId: 	#pdf
+		isWithPositionals: 	true
+		target: 	a PRPdfOutput
+		project: 	a PRProject[741990912]
+		command: 	nil
+		args: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		superclass: 	PRWritingTarget
+		methodDict: 	a MethodDictionary(#documentFor:->PRPdfOutput>>#documentFor: #e[..]
+		format: 	65538
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (building) - 1 selector(s) Protocol (accessing[..]
+		subclasses: 	nil
+		name: 	#PRPdfOutput
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemDictionary(lots of globals)
+		commentSourcePointer: 	nil
+		packageTag: 	a PackageTag(Uncategorized)
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			arg[..]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:wit[..]
+		compiledBlock: 	a CompiledBlock: [ :args |
+			args at: #helpFlag ifPresent: [..]
+		numArgs: 	1
+		receiver: 	PRPdfOutput
+
+
+FullBlockClosure(BlockClosure)>>cull:cull:
+	Receiver: [ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			arg[..]
+	Arguments and temporary variables: 
+		firstArg: 	a ClapNamedMatch
+		secondArg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index[..]
+	Receiver's instance variables: 
+		outerContext: 	PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:wit[..]
+		compiledBlock: 	a CompiledBlock: [ :args |
+			args at: #helpFlag ifPresent: [..]
+		numArgs: 	1
+		receiver: 	PRPdfOutput
+
+
+ClapCommand(ClapParameter)>>valueFor:with:
+	Receiver: a ClapCommand(pdf)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pdf
+		canonicalName: 	nil
+		description: 	'Build your Pillar documents in pdf format'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #templatable->[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFiles))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(templatable) a Clap[..]
+		subcommands: 	an OrderedCollection()
+
+
+[ super valueFor: aMatch with: arg ] in ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pdf)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pdf
+		canonicalName: 	nil
+		description: 	'Build your Pillar documents in pdf format'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #templatable->[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFiles))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(templatable) a Clap[..]
+		subcommands: 	an OrderedCollection()
+
+
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapWordMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		array: 	an Array(a ClapWordMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pdf)
+		parent: 	a ClapNamedMatch
+		startIndex: 	3
+		children: 	an OrderedCollection(a ClapWordMatch)
+		keyword: 	'pdf'
+
+
+ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pdf)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pdf
+		canonicalName: 	nil
+		description: 	'Build your Pillar documents in pdf format'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #templatable->[..]
+		positionals: 	an OrderedCollection(a ClapPositional(requestedFiles))
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(templatable) a Clap[..]
+		subcommands: 	an OrderedCollection()
+
+
+ClapNamedMatch(ClapExpression)>>value:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pdf)
+		parent: 	a ClapNamedMatch
+		startIndex: 	3
+		children: 	an OrderedCollection(a ClapWordMatch)
+		keyword: 	'pdf'
+
+
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(build)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		sub: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		identifier: 	#build
+		canonicalName: 	nil
+		description: 	'Export format not found in pillar.config. Please edit it and [..]
+		multiple: 	false
+		meaningBlock: 	[ :args |
+				args at: #helpFlag ifPresent: [ :help | help va[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help))
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help))
+		subcommands: 	an OrderedCollection(a ClapCommand(checkBook) a ClapCommand(cr[..]
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :sub | sub value: arg ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapCommand>>valueFor:with:
+		compiledBlock: 	a CompiledBlock: [ :sub | sub value: arg ]
+		numArgs: 	1
+		receiver: 	a ClapCommand(build)
+
+
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+		cmdMatch: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(build)
+		parent: 	a ClapNamedMatch
+		startIndex: 	2
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'build'
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :cmdMatch | foundBlock cull: cmdMatch ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+		compiledBlock: 	a CompiledBlock: [ :cmdMatch | foundBlock cull: cmdMatch ]
+		numArgs: 	1
+		receiver: 	a ClapNamedMatch
+
+
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+		each: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection>>do:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: [..]
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(build)
+		parent: 	a ClapNamedMatch
+		startIndex: 	2
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'build'
+
+
+ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(build)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#build
+		canonicalName: 	nil
+		description: 	'Export format not found in pillar.config. Please edit it and [..]
+		multiple: 	false
+		meaningBlock: 	[ :args |
+				args at: #helpFlag ifPresent: [ :help | help va[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help))
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help))
+		subcommands: 	an OrderedCollection(a ClapCommand(checkBook) a ClapCommand(cr[..]
+
+
+ClapNamedMatch(ClapExpression)>>value:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(build)
+		parent: 	a ClapNamedMatch
+		startIndex: 	2
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'build'
+
+
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pillar)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		sub: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		identifier: 	#pillar
+		canonicalName: 	nil
+		description: 	'Pillar is a markup syntax and associated tools to write and g[..]
+		multiple: 	false
+		meaningBlock: 	[ :args | 
+		args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #version->a Cl[..]
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(version))
+		subcommands: 	an OrderedCollection(a ClapCommand(archetype) a ClapCommand(bu[..]
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :sub | sub value: arg ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapCommand>>valueFor:with:
+		compiledBlock: 	a CompiledBlock: [ :sub | sub value: arg ]
+		numArgs: 	1
+		receiver: 	a ClapCommand(pillar)
+
+
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+		cmdMatch: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pillar)
+		parent: 	a ClapCompositeMatch
+		startIndex: 	1
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'pillar'
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :cmdMatch | foundBlock cull: cmdMatch ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+		compiledBlock: 	a CompiledBlock: [ :cmdMatch | foundBlock cull: cmdMatch ]
+		numArgs: 	1
+		receiver: 	a ClapNamedMatch
+
+
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+		each: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection>>do:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: [..]
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+	Receiver: an OrderedCollection(a ClapNamedMatch)
+	Arguments and temporary variables: 
+		aBlock: 	[ :child | specification subcommands includes: child specification ]
+		foundBlock: 	[ :cmdMatch | foundBlock cull: cmdMatch ]
+		exceptionBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		array: 	an Array(a ClapNamedMatch nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	1
+
+
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		foundBlock: 	[ :sub | sub value: arg ]
+		noneBlock: 	[ super valueFor: aMatch with: arg ]
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pillar)
+		parent: 	a ClapCompositeMatch
+		startIndex: 	1
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'pillar'
+
+
+ClapCommand>>valueFor:with:
+	Receiver: a ClapCommand(pillar)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapNamedMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		identifier: 	#pillar
+		canonicalName: 	nil
+		description: 	'Pillar is a markup syntax and associated tools to write and g[..]
+		multiple: 	false
+		meaningBlock: 	[ :args | 
+		args at: #helpFlag ifPresent: [ :help | help val[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #version->a Cl[..]
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(version))
+		subcommands: 	an OrderedCollection(a ClapCommand(archetype) a ClapCommand(bu[..]
+
+
+ClapNamedMatch(ClapExpression)>>value:
+	Receiver: a ClapNamedMatch
+	Arguments and temporary variables: 
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Receiver's instance variables: 
+		specification: 	a ClapCommand(pillar)
+		parent: 	a ClapCompositeMatch
+		startIndex: 	1
+		children: 	an OrderedCollection(a ClapNamedMatch)
+		keyword: 	'pillar'
+
+
+[ :sub | sub value: arg ] in ClapRoot(ClapCommand)>>valueFor:with:
+	Receiver: a ClapRoot(clap)
+	Arguments and temporary variables: 
+		aMatch: 	a ClapCompositeMatch
+		arg: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		sub: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		identifier: 	#clap
+		canonicalName: 	nil
+		description: 	'Entry point for commands implemented with Clap'
+		multiple: 	false
+		meaningBlock: 	[ :args |
+			args at: #helpFlag ifPresent: [ :help |
+				help[..]
+		validationBlock: 	nil
+		implicitMeaningBlock: 	[ :match | match ]
+		parameters: 	an OrderedDictionary(#helpFlag->a ClapFlag(help) #helpCommand->[..]
+		positionals: 	an OrderedCollection()
+		aliases: 	#()
+		flags: 	an OrderedCollection(a ClapFlag(help) a ClapFlag(save) a ClapFlag(no[..]
+		subcommands: 	an OrderedCollection(a ClapCommand(help) a ClapCommand(evaluat[..]
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ :sub | sub value: arg ]
+	Arguments and temporary variables: 
+		anArg: 	a ClapNamedMatch
+	Receiver's instance variables: 
+		outerContext: 	ClapRoot(ClapCommand)>>valueFor:with:
+		compiledBlock: 	a CompiledBlock: [ :sub | sub value: arg ]
+		numArgs: 	1
+		receiver: 	a ClapRoot(clap)
+
+
+
+--- The full stack ---
+PRPDFDocument(Object)>>halt
+PRPDFDocument>>postWriteTransform:
+PRPDFDocument(PRAbstractOutputDocument)>>buildOn:
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRPdfOutput(PRTarget)>>buildOn:
+Set>>do:
+PRPdfOutput(PRTarget)>>buildOn:
+PRProject>>build:
+PRPdfOutput(PRTarget)>>buildWithClapArguments:
+[ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			args at: #templatable ifPresent: [(args at: #templatable) value ].
+			"here, default strategy is mainRoot and the following order give strategies a priority order"
+			isWithPositionals ifTrue: [ 
+			(args at: #requestedFiles ) isExplicit ifTrue:[ 
+				target buildStrategy: (PRBuildListStrategy list: (args occurrencesOf: #requestedFiles collect: #value) )
+				] ].
+			args at: #all ifPresent: [ :strat | target buildStrategy: strat value ].
+			args at: #mainRoot ifPresent: [ :strat | target buildStrategy: strat value].
+			
+			target buildWithClapArguments: project ] in PRPdfOutput class(PRTarget class)>>buildClapCommandWithId:withPositionals:
+FullBlockClosure(BlockClosure)>>cull:
+FullBlockClosure(BlockClosure)>>cull:cull:
+ClapCommand(ClapParameter)>>valueFor:with:
+[ super valueFor: aMatch with: arg ] in ClapCommand>>valueFor:with:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+ClapCommand>>valueFor:with:
+ClapNamedMatch(ClapExpression)>>value:
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+FullBlockClosure(BlockClosure)>>cull:
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+FullBlockClosure(BlockClosure)>>cull:
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+OrderedCollection>>do:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+ClapCommand>>valueFor:with:
+ClapNamedMatch(ClapExpression)>>value:
+[ :sub | sub value: arg ] in ClapCommand>>valueFor:with:
+FullBlockClosure(BlockClosure)>>cull:
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+FullBlockClosure(BlockClosure)>>cull:
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+OrderedCollection>>do:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapNamedMatch(ClapCompositeMatch)>>matchedSubcommand:ifNone:
+ClapCommand>>valueFor:with:
+ClapNamedMatch(ClapExpression)>>value:
+[ :sub | sub value: arg ] in ClapRoot(ClapCommand)>>valueFor:with:
+FullBlockClosure(BlockClosure)>>cull:
+ - - - - - - - - - - - - - - -
+			- - - - - - - - - - - - - - - - - -
+[ :cmdMatch | foundBlock cull: cmdMatch ] in ClapCompositeMatch>>matchedSubcommand:ifNone:
+FullBlockClosure(BlockClosure)>>cull:
+[ :each |
+			(aBlock value: each)
+				ifTrue: [ ^ foundBlock cull: each ] ] in OrderedCollection(Collection)>>detect:ifFound:ifNone:
+OrderedCollection>>do:
+OrderedCollection(Collection)>>detect:ifFound:ifNone:
+ClapCompositeMatch>>matchedSubcommand:ifNone:
+ClapRoot(ClapCommand)>>valueFor:with:
+ClapCompositeMatch(ClapExpression)>>value:
+[ :m |
+				m value: self.
+				self exitSuccess ] in [
+		self rememberSession;
+			ifMatch: [ :m |
+				m value: self.
+				self exitSuccess ]
+			ifMismatch: [ self noneMatched ]
+	] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>cull:
+ClapCompositeMatch(ClapSubExpression)>>ifMatch:ifMismatch:
+ClapContext>>ifMatch:ifMismatch:
+[
+		self rememberSession;
+			ifMatch: [ :m |
+				m value: self.
+				self exitSuccess ]
+			ifMismatch: [ self noneMatched ]
+	] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+key $E not found in Dictionary
+26 March 2026 6:27:12.980789 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+Dictionary>>errorKeyNotFound:
+	Receiver: a Dictionary('CodeBlockValidator'->MicCodeBlockValidator 'CodeIndentation'->MicCodeInd[..]
+	Arguments and temporary variables: 
+		aKey: 	$E
+	Receiver's instance variables: 
+		tally: 	13
+		array: 	{'EnglishTypography'->MicEnglishTypographyChecker. 'ReferenceChecks'[..]
+
+
+[self errorKeyNotFound: key] in Dictionary>>at:
+	Receiver: a Dictionary('CodeBlockValidator'->MicCodeBlockValidator 'CodeIndentation'->MicCodeInd[..]
+	Arguments and temporary variables: 
+		key: 	$E
+	Receiver's instance variables: 
+		tally: 	13
+		array: 	{'EnglishTypography'->MicEnglishTypographyChecker. 'ReferenceChecks'[..]
+
+
+Dictionary>>at:ifAbsent:
+	Receiver: a Dictionary('CodeBlockValidator'->MicCodeBlockValidator 'CodeIndentation'->MicCodeInd[..]
+	Arguments and temporary variables: 
+		key: 	$E
+		aBlock: 	[self errorKeyNotFound: key]
+	Receiver's instance variables: 
+		tally: 	13
+		array: 	{'EnglishTypography'->MicEnglishTypographyChecker. 'ReferenceChecks'[..]
+
+
+Dictionary>>at:
+	Receiver: a Dictionary('CodeBlockValidator'->MicCodeBlockValidator 'CodeIndentation'->MicCodeInd[..]
+	Arguments and temporary variables: 
+		key: 	$E
+	Receiver's instance variables: 
+		tally: 	13
+		array: 	{'EnglishTypography'->MicEnglishTypographyChecker. 'ReferenceChecks'[..]
+
+
+[ :aCheck |
+				availableCheckers 
+					at: aCheck 
+					ifAbsent: [ Stdio stdout nextPutAll: 'The checker ', aCheck asString , ' is not available'].
+				configuredCheckers 
+					at: aCheck 
+					put: (availableCheckers at: aCheck) new.
+				self 
+					configureCheckers: configuredCheckers 
+					from: aConfiguration.
+				^ configuredCheckers values ] in MicAnalysisReportWriter class>>checkersFromConfiguration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		aConfiguration: 	a ConfigurationForPillar
+		availableCheckers: 	a Dictionary('CodeBlockValidator'->MicCodeBlockValidator[..]
+		configuredCheckers: 	a Dictionary()
+		onlyCheckers: 	an OrderedCollection($E $n $g $l $i $s $h $T $y $p $o $g $r $[..]
+		aCheck: 	$E
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663075
+		packageTag: 	a PackageTag(Core)
+
+
+OrderedCollection>>do:
+	Receiver: an OrderedCollection($E $n $g $l $i $s $h $T $y $p $o $g $r $a $p $h $y)
+	Arguments and temporary variables: 
+		aBlock: 	[ :aCheck |
+				availableCheckers 
+					at: aCheck 
+					ifAbsent: [..]
+		index: 	1
+	Receiver's instance variables: 
+		array: 	#($E $n $g $l $i $s $h $T $y $p $o $g $r $a $p $h $y nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	17
+
+
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		aConfiguration: 	a ConfigurationForPillar
+		availableCheckers: 	a Dictionary('CodeBlockValidator'->MicCodeBlockValidator[..]
+		configuredCheckers: 	a Dictionary()
+		onlyCheckers: 	an OrderedCollection($E $n $g $l $i $s $h $T $y $p $o $g $r $[..]
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663075
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663075
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[86505984]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[86505984]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+Dictionary>>errorKeyNotFound:
+[self errorKeyNotFound: key] in Dictionary>>at:
+Dictionary>>at:ifAbsent:
+Dictionary>>at:
+[ :aCheck |
+				availableCheckers 
+					at: aCheck 
+					ifAbsent: [ Stdio stdout nextPutAll: 'The checker ', aCheck asString , ' is not available'].
+				configuredCheckers 
+					at: aCheck 
+					put: (availableCheckers at: aCheck) new.
+				self 
+					configureCheckers: configuredCheckers 
+					from: aConfiguration.
+				^ configuredCheckers values ] in MicAnalysisReportWriter class>>checkersFromConfiguration:
+OrderedCollection>>do:
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+

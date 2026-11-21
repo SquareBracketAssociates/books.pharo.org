@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Morphic</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo 9 by Example</a>
+    <p class="site-authors">Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">2</span> Getting Started with  Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-quick-tour-of-pharo.html"><span class="number">3</span> A quick tour of Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="finding-information-in.html"><span class="number">4</span> Finding information in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">5</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="building-a-little-game.html"><span class="number">6</span> Building a little game</a>
+            
+          </li>
+          
+          <li>
+            <a href="publishing-and-packaging.html"><span class="number">7</span> Publishing and packaging your first Pharo project</a>
+            
+          </li>
+          
+          <li>
+            <a href="syntax-in-a-nutshell.html"><span class="number">8</span> Syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="understanding-message.html"><span class="number">9</span> Understanding message syntax</a>
+            
+          </li>
+          
+          <li>
+            <a href="the-pharo-object-model.html"><span class="number">10</span> The Pharo object model</a>
+            
+          </li>
+          
+          <li>
+            <a href="traits-reusable-class.html"><span class="number">11</span> Traits: reusable class fragments</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-tests-in-pharo.html"><span class="number">12</span> SUnit: Tests in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="basic-classes.html"><span class="number">13</span> Basic classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="collections.html"><span class="number">14</span> Collections</a>
+            
+          </li>
+          
+          <li>
+            <a href="streams.html"><span class="number">15</span> Streams</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="morphic.html" aria-current="page"><span class="number">16</span> Morphic</a>
+            
+            <ol>
+              
+              <li><a href="#the-history-of-morphic"><span class="number">16.1</span> The history of Morphic</a></li>
+              
+              <li><a href="#morphs"><span class="number">16.2</span> Morphs</a></li>
+              
+              <li><a href="#manipulating-morphs"><span class="number">16.3</span> Manipulating morphs</a></li>
+              
+              <li><a href="#composing-morphs"><span class="number">16.4</span> Composing morphs</a></li>
+              
+              <li><a href="#creating-and-drawing-your-own-morphs"><span class="number">16.5</span> Creating and drawing your own morphs</a></li>
+              
+              <li><a href="#mouse-events-for-interaction"><span class="number">16.6</span> Mouse events for interaction</a></li>
+              
+              <li><a href="#keyboard-events"><span class="number">16.7</span> Keyboard events</a></li>
+              
+              <li><a href="#morphic-animations"><span class="number">16.8</span> Morphic animations</a></li>
+              
+              <li><a href="#interactors"><span class="number">16.9</span> Interactors</a></li>
+              
+              <li><a href="#drag-and-drop"><span class="number">16.10</span> Drag-and-drop</a></li>
+              
+              <li><a href="#a-complete-example"><span class="number">16.11</span> A complete example</a></li>
+              
+              <li><a href="#more-about-the-canvas"><span class="number">16.12</span> More about the canvas</a></li>
+              
+              <li><a href="#chapter-summary-10"><span class="number">16.13</span> Chapter summary</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="classes-and-metaclasses.html"><span class="number">17</span> Classes and metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="reflection.html"><span class="number">18</span> Reflection</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">16</span> Morphic</h2><a id="cha:morphic"></a>
+<p>Morphic is the name given to Pharo's graphical interface.
+Morphic supports two main aspects: on one hand Morphic defines all the low-level graphical entities and related infrastructure (events, drawing,...) and on the other hand Morphic defines all the widgets available in Pharo.
+Morphic is written in Pharo, so it is fully portable between operating systems.
+As a consequence, Pharo looks exactly the same on Unix, MacOS and Windows.
+What distinguishes Morphic from most other user interface toolkits is that it does not have separate modes for <i>composing</i> and <i>running</i> the interface: all the graphical elements can be assembled and disassembled by the user, at any time.
+We thank Hilaire Fernandes for permission to base this chapter on his original article in French.</p>
+
+<h3 id="the-history-of-morphic"><span class="number">16.1</span> The history of Morphic</h3>
+<p>Morphic was developed by John Maloney and Randy Smith for the Self programming
+language, starting around 1993.
+Maloney later wrote a new version of Morphic for Squeak, but the basic ideas behind the Self version are still alive and well
+in Pharo Morphic: <i>directness</i> and <i>liveness</i>.
+Directness means that the shapes on the screen are objects that can be examined or changed directly, that
+is, by clicking on them using a mouse.
+Liveness means that the user interface is always able to respond to user actions: information on the screen is
+continuously updated as the world that it describes changes.
+A simple example of this is that you can detach a menu item and keep it as a button.</p>
+
+<p>Bring up the World Menu and Option-Command-Shift click once on it to bring up its morphic halo,
+then repeat the operation again on a menu item you want to detach, to bring up that item's
+halo (see Figure <a href="#fig:detachingMenu">16.1</a>).</p>
+
+<p>Now duplicate that item elsewhere on the screen by grabbing the green handle as shown in Figure <a href="#fig:detachingMenu">16.1</a>.</p>
+
+<p><figure id="fig:detachingMenu"><img src="Chapters/Morphic/figures/detachingMenu.png" alt="Detaching a morph, here the  Playground  menu item, to make it an independent button. " class="fig:detachingMenu" style="width: 45%"><figcaption><span class="number">Figure 16.1</span> Detaching a morph, here the <code>Playground</code> menu item, to make it an independent button. </figcaption></img></figure></p>
+
+<p>Once dropped the menu item stays detached from the menu and you can interact with it as if it would be in the menu (see Figure <a href="#fig:detachingMenu2">16.2</a>).</p>
+
+<p><figure id="fig:detachingMenu2"><img src="Chapters/Morphic/figures/detachingMenu2.png" alt="Dropping the menu item on the desktop, here the  Playground  menu item is now an independent button. " class="fig:detachingMenu2" style="width: 25%"><figcaption><span class="number">Figure 16.2</span> Dropping the menu item on the desktop, here the <code>Playground</code> menu item is now an independent button. </figcaption></img></figure></p>
+
+<p>This example illustrates what we mean by <i>directness</i> and <i>liveness</i>.
+This gives a lot of power when developing alternate user interface and prototyping alternate interactions.</p>
+
+<p>Morphic is a bit showing its age, and the Pharo community is working since several years on a possible replacement. Replacing Morphic means to have both
+a new low-level infrastructure and a new widget sets.
+The project is called Bloc and got several iterations. Bloc is about the infrastructure and Brick is a set of widgets built on top.  But let us have fun with Morphic.</p>
+
+<h3 id="morphs"><span class="number">16.2</span> Morphs</h3>
+<p>All of the objects that you see on the screen when you run Pharo are <i>Morphs</i>, that is, they are instances of subclasses of class <code>Morph</code>.
+The class <code>Morph</code> itself is a large class with many methods; this makes it possible for subclasses to implement interesting behaviour with little code.</p>
+
+<p>To create a morph to represent a string object, execute the following code in a Playground.</p>
+
+<figure class="code"><pre><code>'Morph' asMorph openInWorld</code></pre><figcaption><span class="number">Listing 16.1</span> Creation of a String Morph</figcaption></figure>
+
+<p>This creates a Morph to represent the string <code>'Morph'</code>, and then opens it (that is, displays it) in the <i>world</i>, which is the name that Pharo gives to  the screen.
+You should obtain a graphical element (a <code>Morph</code>), which you can manipulate by meta-clicking.</p>
+
+<p>Of course, it is possible to define morphs that are more interesting graphical representations than the one that you have just seen.
+The method <code>asMorph</code> has a default implementation in class <code>Object</code> class that just creates a <code>StringMorph</code>.
+So, for example, <code>Color tan asMorph</code> returns a StringMorph labeled with the result of <code>Color tan printString</code>.
+Let's change this so that we get a coloured rectangle instead.</p>
+
+<p>Now execute <code>(Morph new colors: Color orange) openInWorld</code> in a Playground.
+Instead of the string-like morph, you get an orange rectangle (see Figure <a href="#fig:colorOrange">16.3</a>)!
+You get the same executing <code>(Morph new color: Color orange) openInWorld</code></p>
+
+<p><figure id="fig:colorOrange"><img src="Chapters/Morphic/figures/colorOrange.png" alt="(Morph new color: Color orange) openInWorld ." class="fig:colorOrange" style="width: 75%"><figcaption><span class="number">Figure 16.3</span> <code>(Morph new color: Color orange) openInWorld</code>.</figcaption></img></figure></p>
+
+<h3 id="manipulating-morphs"><span class="number">16.3</span> Manipulating morphs</h3>
+<p>Morphs are objects, so we can manipulate them like any other object in Pharo: by sending messages, we can change their properties, create new subclasses of Morph, and so on.</p>
+
+<p>Every morph, even if it is not currently open on the screen, has a position and a size. For convenience, all morphs are considered to occupy a rectangular region of the screen; if they are irregularly shaped, their position and size are those of the smallest rectangular <i>box</i> that surrounds them, which is known as the morph's bounding box, or just its <i>bounds</i>.</p>
+
+<ul>
+<li>The <code>position</code> method returns a <code>Point</code> that describes the location of the morph's upper left corner (or the upper left corner of its bounding box). The origin of the coordinate system is the screen's upper left corner, with <i>y</i> coordinates increasing <i>down</i> the screen and <i>x</i> coordinates increasing to the right.</li>
+<li>The <code>extent</code> method also returns a point, but this point specifies the width and height of the morph rather than a location.</li>
+</ul>
+<p>Type the following code into a playground and <code>Do it</code>:</p>
+
+<pre><code>joe := Morph new color: Color blue.
+joe openInWorld.
+bill := Morph new color: Color red.
+bill openInWorld.</code></pre>
+
+<p>Then type <code>joe position</code> and then <code>Print it</code>. To move joe, execute <code>joeposition: (joe position + (10@3))</code> repeatedly (see Figure <a href="#fig:moveJoe">16.4</a>).</p>
+
+<p><figure id="fig:moveJoe"><img src="Chapters/Morphic/figures/moveJoe.png" alt="Bill and Joe after 10 moves." class="fig:moveJoe" style="width: 65%"><figcaption><span class="number">Figure 16.4</span> Bill and Joe after 10 moves.</figcaption></img></figure></p>
+
+<p>It is possible to do a similar thing with size. <code>joe extent</code> answers joe's size; to have joe grow, execute <code>joe extent: (joe extent * 1.1)</code>. To change the color of a morph, send it the <code>color:</code> message with the desired <code>Color</code> object as argument, for instance, <code>joe color: Color orange</code>. To add transparency, try <code>joe color: (Color orange alpha: 0.5)</code>.</p>
+
+<p>To make bill follow joe, you can repeatedly execute this code:</p>
+
+<pre><code>bill position: (joe position + (100@0))</code></pre>
+
+<p>If you move <code>joe</code> using the mouse and then execute this code, bill will move so
+that it is 100 pixels to the right of <code>joe</code>. You can see the result on Figure <a href="#fig:joeAndBillResult">16.5</a>. Nothing suprising.</p>
+
+<p><figure id="fig:joeAndBillResult"><img src="Chapters/Morphic/figures/joeAndBillResult.png" alt="Bill follows Joe." class="fig:joeAndBillResult" style="width: 75%"><figcaption><span class="number">Figure 16.5</span> Bill follows Joe.</figcaption></img></figure></p>
+
+<p>Note that you can delete the morphs you created by</p>
+
+<ul>
+<li>sending them the message delete</li>
+<li>selecting the cross in halos that you can bring using Meta-Option click.</li>
+</ul>
+<h3 id="composing-morphs"><span class="number">16.4</span> Composing morphs</h3>
+<p>One way of creating new graphical representations is by placing one morph inside another. This is called <i>composition</i>; morphs can be composed to any depth. You can place a morph inside another by sending the message <code>addMorph:</code> to the
+container morph.</p>
+
+<p>Try adding a morph to another one as follows:</p>
+
+<pre><code>balloon := BalloonMorph new color: Color yellow.
+joe addMorph: balloon.
+balloon position: joe position.</code></pre>
+
+<p>The last line positions the balloon at the same coordinates as joe.
+Notice that the coordinates of the contained morph are still relative to the screen, not to the containing morph. This absolute way of positioning morph is not really good and it makes programming morphs feels a bit odd. But there are many  methods available to position a morph; browse the <code>geometry</code> protocol of class <code>Morph</code> to see for yourself. For example, to center the balloon inside joe, execute <code>balloon center: joe center</code>.</p>
+
+<p><figure id="fig:joeStar"><img src="Chapters/Morphic/figures/joeStar.png" alt="The balloon is contained inside joe, the translucent orange morph." class="fig:joeStar" style="width: 30%"><figcaption><span class="number">Figure 16.6</span> The balloon is contained inside joe, the translucent orange morph.</figcaption></img></figure></p>
+
+<p>If you now try to grab the balloon with the mouse, you will find that you actually grab joe, and the two morphs move together: the balloon is <i>embedded</i> inside joe.
+It is possible to embed more morphs inside joe. In addition to doing this programmatically, you can also embed morphs by direct manipulation.</p>
+
+<h3 id="creating-and-drawing-your-own-morphs"><span class="number">16.5</span> Creating and drawing your own morphs</h3>
+<p>While it is possible to make many interesting and useful graphical
+representations by composing morphs, sometimes you will need to create something
+completely different.</p>
+
+<p>To do this you define a subclass of <code>Morph</code> and override the <code>drawOn:</code> method to change its appearance.</p>
+
+<p>The morphic framework sends the message <code>drawOn:</code> to a morph when it needs to redisplay the morph on the screen.
+The parameter to <code>drawOn:</code> is a kind of <code>Canvas</code>; the expected behaviour is that the morph will draw itself on that
+canvas, inside its bounds. Let's use this knowledge to create a cross-shaped morph.</p>
+
+<p>Using the browser, define a new class <code>CrossMorph</code> inheriting from <code>Morph</code>:</p>
+
+<pre><code>Morph subclass: #CrossMorph
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'PBE-Morphic'</code></pre>
+
+<p>We can define the <code>drawOn:</code> method like this:</p>
+
+<pre><code>CrossMorph &gt;&gt; drawOn: aCanvas
+	| crossHeight crossWidth horizontalBar verticalBar |
+	crossHeight := self height / 3.
+	crossWidth := self width / 3.
+	horizontalBar := self bounds insetBy: 0 @ crossHeight.
+	verticalBar := self bounds insetBy: crossWidth @ 0.
+	aCanvas fillRectangle: horizontalBar color: self color.
+	aCanvas fillRectangle: verticalBar color: self color</code></pre>
+
+<p><figure id="fig:cross"><img src="Chapters/Morphic/figures/NewCross.png" alt="A  CrossMorph  with its halo; you can resize it as you wish." class="fig:cross" style="width: 30%"><figcaption><span class="number">Figure 16.7</span> A <code>CrossMorph</code> with its halo; you can resize it as you wish.</figcaption></img></figure></p>
+
+<p>Sending the <code>bounds</code> message to a morph answers its bounding box, which is an
+instance of <code>Rectangle</code>.
+Rectangles understand many messages that create other rectangles of related geometry.
+Here, we use the <code>insetBy:</code> message with a point as its argument to create first a rectangle with reduced height, and then another rectangle with reduced width.</p>
+
+<p>To test your new morph, execute <code>CrossMorph new openInWorld</code>.</p>
+
+<p>The result should look something like Figure <a href="#fig:cross">16.7</a>.
+However, you will notice that the sensitive zone — where you can click to grab the morph — is still the whole bounding box.
+Let's fix this.</p>
+
+<p>When the Morphic framework needs to find out which Morphs lie under the cursor, it sends the message <code>containsPoint:</code> to all the morphs whose bounding boxes lie under the mouse pointer.
+So, to limit the sensitive zone of the morph to the cross shape, we need to override the <code>containsPoint:</code> method.</p>
+
+<p>Define the following method in class <code>CrossMorph</code>:</p>
+
+<pre><code>CrossMorph &gt;&gt; containsPoint: aPoint
+	| crossHeight crossWidth horizontalBar verticalBar |
+	crossHeight := self height / 3.
+	crossWidth := self width / 3.
+	horizontalBar := self bounds insetBy: 0 @ crossHeight.
+	verticalBar := self bounds insetBy: crossWidth @ 0.
+	^ (horizontalBar containsPoint: aPoint) or: [ verticalBar containsPoint: aPoint ]</code></pre>
+
+<p>This method uses the same logic as <code>drawOn:</code>, so we can be confident that the points for which <code>containsPoint:</code> answers <code>true</code> are the same ones that will be colored in by <code>drawOn:</code>.
+Notice how we leverage the <code>containsPoint:</code> method in class <code>Rectangle</code> to do the hard work.</p>
+
+<p>There are two problems with the code in the two methods above.</p>
+
+<p>The most obvious is that we have duplicated code.
+This is a cardinal error: if we find that we need to change the way that <code>horizontalBar</code> or <code>verticalBar</code> are calculated, we are quite likely to forget to change one of the two occurrences.
+The solution is to factor out these calculations into two new methods, which we put in the <code>private</code> protocol:</p>
+
+<pre><code>CrossMorph &gt;&gt; horizontalBar
+	| crossHeight |
+	crossHeight := self height / 3.
+	^ self bounds insetBy: 0 @ crossHeight</code></pre>
+
+<pre><code>CrossMorph &gt;&gt; verticalBar
+	| crossWidth |
+	crossWidth := self width / 3.
+	^ self bounds insetBy: crossWidth @ 0</code></pre>
+
+<p>We can then define both <code>drawOn:</code> and <code>containsPoint:</code> using these methods:</p>
+
+<pre><code>CrossMorph &gt;&gt; drawOn: aCanvas
+	aCanvas fillRectangle: self horizontalBar color: self color.
+	aCanvas fillRectangle: self verticalBar color: self color</code></pre>
+
+<pre><code>CrossMorph &gt;&gt; containsPoint: aPoint
+	^ (self horizontalBar containsPoint: aPoint) or: [ self verticalBar containsPoint: aPoint ]</code></pre>
+
+<p>This code is much simpler to understand, largely because we have given meaningful names to the private methods.
+In fact, it is so simple that you may have noticed the second problem: the area in the center of the cross, which is under both the horizontal and the vertical bars, is drawn twice.
+This doesn't matter when we fill the cross with an opaque colour, but the bug becomes apparent immediately if we draw a semi-transparent cross, as shown in Figure <a href="#fig:overdrawBug">16.8</a>.</p>
+
+<p><figure id="fig:overdrawBug"><img src="Chapters/Morphic/figures/overdrawBug.png" alt="The center of the cross is filled twice with the color. " class="fig:overdrawBug" style="width: 40%"><figcaption><span class="number">Figure 16.8</span> The center of the cross is filled twice with the color. </figcaption></img></figure></p>
+
+<p><figure id="fig:onePixelLineBug"><img src="Chapters/Morphic/figures/onePixelLineBug.png" alt="The cross-shaped morph, showing a row of unfilled pixels. " class="fig:onePixelLineBug" style="width: 40%"><figcaption><span class="number">Figure 16.9</span> The cross-shaped morph, showing a row of unfilled pixels. </figcaption></img></figure></p>
+
+<p>Execute the following code in a playground:</p>
+
+<pre><code>CrossMorph new openInWorld;
+   bounds: (0@0 corner: 200@200);
+   color: (Color blue alpha: 0.4)</code></pre>
+
+<p>The fix is to divide the vertical bar into three pieces, and to fill only the
+top and bottom.
+Once again we find a method in class <code>Rectangle</code> that does the hard work for us: <code>r1 areasOutside: r2</code> answers an array of rectangles
+comprising the parts of <code>r1</code> outside <code>r2</code>.
+Here is the revised code:</p>
+
+<pre><code>CrossMorph &gt;&gt; drawOn: aCanvas
+	| topAndBottom |
+	aCanvas fillRectangle: self horizontalBar color: self color.
+	topAndBottom := self verticalBar areasOutside: self horizontalBar.
+	topAndBottom do: [ :each | aCanvas fillRectangle: each color: self color ]</code></pre>
+
+<p>This code seems to work, but if you try it on some crosses and resize them, you may notice that at some sizes, a one-pixel wide line separates the bottom of the cross from the remainder, as shown in Figure <a href="#fig:onePixelLineBug">16.9</a>.
+This is due to rounding: when the size of the rectangle to be filled is not an integer, <code>fillRectangle: color:</code> seems to round inconsistently, leaving one row of pixels unfilled.</p>
+
+<p>We can work around this by rounding explicitly when we calculate the sizes of the bars as shown hereafter:</p>
+
+<pre><code>CrossMorph &gt;&gt; horizontalBar
+	| crossHeight |
+	crossHeight := (self height / 3) rounded.
+	^ self bounds insetBy: 0 @ crossHeight</code></pre>
+
+<pre><code>CrossMorph &gt;&gt; verticalBar
+	| crossWidth |
+	crossWidth := (self width / 3) rounded.
+	^ self bounds insetBy: crossWidth @ 0</code></pre>
+
+<h3 id="mouse-events-for-interaction"><span class="number">16.6</span> Mouse events for interaction</h3>
+<p>To build live user interfaces using morphs, we need to be able to interact with them using the mouse and keyboard. Moreover, the morphs need to be able respond to user input by changing their appearance and position — that is, by animating themselves.</p>
+
+<p>When a mouse button is pressed, Morphic sends each morph under the mouse pointer the message <code>handlesMouseDown:</code>.
+If a morph answers <code>true</code>, then Morphic immediately sends it the <code>mouseDown:</code> message; it also sends the <code>mouseUp:</code> message when the user releases the mouse button.
+If all morphs answer <code>false</code>, then Morphic initiates a drag-and-drop operation.
+As we will discuss below, the <code>mouseDown:</code> and <code>mouseUp:</code> messages are sent with an argument --- a <code>MouseEvent</code> object — that encodes the details of the mouse action.</p>
+
+<p>Let's extend <code>CrossMorph</code> to handle mouse events. We start by ensuring that all crossMorphs answer <code>true</code> to the <code>handlesMouseDown:</code> message. Add the method to <code>CrossMorph</code> defined as follows:</p>
+
+<pre><code>CrossMorph &gt;&gt; handlesMouseDown: anEvent
+	^ true</code></pre>
+
+<p>Suppose that when we click on the cross, we want to change the color of the cross to red, and when we action-click on it, we want to change the color to yellow.
+We define the <code>mouseDown:</code> method as follows:</p>
+
+<pre><code>CrossMorph &gt;&gt; mouseDown: anEvent
+	anEvent redButtonPressed
+		ifTrue: [ self color: Color red ].	"click"
+	anEvent yellowButtonPressed
+		ifTrue: [ self color: Color yellow ].	"action-click"
+	self changed</code></pre>
+
+<p>Notice that in addition to changing the color of the morph, this method also sends <code>self changed</code>.
+This makes sure that morphic sends <code>drawOn:</code> in a timely fashion.</p>
+
+<p>Note also that once the morph handles mouse events, you can no longer grab it with the mouse and move it.
+Instead you have to use the halo: Option-Command-Shift click on the morph to make the halo appear and grab either the brown move handle
+or the black pickup handle at the top of the morph.</p>
+
+<p>The <code>anEvent</code> argument of <code>mouseDown:</code> is an instance of <code>MouseEvent</code>, which is a subclass of <code>MorphicEvent</code>.
+<code>MouseEvent</code> defines the <code>redButtonPressed</code> and <code>yellowButtonPressed</code> methods.
+Browse this class to see what other methods it provides to interrogate the mouse event.</p>
+
+<h3 id="keyboard-events"><span class="number">16.7</span> Keyboard events</h3>
+<p>To catch keyboard events, we need to take three steps.</p>
+
+<ol>
+<li>Give the <i>keyboard focus</i> to a specific morph. For instance, we can give focus to our morph when the mouse is over it.</li>
+<li>Handle the keyboard event itself with the <code>keyDown:</code> method. This message is sent to the morph that has keyboard focus when the user presses a key.</li>
+<li>Release the keyboard focus when the mouse is no longer over our morph.</li>
+</ol>
+<p>Let's extend <code>CrossMorph</code> so that it reacts to keystrokes.
+First, we need to arrange to be notified when the mouse is over the morph.
+This will happen if our morph answers <code>true</code> to the <code>handlesMouseOver:</code> message.</p>
+
+<pre><code>CrossMorph &gt;&gt; handlesMouseOver: anEvent
+	^ true</code></pre>
+
+<p>This message is the equivalent of <code>handlesMouseDown:</code> for the mouse position.
+When the mouse pointer enters or leaves the morph, the <code>mouseEnter:</code> and <code>mouseLeave:</code> messages are sent to it.</p>
+
+<p>Define two methods so that <code>CrossMorph</code> catches and releases the keyboard focus, a third method to be notified when a key is pressed, and a fourth method to actually handle the key down event.</p>
+
+<pre><code>CrossMorph &gt;&gt; mouseEnter: anEvent
+	anEvent hand newKeyboardFocus: self</code></pre>
+
+<pre><code>CrossMorph &gt;&gt; mouseLeave: anEvent
+	anEvent hand releaseKeyboardFocus: self</code></pre>
+
+<pre><code>CrossMorph &gt;&gt; handlesKeyDown:  anEvent
+	^ true</code></pre>
+
+<p></p>
+
+<pre><code>CrossMorph &gt;&gt; keyDown: anEvent
+	| key |
+	key := anEvent key.
+	key = KeyboardKey up ifTrue: [ self position: self position - (0 @ 10) ].
+	key = KeyboardKey down ifTrue: [ self position: self position + (0 @ 10) ].
+	key = KeyboardKey right ifTrue: [ self position: self position + (10 @ 0) ].
+	key = KeyboardKey left ifTrue: [ self position: self position - (10 @ 0) ].</code></pre>
+
+<p>We have written this method so that you can move the morph using the arrow keys.
+To discover the key values, you can open a Transcript window and add <code>Transcript show: anEvent keyValue</code> to the <code>handleKeystroke:</code> method.</p>
+
+<p>The <code>anEvent</code> argument of <code>handleKeystroke:</code> is an instance of <code>KeyboardEvent</code>, another subclass of <code>MorphicEvent</code>.
+Browse this class to learn more about keyboard events.</p>
+
+<p>If you want to move your morph with <code>Ctrl- </code> like shortcut, you could use code like:</p>
+
+<pre><code>anEvent controlKeyPressed ifTrue: [ 
+	anEvent keyCharacter == $d ifTrue: [ 
+		self position: self position + (0 @ 10) ] ]</code></pre>
+
+<h3 id="morphic-animations"><span class="number">16.8</span> Morphic animations</h3>
+<p>Morphic provides a simple animation system with two main methods: <code>step</code> is sent to a morph at regular intervals of time, while <code>stepTime</code> specifies the time in milliseconds between <code>steps</code>.
+<code>stepTime</code> is actually the <i>minimum</i> time between <code>steps</code>.
+If you ask for a <code>stepTime</code> of 1 ms, don't be surprised if Pharo is too busy to step your morph that often.
+In addition, <code>startStepping</code> turns on the stepping mechanism, while <code>stopStepping</code> turns
+it off again.
+<code>isStepping</code> can be used to find out whether a morph is currently being stepped.</p>
+
+<p>Make <code>CrossMorph</code> blink by defining these methods as follows:</p>
+
+<pre><code>CrossMorph &gt;&gt; stepTime
+	^ 100</code></pre>
+
+<pre><code>CrossMorph &gt;&gt; step
+	(self color diff: Color black) &lt; 0.1
+		ifTrue: [ self color: Color red ]
+		ifFalse: [ self color: self color darker ]</code></pre>
+
+<p>To start things off, you can open an inspector on a <code>CrossMorph</code> using the
+debug handle which look like a wrench in the morphic halo, type <code>selfstartStepping</code> in the small pane at the bottom, and <code>Do it</code>.</p>
+
+<p>You can also redefine the <code>initialize</code> method as follows:</p>
+
+<pre><code>CrossMorph &gt;&gt; initialize
+	super initialize.
+	self startStepping</code></pre>
+
+<p>Alternatively, you can handle <code>key stroke</code> so that you can
+use the <code>+</code> and <code>-</code> keys to start and stop stepping.</p>
+
+<p>Typically text is managed using the KeyStroke events while shortcuts are managed in
+KeyUp and KeyDown events.</p>
+
+<p>To handle key stroke, we need a method to be notified when a key is pressed, and
+a second method to actually handle the key stroke event.</p>
+
+<pre><code>CrossMorph &gt;&gt; handlesKeyStroke:  anEvent
+	^ true</code></pre>
+
+<pre><code>CrossMorph &gt;&gt; keyStroke: anEvent
+	| keyValue |
+	keyValue := anEvent keyCharacter.
+	keyValue == $+ ifTrue: [ self startStepping ].
+	keyValue == $- ifTrue: [ self stopStepping ]</code></pre>
+
+<h3 id="interactors"><span class="number">16.9</span> Interactors</h3>
+<p>To prompt the user for input, the <code>UIManager</code> class provides a large number of
+ready to use dialog boxes. For instance, the <code>request:initialAnswer:</code> method
+returns the string entered by the user (Figure <a href="#fig:dialogName">16.10</a>).</p>
+
+<pre><code>UIManager default
+	request: 'What''s your name?'
+	initialAnswer: 'no name'</code></pre>
+
+<p><figure id="fig:dialogName"><img src="Chapters/Morphic/figures/dialog.png" alt="An input dialog." class="fig:dialogName" style="width: 70%"><figcaption><span class="number">Figure 16.10</span> An input dialog.</figcaption></img></figure></p>
+
+<p><figure id="fig:popup"><img src="Chapters/Morphic/figures/popup.png" alt="Pop-up menu." class="fig:popup" style="width: 70%"><figcaption><span class="number">Figure 16.11</span> Pop-up menu.</figcaption></img></figure></p>
+
+<p>To display a popup menu, use one of the various <code>chooseFrom:</code> methods (Figure
+<a href="#fig:popup">16.11</a>):</p>
+
+<pre><code>UIManager default
+	chooseFrom: #('circle' 'oval' 'square' 'rectangle' 'triangle')
+	lines: #(2 4) message: 'Choose a shape'</code></pre>
+
+<p>Browse the <code>UIManager</code> class and try out some of the interaction methods offered.</p>
+
+<h3 id="drag-and-drop"><span class="number">16.10</span> Drag-and-drop</h3>
+<p>Morphic also supports drag-and-drop.
+Let's examine a simple example with two morphs, a receiver morph and a dropped morph.
+The receiver will accept a morph only if the dropped morph matches a given condition: in our example, the morph
+should be blue.
+If it is rejected, the dropped morph decides what to do.</p>
+
+<p>Let's first define the receiver morph:</p>
+
+<pre><code>Morph subclass: #ReceiverMorph
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'PBE-Morphic'</code></pre>
+
+<p>Now define the initialization method in the usual way:</p>
+
+<pre><code>ReceiverMorph &gt;&gt; initialize
+	super initialize.
+	color := Color red.
+	bounds := 0 @ 0 extent: 200 @ 200</code></pre>
+
+<p>How do we decide if the receiver morph will accept or reject the dropped morph?
+In general, both of the morphs will have to agree to the interaction.
+The receiver does this by responding to <code>wantsDroppedMorph:event:</code>.
+Its first argument is the dropped morph, and the second the mouse event, so that the receiver can, for example, see if any modifier keys were held down at the time of the drop.
+The dropped morph is also given the opportunity to check and see if it likes the morph onto which it is being dropped, by responding to the message <code>wantsToBeDroppedInto:</code>.
+The default implementation of this method (in class <code>Morph</code>) answers <code>true</code>.</p>
+
+<pre><code>ReceiverMorph &gt;&gt; wantsDroppedMorph: aMorph event: anEvent
+	^ aMorph color = Color blue</code></pre>
+
+<p>What happens to the dropped morph if the receiving morph doesn't want it?
+The default behaviour is for it to do nothing, that is, to sit on top of the receiving morph, but without interacting with it.
+A more intuitive behavior is for the dropped morph to go back to its original position.
+This can be achieved by the receiver answering <code>true</code> to the message <code>repelsMorph:event:</code> when it
+doesn't want the dropped morph:</p>
+
+<pre><code>ReceiverMorph &gt;&gt; repelsMorph: aMorph event: anEvent
+	^ (self wantsDroppedMorph: aMorph event: anEvent) not</code></pre>
+
+<p>That's all we need as far as the receiver is concerned.</p>
+
+<p>Create instances of <code>ReceiverMorph</code> and <code>EllipseMorph</code> in a playground:</p>
+
+<pre><code>ReceiverMorph new openInWorld;
+    bounds: (100@100 corner: 200@200).
+EllipseMorph new openInWorld.</code></pre>
+
+<p><figure id="fig:receiverMorph"><img src="Chapters/Morphic/figures/receiverMorph.png" alt="A  ReceiverMorph  and an  EllipseMorph ." class="fig:receiverMorph" style="width: 100%"><figcaption><span class="number">Figure 16.12</span> A <code>ReceiverMorph</code> and an <code>EllipseMorph</code>.</figcaption></img></figure></p>
+
+<p>Try to drag and drop the yellow <code>EllipseMorph</code> onto the receiver.
+It will be rejected and sent back to its initial position.</p>
+
+<p>To change this behaviour, change the color of the ellipse morph to the color
+blue (by sending it the message <code>color: Color blue;</code> right after <code>new</code>).
+Blue morphs should be accepted by the <code>ReceiverMorph</code>.</p>
+
+<p>Let's create a specific subclass of <code>Morph</code>, named <code>DroppedMorph</code>, so we can experiment a bit more.
+Let us define a new kind of morph called <code>DroppedMorph</code>.</p>
+
+<pre><code>Morph subclass: #DroppedMorph
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'PBE-Morphic'</code></pre>
+
+<pre><code>DroppedMorph &gt;&gt; initialize
+	super initialize.
+	color := Color blue.
+	self position: 250 @ 100</code></pre>
+
+<p>Now we can specify what the dropped morph should do when it is rejected by the
+receiver; here it will stay attached to the mouse pointer:</p>
+
+<pre><code>DroppedMorph &gt;&gt; rejectDropMorphEvent: anEvent
+	| h |
+	h := anEvent hand.
+	self currentWorld worldState defer: [ h grabMorph: self ].
+	anEvent wasHandled: true</code></pre>
+
+<p>Sending the <code>hand</code> message to an event answers the <i>hand</i>, an instance of <code>HandMorph</code> that represents the mouse pointer and whatever it holds.
+Here we tell the <code>World</code> that the hand should grab <code>self</code>, the rejected morph.</p>
+
+<p>Create two instances of <code>DroppedMorph</code> of different colors, and then drag and drop them onto the receiver.</p>
+
+<pre><code>ReceiverMorph new openInWorld.
+morph := (DroppedMorph new color: Color blue) openInWorld.
+morph position: (morph position + (70@0)).
+(DroppedMorph new color: Color green) openInWorld.</code></pre>
+
+<p><figure id="fig:droppedMorph"><img src="Chapters/Morphic/figures/droppedMorph.png" alt="Creation of  DroppedMorph  and  ReceiverMorph ." class="fig:droppedMorph" style="width: 70%"><figcaption><span class="number">Figure 16.13</span> Creation of <code>DroppedMorph</code> and <code>ReceiverMorph</code>.</figcaption></img></figure></p>
+
+<p>The green morph is rejected and therefore stays attached to the mouse pointer.</p>
+
+<h3 id="a-complete-example"><span class="number">16.11</span> A complete example</h3>
+<p>Let's design a morph to roll a die.
+Clicking on it will display the values of all sides of the die in a quick loop, and another click will stop the animation.</p>
+
+<p><figure id="fig:dialogDie"><img src="Chapters/Morphic/figures/die.png" alt="The die in Morphic." class="fig:dialogDie" style="width: 30%"><figcaption><span class="number">Figure 16.14</span> The die in Morphic.</figcaption></img></figure></p>
+
+<p>Define the die as a subclass of <code>BorderedMorph</code> instead of <code>Morph</code>, because
+we will make use of the border.</p>
+
+<pre><code>BorderedMorph subclass: #DieMorph
+	instanceVariableNames: 'faces dieValue isStopped'
+	classVariableNames: ''
+	package: 'PBE-Morphic'</code></pre>
+
+<p>The instance variable <code>faces</code> records the number of faces on the die; we allow dice with up to 9 faces! <code>dieValue</code> records the value of the face that is currently displayed, and <code>isStopped</code> is true if the die animation has stopped running.
+To create a die instance, we define the <code>faces: n</code> method on the <i>class</i> side of <code>DieMorph</code> to create a new die with <code>n</code> faces.</p>
+
+<pre><code>DieMorph class &gt;&gt; faces: aNumber
+	^ self new faces: aNumber</code></pre>
+
+<p>The <code>initialize</code> method is defined on the instance side in the usual way;
+remember that <code>new</code> automatically sends <code>initialize</code> to the newly-created
+instance.</p>
+
+<pre><code>DieMorph &gt;&gt; initialize
+	super initialize.
+	self extent: 50 @ 50.
+	self
+		useGradientFill;
+		borderWidth: 2;
+		useRoundedCorners.
+	self setBorderStyle: #complexRaised.
+	self fillStyle direction: self extent.
+	self color: Color green.
+	dieValue := 1.
+	faces := 6.
+	isStopped := false</code></pre>
+
+<p>We use a few methods of <code>BorderedMorph</code> to give a nice appearance to the die:
+a thick border with a raised effect, rounded corners, and a color gradient on
+the visible face.
+We define the instance method <code>faces:</code> to check for a valid parameter as follows:</p>
+
+<pre><code>DieMorph &gt;&gt; faces: aNumber
+	"Set the number of faces"
+
+	((aNumber isInteger and: [ aNumber &gt; 0 ]) and: [ aNumber &lt;= 9 ])
+		ifTrue: [ faces := aNumber ]</code></pre>
+
+<p>It may be good to review the order in which the messages are sent when a die is
+created.
+For instance, if we start by evaluating <code>DieMorph faces: 9</code>:</p>
+
+<ul>
+<li>The class method <code>DieMorph class &gt;&gt; faces:</code> sends <code>new</code> to <code>DieMorph class</code>.</li>
+<li>The method for <code>new</code> (inherited by <code>DieMorph class</code> from <code>Behavior</code>) creates the new instance and sends it the <code>initialize</code> message.</li>
+<li>The <code>initialize</code> method in <code>DieMorph</code> sets <code>faces</code> to an initial value of 6.</li>
+<li><code>DieMorph class &gt;&gt; new</code> returns to the class method <code>DieMorph class &gt;&gt; faces:</code>, which then sends the message <code>faces: 9</code> to the new instance.</li>
+<li>The instance method <code>DieMorph &gt;&gt; faces:</code> now executes, setting the <code>faces</code> instance variable to 9.</li>
+</ul>
+<p>Before defining <code>drawOn:</code>, we need a few methods to place the dots on the displayed face:</p>
+
+<pre><code>DieMorph &gt;&gt; face1
+	^ {(0.5 @ 0.5)}</code></pre>
+
+<pre><code>DieMorph &gt;&gt; face2
+	^{0.25@0.25 . 0.75@0.75}</code></pre>
+
+<pre><code>DieMorph &gt;&gt; face3
+	^{0.25@0.25 . 0.75@0.75 . 0.5@0.5}</code></pre>
+
+<pre><code>DieMorph &gt;&gt; face4
+	^{0.25@0.25 . 0.75@0.25 . 0.75@0.75 . 0.25@0.75}</code></pre>
+
+<pre><code>DieMorph &gt;&gt; face5
+	^{0.25@0.25 . 0.75@0.25 . 0.75@0.75 . 0.25@0.75 . 0.5@0.5}</code></pre>
+
+<pre><code>DieMorph &gt;&gt; face6
+	^{0.25@0.25 . 0.75@0.25 . 0.75@0.75 . 0.25@0.75 . 0.25@0.5 . 0.75@0.5}</code></pre>
+
+<pre><code>DieMorph &gt;&gt; face7
+	^{0.25@0.25 . 0.75@0.25 . 0.75@0.75 . 0.25@0.75 . 0.25@0.5 . 0.75@0.5 . 0.5@0.5}</code></pre>
+
+<pre><code>DieMorph &gt;&gt; face8
+	^{0.25@0.25 . 0.75@0.25 . 0.75@0.75 . 0.25@0.75 . 0.25@0.5 . 0.75@0.5 . 0.5@0.5 . 0.5@0.25}</code></pre>
+
+<pre><code>DieMorph &gt;&gt; face9
+	^{0.25@0.25 . 0.75@0.25 . 0.75@0.75 . 0.25@0.75 . 0.25@0.5 . 0.75@0.5 . 0.5@0.5 . 0.5@0.25 . 0.5@0.75}</code></pre>
+
+<p>These methods define collections of the coordinates of dots for each face.
+The coordinates are in a square of size 1x1; we will simply need to scale them to place the actual dots.</p>
+
+<p>The <code>drawOn:</code> method does two things: it draws the die background with the <code>super</code>-send, and then draws the dots as follows:</p>
+
+<pre><code>DieMorph &gt;&gt; drawOn: aCanvas
+	super drawOn: aCanvas.
+	(self perform: ('face', dieValue asString) asSymbol)
+		do: [ :aPoint | self drawDotOn: aCanvas at: aPoint ]</code></pre>
+
+<p>The second part of this method uses the reflective capacities of Pharo.
+Drawing the dots of a face is a simple matter of iterating over the collection given by the <code>faceX</code> method for that face, sending the <code>drawDotOn:at:</code> message for each coordinate.
+To call the correct <code>faceX</code> method, we use the <code>perform:</code> method which sends a message built from a string, <code>('face',dieValue asString) asSymbol</code>.</p>
+
+<pre><code>DieMorph &gt;&gt; drawDotOn: aCanvas at: aPoint
+	aCanvas
+		fillOval: (Rectangle
+			center: self position + (self extent * aPoint)
+			extent: self extent / 6)
+		color: Color black</code></pre>
+
+<p>Since the coordinates are normalized to the <code>[0:1]</code> interval, we scale them to the dimensions of our die: <code>self extent * aPoint</code>.
+We can already create a die instance from a playground (see result on Figure <a href="#fig:die6">16.15</a>):</p>
+
+<figure class="code" id="scr:die6"><pre><code>(DieMorph faces: 6) openInWorld.</code></pre><figcaption><span class="number">Listing 16.2</span> Create a Die 6</figcaption></figure>
+
+<p><figure id="fig:die6"><img src="Chapters/Morphic/figures/die6.png" alt="A new die 6 with  (DieMorph faces: 6) openInWorld" class="fig:die6" style="width: 25%"><figcaption><span class="number">Figure 16.15</span> A new die 6 with <code>(DieMorph faces: 6) openInWorld</code></figcaption></img></figure></p>
+
+<p>To change the displayed face, we create an accessor that we can use as <code>myDie dieValue: 5</code>:</p>
+
+<pre><code>DieMorph &gt;&gt; dieValue: aNumber
+	((aNumber isInteger and: [ aNumber &gt; 0 ]) and: [ aNumber &lt;= faces ])
+		ifTrue: [
+			dieValue := aNumber.
+			self changed ]</code></pre>
+
+<p><figure id="fig:dieValue5"><img src="Chapters/Morphic/figures/die.png" alt="Result of  (DieMorph faces: 6) openInWorld; dieValue: 5 ." class="fig:dieValue5" style="width: 30%"><figcaption><span class="number">Figure 16.16</span> Result of <code>(DieMorph faces: 6) openInWorld; dieValue: 5</code>.</figcaption></img></figure></p>
+
+<p>Now we will use the animation system to show quickly all the faces:</p>
+
+<pre><code>DieMorph &gt;&gt; stepTime
+	^ 100</code></pre>
+
+<pre><code>DieMorph &gt;&gt; step
+	isStopped ifFalse: [self dieValue: (1 to: faces) atRandom]</code></pre>
+
+<p>Now the die is rolling!</p>
+
+<p>To start or stop the animation by clicking, we will use what we learned previously about mouse events.
+First, activate the reception of mouse events:</p>
+
+<pre><code>DieMorph &gt;&gt; handlesMouseDown: anEvent
+	^ true</code></pre>
+
+<p>Second, we will stop and start alternatively a roll on mouse click.</p>
+
+<pre><code>DieMorph &gt;&gt; mouseDown: anEvent
+	anEvent redButtonPressed
+		ifTrue: [isStopped := isStopped not]</code></pre>
+
+<p>Now the die will roll or stop rolling when we click on it.</p>
+
+<h3 id="more-about-the-canvas"><span class="number">16.12</span> More about the canvas</h3>
+<p>The <code>drawOn:</code> method has an instance of <code>Canvas</code> as its sole argument; the
+canvas is the area on which the morph draws itself.
+By using the graphics methods of the canvas you are free to give the appearance you want to a morph.
+If you browse the inheritance hierarchy of the <code>Canvas</code> class, you will see that it has several variants.
+The default variant of <code>Canvas</code> is <code>FormCanvas</code>, and you will find the key graphics methods in <code>Canvas</code> and
+<code>FormCanvas</code>.
+These methods can draw points, lines, polygons, rectangles, ellipses, text, and images with rotation and scaling.</p>
+
+<p>It is also possible to use other kinds of canvas, for example to obtain transparent morphs, more graphics methods, antialiasing, and so on.
+To use these features you will need an <code>AlphaBlendingCanvas</code> or a <code>BalloonCanvas</code>.
+But how can you obtain such a canvas in a <code>drawOn:</code> method, when <code>drawOn:</code>
+receives an instance of <code>FormCanvas</code> as its argument? Fortunately, you can
+transform one kind of canvas into another.</p>
+
+<p>To use a canvas with a 0.5 alpha-transparency in <code>DieMorph</code>, redefine
+<code>drawOn:</code> like this:</p>
+
+<pre><code>DieMorph &gt;&gt; drawOn: aCanvas
+	| theCanvas |
+	theCanvas := aCanvas asAlphaBlendingCanvas: 0.5.
+	super drawOn: theCanvas.
+	(self perform: ('face', dieValue asString) asSymbol)
+		do: [:aPoint | self drawDotOn: theCanvas at: aPoint]</code></pre>
+
+<p>That's all you need to do!</p>
+
+<p><figure id="fig:multiMorphs"><img src="Chapters/Morphic/figures/multiMorphs.png" alt="The die displayed with alpha-transparency" class="fig:multiMorphs" style="width: 30%"><figcaption><span class="number">Figure 16.17</span> The die displayed with alpha-transparency</figcaption></img></figure></p>
+
+<h3 id="chapter-summary-10"><span class="number">16.13</span> Chapter summary</h3>
+<p>Morphic is a graphical framework in which graphical interface elements can be
+dynamically composed.</p>
+
+<ul>
+<li>You can convert an object into a morph and display that morph on the screen by sending it the messages <code>asMorph openInWorld</code>.</li>
+<li>You can manipulate a morph using Command-Option+Shift click on it and using the handles that appear. (Handles have help balloons that explain what they do.)</li>
+<li>You can compose morphs by embedding one onto another, either by drag and drop or by sending the message <code>addMorph:</code>.</li>
+<li>You can subclass an existing morph class and redefine key methods, such as  <code>initialize</code> and <code>drawOn:</code>.</li>
+<li>You can control how a morph reacts to mouse and keyboard events by redefining the methods <code>handlesMouseDown:</code>, <code>handlesMouseOver:</code>, etc.</li>
+<li>You can animate a morph by defining the methods <code>step</code> (what to do) and <code>stepTime</code> (the number of milliseconds between steps).</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="streams.html">← Streams</a>
+        <a class="next" rel="next" href="classes-and-metaclasses.html">Classes and metaclasses →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

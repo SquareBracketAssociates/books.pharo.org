@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Syntax in a nutshell</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo 9 by Example</a>
+    <p class="site-authors">Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">2</span> Getting Started with  Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-quick-tour-of-pharo.html"><span class="number">3</span> A quick tour of Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="finding-information-in.html"><span class="number">4</span> Finding information in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">5</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="building-a-little-game.html"><span class="number">6</span> Building a little game</a>
+            
+          </li>
+          
+          <li>
+            <a href="publishing-and-packaging.html"><span class="number">7</span> Publishing and packaging your first Pharo project</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="syntax-in-a-nutshell.html" aria-current="page"><span class="number">8</span> Syntax in a nutshell</a>
+            
+            <ol>
+              
+              <li><a href="#syntactic-elements"><span class="number">8.1</span> Syntactic elements</a></li>
+              
+              <li><a href="#pseudo-variables"><span class="number">8.2</span> Pseudo-variables</a></li>
+              
+              <li><a href="#messages-and-message-sends"><span class="number">8.3</span> Messages and message sends</a></li>
+              
+              <li><a href="#sequences-and-cascades"><span class="number">8.4</span> Sequences and cascades</a></li>
+              
+              <li><a href="#method-syntax"><span class="number">8.5</span> Method syntax</a></li>
+              
+              <li><a href="#block-syntax"><span class="number">8.6</span> Block syntax</a></li>
+              
+              <li><a href="#conditionals-and-loops"><span class="number">8.7</span> Conditionals and loops</a></li>
+              
+              <li><a href="#method-annotations-primitives-and-pragmas"><span class="number">8.8</span> Method annotations: Primitives and pragmas</a></li>
+              
+              <li><a href="#chapter-summary-4"><span class="number">8.9</span> Chapter summary</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="understanding-message.html"><span class="number">9</span> Understanding message syntax</a>
+            
+          </li>
+          
+          <li>
+            <a href="the-pharo-object-model.html"><span class="number">10</span> The Pharo object model</a>
+            
+          </li>
+          
+          <li>
+            <a href="traits-reusable-class.html"><span class="number">11</span> Traits: reusable class fragments</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-tests-in-pharo.html"><span class="number">12</span> SUnit: Tests in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="basic-classes.html"><span class="number">13</span> Basic classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="collections.html"><span class="number">14</span> Collections</a>
+            
+          </li>
+          
+          <li>
+            <a href="streams.html"><span class="number">15</span> Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="morphic.html"><span class="number">16</span> Morphic</a>
+            
+          </li>
+          
+          <li>
+            <a href="classes-and-metaclasses.html"><span class="number">17</span> Classes and metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="reflection.html"><span class="number">18</span> Reflection</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">8</span> Syntax in a nutshell</h2><a id="cha:syntax"></a>
+<p>Pharo adopts a syntax very close to that of its ancestor, Smalltalk.</p>
+
+<p>The syntax is designed so that program text can be read aloud as though it were a kind of pidgin English.
+The following method of the class <code>Week</code> shows an example of the syntax. It checks whether <code>DayNames</code> already contains the argument, i.e., if this argument represents a correct day name. If this is the case, it will assign it to the class variable <code>StartDay</code>.</p>
+
+<pre><code>startDay: aSymbol
+
+   (DayNames includes: aSymbol)
+      ifTrue: [ StartDay := aSymbol ]
+      ifFalse: [ self error: aSymbol, ' is not a recognised day name' ]</code></pre>
+
+<p>Pharo's syntax is minimal. Essentially there is syntax only for sending messages (i.e., expressions). Expressions are built up from a very small number of primitive elements (message sends, assignments, closures, returns...). There are only 6 reserved keywords, i.e., pseudo-variables, and there are no dedicated syntax constructs for control structures or declaring new classes. Instead, nearly everything is achieved by sending messages to objects.</p>
+
+<p>For instance, instead of an if-then-else control structure, conditionals are expressed as messages (such as <code>ifTrue:</code>) sent to Boolean objects. New subclasses are created by sending a message to their superclass.
+In Pharo any control flow or loop is just expressed as messages, therefore this chapter will not be exhaustive because the list would be too long. It focuses on some cases and the reader should read following chapter on Booleans, Collections or Blocks.</p>
+
+<h3 id="syntactic-elements"><span class="number">8.1</span> Syntactic elements</h3>
+<p>Expressions are composed of the following building blocks:</p>
+
+<ol>
+<li>The six <i>pseudo-variables</i>: <code>self</code>, <code>super</code>, <code>nil</code>, <code>true</code>, <code>false</code>, and <code>thisContext</code></li>
+<li>Constant expressions for <i>literal</i> objects including numbers, characters, strings, symbols and arrays</li>
+<li>Variable declarations</li>
+<li>Assignments</li>
+<li>Block closures</li>
+<li>Messages</li>
+<li>Method returns</li>
+</ol>
+<p>We can see examples of the various syntactic elements in the table below.</p>
+
+<table>
+<tr><th>Syntax expression</th><th>What it represents</th></tr>
+<tr><td><code>startPoint</code></td><td>a variable name</td></tr>
+<tr><td><code>Transcript</code></td><td>a global variable name</td></tr>
+<tr><td>self</td><td>pseudo-variable</td></tr>
+<tr><td><code>1 </code></td><td>decimal integer</td></tr>
+<tr><td><code>2r101</code></td><td>binary integer</td></tr>
+<tr><td><code>1.5</code></td><td>floating point number</td></tr>
+<tr><td><code>2.4e7</code></td><td>number in exponential notation</td></tr>
+<tr><td><code>$a</code></td><td>the character <code>'a'</code></td></tr>
+<tr><td><code>'Hello'</code></td><td>the string <code>'Hello'</code></td></tr>
+<tr><td><code>#Hello</code></td><td>the symbol <code>#Hello</code></td></tr>
+<tr><td><code>#(1 2 3)</code></td><td>a literal array</td></tr>
+<tr><td><code>{ 1 . 2 . 1 + 2 }</code></td><td>a dynamic array</td></tr>
+<tr><td><code>"a comment"</code></td><td>a comment</td></tr>
+<tr><td>`</td><td>x y</td></tr>
+<tr><td><code>x := 1</code></td><td>assign 1 to <code>x</code></td></tr>
+<tr><td>`[:x</td><td>x + 2 ]`</td></tr>
+<tr><td><code>&lt;primitive: 1&gt;</code></td><td>a method annotation (here primitive)</td></tr>
+<tr><td><code>3 factorial</code></td><td>unary message <code>factorial</code></td></tr>
+<tr><td><code>3 + 4</code></td><td>binary message <code>+</code></td></tr>
+<tr><td><code>2 raisedTo: 6 modulo: 10</code></td><td>keyword message <code>raisedTo:modulo:</code></td></tr>
+<tr><td><code>^ true</code></td><td>return the value <code>true</code></td></tr>
+<tr><td><code>x := 2 . x := x + x</code></td><td>two expressions separated by separator (<code>.</code>)</td></tr>
+<tr><td><code>Transcript show: 'hello'; cr</code></td><td>two cascade messages separated by  (<code>;</code>)</td></tr>
+</table>
+<p><strong>Local variables.</strong> <code>startPoint</code> is a variable name, or identifier. By convention, identifiers are composed of words in "camelCase" (i.e., each word except the first starting with an upper case letter). The first letter of an instance variable, method or block parameters, or temporary variable must be lower case. This indicates to the reader that the variable has a private scope.</p>
+
+<p><strong>Shared variables.</strong> Identifiers that start with upper case letters are global variables, class variables, pool dictionaries or class names. <code>Transcript</code> is a global variable, an instance of the class <code>ThreadSafeTranscript</code>.</p>
+
+<p><strong>The message receiver.</strong> <code>self</code> is a pseudo-variable that refers to the object that receives the message (that led to the execution of the method using <code>self</code>). It gives us a way send messages to it. We call <code>self</code> "the receiver" because this object will receive the message that causes the method to be executed. Finally, <code>self</code> is called a "pseudo-variable" since we cannot directly change its values or assign to it.</p>
+
+<p><strong>Integers.</strong> In addition to ordinary decimal integers like 42, Pharo also provides a radix notation. <code>2r101</code> is 101 in radix 2 (i.e., binary), which is equal to decimal 5.</p>
+
+<p><strong>Floating point numbers.</strong> Such numbers can be specified with their base-ten exponent: <code>2.4e7</code> is <code>2.4 x 10^7</code>.</p>
+
+<p><strong>Characters.</strong> A dollar sign introduces a literal character: <code>$a</code> is the literal for the character <code>'a'</code>. Instances of special, non-printing characters can be obtained by sending appropriately named messages to the <code>Character</code> class, such as <code>Character space</code> and <code>Character tab</code>.</p>
+
+<p><strong>Strings.</strong> Single quotes <code>' '</code> are used to define a literal string. If you want a string with a single quote inside, just double the quote, as in <code>'G''day'</code>.</p>
+
+<p><strong>Symbols.</strong> Symbols are like Strings, in that they contain a sequence of characters. However, unlike a string, a literal symbol is guaranteed to be globally unique. There is only one <code>Symbol</code> object <code>#Hello</code> but there may be multiple <code>String</code> objects with the value <code>'Hello'</code>.</p>
+
+<p><strong>Compile-time literal arrays.</strong> They are defined by <code>#( )</code>, surrounding space-separated literals. Everything within the parentheses must be a compile-time constant. For example, <code>#(27 (true) abc 1+2)</code> is a literal array of 6 elements: the integer 27, the compile-time array containing the object <code>true</code> (non-changeable Boolean), the symbol <code>#abc</code>, the integer 1, the symbol <code>+</code> and the integer 2. Note that this is the same as <code>#(27 #(true) #abc 1 #+ 2)</code>.</p>
+
+<p><strong>Run-time dynamic arrays.</strong> Curly braces <code>{ }</code> define a dynamic array whose elements are expressions, separated by periods, and evaluated at run-time.
+So <code>{ 1. 2. 1 + 2 }</code> defines an array with elements 1, 2, and 3 the result of evaluating <code>1+2</code>.</p>
+
+<p><strong>Comments.</strong> They are enclosed in double quotes " ". "hello" is a comment, not a
+string, and is ignored by the Pharo compiler. Comments may span multiple lines but they cannot be nested.</p>
+
+<p><strong>Local variable definitions.</strong> Vertical bars <code>| |</code> enclose the declaration of one or more local variables before the beginning of a method or a block body.</p>
+
+<p><strong>Assignment.</strong> The two characters <code>:= </code> specify that a variable refers to an object.</p>
+
+<p><strong>Blocks.</strong> Square brackets <code>[ ]</code> define a block, also known as a block closure or a lexical closure, which is a first-class object representing a function. As we shall see, blocks may take arguments (<code>[:i | ...]</code>) and can have local variables (<code>[| x | ...]</code>). Blocks also close over their definition environment, i.e., they can refer to variables that where reachable at the time of their definition.</p>
+
+<p><strong>Pragmas and primitives.</strong> <code>&lt; primitive: ... &gt;</code> is a method annotation. This specific one denotes the invocation of a virtual machine (VM) primitive. In the case of a primitive the code following it, it either to explain what the primitive is doing (for essential primitives) or is executed only if the primitive fails (for optional primitive). The same syntax of a message within <code>&lt; &gt;</code> is also used for other kinds of method annotations also called pragmas.</p>
+
+<p><strong>Unary messages.</strong> These consist of a single word (like <code>factorial</code>) sent to
+a receiver (like 3). In <code>3 factorial</code>, 3 is the receiver, and <code>factorial</code> is
+the message selector.</p>
+
+<p><strong>Binary messages.</strong> These are messages sent to a receiver with a single argument, and whose selector looks
+like mathematical operator (for example: <code>+</code>). In <code>3 + 4</code>, the receiver is 3, the message selector
+is <code>+</code>, and the argument is 4.</p>
+
+<p><strong>Keyword messages.</strong> Their selectors consist of one or more keywords (like <code>raisedTo:modulo:</code>), each ending with a colon and taking a single argument. In the
+expression <code>2 raisedTo: 6 modulo: 10</code>, the message selector
+<code>raisedTo:modulo:</code> takes the two arguments 6 and 10, one following each colon.
+We send the message to the receiver 2.</p>
+
+<p><strong>Sequences of statements.</strong> A period or full-stop (<code>.</code>) is the statement
+separator. Putting a period between two expressions turns them into independent
+statements like in <code>x := 2. x := x + x</code>. Here we first assign value 2 to the variable <code>x</code>, and then duplicate its value by assigning a value of <code>x + x</code> to it.</p>
+
+<p><strong>Cascades.</strong> Semicolons ( <code>;</code> ) are used to send a cascade of messages to
+a single receiver. In <code>stream nextPutAll: ’Hello World’; close</code> we first send the keyword
+message <code>nextPutAll: ’Hello World’</code> to the receiver <code>stream</code>, and then we send the
+unary message <code>close</code> to the same receiver.</p>
+
+<p><strong>Method return.</strong> <code>^</code> is used to <i>return</i> a value from a method.</p>
+
+<p>The basic classes <code>Number</code>, <code>Character</code>, <code>String</code> and <code>Boolean</code> are described in Chapter <a href="basic-classes.html#cha:basicClasses">13</a>.</p>
+
+<h3 id="pseudo-variables"><span class="number">8.2</span> Pseudo-variables</h3>
+<p>In Pharo, there are 6 pseudo-variables: <code>nil</code>, <code>true</code>, <code>false</code>, <code>self</code>, <code>super</code>, and <code>thisContext</code>.
+They are called pseudo-variables because they are predefined and cannot be assigned to.
+<code>true</code>, <code>false</code>, and <code>nil</code> are constants, while the values of <code>self</code>, <code>super</code>, and <code>thisContext</code> vary dynamically as code is executed.</p>
+
+<ul>
+<li><code>true</code> and <code>false</code> are the unique instances of classes <code>True</code> and <code>False</code> which are the subclasses of class <code>Boolean</code>. See Chapter <a href="basic-classes.html#cha:basicClasses">13</a> for more details.</li>
+<li><code>self</code> always refers to the receiver of the message and denotes the object in which the corresponding method will be executed. Therefore, the value of <code>self</code> dynamically changes during the program execution, but can not be assigned in the code.</li>
+<li><code>super</code> also refers to the receiver of the message too, but when you send a message to <code>super</code>, the method-lookup changes so that it starts from the superclass of the class containing the method that sends message to <code>super</code>. For further details see Chapter <a href="the-pharo-object-model.html#cha:model">10</a>.</li>
+<li><code>nil</code> is the undefined object. It is the unique instance of the class <code>UndefinedObject</code>. Instance variables, class variables and local variables are, by default, initialized to <code>nil</code>.</li>
+<li><code>thisContext</code> is a pseudo-variable that represents the top frame of the execution stack and gives access to the current execution point. <code>thisContext</code> is normally not of interest to most programmers, but it is essential for implementing development tools such as the debugger, and it is also used to implement exception handling and continuations.</li>
+</ul>
+<h3 id="messages-and-message-sends"><span class="number">8.3</span> Messages and message sends</h3>
+<p>As we described, there are three kinds of messages in Pharo with predefined precedence. This distinction has been made to reduce the number of mandatory parentheses.</p>
+
+<p>Here we give a brief overview on message kinds and ways for sending and executing them, while more detailed description is provided in Chapter <a href="understanding-message.html#chapterUnderstandingMessage">9</a>.</p>
+
+<ol>
+<li><i>Unary</i> messages take no argument. <code>1 factorial</code> sends the message <code>factorial</code> to the object 1. Unary message selectors consist of alphanumeric characters, and start with a lower case letter.</li>
+<li><i>Binary</i> messages take exactly one argument. <code>1 + 2</code> sends the message <code>+</code> with argument 2 to the object 1. Binary message selectors consist of one or more characters from the following set: <code> + - /  * ~ &lt; &gt; = @ % | &amp; ? ,</code></li>
+<li><i>Keyword</i> messages take an arbitrary number of arguments. <code>2 raisedTo: 6 modulo: 10</code> sends the message consisting of the message selector <code>raisedTo:modulo:</code> and the arguments 6 and 10 to the object 2. Keyword message selectors consist of a series of alphanumeric keywords, where each keyword starts with a lower-case letter and ends with a colon.</li>
+</ol>
+<h4 id="message-precedence">Message precedence</h4>
+<p>Unary messages have the highest precedence, then binary messages, and finally keyword messages, while brackets can be used to change the evaluation order.</p>
+
+<p>Thus, in the following example we first send <code>factorial</code> to 3 which will give us result 6. Afterwards we send <code>+ 6</code> to 1 which gives the result 7, and finally we send <code>raisedTo: 7</code> to 2.</p>
+
+<pre><code>2 raisedTo: 1 + 3 factorial
+&gt;&gt;&gt; 128</code></pre>
+
+<p>Precedence aside, for the messages of the same kind, execution is strictly from left to right.
+Hence, as we have two binary messages, the following example return 9 and not 7.</p>
+
+<pre><code>1 + 2 * 3
+&gt;&gt;&gt; 9</code></pre>
+
+<p>Parentheses must be used to alter the order of evaluation as follows:</p>
+
+<pre><code>1 + (2 * 3)
+&gt;&gt;&gt; 7</code></pre>
+
+<h3 id="sequences-and-cascades"><span class="number">8.4</span> Sequences and cascades</h3>
+<p>All expressions may be composed in sequences separated by period, while message sends may be also composed in cascades by semi-colons.
+A period separated sequence of expressions causes each expression in the series to be evaluated as a separate <i>statement</i>, one after the other.</p>
+
+<pre><code>Transcript cr.
+Transcript show: 'hello world'.
+Transcript cr</code></pre>
+
+<p>This will send <code>cr</code> to the <code>Transcript</code> object, then send to Transcript the message <code>show: 'hello world'</code>, and finally send it another <code>cr</code>, again.</p>
+
+<p>When a series of messages is being sent to the <i>same</i> receiver, then this can be expressed more succinctly as a <i>cascade</i>.
+The receiver is specified just once, and the sequence of messages is separated by semi-colons as follows:</p>
+
+<pre><code>Transcript
+	cr;
+	show: 'hello world';
+	cr</code></pre>
+
+<p>This cascade has precisely the same effect as the sequence in the previous example.</p>
+
+<h3 id="method-syntax"><span class="number">8.5</span> Method syntax</h3>
+<p>Whereas expressions may be evaluated anywhere in Pharo (for example, in a playground, in a debugger, or in a browser), methods are normally defined in a browser window, or in the debugger.
+Methods can also be filed in from an external medium, but this is not the usual way to program in Pharo.</p>
+
+<p>Programs are developed one method at a time, in the context of a given class.
+A class is defined by sending a message to an existing class, asking it to create a subclass, so there is no special syntax required for defining classes.</p>
+
+<p>Here is the method <code>lineCount</code> defined in the class <code>String</code>.
+The usual <i>convention</i> is to refer to methods as <code>ClassName&gt;&gt;methodName</code>.
+Here the method is then <code>String&gt;&gt;lineCount</code>. Note that <code>ClassName&gt;&gt;methodName</code> is not
+part of the Pharo syntax just a convention used in books to clearly define a method within a class in which it is defined.</p>
+
+<pre><code>String &gt;&gt; lineCount
+	"Answer the number of lines represented by the receiver, where every cr adds one line."
+
+	| cr count |
+	cr := Character cr.
+	count := 1 min: self size.
+	self do: [:c | c == cr ifTrue: [count := count + 1]].
+	^ count</code></pre>
+
+<p>Syntactically, a method consists of:</p>
+
+<ol>
+<li>the method signature (also named pattern), containing the name (i.e., <code>lineCount</code>) and any parameters (none in this example),</li>
+<li>comments which may occur anywhere, but the convention is to put one at the top that explains what the method does,</li>
+<li>declarations of local variables (i.e., <code>cr</code> and <code>count</code>), and</li>
+<li>any number of expressions separated by dots (here there are three dots).</li>
+</ol>
+<p>The execution of any expression preceded by a <code>^</code> (a caret or upper arrow, which is <code>Shift-6</code> for most keyboards) will cause the method to exit at that point, returning the value of the expression that follows the <code>^</code>.
+A method that terminates without explicitly returning value of some expression will implicitly return <code>self</code> object.</p>
+
+<p>Parameters and local variables should always start with lower case letters.
+Names starting with upper-case letters are assumed to be global variables.
+Class names, like <code>Character</code>, for example, are simply global variables referring to the object representing that class.</p>
+
+<h3 id="block-syntax"><span class="number">8.6</span> Block syntax</h3>
+<p>Blocks (lexical closures) provide a mechanism to defer the execution of expressions.
+A block is essentially an anonymous function with a definition context.
+A block is executed by sending it the message <code>value</code>.
+The block answers the value of the last expression in its body, unless there is an explicit return (with <code>^</code>) in which case it returns the value of the returned expression.</p>
+
+<pre><code>[ 1 + 2 ] value
+&gt;&gt;&gt; 3</code></pre>
+
+<pre><code>[ 3 = 3 ifTrue: [ ^ 33 ]. 44 ] value
+&gt;&gt;&gt; 33</code></pre>
+
+<p>Blocks may have parameters each of which is declared with a leading colon.
+A vertical bar separates the parameters declaration from the body of the block.
+To evaluate a block with one parameter, you must send it the message <code>value:</code> with one argument.
+A two-parameter block must be evaluated by sending <code>value:value:</code> with two arguments, and so on, up
+to 4 arguments.</p>
+
+<pre><code>[ :x | 1 + x ] value: 2
+&gt;&gt;&gt; 3</code></pre>
+
+<pre><code>[ :x :y | x + y ] value: 1 value: 2
+&gt;&gt;&gt; 3</code></pre>
+
+<p>If you have a block with more than four parameters, you must use <code>valueWithArguments:</code> and pass the arguments in an array.
+However, a block with a large number of parameters is often a sign of a design problem.</p>
+
+<p>In blocks there may be also declared local variables, surrounded by vertical bars, just like local variable declarations in a method.
+Local variables are declared after arguments and vertical bar separator, and before the block body.
+In the following example, <code>x</code>  <code>y</code> are parameters, and <code>z</code> is local variable.</p>
+
+<pre><code>[ :x :y |
+	| z |
+	z := x + y.
+	z ] value: 1 value: 2
+&gt;&gt;&gt; 3</code></pre>
+
+<p>Blocks are actually lexical closures, since they can refer to variables of the surrounding environment.
+The following block refers to the variable <code>x</code> of its enclosing environment:</p>
+
+<pre><code>| x |
+x := 1.
+[ :y | x + y ] value: 2
+&gt;&gt;&gt; 3</code></pre>
+
+<p>Blocks are instances of the class <code>BlockClosure</code>.
+This means that they are objects, so they can be assigned to variables and passed as arguments just like
+any other object.</p>
+
+<h3 id="conditionals-and-loops"><span class="number">8.7</span> Conditionals and loops</h3>
+<p>Pharo offers no special syntax for control constructs.
+Instead, these are typically expressed by sending messages to booleans, numbers and collections, with blocks as arguments.
+In addition, in Pharo, programmers can also define their other conditionals, conditional loops or loops by extending core objets (booleans, integers, collections or blocks).
+We show now the most frequent ones. By no means this is a complete survey.</p>
+
+<h4 id="some-conditionals">Some conditionals</h4>
+<p>Conditionals are expressed by sending one of the messages <code>ifTrue:</code>,
+<code>ifFalse:</code>, <code>ifFalse:ifTrue:</code>, or <code>ifTrue:ifFalse:</code> to the result of a boolean expression.
+See Chapter <a href="basic-classes.html#cha:basicClasses">13</a>,
+for more about booleans.</p>
+
+<pre><code>(17 * 13 &gt; 220)
+	ifTrue: [ 'bigger' ]
+	ifFalse: [ 'smaller' ]
+&gt;&gt;&gt;'bigger'</code></pre>
+
+<h4 id="some-loops">Some loops</h4>
+<p>Loops are typically expressed by sending messages to blocks, integers or collections.
+Since the exit condition for a loop may be repeatedly evaluated, it should be a block rather than a boolean expression. Here is an example of a very procedural loop:</p>
+
+<pre><code>n := 1.
+[ n &lt; 1000 ] whileTrue: [ n := n*2 ].
+n
+&gt;&gt;&gt; 1024</code></pre>
+
+<p><code>whileFalse:</code> reverses the exit condition.</p>
+
+<pre><code>n := 1.
+[ n &gt; 1000 ] whileFalse: [ n := n*2 ].
+n
+&gt;&gt;&gt; 1024</code></pre>
+
+<p><code>timesRepeat:</code> offers a simple way to implement a fixed number of iterations through the loop body:</p>
+
+<pre><code>n := 1.
+10 timesRepeat: [ n := n*2 ].
+n
+&gt;&gt;&gt; 1024</code></pre>
+
+<p>We can also send the message <code>to:do:</code> to a number which then acts as the
+initial value of a loop counter. You can also check the variant <code>to:by:do:</code>.
+The two arguments are the upper bound, and a block that takes the current value of the loop counter as its argument:</p>
+
+<pre><code>result := String new.
+1 to: 10 do: [:n | result := result, n printString, ' '].
+result
+&gt;&gt;&gt; '1 2 3 4 5 6 7 8 9 10 '</code></pre>
+
+<h4 id="high-order-iterators">High-order iterators</h4>
+<p>Collections comprise a large number of different classes, many of which support the same protocol.
+The most important messages
+for iterating over collections include <code>do:</code>, <code>collect:</code>, <code>select:</code>, <code>reject:</code>, <code>detect:</code> and <code>inject:into:</code>.
+These messages represent high-level iterators that allow one to write very compact code.</p>
+
+<p>An <strong>Interval</strong> is a collection that lets one iterate over a sequence of numbers from the starting point to the end.
+<code>1 to: 10</code> represents the interval from 1 to 10.
+Since it is a collection, we can send the message <code>do:</code> to it.
+The argument is a block that is evaluated for each element of the collection.</p>
+
+<pre><code>result := String new.
+(1 to: 10) do: [:n | result := result, n printString, ' '].
+result
+&gt;&gt;&gt; '1 2 3 4 5 6 7 8 9 10 '</code></pre>
+
+<p><code>collect:</code> builds a new collection of the same size, transforming each element.
+You can think of <code>collect:</code> as the Map in the MapReduce programming.</p>
+
+<pre><code>(1 to:10) collect: [ :each | each * each ]
+&gt;&gt;&gt; #(1 4 9 16 25 36 49 64 81 100)</code></pre>
+
+<p><code>select:</code> and <code>reject:</code> build new collections, each containing a subset of
+the elements of the iterated collection that satisfies, or not, respectively, the boolean block condition.</p>
+
+<p><code>detect:</code> returns the first element in the collection that satisfies the condition.</p>
+
+<p>Don't forget that strings are also collections (of characters), so you can iterate over all the characters.</p>
+
+<pre><code>'hello there' select: [ :char | char isVowel ]
+&gt;&gt;&gt; 'eoee'</code></pre>
+
+<pre><code>'hello there' reject: [ :char | char isVowel ]
+&gt;&gt;&gt; 'hll thr'</code></pre>
+
+<pre><code>'hello there' detect: [ :char | char isVowel ]
+&gt;&gt;&gt; $e</code></pre>
+
+<p>Finally, you should be aware that collections also support a functional-style fold operator in the <code>inject:into:</code> method.
+You can also think of it as the Reduce in the MapReduce programming model.
+This lets you generate a cumulative result using an expression that starts with a seed value and injects each
+element of the collection.
+Sums and products are typical examples.</p>
+
+<pre><code>(1 to: 10) inject: 0 into: [ :sum :each | sum + each]
+&gt;&gt;&gt; 55</code></pre>
+
+<p>This is equivalent to <code>0+1+2+3+4+5+6+7+8+9+10</code>.</p>
+
+<p>More about collections can be found in Chapter
+<a href="collections.html#cha:collections">14</a>.</p>
+
+<h3 id="method-annotations-primitives-and-pragmas"><span class="number">8.8</span> Method annotations: Primitives and pragmas</h3>
+<p>In Pharo methods can be annotated too.
+Method annotation are delimitated by <code>&lt;</code> and <code>&gt;</code>.
+There are used for two main scenarios: execution specific metadata for the primitives of the language and  metadata.</p>
+
+<h4 id="primitives">Primitives</h4>
+<p>In Pharo everything is an object, and everything happens by sending messages.
+Nevertheless, at certain points we hit rock bottom.
+Certain objects can only get work done by invoking virtual machine primitives.
+Such primitives are essential primitives since they cannot be expressed in Pharo.</p>
+
+<p>For example, the following are all implemented as primitives: memory allocation
+(<code>new</code>, <code>new:</code>), bit manipulation (<code>bitAnd:</code>, <code>bitOr:</code>, <code>bitShift:</code>),
+pointer and integer arithmetic (+, -, <, >, *, /, =, ==...), and
+array access (<code>at:</code>, <code>at:put:</code>).</p>
+
+<p>When a method with a primitive is executed, the primitive code is executed in place of the method.
+A method using such a primitive may include additional Pharo code, which will be
+executed only if the primitive fails (for the case the primitive is an optional one).</p>
+
+<p>In the following example,  we see the code for <code>SmallInteger&gt;&gt;+</code>.
+If the primitive fails, the expression <code>super + aNumber</code> will be evaluated and its value returned.</p>
+
+<pre><code>+ aNumber
+	"Primitive. Add the receiver to the argument and answer with the result
+	if it is a SmallInteger. Fail if the argument or the result is not a
+	SmallInteger Essential No Lookup. See Object documentation whatIsAPrimitive."
+
+	&lt;primitive: 1&gt;
+	^ super + aNumber</code></pre>
+
+<h4 id="pragmas">Pragmas</h4>
+<p>In Pharo, the angle bracket syntax is also used for method annotations called pragmas.
+Once a method has been annotated with a pragma, the annotations can be collected using a collection (see the class <code>PragmaCollector</code>).</p>
+
+<h3 id="chapter-summary-4"><span class="number">8.9</span> Chapter summary</h3>
+<ul>
+<li>Pharo has only six reserved identifiers known as pseudo-variables: <code>true</code>, <code>false</code>, <code>nil</code>, <code>self</code>, <code>super</code>, and <code>thisContext</code>.</li>
+<li>There are five kinds of literal objects: numbers (5, 2.5, 1.9e15, 2r111), characters (<code>$a</code>), strings (<code>'hello'</code>), symbols (<code>#hello</code>), and arrays (<code>#('hello' #hi)</code> or <code>{ 1 . 2 . 1 + 2 }</code> )</li>
+<li>Strings are delimited by single quotes, comments by double quotes. To get a quote inside a string, double it.</li>
+<li>Unlike strings, symbols are guaranteed to be globally unique.</li>
+<li>Use <code>#( ... )</code> to define a literal array at compile time. Use <code>{ ... }</code> to define a dynamic array at runtime. Note that <code>#(1+2) size &gt;&gt;&gt; 3</code>, but <code>{12+3} size &gt;&gt;&gt; 1</code>.  To observe why, compare <code>#(12+3) inspect</code> and <code>{1+2} inspect</code>.</li>
+<li>There are three kinds of messages: unary (e.g., <code>1 asString</code>, <code>OrderedCollection new</code>), binary (e.g., <code>3 + 4</code> or <code>'hi', ' there'</code>), and keyword (e.g., <code>5 between: 2 put: 10</code>)</li>
+<li>A cascaded message send is a sequence of messages sent to the same target, separated by semi-colons: <code>OrderedCollection new add: #calvin; add: #hobbes; size &gt;&gt;&gt; 2</code></li>
+<li>Local variables declarations are delimited by vertical bars. Use <code>:= </code> for assignment. <code>|x| x := 1 </code></li>
+<li>Expressions consist of message sends, cascades and assignments, evaluated left to right (and optionally grouped with parentheses). Statements are expressions separated by periods.</li>
+<li>Block closures are expressions enclosed in square brackets. Blocks may take arguments and can contain temporary variables. The expressions in a block are not evaluated until you send the block a value (<code>value</code>, <code>value:</code>, <code>value:value:</code>, ...) message with the correct number of arguments. <code>[ :x | x + 2 ] value: 4</code></li>
+<li>There is no dedicated syntax for control constructs, just messages whose sends conditionally evaluate blocks.</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="publishing-and-packaging.html">← Publishing and packaging your first Pharo project</a>
+        <a class="next" rel="next" href="understanding-message.html">Understanding message syntax →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A quick tour of Pharo</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo 9 by Example</a>
+    <p class="site-authors">Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">2</span> Getting Started with  Pharo</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="a-quick-tour-of-pharo.html" aria-current="page"><span class="number">3</span> A quick tour of Pharo</a>
+            
+            <ol>
+              
+              <li><a href="#the-world-menu"><span class="number">3.1</span> The World Menu</a></li>
+              
+              <li><a href="#interacting-with-pharo"><span class="number">3.2</span> Interacting with Pharo</a></li>
+              
+              <li><a href="#playgrounds-and-transcripts"><span class="number">3.3</span> Playgrounds and Transcripts</a></li>
+              
+              <li><a href="#keyboard-shortcuts"><span class="number">3.4</span> Keyboard shortcuts</a></li>
+              
+              <li><a href="#doing-vs-printing"><span class="number">3.5</span> Doing vs. printing</a></li>
+              
+              <li><a href="#inspect"><span class="number">3.6</span> Inspect</a></li>
+              
+              <li><a href="#other-operations"><span class="number">3.7</span> Other operations</a></li>
+              
+              <li><a href="#calypso-the-system-browser"><span class="number">3.8</span> Calypso: the System Browser</a></li>
+              
+              <li><a href="#chapter-summary-2"><span class="number">3.9</span> Chapter summary</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="finding-information-in.html"><span class="number">4</span> Finding information in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">5</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="building-a-little-game.html"><span class="number">6</span> Building a little game</a>
+            
+          </li>
+          
+          <li>
+            <a href="publishing-and-packaging.html"><span class="number">7</span> Publishing and packaging your first Pharo project</a>
+            
+          </li>
+          
+          <li>
+            <a href="syntax-in-a-nutshell.html"><span class="number">8</span> Syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="understanding-message.html"><span class="number">9</span> Understanding message syntax</a>
+            
+          </li>
+          
+          <li>
+            <a href="the-pharo-object-model.html"><span class="number">10</span> The Pharo object model</a>
+            
+          </li>
+          
+          <li>
+            <a href="traits-reusable-class.html"><span class="number">11</span> Traits: reusable class fragments</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-tests-in-pharo.html"><span class="number">12</span> SUnit: Tests in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="basic-classes.html"><span class="number">13</span> Basic classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="collections.html"><span class="number">14</span> Collections</a>
+            
+          </li>
+          
+          <li>
+            <a href="streams.html"><span class="number">15</span> Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="morphic.html"><span class="number">16</span> Morphic</a>
+            
+          </li>
+          
+          <li>
+            <a href="classes-and-metaclasses.html"><span class="number">17</span> Classes and metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="reflection.html"><span class="number">18</span> Reflection</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">3</span> A quick tour of Pharo</h2><a id="cha:tour"></a>
+<p>This chapter will take you on a high-level tour of Pharo, to help you get comfortable with the environment. There will be plenty of opportunities to try things out, so it would be a good idea to have a computer handy when you read this chapter.</p>
+
+<p>In particular, you will learn about the different ways of interacting with the system, and discover some of the basic tools. You will also learn how to define a new method, create an object, and send it messages.</p>
+
+<p>Try to remember that this is a <i>quick</i> tour of Pharo, a taster of the environment. Don't become stuck when you don't understand something, it will almost certainly be covered in more detail in the next few chapters. <i>You do not have to know everything</i>, or at least, you don't have to know everything right away anyway. Make a note of what confuses or intrigues you and keep just keep going; it will all become clearer the further you read on.</p>
+
+<p><i>Note:</i> Most of the introductory material in this book will work with any Pharo version, so if you already have one installed, you may as well continue to use it. However, since this book is written for Pharo 90, if you notice differences between the appearance or behavior of your system and what is described here, do not be surprised.</p>
+
+<h3 id="the-world-menu"><span class="number">3.1</span> The World Menu</h3>
+<p>Once Pharo is running, you should see a single large window, possibly containing some open playground windows (see Figure <a href="#fig:worldMenu">3.1</a>). You might notice a menu bar, but Pharo also makes use of context-dependent pop-up menus.</p>
+
+<p><figure id="fig:worldMenu"><img src="Chapters/PharoTour/figures/worldMenu.png" alt="World menu (left click) brings the world menu. " style="width: 60%"><figcaption><span class="number">Figure 3.1</span> World menu (left click) brings the world menu. </figcaption></img></figure></p>
+
+<p>Clicking anywhere on the background of the Pharo window will display the <strong>World Menu</strong>, which contains many of the Pharo tools, utilities, and settings.</p>
+
+<p>Take a minute to explore the World Menu. You will see a list containing many of Pharo's core tools, including the System Browser, the Playground, the package manager Iceberg, and many others. We will discuss them all in more detail in the coming chapters.</p>
+
+<h3 id="interacting-with-pharo"><span class="number">3.2</span> Interacting with Pharo</h3>
+<p>Pharo offers three ways to interact with the system using a mouse or other pointing device.</p>
+
+<p><strong>click</strong> (or left-click): this is the most commonly used mouse button, and is normally equivalent to left-clicking (or clicking a single mouse button without any modifier key). For example, click on the background of the Pharo window to bring up the World Menu (Figure <a href="#fig:worldMenu">3.1</a>).</p>
+
+<p><strong>action-click</strong> (or right-click): this is the next most used button. It is used to bring up a contextual menu that offers different sets of actions depending on where the mouse is pointing (see Figure <a href="#fig:operating">3.2</a>). If you do not have a multi-button mouse, then normally you would configure action-click to be performed when clicking the mouse button and holding down the control modifier.</p>
+
+<p><strong>meta-click</strong>: Finally, you may meta-click on any object displayed in the image to activate the "Morphic halo", an array of handles that are used to perform operations on the on-screen objects themselves, such as inspecting or resizing them (see Figure <a href="#fig:halos">3.3</a>). If you let the mouse linger over a handle, a help balloon will explain its function. In Pharo, how you meta-click depends on your operating system: either you must hold <code>Ctrl-Shift</code> or <code>Alt-Shift</code> (on Windows or Linux) or <code>Option-Shift-Cmd</code> (on macOS) while clicking.</p>
+
+<p><figure id="fig:operating"><img src="Chapters/PharoTour/figures/operating.png" alt="Action Click (right click) brings the contextual menu. " style="width: 60%"><figcaption><span class="number">Figure 3.2</span> Action Click (right click) brings the contextual menu. </figcaption></img></figure></p>
+
+<p><figure id="fig:halos"><img src="Chapters/PharoTour/figures/addHalo.png" alt="Meta-Clicking on a window opens the Halos. " style="width: 70%"><figcaption><span class="number">Figure 3.3</span> Meta-Clicking on a window opens the Halos. </figcaption></img></figure></p>
+
+<h4 id="about-vocabulary">About vocabulary</h4>
+<p>If you talk to Pharoers for a while, you will notice that they generally do not use phrases like <i>call an operation</i> or <i>invoke a method</i>, which you might hear in other programming languages. Instead, they will say <i>send a message</i>. This reflects the idea that objects are responsible for their own actions and that the method associated with the message is looked up dynamically. When sending a message to an object, it is the object, and not the sender, that selects the appropriate method for responding to your message. In most (but not all) cases, the method with the same name as the message is executed.</p>
+
+<p>As a user, you do not need to understand how each message works, the only thing you need to know is what the available messages are for the objects that interest you. This way, an object can hide its complexity, and coding can be kept as simple as possible without losing flexibility.</p>
+
+<p>How to find the available messages for each object is something we will explore later on.</p>
+
+<h3 id="playgrounds-and-transcripts"><span class="number">3.3</span> Playgrounds and Transcripts</h3>
+<p>Let's do some simple exercises to get comfortable in our new environment:</p>
+
+<ol>
+<li>Close all open windows within Pharo.</li>
+<li>Look in the menu and open a Transcript and a Playground.</li>
+<li>Position and resize the transcript and playground windows so that the Playground just overlaps the Transcript (see Figure <a href="#fig:HelloWorld">3.4</a>).</li>
+</ol>
+<p>You can resize windows by dragging one of the corners. At any given time only one window is active; it is the one in front and has its border highlighted.</p>
+
+<h4 id="about-playground">About Playground</h4>
+<p>A <strong>Playground</strong> is useful for typing and running snippets of code that you would like to experiment with. You can also use Playgrounds for typing <i>any</i> text that you would like to remember, such as to-do lists or instructions for anyone who will use your image.</p>
+
+<p>Type the following text into the Playground:</p>
+
+<pre><code>Transcript show: 'hello world'; cr.</code></pre>
+
+<p>Try double-clicking at various points on the text you have just typed. Notice how an entire word, an entire line, or all of the text is selected, depending on whether you click within a word, at the end of a line, or at the end of the entire expression. In particular, if you place the cursor before the first character or after the last character and double-click, you select the entire paragraph.</p>
+
+<p>Select the text you have typed, right click and select <strong>Do it</strong>. Notice how the text <code>hello world</code> appears in the Transcript window (See Figure <a href="#fig:HelloWorld">3.4</a>). Do it again!</p>
+
+<p><figure id="fig:HelloWorld"><img src="Chapters/PharoTour/figures/HelloWorld_new.png" alt="Executing an expression: displaying a string in the Transcript. " style="width: 90%"><figcaption><span class="number">Figure 3.4</span> Executing an expression: displaying a string in the Transcript. </figcaption></img></figure></p>
+
+<h3 id="keyboard-shortcuts"><span class="number">3.4</span> Keyboard shortcuts</h3>
+<p>If you want to evaluate an expression, you do not always have to right click. Instead, you can use the keyboard shortcuts that are shown next to each menu item. Even though Pharo may seem like a mouse driven environment, it contains over 200 shortcuts for all of its different tools, as well as the facility to assign a keyboard shortcut to <i>any</i> of the 143 000 methods contained in the Pharo image.</p>
+
+<p>Depending on your platform, you may have to press one of the modifier keys, which are Control, Alt, and Command. We will use <code>Cmd</code> in the rest of the book, so each time you see something like <code>Cmd-D</code>, just replace it with the appropriate modifier key depending on your operating system. The corresponding modifier key in Windows is <code>Ctrl</code>, and in Linux it is either <code>Alt</code> or <code>Ctrl</code>.</p>
+
+<p>In addition to <strong>Do it</strong>, you might have noticed <strong>Do it and go</strong>, <strong>Print it</strong>, <strong>Inspect it</strong> and several other options in the context menu. Let's have a quick look at each of these.</p>
+
+<h3 id="doing-vs-printing"><span class="number">3.5</span> Doing vs. printing</h3>
+<p>Type the expression <code>3 + 4</code> into the playground. Now <strong>Do it</strong> with the keyboard shortcut <code>Cmd-D</code>.</p>
+
+<p>Don't be surprised if nothing happened! What you just did is send the message <code>+</code> with argument <code>4</code> to the number <code>3</code>. Normally, the resulting <code>7</code> would have been computed and returned to you, but since the playground did not know what to do with this answer, it simply did not show the answer. If you want to see the result, you should <strong>Print it</strong> instead. <strong>Print it</strong> actually compiles the expression, executes it, sends the message <code>printString</code> to the result, and displays the resulting string.</p>
+
+<p>Select <code>3 + 4</code> and <strong>Print it</strong> (<code>Cmd-P</code>). This time we see the result we expect.</p>
+
+<pre><code>3 + 4
+&gt;&gt;&gt; 7</code></pre>
+
+<p>We use the notation <code>&gt;&gt;&gt;</code> as a convention in this book to indicate that a particular Pharo expression yields a given result when you <strong>Print it</strong>.</p>
+
+<p><figure id="fig:inspector"><img src="Chapters/PharoTour/figures/inspector.png" alt="Inspecting a simple number using  Inspect . " style="width: 80%"><figcaption><span class="number">Figure 3.5</span> Inspecting a simple number using <code>Inspect</code>. </figcaption></img></figure></p>
+
+<h3 id="inspect"><span class="number">3.6</span> Inspect</h3>
+<p>Select or place the cursor on the line of <code>3 + 4</code>, and this time <strong>Inspect it</strong> (<code>Cmd-I</code>).</p>
+
+<p>Now you should see a new window titled "Inspector on 7" as shown in Figure <a href="#fig:inspector">3.5</a>. The inspector is an extremely useful tool that allows you to browse and interact with any object in the system. The subtitle of the window, "a SmallInteger (7)", tells us that <code>7</code> is an instance of the class <code>SmallInteger</code>. The top panel allows us to browse the instance variables of an object and their values. The bottom panel can be used to write expressions to send messages to the inspected object. Try typing <code>self squared</code> in the bottom panel of the inspector and then <strong>Print it</strong>.</p>
+
+<p>The inspector presents specific tabs that show different information and views on an object depending on the kind of object you are inspecting. Inspect <code>Morph new openInWorld</code> you should get something similar to Figure <a href="#fig:inspectorMorph">3.6</a>.</p>
+
+<p><figure id="fig:inspectorMorph"><img src="Chapters/PharoTour/figures/inspectMorph.png" alt="Inspecting a Morph using  Inspect ." class="fig:inspectorMorph" style="width: 80%"><figcaption><span class="number">Figure 3.6</span> Inspecting a Morph using <code>Inspect</code>.</figcaption></img></figure></p>
+
+<h3 id="other-operations"><span class="number">3.7</span> Other operations</h3>
+<p>Other right-click options that may be used are the following:</p>
+
+<ul>
+<li><strong>Do it and go</strong> additionally opens a <i>navigable</i> inspector on the side of the playground. It allows us to navigate the object structure. Try it with the previous expression <code>Morph new openInWorld</code> and then navigate the structure.</li>
+<li><strong>Debug it</strong> opens the debugger on the selected code expression.</li>
+<li><strong>Inspect it</strong> opens the classic inspector that offers a more minimal interface and live updates of changes to the object.</li>
+<li><strong>Profile it</strong> profiles the code with the Pharo profile tool, showing you how much time is spent for each message that is sent.</li>
+<li><strong>Code search</strong> offers several options provided by System Browser, such as browsing the source code of an expression, searching for senders and implementors, and so on.</li>
+</ul>
+<h3 id="calypso-the-system-browser"><span class="number">3.8</span> Calypso: the System Browser</h3>
+<p>The <strong>System Browser</strong>, also known as the "Class Browser", is one of the key tools used for programming in Pharo. As we shall see, there are actually several interesting browsers available in Pharo, but this is the basic one you will find in any image. The current implementation of the System Browser is called <strong>Calypso</strong>. The previous version of the System Browser was called Nautilus.</p>
+
+<h4 id="opening-the-system-browser-on-a-given-method">Opening the System Browser on a given method</h4>
+<p><figure id="fig:systemBrowser"><img src="Chapters/PharoTour/figures/system-browser-annotated.pdf" alt="The System Browser shows the  slowFactorial  method of the class  Integer . " style="width: 100%"><figcaption><span class="number">Figure 3.7</span> The System Browser shows the <code>slowFactorial</code> method of the class <code>Integer</code>. </figcaption></img></figure></p>
+
+<p>This is not the usual way that we open a browser on a method: we can use much more advanced tools! But for the sake of this exercise, please execute the following code snippet:</p>
+
+<pre><code>ClyFullBrowserMorph openOnMethod: Integer&gt;&gt;#slowFactorial</code></pre>
+
+<p>It will open a System Browser on the method <code>slowFactorial</code>, showing something like in Figure <a href="#fig:systemBrowser">3.7</a>. The title bar of 'Integer>>#slowFactorial' indicates that we are browsing the class <code>Integer</code> and its method <code>slowFactorial</code>. Figure <a href="#fig:systemBrowser">3.7</a> shows the different entities displayed by the browser: packages, classes, protocols, methods, executable comments and the method definition.</p>
+
+<p>In Pharo, the default System Browser is Calypso. However, as we have mentioned, it is possible to have other System Browsers installed in the Pharo environment. Each System Browser may have its own GUI that may be very different from the Calypso GUI. From now on, we will use the terms 'Browser', 'System Browser' and 'Calypso' interchangeably.</p>
+
+<p><figure id="fig:systemBrowser2"><img src="Chapters/PharoTour/figures/browsingprintString.png" alt="The System Browser showing the  printString  method of class  Object . " style="width: 100%"><figcaption><span class="number">Figure 3.8</span> The System Browser showing the <code>printString</code> method of class <code>Object</code>. </figcaption></img></figure></p>
+
+<h3 id="chapter-summary-2"><span class="number">3.9</span> Chapter summary</h3>
+<p>This chapter has been a whirlwind tour to introduce you to the Pharo environment and some of the major tools you will use to program in it. You have also seen a little of Pharo's syntax, even though you may not understand it all yet. Here's a little summary of what we've learned:</p>
+
+<ul>
+<li>You can click on the Pharo background to bring up the <strong>World Menu</strong> and launch various tools.</li>
+<li>A <strong>Playground</strong> is a tool for writing and evaluating snippets of code. You can also use it to store arbitrary text.</li>
+<li>You can use keyboard shortcuts on text in the Playground, or any other tool, to evaluate code. The most important of these are <strong>Do it</strong> (<code>Cmd-D</code>), <strong>Print it</strong> (<code>Cmd-P</code>), <strong>Inspect it</strong> (<code>Cmd-I</code>), and <strong>Browse it</strong> (<code>Cmd-B</code>).</li>
+<li>The <strong>System Browser</strong> is the main tool for browsing Pharo code and for developing new code.</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="getting-started-with.html">← Getting Started with  Pharo</a>
+        <a class="next" rel="next" href="finding-information-in.html">Finding information in Pharo →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

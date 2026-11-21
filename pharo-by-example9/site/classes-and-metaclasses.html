@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classes and metaclasses</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo 9 by Example</a>
+    <p class="site-authors">Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">2</span> Getting Started with  Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-quick-tour-of-pharo.html"><span class="number">3</span> A quick tour of Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="finding-information-in.html"><span class="number">4</span> Finding information in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">5</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="building-a-little-game.html"><span class="number">6</span> Building a little game</a>
+            
+          </li>
+          
+          <li>
+            <a href="publishing-and-packaging.html"><span class="number">7</span> Publishing and packaging your first Pharo project</a>
+            
+          </li>
+          
+          <li>
+            <a href="syntax-in-a-nutshell.html"><span class="number">8</span> Syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="understanding-message.html"><span class="number">9</span> Understanding message syntax</a>
+            
+          </li>
+          
+          <li>
+            <a href="the-pharo-object-model.html"><span class="number">10</span> The Pharo object model</a>
+            
+          </li>
+          
+          <li>
+            <a href="traits-reusable-class.html"><span class="number">11</span> Traits: reusable class fragments</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-tests-in-pharo.html"><span class="number">12</span> SUnit: Tests in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="basic-classes.html"><span class="number">13</span> Basic classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="collections.html"><span class="number">14</span> Collections</a>
+            
+          </li>
+          
+          <li>
+            <a href="streams.html"><span class="number">15</span> Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="morphic.html"><span class="number">16</span> Morphic</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="classes-and-metaclasses.html" aria-current="page"><span class="number">17</span> Classes and metaclasses</a>
+            
+            <ol>
+              
+              <li><a href="#rules-for-classes"><span class="number">17.1</span> Rules for classes</a></li>
+              
+              <li><a href="#sec:metaclassIntro"><span class="number">17.2</span> Metaclasses</a></li>
+              
+              <li><a href="#revisiting-the-pharo-object-model"><span class="number">17.3</span> Revisiting the Pharo object model</a></li>
+              
+              <li><a href="#every-class-is-an-instance-of-a-metaclass"><span class="number">17.4</span> Every class is an instance of a metaclass</a></li>
+              
+              <li><a href="#querying-metaclasses"><span class="number">17.5</span> Querying Metaclasses</a></li>
+              
+              <li><a href="#the-metaclass-hierarchy-parallels-the-class-hierarchy"><span class="number">17.6</span> The metaclass hierarchy parallels the class hierarchy</a></li>
+              
+              <li><a href="#uniformity-between-classes-and-objects"><span class="number">17.7</span> Uniformity between Classes and Objects</a></li>
+              
+              <li><a href="#inspecting-objects-and-classes"><span class="number">17.8</span> Inspecting objects and classes</a></li>
+              
+              <li><a href="#every-metaclass-inherits-from-class-and-behavior"><span class="number">17.9</span> Every metaclass inherits from Class and Behavior</a></li>
+              
+              <li><a href="#responsibilities-of-behavior-classdescription-and-class"><span class="number">17.10</span> Responsibilities of Behavior, ClassDescription, and Class</a></li>
+              
+              <li><a href="#every-metaclass-is-an-instance-of-metaclass"><span class="number">17.11</span> Every metaclass is an instance of Metaclass</a></li>
+              
+              <li><a href="#the-metaclass-of-metaclass-is-an-instance-of-metaclass"><span class="number">17.12</span> The metaclass of Metaclass is an instance of Metaclass</a></li>
+              
+              <li><a href="#chapter-summary-11"><span class="number">17.13</span> Chapter summary</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="reflection.html"><span class="number">18</span> Reflection</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">17</span> Classes and metaclasses</h2><a id="cha:metaclasses"></a>
+<p>In Pharo, everything is an object, and every object is an instance of a class. Classes are no exception: classes are objects, and class objects are instances of other classes.  This model is lean, simple, elegant, and uniform. It fully captures the essence of object-oriented programming. However, the implications of this uniformity may confuse newcomers.</p>
+
+<p>Note that you do not need to fully understand the implications of this uniformity to program fluently in Pharo. Nevertheless, the goal of this chapter is twofold: (1) go as deep as possible and (2) show that there is nothing complex, <i>magic</i> or special here: just simple rules applied uniformly. By following these rules, you can always understand why the situation is the way that it is.</p>
+
+<h3 id="rules-for-classes"><span class="number">17.1</span> Rules for classes</h3>
+<p>The Pharo object model is based on a limited number of concepts applied uniformly. To refresh your memory, here are the rules of the object model that we explored in Chapter <a href="the-pharo-object-model.html#cha:model">10</a>.</p>
+
+<p>Rule 1
+Everything is an object.</p>
+
+<p>Rule 2
+Every object is an instance of a class.</p>
+
+<p>Rule 3
+Every class has a superclass.</p>
+
+<p>Rule 4
+Everything happens by sending messages.</p>
+
+<p>Rule 5
+Method lookup follows the inheritance chain.</p>
+
+<p>Rule 6
+Classes are objects too and follow exactly the same rules.</p>
+
+<p>A consequence of Rule 1 is that <i>classes are objects too</i>, so Rule 2 tells us that classes must also be
+instances of classes. The class of a class is called a <i>metaclass</i>.</p>
+
+<h3><span class="number">17.2</span> Metaclasses</h3><a id="sec:metaclassIntro"></a>
+<p>A metaclass is created automatically for you whenever you create a class. Most of the time you do not need to care or think about metaclasses. However, every time that you use the browser to browse the <i>class side</i> of a class, it is helpful to recall that you are actually browsing a different class. A class and
+its metaclass are two separate classes. Indeed a point is different from the class <code>Point</code> and this is the same for a class and its metaclass.</p>
+
+<p>To properly explain classes and metaclasses, we need to extend the rules from Chapter <a href="the-pharo-object-model.html#cha:model">10</a> with the following additional rules.</p>
+
+<p>Rule 7
+Every class is an instance of a metaclass.</p>
+
+<p>Rule 8
+The metaclass hierarchy parallels the class hierarchy.</p>
+
+<p>Rule 9
+Every metaclass inherits from <code>Class</code> and <code>Behavior</code>.</p>
+
+<p>Rule 10
+Every metaclass is an instance of <code>Metaclass</code>.</p>
+
+<p>Rule 11
+The metaclass of <code>Metaclass</code> is an instance of <code>Metaclass</code>.</p>
+
+<p>Together, these 11 simple rules complete Pharo's object model.</p>
+
+<p>We will first briefly revisit the 5 rules from Chapter <a href="the-pharo-object-model.html#cha:model">10</a> with a small example. Then we will take a closer look at the new rules, using the same example.</p>
+
+<p><figure id="fig:classmessage"><img src="Chapters/Metaclasses/figures/SortedCollectionClassMessage.png" alt="Sending the message  class  to a sorted collection" class="fig:classmessage" style="width: 99%"><figcaption><span class="number">Figure 17.1</span> Sending the message <code>class</code> to a sorted collection</figcaption></img></figure></p>
+
+<h3 id="revisiting-the-pharo-object-model"><span class="number">17.3</span> Revisiting the Pharo object model</h3>
+<p><strong>Rule 1.</strong> Since everything is an object, an ordered collection in Pharo is also an object.</p>
+
+<pre><code>OrderedCollection withAll: #(4 5 6 1 2 3)
+&gt;&gt;&gt; an OrderedCollection(4 5 6 1 2 3)</code></pre>
+
+<p><strong>Rule 2.</strong> Every object is an instance of a class. An ordered collection is instance of the class <code>OrderedCollection</code>:</p>
+
+<pre><code>(OrderedCollection withAll: #(4 5 6 1 2 3)) class
+&gt;&gt;&gt; OrderedCollection</code></pre>
+
+<p><strong>Rule 3.</strong> Every class has a superclass. The superclass of <code>OrderedCollection</code> is
+<code>SequenceableCollection</code> and the superclass of <code>SequenceableCollection</code> is <code>Collection</code>:</p>
+
+<pre><code>OrderedCollection superclass
+&gt;&gt;&gt; SequenceableCollection</code></pre>
+
+<pre><code>SequenceableCollection superclass
+&gt;&gt;&gt; Collection</code></pre>
+
+<pre><code>Collection superclass
+&gt;&gt;&gt; Object</code></pre>
+
+<p><strong>Rule 4.</strong> Everything happens by sending messages, so we can deduce that <code>withAll:</code> is a message sent to <code>OrderedCollection</code> and <code>class</code> are messages sent to the ordered collection instance, and <code>superclass</code> is a message sent to the class <code>OrderedCollection</code> and <code>SequenceableCollection</code>, and <code>Collection</code>.
+The receiver in each case is an object, since everything is an object, but some of these objects are also classes.</p>
+
+<p><strong>Rule 5.</strong> Method lookup follows the inheritance chain, so when we send the message <code>class</code> to the result of <code>(OrderedCollection withAll: #(4 5 6 1 2 3)) asSortedCollection</code>, the message is handled when the corresponding method is found in the class <code>Object</code>, as shown in Figure <a href="#fig:classmessage">17.1</a>.</p>
+
+<h3 id="every-class-is-an-instance-of-a-metaclass"><span class="number">17.4</span> Every class is an instance of a metaclass</h3>
+<p>As we mentioned earlier in Section <a href="#sec:metaclassIntro">17.2</a>, classes whose instances are themselves classes are <i>called</i> metaclasses. This is to make sure that we can precisely refer to the class <code>Point</code> and the class of the class <code>Point</code>.</p>
+
+<p><figure id="fig:translucentmetaclasses"><img src="Chapters/Metaclasses/figures/SortedCollectionMetaclasses.png" alt="The metaclasses of  SortedCollection  and its superclasses (elided)." class="fig:translucentmetaclasses"><figcaption><span class="number">Figure 17.2</span> The metaclasses of <code>SortedCollection</code> and its superclasses (elided).</figcaption></img></figure></p>
+
+<h4 id="metaclasses-are-implicit">Metaclasses are implicit</h4>
+<p>Metaclasses are automatically created when you define a class. We say that they are <i>implicit</i> since as a programmer you never have to worry about them. An implicit metaclass is created for each class you create, so each metaclass has only a single instance.</p>
+
+<p>Whereas ordinary classes are named, metaclasses are anonymous. However, we can always refer to them through the class that is their instance. The class of <code>SortedCollection</code> is <code>SortedCollection class</code>, and the class of <code>Object</code> is <code>Object class</code>:</p>
+
+<pre><code>SortedCollection class
+&gt;&gt;&gt; SortedCollection class</code></pre>
+
+<pre><code>Object class
+&gt;&gt;&gt; Object class</code></pre>
+
+<p>In fact metaclasses are not truly anonymous, their name is deduced from the one of their single instance.</p>
+
+<pre><code>SortedCollection class name
+&gt;&gt;&gt; 'SortedCollection class'</code></pre>
+
+<pre><code>Object class name
+&gt;&gt;&gt; 'Object class'</code></pre>
+
+<p>Figure <a href="#fig:translucentmetaclasses">17.2</a> shows how each class is an instance of its metaclass. Note that we only skip <code>SequenceableCollection</code> and <code>Collection</code> from the figure and explanation due to space constraints.
+Their absence does not change the overall meaning.</p>
+
+<h3 id="querying-metaclasses"><span class="number">17.5</span> Querying Metaclasses</h3>
+<p>The fact that classes are also objects makes it easy for us to query them by sending messages. Let's have a look:</p>
+
+<pre><code>OrderedCollection subclasses
+&gt;&gt;&gt; {SortedCollection . ObjectFinalizerCollection . WeakOrderedCollection . OCLiteralList . GLMMultiValue}</code></pre>
+
+<pre><code>SortedCollection subclasses
+&gt;&gt;&gt; #()</code></pre>
+
+<pre><code>SortedCollection allSuperclasses
+&gt;&gt;&gt; an OrderedCollection(OrderedCollection SequenceableCollection Collection Object ProtoObject)</code></pre>
+
+<pre><code>SortedCollection instVarNames
+&gt;&gt;&gt; #(#sortBlock)</code></pre>
+
+<pre><code>SortedCollection allInstVarNames
+&gt;&gt;&gt; #(#array #firstIndex #lastIndex #sortBlock)</code></pre>
+
+<pre><code>SortedCollection selectors
+&gt;&gt;&gt;  #(#sortBlock: #add: #groupedBy: #defaultSort:to: #addAll: #at:put: #copyEmpty #, #collect: #indexForInserting: #insert:before: #reSort #addFirst: #join: #median #flatCollect: #sort: #sort:to: #= #sortBlock)</code></pre>
+
+<p><figure id="fig:parallelHierarchies"><img src="Chapters/Metaclasses/figures/SortedCollectionMetaclassHierarchy.png" alt="The metaclass hierarchy parallels the class hierarchy (elided)." class="fig:parallelHierarchies"><figcaption><span class="number">Figure 17.3</span> The metaclass hierarchy parallels the class hierarchy (elided).</figcaption></img></figure></p>
+
+<h3 id="the-metaclass-hierarchy-parallels-the-class-hierarchy"><span class="number">17.6</span> The metaclass hierarchy parallels the class hierarchy</h3>
+<p>Rule 7 says that the superclass of a metaclass cannot be an arbitrary class: it is constrained to be the metaclass of the superclass of the metaclass's unique instance: the metaclass of <code>SortedCollection</code> inherits from the metaclass of <code>OrderedCollection</code> (the superclass of <code>SortedCollection</code>).</p>
+
+<pre><code>SortedCollection class superclass
+&gt;&gt;&gt; OrderedCollection class</code></pre>
+
+<pre><code>SortedCollection superclass class
+&gt;&gt;&gt; OrderedCollection class</code></pre>
+
+<p>This is what we mean by the metaclass hierarchy being parallel to the class hierarchy.
+Figure <a href="#fig:parallelHierarchies">17.3</a> shows how this works in the <code>SortedCollection</code> hierarchy.</p>
+
+<pre><code>SortedCollection class
+&gt;&gt;&gt; SortedCollection class</code></pre>
+
+<pre><code>SortedCollection class superclass
+&gt;&gt;&gt; OrderedCollection class</code></pre>
+
+<pre><code>SortedCollection class superclass superclass
+&gt;&gt;&gt; SequenceableCollection class</code></pre>
+
+<pre><code>SortedCollection class superclass superclass superclass superclass
+&gt;&gt;&gt; Object class</code></pre>
+
+<p><figure id="fig:metaclasslookup"><img src="Chapters/Metaclasses/figures/InstanceMessage.png" alt="Message lookup for classes is the same as for ordinary objects." class="fig:metaclasslookup" style="width: 100%"><figcaption><span class="number">Figure 17.4</span> Message lookup for classes is the same as for ordinary objects.</figcaption></img></figure></p>
+
+<h3 id="uniformity-between-classes-and-objects"><span class="number">17.7</span> Uniformity between Classes and Objects</h3>
+<p>It is interesting to step back a moment and realize that there is no difference between sending a message to an object and to a class. In both cases the lookup for the corresponding method starts in the <i>class of the receiver</i>, and <i>proceeds up the inheritance chain</i>.</p>
+
+<p>Thus, messages sent to classes follow the metaclass inheritance chain. Consider, for example, the method <code>withAll:</code>, which is implemented on the class side of <code>Collection</code>. When we send the message <code>withAll:</code> to the class <code>OrderedCollection</code>, then it is looked up the same way as any other message. The lookup starts in <code>OrderedCollection class</code> (since it starts in the class of the receiver and the receiver is <code>OrderedCollection</code>), and proceeds up the metaclass hierarchy until it is found in <code>Collection class</code> (see Figure <a href="#fig:metaclasslookup">17.4</a>). It returns a new instance of <code>OrderedCollection</code>.</p>
+
+<pre><code>OrderedCollection withAll: #(4 5 6 1 2 3)
+&gt;&gt;&gt; an OrderedCollection (4 5 6 1 2 3)</code></pre>
+
+<h4 id="only-one-method-lookup">Only one method lookup</h4>
+<p>There is only one uniform kind of method lookup in Pharo. Classes are just objects, and behave like any other objects. Classes have the power to create new instances only because classes happen to respond to the message <code>new</code>, and because the <code>new</code> method knows how to create new instances.</p>
+
+<p>Normally, non-class objects do not understand this message, but if you have a good reason to do so, there is nothing stopping you from adding a <code>new</code> method to a non-metaclass.</p>
+
+<p><figure id="fig:inspectingColor"><img src="Chapters/Metaclasses/figures/InspectingOrderedCollection.png" alt="Classes are objects too." class="fig:inspectingColor"><figcaption><span class="number">Figure 17.5</span> Classes are objects too.</figcaption></img></figure></p>
+
+<h3 id="inspecting-objects-and-classes"><span class="number">17.8</span> Inspecting objects and classes</h3>
+<p>Since classes are objects, we can also inspect them.</p>
+
+<p>Inspect <code>OrderedCollection withAll: #(4 5 6 1 2 3)</code> and <code>OrderedCollection</code>.</p>
+
+<p>Notice that in one case you are inspecting an instance of <code>OrderedCollection</code> and in the other case the <code>OrderedCollection</code> class itself. This can be a bit confusing, because the title bar of the inspector names the <i>class</i> of the object being inspected.</p>
+
+<p>The inspector on <code>OrderedCollection</code> allows you to see the superclass, instance variables, method dictionary, and so on, of the <code>OrderedCollection</code> class, as shown in Figure <a href="#fig:inspectingColor">17.5</a>.</p>
+
+<h3 id="every-metaclass-inherits-from-class-and-behavior"><span class="number">17.9</span> Every metaclass inherits from <code>Class</code> and <code>Behavior</code></h3>
+<p>Every metaclass is a kind of a class (a class with a single instance), hence inherits from <code>Class</code>. <code>Class</code> in turn inherits from its superclasses, <code>ClassDescription</code> and <code>Behavior</code>. Since everything in Pharo is an object, these classes all inherit eventually from <code>Object</code>. We can see the complete picture in Figure <a href="#fig:inheritbehavior">17.6</a>.</p>
+
+<p><figure id="fig:inheritbehavior"><img src="Chapters/Metaclasses/figures/SortedCollectionBehavior.png" alt="Metaclasses inherit from  Class  and  Behavior ." class="fig:inheritbehavior"><figcaption><span class="number">Figure 17.6</span> Metaclasses inherit from <code>Class</code> and <code>Behavior</code>.</figcaption></img></figure></p>
+
+<h4 id="where-is-new-defined">Where is <code>new</code> defined?</h4>
+<p>To understand the importance of the fact that metaclasses inherit from <code>Class</code> and <code>Behavior</code>, it helps to ask where <code>new</code> is defined and how it is found.</p>
+
+<p>When the message <code>new</code> is sent to a class, it is looked up in its metaclass chain and ultimately in its superclasses <code>Class</code>, <code>ClassDescription</code> and <code>Behavior</code> as shown in Figure <a href="#fig:sendingnew">17.7</a>.</p>
+
+<p>When we send <code>new</code> to the class <code>SortedCollection</code>, the message is looked up in the metaclass <code>SortedCollection class</code> and follows the inheritance chain. Remember it is the same lookup process than for any objects.</p>
+
+<p>The question <i>Where is <code>new</code> defined?</i> is crucial. <code>new</code> is first defined in the class <code>Behavior</code>, and it can be redefined in its subclasses, including any of the metaclass of the classes we define, when this is necessary.</p>
+
+<p>Now when a message <code>new</code> is sent to a class it is looked up, as usual, in the metaclass of this class, continuing up the superclass chain right up to the class <code>Behavior</code>, if it has not been redefined along the way.</p>
+
+<p>Note that the result of sending <code>SortedCollection new</code> is an instance of <code>SortedCollection</code> and <i>not</i> of <code>Behavior</code>, even though the method is looked up in the class <code>Behavior</code>!</p>
+
+<p>The method <code>new</code> always returns an instance of <code>self</code>, the class that receives the message, even if it is implemented in another class.</p>
+
+<pre><code>SortedCollection new class
+&gt;&gt;&gt; SortedCollection    "not Behavior!"</code></pre>
+
+<p><figure id="fig:sendingnew"><img src="Chapters/Metaclasses/figures/SortedOrderedSendingNew.png" alt="new  is an ordinary message looked up in the metaclass chain." class="fig:sendingnew"><figcaption><span class="number">Figure 17.7</span> <code>new</code> is an ordinary message looked up in the metaclass chain.</figcaption></img></figure></p>
+
+<h4 id="a-common-mistake">A common mistake</h4>
+<p>A common mistake is to look for <code>new</code> in the superclass of the receiving class. The same holds for <code>new:</code>, the standard message to create an object of a given size. For example, <code>Array new: 4</code> creates an array of 4 elements. You will not find this method defined in <code>Array</code> or any of its superclasses.
+Instead you should look in <code>Array class</code> and its superclasses, since that is where the lookup will start (See Figure <a href="#fig:sendingnew">17.7</a>).</p>
+
+<p>The method <code>new</code> and <code>new:</code> are defined in metaclasses, because they are executed in response to messages sent to classes.</p>
+
+<p>In addition since a class is an object it can also be the receiver of messages whose methods are defined on <code>Object</code>. When we send the message <code>class</code> or <code>error:</code> to the class <code>Point</code>, the method lookup will go over the metaclass chain (looking in <code>Point class</code>, <code>Object class</code>....) up to <code>Object</code>.</p>
+
+<h3 id="responsibilities-of-behavior-classdescription-and-class"><span class="number">17.10</span> Responsibilities of <code>Behavior</code>, <code>ClassDescription</code>, and <code>Class</code></h3>
+<h4 id="behavior"><code>Behavior</code></h4>
+<p><code>Behavior</code> provides the minimum state necessary for objects that have instances, which includes a  superclass link, a method dictionary and the class format. The class format is an integer that encodes the pointer/non-pointer distinction, compact/non-compact class distinction, and basic size of instances.
+<code>Behavior</code> inherits from <code>Object</code>, so it, and all of its subclasses, can behave like objects.</p>
+
+<p><code>Behavior</code> is also the basic interface to the compiler. It provides methods for creating a method dictionary, compiling methods, creating instances (<i>i.e.</i>, <code>new</code>, <code>basicNew</code>, <code>new:</code>, and <code>basicNew:</code>), manipulating the class hierarchy (<i>i.e.</i>, <code>superclass:</code>, <code>addSubclass:</code>), accessing
+methods (<i>i.e.</i>, <code>selectors</code>, <code>allSelectors</code>, <code>compiledMethodAt:</code>), accessing instances and variables (<i>i.e.</i>, <code>allInstances</code>, <code>instVarNames</code>...), accessing the class hierarchy (<i>i.e.</i>, <code>superclass</code>, <code>subclasses</code>) and querying (<i>i.e.</i>, <code>hasMethods</code>, <code>includesSelector</code>,
+<code>canUnderstand:</code>, <code>inheritsFrom:</code>, <code>isVariable</code>).</p>
+
+<h4 id="classdescription"><code>ClassDescription</code></h4>
+<p><code>ClassDescription</code> is an abstract class that provides facilities needed by its two direct subclasses, <code>Class</code> and <code>Metaclass</code>. <code>ClassDescription</code> adds a number of facilities to the base provided by <code>Behavior</code>: named instance variables, the categorization of methods into protocols, the maintenance of
+change sets and the logging of changes, and most of the mechanisms needed for filing out changes.</p>
+
+<h4 id="class-2"><code>Class</code></h4>
+<p><code>Class</code> represents the common behaviour of all classes. It provides a class name, compilation methods, method storage, and instance variables. It provides a concrete representation for class variable names and shared pool variables (<code>addClassVarName:</code>, <code>addSharedPool:</code>, <code>initialize</code>). Since a metaclass is
+a class for its sole instance (<i>i.e.</i>, the non-meta class), all metaclasses ultimately inherit from <code>Class</code> (as shown by Figure <a href="#fig:metaclassclassclass">17.9</a>).</p>
+
+<h3 id="every-metaclass-is-an-instance-of-metaclass"><span class="number">17.11</span> Every metaclass is an instance of <code>Metaclass</code></h3>
+<p>The next question is since metaclasses are objects too, they should be instances of another class, but which one? Metaclasses are objects too; they are instances of the class <code>Metaclass</code> as shown in Figure <a href="#fig:metaclassclass">17.8</a>. The instances of class <code>Metaclass</code> are the anonymous metaclasses, each of which
+has exactly one instance, which is a class.</p>
+
+<p><figure id="fig:metaclassclass"><img src="Chapters/Metaclasses/figures/SortedCollectionMetaclassClass.png" alt="Every metaclass is a  Metaclass ." class="fig:metaclassclass"><figcaption><span class="number">Figure 17.8</span> Every metaclass is a <code>Metaclass</code>.</figcaption></img></figure></p>
+
+<p><code>Metaclass</code> represents common metaclass behaviour. It provides methods for instance creation (<code>subclassOf:</code>), creating initialized instances of the metaclass's sole instance, initialization of class variables, metaclass instance, method compilation, and class information (inheritance links,
+instance variables, ...).</p>
+
+<h3 id="the-metaclass-of-metaclass-is-an-instance-of-metaclass"><span class="number">17.12</span> The metaclass of <code>Metaclass</code> is an instance of <code>Metaclass</code></h3>
+<p>The final question to be answered is: what is the class of <code>Metaclass class</code>?</p>
+
+<p>The answer is simple: it is a metaclass, so it must be an instance of <code>Metaclass</code>, just like all the other metaclasses in the system (see Figure <a href="#fig:metaclassclassclass">17.9</a>).</p>
+
+<p><figure id="fig:metaclassclassclass"><img src="Chapters/Metaclasses/figures/SortedCollectionMetaclassClassClass.png" alt="All metaclasses are instances of the class  Metaclass , even the metaclass of  Metaclass ." class="fig:metaclassclassclass"><figcaption><span class="number">Figure 17.9</span> All metaclasses are instances of the class <code>Metaclass</code>, even the metaclass of <code>Metaclass</code>.</figcaption></img></figure></p>
+
+<p>Figure <a href="#fig:metaclassclassclass">17.9</a> shows how all metaclasses are instances of <code>Metaclass</code>, including the metaclass of <code>Metaclass</code> itself. If you compare Figures <a href="#fig:metaclassclass">17.8</a> and <a href="#fig:metaclassclassclass">17.9</a> you will see how the metaclass hierarchy perfectly mirrors the class hierarchy, all the way up to <code>Object class</code>.</p>
+
+<p>The following examples show us how we can query the class hierarchy to demonstrate that Figure <a href="#fig:metaclassclassclass">17.9</a> is correct. (Actually, you will see that we told a white lie — <code>Object class superclass --&gt; ProtoObject class</code>, not <code>Class</code>. In Pharo, we must go one superclass higher
+to reach <code>Class</code>.)</p>
+
+<pre><code>Collection superclass
+&gt;&gt;&gt; Object</code></pre>
+
+<pre><code>Collection class superclass
+&gt;&gt;&gt; Object class</code></pre>
+
+<pre><code>Object class superclass superclass
+&gt;&gt;&gt; Class</code></pre>
+
+<pre><code>Class superclass
+&gt;&gt;&gt; ClassDescription</code></pre>
+
+<pre><code>ClassDescription superclass
+&gt;&gt;&gt; Behavior</code></pre>
+
+<pre><code>Behavior superclass
+&gt;&gt;&gt; Object</code></pre>
+
+<pre><code>"The class of a metaclass is the class Metaclass"
+Collection class class
+&gt;&gt;&gt; Metaclass</code></pre>
+
+<pre><code>"The class of a metaclass is the class Metaclass"
+Object class class
+&gt;&gt;&gt; Metaclass</code></pre>
+
+<pre><code>"The class of a metaclass is the class Metaclass"
+Behavior class class
+&gt;&gt;&gt; Metaclass</code></pre>
+
+<pre><code>"The class of a metaclass is the class Metaclass"
+Metaclass class class
+&gt;&gt;&gt; Metaclass</code></pre>
+
+<pre><code>"Metaclass is a special kind of class"
+Metaclass superclass
+&gt;&gt;&gt; ClassDescription</code></pre>
+
+<h3 id="chapter-summary-11"><span class="number">17.13</span> Chapter summary</h3>
+<p>This chapter gave an in-depth look into the uniform object model of Pharo, and a more thorough explanation of how classes are organized. If you get lost or confused, you should always remember that message passing is the key: <i>you look for the method in the class of the receiver</i>. This works on <i>any</i> receiver. If
+the method is not found in the class of the receiver, it is looked up in its superclasses.</p>
+
+<ul>
+<li>Every class is an instance of a metaclass. Metaclasses are implicit. A metaclass is created automatically when you create the class that is its sole instance. A metaclass is simply a class whose unique instance is a class.</li>
+<li>The metaclass hierarchy parallels the class hierarchy. Method lookup for classes parallels method lookup for ordinary objects, and follows the metaclass's superclass chain.</li>
+<li>Every metaclass inherits from <code>Class</code> and <code>Behavior</code>. Every class <i>is a</i> <code>Class</code>. Since metaclasses are classes too, they must also inherit from <code>Class</code>. <code>Behavior</code> provides behavior common to all entities that have instances.</li>
+<li>Every metaclass is an instance of <code>Metaclass</code>. <code>ClassDescription</code> provides everything that is common to <code>Class</code> and <code>Metaclass</code>.</li>
+<li>The metaclass of <code>Metaclass</code> is an instance of <code>Metaclass</code>. The <i>instance-of</i> relation forms a closed loop, so <code>Metaclass class class</code> is <code>Metaclass</code>.</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="morphic.html">← Morphic</a>
+        <a class="next" rel="next" href="reflection.html">Reflection →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

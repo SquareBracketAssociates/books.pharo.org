@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finding information in Pharo</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo 9 by Example</a>
+    <p class="site-authors">Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">2</span> Getting Started with  Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-quick-tour-of-pharo.html"><span class="number">3</span> A quick tour of Pharo</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="finding-information-in.html" aria-current="page"><span class="number">4</span> Finding information in Pharo</a>
+            
+            <ol>
+              
+              <li><a href="#navigating-using-the-system-browser"><span class="number">4.1</span> Navigating using the System Browser</a></li>
+              
+              <li><a href="#finding-classes"><span class="number">4.2</span> Finding classes</a></li>
+              
+              <li><a href="#finding-methods"><span class="number">4.3</span> Finding methods</a></li>
+              
+              <li><a href="#finding-methods-using-examples"><span class="number">4.4</span> Finding Methods using Examples</a></li>
+              
+              <li><a href="#conclusion"><span class="number">4.5</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">5</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="building-a-little-game.html"><span class="number">6</span> Building a little game</a>
+            
+          </li>
+          
+          <li>
+            <a href="publishing-and-packaging.html"><span class="number">7</span> Publishing and packaging your first Pharo project</a>
+            
+          </li>
+          
+          <li>
+            <a href="syntax-in-a-nutshell.html"><span class="number">8</span> Syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="understanding-message.html"><span class="number">9</span> Understanding message syntax</a>
+            
+          </li>
+          
+          <li>
+            <a href="the-pharo-object-model.html"><span class="number">10</span> The Pharo object model</a>
+            
+          </li>
+          
+          <li>
+            <a href="traits-reusable-class.html"><span class="number">11</span> Traits: reusable class fragments</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-tests-in-pharo.html"><span class="number">12</span> SUnit: Tests in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="basic-classes.html"><span class="number">13</span> Basic classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="collections.html"><span class="number">14</span> Collections</a>
+            
+          </li>
+          
+          <li>
+            <a href="streams.html"><span class="number">15</span> Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="morphic.html"><span class="number">16</span> Morphic</a>
+            
+          </li>
+          
+          <li>
+            <a href="classes-and-metaclasses.html"><span class="number">17</span> Classes and metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="reflection.html"><span class="number">18</span> Reflection</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">4</span> Finding information in Pharo</h2><a id="cha:finding"></a>
+<p>In this short chapter we will show you some ways to find information in Pharo.</p>
+
+<h3 id="navigating-using-the-system-browser"><span class="number">4.1</span> Navigating using the System Browser</h3>
+<p>There are ways to get to the class or method you're looking for in Pharo fast - very fast indeed. Later on we'll introduce you to <strong>Spotter</strong>, one of the quickest ways to find an object in Pharo. But for now, while we're still learning, let's try taking the slow road by only using the System Browser to find the <code>printString</code> method defined in the class <code>Object</code>. At the end of the navigation, we will get the situation depicted in <a href="a-quick-tour-of-pharo.html#fig:systemBrowser2">3.8</a>:</p>
+
+<ul>
+<li><strong>Open the Browser</strong>: Either by using the World Menu or the shortcut <code>Cmd-O Cmd-B</code>. When a new System Browser window first opens, all panes but the leftmost are empty. This first pane lists all known <strong>packages</strong>, which contain groups of related classes.</li>
+<li><strong>Filter packages</strong>: Type part of the name of the package in the leftmost filter. It filters the list of packages to be shown in the list above it. Type 'Kern' for example.</li>
+<li><strong>Expand the <code>Kernel</code> package and select the <code>Objects</code> element</strong>: When we select a package, it causes the second pane to show a list of all of the <strong>classes</strong> in the selected package. You should see the class hierarchy of <code>ProtoObject</code>.</li>
+<li><strong>Select the <code>Object</code> class</strong>: When a class is selected, the remaining two panes will be populated. The third pane displays the <strong>protocols</strong> of the currently selected class. These are convenient groupings of related methods which we'll discuss further later in the book. If no protocol is selected you should see all methods in the fourth pane.</li>
+<li><strong>Select the <code>printing</code> protocol</strong>: You may have to scroll down to find it - <code>Object</code> is a pretty important class and has lots of protocols. You can also click on the third pane and type <code>pr</code>, to typeahead-find the <code>printing</code> protocol. Now select it, and in the fourth pane you will see only the methods related to printing.</li>
+<li><strong>Select the <code>printString</code> method</strong>: Now we see in the bottom pane the source code of the <code>printString</code> method, shared by all objects in the system (except those that override it).</li>
+</ul>
+<p>There are much better way to find a method, for example, just type it in a Playground and select the word and use <strong>Implementors of it</strong> in the <strong>Code search</strong> context menu item, which you can bring up with an action-click, or just use the keyboard shortcut <code>Cmd-M</code>.</p>
+
+<h3 id="finding-classes"><span class="number">4.2</span> Finding classes</h3>
+<p>There are several ways to find a class in Pharo. The first, as we have just seen above, is to know (or guess) what package it is in, and to navigate to it using the Browser.</p>
+
+<p>A second way is to send the <code>browse</code> message to an instance or the class itself, asking it to open a Browser on itself. Suppose we want to browse the class <code>Point</code>:</p>
+
+<ul>
+<li><strong>Using the Message <code>browse</code></strong>: Type <code>Point browse</code> into a Playground and then <strong>Do it</strong>. A Browser will open on the <code>Point</code> class. You can do the same with <code>10@20</code> (which is an instance of the class <code>Point</code>).</li>
+<li><strong>Using <code>Cmd-B</code></strong>: There is also a keyboard shortcut <code>Cmd-B</code> that you can use in any text pane; select the word and press <code>Cmd-B</code>. Use this keyboard shortcut to browse the class <code>Point</code>.</li>
+</ul>
+<p>Notice that, when the <code>Point</code> class is selected but no protocol or method is selected, instead of the source code of a method we see a class definition. This is nothing more than an ordinary message that is sent to the parent class, asking it to create a subclass. If you click on the <strong>Comments</strong> button at the bottom of the class pane, you can see the class comment in a dedicated pane.</p>
+
+<p>In addition the system supports the following mouse shortcuts:</p>
+
+<ul>
+<li><code>Cmd-Click</code> on a word (<code>Alt-Right click</code> on Windows and Linux): open the definition of a class when the word is a class name. You get also the implementors of the message when you click on a selector that is in the body of a method.</li>
+<li><code>Shift-Cmd-Click</code> on a word (<code>Shift-Alt-Right click</code> on Windows and Linux): open a list browser with all the references of the class when the word is a class name. You get also the senders of the message when you click on a selector that is in the body of a method.</li>
+</ul>
+<h4 id="using-spotter">Using Spotter</h4>
+<p>The fastest (and probably the coolest) way to find a class is to use <strong>Spotter</strong>. Pressing <code>Shift-Enter</code> opens <strong>Spotter</strong>, a very powerful tool for finding classes, methods, and many other related actions. Figure <a href="#fig:spotter">4.1</a> shows Spotter being used to look for <code>Point</code>.</p>
+
+<p><figure id="fig:spotter"><img src="Chapters/PharoTour/figures/spotter.png" alt="Using Spotter  Shift-Enter  to browse the class  Point . " class="fig:spotter" style="width: 80%"><figcaption><span class="number">Figure 4.1</span> Using Spotter <code>Shift-Enter</code> to browse the class <code>Point</code>. </figcaption></img></figure></p>
+
+<p><strong>Spotter</strong> offers several possibilities as shown in Figure <a href="#fig:spotter">4.1</a>. You can specify to Spotter the kind of <i>category</i> you are interested in. For example, using <code>#Classes</code> followed by the word you match against for, indicates that you are interested in classes.</p>
+
+<p>Figure <a href="#fig:spotter2">4.2</a> shows how we can ask <strong>Spotter</strong> to show all the implementors of a given message. We do not have to type the full category name. Other categories are</p>
+
+<ul>
+<li><code>#Menu</code>, matching entries from the World Menu</li>
+<li><code>#Packages</code>, matching packages in the system</li>
+<li><code>#Implementors</code>, the implementors of a matching method</li>
+<li><code>#Senders</code>, the senders of matching messages</li>
+<li><code>#Help</code>, matching documents in Pharo's help system</li>
+</ul>
+<p>You can also just type the beginning of the category to identify it, i.e. <code>#sen printOn:</code> will give all the senders of the message <code>printOn:</code>.</p>
+
+<p><figure id="fig:spotter2"><img src="Chapters/PharoTour/figures/Spotter2.png" alt="Looking for implementors matching  printString . " class="fig:spotter2" style="width: 80%"><figcaption><span class="number">Figure 4.2</span> Looking for implementors matching <code>printString</code>. </figcaption></img></figure></p>
+
+<p>By default, Spotter shows matches from multiple categories, all grouped together under their category heading. You can navigate through each category to see more results.</p>
+
+<h4 id="using-find-class-in-the-system-browser">Using 'Find class' in the System Browser</h4>
+<p>In the System Browser you can also search for a class by its name. For example, suppose that you are looking for some unknown class that represents dates and times.</p>
+
+<p>In the System Browser, click anywhere in the package pane or the class pane, and launch the Class Search window by typing <code>Cmd-F</code>, or selecting <strong>Find class</strong> from the right-click context menu. Type <code>time</code> in the dialog box. A list of classes is displayed, whose names contain the substring <code>time</code>. Choose one (say, <code>Time</code>), and click <strong>OK</strong> (or press <code>Enter</code>), and the Browser will show it.</p>
+
+<h3 id="finding-methods"><span class="number">4.3</span> Finding methods</h3>
+<p>Sometimes you can guess the name of a method, or at least part of the name of a method, more easily than the name of a class. For example, if you are interested in the current time, you might expect that there would be a method called <code>now</code>, or at least one containing "now" as a substring. But where might it be? <strong>Spotter</strong> and <strong>Finder</strong> can help you!</p>
+
+<h4 id="with-spotter">With Spotter</h4>
+<p>As we've already said, Spotter can also find methods. You can use the <code>#Implementors</code> category to search for methods - just type <code>#Implementors aMethodName</code>. It will display all the methods that are implemented and have a similar or the same name. For instance, you will see all the methods starting with "now" if you type <code>#imp now</code>.</p>
+
+<h4 id="with-finder">With Finder</h4>
+<p>Open the <strong>Finder</strong>, either through the <strong>Browse</strong> menu on the menu bar, or through the World Menu. Type <code>now</code> in the top left search box, click <strong>Search</strong> (or just press the <code>Enter</code> key). You should see a list of results similar to the one in Figure <a href="#fig:finder">4.3</a>.</p>
+
+<p><figure id="fig:finder"><img src="Chapters/PharoTour/figures/finder.png" alt="The Finder tool. " class="fig:finder" style="width: 80%"><figcaption><span class="number">Figure 4.3</span> The Finder tool. </figcaption></img></figure></p>
+
+<p>The Finder will display a list of all the method names that contain the substring "now". To scroll to <code>now</code> itself, move the cursor to the list and type "n"; this type-ahead trick works in all scrolling windows. Expanding the "now" item shows you the classes that implement a method with this name. Selecting any one of them will display the source code for the implementation in the code pane on the bottom. It is also possible to search for the exact match, by typing <code>"now"</code> in the top left search bar; by using quotes you will only get the exact match.</p>
+
+<h3 id="finding-methods-using-examples"><span class="number">4.4</span> Finding Methods using Examples</h3>
+<p>Using the Finder you can look for classes or methods based on their names as mentioned above. You can also look for a string inside the whole method bodies, comments included.</p>
+
+<p>But the Finder also offers a unique and powerful facility. At times you may have an inkling that a method exists, but have no idea what it might be called; you know how it should behave, but you don't know what it's called. But the Finder can still help! Suppose that you want to find a method that up-cases a string (for example, transforming <code>'eureka'</code> into <code>'EUREKA'</code>). We can give Finder the inputs and expected outputs of a method and it will (try to) find it for you.</p>
+
+<p><figure id="fig:finder2"><img src="Chapters/PharoTour/figures/FinderEureka.png" alt="Looking for a method that given the string  'eureka'  returns the string  'EUREKA' . " class="fig:finder2" style="width: 80%"><figcaption><span class="number">Figure 4.4</span> Looking for a method that given the string <code>'eureka'</code> returns the string <code>'EUREKA'</code>. </figcaption></img></figure></p>
+
+<p>In the Finder, select the <strong>Examples</strong> mode using the second drop-down box (the one that shows <strong>Selectors</strong> by default).</p>
+
+<p>Type <code>'eureka' . 'EUREKA'</code> into the search box and press the <code>Enter</code> key or click the <strong>Search</strong> button (don't forget the single quotes!).</p>
+
+<p>The Finder will then suggest a method that does what you were looking for, as well as display a list of classes that implement methods with the same name. In this case, it determined that the <code>asUppercase</code> method is the one that performed the operation that fit your example as shown in Figure <a href="#fig:finder2">4.4</a>.</p>
+
+<p>Click on the <code>'eureka' asUppercase -&gt; 'EUREKA'</code> line, to show the list of classes that implement the method <code>asUppercase</code>.</p>
+
+<p>An asterisk at the beginning of a line in the list of classes indicates that this method is the one that was actually used to obtain the desired result. So the asterisk in front of <code>String</code> lets us know that the method <code>asUppercase</code> defined in the class <code>String</code> was executed and returned the result we wanted. The classes that do not have an asterisk are just the other implementors of <code>asUppercase</code>, which share the method name but did <i>not</i> return the result you wanted. So the method <code>asUppercase</code> defined in <code>Character</code> was not executed in our example, because <code>'eureka'</code> is not a <code>Character</code> instance (it's a <code>String</code>).</p>
+
+<p>You can also use the Finder to search for methods with one or more arguments. For example, if you are looking for a method that will find the greatest common factor of two integers, you might try <code>25 . 35 . 5</code>. You can also give Finder multiple examples to narrow the search space; the help text in the bottom pane explains how.</p>
+
+<h3 id="conclusion"><span class="number">4.5</span> Conclusion</h3>
+<ul>
+<li>The <strong>Spotter</strong> is a powerful tool to navigate the system and find information.</li>
+<li>The <strong>Finder</strong> allows you to look for classes, methods and more. In addition it lets you find methods based on the object receiving the message, the message arguments, and the returned object.</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="a-quick-tour-of-pharo.html">← A quick tour of Pharo</a>
+        <a class="next" rel="next" href="a-first-tutorial-developing.html">A first tutorial: Developing a simple counter →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

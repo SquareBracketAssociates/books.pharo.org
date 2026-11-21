@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Understanding message syntax</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo 9 by Example</a>
+    <p class="site-authors">Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">2</span> Getting Started with  Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-quick-tour-of-pharo.html"><span class="number">3</span> A quick tour of Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="finding-information-in.html"><span class="number">4</span> Finding information in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">5</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="building-a-little-game.html"><span class="number">6</span> Building a little game</a>
+            
+          </li>
+          
+          <li>
+            <a href="publishing-and-packaging.html"><span class="number">7</span> Publishing and packaging your first Pharo project</a>
+            
+          </li>
+          
+          <li>
+            <a href="syntax-in-a-nutshell.html"><span class="number">8</span> Syntax in a nutshell</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="understanding-message.html" aria-current="page"><span class="number">9</span> Understanding message syntax</a>
+            
+            <ol>
+              
+              <li><a href="#identifying-messages"><span class="number">9.1</span> Identifying messages</a></li>
+              
+              <li><a href="#three-kinds-of-messages"><span class="number">9.2</span> Three kinds of messages</a></li>
+              
+              <li><a href="#message-composition"><span class="number">9.3</span> Message composition</a></li>
+              
+              <li><a href="#arithmetic-inconsistencies"><span class="number">9.4</span> Arithmetic inconsistencies</a></li>
+              
+              <li><a href="#hints-for-identifying-keyword-messages"><span class="number">9.5</span> Hints for identifying keyword messages</a></li>
+              
+              <li><a href="#expression-sequences"><span class="number">9.6</span> Expression sequences</a></li>
+              
+              <li><a href="#cascaded-messages"><span class="number">9.7</span> Cascaded messages</a></li>
+              
+              <li><a href="#chapter-summary-5"><span class="number">9.8</span> Chapter summary</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="the-pharo-object-model.html"><span class="number">10</span> The Pharo object model</a>
+            
+          </li>
+          
+          <li>
+            <a href="traits-reusable-class.html"><span class="number">11</span> Traits: reusable class fragments</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-tests-in-pharo.html"><span class="number">12</span> SUnit: Tests in Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="basic-classes.html"><span class="number">13</span> Basic classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="collections.html"><span class="number">14</span> Collections</a>
+            
+          </li>
+          
+          <li>
+            <a href="streams.html"><span class="number">15</span> Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="morphic.html"><span class="number">16</span> Morphic</a>
+            
+          </li>
+          
+          <li>
+            <a href="classes-and-metaclasses.html"><span class="number">17</span> Classes and metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="reflection.html"><span class="number">18</span> Reflection</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">9</span> Understanding message syntax</h2><a id="chapterUnderstandingMessage"></a>
+<p>Although Pharo's message syntax is extremely simple, it is unconventional and can take some time getting used to.
+This chapter offers some guidance to help you get acclimatized to the syntax for sending messages.
+If you already feel comfortable with the syntax, you may choose to skip this chapter, or come back to it later.
+The Pharo's syntax is closed to the one of Smalltalk, so Smalltalk programmers can be familiar with Pharo's syntax.</p>
+
+<h3 id="identifying-messages"><span class="number">9.1</span> Identifying messages</h3>
+<p>In Pharo, except for the syntactic elements listed in Chapter <a href="syntax-in-a-nutshell.html#cha:syntax">8</a> (:= ^ . ; # () {} [ : | ]), everything is a message send.
+You can define operators like <code>+</code> for your own classes, but all operators, existing and defined ones, have the same precedence.
+In fact, in Pharo there is no operators! Just messages of a given kind: <i>unary</i>, <i>binary</i> or <i>keywords</i>.
+Moreover, you cannot change the arity of a message selector. The selector "-" is always the selector of a binary message; there is no way to have a unary <i><code>-</code></i> for unary messages.</p>
+
+<p>In Pharo, the order in which messages are sent is determined by the <i>kind</i> of message.
+There are just three kinds of messages: <i>unary</i>, <i>binary</i>, and <i>keyword messages</i>.
+Unary messages are always sent first, then binary messages and finally keyword ones.
+As in most languages, parentheses are used to change the execution order.
+These rules make Pharo code as easy to read as possible. And most of the time you do not have to think about the rules.</p>
+
+<p>As most computation in Pharo is done by message passing, correctly identifying messages is crucial.
+The following terminology will help us:</p>
+
+<ul>
+<li>A message is composed of a message <i>selector</i> and optional message arguments.</li>
+<li>A message is sent to a <i>receiver</i>.</li>
+<li>The combination of a message and its receiver is called a <i>message send</i> as shown in Figure <a href="#fig:firstScriptMessage">9.1</a>.</li>
+</ul>
+<p><figure id="fig:firstScriptMessage"><img src="Chapters/UnderstandingMessage/figures/message.png" alt="Two message sends composed of a receiver, a method selector, and a set of arguments." class="fig:firstScriptMessage" style="width: 65%"><figcaption><span class="number">Figure 9.1</span> Two message sends composed of a receiver, a method selector, and a set of arguments.</figcaption></img></figure></p>
+
+<p>A message is always sent to a receiver, which can be a single literal, a block or a variable or the result of evaluating another message.
+To help you identify the receiver of a message, we will underline it for you. We will also surround each message send with an ellipse and number message sends starting from the first one that will be sent to help you see the order in which messages are sent.</p>
+
+<p><figure id="fig:ellipse"><img src="Chapters/UnderstandingMessage/figures/uKeyUnOne.png" alt="Two messages:  Color yellow  and  aMorph color: Color yellow ." class="fig:ellipse" style="width: 50%"><figcaption><span class="number">Figure 9.2</span> Two messages: <code>Color yellow</code> and <code>aMorph color: Color yellow</code>.</figcaption></img></figure></p>
+
+<p>Figure <a href="#fig:ellipse">9.2</a> represents two message sends, <code>Color yellow</code> and <code>aMorph color: Color yellow</code>, hence there are two ellipses. The message send <code>Color yellow</code> is executed first so its ellipse is numbered <code>1</code>.  There are two receivers: <code>aMorph</code> which receives the message <code>color: ...</code> and <code>Color</code> which receives the message <code>yellow</code>. Both receivers are underlined.</p>
+
+<p>A receiver can be the first element of a message send, such as <code>100</code> in the message send <code>100 + 200</code> or <code>Color</code> in the message send <code>Color yellow</code>. However, a receiver can also be the result of other messages. For example in the expression <code>Pen new go: 100</code>, the receiver of the message <code>go: 100</code> is the object returned by the message send <code>Pen new</code>. In all the cases, a message is sent to an object called the <i>receiver</i> which may be the result of another message send.</p>
+
+<table>
+<tr><th>Message send</th><th>Message type</th><th>Result</th></tr>
+<tr><td><code>Color yellow</code></td><td>unary</td><td>Creates color yellow</td></tr>
+<tr><td><code>aPen  go: 100</code></td><td>keyword</td><td>The pen moves forward</td></tr>
+<tr><td></td><td>100 pixels</td></tr>
+<tr><td><code>100 + 20</code></td><td>binary</td><td>We get 120</td></tr>
+<tr><td><code>Browser open</code></td><td>unary</td><td>Opens a new browser</td></tr>
+<tr><td><code>Pen new  go: 100</code></td><td>unary and</td><td>Creates and moves a pen</td></tr>
+<tr><td></td><td>keyword</td><td>100 pixels forward</td></tr>
+<tr><td><code>aPen go: 100 + 20</code></td><td>keyword and</td><td>The pen moves forward</td></tr>
+<tr><td></td><td>binary</td><td>120 pixels</td></tr>
+</table>
+<p>The table shows several examples of message sends. You should note that:</p>
+
+<ul>
+<li>Not all message sends have arguments. Unary messages like <code>open</code> do not have arguments.</li>
+<li>Single keyword and binary messages, like <code>go: 100</code> and <code>+ 20</code>, have  one argument.</li>
+<li>There are also simple messages and composed ones. <code>Color yellow</code> and <code>100 + 20</code> are  simple:  a message is sent to an object, while the message send <code>aPen go: 100 + 20</code> is composed of two messages: <code>+ 20</code> is sent to <code>100</code> and <code>go:</code> is sent to <code>aPen</code> with the argument being the result of the first message.</li>
+<li>A receiver can be an expression (such as an assignment, a message send or a literal) which returns an object. In <code>Pen new go: 100</code>, the message <code>go: 100</code> is sent to the object that results from the execution of the message send <code>Pen new</code>.</li>
+</ul>
+<h3 id="three-kinds-of-messages"><span class="number">9.2</span> Three kinds of messages</h3>
+<p>Pharo defines a few simple rules to determine the order in which the messages are sent.
+These rules are based on the distinction between 3 different kinds of messages:</p>
+
+<ul>
+<li><i>Unary messages</i> are messages that are sent to an object without any other information. For example in <code>3 factorial</code>, <code>factorial</code> is a unary message. A sent unary message may execute a basic unary operation or an arbitrary functionality, but it is always sent without arguments.</li>
+<li><i>Binary messages</i> are messages consisting of operators (often arithmetic) and executing basic binary operations. They are binary because they always involve only two objects: the receiver and the argument object. For example in <code>10 + 20</code>, <code>+</code> is a binary message sent to the receiver <code>10</code> with argument <code>20</code>.</li>
+<li><i>Keyword messages</i> are messages consisting of one or more keywords, each ending with a colon (<code>:</code>) and taking an argument.  For example in <code>anArray at: 1 put: 10</code>, the message selector is <code>at:put:</code>. The keyword <code>at:</code> takes the argument <code>1</code> and the keyword <code>put:</code> takes the argument <code>10</code>.</li>
+</ul>
+<p>It is important to note that:</p>
+
+<ul>
+<li>There are no keyword messages that are sent without arguments. All messages that are sent without arguments are unary ones.</li>
+<li>There is a difference between keyword messages that are sent with exactly one argument and binary ones - Basically a keyword message contains a colon to identify each of its arguments.</li>
+</ul>
+<h4 id="unary-messages">Unary messages</h4>
+<p>Unary messages are messages that do not require any argument.
+They follow the syntactic template: <code>receiver messageName</code>.
+The selector is simply made up of a succession of characters not containing a colon (<code>:</code>) <i>e.g.</i>, <code>factorial</code>, <code>open</code>, <code>class</code>.</p>
+
+<pre><code>89 sin
+&gt;&gt;&gt; 0.860069405812453</code></pre>
+
+<pre><code>3 sqrt
+&gt;&gt;&gt; 1.732050807568877</code></pre>
+
+<pre><code>Float pi
+&gt;&gt;&gt; 3.141592653589793</code></pre>
+
+<pre><code>'blop' size
+&gt;&gt;&gt; 4</code></pre>
+
+<pre><code>true not
+&gt;&gt;&gt; false</code></pre>
+
+<pre><code>Object class 
+&gt;&gt;&gt; Object class  "The class of Object is Object class (BANG)"</code></pre>
+
+<q id="important">Unary messages follow the syntactic template: receiver <strong>selector</strong></q>
+<h4 id="binary-messages">Binary messages</h4>
+<p>Binary messages are messages that require exactly one argument <i>and</i> whose selector consists of a sequence of one or more characters from the set: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>&amp;</code>, <code>=</code>, <code>&gt;</code>, <code>|</code>, <code>&lt;</code>, <code>~</code>, and <code>@</code>.
+Note that <code>--</code> is not allowed for parsing reasons.</p>
+
+<pre><code>100@100
+&gt;&gt;&gt; 100@100  "creates a Point object"</code></pre>
+
+<pre><code>3 + 4
+&gt;&gt;&gt; 7</code></pre>
+
+<pre><code>10 - 1
+&gt;&gt;&gt; 9</code></pre>
+
+<pre><code>4 &lt;= 3
+&gt;&gt;&gt; false</code></pre>
+
+<pre><code>(4/3) * 3 == 4  
+&gt;&gt;&gt; true  "equality is just a binary message, and Fractions are exact"</code></pre>
+
+<pre><code>(3/4) == (3/4) 
+&gt;&gt;&gt; false  "two equal Fractions are not the same object"</code></pre>
+
+<q id="important">Binary messages follow the syntactic template: receiver <strong>selector</strong> argument</q>
+<h4 id="keyword-messages">Keyword messages</h4>
+<p>Keyword messages are messages that require one or more arguments and whose selector consists of one or more keywords each ending in a colon (<code>:</code>).</p>
+
+<p>In the following example, message <code>between:and:</code> is composed of two keywords: <code>between:</code> and <code>and:</code>. The full message selector is <code>between:and:</code> and it is sent to numbers.</p>
+
+<pre><code>2 between: 0 and: 10
+&gt;&gt;&gt; true</code></pre>
+
+<p>Each keyword takes an argument. Hence <code>r:g:b:</code> is a message with three arguments, <code>playFileNamed:</code> and <code>at:</code> are messages with one argument, and <code>at:put:</code> is a message with two arguments. To create an instance of the class <code>Color</code> one can use the message <code>r:g:b:</code> as in <code>Color r: 1 g: 0 b: 0</code>, which creates the color red. Note that the colons are part of the selector.</p>
+
+<pre><code>Color r: 1 g: 0 b: 0
+&gt;&gt;&gt; Color red  "creates a new color"</code></pre>
+
+<p>In a Java like syntax, the Pharo message send <code>Color r: 1 g: 0 b: 0</code> would correspond to a method invocation written as <code>Color.rgb(1,0,0)</code>.</p>
+
+<pre><code>1 to: 10
+&gt;&gt;&gt; (1 to: 10)  "creates an interval"</code></pre>
+
+<pre><code>| nums |
+nums := Array newFrom: (1 to: 5).
+nums at: 1 put: 6.
+nums
+&gt;&gt;&gt; #(6 2 3 4 5)</code></pre>
+
+<q id="important">Keyword messages follow the syntactic template: receiver <strong>selectorWordOne:</strong> argumentOne <strong>wordTwo:</strong> argumentTwo ... <strong>wordN:</strong> argumentN</q>
+<h3 id="message-composition"><span class="number">9.3</span> Message composition</h3>
+<p>The three kinds of messages each have different precedence, which allows them to be composed in an elegant way.</p>
+
+<ul>
+<li>Unary messages are always sent first, then binary messages and finally keyword messages.</li>
+<li>Messages in parentheses are sent prior to any kind of messages.</li>
+<li>Messages of the same kind are evaluated from left to right.</li>
+</ul>
+<p>These rules lead to a very natural reading order.
+Now if you want to be sure that your messages are sent in the order that you want you can always put more parentheses as shown in Figure <a href="#fig:uKeyUn">9.3</a>.
+In this  figure, the message <code>yellow</code> is an unary message and the message <code>color:</code> a keyword message, therefore the message send <code>Color yellow</code> is sent first.
+However as message sends in parentheses are sent first, putting (unnecessary) parentheses around <code>Color yellow</code> just emphasizes that it will be sent first.
+The rest of the section illustrates each of these points.</p>
+
+<p><figure id="fig:uKeyUn"><img src="Chapters/UnderstandingMessage/figures/uKeyUn.png" alt="Unary messages are sent first so Color yellow is sent. This returns a color object which is passed as argument of the message aPen color:." class="fig:uKeyUn"><figcaption><span class="number">Figure 9.3</span> Unary messages are sent first so Color yellow is sent. This returns a color object which is passed as argument of the message aPen color:.</figcaption></img></figure></p>
+
+<h4 id="unary-binary-keywords">Unary > Binary > Keywords</h4>
+<p>Unary messages are sent first, then binary messages, and finally keyword messages.
+We also say that unary messages have a higher  priority over the other kinds of messages.</p>
+
+<q id="important"><code>Unary &gt; Binary &gt; Keyword</code></q>
+<p>As these examples show, Pharo's syntax rules generally ensure that message sends can be read in a natural way:</p>
+
+<pre><code>1000 factorial / 999 factorial 
+&gt;&gt;&gt; 1000</code></pre>
+
+<pre><code>2 raisedTo: 1 + 3 factorial
+&gt;&gt;&gt; 128</code></pre>
+
+<p>Unfortunately the rules are a bit too simplistic for arithmetic message sends, so you need to introduce parentheses whenever you want to impose a priority over binary operators:</p>
+
+<pre><code>1 + 2 * 3
+&gt;&gt;&gt; 9</code></pre>
+
+<pre><code>1 + (2 * 3)
+&gt;&gt;&gt; 7</code></pre>
+
+<p>We will dedicate a section to arithmetic inconsistencies.</p>
+
+<h4 id="example">Example</h4>
+<p>The following example, which is a bit more complex (!), offers a nice illustration that even complicated expressions can be read in a natural way:</p>
+
+<pre><code>Boolean methodDict keys 
+	select: [:aMethod | (aClass&gt;&gt;aMethod) isAbstract ]
+
+&gt;&gt;&gt; #(#or: #| #and: #&amp; #ifTrue: #ifTrue:ifFalse: #ifFalse: #not #ifFalse:ifTrue:)</code></pre>
+
+<p>Here we want to know which methods of the <code>Boolean</code> class are abstract.
+We ask the class <code>Boolean</code> for the keys of its method dictionary and select those methods of that class that are abstract.
+We need parentheses only to send the binary message <code>&gt;&gt;</code>, which selects a method from a class, before sending the unary message <code>isAbstract</code> to that method.
+The message <code>&gt;&gt;</code> sent to a class gives access to the corresponding method in the class.
+The result shows us which methods must be implemented by <code>Boolean</code>'s concrete subclasses <code>True</code> and <code>False</code>.</p>
+
+<p>In fact, we could also have written the equivalent but simpler expression: <code>Boolean methodDict select: [:each | each isAbstract] thenCollect: [:each | each selector]</code>.</p>
+
+<h6 class="paragraph" id="example-2">Example.</h6>
+<p>In the message <code>aPen color: Color yellow</code>, there is one <i>unary</i> message <code>yellow</code> sent to the class <code>Color</code> and a <i>keyword</i> message <code>color:</code> sent to <code>aPen</code>.
+Unary messages are sent first so the message send <code>Color yellow</code> is sent (1).
+This returns a color object which is passed as argument of the message <code>aPen color: aColor</code> (2).
+Figure <a href="#fig:uKeyUn">9.3</a> shows graphically how messages are sent.</p>
+
+<pre><code>"Decomposing the execution of aPen color: Color yellow"
+         aPen color: Color yellow
+(1)         Color yellow         "unary message is sent first"
+               &gt;&gt;&gt; aColor
+(2)         aPen color: aColor   "keyword message is sent next"</code></pre>
+
+<h6 class="paragraph" id="example-3">Example.</h6>
+<p>In the message <code>aPen go: 100 + 20</code>, there is a <i>binary</i> message <code>+ 20</code> and a <i>keyword</i> message <code>go:</code> (See Figure <a href="#fig:uKeyBin">9.4</a>). Binary messages are sent prior to keyword messages so <code>100 + 20</code> is sent first (1): the message <code>+ 20</code> is sent to the object <code>100</code> and returns the number <code>120</code>. Then the message <code>aPen go: 120</code> is sent with <code>120</code> as argument (2). The following example shows how the message send is executed.</p>
+
+<pre><code>"Decomposing aPen go: 100 + 20"
+         aPen go: 100 + 20
+(1)         100 + 20         "binary message first"
+               &gt;&gt;&gt;   120
+(2)         aPen go: 120     "then keyword message"</code></pre>
+
+<p><figure id="fig:uKeyBin"><img src="Chapters/UnderstandingMessage/figures/uKeyBin.png" alt="Binary messages are sent before keyword messages." class="fig:uKeyBin" style="width: 35%"><figcaption><span class="number">Figure 9.4</span> Binary messages are sent before keyword messages.</figcaption></img></figure></p>
+
+<p><figure id="fig:uunKeyBin"><img src="Chapters/UnderstandingMessage/figures/uunKeyBin.png" alt="Decomposing Pen new go: 100 + 20." class="fig:uunKeyBin" style="width: 40%"><figcaption><span class="number">Figure 9.5</span> Decomposing Pen new go: 100 + 20.</figcaption></img></figure></p>
+
+<h6 class="paragraph" id="example-4">Example.</h6>
+<p>As an exercise we let you decompose the execution of the message send <code>Pen new go: 100 + 20</code> which is composed of one unary, one keyword and one binary message (see Figure <a href="#fig:uunKeyBin">9.5</a>).</p>
+
+<h4 id="parentheses-first">Parentheses first</h4>
+<p>Messages within parentheses are sent prior to other messages.</p>
+
+<q id="important">(Msg) > Unary > Binary > Keyword</q>
+<p>Here are some examples.</p>
+
+<p>The first example shows that parentheses are not needed when the order is the one we want, <i>i.e.</i> that result is the same if we write this with or without parentheses.
+Here we compute tangent of 1.5, then we round it and convert it as a string.</p>
+
+<pre><code>1.5 tan rounded asString = (((1.5 tan) rounded) asString) 
+&gt;&gt;&gt; true</code></pre>
+
+<p>The second example shows that <code>factorial</code> is executed prior to the sum and if we want to first perform the sum of 3 and 4 we should use parentheses as shown below.</p>
+
+<pre><code>3 + 4 factorial
+&gt;&gt;&gt; 27    "(not 5040)"</code></pre>
+
+<pre><code>(3 + 4) factorial
+&gt;&gt;&gt; 5040</code></pre>
+
+<p>Similarly in the following example, we need the parentheses to force sending <code>lowMajorScaleOn:</code> before <code>play</code>.</p>
+
+<pre><code>(FMSound lowMajorScaleOn: FMSound clarinet) play
+"(1) send the message clarinet to the FMSound class to create a clarinet sound.
+ (2) send this sound to FMSound as argument to the lowMajorScaleOn: keyword message.
+ (3) play the resulting sound."</code></pre>
+
+<h6 class="paragraph" id="example-5">Example.</h6>
+<p>The message send <code>(65@325 extent: 134@100) center</code> returns the center of a rectangle whose top left point is (65, 325) and whose size is <code>134*100</code>.
+The following example shows how the message is decomposed and sent.
+First the message between parentheses is sent: it contains two binary messages <code>65@325</code> and <code>134@100</code> that are sent first and return points, and a keyword message <code>extent:</code> which is then sent and returns a rectangle.
+Finally the unary message <code>center</code> is sent to the rectangle and a point is returned. Evaluating the message without parentheses would lead to an error because the object <code>100</code> does not understand the message <code>center</code>.</p>
+
+<pre><code>Example of Parentheses.
+      (65@325 extent: 134@100) center
+(1)   65@325                                                    "binary"
+    &gt;&gt;&gt; aPoint
+(2)                                134@100                     "binary"
+                                 &gt;&gt;&gt; anotherPoint
+(3)   aPoint extent: anotherPoint                       "keyword"
+      &gt;&gt;&gt; aRectangle
+(4)   aRectangle center                                     "unary"
+      &gt;&gt;&gt; 132@375</code></pre>
+
+<h4 id="from-left-to-right">From left to right</h4>
+<p>Now we know how messages of different kinds or priorities are handled.
+The final question to be addressed is how messages with the same priority are sent.
+They are sent from the left to the right.
+Note that you already saw this behaviour in the example <code> 1.5 tan rounded asString </code> where all unary messages are sent from left to right which is equivalent to <code>(((1.5 tan) rounded) asString)</code>.</p>
+
+<q id="important">When the messages are of the same kind, the order of execution is from left to right.</q>
+<h6 class="paragraph" id="example-6">Example.</h6>
+<p>In the message sends <code>Pen new down</code> all messages are unary messages, so the leftmost one, <code>Pen new</code>, is sent first.
+This returns a newly created pen to which the second message <code>down</code> is sent, as shown in Figure <a href="#fig:unaryMessages">9.6</a>.</p>
+
+<p><figure id="fig:unaryMessages"><img src="Chapters/UnderstandingMessage/figures/ucompoUn.png" alt="Decomposing  Pen new down ." class="fig:unaryMessages" style="width: 60%"><figcaption><span class="number">Figure 9.6</span> Decomposing <code>Pen new down</code>.</figcaption></img></figure></p>
+
+<h3 id="arithmetic-inconsistencies"><span class="number">9.4</span> Arithmetic inconsistencies</h3>
+<p>The message composition rules are simple.
+There is no notion of mathematical precedence because arithmetic messages are just messages as any other ones.
+So their result may look in inconsistent when executed them.
+Here we see the common situations where extra parentheses are needed.</p>
+
+<pre><code>3 + 4 * 5
+&gt;&gt;&gt; 35    "(not 23)  Binary messages sent from left to right"</code></pre>
+
+<pre><code>3 + (4 * 5)
+&gt;&gt;&gt; 23</code></pre>
+
+<pre><code>1 + 1/3
+&gt;&gt;&gt; (2/3)    "and not 4/3"</code></pre>
+
+<pre><code>1 + (1/3)
+&gt;&gt;&gt; (4/3)</code></pre>
+
+<pre><code>1/3 + 2/3       
+&gt;&gt;&gt; (7/9)    "and not 1"</code></pre>
+
+<pre><code>(1/3) + (2/3)
+&gt;&gt;&gt; 1</code></pre>
+
+<h6 class="paragraph" id="example-7">Example.</h6>
+<p>In the message sends <code>20 + 2 * 5</code>, there are only binary messages <code>+</code> and <code>*</code> (see Figure <a href="#fig:ucompoNoBracketPar">9.7</a>).
+However in Pharo there is no specific priority for the operations <code>+</code> and <code>*</code>.
+They are just binary messages, hence <code>*</code> does not have priority over <code>+</code>. Here the leftmost message <code>+</code> is sent first (1) and then the <code>*</code> is sent to the result as shown in below.</p>
+
+<pre><code>"As there is no priority among binary messages, the leftmost message + is evaluated first even if by the rules of arithmetic the * should be sent first."
+
+     20 + 2 * 5
+(1)  20 + 2 &gt;&gt;&gt; 22
+(2)  22     * 5 &gt;&gt;&gt; 110</code></pre>
+
+<p><figure id="fig:ucompoNoBracketPar"><img src="Chapters/UnderstandingMessage/figures/ucompoNoBracketPar.pdf" alt="Default execution order." class="fig:ucompoNoBracketPar" style="width: 55%"><figcaption><span class="number">Figure 9.7</span> Default execution order.</figcaption></img></figure></p>
+
+<p>As shown in the previous example the result of this message send is not <code>30</code> but <code>110</code>.
+This result is perhaps unexpected but follows directly from the rules used to send messages.
+This is the price to pay for the simplicity of the model.
+To get the correct result, we should use parentheses.
+When messages are enclosed in parentheses, they are evaluated first (see Figure <a href="#ucompoNumberBracket">9.8</a>).
+Hence the message send <code>20 + (2 * 5)</code> returns the result as shown.</p>
+
+<pre><code>Decomposing 20 + (2 * 5)
+"The messages surrounded by parentheses are evaluated first therefore * is sent prior 
+to + which produces the correct behaviour."
+
+    20 + (2 * 5)
+(1)      (2 * 5) &gt;&gt;&gt; 10
+(2) 20 + 10      &gt;&gt;&gt; 30</code></pre>
+
+<p><figure id="ucompoNumberBracket"><img src="Chapters/UnderstandingMessage/figures/ucompoNumberBracket.png" alt="Changing default execution order using parentheses." class="ucompoNumberBracket" style="width: 55%"><figcaption><span class="number">Figure 9.8</span> Changing default execution order using parentheses.</figcaption></img></figure></p>
+
+<q id="important">In Pharo, arithmetic operators such as <code>+</code> and <code>*</code> do not have different priority. <code>+</code> and <code>*</code> are just binary messages, therefore <code>*</code> does not have priority over <code>+</code>. Use parentheses to obtain the desired result.</q>
+<table>
+<tr><th>Implicit precedence</th><th>Explicitly parenthesized equivalent</th></tr>
+<tr><td><code>aPen color: Color yellow</code></td><td><code>aPen color: (Color yellow)</code></td></tr>
+<tr><td><code>aPen go: 100 + 20</code></td><td><code>Pen go: (100 + 20)</code></td></tr>
+<tr><td><code>aPen penSize: aPen penSize + 2</code></td><td><code>aPen penSize: ((aPen penSize) + 2)</code></td></tr>
+<tr><td><code>2 factorial + 4</code></td><td><code>(2 factorial) + 4</code></td></tr>
+</table>
+<p>Note that the first rule stating that unary messages are sent prior to binary and keyword messages avoid the need to put explicit parentheses around them. Table above shows message sends written following the rules and equivalent message sends if the rules would not exist. Both message sends result in the same effect or return the same value.</p>
+
+<h3 id="hints-for-identifying-keyword-messages"><span class="number">9.5</span> Hints for identifying keyword messages</h3>
+<p>Often beginners have problems understanding when they need to add parentheses.
+Let's see how keywords messages are recognized by the compiler.</p>
+
+<h4 id="parentheses-or-not">Parentheses or not?</h4>
+<p>The characters [, ], ( and ) delimit distinct areas. Within such an area, a keyword message is the longest sequence of words terminated  by <code>:</code> that is not cut by the characters <code>.</code>,  or <code>;</code>. When the characters <code>[</code> and  <code>]</code>, <code>(</code> and <code>)</code> surround some words with colons, these words participate in the keyword message <i>local</i> to the area defined.</p>
+
+<p>Figures <a href="#fig:uKeyUnBinPar">9.9</a> and <a href="#fig:uunKeyBinPar">9.10</a> show some equivalent expressions.</p>
+
+<p><figure id="fig:uKeyUnBinPar"><img src="Chapters/UnderstandingMessage/figures/uKeyUnBinPar.png" alt="Equivalent messages using parentheses." class="fig:uKeyUnBinPar" style="width: 80%"><figcaption><span class="number">Figure 9.9</span> Equivalent messages using parentheses.</figcaption></img></figure></p>
+
+<p><figure id="fig:uunKeyBinPar"><img src="Chapters/UnderstandingMessage/figures/uunKeyBinPar.png" alt="Equivalent messages using parentheses." class="fig:uunKeyBinPar" style="width: 80%"><figcaption><span class="number">Figure 9.10</span> Equivalent messages using parentheses.</figcaption></img></figure></p>
+
+<p>In this example, there are two distinct keyword messages:  <code>rotatedBy:magnify:smoothing:</code> and <code>at:put:</code>.</p>
+
+<pre><code>aDict
+   at: (rotatingForm
+          rotateBy: angle
+          magnify: 2
+          smoothing: 1)
+   put: 3</code></pre>
+
+<h6 class="paragraph" id="hints">Hints.</h6>
+<p>If you have problems with these precedence rules, you may start simply by putting parentheses whenever you want to distinguish two messages having the same precedence.</p>
+
+<p>The following piece of code does not require parentheses because the message  <code>isNil</code> is unary hence it is sent prior to the keyword message <code>ifTrue:</code>.</p>
+
+<pre><code>(x isNil)
+   ifTrue:[...]</code></pre>
+
+<p>The following piece of code requires parentheses because the messages <code>includes:</code> and <code>ifTrue:</code> are both keyword messages.</p>
+
+<pre><code>ord := OrderedCollection new.
+(ord includes: $a)
+   ifTrue:[...]</code></pre>
+
+<p>Without parentheses the unknown message <code>includes:ifTrue:</code> would be sent to the collection <code>ord</code>!</p>
+
+<h4 id="when-to-use-or">When to use [ ] or ( )</h4>
+<p>You may also have problems understanding when to use square brackets rather than parentheses.
+The basic principle is that you should use <code>[]</code> when you do not know how many times, potentially zero, an expression should be evaluated.
+<code>[expression]</code> will create block closure (<i>i.e.</i>, an object) from <code>expression</code>, which may be evaluated any number of times (possibly zero), depending on the context.
+Note that an expression can either be a message send, a variable, a literal, an assignment or a block.</p>
+
+<p>Hence the conditional branches of <code>ifTrue:</code> or <code>ifTrue:ifFalse:</code> require blocks.
+Following the same principle both the receiver and the argument of a <code>whileTrue:</code> message require the use of square brackets since we do not know how many times either the receiver or the argument should be evaluated.</p>
+
+<p>Parentheses, on the other hand, only affect the order of sending messages.
+So in <code>(expression)</code>, the <code>expression</code> will <i>always</i> be evaluated exactly once.</p>
+
+<pre><code>"Both the receiver and the argument must be blocks"
+
+[ x isReady ] whileTrue: [ y doSomething ]</code></pre>
+
+<pre><code>"The argument is evaluated more than once, so must be a block"
+
+4 timesRepeat: [ Beeper beep ]</code></pre>
+
+<pre><code>"The receiver is evaluated once, so is not a block argument does not have to be 
+evaluated not even once, so it is a block"
+
+x isReady ifTrue: [ y doSomething ]</code></pre>
+
+<h3 id="expression-sequences"><span class="number">9.6</span> Expression sequences</h3>
+<p>Expressions (<i>i.e.</i>, message sends, assignments, ...) separated by periods are evaluated in sequence. Note that there is no period between a variable declaration and the following expression.
+The value of a sequence is the value gained by the evaluation of the last expression in the sequence.
+The values returned by all the expressions except the last one are ignored at the end.
+Note that the period is a separator and not a terminator. Therefore, a final period is optional.</p>
+
+<pre><code>| box |
+box := 20@30 corner: 60@90.
+box containsPoint: 40@50 
+&gt;&gt;&gt; true</code></pre>
+
+<h3 id="cascaded-messages"><span class="number">9.7</span> Cascaded messages</h3>
+<p>Pharo offers a way to send multiple messages to the same receiver, without stating it multiple times, by  using a semicolon separator (<code>;</code>). There is no need to have a space before the semicolon.
+This is called the cascade in Pharo jargon.</p>
+
+<p>Syntactically a cascade is represented as follows:</p>
+
+<pre><code>aReceiverExpression msg1 ; msg2 ; msg3</code></pre>
+
+<h6 class="paragraph" id="examples">Examples.</h6>
+<p>You can program in Pharo without using cascades. It just forces you to repeat the receiver of the message.
+The following code snippets are equivalent:</p>
+
+<pre><code>Transcript show: 'Pharo is '.
+Transcript show: 'fun '.
+Transcript cr.</code></pre>
+
+<pre><code>Transcript
+   show: 'Pharo is';
+   show: 'fun ';
+   cr</code></pre>
+
+<p>In fact the receiver of all the cascaded messages is the receiver of the first message involved in a cascade.
+Note that the object receiving the cascaded messages can itself be the result of a message send.
+In the following example, the first cascaded message is <code>setX:setY</code> since it is followed by a semicolon (cascade).
+The receiver of the cascaded message <code>setX:setY:</code> is the newly created point resulting from the execution of <code>Point new</code>, and <i>not</i> <code>Point</code>.
+The subsequent message <code>isZero</code> is sent to that same receiver.</p>
+
+<pre><code>Point new setX: 25 setY: 35; isZero
+&gt;&gt;&gt; false</code></pre>
+
+<h3 id="chapter-summary-5"><span class="number">9.8</span> Chapter summary</h3>
+<ul>
+<li>A message is always sent to an object named the <i>receiver</i> which may be the result of other message sends.</li>
+<li>Unary messages are messages that do not require any argument. They are of the form: selector.</li>
+<li>Binary messages are messages that involve two objects, the receiver and another object, <i>and</i> whose selector is composed of one or more characters from the following list: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>|</code>, <code>&amp;</code>, <code>=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>~</code>, and <code>@</code>. They are of the form: receiver <strong>selector</strong> argument</li>
+<li>Keyword messages are messages that involve more than one object and that contain at least one colon character (<code>:</code>). They are of the form: receiver <strong>selectorKeywordOne:</strong> argumentOne <strong>KeywordTwo:</strong> argumentTwo ... <strong>KeywordN:</strong> argumentN</li>
+<li><strong>Rule One.</strong> Unary messages are sent first, then binary messages, and finally keyword messages.</li>
+<li><strong>Rule Two.</strong> Messages in parentheses are sent before any others.</li>
+<li><strong>Rule Three.</strong> When the messages are of the same kind, the order of execution is from left to right.</li>
+<li>In Pharo, traditional arithmetic operators such as + and * have the same priority. <code>+</code> and <code>*</code> are just binary messages, therefore <code>*</code> does not have priority over <code>+</code>. You must use parentheses to obtain a correct result.</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="syntax-in-a-nutshell.html">← Syntax in a nutshell</a>
+        <a class="next" rel="next" href="the-pharo-object-model.html">The Pharo object model →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo 9 by Example · Stéphane Ducasse and Gordana Rakic with Sebastijan Kaplar and Quentin Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>
