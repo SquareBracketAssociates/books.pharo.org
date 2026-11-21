@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selected definitions</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Building a minimal reflective kernel</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="a-minimal-reflective.html"><span class="number">1</span> A minimal reflective class-based kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="diving-into-the-kernel.html"><span class="number">2</span> Diving into the kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="first-metaclasses.html"><span class="number">3</span> First metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">4</span> Getting started with the implementation</a>
+            
+          </li>
+          
+          <li>
+            <a href="primitives-for-a-reflective.html"><span class="number">5</span> Primitives for a reflective class-based kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="defining-the-language.html"><span class="number">6</span> Defining  the language kernel</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="selected-definitions.html" aria-current="page"><span class="number">7</span> Selected definitions</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="selected-definitions"><span class="number">7</span> Selected definitions</h2>
+<p>Smith was the first to introduce reflection in a programming language with 3Lisp. He defines reflection as:</p>
+
+<ul>
+<li>An entity's integral ability to represent, operate on, and otherwise deal with itself in the same way that it represents, operates on, and deals with its primary subject matter.</li>
+</ul>
+<p>In the context of meta-object protocols, Bobrow refines the definition as follows:</p>
+
+<ul>
+<li>Reflection is the ability of a program to manipulate as data, something representing the state of the program during its own execution. There are two aspects of such manipulation: <i>introspection</i> and <i>intercession</i> (...) Both aspects require a mechanism for encoding the execution state as data; providing such an encoding is called <i>reification</i>.</li>
+</ul>
+<p>Maes proposed some definitions for reflexive programming:</p>
+
+<ul>
+<li>A <i>computational system</i> is something that <i>reasons</i> about and <i>acts</i> upon some part of the world, called the <i>domain</i> of the system.</li>
+<li>A computational system may also be <i>causally connected</i> to its domain. This means that the system and its domain are linked in such a way that if one of the two changes, this leads to an effect upon the other.</li>
+<li>A <i>meta-system</i> is a computational system that has as its domain another computational system, called its <i>object-system</i>. (...) A meta-system has a representation of its object-system in its data. Its program specifies <i>meta-computation</i> about the object-system and is therefore called a <i>meta-program</i>.</li>
+<li><i>Reflection</i> is the process of reasoning about and/or acting upon oneself.</li>
+<li>A <i>reflective system</i> is a causally connected meta-system that has as object-system itself. The data of a reflective system contain, besides the representation of some part of the external world, also a causally connected representation of itself, called <i>self-representation</i> of the system. [...] When a system is reasoning or acting upon itself, we speak of <i>reflective computation</i>.</li>
+<li>A language with a <i>reflective architecture</i> is a language in which all systems have access to a causally connected representation of themselves.</li>
+<li>A programming environment has a <i>meta-level architecture</i> if it has an architecture that supports meta-computation, without supporting reflective computation.</li>
+<li>The <i>meta-object</i> of an object X represents the explicit information about X (e.g. about its behavior and its implementation). The object X itself groups the information about the entity of the domain it represents.</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="defining-the-language.html">← Defining  the language kernel</a>
+        
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Building a minimal reflective kernel · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

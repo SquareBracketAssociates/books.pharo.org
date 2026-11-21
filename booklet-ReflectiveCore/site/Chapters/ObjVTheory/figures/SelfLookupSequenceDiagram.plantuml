@@ -1,0 +1,49 @@
+@startuml
+skinparam style strictuml
+skinparam defaultFontName Helvetica
+title Self lookup - Sequence Diagram
+participant "Playground" as P
+participant ":A" as A
+participant ":B" as B
+participant ":A" as AA
+participant ":B" as BB
+
+create A
+P --> A : A new
+P -> A : ... foo
+activate A
+P <-- A : 10
+deactivate A
+
+create B
+P --> B : B new
+P -> B : ... foo
+activate B
+P <-- B : 50
+deactivate B
+
+create AA
+P --> AA : A new
+P -> AA : ... bar
+activate AA
+AA -> AA : foo
+note right: //self//
+activate AA
+deactivate AA
+P <-- AA : 10
+deactivate AA
+
+create BB
+P --> BB : B new
+P -> BB : ... bar
+note right: //A's bar//
+activate BB
+BB -> BB : foo
+note right: //self//
+activate BB
+deactivate BB
+P <-- BB : 50
+deactivate BB
+
+
+@enduml

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diving into the kernel</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Building a minimal reflective kernel</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="a-minimal-reflective.html"><span class="number">1</span> A minimal reflective class-based kernel</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="diving-into-the-kernel.html" aria-current="page"><span class="number">2</span> Diving into the kernel</a>
+            
+            <ol>
+              
+              <li><a href="#instances"><span class="number">2.1</span> Instances</a></li>
+              
+              <li><a href="#understanding-metaclasses"><span class="number">2.2</span> Understanding metaclasses</a></li>
+              
+              <li><a href="#instance-structure"><span class="number">2.3</span> Instance structure</a></li>
+              
+              <li><a href="#about-behavior"><span class="number">2.4</span> About behavior</a></li>
+              
+              <li><a href="#class-as-an-object"><span class="number">2.5</span> Class as an object</a></li>
+              
+              <li><a href="#sec_message"><span class="number">2.6</span> Sending a message</a></li>
+              
+              <li><a href="#handling-unknown-messages"><span class="number">2.7</span> Handling unknown messages</a></li>
+              
+              <li><a href="#inheritance"><span class="number">2.8</span> Inheritance</a></li>
+              
+              <li><a href="#object-defining-the-minimal-behavior-of-any-object"><span class="number">2.9</span> Object: defining the minimal behavior of any object</a></li>
+              
+              <li><a href="#inheritance-and-instantiation-together"><span class="number">2.10</span> Inheritance and instantiation together</a></li>
+              
+              <li><a href="#review-of-self-and-super-semantics"><span class="number">2.11</span> Review of self and super semantics</a></li>
+              
+              <li><a href="#object-creation"><span class="number">2.12</span> Object creation</a></li>
+              
+              <li><a href="#creation-of-instances-of-the-class-point"><span class="number">2.13</span> Creation of instances of the class Point</a></li>
+              
+              <li><a href="#creation-of-the-class-point-instance-of-class"><span class="number">2.14</span> Creation of the class Point instance of Class</a></li>
+              
+              <li><a href="#the-class-class"><span class="number">2.15</span> The Class class</a></li>
+              
+              <li><a href="#conclusion-2"><span class="number">2.16</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="first-metaclasses.html"><span class="number">3</span> First metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">4</span> Getting started with the implementation</a>
+            
+          </li>
+          
+          <li>
+            <a href="primitives-for-a-reflective.html"><span class="number">5</span> Primitives for a reflective class-based kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="defining-the-language.html"><span class="number">6</span> Defining  the language kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="selected-definitions.html"><span class="number">7</span> Selected definitions</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="diving-into-the-kernel"><span class="number">2</span> Diving into the kernel</h2>
+<p>In this chapter, we will describe one by one all the aspects of the kernel.
+We will cover instance shapes, methods,  instance and inheritance relationship interplay, object allocation, object and class initialization...</p>
+
+<h3 id="instances"><span class="number">2.1</span> Instances</h3>
+<p>In this kernel, there is only one instantiation link; it is applied at all levels as shown by Figure  <a href="#fig:Instantiation">2.1</a>:</p>
+
+<ul>
+<li>Terminal instances are objects: a workstation named <code>mac1</code> is an instance of the class <code>Workstation</code>, a point <code>10@20</code> is an instance of the class <code>Point</code>.</li>
+<li>Classes are also objects (instances) of other classes: the class <code>Workstation</code> is an instance of the class <code>Class</code>, and the class <code>Point</code> is an instance of the class <code>Class</code>.</li>
+</ul>
+<p><figure id="fig:Instantiation"><img src="Chapters/ObjVTheory/figures/Ref-InstantiationLink.pdf" alt="Chain of instantiation: classes are objects, too. " class="fig:Instantiation" style="width: 80%"><figcaption><span class="number">Figure 2.1</span> Chain of instantiation: classes are objects, too. </figcaption></img></figure></p>
+
+<p>In our diagrams, we represent objects (mainly terminal instances) as rounded rectangles with a list of instance variable values.
+Since classes are objects, <i>when we want to stress that classes are objects</i> we use the same graphical convention as shown in Figure <a href="#fig:PointClassAsObject">2.4</a>.</p>
+
+<h4 id="handling-infinite-recursion">Handling infinite recursion</h4>
+<p>A class is an object. Thus it is an instance of another class, its metaclass. This metaclass is an object, too, an instance of a metametaclass that is an object, too, an instance of another metametametaclass, etc. To stop this potential infinite recursion, ObjVlisp is similar to solutions proposed in many meta-circular systems: one instance (e.g., <code>Class</code>) is an instance of itself.</p>
+
+<p>In ObjVLisp:</p>
+
+<ul>
+<li><code>Class</code> is the initial class and metaclass,</li>
+<li><code>Class</code> is an instance of itself, and, directly or indirectly, all other metaclasses are instances of <code>Class</code>.</li>
+</ul>
+<p>We will see later the implication of this self-instantiation at the level of the class structure itself.</p>
+
+<h3 id="understanding-metaclasses"><span class="number">2.2</span> Understanding metaclasses</h3>
+<p>The model unifies classes and instances. It follows from the instance-related postulates of the kernel that:</p>
+
+<ul>
+<li>Every object is an instance of a class,</li>
+<li>A class is an object instance of a metaclass, and</li>
+<li>A metaclass is only a class that generates classes.</li>
+</ul>
+<p>At the implementation level, there is only one kind of entity: objects. There is no special treatment for classes. Classes are instantiated following the same process as terminal instances. They are sent messages in the same way that other objects are sent messages.</p>
+
+<p>This unification between instances and classes does not mean that objects and classes have the same distinction.
+Indeed not all the objects are classes. In particular, the sole difference between a class and an instance is the ability to respond to the creation message: <code>new</code>. Only a class knows how to respond to it. Then, metaclasses are just classes whose instances are classes as shown in Figure <a href="#fig:InstantiationPap">2.2</a>.</p>
+
+<p><figure id="fig:InstantiationPap"><img src="Chapters/ObjVTheory/figures/instancePatatoid.pdf" alt="Everything is an object. Classes are just objects that can create other objects, and metaclasses are just classes whose instances are classes. " class="fig:InstantiationPap" style="width: 45%"><figcaption><span class="number">Figure 2.2</span> Everything is an object. Classes are just objects that can create other objects, and metaclasses are just classes whose instances are classes. </figcaption></img></figure></p>
+
+<h3 id="instance-structure"><span class="number">2.3</span> Instance structure</h3>
+<p>The model does not really bring anything new about instance structure when compared with languages such as Pharo or Java.</p>
+
+<p>Instance variables are represented as a list of instance variable defined by a class. Such
+instance variables are shared by all instances.
+The <i>values</i> of such instance variables are specific to each instance.
+Figure <a href="#fig:Ref-Instances">2.3</a> shows that instances of <code>Workstation</code> have two values: a name and a next node.</p>
+
+<p><figure id="fig:Ref-Instances"><img src="Chapters/ObjVTheory/figures/Ref-Instances.pdf" alt="Instances of  Workstation  have two values: their names and their next node." class="fig:Ref-Instances" style="width: 60%"><figcaption><span class="number">Figure 2.3</span> Instances of <code>Workstation</code> have two values: their names and their next node.</figcaption></img></figure></p>
+
+<p>In addition, we note that an object has a pointer to its class. As we will see when we discuss inheritance later on, every object possesses an instance variable class (inherited from <code>Object</code>) that points to its class.</p>
+
+<p>Note that this management of a class instance variable defined in <code>Object</code> is specific to the model.
+In Pharo for example, the class identification is not managed as a declared instance variable, but as an element part of any object. It is an index in a class table.</p>
+
+<h3 id="about-behavior"><span class="number">2.4</span> About behavior</h3>
+<p>Let us continue with basic instance behavior. As in modern class-based languages, this kernel has to represent how methods are stored and looked up.</p>
+
+<p>Methods belong to a class. They define the behavior of all the instances of the class.
+They are stored in a method dictionary that associates a key (the method selector) and the method body.</p>
+
+<p>Since methods are stored in a class, the method dictionary should be described in the metaclass. Therefore, the method dictionary of a class is the <i>value</i> of the instance variable <code>methodDict</code> defined on the metaclass <code>Class</code>. Each class will have its own method dictionary.</p>
+
+<h3 id="class-as-an-object"><span class="number">2.5</span> Class as an object</h3>
+<p>Here is the minimal information that a class should have:</p>
+
+<ul>
+<li>A list of instance variables to describe the values that the instances will hold,</li>
+<li>A method dictionary to hold methods,</li>
+<li>A superclass to look up inherited methods.</li>
+</ul>
+<p>This minimal state is similar to that of Pharo: the Pharo <code>Behavior</code> class has a format (compact description of instance variables), a method dictionary, and a superclass link.</p>
+
+<p>In ObjVLisp,  we have a name to identify the class. As an instance factory, the metaclass <code>Class</code> possesses four instance variables that describe a class:</p>
+
+<ul>
+<li>name, the class name,</li>
+<li>superclass, its superclass (we limit to single inheritance),</li>
+<li>iv, the list of its instance variables, and</li>
+<li>methodDict, a method dictionary.</li>
+</ul>
+<p>Since a class is an object, a class has the instance variable <code>class</code> inherited from <code>Object</code> that refers to its class as any object.</p>
+
+<p><figure id="fig:PointClassAsObject"><img src="Chapters/ObjVTheory/figures/Ref-PointClassAsObject.pdf" alt="Point  class as an object. " class="fig:PointClassAsObject" style="width: 70%"><figcaption><span class="number">Figure 2.4</span> <code>Point</code> class as an object. </figcaption></img></figure></p>
+
+<h4 id="example-1-class-point">Example 1: class Point</h4>
+<p>Figure <a href="#fig:PointClassAsObject">2.4</a> shows the instance variable values for the class <code>Point</code> as declared by the programmer and before class initialization and inheritance take place.</p>
+
+<ul>
+<li>It is an instance of class <code>Class</code>: indeed this is a class.</li>
+<li>It is named <code>'Point'</code>.</li>
+<li>It inherits from class <code>Object</code>.</li>
+<li>It has two instance variables: <code>x</code> and <code>y</code>. Once the static inheritance of instance variables occurs, it will be three instance variables: <code>class</code>, <code>x</code>, and <code>y</code>.</li>
+<li>It has a method dictionary.</li>
+</ul>
+<p><figure id="fig:ClassClassAsObject"><img src="Chapters/ObjVTheory/figures/Ref-ClassClassAsObject.pdf" alt="Class  as an object. " class="fig:ClassClassAsObject" style="width: 70%"><figcaption><span class="number">Figure 2.5</span> <code>Class</code> as an object. </figcaption></img></figure></p>
+
+<h4 id="example-2-class-class">Example 2: class Class</h4>
+<p>Figure <a href="#fig:ClassClassAsObject">2.5</a> describes the class <code>Class</code> itself. Indeed it is also an object.</p>
+
+<ul>
+<li>It is an instance of class <code>Class</code>: indeed this is a class.</li>
+<li>It is named <code>'Class'</code>.</li>
+<li>It inherits from class <code>Object</code></li>
+<li>It has four locally defined instance variables: <code>name</code>, <code>superclass</code>, <code>iv</code>, and  <code>methodDict</code>.</li>
+<li>It has a method dictionary.</li>
+</ul>
+<p><figure id="fig:Instanceshier"><img src="Chapters/ObjVTheory/figures/Ref-InstanceGlobalPicture.pdf" alt="Through the prism of objects. " class="fig:Instanceshier" style="width: 70%"><figcaption><span class="number">Figure 2.6</span> Through the prism of objects. </figcaption></img></figure></p>
+
+<h4 id="everything-is-an-object">Everything is an object</h4>
+<p>Figure <a href="#fig:Instanceshier">2.6</a> describes a typical situation of terminal instances, classes, and metaclasses when viewed from an object perspective.
+We see three levels of instances: terminal objects (<code>mac1</code> and <code>mac2</code> which are instances of <code>Workstation</code>), class objects (<code>Workstation</code> and <code>Point</code> which are instances of <code>Class</code>) and the metaclass (<code>Class</code> which is an instance of itself).</p>
+
+<p><figure id="fig:ToSteps"><img src="Chapters/ObjVTheory/figures/InheritanceDiagram-sendingMessage.pdf" alt="Sending a message is a two-step process: method lookup and execution. " class="fig:ToSteps" style="width: 48%"><figcaption><span class="number">Figure 2.7</span> Sending a message is a two-step process: method lookup and execution. </figcaption></img></figure></p>
+
+<h3><span class="number">2.6</span> Sending a message</h3><a id="sec_message"></a>
+<p>In this kernel, the second postulate states that the only way to perform computation is via message passing.</p>
+
+<p>Sending a message is a two-step process as shown by Figure <a href="#fig:ToSteps">2.7</a>:</p>
+
+<ol>
+<li>Method lookup: the method corresponding to the selector is looked up in the class of the receiver and its superclasses.</li>
+<li>Method execution: the method is applied to the receiver. This means that <code>self</code> or <code>this</code> in the method will be bound to the receiver.</li>
+</ol>
+<p>Conceptually, sending a message can be described by the following function composition:</p>
+
+<pre><code>sending a message (receiver argument)
+	 return apply (lookup (selector classof(receiver) receiver) receiver arguments)</code></pre>
+
+<h4 id="method-lookup">Method lookup</h4>
+<p>Now the lookup process is conceptually defined as follows:</p>
+
+<ol>
+<li>The lookup starts in the <strong>class</strong> of the <strong>receiver</strong>.</li>
+<li>If the method is defined in that class (i.e., if the method is defined in the method dictionary), it is returned.</li>
+<li>Otherwise the search continues in the superclass of the currently explored class.</li>
+<li>If no method is found and there is no superclass to explore (if we are in the class <code>Object</code>), this is an error (i.e., the method is not defined).</li>
+</ol>
+<p><figure id="fig:LookupNoError"><img src="Chapters/ObjVTheory/figures/Ref-LookupNoError.pdf" alt="Looking for a method is a two-step process: first, go to the class of receiver then follow inheritance. " class="fig:LookupNoError" style="width: 58%"><figcaption><span class="number">Figure 2.8</span> Looking for a method is a two-step process: first, go to the class of receiver then follow inheritance. </figcaption></img></figure></p>
+
+<p>The method lookup walks through the inheritance graph one class at a time using the superclass link. Here is a possible description of the lookup algorithm that will be used for both instance and class methods.</p>
+
+<pre><code>lookup (selector class receiver):
+   if the method is found in class
+      then return it
+      else if class == Object
+           then send the message error to the receiver
+           else lookup (selector superclass(class) receiver)</code></pre>
+
+<p><figure id="fig:LookupWithError"><img src="Chapters/ObjVTheory/figures/Ref-LookupWithError.pdf" alt="When a message is not found, another message is sent to the receiver supporting reflective operation. " class="fig:LookupWithError" style="width: 65%"><figcaption><span class="number">Figure 2.9</span> When a message is not found, another message is sent to the receiver supporting reflective operation. </figcaption></img></figure></p>
+
+<h3 id="handling-unknown-messages"><span class="number">2.7</span> Handling unknown messages</h3>
+<p>When the method is not found, the message <code>error</code> is sent as shown in Figure <a href="#fig:LookupWithError">2.9</a>. Sending a message instead of simply reporting an error using a trace or an exception is a key design decision. In Pharo, this is done via the <code>doesNotUnderstand:</code> message, and it is an important reflective hook. Indeed classes can define their own implementation of the method <code>error</code> and perform specific actions to the case of messages that are not understood.  For example, it is possible to implement proxies (objects representing other remote objects) or compile code on the fly by redefining such a message locally.</p>
+
+<p>Now it should be noted that the previous algorithm has a limitation when a missing method has an arbitrary number of arguments. They are not passed to the <code>error</code> message. A better way to handle this is to decompose the algorithm differently as follows:</p>
+
+<pre><code>lookup (selector class):
+   if the method is found in class
+      then return it
+      else if class == Object
+           then return nil
+           else lookup (selector superclass(class))</code></pre>
+
+<p>And then we redefined sending a message as follows:</p>
+
+<pre><code>sending a message (receiver argument)
+   methodOrNil = lookup (selector classof(receiver)).
+   if methodOrNil is nil
+      then send the message error to the receiver
+      else return apply(methodOrNil receiver arguments)</code></pre>
+
+<h4 id="remarks">Remarks</h4>
+<p>This lookup is conceptually the same as in Pharo where all methods are public and virtual. There are no statically bound methods; even class methods are looked up dynamically. This allows for defining very elegant and dynamic registration mechanisms.</p>
+
+<p>While the lookup happens at runtime, it is often cached. Languages usually have several systems of caches, e.g., global (class, selector), one per call site, etc.</p>
+
+<h3 id="inheritance"><span class="number">2.8</span> Inheritance</h3>
+<p>In this kernel, there are two aspects of inheritance to consider:</p>
+
+<ul>
+<li>One static for the case where subclasses get superclass state. This instance variable inheritance is static in the sense that it happens only once at class creation time, i.e., at compilation time.</li>
+<li>One dynamic for behavior where methods are looked up during program execution. In this case, the inheritance tree is walked at run time.</li>
+</ul>
+<p>Let's look at these two aspects.</p>
+
+<h4 id="instance-variable-inheritance">Instance variable inheritance</h4>
+<p>Instance variable inheritance is done at class creation time. From that perspective, it is static and performed once.
+When a class <code>C</code> is created, its instance variables are the union of the instance variables of its superclass
+and the instance variables defined locally in class <code>C</code>.
+Each language defines the exact semantics of instance variable inheritance, for example, if they accept instance variables with the same name or not. In our model, we decide to use the simplest way: there should be no duplicate names.</p>
+
+<pre><code>instance-variables(aClass) =
+	union (instance-variables(superclass(aClass)), local-instance-variables(aClass))</code></pre>
+
+<p>A word about the union of instance variables: when the implementation of the language is based on offsets to access instance variables, the union should make sure that the locations of inherited instance variables are kept ordered compared to the superclass. In general, we want to be able to apply methods of the superclass to subclasses without copying them down and recompiling them. Indeed if a method uses a variable at a given position in the instance variable lists, applying this method to instances of subclasses should work.
+In the implementation proposed next chapter, we will use accessors and will not support direct access to instance variables from a method body.</p>
+
+<h4 id="method-lookup-2">Method lookup</h4>
+<p>As previously described in Section <a href="#sec_message">2.6</a>, methods are looked up at runtime.
+Methods defined in superclasses are reused and applied to instances of subclasses.
+Contrary to instance variable inheritance, this part of inheritance is dynamic, i.e., it happens during program execution.</p>
+
+<h3 id="object-defining-the-minimal-behavior-of-any-object"><span class="number">2.9</span> Object: defining the minimal behavior of any object</h3>
+<p><code>Object</code> represents the minimal behavior that any object should understand, e.g., returning the class of the object, being able to handle errors, and initializing the object.
+This is why <code>Object</code> is the root of the hierarchy. Depending on the language, <code>Object</code> can be complex. In our kernel it is kept minimal as we will show in the implementation chapter.</p>
+
+<p>Figure <a href="#fig:inheritancegraph">2.10</a> shows the inheritance graph without the presence of instantiation.
+A Workstation is an object (i.e., it should at least understand the minimal behavior), so the class <code>Workstation</code> inherits directly or indirectly from the class <code>Object</code>.
+A class is also an object (i.e., it should understand the minimal behavior) so the class <code>Class</code> inherits from the class <code>Object</code>. In particular, the <code>class</code> (note the lowercase) instance variable is inherited from <code>Object</code> class.</p>
+
+<p><figure id="fig:inheritancegraph"><img src="Chapters/ObjVTheory/figures/Ref-InheritanceGraph.pdf" alt="Full inheritance graph: Every class ultimately inherits from  Object . " class="fig:inheritancegraph" style="width: 45%"><figcaption><span class="number">Figure 2.10</span> Full inheritance graph: Every class ultimately inherits from <code>Object</code>. </figcaption></img></figure></p>
+
+<h4 id="remark">Remark</h4>
+<p>In Pharo, the class <code>Object</code> is not the root of inheritance. The root is in fact <code>ProtoObject</code>, and <code>Object</code> inherits from it. Most of the classes still inherit from <code>Object</code>. The design goal of <code>ProtoObject</code> is special: It supports the maximum generation of errors. Such errors can be captured via redefinition of the message <code>doesNotUnderstand:</code>
+and can support different scenarios such as implementing proxies.</p>
+
+<h3 id="inheritance-and-instantiation-together"><span class="number">2.10</span> Inheritance and instantiation together</h3>
+<p>Now that we have seen the instantiation and the inheritance graphs, we can examine the complete picture.
+Figure <a href="#fig:kernel22">2.11</a> shows the graphs and in particular how such graphs are used during message resolution:</p>
+
+<ul>
+<li>the instantiation link is used to find the starting class to look for any methods associated with the received message.</li>
+<li>the inheritance link is used to find inherited methods.</li>
+</ul>
+<p>This process is the same when we send messages to the classes themselves. There is no difference between sending a message to an object or a class. The system <i>always</i> performs the same steps.</p>
+
+<p><figure id="fig:kernel22"><img src="Chapters/ObjVTheory/figures/Ref-KernelTwo.pdf" alt="Kernel with instantiation and inheritance link. " class="fig:kernel22" style="width: 60%"><figcaption><span class="number">Figure 2.11</span> Kernel with instantiation and inheritance link. </figcaption></img></figure></p>
+
+<h3 id="review-of-self-and-super-semantics"><span class="number">2.11</span> Review of self and super semantics</h3>
+<p>Since our experience showed us that even some book authors got the essential semantics of object-oriented programming wrong, we review here some facts that programmers familiar with object-oriented programming should master. For further readings refer to <i>Pharo By Example</i> or the Pharo Mooc available at <a target="_blank" href="http://mooc.pharo.org/"><a target="_blank" href="http://mooc.pharo.org/">http://mooc.pharo.org</a></a>.</p>
+
+<p>As explained in Section <a href="#sec_message">2.6</a>, sending a message to an object always starts the lookup the corresponding method in the class of the receiver.</p>
+
+<p>Now we should distinguish two cases: <code>self</code> and <code>super</code>.
+In the body of a method, both <code>self</code> (also called <code>this</code> in languages like Java) and <code>super</code> always represent the receiver of the message. Yes you read it well, both <code>self</code> and <code>super</code> always represent the receiver!</p>
+
+<p>The difference lies in the class from where the lookup starts:</p>
+
+<ul>
+<li>For <strong>self</strong>. When a message is sent to <code>self</code>, the lookup of the method to execute starts in the class of the receiver.</li>
+</ul>
+<p>When a message is sent to <code>super</code>, the lookup starts in the superclass of the method's class.</p>
+
+<ul>
+<li>For <strong>super</strong>. When a message is sent to <code>super</code>, the method lookup starts in the superclass of the class containing the super expression.</li>
+</ul>
+<p>This distinction between <strong>self</strong> and <strong>super</strong> is required to handle the case where a method is redefined locally in a class but that you need to invoke the behavior defined in its superclasses. Note that the superclass method may be defined not in a direct superclass but one of the class ancestor, so there is a need for a method lookup and this method lookup should start above the method redefined it (here the method containing the <strong>super</strong> expression). Hence the name <strong>super</strong>.</p>
+
+<p>Note that the lookup of a method in the case of <code>super</code> does not look in the superclass of the class of the receiver, since this would mean that it may loop forever in the case of inheritance tree with three classes.</p>
+
+<p>Looking at Figure <a href="#fig:LookupWithSelfInSuperclassMethod">2.12</a>  we see that the key point is that <code>B new bar</code> returns 50 since
+the method is dynamically looked up and self represents the receiver, i.e., the instance of the class <code>B</code>. What is important to see is that sendings of <code>self</code> act as a hook and that subclasses' code can be injected in superclass code.</p>
+
+<pre><code>A new foo
+&gt;&gt;&gt; 10
+B new foo
+&gt;&gt;&gt; 50
+A new bar
+&gt;&gt;&gt; 10
+B new bar
+&gt;&gt;&gt; 50</code></pre>
+
+<p><figure id="fig:LookupWithSelfInSuperclassMethod"><img src="Chapters/ObjVTheory/figures/LookupWithSelfInSuperclassMethod.pdf" alt="self always represents the receiver. " class="fig:LookupWithSelfInSuperclassMethod" style="width: 40%"><figcaption><span class="number">Figure 2.12</span> self always represents the receiver. </figcaption></img></figure></p>
+
+<p><figure id="fig:SelfLookupSequenceDiagram"><img src="Chapters/ObjVTheory/figures/SelfLookupSequenceDiagram.pdf" alt="Sequence diagram of self always represents the receiver. " class="fig:SelfLookupSequenceDiagram" style="width: 60%"><figcaption><span class="number">Figure 2.13</span> Sequence diagram of self always represents the receiver. </figcaption></img></figure></p>
+
+<p>For <code>super</code>, the situation depicted in Figure <a href="#fig:LookupWithSuperInSuperclassMethodThreeClasses">2.14</a> shows that <code>super</code> represents the receiver, but that when <code>super</code> is the receiver of a message, the method is looked up differently (starting from the superclass of the class using super) hence <code>R new bar</code> returns 100, but neither 20 nor 60.</p>
+
+<p><figure id="fig:LookupWithSuperInSuperclassMethodThreeClasses"><img src="Chapters/ObjVTheory/figures/LookupWithSuperInSuperclassMethodThreeClasses2.pdf" alt="super represents the receiver, but the method lookup starts in the superclass of the class of the method using super. " class="fig:LookupWithSuperInSuperclassMethodThreeClasses" style="width: 40%"><figcaption><span class="number">Figure 2.14</span> super represents the receiver, but the method lookup starts in the superclass of the class of the method using super. </figcaption></img></figure></p>
+
+<pre><code>Q new bar
+&gt;&gt;&gt; 20
+R new bar
+&gt;&gt;&gt; 100</code></pre>
+
+<p>As a conclusion, we can say that <code>self</code> is dynamic and <code>super</code> static. Let us explain this view:</p>
+
+<ul>
+<li>When sending a message to <code>self</code> the lookup of the method begins in the class of the receiver. <code>self</code> is bound at execution-time. We do not know its value until execution time.</li>
+<li><code>super</code> is static in the sense that while the object it will point to is only known at execution time, the place to look for the method is known at compile time: it should start to look in the class above the one containing super.</li>
+</ul>
+<h3 id="object-creation"><span class="number">2.12</span> Object creation</h3>
+<p>Now we are ready to understand the creation of objects. In this model, there is only one way to create instances: we should send the message <code>new</code> to the class with a specification of the instance variable values as arguments.</p>
+
+<h3 id="creation-of-instances-of-the-class-point"><span class="number">2.13</span> Creation of instances of the class Point</h3>
+<p>The following examples show several point instantiations. What we see is that the model inherits from the Lisp tradition of passing arguments using keys and values, and that the order of arguments is not important.</p>
+
+<pre><code>Point new :x 24 :y 6
+&gt;&gt;&gt; aPoint (24 6)
+Point new :y 6 :x 24
+&gt;&gt;&gt; aPoint (24 6)</code></pre>
+
+<p>When there is no value specified, the value of an instance variable is initialized to nil.
+It is worth to see that in CLOS (Common Lisp Object System) <cite>Stee90a</cite>  provides the notion of default values for instance variable initialization. It can be added to ObjVlisp as an exercise and does not bring conceptual difficulties.</p>
+
+<pre><code>Point new
+&gt;&gt;&gt; aPoint (nil nil)</code></pre>
+
+<p>When the same argument is passed multiple times, then the implementation takes the first occurrence.</p>
+
+<pre><code>Point new :y 10 :y 15
+&gt;&gt;&gt; aPoint (nil 10)</code></pre>
+
+<p>We should not worry too much about such details: The point is that we can pass multiple arguments with a tag to identify them.</p>
+
+<h3 id="creation-of-the-class-point-instance-of-class"><span class="number">2.14</span> Creation of the class Point instance of Class</h3>
+<p>Since the class <code>Point</code> is an instance of the class <code>Class</code>, to create it, we should send the message <code>new</code> to the class as follows:</p>
+
+<pre><code>Class new
+   :name 'Point'
+   :superclass 'Object'
+   :iv #(x y)
+&gt;&gt;&gt; aClass</code></pre>
+
+<p>What is interesting to see here is that we use exactly the same way to create an instance of the class <code>Point</code> as the class itself.
+Note that the possibility of having the same way to create objects or classes is also due to the fact that the arguments are specified using a list of pairs.</p>
+
+<p>An implementation could have two different messages to create instances and classes. As soon as the same <code>new</code>, <code>allocate</code>, or <code>initialize</code> methods are involved, the essence of the object creation is similar and uniform.</p>
+
+<h4 id="instance-creation-role-of-the-metaclass">Instance creation: Role of the metaclass</h4>
+<p>The following diagram (Figure <a href="#fig:metaclassrole">2.15</a>) shows that despite what one might expect when we create a terminal instance the metaclass <code>Class</code> is involved in the process. Indeed, we send the message <code>new</code> to the class, to resolve this message, the system will look for the method in the class of the receiver (here <code>Workstation</code>) which is the metaclass <code>Class</code>. The method <code>new</code> is found in the metaclass and applied to the receiver, the class <code>Workstation</code>. Its effect is to create an instance of the class <code>Workstation</code>.</p>
+
+<p><figure id="fig:metaclassrole"><img src="Chapters/ObjVTheory/figures/Ref-InstanceCreationMetaclassRole.pdf" alt="Metaclass role during instance creation: Applying plain message resolution. Right: situation before - Left: situation after the instance creation." class="fig:metaclassrole" style="width: 68%"><figcaption><span class="number">Figure 2.15</span> Metaclass role during instance creation: Applying plain message resolution. Right: situation before - Left: situation after the instance creation.</figcaption></img></figure></p>
+
+<p>The same happens when creating a class. Figure <a href="#fig:ClassCreation">2.16</a> shows the process. We send a message, now this time, to the class <code>Class</code>. The system makes no exception and to resolve the message, it looks for the method in the class of the receiver. The class of the receiver is itself, so the method <code>new</code> found in <code>Class</code> is applied to <code>Class</code> (the receiver of the message), and a new class is created.</p>
+
+<p><figure id="fig:ClassCreation"><img src="Chapters/ObjVTheory/figures/Ref-ClassCreation.pdf" alt="Metaclass role during class creation: Applying plain message resolution - the self instantiation link is followed. " class="fig:ClassCreation" style="width: 65%"><figcaption><span class="number">Figure 2.16</span> Metaclass role during class creation: Applying plain message resolution - the self instantiation link is followed. </figcaption></img></figure></p>
+
+<h4 id="new-allocate-and-initialize">new = allocate and initialize</h4>
+<p>Creating an instance is the composition of two actions: a memory allocation <code>allocate</code> message and an object initialization message <code>initialize</code>.</p>
+
+<p>In Pharo syntax, it means:</p>
+
+<pre><code>aClass new: args = (aClass allocate) initialize: args</code></pre>
+
+<p>We should see the following:</p>
+
+<ul>
+<li>The message <code>new</code> is a message sent to a class. The method <code>new</code> is a class method.</li>
+<li>The message <code>allocate</code> is a message sent to a class. The method <code>allocate</code> is a class method.</li>
+<li>The message <code>initialize:</code> will be executed on any newly created instance. If it is sent to a class, a class <code>initialize:</code> method will be invoked. If it is sent to a terminal object, an instance <code>initialize:</code> method will be executed (defined in <code>Object</code>).</li>
+</ul>
+<h4 id="object-allocation-the-message-allocate">Object allocation: the message allocate</h4>
+<p>Allocating an object means allocating enough space to the object state but there's more: instances should be marked with their class name or id. There is an invariant in this model and in general in object-oriented programming models. Every single object must have an identifier to its class, else the system will break when trying to resolve a message.</p>
+
+<p>Object allocation should return a newly created instance with:</p>
+
+<ul>
+<li>empty instance variables (pointing to nil for example);</li>
+<li>an identifier to its class.</li>
+</ul>
+<p>In the ObjVLisp model, the marking of an object as an instance of a class is performed by setting the value of the instance variable <code>class</code> inherited from <code>Object</code>. In Pharo, this information is not recorded as an instance variable but encoded in the internal object representation in the virtual machine.</p>
+
+<p>The <code>allocate</code> method is defined on the metaclass <code>Class</code>. Here are some examples of allocation.</p>
+
+<pre><code>Point allocate
+&gt;&gt;&gt; #(Point nil nil)</code></pre>
+
+<p>A point allocation allocates three slots: one for the class and two for x and y values.</p>
+
+<pre><code>Class allocate
+&gt;&gt;&gt; #(Class nil nil nil nil nil)</code></pre>
+
+<p>The allocation for an object representing a class allocates six slots: one for class and one for each of the class instance variables: <code>name</code>, <code>super</code>, <code>iv</code>, <code>keywords</code> (see below), and <code>methodDict</code>.</p>
+
+<h4 id="object-initialization">Object initialization</h4>
+<p>Object initialization is the process of passing arguments as key/value pairs and assigning the value(s) to the corresponding instance variable(s).</p>
+
+<p>This is illustrated in the following snippet. An instance of class <code>Point</code> is created and the key/value pairs (:y 6) and (:x 24) are
+specified. In the following snippet <code>:y</code> and <code>:x</code> are keywords in ObjVLisp parlance.
+They are built automatically from the instance variables and are used to uniquely identify values.</p>
+
+<p>In the following snippet, the instance is created and it receives the <code>initialize:</code> message with the key/value pairs.
+The <code>initialize:</code> method is responsible for setting the corresponding variables in the receiver.</p>
+
+<pre><code>Point new :y 6  :x 24
+&gt;&gt;&gt; #(Point nil nil) initialize: (:y 6 :x 24)]
+&gt;&gt;&gt; #(Point 24 6)</code></pre>
+
+<p>When an object is initialized as a terminal instance, two actions are performed:</p>
+
+<ul>
+<li>First, we should get the values specified during the creation, i.e., get that the y value is 6 and the x value is 24,</li>
+<li>Second, we should assign the values to the corresponding instance variables of the created object.</li>
+</ul>
+<h4 id="class-initialization">Class initialization</h4>
+<p>During its initialization, a class should perform several steps:</p>
+
+<ul>
+<li>First, as with any initialization it should get the arguments and assign them to their corresponding instance variables. This is basically implemented by invoking the <code>initialize</code> method of <code>Object</code> via a super call, since <code>Object</code> is the superclass of <code>Class</code>.</li>
+<li>Second the inheritance of instance variables should be performed. Before this step, the class <code>iv</code> instance variable just contains the instance variables that are locally defined. After this step, the instance variable <code>iv</code> will contain all the instance variables inherited and local. In particular, this is where the <code>class</code> instance variable inherited from <code>Object</code> is added to the instance variables list of the subclass of <code>Object</code>.</li>
+<li>Third the class should be declared as a class pool or namespace so that programmers can access it via its name.</li>
+</ul>
+<h3 id="the-class-class"><span class="number">2.15</span> The Class class</h3>
+<p>Now we get a better understanding of what is the class <code>Class</code>:</p>
+
+<ul>
+<li>It is the initial metaclass and initial class.</li>
+<li>It defines the behavior of all the metaclasses.</li>
+<li>It defines the behavior of all the classes.</li>
+</ul>
+<p>In particular, metaclasses define three messages related to instance creation.</p>
+
+<ul>
+<li>The <code>new</code> message, which creates an initialized instance of the class. It allocates the instance using the class message <code>allocate</code> and then initializes it by sending the message <code>initialize:</code> to this instance.</li>
+<li>The <code>allocate</code> message. Like the message <code>new</code>, it is a class message. It allocates the structure for the newly created object.</li>
+<li>Finally the message <code>initialize:</code>. This message has two definitions, one on <code>Object</code> and one on <code>Class</code>.</li>
+</ul>
+<p>There is a difference between the method <code>initialize:</code> executed on any instance creation and the class <code>initialize:</code> method only executed when the created instance is a class.</p>
+
+<ul>
+<li>The first one is a method defined on the class of the object and potentially inherited from <code>Object</code>.  This <code>initialize:</code> method just extracts the values corresponding to each instance variable from the argument list and sets them in the corresponding instance variables.</li>
+<li>The class <code>initialize:</code> method is executed when a new instance representing a class is executed. The message <code>initialize:</code> is sent to the newly created object but its specialization for classes will be found during method lookup and it will be executed. Usually, this method invokes the default ones, because the class parameter should be extracted from the argument list and set in their corresponding instance variables. But in addition, instance variable inheritance and class declaration in the class namespace is performed.</li>
+</ul>
+<h3 id="conclusion-2"><span class="number">2.16</span> Conclusion</h3>
+<p>At this stage you saw all the concepts of this minimal object-oriented kernel where classes are themselves instances of other classes.
+In the following chapter, we explore more metaclasses and we encourage you to read it because it will shed an interesting light on the model.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="a-minimal-reflective.html">← A minimal reflective class-based kernel</a>
+        <a class="next" rel="next" href="first-metaclasses.html">First metaclasses →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Building a minimal reflective kernel · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

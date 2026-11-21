@@ -1,0 +1,2498 @@
+THERE_BE_DRAGONS_HERE
+onlyCheckers
+24 March 2026 4:17:30.858592 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+ConfigurationForPillar(CTEnvironment)>>errorPropertyNotFound:
+	Receiver: a ConfigurationForPillar
+	Arguments and temporary variables: 
+		aKey: 	#onlyCheckers
+	Receiver's instance variables: 
+		parent: 	nil
+		properties: 	an OrderedDictionary(#language->'en-UK' #base_url->'/booklet-Re[..]
+		printer: 	a PRTitlePrinter
+
+
+[ self hasParent
+				ifTrue: [ parent at: aKey ]
+				ifFalse: [ self errorPropertyNotFound: aKey ] ] in ConfigurationForPillar(CTEnvironment)>>at:
+	Receiver: a ConfigurationForPillar
+	Arguments and temporary variables: 
+		aKey: 	#onlyCheckers
+	Receiver's instance variables: 
+		parent: 	nil
+		properties: 	an OrderedDictionary(#language->'en-UK' #base_url->'/booklet-Re[..]
+		printer: 	a PRTitlePrinter
+
+
+Dictionary>>at:ifAbsent:
+	Receiver: a Dictionary(#_project->a PRProject[548349440] #attribution->'Stéphane Ducasse' #base_[..]
+	Arguments and temporary variables: 
+		key: 	#onlyCheckers
+		aBlock: 	[ self hasParent
+				ifTrue: [ parent at: aKey ]
+				ifFalse: [ sel[..]
+	Receiver's instance variables: 
+		tally: 	15
+		array: 	an Array(nil nil nil #series->'The Pharo TextBook Collection' #_proj[..]
+
+
+OrderedDictionary>>at:ifAbsent:
+	Receiver: an OrderedDictionary(#language->'en-UK' #base_url->'/booklet-ReflectiveCore/html' #att[..]
+	Arguments and temporary variables: 
+		aKey: 	#onlyCheckers
+		aBlock: 	[ self hasParent
+				ifTrue: [ parent at: aKey ]
+				ifFalse: [ sel[..]
+	Receiver's instance variables: 
+		dictionary: 	a Dictionary(#_project->a PRProject[548349440] #attribution->'S[..]
+		orderedKeys: 	#(#language #base_url #attribution #keywords #title #newLine #[..]
+
+
+ConfigurationForPillar(CTEnvironment)>>at:
+	Receiver: a ConfigurationForPillar
+	Arguments and temporary variables: 
+		aKey: 	#onlyCheckers
+	Receiver's instance variables: 
+		parent: 	nil
+		properties: 	an OrderedDictionary(#language->'en-UK' #base_url->'/booklet-Re[..]
+		printer: 	a PRTitlePrinter
+
+
+ConfigurationForPillar(CTEnvironment)>>propertyAt:
+	Receiver: a ConfigurationForPillar
+	Arguments and temporary variables: 
+		aKey: 	#onlyCheckers
+	Receiver's instance variables: 
+		parent: 	nil
+		properties: 	an OrderedDictionary(#language->'en-UK' #base_url->'/booklet-Re[..]
+		printer: 	a PRTitlePrinter
+
+
+ConfigurationForPillar>>onlyCheckers
+	Receiver: a ConfigurationForPillar
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		parent: 	nil
+		properties: 	an OrderedDictionary(#language->'en-UK' #base_url->'/booklet-Re[..]
+		printer: 	a PRTitlePrinter
+
+
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		aConfiguration: 	a ConfigurationForPillar
+		availableCheckers: 	a Dictionary('CodeBlockValidator'->MicCodeBlockValidator[..]
+		configuredCheckers: 	a Dictionary()
+		onlyCheckers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[548349440]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[548349440]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+ConfigurationForPillar(CTEnvironment)>>errorPropertyNotFound:
+[ self hasParent
+				ifTrue: [ parent at: aKey ]
+				ifFalse: [ self errorPropertyNotFound: aKey ] ] in ConfigurationForPillar(CTEnvironment)>>at:
+Dictionary>>at:ifAbsent:
+OrderedDictionary>>at:ifAbsent:
+ConfigurationForPillar(CTEnvironment)>>at:
+ConfigurationForPillar(CTEnvironment)>>propertyAt:
+ConfigurationForPillar>>onlyCheckers
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+Message not understood: MicEnglishTypographyChecker >> #new
+24 March 2026 4:22:01.822964 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+MicEnglishTypographyChecker(Object)>>doesNotUnderstand: #new
+	Receiver: a MicEnglishTypographyChecker
+	Arguments and temporary variables: 
+		aMessage: 	new
+		exception: 	Instance of MicEnglishTypographyChecker did not understand #new
+		resumeValue: 	nil
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	nil
+
+
+[ :checkerClass |
+		| checker |
+		checker := checkerClass new. 
+		checker rootDirectory: folderReference.
+		checker checkProject: fileReference.
+		reporter addResults: checker results ] in MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	an Array(a MicEnglishTypographyChecker a MicReferenceChecker a Mi[..]
+		checkerClass: 	a MicEnglishTypographyChecker
+		checker: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+Array(SequenceableCollection)>>do:
+	Receiver: an Array(a MicEnglishTypographyChecker a MicReferenceChecker a MicParagraphLabelChecke[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :checkerClass |
+		| checker |
+		checker := checkerClass new. 
+		c[..]
+		index: 	1
+	Receiver's instance variables: 
+an Array(a MicEnglishTypographyChecker a MicReferenceChecker a MicParagraphLabelChecke[..]
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	an Array(a MicEnglishTypographyChecker a MicReferenceChecker a Mi[..]
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[878386176]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[878386176]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+MicEnglishTypographyChecker(Object)>>doesNotUnderstand: #new
+[ :checkerClass |
+		| checker |
+		checker := checkerClass new. 
+		checker rootDirectory: folderReference.
+		checker checkProject: fileReference.
+		reporter addResults: checker results ] in MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+Array(SequenceableCollection)>>do:
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+receiver of "do:" is nil
+24 March 2026 4:23:20.948179 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+UndefinedObject(Object)>>doesNotUnderstand: #do:
+	Receiver: nil
+	Arguments and temporary variables: 
+		aMessage: 	do: [ :patternPair |
+			"note that match: ignore upper/lower case[..]
+		exception: 	#do: was sent to nil
+		resumeValue: 	nil
+	Receiver's instance variables: 
+nil
+
+MicVocabularyChecker>>checkText:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aMicText: 	Text(Back in the early 90's, when I was a student, built a theore[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicVocabularyChecker>>visitText:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aMicText: 	Text(Back in the early 90's, when I was a student, built a theore[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicTextBlock>>accept:
+	Receiver: Text(Back in the early 90's, when I was a student, built a theorem proving system in C[..]
+	Arguments and temporary variables: 
+		aVisitor: 	a MicVocabularyChecker
+	Receiver's instance variables: 
+		parent: 	a MicParagraphBlock - Back in the early 90's, when I was a student,[..]
+		properties: 	nil
+		bodyString: 	'Back in the early 90''s, when I was a student, built a theorem[..]
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitEach:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aMicElement: 	Text(Back in the early 90's, when I was a student, built a the[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+[ :each | self visitEach: each  ] in MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		anElement: 	a MicParagraphBlock - Back in the early 90's, when I was a stude[..]
+		each: 	Text(Back in the early 90's, when I was a student, built a theorem pr[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+Array(SequenceableCollection)>>collect:
+	Receiver: an Array(Text(Back in the early 90's, when I was a student, built a theorem proving sy[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each | self visitEach: each  ]
+		newCollection: 	#(nil)
+		index: 	1
+	Receiver's instance variables: 
+an Array(Text(Back in the early 90's, when I was a student, built a theorem proving sy[..]
+
+MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		anElement: 	a MicParagraphBlock - Back in the early 90's, when I was a stude[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitParagraph:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aParagraph: 	a MicParagraphBlock - Back in the early 90's, when I was a stud[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicParagraphBlock>>accept:
+	Receiver: a MicParagraphBlock - Back in the early 90's, when I was a student, built a theorem pr[..]
+	Arguments and temporary variables: 
+		aVisitor: 	a MicVocabularyChecker
+	Receiver's instance variables: 
+		parent: 	a MicRootBlock[ id:2891]
+		properties: 	nil
+		children: 	an Array(Text(Back in the early 90's, when I was a student, built[..]
+		parser: 	a MicrodownParser
+		text: 	'Back in the early 90''s, when I was a student, built a theorem provi[..]
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitEach:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aMicElement: 	a MicParagraphBlock - Back in the early 90's, when I was a stu[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+[ :each | self visitEach: each  ] in MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		anElement: 	a MicRootBlock[ id:2891]
+		each: 	a MicParagraphBlock - Back in the early 90's, when I was a student, b[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+OrderedCollection>>collect:
+	Receiver: an OrderedCollection(a MicParagraphBlock - Back in the early 90's, when I was a studen[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each | self visitEach: each  ]
+		newCollection: 	an OrderedCollection()
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a MicParagraphBlock - Back in the early 90's, when I was a [..]
+		firstIndex: 	1
+		lastIndex: 	16
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		anElement: 	a MicRootBlock[ id:2891]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitRoot:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aRoot: 	a MicRootBlock[ id:2891]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicRootBlock>>accept:
+	Receiver: a MicRootBlock[ id:2891]
+	Arguments and temporary variables: 
+		aVisitor: 	a MicVocabularyChecker
+	Receiver's instance variables: 
+		parent: 	nil
+		properties: 	a Dictionary(#file->File @ index.md )
+		children: 	an OrderedCollection(a MicParagraphBlock - Back in the early 90's[..]
+		parser: 	a MicrodownParser
+		debugId: 	2891
+
+
+[ :each | each accept: self  ] in MicVocabularyChecker(MicChecker)>>checkProject:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aFileReference: 	File @ index.md
+		collector: 	a MicFileCollector
+		each: 	a MicRootBlock[ id:2891]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+OrderedCollection>>do:
+	Receiver: an OrderedCollection(a MicRootBlock[ id:2891] a MicRootBlock[ id:2893] a MicRootBlock[[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each | each accept: self  ]
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a MicRootBlock[ id:2891] a MicRootBlock[ id:2893] a MicRoot[..]
+		firstIndex: 	1
+		lastIndex: 	3
+
+
+MicVocabularyChecker(MicChecker)>>checkProject:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aFileReference: 	File @ index.md
+		collector: 	a MicFileCollector
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+[ :checker |
+		checker rootDirectory: folderReference.
+		checker checkProject: fileReference.
+		reporter addResults: checker results ] in MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	an Array(a MicEnglishTypographyChecker a MicReferenceChecker a Mi[..]
+		checker: 	a MicVocabularyChecker
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+Array(SequenceableCollection)>>do:
+	Receiver: an Array(a MicEnglishTypographyChecker a MicReferenceChecker a MicParagraphLabelChecke[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :checker |
+		checker rootDirectory: folderReference.
+		checker ch[..]
+		index: 	12
+	Receiver's instance variables: 
+an Array(a MicEnglishTypographyChecker a MicReferenceChecker a MicParagraphLabelChecke[..]
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	an Array(a MicEnglishTypographyChecker a MicReferenceChecker a Mi[..]
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[970684928]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[970684928]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+UndefinedObject(Object)>>doesNotUnderstand: #do:
+MicVocabularyChecker>>checkText:
+MicVocabularyChecker>>visitText:
+MicTextBlock>>accept:
+MicVocabularyChecker(MicrodownVisitor)>>visitEach:
+[ :each | self visitEach: each  ] in MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+Array(SequenceableCollection)>>collect:
+MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+MicVocabularyChecker(MicrodownVisitor)>>visitParagraph:
+MicParagraphBlock>>accept:
+MicVocabularyChecker(MicrodownVisitor)>>visitEach:
+[ :each | self visitEach: each  ] in MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+OrderedCollection>>collect:
+MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+MicVocabularyChecker(MicrodownVisitor)>>visitRoot:
+MicRootBlock>>accept:
+[ :each | each accept: self  ] in MicVocabularyChecker(MicChecker)>>checkProject:
+OrderedCollection>>do:
+MicVocabularyChecker(MicChecker)>>checkProject:
+[ :checker |
+		checker rootDirectory: folderReference.
+		checker checkProject: fileReference.
+		reporter addResults: checker results ] in MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+Array(SequenceableCollection)>>do:
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+receiver of "do:" is nil
+24 March 2026 4:24:38.203562 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+UndefinedObject(Object)>>doesNotUnderstand: #do:
+	Receiver: nil
+	Arguments and temporary variables: 
+		aMessage: 	do: [ :patternPair |
+			"note that match: ignore upper/lower case[..]
+		exception: 	#do: was sent to nil
+		resumeValue: 	nil
+	Receiver's instance variables: 
+nil
+
+MicVocabularyChecker>>checkText:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aMicText: 	Text(Back in the early 90's, when I was a student, built a theore[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicVocabularyChecker>>visitText:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aMicText: 	Text(Back in the early 90's, when I was a student, built a theore[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicTextBlock>>accept:
+	Receiver: Text(Back in the early 90's, when I was a student, built a theorem proving system in C[..]
+	Arguments and temporary variables: 
+		aVisitor: 	a MicVocabularyChecker
+	Receiver's instance variables: 
+		parent: 	a MicParagraphBlock - Back in the early 90's, when I was a student,[..]
+		properties: 	nil
+		bodyString: 	'Back in the early 90''s, when I was a student, built a theorem[..]
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitEach:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aMicElement: 	Text(Back in the early 90's, when I was a student, built a the[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+[ :each | self visitEach: each  ] in MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		anElement: 	a MicParagraphBlock - Back in the early 90's, when I was a stude[..]
+		each: 	Text(Back in the early 90's, when I was a student, built a theorem pr[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+Array(SequenceableCollection)>>collect:
+	Receiver: an Array(Text(Back in the early 90's, when I was a student, built a theorem proving sy[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each | self visitEach: each  ]
+		newCollection: 	#(nil)
+		index: 	1
+	Receiver's instance variables: 
+an Array(Text(Back in the early 90's, when I was a student, built a theorem proving sy[..]
+
+MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		anElement: 	a MicParagraphBlock - Back in the early 90's, when I was a stude[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitParagraph:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aParagraph: 	a MicParagraphBlock - Back in the early 90's, when I was a stud[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicParagraphBlock>>accept:
+	Receiver: a MicParagraphBlock - Back in the early 90's, when I was a student, built a theorem pr[..]
+	Arguments and temporary variables: 
+		aVisitor: 	a MicVocabularyChecker
+	Receiver's instance variables: 
+		parent: 	a MicRootBlock[ id:2891]
+		properties: 	nil
+		children: 	an Array(Text(Back in the early 90's, when I was a student, built[..]
+		parser: 	a MicrodownParser
+		text: 	'Back in the early 90''s, when I was a student, built a theorem provi[..]
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitEach:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aMicElement: 	a MicParagraphBlock - Back in the early 90's, when I was a stu[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+[ :each | self visitEach: each  ] in MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		anElement: 	a MicRootBlock[ id:2891]
+		each: 	a MicParagraphBlock - Back in the early 90's, when I was a student, b[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+OrderedCollection>>collect:
+	Receiver: an OrderedCollection(a MicParagraphBlock - Back in the early 90's, when I was a studen[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each | self visitEach: each  ]
+		newCollection: 	an OrderedCollection()
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a MicParagraphBlock - Back in the early 90's, when I was a [..]
+		firstIndex: 	1
+		lastIndex: 	16
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		anElement: 	a MicRootBlock[ id:2891]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitRoot:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aRoot: 	a MicRootBlock[ id:2891]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicRootBlock>>accept:
+	Receiver: a MicRootBlock[ id:2891]
+	Arguments and temporary variables: 
+		aVisitor: 	a MicVocabularyChecker
+	Receiver's instance variables: 
+		parent: 	nil
+		properties: 	a Dictionary(#file->File @ index.md )
+		children: 	an OrderedCollection(a MicParagraphBlock - Back in the early 90's[..]
+		parser: 	a MicrodownParser
+		debugId: 	2891
+
+
+[ :each | each accept: self  ] in MicVocabularyChecker(MicChecker)>>checkProject:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aFileReference: 	File @ index.md
+		collector: 	a MicFileCollector
+		each: 	a MicRootBlock[ id:2891]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+OrderedCollection>>do:
+	Receiver: an OrderedCollection(a MicRootBlock[ id:2891] a MicRootBlock[ id:2893] a MicRootBlock[[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each | each accept: self  ]
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a MicRootBlock[ id:2891] a MicRootBlock[ id:2893] a MicRoot[..]
+		firstIndex: 	1
+		lastIndex: 	3
+
+
+MicVocabularyChecker(MicChecker)>>checkProject:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aFileReference: 	File @ index.md
+		collector: 	a MicFileCollector
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+[ :checker |
+		checker rootDirectory: folderReference.
+		checker checkProject: fileReference.
+		reporter addResults: checker results ] in MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	an Array(a MicEnglishTypographyChecker a MicReferenceChecker a Mi[..]
+		checker: 	a MicVocabularyChecker
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+Array(SequenceableCollection)>>do:
+	Receiver: an Array(a MicEnglishTypographyChecker a MicReferenceChecker a MicParagraphLabelChecke[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :checker |
+		checker rootDirectory: folderReference.
+		checker ch[..]
+		index: 	12
+	Receiver's instance variables: 
+an Array(a MicEnglishTypographyChecker a MicReferenceChecker a MicParagraphLabelChecke[..]
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	an Array(a MicEnglishTypographyChecker a MicReferenceChecker a Mi[..]
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[26179072]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[26179072]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+UndefinedObject(Object)>>doesNotUnderstand: #do:
+MicVocabularyChecker>>checkText:
+MicVocabularyChecker>>visitText:
+MicTextBlock>>accept:
+MicVocabularyChecker(MicrodownVisitor)>>visitEach:
+[ :each | self visitEach: each  ] in MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+Array(SequenceableCollection)>>collect:
+MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+MicVocabularyChecker(MicrodownVisitor)>>visitParagraph:
+MicParagraphBlock>>accept:
+MicVocabularyChecker(MicrodownVisitor)>>visitEach:
+[ :each | self visitEach: each  ] in MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+OrderedCollection>>collect:
+MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+MicVocabularyChecker(MicrodownVisitor)>>visitRoot:
+MicRootBlock>>accept:
+[ :each | each accept: self  ] in MicVocabularyChecker(MicChecker)>>checkProject:
+OrderedCollection>>do:
+MicVocabularyChecker(MicChecker)>>checkProject:
+[ :checker |
+		checker rootDirectory: folderReference.
+		checker checkProject: fileReference.
+		reporter addResults: checker results ] in MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+Array(SequenceableCollection)>>do:
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+onlyCheckers
+25 March 2026 9:37:05.089005 am
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+ConfigurationForPillar(CTEnvironment)>>errorPropertyNotFound:
+	Receiver: a ConfigurationForPillar
+	Arguments and temporary variables: 
+		aKey: 	#onlyCheckers
+	Receiver's instance variables: 
+		parent: 	nil
+		properties: 	an OrderedDictionary(#language->'en-UK' #base_url->'/booklet-Re[..]
+		printer: 	a PRTitlePrinter
+
+
+[ self hasParent
+				ifTrue: [ parent at: aKey ]
+				ifFalse: [ self errorPropertyNotFound: aKey ] ] in ConfigurationForPillar(CTEnvironment)>>at:
+	Receiver: a ConfigurationForPillar
+	Arguments and temporary variables: 
+		aKey: 	#onlyCheckers
+	Receiver's instance variables: 
+		parent: 	nil
+		properties: 	an OrderedDictionary(#language->'en-UK' #base_url->'/booklet-Re[..]
+		printer: 	a PRTitlePrinter
+
+
+Dictionary>>at:ifAbsent:
+	Receiver: a Dictionary(#_project->a PRProject[271953920] #attribution->'Stéphane Ducasse' #base_[..]
+	Arguments and temporary variables: 
+		key: 	#onlyCheckers
+		aBlock: 	[ self hasParent
+				ifTrue: [ parent at: aKey ]
+				ifFalse: [ sel[..]
+	Receiver's instance variables: 
+		tally: 	15
+		array: 	an Array(nil nil nil #series->'The Pharo TextBook Collection' #_proj[..]
+
+
+OrderedDictionary>>at:ifAbsent:
+	Receiver: an OrderedDictionary(#language->'en-UK' #base_url->'/booklet-ReflectiveCore/html' #att[..]
+	Arguments and temporary variables: 
+		aKey: 	#onlyCheckers
+		aBlock: 	[ self hasParent
+				ifTrue: [ parent at: aKey ]
+				ifFalse: [ sel[..]
+	Receiver's instance variables: 
+		dictionary: 	a Dictionary(#_project->a PRProject[271953920] #attribution->'S[..]
+		orderedKeys: 	#(#language #base_url #attribution #keywords #title #newLine #[..]
+
+
+ConfigurationForPillar(CTEnvironment)>>at:
+	Receiver: a ConfigurationForPillar
+	Arguments and temporary variables: 
+		aKey: 	#onlyCheckers
+	Receiver's instance variables: 
+		parent: 	nil
+		properties: 	an OrderedDictionary(#language->'en-UK' #base_url->'/booklet-Re[..]
+		printer: 	a PRTitlePrinter
+
+
+ConfigurationForPillar(CTEnvironment)>>propertyAt:
+	Receiver: a ConfigurationForPillar
+	Arguments and temporary variables: 
+		aKey: 	#onlyCheckers
+	Receiver's instance variables: 
+		parent: 	nil
+		properties: 	an OrderedDictionary(#language->'en-UK' #base_url->'/booklet-Re[..]
+		printer: 	a PRTitlePrinter
+
+
+ConfigurationForPillar>>onlyCheckers
+	Receiver: a ConfigurationForPillar
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		parent: 	nil
+		properties: 	an OrderedDictionary(#language->'en-UK' #base_url->'/booklet-Re[..]
+		printer: 	a PRTitlePrinter
+
+
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		aConfiguration: 	a ConfigurationForPillar
+		availableCheckers: 	nil
+		configuredCheckers: 	a Dictionary()
+		onlyCheckers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663075
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663075
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[271953920]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[271953920]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+ConfigurationForPillar(CTEnvironment)>>errorPropertyNotFound:
+[ self hasParent
+				ifTrue: [ parent at: aKey ]
+				ifFalse: [ self errorPropertyNotFound: aKey ] ] in ConfigurationForPillar(CTEnvironment)>>at:
+Dictionary>>at:ifAbsent:
+OrderedDictionary>>at:ifAbsent:
+ConfigurationForPillar(CTEnvironment)>>at:
+ConfigurationForPillar(CTEnvironment)>>propertyAt:
+ConfigurationForPillar>>onlyCheckers
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+receiver of "do:" is nil
+25 March 2026 9:48:08.892582 am
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+UndefinedObject(Object)>>doesNotUnderstand: #do:
+	Receiver: nil
+	Arguments and temporary variables: 
+		aMessage: 	do: [ :patternPair |
+			"note that match: ignore upper/lower case[..]
+		exception: 	#do: was sent to nil
+		resumeValue: 	nil
+	Receiver's instance variables: 
+nil
+
+MicVocabularyChecker>>checkText:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aMicText: 	Text(Back in the early 90's, when I was a student, built a theore[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicVocabularyChecker>>visitText:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aMicText: 	Text(Back in the early 90's, when I was a student, built a theore[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicTextBlock>>accept:
+	Receiver: Text(Back in the early 90's, when I was a student, built a theorem proving system in C[..]
+	Arguments and temporary variables: 
+		aVisitor: 	a MicVocabularyChecker
+	Receiver's instance variables: 
+		parent: 	a MicParagraphBlock - Back in the early 90's, when I was a student,[..]
+		properties: 	nil
+		bodyString: 	'Back in the early 90''s, when I was a student, built a theorem[..]
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitEach:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aMicElement: 	Text(Back in the early 90's, when I was a student, built a the[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+[ :each | self visitEach: each  ] in MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		anElement: 	a MicParagraphBlock - Back in the early 90's, when I was a stude[..]
+		each: 	Text(Back in the early 90's, when I was a student, built a theorem pr[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+Array(SequenceableCollection)>>collect:
+	Receiver: an Array(Text(Back in the early 90's, when I was a student, built a theorem proving sy[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each | self visitEach: each  ]
+		newCollection: 	#(nil)
+		index: 	1
+	Receiver's instance variables: 
+an Array(Text(Back in the early 90's, when I was a student, built a theorem proving sy[..]
+
+MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		anElement: 	a MicParagraphBlock - Back in the early 90's, when I was a stude[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitParagraph:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aParagraph: 	a MicParagraphBlock - Back in the early 90's, when I was a stud[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicParagraphBlock>>accept:
+	Receiver: a MicParagraphBlock - Back in the early 90's, when I was a student, built a theorem pr[..]
+	Arguments and temporary variables: 
+		aVisitor: 	a MicVocabularyChecker
+	Receiver's instance variables: 
+		parent: 	a MicRootBlock[ id:278]
+		properties: 	nil
+		children: 	an Array(Text(Back in the early 90's, when I was a student, built[..]
+		parser: 	a MicrodownParser
+		text: 	'Back in the early 90''s, when I was a student, built a theorem provi[..]
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitEach:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aMicElement: 	a MicParagraphBlock - Back in the early 90's, when I was a stu[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+[ :each | self visitEach: each  ] in MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		anElement: 	a MicRootBlock[ id:278]
+		each: 	a MicParagraphBlock - Back in the early 90's, when I was a student, b[..]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+OrderedCollection>>collect:
+	Receiver: an OrderedCollection(a MicParagraphBlock - Back in the early 90's, when I was a studen[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each | self visitEach: each  ]
+		newCollection: 	an OrderedCollection()
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a MicParagraphBlock - Back in the early 90's, when I was a [..]
+		firstIndex: 	1
+		lastIndex: 	16
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		anElement: 	a MicRootBlock[ id:278]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicVocabularyChecker(MicrodownVisitor)>>visitRoot:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aRoot: 	a MicRootBlock[ id:278]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+MicRootBlock>>accept:
+	Receiver: a MicRootBlock[ id:278]
+	Arguments and temporary variables: 
+		aVisitor: 	a MicVocabularyChecker
+	Receiver's instance variables: 
+		parent: 	nil
+		properties: 	a Dictionary(#file->File @ index.md )
+		children: 	an OrderedCollection(a MicParagraphBlock - Back in the early 90's[..]
+		parser: 	a MicrodownParser
+		debugId: 	278
+
+
+[ :each | each accept: self  ] in MicVocabularyChecker(MicChecker)>>checkProject:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aFileReference: 	File @ index.md
+		collector: 	a MicFileCollector
+		each: 	a MicRootBlock[ id:278]
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+OrderedCollection>>do:
+	Receiver: an OrderedCollection(a MicRootBlock[ id:278] a MicRootBlock[ id:280] a MicRootBlock[ i[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each | each accept: self  ]
+		index: 	1
+	Receiver's instance variables: 
+		array: 	an Array(a MicRootBlock[ id:278] a MicRootBlock[ id:280] a MicRootBl[..]
+		firstIndex: 	1
+		lastIndex: 	3
+
+
+MicVocabularyChecker(MicChecker)>>checkProject:
+	Receiver: a MicVocabularyChecker
+	Arguments and temporary variables: 
+		aFileReference: 	File @ index.md
+		collector: 	a MicFileCollector
+	Receiver's instance variables: 
+		reportWriter: 	nil
+		results: 	an OrderedCollection()
+		rootDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		patternPairs: 	nil
+
+
+[ :checker|
+		checker rootDirectory: folderReference.
+		checker checkProject: fileReference.
+		reporter addResults: checker results ] in MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	an Array(a MicEnglishTypographyChecker a MicReferenceChecker a Mi[..]
+		checker: 	a MicVocabularyChecker
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663075
+		packageTag: 	a PackageTag(Core)
+
+
+Array(SequenceableCollection)>>do:
+	Receiver: an Array(a MicEnglishTypographyChecker a MicReferenceChecker a MicParagraphLabelChecke[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :checker|
+		checker rootDirectory: folderReference.
+		checker che[..]
+		index: 	12
+	Receiver's instance variables: 
+an Array(a MicEnglishTypographyChecker a MicReferenceChecker a MicParagraphLabelChecke[..]
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	an Array(a MicEnglishTypographyChecker a MicReferenceChecker a Mi[..]
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663075
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[271953920]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[271953920]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+UndefinedObject(Object)>>doesNotUnderstand: #do:
+MicVocabularyChecker>>checkText:
+MicVocabularyChecker>>visitText:
+MicTextBlock>>accept:
+MicVocabularyChecker(MicrodownVisitor)>>visitEach:
+[ :each | self visitEach: each  ] in MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+Array(SequenceableCollection)>>collect:
+MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+MicVocabularyChecker(MicrodownVisitor)>>visitParagraph:
+MicParagraphBlock>>accept:
+MicVocabularyChecker(MicrodownVisitor)>>visitEach:
+[ :each | self visitEach: each  ] in MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+OrderedCollection>>collect:
+MicVocabularyChecker(MicrodownVisitor)>>visitChildrenOf:
+MicVocabularyChecker(MicrodownVisitor)>>visitRoot:
+MicRootBlock>>accept:
+[ :each | each accept: self  ] in MicVocabularyChecker(MicChecker)>>checkProject:
+OrderedCollection>>do:
+MicVocabularyChecker(MicChecker)>>checkProject:
+[ :checker|
+		checker rootDirectory: folderReference.
+		checker checkProject: fileReference.
+		reporter addResults: checker results ] in MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+Array(SequenceableCollection)>>do:
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+
+25 March 2026 10:20:51.569819 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+MicAnalysisReportWriter class(Object)>>halt
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663075
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		aConfiguration: 	a ConfigurationForPillar
+		availableCheckers: 	a Dictionary('CodeBlockValidator'->MicCodeBlockValidator[..]
+		configuredCheckers: 	nil
+		onlyCheckers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663075
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663075
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[72673792]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[72673792]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+MicAnalysisReportWriter class(Object)>>halt
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+
+26 March 2026 6:05:06.432153 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+MicAnalysisReportWriter class(Object)>>halt
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663075
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	an Array(a MicEnglishTypographyChecker)
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5663075
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[327115264]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[327115264]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+MicAnalysisReportWriter class(Object)>>halt
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+

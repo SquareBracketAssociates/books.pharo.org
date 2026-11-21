@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A minimal reflective class-based kernel</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Building a minimal reflective kernel</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li class="current">
+            <a href="a-minimal-reflective.html" aria-current="page"><span class="number">1</span> A minimal reflective class-based kernel</a>
+            
+            <ol>
+              
+              <li><a href="#objvlisp-inspiration"><span class="number">1.1</span> ObjVlisp inspiration</a></li>
+              
+              <li><a href="#objvlisp-s-six-postulates"><span class="number">1.2</span> ObjVLisp's six postulates</a></li>
+              
+              <li><a href="#kernel-overview"><span class="number">1.3</span> Kernel overview</a></li>
+              
+              <li><a href="#conclusion"><span class="number">1.4</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="diving-into-the-kernel.html"><span class="number">2</span> Diving into the kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="first-metaclasses.html"><span class="number">3</span> First metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">4</span> Getting started with the implementation</a>
+            
+          </li>
+          
+          <li>
+            <a href="primitives-for-a-reflective.html"><span class="number">5</span> Primitives for a reflective class-based kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="defining-the-language.html"><span class="number">6</span> Defining  the language kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="selected-definitions.html"><span class="number">7</span> Selected definitions</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="a-minimal-reflective-class-based-kernel"><span class="number">1</span> A minimal reflective class-based kernel</h2>
+<p><i>The difference between classes and objects has been repeatedly emphasized. In the view presented here, these concepts belong to different worlds: the program text only contains classes; at run-time, only objects exist. This is not the only approach. One of the subcultures of object-oriented programming, influenced by Lisp and exemplified by Smalltalk, views classes as objects themselves, which still have an existence at run-time.</i> — B. Meyer, Object-Oriented Software Construction  <cite>Meye88b</cite></p>
+
+<p>As this quote expresses it, there is a realm where classes are true objects, instances of other classes. In such systems as Smalltalk, Pharo <cite>Blac09a</cite>, CLOS <cite>Stee90a</cite>, classes are described by other classes and form often reflective architectures each one describing the previous level. In this chapter, we will explore a minimal reflective class-based kernel, inspired by ObjVlisp. In the following chapter, you will implement step by step such a kernel with less than 30 methods.</p>
+
+<h3 id="objvlisp-inspiration"><span class="number">1.1</span> ObjVlisp inspiration</h3>
+<p>ObjVlisp was published for the first time in 1987 when the foundation of object-oriented programming was still emerging <cite>Coin87a</cite>. ObjVlisp has explicit metaclasses and supports metaclass reuse. It was inspired by the kernel of Smalltalk-78. The IBM SOM-DSOM kernel is similar to ObjVLisp while implemented in C++ <cite>Form99a</cite>. ObjVlisp is a subset of the reflective kernel of CLOS (Common Lisp Object System) since CLOS reifies instance variables, generic functions, and method combinations. It is the equivalent of the Closette implementation <cite>Kicz91a</cite>. In comparison to ObjVlisp, Smalltalk, and Pharo have implicit metaclasses and no metaclass reuse except by basic inheritance. However, they are more stable as explained by Bouraqadi et al  <cite>Bour98a</cite>.</p>
+
+<p>Studying this kernel is really worth it since it has the following properties:</p>
+
+<ul>
+<li>It unifies classes and instances (there is only one data structure to represent all objects, classes included).</li>
+<li>It is composed of only two classes <code>Class</code> and <code>Object</code> (it relies on existing elements such as booleans, arrays, and strings of the underlying implementation language).</li>
+<li>It raises the question of meta-circularity infinite regression (a class is an instance of another class that is an instance of yet another class, etc.) and how to resolve it.</li>
+<li>It requires consideration of allocation, class, and object initialization, message passing as well as the bootstrap process.</li>
+<li>It can be implemented in less than 30 methods in Pharo.</li>
+</ul>
+<p>Just remember that this kernel is self-described. We will start to explain some aspects, but since everything is linked, you may have to read the chapter twice to fully get it.</p>
+
+<h3 id="objvlisp-s-six-postulates"><span class="number">1.2</span> ObjVLisp's six postulates</h3>
+<p>The original ObjVlisp kernel is defined by six postulates <cite>Coin87a</cite>. Some of them look a bit dated by modern standards, and the 6th postulate is simply wrong as we will explain later (a solution is simple to design and implement).</p>
+
+<p>Here are the six postulates as stated in the paper for the sake of historical perspective.</p>
+
+<ul>
+<li>P1. An object represents a piece of knowledge and a set of capabilities.</li>
+<li>P2. The only protocol to activate an object is message passing: a message specifies which procedure to apply (denoted by its name, the selector) and its arguments.</li>
+<li>P3. Every object belongs to a class that specifies its data (attributes called fields) and its behavior (procedures called methods). Objects will be dynamically generated from this model; they are called instances of the class. Following Plato, all instances of a class have the same structure and shape but differ through the values of their common instance variables.</li>
+<li>P4. A class is also an object, instantiated by another class, called its metaclass. Consequently (P3), to each class is associated with a metaclass which describes its behavior as an object. The initial primitive metaclass is the class <code>Class</code>, built as its own instance.</li>
+<li>P5. A class can be defined as a subclass of one (or many) other class(es). This subclassing mechanism allows the sharing of instance variables and methods and is called inheritance. The class <code>Object</code> represents the most common behavior shared by all objects.</li>
+<li>P6. If the instance variables owned by an object define a local environment, there are also class variables defining a global environment shared by all the instances of the same class. These class variables are defined at the metaclass level according to the following equation: class variable [an-object] = instance variable [an-object’s class].</li>
+</ul>
+<h3 id="kernel-overview"><span class="number">1.3</span> Kernel overview</h3>
+<p>If you do not fully grasp the following overview, don't worry. This full chapter is here to make sure that you will understand it.
+Let us get started.</p>
+
+<p>Contrary to a real uniform language kernel, ObjVlisp does not consider arrays, booleans, strings, numbers or any other elementary objects as part of the kernel as this is the case in a real bootstrap such as the one of Pharo. ObjVLisp's kernel focuses on understanding <code>Class</code>/<code>Object</code> core relationships.</p>
+
+<p>Figure <a href="#fig:ObjVlisp">1.1</a> shows the two core classes of the kernel:</p>
+
+<ul>
+<li><code>Object</code> which is the root of the inheritance graph and is an instance of <code>Class</code>.</li>
+<li><code>Class</code> is the first class and root of the instantiation tree and instance of itself as we will see later.</li>
+</ul>
+<p><figure id="fig:ObjVlisp"><img src="Chapters/ObjVTheory/figures/ObjVlispMore.pdf" alt="The ObjVlisp kernel: a minimal class-based kernel. " class="fig:ObjVlisp" style="width: 60%"><figcaption><span class="number">Figure 1.1</span> The ObjVlisp kernel: a minimal class-based kernel. </figcaption></img></figure></p>
+
+<p>Figure <a href="#withSing">1.2</a> shows that the class <code>Workstation</code> is an instance of the class <code>Class</code> since it is a class and it inherits from <code>Object</code> the default behavior objects should exhibit. The class <code>WithSingleton</code> is an instance of the class <code>Class</code> but in addition, it inherits from <code>Class</code>, since this is a metaclass: its instances are classes. As such, it changes the behavior of classes. The class <code>SpecialWorkstation</code> is an instance of the class <code>WithSingleton</code> and inherits from <code>Workstation</code>, since its instances exhibit the same behavior as <code>Workstation</code>.</p>
+
+<p><figure id="withSing"><img src="Chapters/ObjVTheory/figures/ObjVlispSingleton.pdf" alt="The kernel with specialized metaclasses. " class="withSing" style="width: 70%"><figcaption><span class="number">Figure 1.2</span> The kernel with specialized metaclasses. </figcaption></img></figure></p>
+
+<p>The two diagrams <a href="#fig:ObjVlisp">1.1</a> and <a href="#withSing">1.2</a> will be explained step by step throughout this chapter.</p>
+
+<q id="note">The key point of understanding such a reflective architecture is that message passing always looks up methods in the class of the receiver of the message and then follows the inheritance chain (See Figure <a href="#fig:kernel2">1.3</a>).</q>
+<p><figure id="fig:kernel2"><img src="Chapters/ObjVTheory/figures/ObjVlispSingleton2.pdf" alt="Understanding metaclasses using message passing. " class="fig:kernel2" style="width: 90%"><figcaption><span class="number">Figure 1.3</span> Understanding metaclasses using message passing. </figcaption></img></figure></p>
+
+<p>Figure <a href="#fig:kernel2">1.3</a> illustrates two main cases:</p>
+
+<ul>
+<li>When we send a message to <code>BigMac</code> or <code>Minna</code>, the corresponding method is looked up in their corresponding classes <code>Workstation</code> or <code>SpecialWorkstation</code> and follows the inheritance link up to <code>Object</code>.</li>
+<li>When we send a message to the classes <code>Workstation</code> or <code>SpecialWorkstation</code>, the corresponding method is looked up in their class, the class <code>Class</code> and up to <code>Object</code>.</li>
+</ul>
+<h3 id="conclusion"><span class="number">1.4</span> Conclusion</h3>
+<p>ObjVLisp is a minimal kernel with its two main classes. It uses the infrastructure of the underlying language (integers, strings, booleans...). When the language is fully reflective such as Pharo all such infrastructure has to be defined at the same level as the class <code>Object</code> and <code>Class</code> but the model principles stay the same.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="index.html">← Building a minimal reflective kernel</a>
+        <a class="next" rel="next" href="diving-into-the-kernel.html">Diving into the kernel →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Building a minimal reflective kernel · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

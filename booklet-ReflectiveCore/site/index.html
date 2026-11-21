@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Building a minimal reflective kernel</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Building a minimal reflective kernel</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="a-minimal-reflective.html"><span class="number">1</span> A minimal reflective class-based kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="diving-into-the-kernel.html"><span class="number">2</span> Diving into the kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="first-metaclasses.html"><span class="number">3</span> First metaclasses</a>
+            
+          </li>
+          
+          <li>
+            <a href="getting-started-with.html"><span class="number">4</span> Getting started with the implementation</a>
+            
+          </li>
+          
+          <li>
+            <a href="primitives-for-a-reflective.html"><span class="number">5</span> Primitives for a reflective class-based kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="defining-the-language.html"><span class="number">6</span> Defining  the language kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="selected-definitions.html"><span class="number">7</span> Selected definitions</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+      <section class="cover">
+        
+        <div class="cover-text">
+          <h1 class="cover-title">Building a minimal reflective kernel</h1>
+          <p class="cover-authors">Stéphane Ducasse</p>
+          <a class="start-reading" href="a-minimal-reflective.html">Start reading →</a>
+          
+        </div>
+      </section>
+      
+
+<p>Back in the early 90's, when I was a student, built a theorem proving system in Common Lisp Object System.
+It was a fun first contact with object-oriented programming, even if at the time I did not master all the aspects.
+The following year, we got an excellent lecture on meta-object programming by M. Blay Fornarino.
+I loved the lecture where we program metaclasses and mixins.  I realize now that it was quite advanced.</p>
+
+<p>However, deep inside me, I knew that I did not fully understand what was the class <code>Object</code> or what was really a metaclass. Of course, I could repeat the lecture and look smart, but there was this little voice telling me that I wasn't 100% sure. Then, I read the article of Pierre Cointe on ObjVlisp. I got blasted by the simplicity of the model.
+I spent the next 2 days reimplementing the model because it was too much fun.
+For me, it is the key to my deep understanding of class-based reflective systems.
+Once I finished implementing it, I went to see my teacher and told her that she must teach it. She told me to do it.
+Since then I've been teaching it.</p>
+
+<p>Note that while the project is historically named ObjVlisp, it has not much to do with LISP. This kernel is similar to the one of Smalltalk-78 with explicit metaclasses.
+ObjVlisp is just a little conceptual framework but it provides a condensed view and explains the forces present in larger systems such as Pharo that share the <i>everything is an object</i> mantra I love so much.</p>
+
+<p>This book explains the consequence of having classes as objects.
+In addition, it describes the design and the consequences of having a self-described reflective minimal kernel.</p>
+
+<p>By doing so we will learn deeply about objects, object creation instantiation, message lookup, delegation, inheritance, and much more.</p>
+
+<p>I would like to thank Christopher Fuhrman for his large copy-edit pass and kksubbu, Imen Sayar, and René-Paul for their suggestions.</p>
+
+<p>— Stéphane Ducasse</p>
+
+      <nav class="pager" aria-label="Chapters">
+        
+        <a class="next" rel="next" href="a-minimal-reflective.html">A minimal reflective class-based kernel →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Building a minimal reflective kernel · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

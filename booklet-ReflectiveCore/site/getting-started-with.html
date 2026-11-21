@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Getting started with the implementation</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Building a minimal reflective kernel</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="a-minimal-reflective.html"><span class="number">1</span> A minimal reflective class-based kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="diving-into-the-kernel.html"><span class="number">2</span> Diving into the kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="first-metaclasses.html"><span class="number">3</span> First metaclasses</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="getting-started-with.html" aria-current="page"><span class="number">4</span> Getting started with the implementation</a>
+            
+            <ol>
+              
+              <li><a href="#preparation"><span class="number">4.1</span> Preparation</a></li>
+              
+              <li><a href="#naming-conventions"><span class="number">4.2</span> Naming conventions</a></li>
+              
+              <li><a href="#helping-develop-the-kernel"><span class="number">4.3</span> Helping develop the kernel</a></li>
+              
+              <li><a href="#inheriting-from-class-array"><span class="number">4.4</span> Inheriting from class Array</a></li>
+              
+              <li><a href="#giveclass"><span class="number">4.5</span> Facilitating objClass class access</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="primitives-for-a-reflective.html"><span class="number">5</span> Primitives for a reflective class-based kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="defining-the-language.html"><span class="number">6</span> Defining  the language kernel</a>
+            
+          </li>
+          
+          <li>
+            <a href="selected-definitions.html"><span class="number">7</span> Selected definitions</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="getting-started-with-the-implementation"><span class="number">4</span> Getting started with the implementation</h2>
+<p>During the previous chapters, you saw the main conceptual points of the ObjVLisp model, now you will implement it. The objective of this chapter is to help you to implement step by step the model.
+To do so, we offer a skeleton of the implementation where key method bodies have been removed and replaced with an indication that you should implement them. In addition, a set of tests specifies the methods that are missing and that you should implement.
+Making the tests pass will guide you during your implementation.</p>
+
+<h3 id="preparation"><span class="number">4.1</span> Preparation</h3>
+<p>In this section, we discuss the setup that you will use, the implementation choices, and the conventions that we will follow during the rest of this book.</p>
+
+<h4 id="getting-pharo-11">Getting Pharo 11</h4>
+<p>You need to download and install Pharo from <a target="_blank" href="http://www.pharo.org/"><a target="_blank" href="http://www.pharo.org/">http://www.pharo.org/</a></a>. You need a virtual machine, and a couple image and changes.
+The best way is to use the PharoLauncher that is available at <a target="_blank" href="http://www.pharo.org/download"><a target="_blank" href="http://www.pharo.org/download">http://www.pharo.org/download</a></a>.</p>
+
+<p>You can also use <a target="_blank" href="http://get.pharo.org/"><a target="_blank" href="http://get.pharo.org/">http://get.pharo.org</a></a> to get a script to download Pharo.</p>
+
+<p>The current version of this book is working with Pharo 11.0.</p>
+
+<pre><code>wget -O- get.pharo.org/110+vm | bash</code></pre>
+
+<p>You can use the book <i>Pharo by Example</i> from <a target="_blank" href="http://www.pharo.org/PharoByExample/"><a target="_blank" href="http://www.pharo.org/PharoByExample/">http://www.pharo.org/PharoByExample/</a></a> for an overview of the syntax and the system.</p>
+
+<h4 id="getting-infrastructure-definitions">Getting infrastructure definitions</h4>
+<p>All the necessary method or class definitions are provided as a package. It contains all the classes, the method categories, and the method signatures of the methods that you have to implement. It provides additional functionality that will make your life easy and help you to concentrate on the essence of the model. It contains also all the tests of the functionality you have to implement.</p>
+
+<p>To load the code, execute the following expression:</p>
+
+<pre><code>Metacello new
+  baseline: 'ObjV';
+  repository: 'github://Ducasse/ObjVLispSkeleton/tree/master/src';
+  load</code></pre>
+
+<h4 id="running-tests">Running tests</h4>
+<p>For each functionality, you will have to run some tests.</p>
+
+<p>For example to run a particular test named <code>testPrimitiveStructure</code>,</p>
+
+<ul>
+<li>evaluate the expression <code>(ObjTest run: #testPrimitiveStructure)</code>, or</li>
+<li>click on the icon of the method named <code>testPrimitiveStructure</code>.</li>
+</ul>
+<h3 id="naming-conventions"><span class="number">4.2</span> Naming conventions</h3>
+<p>We use the following conventions: we name as <i>primitives</i> all the Pharo methods that are used to build ObjVLisp. These primitives are mainly implemented as methods of the class <code>Obj</code>. Note that in a Lisp implementation, such primitives would be just lambda expressions, in a C implementation such primitives would be represented by C functions.</p>
+
+<p>We also talk about <i>objInstances</i>, <i>objObjects</i>, and <i>objClasses</i> to refer to
+specific instances, objects, or classes defined in ObjVLisp.</p>
+
+<p>To help you to distinguish between classes in the implementation language (Pharo) and the ObjVLisp model, we prefix all the ObjVLisp classes by <code>Obj</code>. Finally, some of the crucial and confusing primitives (mainly the class structure ones) are all prefixed by <code>obj</code>.</p>
+
+<p>For example, the primitive that given an <i>objInstance</i> returns its class identifier is named <code>objClassId</code>.</p>
+
+<h3 id="helping-develop-the-kernel"><span class="number">4.3</span> Helping develop the kernel</h3>
+<p>To help you implement step by step the kernel of ObjVLisp, we defined
+tests that you will be able to execute one by one for each new aspect of ObjVLisp that you will define.</p>
+
+<p>The problem is that to run a test, the kernel should be fully finished and we are defining it step by step. So we are trapped.
+Now to make sure that you can execute tests as soon as you define a method, we implemented <i>manually</i> some mocks of the objects that represent instances and classes in the ObjVLisp world: we basically created arrays and stuffed them with the correct information to mimick what the kernel once created will do.
+If you look at the methods <code>setUp</code> of the test classes you will see how we created them. Now pay attention because the setups are often taking shortcuts, so do not copy them blindly.</p>
+
+<p>Finally, if you want to interact with objects during your development, for example to check manually that a pharo method is working or to explore your objClasses you can simply define a test method and put a breakpoint using <code>self halt</code>.
+When you execute this test, it will open a debugger and you will be able to execute code. For example the class <code>RawObjectTest</code> has several instances holding objects representing: the objClass <code>Object</code>, an objInstance of the objClass <code>Point</code>, the objClass <code>Point</code>.... Check the instance variables of the class <code>RawObjectTest</code>.</p>
+
+<p>Figure <a href="#fig:helping">4.1</a> shows a method named <code>testBidouille</code> with a halt. It also shows that we can interact and send messages to the objects that were manually created. Here we executed the primitive <code>objName</code> on the objClass <code>pointClass</code> and it returned <code>#ObjPoint</code>.</p>
+
+<p><figure id="fig:helping"><img src="Chapters/ObjV/figures/HelpCodingTestOpen.png" alt="Interacting in the debugger with some objinstances." class="fig:helping" style="width: 90%"><figcaption><span class="number">Figure 4.1</span> Interacting in the debugger with some objinstances.</figcaption></img></figure></p>
+
+<h3 id="inheriting-from-class-array"><span class="number">4.4</span> Inheriting from class Array</h3>
+<p>We do not want to implement a scanner, a parser, and a compiler for ObjVLisp but concentrate on the essence of the language. That's why we chose to use as much as possible the implementation language, here Pharo.
+In our implementation, every object in the ObjVLisp world is an instance of the class <code>Obj</code>.
+The class <code>Obj</code> is a subclass of <code>Array</code>.</p>
+
+<p>Since the Pharo class <code>Obj</code> is a subclass of the Pharo class <code>Array</code>, the following array <code>#(#ObjPoint 10 15)</code> represents an objInstance of the objClass <code>ObjPoint</code>.
+From an implementation point of view, this objClass <code>ObjPoint</code> is just an instance of the Pharo class <code>Obj</code>.</p>
+
+<p>As we will see:</p>
+
+<ul>
+<li><code>#(#ObjPoint 10 15)</code> represents an objPoint (10,15). It is an objInstance of the objClass <code>ObjPoint</code>.</li>
+<li><code>#(#ObjClass #ObjPoint #ObjObject #(class x y) #(:x :y) nil )</code> is the array that represents the objClass <code>ObjPoint</code>.</li>
+</ul>
+<h3><span class="number">4.5</span> Facilitating objClass class access</h3><a id="giveclass"></a>
+<p>In the previous chapter, we wrote some expressions using some objClass such as <code>ObjPoint objIVs</code> that returns the instance variables of the objClass <code>ObjPoint</code>.</p>
+
+<p>If you simply execute this expression in Pharo you will get an error.
+Indeed, the objClass <code>ObjPoint</code> is not a Pharo class and it is not known to Pharo: It is not added to the Pharo namespace and this is normal because it is another world.</p>
+
+<p>The question is then how can we provide simple access to objClasses once they are created.
+For this, we need a way to store and access ObjVLisp classes.
+As a solution, on the <i>class</i> level of the Pharo class <code>Obj</code>, we defined a dictionary holding the defined classes.
+The keys of this dictionary are the objClass names and the values are the objClasses with the corresponding name.
+This dictionary acts as the namespace for our language. We defined the following methods to store and access defined classes.</p>
+
+<ul>
+<li><code>declareClass: anObjClass</code> stores the objInstance <code>anObjClass</code> given as an argument in the class repository (here a dictionary whose keys are the class names and values the ObjVLisp classes themselves).</li>
+<li><code>giveClassNamed: aSymbol</code> returns the ObjVLisp class named <code>aSymbol</code> if it exists. The class should have been declared previously.</li>
+</ul>
+<p>With such methods, we can write code like the following:
+Here we get access to the objClass <code>ObjPoint</code>.</p>
+
+<pre><code>Obj giveClassNamed: #ObjPoint
+&gt;&gt;&gt; #(#ObjClass 'ObjPoint' #ObjObject #(class x y) #(:x :y) ... )</code></pre>
+
+<p>Then we can access some of its state.  For example we access the instance variables of the class as follows:</p>
+
+<pre><code>(Obj giveClassNamed: #ObjPoint) objIVs
+&gt;&gt;&gt;  #(class x y)</code></pre>
+
+<p>To make class access less heavy, we also implemented a shortcut:
+We trap messages not understood sent to <code>Obj</code> and look into the defined class dictionary.
+Since <code>ObjPoint</code> is an unknown message, this same code is then written as:</p>
+
+<pre><code>Obj ObjPoint
+&gt;&gt;&gt; #(#ObjClass 'ObjPoint' #ObjObject #(class x y) #(:x :y) ... )</code></pre>
+
+<p>Now you are ready to start.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="first-metaclasses.html">← First metaclasses</a>
+        <a class="next" rel="next" href="primitives-for-a-reflective.html">Primitives for a reflective class-based kernel →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Building a minimal reflective kernel · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>
