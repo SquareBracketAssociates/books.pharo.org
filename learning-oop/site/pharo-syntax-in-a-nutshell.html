@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pharo syntax in a nutshell</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="pharo-syntax-in-a-nutshell.html" aria-current="page"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+            <ol>
+              
+              <li><a href="#simplicity-and-elegance-of-messages"><span class="number">2.1</span> Simplicity and elegance of messages</a></li>
+              
+              <li><a href="#which-message-is-executed-first"><span class="number">2.2</span> Which message is executed first?</a></li>
+              
+              <li><a href="#sending-messages-to-classes"><span class="number">2.3</span> Sending messages to classes</a></li>
+              
+              <li><a href="#local-variables-and-statement-sequences"><span class="number">2.4</span> Local variables and statement sequences</a></li>
+              
+              <li><a href="#about-literal-objects"><span class="number">2.5</span> About literal objects</a></li>
+              
+              <li><a href="#sending-multiple-messages-to-the-same-object"><span class="number">2.6</span> Sending multiple messages to the same object</a></li>
+              
+              <li><a href="#blocks"><span class="number">2.7</span> Blocks</a></li>
+              
+              <li><a href="#control-structures"><span class="number">2.8</span> Control structures</a></li>
+              
+              <li><a href="#methods"><span class="number">2.9</span> Methods</a></li>
+              
+              <li><a href="#resources"><span class="number">2.10</span> Resources</a></li>
+              
+              <li><a href="#conclusion"><span class="number">2.11</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">2</span> Pharo syntax in a nutshell</h2><a id="cha:syntax"></a>
+<p>In this chapter, we start on a simple path to get you to understand the most important parts of the Pharo syntax: <i>messages</i>, <i>blocks</i> and <i>methods</i>.
+This chapter is freely inspired from Sven van Caeckenberghe's gentle syntax introduction, and I thank him for giving me the permission to reuse his ideas.</p>
+
+<p>In Pharo, everything is an <i>object</i> and computation happens by sending <i>messages</i> to objects.
+Objects are created by sending messages to particular objects named <i>classes</i>, which define the structure and behavior of the objects they create, also known as their instances.</p>
+
+<h3 id="simplicity-and-elegance-of-messages"><span class="number">2.1</span> Simplicity and elegance of messages</h3>
+<p>Messages are central to computation in Pharo.
+While their syntax is quite minimalist, it is very expressive and structures most of the language.</p>
+
+<p>There are three kinds of messages: unary, binary, and keyword-based.</p>
+
+<h4 id="sending-a-message-the-receiver">Sending a message & the receiver</h4>
+<p>Let’s first look at an example of sending a message to an object:</p>
+
+<pre><code>'hello' reversed</code></pre>
+
+<p>What this means is that the message <code>reversed</code> is sent to the literal string <code>'hello'</code>.
+In fact, the string <code>'hello'</code> is called the <i>receiver</i> of the message; the receiver is always the leftmost part of a message.</p>
+
+<h4 id="evaluating-code-and-convention-for-showing-results">Evaluating code and convention for showing results</h4>
+<p>In Pharo, code can be evaluated from anywhere you can type and select text; the system provides various interactive ways to evaluate code and look at the result.
+In this book, we will show the result of an expression directly after it, using three chevrons <code>&gt;&gt;&gt;</code>.</p>
+
+<p>Evaluating the piece of code in the previous example yields a new string with the same characters in reverse order:</p>
+
+<pre><code>'hello' reversed
+&gt;&gt;&gt; 'olleh'</code></pre>
+
+<p>Figure <a href="#fig:Editing">2.1</a> describes that we edited an expression and executed in with Playground.</p>
+
+<p><figure id="fig:Editing"><img src="Chapters/GettingStarted/figures/Editing.png" alt="Executing an expression in Playground." class="fig:Editing" style="width: 70%"><figcaption><span class="number">Figure 2.1</span> Executing an expression in Playground.</figcaption></img></figure></p>
+
+<h4 id="other-messages-return-values">Other messages & return values</h4>
+<p>Our <code>'hello'</code> string understands many other messages than <code>reversed</code>:</p>
+
+<pre><code>'hello' asUppercase
+&gt;&gt;&gt; 'HELLO'</code></pre>
+
+<p>As the name implies, the <code>asUppercase</code> message returns yet another string <code>'HELLO'</code>, which has the same contents as the receiver with each character converted to upper case.
+However, messages sent to strings do not always return strings; other kinds of values are possible:</p>
+
+<pre><code>'hello' first
+&gt;&gt;&gt; $h
+
+'hello' size
+&gt;&gt;&gt; 5</code></pre>
+
+<p>The message <code>first</code> returns the first element of the string: a character.
+Literal characters in Pharo syntax are expressed by the dollar sign <code>$</code> immediately followed by the character itself.
+The message <code>size</code> returns the number of elements in the string, which is an integer.</p>
+
+<p>Strings, characters, integers are objects, because in Pharo <i>everything</i> is an object.
+Also, messages <i>always</i> return something, even if the returned value is not used.
+One might say that a message can return any value, as long as it's an object.</p>
+
+<h4 id="the-selector-unary-messages">The selector & unary messages</h4>
+<p>All messages we saw so far have the same receiver, the string <code>'hello'</code>; however, the computations were different because the messages differ by their name, or to use the technical term, by their <i>selector</i>.
+In the syntax of a message, the selector always comes right after the receiver; the message-sending syntax is just the white space in between!</p>
+
+<p>Those messages are called <i>unary</i> because they involve only one object: their receiver; they do not take any arguments.
+Syntactically, the selectors of unary messages must be alphabetic words; the convention to make up longer selectors is to use lower camel case, preferring <code>asUppercase</code> over <code>as_uppercase</code> or <code>AsUPPERCASE</code>.</p>
+
+<h4 id="a-first-keyword-based-message">A first keyword-based message</h4>
+<p>Messages often need to pass arguments to the receiver so that it can perform its task; this is what keyword-based messages are for.</p>
+
+<p>As an example, instead of using <code>first</code>, we could use the message <code>at:</code>, with an explicit position as a parameter:</p>
+
+<pre><code>'hello' at: 1
+&gt;&gt;&gt;$h</code></pre>
+
+<p>The selector <code>at:</code> consists of a single keyword that ends with a colon, signifying that it should be followed by an argument; in this case, an integer indicating which element we want to access.
+Pharo counts indices starting from 1; therefore the message <code>at: 2</code> will access the second element of the receiver.</p>
+
+<pre><code>'hello' at: 2
+&gt;&gt;&gt;$e</code></pre>
+
+<h4 id="keyword-based-messages-with-multiple-arguments">Keyword-based messages with multiple arguments</h4>
+<p>To pass more than one argument, a single message can have as many colon-terminated keywords as necessary, each followed by an argument, like this:</p>
+
+<pre><code>'hello' copyFrom: 1 to: 3
+&gt;&gt;&gt; 'hel'</code></pre>
+
+<p>This is one single message, whose selector is really <code>copyFrom:to:</code>.
+Note how naturally it reads and how, with well-chosen terms, each keyword of the selector documents the argument that follows it.</p>
+
+<p>In the syntax, you are free to use as much white space as needed between the keywords and the arguments, and like unary messages, the convention is to name each keyword using lower camel case.</p>
+
+<h4 id="binary-messages">Binary messages</h4>
+<p>Binary messages visually differ from the other two kinds because their selectors can only be composed of symbols.
+They always expect a single argument, even though they do not end in a colon.</p>
+
+<p>The main use of binary messages is as arithmetic operations, for instance sending the message <code>+</code> to the integer <code>1</code>, with <code>2</code> as argument:</p>
+
+<pre><code>1 + 2</code></pre>
+
+<p>But there are some other widely-used binary messages outside of arithmetics; for example, the message (selector) for string concatenation is a single comma:</p>
+
+<pre><code>'Hello' , ' Pharoers'
+&gt;&gt;&gt; 'Hello Pharoers'</code></pre>
+
+<p>Here, the receiver is <code>'Hello'</code> and <code>' Pharoers'</code> is the argument.</p>
+
+<q id="note">The <i>receiver</i> is the object to which a message is sent; it is always first in a message, followed by the <i>selector</i> and arguments.</q>
+<q id="note"><i>Unary messages</i> look like words and have no parameters beside their receiver. <i>Binary messages</i> have selectors made of symbols and have one parameter. <i>Keyword messages</i> take a parameter after each colon in their selector.</q>
+<q id="note">A message is composed of a receiver, a message name, called its selector and optional arguments. By language abuse, we sometimes use message when in fact we mean the selector of the message. <code>,</code> is a message selector and <code>'a' ,'b'</code> is a message.</q>
+<q id="note">The preferred naming convention for unary and keyword selectors is lower camel case, <code>likeThis:orThat:</code>.</q>
+<h3 id="which-message-is-executed-first"><span class="number">2.2</span> Which message is executed first?</h3>
+<p>Simpler messages take precedence over the more complex ones.
+This very simple rule determines execution order when messages of different kinds appear in the same expression.
+This means that unary messages are evaluated first, then binary messages, and finally keyword-based messages.</p>
+
+<p>Together, the message syntax and precedence rules keep complex expressions elegant and readable:</p>
+
+<pre><code>'string' asUppercase copyFrom: -1 + 2 to: 6 - 3
+&gt;&gt;&gt; STR</code></pre>
+
+<p>When message precedence does not match what you mean, you can force the execution order using parentheses.
+In the following example, the expression inside the parentheses is evaluated first; this yields a three-character string <code>'STR'</code>, which then receives the message <code>reversed</code>.</p>
+
+<pre><code>('string' asUppercase first: 9 / 3) reversed
+&gt;&gt;&gt; 'RTS'</code></pre>
+
+<p>Finally, note how <code>copyFrom:to:</code> and <code>first:</code> were sent to the result of <code>asUppercase</code>.
+All messages are expressions whose result can be the receiver of a subsequent message; this is called <i>message chaining</i>.
+Unless the precedence rule applies, chained messages execute in reading order, from left to right.
+This is quite natural for unary messages:</p>
+
+<pre><code>'abcd' allButFirst reversed
+&gt;&gt;&gt; 'dcb'
+
+'abcd' reversed allButFirst
+&gt;&gt;&gt; 'cba'</code></pre>
+
+<p>Note however that the chaining rule applies without exception, even to binary messages that look like arithmetic operators:</p>
+
+<pre><code>1 + 2 * 10
+&gt;&gt;&gt; 30</code></pre>
+
+<p>Finally, keyword messages cannot be chained together without using parentheses, since the chain would look like a single big keyword message.</p>
+
+<h3 id="sending-messages-to-classes"><span class="number">2.3</span> Sending messages to classes</h3>
+<p>Where do new objects come from?
+Well, in Pharo, object creation is just another form of computation, so it happens by sending a message to the class itself.
+For example, we can ask the class <code>String</code> to create an empty string by sending it the message <code>new</code>.</p>
+
+<pre><code>String new
+&gt;&gt;&gt; ''</code></pre>
+
+<p>Classes are really objects that are known by name, so they provide a useful entry point to the system; creating new objects is just a particular use-case.
+Some classes understand messages that return specific instances, like the class <code>Float</code> that understands the message <code>pi</code>.</p>
+
+<pre><code>Float pi
+&gt;&gt;&gt; 3.141592653589793</code></pre>
+
+<q id="note">The naming convention for class names is upper camel case, <code>LikeThis</code>; this is the convention for all non-local names, i.e. shared or global variables.</q>
+<h3 id="local-variables-and-statement-sequences"><span class="number">2.4</span> Local variables and statement sequences</h3>
+<p>Local variables are declared by writing their name between vertical bars; their value can be set using the assignment statement <code>:=</code>.
+Successive statements are <i>separated</i> using a period, which makes them look like sentences.</p>
+
+<pre><code>| anArray |
+anArray := Array new: 3.
+anArray at: 1 put: true.
+anArray at: 2 put: false.
+anArray
+&gt;&gt;&gt; #(true false nil)</code></pre>
+
+<p>In the code above, a new three-element array is created, and a reference to it is stored in <code>anArray</code>.
+Then, its first two elements are set using the <code>at:put:</code> message, leaving the last element uninitialized; indexing is one-based, like normal humans count.</p>
+
+<p>The final statement determines the value of the whole sequence; it is shown using the syntax for literal arrays <code>#( … )</code>.
+The first element is the boolean constant <code>true</code>, the second its counterpart <code>false</code>.
+Uninitialised elements remain <code>nil</code>, the undefined object constant.</p>
+
+<q id="note">The first element of a collection is at index <code>1</code>.</q>
+<q id="note">The naming convention for local variables is lower camel case; variable names often start with an indefinite article, since they refer to otherwise anonymous objects.</q>
+<q id="note">There are <i>only six reserved keywords</i>, and all are pseudo-variables: the <code>true</code>, <code>false</code>, and <code>nil</code> object constants, and <code>self</code>, <code>super</code> and <code>thisContext</code>, which we talk about later.</q>
+<h3 id="about-literal-objects"><span class="number">2.5</span> About literal objects</h3>
+<p>Most objects in Pharo are created programmatically, by sending a message like <code>new</code> to a class.
+In addition, the language syntax supports creating certain objects by directly expressing them in the code.
+For example the expression  <code>#(true false nil)</code> is equivalent to the previous snippet using <code>Array new</code>.</p>
+
+<p>In the same way, <code>$A</code> is equivalent to <code>Character codePoint: 65</code>:</p>
+
+<pre><code>Character codePoint: 65
+&gt;&gt;&gt; $A</code></pre>
+
+<h3 id="sending-multiple-messages-to-the-same-object"><span class="number">2.6</span> Sending multiple messages to the same object</h3>
+<p>We often need to send multiple messages to the same receiver, in close succession.
+For instance, to build a long string without doing too many concatenations, we use a stream:</p>
+
+<pre><code>| aStream |
+aStream := (String new: 100) writeStream.
+aStream nextPutAll: 'Today, '.
+aStream nextPutAll: Date today printString.
+aStream contents
+&gt;&gt;&gt; 'Today, 28 January 2017'</code></pre>
+
+<p>Repeating <code>aStream</code> is tedious to read.
+To make this flow better, we group the three messages into a <i>message cascade</i>, separating them with semicolons, and stating the receiver only once at the beginning:</p>
+
+<pre><code>| aStream |
+aStream := (String new: 100) writeStream.
+aStream 
+	nextPutAll: 'Today, ';
+	nextPutAll: Date today printString;
+	contents
+&gt;&gt;&gt; 'Today, 28 January 2017'</code></pre>
+
+<p>Like with statement sequences, the cascade as a whole returns the value of its last message.
+Here is another example and its cascaded version:</p>
+
+<pre><code>| anArray |
+anArray := Array new: 2. 
+anArray at: 1 put: true.
+anArray at: 2 put: false.
+anArray
+&gt;&gt;&gt; #(true false)</code></pre>
+
+<pre><code>(Array new: 2)
+	at: 1 put: true;
+	at: 2 put: false;
+	yourself
+&gt;&gt;&gt; #(true false)</code></pre>
+
+<p>
+The three indented messages form a cascade; they are all sent to the same object, the new array.
+The last message, <code>yourself</code>, is particularly useful to conclude cascades, because it returns the object it is sent to.
+This is necessary in this case because the <code>at:put:</code> message would return the assigned element, not the array.</p>
+
+<h3 id="blocks"><span class="number">2.7</span> Blocks</h3>
+<p>Square brackets <code>[</code> and <code>]</code>  specify <i>blocks</i> (also known as lexical closures), pieces of code to be executed later on.</p>
+
+<p>In the following example, the adder local variable is assigned a one argument block. The code inside the block describes the variables it accepts <code>:x</code> and the statements to be executed when it is evaluated <code>x + 1</code>. Evaluating a block is done by sending a message, <code>value:</code> with an actual object as argument. The argument gets bound to the variable and the block is executed, resulting in 101.</p>
+
+<pre><code>| adder |
+adder := [ :x | x + 1 ].
+adder value: 100
+&gt;&gt;&gt; 101
+adder value: 200
+&gt;&gt;&gt; 201</code></pre>
+
+<q id="important">Technically, blocks are <i>lexical closures</i>. Now in a first understanding, they represent kind of anonymous methods that can be stored, passed as arguments, and executed on demand using the messages <code>value</code>, <code>value:</code>...</q>
+<h3 id="control-structures"><span class="number">2.8</span> Control structures</h3>
+<p>Blocks are used to express all control structures, from standard conditionals and loops to the exotic application specific ones, using the normal messaging syntax. For example loops and conditions are all expressed using the message presented previously. There are many loops and conditional in Pharo but they are all using the same principle: a block is passed as argument and the loop definition defines when the block should be executed.</p>
+
+<p>The message <code>timesRepeat</code>: executes multiple time its argument (a block).
+Here we multiply by two a number 10 times.</p>
+
+<pre><code>n := 1.
+10 timesRepeat: [ n := n * 2 ].
+n 
+&gt;&gt;&gt; 1024</code></pre>
+
+<p>Conditionals are expressed by sending one of the messages <code>ifTrue:</code>,
+<code>ifFalse:</code>, <code>ifTrue:ifFalse:</code>, or <code>ifFalse:ifTrue:</code> to the result of a boolean expression.</p>
+
+<pre><code>(17 * 13 &gt; 220)
+	ifTrue: [ 'bigger' ]
+	ifFalse: [ 'smaller' ] 
+&gt;&gt;&gt;'bigger'</code></pre>
+
+<p>The message <code>do:</code> allows one to express a loop over a sequence of objects: a block is executed on each of the elements.</p>
+
+<p>Let us see how we can count the number of character <code>i</code> in a given string. On each character we check
+if the character is an <code>$i</code> and increase the counter value if this is the case.</p>
+
+<pre><code>| count |
+count := 0.
+'Fear is the little-death that brings total obliteration'
+	 do: [:c | c == $i ifTrue: [count := count + 1]].
+count
+&gt;&gt;&gt; 5</code></pre>
+
+<h3 id="methods"><span class="number">2.9</span> Methods</h3>
+<p><figure id="fig:allSatisfy"><img src="Chapters/GettingStarted/figures/allSatisfy.png" alt="Reading or editing a method using a code browser. Topleft pane: list of packages then list of classes then protocols then method lists - middle pane: method definition. Last pane: Quality Assistant." class="fig:allSatisfy" style="width: 95%"><figcaption><span class="number">Figure 2.2</span> Reading or editing a method using a code browser. Topleft pane: list of packages then list of classes then protocols then method lists - middle pane: method definition. Last pane: Quality Assistant.</figcaption></img></figure></p>
+
+<p>Imagine that we want to check that all the objects in a collection hold a given property.
+Here we check that all the numbers in the array are even numbers.</p>
+
+<pre><code>#(2 4 8 16 32) allSatisfy: [ :each | each even ]
+&gt;&gt;&gt; true</code></pre>
+
+<p>But the following is false because not all the numbers are odd.</p>
+
+<pre><code>#(1 2 3 4 5 6) allSatisfy: [ :each | each odd ]
+&gt;&gt;&gt; false</code></pre>
+
+<p>The message <code>allSatisfy:</code> is one of the many super powerful behaviors implemented in <code>Collection</code>. It is called an iterator.</p>
+
+<p>Methods are edited one by one in a code browser, like the one shown in Figure <a href="#fig:allSatisfy">2.2</a>.</p>
+
+<p>The following code is the definition of the method <code>allSatisfy:</code> in the class <code>Collection</code>. The first line specifies the method name, the selector, with names for all arguments. Comments are surrounded by double quotes. Inside a method, <code>self</code> refers to the object itself, the receiver.</p>
+
+<pre><code>allSatisfy: aBlock
+	"Evaluate aBlock with the elements of the receiver.
+	If aBlock returns false for any element return false.
+	Otherwise return true."
+	self do: [:each | (aBlock value: each) ifFalse: [^ false]].
+	^ true</code></pre>
+
+<p>Let us explain the implementation of this method. Using the message <code>do:</code> we iterate over all elements of the collection. For each element we execute block (a predicate) that returns a boolean value and act accordingly. As soon as we get a false value, we stop and return an overall false value. If every evaluation gave us true, we passed the whole test and can return <code>true</code> as the overall result.</p>
+
+<p>In a method, the receiver (<code>self</code>) is the default return value of the whole method. Using a caret (<code>^</code>) in a method allows to return something else, or to return earlier.</p>
+
+<h3 id="resources"><span class="number">2.10</span> Resources</h3>
+<p>This chapter showed you the key syntactic elements. If you want to get a deeper understanding about the syntax please refer to the following mooc videos. The Mooc on Pharo is available at <a target="_blank" href="http://mooc.pharo.org/"><a target="_blank" href="http://mooc.pharo.org/">http://mooc.pharo.org</a></a></p>
+
+<p>Here are direct pointers to the videos we believe will help you to understand the Pharo syntax and key messages:</p>
+
+<ul>
+<li>Syntax in a nutshell <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W1/C019SD-W1-S5-v2.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W1/C019SD-W1-S5-v2.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W1/C019SD-W1-S5-v2.mp4</a></a></li>
+<li>Understanding messages <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S1-v3.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S1-v3.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S1-v3.mp4</a></a></li>
+<li>Pharo for the Java Programmer <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S2-v3.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S2-v3.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S2-v3.mp4</a></a></li>
+<li>Message precedence <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S3-v3.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S3-v3.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S3-v3.mp4</a></a></li>
+<li>Sequence and cascade <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S3-v3.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S3-v3.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S3-v3.mp4</a></a></li>
+<li>Blocks <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S6-v2.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S6-v2.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S6-v2.mp4</a></a></li>
+<li>Loops <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S7-v2.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S7-v2.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S7-v2.mp4</a></a></li>
+<li>Booleans and collections <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S8-v2.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S8-v2.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S8-v2.mp4</a></a></li>
+<li>Class and Method Definition <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W1/C019SD-W1-S6-v3.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W1/C019SD-W1-S6-v3.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W1/C019SD-W1-S6-v3.mp4</a></a></li>
+<li>Understanding return <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S11-v1.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S11-v1.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S11-v1.mp4</a></a></li>
+<li>Parentheses <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S9-v3.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S9-v3.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S9-v3.mp4</a></a></li>
+<li>Yourself <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S10-v3.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S10-v3.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S10-v3.mp4</a></a></li>
+<li>Variables <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S3-v3.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S3-v3.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S3-v3.mp4</a></a></li>
+<li>Essential collections <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S7-v3.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S7-v3.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S7-v3.mp4</a></a></li>
+<li>Iterators <a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S9-v3.mp4"><a target="_blank" href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S9-v3.mp4">http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S9-v3.mp4</a></a></li>
+</ul>
+<h3 id="conclusion"><span class="number">2.11</span> Conclusion</h3>
+<p>You have three kinds of messages and the simpler are executed prior to more complex one. Hence unary messages are executed before binary and binary before keyword-based messages.
+Blocks are anonymous methods that can be pass around and used to define control structures and loops.</p>
+
+<p>You now know enough to read 95% of Pharo code. Remember, it is all just messages being sent to objects.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="getting-in-touch-with.html">← Getting in touch with Pharo</a>
+        <a class="next" rel="next" href="challenge-yourself.html">Challenge yourself →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revisiting objects and classes</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="revisiting-objects-and.html" aria-current="page"><span class="number">8</span> Revisiting objects and classes</a>
+            
+            <ol>
+              
+              <li><a href="#a-simple-and-naive-file-system"><span class="number">8.1</span> A simple and naive file system</a></li>
+              
+              <li><a href="#studying-a-first-scenario"><span class="number">8.2</span> Studying a first scenario</a></li>
+              
+              <li><a href="#defining-a-class"><span class="number">8.3</span> Defining a class</a></li>
+              
+              <li><a href="#printing-a-directory"><span class="number">8.4</span> Printing a directory</a></li>
+              
+              <li><a href="#adding-files"><span class="number">8.5</span> Adding files</a></li>
+              
+              <li><a href="#one-message-and-multiple-methods"><span class="number">8.6</span> One message and multiple methods</a></li>
+              
+              <li><a href="#objects-stepping-back"><span class="number">8.7</span> Objects: stepping back</a></li>
+              
+              <li><a href="#examples-of-distribution-of-responsibilities"><span class="number">8.8</span> Examples of distribution of responsibilities</a></li>
+              
+              <li><a href="#important-points"><span class="number">8.9</span> Important points</a></li>
+              
+              <li><a href="#distribution-of-responsibilities"><span class="number">8.10</span> Distribution of responsibilities</a></li>
+              
+              <li><a href="#so-far-so-good-not-fully"><span class="number">8.11</span> So far so good? Not fully!</a></li>
+              
+              <li><a href="#conclusion-5"><span class="number">8.12</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="revisiting-objects-and-classes"><span class="number">8</span> Revisiting objects and classes</h2>
+<p>In the previous chapter, we presented objects and classes via simple examples. In this chapter, we introduce a little bit more elaborated example: a little file system where we revisit everything and extend it to explain <i>late binding</i>, <i>distribution of responsibilities</i> and <i>delegation</i>. The file example will be extended to present <i>inheritance</i> in Chapter <a href="inheritance-incremental.html#cha:inheritance">13</a>.</p>
+
+<h3 id="a-simple-and-naive-file-system"><span class="number">8.1</span> A simple and naive file system</h3>
+<p>We start to present a simple example that we use to present and explain the concepts: a simple and naive file system as shown in Figure <a href="#figdirectories">8.1</a>.
+What the diagram shows is that we have:</p>
+
+<ul>
+<li>files that also have a name and some contents. Here we get three different files <code>Babar</code>, <code>Astroboy</code>, and <code>tintinEtLesPicaros</code>.</li>
+<li>directories that have a name and can contain other files or directories. Here we get the <code>manga</code>, <code>comics</code>, <code>oldcomics</code>, and <code>belgiumSchool</code> directories. Directories can be nested: <code>comics</code> contains three repositories. The <code>belgiumSchool</code> directory contains <code>tintinEtLesPicaros</code>.</li>
+</ul>
+<p><figure id="figdirectories"><img src="Chapters/OOPNutshell/figures/comicsFileTree.png" alt="Some directories and files organized in a file system. " style="width: 50%"><figcaption><span class="number">Figure 8.1</span> Some directories and files organized in a file system. </figcaption></img></figure></p>
+
+<h3 id="studying-a-first-scenario"><span class="number">8.2</span> Studying a first scenario</h3>
+<p>Since what we want to develop may be a bit unclear for us, let us define first an example.
+In the rest of this book, we will code such examples as tests that can automatically be executed.
+For now, it would make the discourse too complex, so we just use little code examples.</p>
+
+<p>We create two directories.</p>
+
+<pre><code>| dComics dOldComics dManga |
+dComics := MFDirectory new name: 'comics'.
+dOldComics := MFDirectory new name: 'oldcomics'.</code></pre>
+
+<p>We add the oldcomics folder to comics and we check that the parent-child relationship is well set.</p>
+
+<pre><code>...
+dComics addElement: dOldComics. 
+dOldComics parent == dComics
+&gt;&gt;&gt; true</code></pre>
+
+<p>Here we verify that the parent of <code>dOldComics</code> is <code>dComics</code>: the message <code> == </code> checks that the receiver is the same object than the argument.</p>
+
+<p>You can also inspect the receiver as follows and if you click on the instance variable parent of the receiver you should obtain the situation depicted by Figure <a href="#inspectingComics">8.2</a>.</p>
+
+<pre><code>...
+dOldComics inspect</code></pre>
+
+<p><figure id="inspectingComics"><img src="Chapters/OOPNutshell/figures/inspectingComics.png" alt="Inspecting  dOldComics  and clicking on the  parent  variable. " style="width: 70%"><figcaption><span class="number">Figure 8.2</span> Inspecting <code>dOldComics</code> and clicking on the <code>parent</code> variable. </figcaption></img></figure></p>
+
+<p>We continue with some queries.</p>
+
+<pre><code>...
+dComics parent
+&gt;&gt;&gt; nil</code></pre>
+
+<p>Here we verify that <code>dOldComics</code> is comprised of the children of <code>dComics</code>.</p>
+
+<pre><code>...
+dComics children includes: dOldComics. 
+&gt;&gt;&gt; true</code></pre>
+
+<p>We create a new repository and we check that once added to a parent repository, it is included in the
+children.</p>
+
+<pre><code>dManga := MFDirectory new name: 'manga'.
+dComics addElement: dManga. 
+dComics children includes: dManga
+&gt;&gt;&gt; true</code></pre>
+
+<p><figure id="directories"><img src="Chapters/OOPNutshell/figures/DirectoryAndInstancesV0.pdf" alt="The  Directory  class and some instances (directories). " style="width: 35%"><figcaption><span class="number">Figure 8.3</span> The <code>Directory</code> class and some instances (directories). </figcaption></img></figure></p>
+
+<h3 id="defining-a-class"><span class="number">8.3</span> Defining a class</h3>
+<p>Let us start by defining the directory class.</p>
+
+<pre><code>Object &lt;&lt; #MFDirectory
+	slots: { #parent . #name . #files };
+	package: 'MyFS'</code></pre>
+
+<p>When we create a directory, its files is an empty ordered collection. This is what we express in the following method <code>initialize</code>.</p>
+
+<pre><code>MFDirectory &gt;&gt; initialize
+	files := OrderedCollection new</code></pre>
+
+<p>A newly created object is sent the message <code>initialize</code> just after its creation. Therefore the <code>initialize</code> method is executed.</p>
+
+<p>Now we can write the method <code>addElement:</code>.
+(To keep things simple, note that we consider that when a file is added to a directory, it does not belong to another directory. This behavior could be implemented by <code>aFile moveTo: aDirectory</code>)
+Adding a file to a directory means: (1) that the parent of the file is changed to be the directory to which it is added, (2) that the added file is added to the list of files contained in the directory.</p>
+
+<pre><code>MFDirectory &gt;&gt; addElement: aFile
+	aFile parent: self. 
+	files add: aFile</code></pre>
+
+<p>Note that the method name <code>addElement:</code> is not nice but we chose it on purpose so that you do not believe that delegating requires that the methods have the same name.
+An object can delegate its part of duties to another object by simply passing a message.</p>
+
+<p>We should then define the methods <code>name:</code>, <code>parent:</code>, <code>parent</code>, and <code>children</code> to be able to run our example.</p>
+
+<pre><code>MFDirectory &gt;&gt; name: aString
+	name := aString</code></pre>
+
+<pre><code>MFDirectory &gt;&gt; parent: aFile
+	parent := aFile</code></pre>
+
+<pre><code>MFDirectory &gt;&gt; parent
+	^ parent</code></pre>
+
+<pre><code>MFDirectory &gt;&gt; children
+	^ files</code></pre>
+
+<p>With such method definitions, our little example should run.
+It should not print the same results because we have not changed the printing of the objects yet.</p>
+
+<h4 id="a-first-little-analysis">A first little analysis</h4>
+<p>When we look at the implementation of the method to add a file to a directory we see that the class <code>MFDirectory</code> used another class <code>OrderedCollection</code> to store the information about the files it contains.
+An ordered collection is a quite complex object: it can insert, remove elements, grow its size, and many more operations.</p>
+
+<p>We say that the class <code>MFDirectory</code> delegates a part of its duties (to keep the information of the files it contains) to the class <code>OrderedCollection</code>.
+In addition, when an object is executed, the object to which it may delegate part of its computation may change dynamically.</p>
+
+<p>Such behavior is not specific to object-oriented programming, in procedural languages we can call another function defined on a data structure.
+Now with object-oriented programming, there is a really important point: an object will send messages to other objects (even from the same class) and such message send will use the message offered by the receiver.
+There is normally no way for an object to access the internal structure of another object.</p>
+
+<h3 id="printing-a-directory"><span class="number">8.4</span> Printing a directory</h3>
+<p>Now we would like to get the directory printed in a better way.
+Without too much explanation, you should know that the method <code>printOn: aStream</code> of an object is executed when the system or we send the message <code>printString</code> to an object. So we can specialize it.</p>
+
+<p>The argument passed to the method <code>printOn:</code> is a stream.
+A stream is an object in which we can store information one after the other in sequence using the message <code>&lt;&lt;</code>.
+The argument of <code>&lt;&lt;</code> should be a sequence of objects such as a string (which is a sequence of characters).</p>
+
+<pre><code>MFDirectory &gt;&gt; printOn: aStream
+	aStream &lt;&lt; name</code></pre>
+
+<p>Let us try.</p>
+
+<pre><code>| el1 el2 |
+el1 := MFDirectory new name: 'comics'.
+el2 := MFDirectory new name: 'oldcomics'.
+el1 addElement: el2.
+el1 printString
+&gt;&gt;&gt; 'comics'</code></pre>
+
+<pre><code>...
+el2 printString
+&gt;&gt;&gt; 'oldcomics'</code></pre>
+
+<p>What would be nice is to get the full path so that we can immediately understand the configuration.
+For example, we would like to finish with a '/' to indicate that this is a directory as with the ls command on unix.</p>
+
+<pre><code>| el1 el2 |
+el1 := MFDirectory new name: 'comics'.
+el2 := MFDirectory new name: 'oldcomics'.
+el1 addElement: el2.
+el1 &gt;&gt; printString.
+&gt;&gt;&gt;'comics'</code></pre>
+
+<pre><code>...
+el2 printString
+&gt;&gt;&gt; 'comics/oldcomics/'</code></pre>
+
+<p>A possible definition is the following one:</p>
+
+<pre><code>MFDirectory &gt;&gt; printOn: aStream
+	parent isNil 
+		ifFalse: [ parent printOn: aStream ].
+	aStream &lt;&lt; name.
+	aStream &lt;&lt; '/'</code></pre>
+
+<p><figure id="InstancesRecursion"><img src="Chapters/OOPNutshell/figures/InstancesRecursion.pdf" alt="Navigating an object graph by sending messages to different objects. " style="width: 55%"><figcaption><span class="number">Figure 8.4</span> Navigating an object graph by sending messages to different objects. </figcaption></img></figure></p>
+
+<p>Try it and it should print the expected results.
+What do we see with this definition: it is a kind of recursive definition. The name of a directory is in fact the concatenation (here we just add in the stream but this is the same. ) of the name of its parents (as shown in Figure <a href="#InstancesRecursion">8.4</a>).</p>
+
+<p>Similar to a recursive function navigating a structure composed of similar elements (like a linked list or any structure defined by induction), each parent receives and executes another time the <code>printOn:</code> method and returns the name for its part.</p>
+
+<h3 id="adding-files"><span class="number">8.5</span> Adding files</h3>
+<p>Now we want to add files.
+Once we will have defined files, we will be able to have a graph of objects of different kinds representing our file system with directories and files, as shown in Figure <a href="#Instances">8.5</a>.</p>
+
+<p><figure id="Instances"><img src="Chapters/OOPNutshell/figures/Instances.pdf" alt="A graph of objects to represent our file system. " style="width: 45%"><figcaption><span class="number">Figure 8.5</span> A graph of objects to represent our file system. </figcaption></img></figure></p>
+
+<h4 id="an-example-first">An example first</h4>
+<p>Again let us start with an example.  A file should contain some contents.</p>
+
+<pre><code>| el1 dOldComics |
+el1 := MFFile new name: 'astroboy'; contents: 'The story of a boy turned into a robot that saved the world'.
+dOldComics := MFDirectory new name: 'oldcomics'.
+dOldComics addElement: el1. 
+el1 printString.
+&gt;&gt;&gt;
+'oldcomics/astroboy'</code></pre>
+
+<p><figure id="FileV0"><img src="Chapters/OOPNutshell/figures/FileV0.pdf" alt="A new class and its instances. " style="width: 35%"><figcaption><span class="number">Figure 8.6</span> A new class and its instances. </figcaption></img></figure></p>
+
+<h4 id="a-new-class-definition">A new class definition</h4>
+<p>Again a file needs a name, a parent, and in addition contents.</p>
+
+<p>We define the class <code>MFFile</code> as follows and illustrated in Figure <a href="#FileV0">8.6</a>.
+Note that this solution is not satisfactory and we will propose a much better one later.</p>
+
+<pre><code>Object &lt;&lt; #MFFile
+	slots: { #parent . #name . #contents };
+	package: 'MyFS'</code></pre>
+
+<p>As for the directories we initialize the contents of a file with a default value.</p>
+
+<pre><code>MFFile &gt;&gt; initialize
+	contents := ''</code></pre>
+
+<p>We should define the same methods for <code>parent:</code>, <code>parent</code>, and <code>name:</code>. This duplication coupled with the fact that we get nearly the same class definition should be a clear warning. It means that we do not reuse enough and that if we want to change the system we will have to change it multiple times and we may introduce errors by forgetting one place.
+We will address it in Chapter <a href="inheritance-incremental.html#cha:inheritance">13</a>. In addition, we will add a method to be able to set the contents of the file <code>contents:</code>.</p>
+
+<pre><code>MFFile &gt;&gt; name: aString
+	name := aString</code></pre>
+
+<pre><code>MFFile &gt;&gt; parent: aFile
+	parent := aFile</code></pre>
+
+<pre><code>MFFile &gt;&gt; parent
+	^ parent</code></pre>
+
+<pre><code>MFFile &gt;&gt; contents: aString
+	contents := aString</code></pre>
+
+<p>At this stage we should be able to define a file and adding it to a directory.</p>
+
+<p>Now we should redefine the implementation of <code>printOn:</code> to print nicely the name of file:</p>
+
+<pre><code>MFFile &gt;&gt; printOn: aStream
+	aStream &lt;&lt; name</code></pre>
+
+<p>But this is not enough because we will just get <code>'astroboy'</code> and not <code>'oldcomics/astroboy'</code>.
+So let us improve it.</p>
+
+<pre><code>MFFile &gt;&gt; printOn: aStream
+	parent isNil ifFalse: [ 
+		parent printOn: aStream ].
+	aStream &lt;&lt; name</code></pre>
+
+<p><figure id="InstancesRecursion2"><img src="Chapters/OOPNutshell/figures/InstancesRecursion2.pdf" alt="Printing a file: Sending messages inside a graph of different objects. " style="width: 60%"><figcaption><span class="number">Figure 8.7</span> Printing a file: Sending messages inside a graph of different objects. </figcaption></img></figure></p>
+
+<h3 id="one-message-and-multiple-methods"><span class="number">8.6</span> One message and multiple methods</h3>
+<p>Before continuing let us step back and analyze the situation.
+We send the same messages and we execute different methods.</p>
+
+<pre><code>| el1 dOldComics dComics |
+el1 := MFFile new name: 'astroboy'; contents: 'The story of a boy turned into a robot that saved the world'.
+dOldComics := MFDirectory new name: 'oldcomics'.
+dComics := MFDirectory new name: 'comics'.
+dComics addElement: dOldComics.
+dOldComics addElement: el1. 
+el1 printString.
+&gt;&gt;&gt;
+'comics/oldcomics/astroboy'</code></pre>
+
+<pre><code>dOldComics printString.
+&gt;&gt;&gt;
+'comics/oldcomics/'</code></pre>
+
+<p>What we see is that there is one message and several implementations of methods and that sending a message will find and execute the correct method. For example, there are two methods <code>printOn:</code> one for file and one for directory but only one message <code>printOn:</code> sent from the <code>printString</code> message.</p>
+
+<p>In addition, a method can be defined in terms of messages sent to other objects. The method <code>printOn:</code> for directories is complex and it delegates the same message to other objects, its parents (as illustrated by Figure <a href="#InstancesRecursion2">8.7</a>). The method <code>addElement:</code> delegates to the OrderedCollection sending a different message <code>add:</code>.</p>
+
+<h3 id="objects-stepping-back"><span class="number">8.7</span> Objects: stepping back</h3>
+<p>Now that we have seen some examples of objects, it is time to step back. Objects are defined by the values of their state, their behavior (shared with the other instances of their class), and their identity.</p>
+
+<ul>
+<li><strong>State.</strong> Each object has specific values. While all the instances of classes have the same structure, each instance has its own values. Each object has a private state. Clients or users of an object cannot access the state of the object if this one does not explicitly expose it by defining a method returning it (such as the message <code>count</code>).</li>
+<li><strong>Behavior.</strong> Each object shares the same behavior with all the instances of its class.</li>
+<li><strong>Identity.</strong> An object has an identity. It is unique. <code>oldcomics</code> is clearly not the same as <code>comics</code>.</li>
+</ul>
+<h3 id="examples-of-distribution-of-responsibilities"><span class="number">8.8</span> Examples of distribution of responsibilities</h3>
+<p>We will now implement two functionalities: the size of directories and a search based on the contents of the files. This will set the context to explain the key concept of the distribution of responsibilities.</p>
+
+<p><figure id="NutFileDirectoryV1"><img src="Chapters/OOPNutshell/figures/FileDirectoryV1.pdf" alt="Two classes understanding similar sets of messages. " style="width: 60%"><figcaption><span class="number">Figure 8.8</span> Two classes understanding similar sets of messages. </figcaption></img></figure></p>
+
+<h4 id="file-size">File size</h4>
+<p>Let us imagine that we want to compute the size of a directory. Note that the size computation we propose is fantasist but this is for the sake of the example. To perform such a computation we should also define what is the size of a file. Again let us start with examples (that you will turn into tests in the future.).</p>
+
+<p>First, we define the file size as the size of its name plus the size of its contents.</p>
+
+<pre><code>| el |
+el := MFFile new name: 'babar'; contents: 'Babar et Celeste'.
+el size = 'babar' size + 'Babar et Celeste' size.
+&gt;&gt;&gt; true</code></pre>
+
+<p>Second, we define the directory size as its name size plus the size of its files and we add an arbitrary number: 2.</p>
+
+<pre><code>| p2 el |
+el := MFFile new name: 'babar'.
+p2 := MFDirectory new name: 'oldcomics'.
+p2 addElement: el. 
+p2 size = 'oldcomics' size + 'babar' size + 2
+&gt;&gt;&gt; true</code></pre>
+
+<p>We define two methods <code>size</code> one for each class (see Figure <a href="#NutFileDirectoryV1">8.8</a>).</p>
+
+<pre><code>MFFile &gt;&gt; size
+	^ contents size + name size</code></pre>
+
+<pre><code>MFDirectory &gt;&gt; size
+	| sum |
+	sum := 0.
+	files do: [ :each | sum := sum + each size ].
+	sum := sum + name size.
+	sum := sum + 2.
+	^ sum</code></pre>
+
+<h4 id="search">Search</h4>
+<p>Let us imagine that we want to search the files matching a given string.
+Here is an example to set the stage.</p>
+
+<pre><code>| p el1 el2 |
+p := MFDirectory new name: 'comics'.
+el1 := MFFile new name: 'babar'; contents: 'Babar et Celeste'.
+p addElement: el1.
+el2 := MFFile new name: 'astroboy'; contents: 'super cool robot'.
+p addElement: el2.
+(p search: 'Ba') includes: el1
+&gt;&gt;&gt; true</code></pre>
+
+<p>To implement this behavior is quite simple: we define two methods one in each class (as shown in Figure <a href="#NutFileDirectoryV1">8.8</a>).</p>
+
+<pre><code>MFFile &gt;&gt; search: aString
+	^ '*', aString, '*' match: contents</code></pre>
+
+<pre><code>MFDirectory &gt;&gt; search: aString
+	^ files select: [ :eachFile | eachFile search: aString ]</code></pre>
+
+<h3 id="important-points"><span class="number">8.9</span> Important points</h3>
+<p>These two examples show several <i>important</i> points:</p>
+
+<h4 id="modular-thinking">Modular thinking</h4>
+<p>Each method is modular in the sense that it only focuses on the behavior of the objects specified by the class defining the method.
+Such a method can be built by sending other messages without having to know how such methods are defined.
+It also means that we can add a new kind of class or remove one without having to change the entire system.</p>
+
+<h4 id="sending-a-message-is-making-a-choice">Sending a message is making a choice</h4>
+<p>We send <i>one</i> message and one method amongst the <i>multiple</i> methods with the same name will be selected and executed.
+The method is dynamically looked up during execution as we will see in Chapters <a href="inheritance-incremental.html#cha:inheritance">13</a> and <a href="sending-a-message-is.html#cha:messages">12</a>.
+Sending a message is selecting the corresponding method having the same name as the message.
+When a message is sent to an object the corresponding method is looked in the class of the message receiver.</p>
+
+<q id="important">Sending a message is making a choice. The system selects for us the correct method to be executed.</q>
+<h4 id="polymorphic-objects">Polymorphic objects</h4>
+<p>We created objects (files and directories) that are <i>polymorphic</i> in the sense that they offer a common set of messages (<code>search:</code>, <code>printOn:</code>, <code>size</code>, <code>parent:</code>). This is really powerful because we can compose objects (for example add a new directory or a file) without changing the program.
+Imagine that if we add a new kind of directory we can introduce it and reuse extending programs based on <code>size</code> or <code>search:</code> <i>without</i> changing them.</p>
+
+<q id="important">Creating polymorphic objects is a really powerful capability. It lets us extend and change programs without breaking them.</q>
+<p>Most of the time it is better to give similar names to methods performing similar behavior, and different names when the methods are doing semantically different actions so that users of the objects are not confused.</p>
+
+<p>The  polymorphism is really a strength of object-oriented languages because it allows one to treat different objects, i.e., instances of different classes, uniformly as soon as they implement the same messages.
+Polymorphism works in synergy with the idea that an object is responsible to decide how to react to message reception.
+Indeed, the fact that different objects can implement the same messages lets us write code that only tells the objects to execute some actions without worrying exactly about the kind of objects.</p>
+
+<h3 id="distribution-of-responsibilities"><span class="number">8.10</span> Distribution of responsibilities</h3>
+<p>This example as well as the printing of files and directories illustrates something fundamental in
+object-oriented programming: the distribution of responsibilities.
+With the distribution of responsibilities,  each kind of object is responsible for a specific behavior, and a more elaborated behavior is composed out of such different behavior.
+The size of a directory is computed based on the size of its files by requesting the files to compute their size.</p>
+
+<h4 id="procedural">Procedural</h4>
+<p>Let us take some time to compare with procedural thinking.
+Computing the size of a list of files and directories would have been expressed as a monolithic behavior sketch below:</p>
+
+<pre><code>sizeOfFiles: files
+	| sum | 
+	sum := 0.
+	files do: [ :aFile | 
+		aFile class = MFFile
+			ifTrue: [ sum := sum + aFile name size + aFile contents size ].
+		aFile class = MFDirectory
+			ifTrue: [ 
+				| fileSum |
+				fileSum := 0.
+				each files do: [:anInsideFile | fileSum := fileSum + anInsideFile name size + anInsideFile contents size ].
+				sum := sum + fileSum + each name size + 2].
+	^ sum	</code></pre>
+
+<p>While this example is a bit exaggerated, we see several points:</p>
+
+<ul>
+<li>First, we explicitly check the kind of structures we are manipulating. If this is a file or directory we do something different.</li>
+<li>Second, the logic of the computation is defined inside the <code>sizeOfFiles:</code> itself, and not in the entities themselves.   This means in particular that such logic cannot be reused.</li>
+<li>A part of the implementation logic is exposed and not in control of the object. It means that if we decide to change the internal structure of our classes, we will have to change this function too.</li>
+<li>Adding a new kind of such as a root directory is not modular. We will have to modify the method <code>sizeOfFiles:</code> function.</li>
+</ul>
+<p>What you should also see when you compare the two versions is that in the procedural version, we have to check the kind of object we manipulate.
+In the object-oriented version, we simply tell the object to perform its own computation and return the result to us.</p>
+
+<q id="important">Don't ask, tell. Object-oriented programming essence is about sending orders not checking state.</q>
+<h3 id="so-far-so-good-not-fully"><span class="number">8.11</span> So far so good? Not fully!</h3>
+<p>We have a system with two classes and it offers some behavior composed out of well-defined local behavior (see Figure <a href="#NutFileDirectoryV1">8.8</a>).
+We can have objects composed out of other objects and messages flow within the graph.
+Object-oriented programming could stop here.
+Now, it is annoying to have to duplicate the structure and some methods between files and directories, and this is what we will see when we will look at inheritance in Chapter <a href="inheritance-incremental.html#cha:inheritance">13</a>.
+Inheritance is a mechanism to specialize incrementally classes from other classes.</p>
+
+<h3 id="conclusion-5"><span class="number">8.12</span> Conclusion</h3>
+<ul>
+<li>A class describes the state (instance variables) and the behavior (methods) of all its instances. The state of an instance is the value of its instance variables and it is specific to one single object while the behavior is shared by all the instances of a class.</li>
+<li>Different objects, instances of different classes, can react differently to the same messages.</li>
+<li>When sending a message, the associated method is found and executed.</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="objects-and-classes.html">← Objects and classes</a>
+        <a class="next" rel="next" href="converter.html">Converter →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Extending superclass behavior</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="extending-superclass.html" aria-current="page"><span class="number">14</span> Extending superclass behavior</a>
+            
+            <ol>
+              
+              <li><a href="#revisiting-printon"><span class="number">14.1</span> Revisiting printOn:</a></li>
+              
+              <li><a href="#improving-the-situation"><span class="number">14.2</span> Improving the situation</a></li>
+              
+              <li><a href="#extending-superclass-behavior-using-super"><span class="number">14.3</span> Extending superclass behavior using super</a></li>
+              
+              <li><a href="#another-example"><span class="number">14.4</span> Another example</a></li>
+              
+              <li><a href="#really-understanding-super"><span class="number">14.5</span> Really understanding super</a></li>
+              
+              <li><a href="#conclusion-11"><span class="number">14.6</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="extending-superclass-behavior"><span class="number">14</span> Extending superclass behavior</h2>
+<p>In the previous chapter we saw that inheritance allows the programmer to factor out and reuse state and behavior. As such inheritance supports the definition of class hierarchy where subclasses specialize behavior of their superclass. We saw that the method look up starts in the class of the receiver and goes up the inheritance chain. We explained that the method found by the lookup is then executed on the receiver of the initial message.
+Finally we showed that a subclass can specialize and override the behavior of its superclass by defining locally a method with the same name than one method of its superclass.</p>
+
+<p>Now inheritance mechanism is even more powerful. With inheritance we can extend locally the behavior of a superclass while reusing it. It is then possible to override a method and in addition to invoke the behavior of the superclass from within the overridden method.</p>
+
+<p>We will continue to use and improve the example of file and directories.</p>
+
+<h3 id="revisiting-printon"><span class="number">14.1</span> Revisiting printOn:</h3>
+<p><figure id="fig:FileDirectorySuperV0"><img src="Chapters/Inheritance/figures/FileDirectorySuperV0.pdf" alt="MFFile  and  MFDirectory  contain duplicated logic in  printOn: . " style="width: 65%"><figcaption><span class="number">Figure 14.1</span> <code>MFFile</code> and <code>MFDirectory</code> contain duplicated logic in <code>printOn:</code>. </figcaption></img></figure></p>
+
+<p>When we look at the following <code>printOn:</code> methods defined in the classes <code>MFDirectory</code> and <code>MFFile</code>
+we see that there is code repetition (as shown in Figure <a href="#fig:FileDirectorySuperV0">14.1</a>).</p>
+
+<p>Here is the repeated code snippet.</p>
+
+<pre><code>parent isNil 
+	ifFalse: [ parent printOn: aStream ].
+aStream &lt;&lt; name</code></pre>
+
+<p>Here is the definition in the two classes:</p>
+
+<pre><code>MFDirectory &gt;&gt; printOn: aStream
+	parent isNil 
+		ifFalse: [ parent printOn: aStream ].
+	aStream &lt;&lt; name.
+	aStream &lt;&lt; '/'</code></pre>
+
+<pre><code>MFFile &gt;&gt; printOn: aStream
+	parent isNil 
+		ifFalse: [ parent printOn: aStream ].
+	aStream &lt;&lt; name</code></pre>
+
+<p>It means that if we define a new subclass we will have probably duplicate the same expression.</p>
+
+<h3 id="improving-the-situation"><span class="number">14.2</span> Improving the situation</h3>
+<p>To improve the situation above we move up the definition of the <code>MFFile</code> class because it also works for <code>MFElement</code> (as shown in Figure <a href="#fig:FileDirectorySuperV1">14.2</a>).</p>
+
+<pre><code>MFElement &gt;&gt; printOn: aStream
+	parent isNil 
+		ifFalse: [ parent printOn: aStream ].
+	aStream &lt;&lt; name</code></pre>
+
+<p><figure id="fig:FileDirectorySuperV1"><img src="Chapters/Inheritance/figures/FileDirectorySuperV1.pdf" alt="Improving the logic (but not fully). " style="width: 65%"><figcaption><span class="number">Figure 14.2</span> Improving the logic (but not fully). </figcaption></img></figure></p>
+
+<pre><code>MFDirectory &gt;&gt; printOn: aStream
+	parent isNil 
+		ifFalse: [ parent printOn: aStream ].
+	aStream &lt;&lt; name.
+	aStream &lt;&lt; '/'</code></pre>
+
+<p>It means that when we will add a new subclass, this class will at least have a default definition for the <code>printOn:</code> method.</p>
+
+<p>Now the duplication of logic is not addressed. The same code is duplicated between the class <code>MFElement</code> and <code>MFDirectory</code>. What we see is that even if the method <code>printOn:</code> of class <code>MFDirectory</code> is overriding the method of its superclass, we would like to be able to invoke the method of the superclass <code>MFElement</code> and to add the behavior <code>aStream &lt;&lt; '/'</code>.</p>
+
+<h4 id="why-self-does-not-work">Why self does not work!</h4>
+<p>The following definition does not work because it introduces an endless loop. Indeed, since the method lookup starts in the class of the receiver and <code>self</code> represents the receiver, it will always find the same method and will not be able to access the method of the superclass.</p>
+
+<pre><code>MFDirectory &gt;&gt; printOn: aStream
+	self printOn: aStream.
+	aStream &lt;&lt; '/'</code></pre>
+
+<p>Let us make sure that you are fully with us. Imagine that we have the following expression:</p>
+
+<pre><code>| p el1 el2 |
+p := MFDirectory new name: 'comics'.
+el1 := MFFile new name: 'babar'; contents: 'Babar et Celeste'.
+p addElement: el1.
+el2 := MFFile new name: 'astroboy'; contents: 'super cool robot'.
+p addElement: el2.
+String streamContents: [:s | p printOn: s ]</code></pre>
+
+<ol>
+<li>We get the message <code>p printOn: s</code>.</li>
+<li>The method <code>printOn:</code> is looked up starting in the class of <code>p</code>, i.e., <code>MFDirectory</code>.</li>
+<li>The method is found and applied on <code>p</code>.</li>
+<li>The message <code>self printOn: aStream</code>  is about to be executed.</li>
+<li>The receiver is <code>self</code> and represents <code>p</code>. The method <code>printOn: aStream</code> is looked up in the class of the receiver,  i.e., <code>MFDirectory</code>.</li>
+<li>The same method is found in the class <code>MFDirectory</code> and the process restarts at point 3.</li>
+</ol>
+<p>In summary, we would like that while doing an override, to use the behavior we are overriding. This is possible as we will see in the following section.</p>
+
+<p><figure id="fig:FileDirectorySuperV2"><img src="Chapters/Inheritance/figures/FileDirectorySuperV2.pdf" alt="Using  super  to invoke the overridden method  printOn: . " style="width: 65%"><figcaption><span class="number">Figure 14.3</span> Using <code>super</code> to invoke the overridden method <code>printOn:</code>. </figcaption></img></figure></p>
+
+<h3 id="extending-superclass-behavior-using-super"><span class="number">14.3</span> Extending superclass behavior using super</h3>
+<p>Let us implement the solution first and discuss it after. We redefine the method <code>printOn:</code> of the class <code>MFDirectory</code> as follows and shown in Figure <a href="#fig:FileDirectorySuperV2">14.3</a>.</p>
+
+<pre><code>MFDirectory &gt;&gt; printOn: aStream
+	super printOn: aStream.
+	aStream &lt;&lt; '/'</code></pre>
+
+<p>What we see is that the method <code>printOn:</code> does not contain anymore the duplicated expressions with the method <code>printOn:</code> of the superclass (<code>MFElement</code>). Instead by using the special variable <code>super</code> the superclass method is invoked. Let us look at it in detail.</p>
+
+<ul>
+<li>The method <code>MFDirectory &gt;&gt; printOn:</code> overrides the method <code>MFElement</code>: it means that during the lookup (activated because the message <code>printOn:</code> has been sent to instances of <code>MFDirectory</code> or future subclasses), the method <code>MFElement &gt;&gt; printOn:</code> cannot be directly found. Indeed when a message is sent to an object, the corresponding method starts in the class of the receiver, therefore the method in <code>MFDirectory</code> is found.</li>
+<li>Using the special variable <code>super</code>, the method lookup is different than with <code>self</code>. When the expression <code>super printOn: aStream</code> is sent, the lookup does not start anymore from the class of the receiver, it starts <i>from the superclass of the class containing the expression</i> <code>super printOn:</code>, i.e. <code>MFElement</code>, therefore the method of the superclass is found and executed.</li>
+<li>Finally, <code>super</code> like <code>self</code> represents the receiver of the messages (for example an instance of the class <code>MFDirectory</code>). Therefore the method is found in the class <code>MFDirectory</code> and executed on the original object that first received the message.</li>
+</ul>
+<p>Let us make sure that you are fully with us. You can compare with the previous execution simulation.</p>
+
+<pre><code>| p el1 el2 |
+p := MFDirectory new name: 'comics'.
+el1 := MFFile new name: 'babar'; contents: 'Babar et Celeste'.
+p addElement: el1.
+el2 := MFFile new name: 'astroboy'; contents: 'super cool robot'.
+p addElement: el2.
+String streamContents: [:s | p printOn: s ]</code></pre>
+
+<ol>
+<li>We get the message <code>p printOn: s</code>.</li>
+<li>The method <code>printOn:</code> is looked up starting in the class of <code>p</code>, i.e., <code>MFDirectory</code>.</li>
+<li>The method is found and applied on <code>p</code>.</li>
+<li>The message <code>super printOn: aStream</code>  is about to be executed.</li>
+<li>The receiver is <code>super</code> and represents <code>p</code>. The method <code>printOn: aStream</code> is looked up in the superclass of the class containing the expression. The class containing the method is <code>MFDirectory</code>, its superclass is then <code>MFElement</code>. The lookup starts from <code>MFElement</code>.</li>
+<li>The method is found in the class <code>MFElement</code> in the class.</li>
+<li>The message <code>parent isNil</code> is treated on the receiver <code>p</code>.</li>
+</ol>
+<p>What we see is that using <code>super</code>, the programmer can extend the superclass behavior and reuse by involving it.</p>
+
+<q id="important"><code>super</code> is the receiver of the message but when we send a message to <code>super</code> the method lookup starts in the superclass of <strong>the class containing</strong> the expression <code>super</code>.</q>
+<h3 id="another-example"><span class="number">14.4</span> Another example</h3>
+<p>Before explaining with a more theoritical scenario <i>super</i> semantics, we want to show another example that illustrates that super expressions do not have to be the first expression of a method. We can invoke the overridden method at any place inside the overriding method.</p>
+
+<p>The example could be more realistic but it shows that super expression does not have to be the first expression of a method.</p>
+
+<p>Let us check the two definitions of the two methods <code>size</code> in <code>MFDirectory</code> and <code>MFFile</code>, we see that <code>name size</code> is used in both.</p>
+
+<pre><code>MFDirectory &gt;&gt; size
+	| sum |
+	sum := 0.
+	files do: [ :each | sum := sum + each size ].
+	sum := sum + name size.
+	sum := sum + 2.
+	^ sum</code></pre>
+
+<pre><code>MFFile &gt;&gt; size
+	^ contents size + name size</code></pre>
+
+<p><figure id="fig:FileDirectorySuperV3"><img src="Chapters/Inheritance/figures/FileDirectorySuperV3.pdf" alt="Using  super  to invoke the overridden method  size . " style="width: 65%"><figcaption><span class="number">Figure 14.4</span> Using <code>super</code> to invoke the overridden method <code>size</code>. </figcaption></img></figure></p>
+
+<p>What we can do is the following: define <code>size</code> in the superclass and invoke it using <code>super</code> as shown in Figure <a href="#fig:FileDirectorySuperV3">14.4</a>. Here is then the resulting situation.</p>
+
+<pre><code>MFElement &gt;&gt; size
+	^ name size</code></pre>
+
+<pre><code>MFFile &gt;&gt; size
+	^ contents size + super size</code></pre>
+
+<pre><code>MFDirectory &gt;&gt; size
+	| sum |
+	sum := 0.
+	files do: [ :each | sum := sum + each size ].
+	sum := sum + super size.
+	sum := sum + 2.
+	^ sum</code></pre>
+
+<p>What you see is that messages sent to <code>super</code> can be used anywhere inside in the overriding method and their results can be used as any other messages.</p>
+
+<h3 id="really-understanding-super"><span class="number">14.5</span> Really understanding super</h3>
+<p>To convince you that <code>self</code> and <code>super</code> points to the same object you can use the message <code>==</code> to verify it as follows:</p>
+
+<pre><code>MFFile &gt;&gt; funky
+	^ super == self</code></pre>
+
+<pre><code>MFFile new funky
+&gt;&gt;&gt; true</code></pre>
+
+<q id="important"><code>super</code> is a special variable: <code>super</code> (just like <code>self</code>) is the receiver of the message!</q>
+<p>Now we take some time to look abstractly at what we presented so far.
+Imagine a situation as illustrated by Figure <a href="#fig:LookupWithSuperInSuperclassMethodThreeClasses">14.5</a>.</p>
+
+<pre><code>A new bar
+&gt;&gt;&gt; ...
+C new bar
+&gt;&gt;&gt; ...
+D new bar
+&gt;&gt;&gt; ...</code></pre>
+
+<h4 id="solution-2">Solution</h4>
+<p><figure id="fig:LookupWithSuperInSuperclassMethodThreeClasses"><img src="Chapters/Inheritance/figures/LookupWithSuperInSuperclassMethodThreeClasses.pdf" alt="Example to understand  super . " style="width: 35%"><figcaption><span class="number">Figure 14.5</span> Example to understand <code>super</code>. </figcaption></img></figure></p>
+
+<p>The solutions are the following ones:</p>
+
+<pre><code>A new bar
+&gt;&gt;&gt; 10
+C new bar
+&gt;&gt;&gt; 20
+D new bar
+&gt;&gt;&gt; 100</code></pre>
+
+<p>Let us examine the evaluation of the message <code>aD bar</code>:</p>
+
+<ol>
+<li><code>aD</code>'s class is <code>D</code>.</li>
+<li>There is no method <code>bar</code> in D.</li>
+<li>The method look up in <code>C</code>. The method <code>bar</code> is found.</li>
+<li>The method <code>bar</code> of <code>C</code> is executed.</li>
+<li>The message <code>bar</code> is sent to <code>super</code>.</li>
+<li><code>super</code> represents <code>aD</code> but the lookup starts in the superclass of the class containing the expression <code>super</code> so it starts in <code>B</code>.</li>
+<li>The method <code>bar</code> is not found in <code>B</code>, the lookup continues in <code>A</code>.</li>
+<li>The method <code>bar</code> is found in <code>A</code> and it is executed on the receiver i.e., <code>aD</code>.</li>
+<li>The message <code>foo</code> is sent to <code>aD</code>.</li>
+<li>The method <code>foo</code> is found in <code>D</code> and executed. It returns 50.</li>
+<li>Then to finish the execution of method <code>bar</code> in <code>C</code>, the rest of the expression <code>+ self foo</code> should be executed.</li>
+<li>Message <code>self foo</code> returns 50 too, so the result returns 100.</li>
+</ol>
+<q id="important">The difference between <code>self</code> and <code>super</code> is that when we send a message to <code>super</code> the method lookup starts in the superclass of the class containing the expression <code>super</code>.</q>
+<h3 id="conclusion-11"><span class="number">14.6</span> Conclusion</h3>
+<p>In this chapter we saw that inheritance also supports the possibilities to override a method and from this overriding method to invoke the overridden one. This is done using the special variable <code>super</code>.
+<code>super</code> is the receiver of the message like <code>self</code>. The difference is that the method lookup is changed when messages are sent to <code>super</code>. The method is looked up in the superclass of the class containing the message sent to <code>super</code>.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="inheritance-incremental.html">← Inheritance: Incremental definition and behavior reuse</a>
+        <a class="next" rel="next" href="a-little-expression-interpreter.html">A little expression interpreter →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

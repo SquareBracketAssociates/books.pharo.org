@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Objects and classes</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="objects-and-classes.html" aria-current="page"><span class="number">7</span> Objects and classes</a>
+            
+            <ol>
+              
+              <li><a href="#objects-entities-reacting-to-messages"><span class="number">7.1</span> Objects: Entities reacting to messages</a></li>
+              
+              <li><a href="#messages-and-methods"><span class="number">7.2</span> Messages and Methods</a></li>
+              
+              <li><a href="#an-object-is-a-protective-entity"><span class="number">7.3</span> An object is a protective entity</a></li>
+              
+              <li><a href="#an-object-protects-its-data"><span class="number">7.4</span> An object protects its data</a></li>
+              
+              <li><a href="#with-counters"><span class="number">7.5</span> With counters</a></li>
+              
+              <li><a href="#a-class-blueprint-or-factory-of-objects"><span class="number">7.6</span> A class: blueprint or factory of objects</a></li>
+              
+              <li><a href="#class-and-instances-are-really-different"><span class="number">7.7</span> Class and instances are really different</a></li>
+              
+              <li><a href="#conclusion-4"><span class="number">7.8</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">7</span> Objects and classes</h2><a id="cha:objectclass"></a>
+<p>Pharo is a pure object-oriented programming language, i.e., everything in the system is an object i.e., an entity created by a class and reacting to messages.</p>
+
+<p>This chapter presents key mechanisms that characterize object-oriented programming: <i>objects</i>, <i>classes</i>,  <i>messages</i> and <i>methods</i>. We will also present <i>the distribution of responsibilities</i> which is one of the heart of object-oriented programming as well as <i>delegation</i> and <i>composition</i>. Each of these mechanisms will be used and illustrated again in this book.</p>
+
+<p>We start explaining objects, classes, messages, and methods with really simple examples. Then in the following chapter, we will propose an example that illustrates what we can achieve by using objects of different classes.</p>
+
+<p><i>Objects</i> are created by <i>classes</i> that are object factories: Classes define the structure and behavior of objects (in terms of methods) but each object has a specific state and identity that is unique and different from all other objects. A class defines <i>methods</i> that specify how a <i>message</i> is actually implemented.</p>
+
+<h3 id="objects-entities-reacting-to-messages"><span class="number">7.1</span> Objects: Entities reacting to messages</h3>
+<p><i>Instead of a bit-grinding processor ... plundering data structures, we have a universe of well-behaved objects that courteously ask each other to carry out their various desires.</i> <cite>Inga81a</cite></p>
+
+<p>Object-oriented programming is about creating objects and interacting with objects by sending them <i>messages</i>.</p>
+
+<p>Objects are entities that communicate via messages and react to messages by executing certain tasks. Moreover, objects hide the way they define these tasks: the client of an object sends a message to an object and the system find the corresponding method to be executed. Messages specify what should be done and methods how it should be done.</p>
+
+<h4 id="turtles-as-an-example">Turtles as an example</h4>
+<p>Imagine that we have a graphics turtle like a LOGO turtle. We do the following: create a turtle, send it messages to make it move, turn, and trace some drawings. Let us look at this in detail.</p>
+
+<h4 id="creating-an-object">Creating an object</h4>
+<p>First we create a new turtle by sending the message <code>new</code> to the class <code>Turtle</code>.</p>
+
+<pre><code>| t |
+t := Turtle new. </code></pre>
+
+<p>A class is a cast for objects. All the objects, instances of a class, share the same characteristics and behavior. For example, all the turtle instances have a direction and understand messages to rotate and move. However, each turtle has its own value for its direction.</p>
+
+<p>We say that all the instances of a class have the same instance variables but each as private value
+for them.</p>
+
+<h4 id="sending-messages">Sending messages</h4>
+<p>The only way to interact with objects is to send them <i>messages</i>.
+In the following snippets we send messages</p>
+
+<ul>
+<li>to create an object, message <code>new</code>,</li>
+<li>to tell the turtle to turn, message <code>turn:</code>, and</li>
+<li>to tell the turtle to move, message <code>go:</code>.</li>
+</ul>
+<pre><code>| t |
+t := Turtle new. 
+t turn: 90.
+t go: 100.
+t turn: 180. 
+t go: 100.</code></pre>
+
+<p>When an object receives a message, it reacts by performing some actions.
+An object can return a value, change its internal state, or send messages to other objects.
+Here the turtle <code>t</code> will change its direction and it will interact with the display to leave a trail.</p>
+
+<h4 id="multiple-instances-each-with-its-own-state">Multiple instances: each with its own state.</h4>
+<p>We can have multiple objects of the same class and each one has a specific state.
+Here we have two turtles: each one is located to a specific position and pointing into its own direction.</p>
+
+<pre><code>| t1 t2 |
+t1 := Turtle new. 
+t1 turn: 90.
+t1 go: 100.
+t1 turn: 180. 
+t1 go: 100.
+t2 := Turtle new.
+t2 go: 100.
+t2 turn: 40.
+t2 go: 100.</code></pre>
+
+<h3 id="messages-and-methods"><span class="number">7.2</span> Messages and Methods</h3>
+<p>Messages specify <i>what</i> the object should do and not how it should do it (this is the duty of methods).
+When we send the message <code>go:</code> we just specify what we expect the receiver to do.
+Sending a message is similar to the abstraction provided by procedures or functions in a procedural or functional programming language: it hides implementation details. However, sending a message is much more than executing a sequence of instructions: it means that we have to find the method that should be executed in reaction to the message.</p>
+
+<h4 id="message-what-should-be-executed">Message: what should be executed</h4>
+<p>The message <code>square:</code> is sent to a new turtle with 100 as an argument.
+The message expresses what the receiver should do.</p>
+
+<pre><code>Turtle new square: 100</code></pre>
+
+<h4 id="method-how-we-execute-it">Method: how we execute it</h4>
+<p>The method definition <code>square:</code> below defines step by step what are the actions to be done in response to the message <code>square:</code>.
+It defines that to draw a square the turtle receiving the message <code>square:</code> (represented by <code>self</code>) should perform four times the following sequences of messages: move forward a distance (message <code>go:</code>), turn 90 degrees (using the message <code>turn:</code>).</p>
+
+<pre><code>square: size
+	4 timesRepeat: [ self go: size; turn: 90 ]</code></pre>
+
+<p>Note that finding the method corresponding to the message is done at runtime and depends on the object receiving the message.</p>
+
+<q id="note">A message represents <i>what</i> the object should do, while a method specifies <i>how</i> the behavior is realized.</q>
+<p>An object can also send messages to other objects. For example, when a turtle draws a line, it sends messages to an object representing the line color and its length.</p>
+
+<p><figure><img src="Chapters/OOPNutshell/figures/basicMessageMethod.pdf" alt="An object presents to the other objects an interface composed of a set of messages defining  what  he can do. This behavior is realized by methods that specify  how  the behavior is implemented. When a message is sent to an object a method with the message name (called selector) is looked up and executed. " style="width: 50%"><figcaption><span class="number">Figure 7.1</span> An object presents to the other objects an interface composed of a set of messages defining <i>what</i> he can do. This behavior is realized by methods that specify <i>how</i> the behavior is implemented. When a message is sent to an object a method with the message name (called selector) is looked up and executed. </figcaption></img></figure></p>
+
+<q id="note">An object is an entity that once created receives messages and performs some actions in reaction. When a message is sent to an object, a method with the message name is looked up and executed.</q>
+<h3 id="an-object-is-a-protective-entity"><span class="number">7.3</span> An object is a protective entity</h3>
+<p>An object is responsible for the way it realizes its reaction to a message.
+It <i>offers services</i> but <i>hides</i> the way they are implemented (see Figure <a href="#fig:encapsulationAtWork2">7.2</a>).
+We do not have to know how the method associated with the message selector is implemented.
+Only the object knows the exact definition of the method.
+This is when we define the method <code>square:</code> which defines how a turtle draws a square of a given size, that we focus on <i>how</i> a turtle draws a square. Figure <a href="#fig:encapsulationAtWork2">7.2</a> shows the message and the method <code>square:</code>.
+The method <code>square:</code> defines how to draw step by step a square, however, the object only offers the message square: and does not show it implementation.</p>
+
+<q id="important">An object presents to the other objects an <i>interface</i> (i.e., a set of messages) defining <i>what</i> the object can do. This behavior is realized by methods that specify <i>how</i> the behavior is implemented.
+o perform something useful, some data are most of the time required. Data are only accessed by the methods.</q>
+<p>From a turtle <i>user</i> point of view, the only relevant information is that the turtle effectively receives the message <code>square:</code> and executes the method that draws a square.
+So changing the definition of the <code>square:</code> method to the one below does not have any consequence on the methods that call it.
+Figure <a href="#fig:encapsulationAtWork2">7.2</a> illustrates this point.</p>
+
+<pre><code>square: s
+   "Make the receiver draw a square of size s"
+
+   self go: s; turn: 90; go: s; turn: 90.
+   self go: s; turn: 90; go: s; turn: 90</code></pre>
+
+<p><figure id="fig:encapsulationAtWork2"><img src="Chapters/OOPNutshell/figures/encapsulationAtWork2.pdf" alt="The message  square:  can be implemented differently. This different implementation does not impact the sender of the message who is not concerned by the internals of the object. " style="width: 50%"><figcaption><span class="number">Figure 7.2</span> The message <code>square:</code> can be implemented differently. This different implementation does not impact the sender of the message who is not concerned by the internals of the object. </figcaption></img></figure></p>
+
+<p>Hiding the internal representation is not limited to object-oriented programming but it is central to object-oriented programming.</p>
+
+<q id="important">An object is responsible for the way it realizes its reaction to a message. It offers services and hides the way they are implemented.</q>
+<h3 id="an-object-protects-its-data"><span class="number">7.4</span> An object protects its data</h3>
+<p>An object holds some <i>private data</i> that represents its state (see Figure <a href="#fig:objectOne">7.3</a>).
+Moreover, it controls its state and should not let other objects play directly with it because this could let him into an inconsistent state.</p>
+
+<p>For example, you do not want to somebody else plays with the data of your bank account directly and really want to control your transaction.</p>
+
+<p>For example, a LOGO turtle can be represented by a position, a direction, and a way to indicate if its pen is up or down.
+But, we cannot directly access these data and change them. For that we have to use the set of messages proposed by a turtle.
+These methods constitute the <i>interface</i> of an object.
+We say that the object state is <i>encapsulated</i>, this means that not everybody can access it.
+In fact, object-oriented programming is based on encapsulation, i.e., the fact that per default objects are the only ones that can access their own state.</p>
+
+<p><figure id="fig:objectOne"><img src="Chapters/OOPNutshell/figures/privateData.pdf" alt="A turtle is an object that has an interface, i.e., a set of messages to which it can reply and a private state that only its methods can access. " style="width: 45%"><figcaption><span class="number">Figure 7.3</span> A turtle is an object that has an interface, i.e., a set of messages to which it can reply and a private state that only its methods can access. </figcaption></img></figure></p>
+
+<p>In Pharo, a client cannot access the state of an object if the object does not define a method to access it.
+Moreover, clients should not rely on the internal representation of an object because an object is free to change the way it implements its behavior.
+Exposing the internal state of an object by defining methods providing access to the object data weakens the control that an object has over its own state.</p>
+
+<p><figure id="fig:twoInstances"><img src="Chapters/OOPNutshell/figures/privateDataTwoInstances.pdf" alt="Two turtles have the same interface, i.e., set of messages  being understood but they have  different  private state representing their  direction, position, and pen status. " style="width: 70%"><figcaption><span class="number">Figure 7.4</span> Two turtles have the same interface, i.e., set of messages  being understood but they have <i>different</i> private state representing their  direction, position, and pen status. </figcaption></img></figure></p>
+
+<q id="important">An object holds some <i>private</i> data that represents its <i>internal</i> state. Each object has its own state. Two objects of the same class share the same <i>interface</i> but have their own private state.</q>
+<h3 id="with-counters"><span class="number">7.5</span> With counters</h3>
+<p>Now that you have the main point of objects, we can see that it applies to everything. In Pharo, <i>everything</i> is an object. In fact, there is <i>nothing</i> else, only objects. Here is a little program with counters.</p>
+
+<p>We create two counters that we store in variables <code>c1</code> and <code>c2</code> instances of the class <code>Counter</code>. Each counter has its own state but exhibits the same behavior as all the counters defined by the class <code>Counter</code>:</p>
+
+<ul>
+<li>when responding to the message <code>count</code>, it returns its value,</li>
+<li>when responding to the message <code>increment</code>, it increments one to its current value.</li>
+</ul>
+<pre><code>| c1 c2 |
+c1 := Counter new.
+c2 := Counter new.
+c1 count.
+&gt;&gt;&gt; 0
+c1 increment.
+c1 increment.
+c1 count. 
+&gt;&gt;&gt; 2
+c2 count.
+&gt;&gt;&gt; 0
+c2 increment.
+c2 count. 
+&gt;&gt;&gt; 1</code></pre>
+
+<h3 id="a-class-blueprint-or-factory-of-objects"><span class="number">7.6</span> A class: blueprint or factory of objects</h3>
+<p>A class is a mold or cast of objects. A class specifies two important aspects of their instances:</p>
+
+<ul>
+<li>Instance <strong>structure</strong>. All the instances of a class will have the same structure expressed in terms of <i>instance variables</i>. Pay attention that the variables are the same for all the instances of a class but not their values. Each instance has specific values for its instance variables.</li>
+<li>Instance <strong>behavior</strong>. All the instances share the same behavior even if this one can be different because applied to different values.</li>
+</ul>
+<q id="important">A class is a blueprint for its instances. It is a factory of objects. All objects will have the same structure and share a common behavior.</q>
+<p>Let us illustrate this with the class <code>Counter</code>.</p>
+
+<h4 id="object-structure">Object structure</h4>
+<p>Let us study the <code>Counter</code> class definition.</p>
+
+<pre><code>Object &lt;&lt; #Counter
+	slots:  { #count} ;
+	package: 'LOOP'</code></pre>
+
+<p>The expression <code>Object subclass: #Counter</code> indicates that the class <code>Counter</code> is a subclass of the class <code>Object</code>.
+It means that counter instances understand the messages defined also by the class <code>Object</code>.
+In Pharo, classes should at least be a subclass of the class <code>Object</code>.
+You will learn more about subclassing and inheritance in Chapter <a href="inheritance-incremental.html#cha:inheritance">13</a>.</p>
+
+<p>Then the class <code>Counter</code> defines that all the instances will have one instance variable named <code>count</code> using the expression <code>instanceVariableNames: 'count'</code>. And each instance of the class <code>Counter</code> will have a <code>count</code> variable with a <i>different</i> value as we showed in the examples above.</p>
+
+<p>Finally, the class is defined in the package <code>'LOOP'</code>. A package is a kind of folder containing multiple classes.</p>
+
+<h4 id="object-behavior">Object behavior</h4>
+<p>In addition, a class is the place that groups the behavior of its instances. Indeed since all the instances of the class share the <i>same</i> behavior definitions, such behavior is defined and grouped in a class.</p>
+
+<p>For counters, the class defines how to retrieve the counter value, how to increment
+and decrement the count as used in the messages in the previous code snippets.</p>
+
+<p>Here is the definition of the <strong>method</strong> <code>increment</code>.
+It simply adds one to the instance variable <code>count</code>.</p>
+
+<pre><code>Counter &gt;&gt; increment
+	count := count + 1</code></pre>
+
+<p>When we send a message to a counter for example in the expression <code>c1 increment</code>,
+the method <code>increment</code> will be applied on <i>that</i> specific object <code>c1</code>.
+In the expression <code>c1 increment</code>, <code>c1</code> is called the <strong>receiver</strong> of the message <code>increment</code>.</p>
+
+<p>In the method <code>increment</code>,  the variable <code>count</code> refers to the variable of the <strong>receiver</strong> of the message.</p>
+
+<q id="note">A class defines methods that specify the behavior of all the instances created by the class.</q>
+<p>Multiple methods can access to the instance variables of the receiver. For example, the methods <code>increment</code>, <code>count:</code> <code>decrement</code> and <code>printOn:</code> all access the instance variable <code>count</code> of the receiver to perform different computations.</p>
+
+<pre><code>Counter &gt;&gt; count: anInteger
+	count := anInteger</code></pre>
+
+<pre><code>Counter &gt;&gt; decrement
+	count := count - 1</code></pre>
+
+<pre><code>Counter &gt;&gt; printOn: aStream
+   super printOn: aStream.
+   aStream nextPutAll: ' with value: ', self count printString.</code></pre>
+
+<p>For example, once the following program is executed the count instance variable of the counter <code>c2</code> will hold the value 11, since the method <code>count:</code> will set its value to 10, and <code>increment</code> will set it to 11 and 12 and finally <code>decrement</code> will set it to 11.</p>
+
+<pre><code>| c2 |
+c2 := Counter new.
+c2 count: 10.
+c2 increment.
+c2 increment.
+c2 decrement.</code></pre>
+
+<h4 id="self-is-the-message-receiver">Self is the message receiver</h4>
+<p>Imagine that now we would like to send a message to the object that receives the message itself. We need a way to refer to this object. Pharo defines a special variable for this exact purpose: <code>self</code>.</p>
+
+<q id="important"><code>self</code> always refers to the message receiver that is currently executed.</q>
+<p>For example, we can implement the method <code>incrementByTwo</code> as follows:</p>
+
+<pre><code>Counter &gt;&gt; incrementByTwo
+	self increment. 
+	self increment</code></pre>
+
+<p>When we execute the expression <code>c1 incrementByTwo</code>, during the execution of the method <code>incrementByTwo</code>, <code>self</code> refers to <code>c1</code>.</p>
+
+<p>We will explain how a method is found when a message is sent but first, we should explain inheritance, i.e., how a class is defined incrementally from a root class and all this will be explained in Chapter <a href="inheritance-incremental.html#cha:inheritance">13</a>.</p>
+
+<h3 id="class-and-instances-are-really-different"><span class="number">7.7</span> Class and instances are really different</h3>
+<p>Classes and objects are different objects; they understand different messages.</p>
+
+<p>For example, sending <code>new</code> to the <code>Counter</code> class returns a newly created counter, while sending <code>new</code> to a counter results in an error.
+In the opposite way, sending <code>increment</code> to the class <code>Counter</code> leads also to an error because the class <code>Counter</code> is a factory of objects, not the objects themselves.</p>
+
+<p>A class is a factory of objects. A class creates instances. An instance does not create other instances of the class.</p>
+
+<q id="note">A class describes the structure (instance variables) and the behavior (methods) of <i>all</i> its instances. The state of an instance is the value of its instance variables and it is specific to one single object while the behavior is shared by all the instances of a class.</q>
+<h3 id="conclusion-4"><span class="number">7.8</span> Conclusion</h3>
+<p>In this chapter, you saw that:</p>
+
+<ul>
+<li>An object is a computer entity that once created receives messages and performs some actions in reaction.</li>
+<li>An object has a unique identity.</li>
+<li>An object holds some private data that represents its internal state.</li>
+<li>A class is a factory of objects: It <i>describes</i> the internal structure of all its instances by means of instance variables.</li>
+<li>All objects of the same class share the same behavior, i.e., the same method definitions.</li>
+<li>Instance variables are accessible by all the methods of a class. Instance variables have the same lifetime than the object to which they belong to.</li>
+<li>In Pharo, instance variables cannot be accessed from outside of an object. Instance variables are only accessible from the methods of the class that define them.</li>
+<li>Methods define the behavior of all the instances of the class they belong to.</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="about-objects-and-classes.html">← About objects and classes</a>
+        <a class="next" rel="next" href="revisiting-objects-and.html">Revisiting objects and classes →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

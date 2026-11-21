@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inheritance: Incremental definition and behavior reuse</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="inheritance-incremental.html" aria-current="page"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+            <ol>
+              
+              <li><a href="#inheritance"><span class="number">13.1</span> Inheritance</a></li>
+              
+              <li><a href="#improving-files-directories-example-design"><span class="number">13.2</span> Improving files/directories example design</a></li>
+              
+              <li><a href="#transformation-strategies"><span class="number">13.3</span> Transformation strategies</a></li>
+              
+              <li><a href="#factoring-out-state"><span class="number">13.4</span> Factoring out state</a></li>
+              
+              <li><a href="#factoring-similar-methods"><span class="number">13.5</span> Factoring similar methods</a></li>
+              
+              <li><a href="#sending-a-message-and-method-lookup"><span class="number">13.6</span> Sending a message and method lookup</a></li>
+              
+              <li><a href="#basic-method-overrides"><span class="number">13.7</span> Basic method overrides</a></li>
+              
+              <li><a href="#self-send-messages-and-lookup-create-hooks"><span class="number">13.8</span> self-send messages and lookup create hooks</a></li>
+              
+              <li><a href="#hook-template-explanations"><span class="number">13.9</span> Hook/Template explanations</a></li>
+              
+              <li><a href="#essence-of-self-and-dispatch"><span class="number">13.10</span> Essence of self and dispatch</a></li>
+              
+              <li><a href="#instance-variables-vs-messages"><span class="number">13.11</span> Instance variables vs. messages</a></li>
+              
+              <li><a href="#conclusion-10"><span class="number">13.12</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</h2><a id="cha:inheritance"></a>
+<p>In Chapter <a href="objects-and-classes.html#cha:objectclass">7</a>, we presented objects and classes. Objects are entities that communicate exclusively by sending and receiving messages. Objects are described by classes that are factories of objects. Classes define behavior and structure of all their instances: All the instances of a class share the same behavior but have their own private state.</p>
+
+<p>In this chapter, we present the fundamental concept of  <i>inheritance</i> that allows a class to reuse and extend the behavior of another class. The idea is that as a programmer we do not want to rewrite from scratch a functionality if another class already offers it. A program specializes the implemented behavior into the new behavior he wants. Inheritance lets us express this concept specialization.  Using inheritance we create trees of concepts where more precise ones refine more abstract and generic ones.</p>
+
+<p>Inheritance is based on dynamic method lookup: a method is looked up dynamically within the inheritance tree starting from the class of the receiver. Once this explained we will show that it is possible to get code of a subclass invoked in place of the one of a superclass.</p>
+
+<p>To illustrate the important points of inheritance, we revisit the example of Chapter <a href="objects-and-classes.html#cha:objectclass">7</a>.</p>
+
+<h3 id="inheritance"><span class="number">13.1</span> Inheritance</h3>
+<p>Object-oriented programming is also based on the <i>incremental</i> definition of abstractions. This <i>incremental</i> definition mechanism is central to support reuse and extension of abstraction. It is called <i>inheritance</i>. The idea is that you can define a new abstraction (a class) by refining an existing one (its superclass). We said that a subclass inherits from a superclass. This way we reuse the code of the superclass instead of rewriting everything from scratch.</p>
+
+<p>Class inheritance creates trees of classes. Such trees are based on <i>generalization</i>: a superclass is more generic than its subclasses. A class in such trees can have instances. All the instances share the behavior defined in their class and superclasses.
+This is within such trees that the system looks up the method corresponding to a message sent to an instance of a class.</p>
+
+<p>Inheritance supports code reuse because instance variable and methods defined in a root concept (class) are applicable to its refinements (subclasses).</p>
+
+<p><figure id="FileDirectoryV1"><img src="Chapters/Inheritance/figures/FileDirectoryV1.pdf" alt="Two classes understanding similar sets of messages and structuring their instances in a similar way. " style="width: 60%"><figcaption><span class="number">Figure 13.1</span> Two classes understanding similar sets of messages and structuring their instances in a similar way. </figcaption></img></figure></p>
+
+<p>We will use and extend the simple and naive example of files and directories (seen in Chapter <a href="objects-and-classes.html#cha:objectclass">7</a>) to illustrate the key aspects of inheritance. While simple, it is enough to show the key properties of inheritance that we want to illustrate:</p>
+
+<ul>
+<li><i>incremental definition</i>: a subclass is defined by expressing the difference to its superclass. A subclass specializes its superclass behavior.</li>
+<li><i>state reuse</i>: instances of a subclass have at least the state structure of the superclass.</li>
+<li><i>behavior reuse</i>: upon message reception instances,  when the class of the receiver does not define a method, methods of the superclasses are executed instead.</li>
+<li><i>behavior redefinition (overriding)</i>: a subclass may change locally a method definition inherited from its superclass.</li>
+<li><i>behavior extension</i>: a subclass often extends the behavior of one of its superclasses by defining new methods and state.</li>
+<li><i>subclass behavior can be invoked instead of superclass behavior</i>: behavior defined in a subclass may be executed in place of the one of a superclass. It means that with behavior overriding subclass behavior can be invoked in place of superclass behavior. This is a really important feature of inheritance.</li>
+</ul>
+<h3 id="improving-files-directories-example-design"><span class="number">13.2</span> Improving files/directories example design</h3>
+<p>Let us go back to the example of files and directories introduced in previous chapter.
+When we look at the situation depicted by Figure <a href="#FileDirectoryV1">13.1</a> we see that a file is not the same as a directory, even though they share some common state: both have a name and a parent. In addition, they understand some common messages such as <code>size</code>, <code>search:</code>, <code>parent:</code> and <code>name:</code>. Remember that <code>size</code> and <code>search:</code> were not implemented the same way but the messages have indeed the same name.</p>
+
+<p>Load the code so that you can get the tests that we asked you to define at the end of chapter <a href="objects-and-classes.html#cha:objectclass">7</a>.</p>
+
+<pre><code>To be updated
+	Gofer new
+	smalltalkhubUser: 'StephaneDucasse' project: 'Loop'; 
+	version: 'MyFS2-StephaneDucasse.4';
+	load</code></pre>
+
+<p>Verify that the tests are all passing (green).</p>
+
+<h4 id="objectives">Objectives</h4>
+<p>In the following sections we will take advantage of defining a common superclass and reuse its definition as shown in Figure <a href="#FileDirectoryWithInheritanceObjective">13.2</a>: It means sharing the maximum structure and behavior between the two classes. We will proceed step by step so that you can see all the steps and understand why this is working.</p>
+
+<p><figure id="FileDirectoryWithInheritanceObjective"><img src="Chapters/Inheritance/figures/FileDirectoryWithInheritanceObjective.pdf" alt="Two class taking advantages of inheriting from a common superclass. " style="width: 60%"><figcaption><span class="number">Figure 13.2</span> Two class taking advantages of inheriting from a common superclass. </figcaption></img></figure></p>
+
+<h3 id="transformation-strategies"><span class="number">13.3</span> Transformation strategies</h3>
+<p>Let us define a new class called <code>MFElement</code>.</p>
+
+<pre><code>Object &lt;&lt; #MFElement
+	package: 'MyFS2'</code></pre>
+
+<p>As you may noticed it, this class is empty. Now we have two possible strategies:</p>
+
+<ul>
+<li>either we make <code>MFFile</code> and <code>MFDirectory</code> inherit from <code>MFElement</code> and  step by step we migrate the common state and behavior to the superclass,</li>
+<li>or we define new state and behavior in <code>MFElement</code> and we remove it  from the two classes and when ready we make them inherit from <code>MFElement</code>.</li>
+</ul>
+<p>The second approach may work but it is too risky. Indeed with the first approach we can get a running system after any step we perform: why? Because we first inherit from the new class and move element from the subclasses to the classes and doing so we automatically reuse the superclass behavior and state so our program externally (for example from the test perspective) is not changed. With such an approach we can run our tests after any change and control our enhancements.</p>
+
+<p>In addition, some of the operations such as moving an instance variable from a class to its superclass are tedious to perform. Here we will perform one operation manually but for the rest of the changes we will use <i>refactorings</i> -- refactorings are program transformations that keep the behavior of the program the same.</p>
+
+<p>Let us get started.</p>
+
+<h3 id="factoring-out-state"><span class="number">13.4</span> Factoring out state</h3>
+<p>The first step is to make <code>MFFile</code> and <code>MFDirectory</code> subclasses of <code>MFElement</code> as follows:</p>
+
+<pre><code>MFElement subclass: #MFFile
+	slots: { #parent . #name . #contents };
+	package: 'MyFS2'</code></pre>
+
+<pre><code>MFElement subclass: #MFDirectory
+	slots: { #parent . #name . #files }; 
+	package: 'MyFS2'</code></pre>
+
+<p>Now you can execute the tests and they will all pass. Now we get ready move some instance variables to the superclass.</p>
+
+<p><figure id="FileDirectoryInhStateNameOnly"><img src="Chapters/Inheritance/figures/FileDirectoryInhStateNameOnly.pdf" alt="Moving the instance variable name to the superclass. " style="width: 50%"><figcaption><span class="number">Figure 13.3</span> Moving the instance variable name to the superclass. </figcaption></img></figure></p>
+
+<h4 id="moving-instance-variable-name-to-superclass">Moving instance variable name to superclass</h4>
+<p>Since both <code>MFDirectory</code> and <code>MFFile</code> define that their instances should have a name, we can remove the instance variable <code>name</code> from them and uniquely define it in the superclass. We obtain the situation depicted in Figure <a href="#FileDirectoryInhStateNameOnly">13.3</a>.
+Let us do that as follows: We remove it first from the <code>MFFile</code> and <code>MFDirectory</code> classes.</p>
+
+<pre><code>MFElement subclass: #MFFile
+	slots: { #parent . #contents };
+	package: 'MyFS2'</code></pre>
+
+<pre><code>MFElement subclass: #MFDirectory
+	slots: {#parent . #files };
+	package: 'MyFS2'</code></pre>
+
+<p>And we add the instance variable <code>name</code> to the superclass <code>MFElement</code>.</p>
+
+<pre><code>Object subclass: #MFElement
+	slots: { #name };
+	package: 'MyFS2'</code></pre>
+
+<p>Pay attention that you should be careful and do it in this order else you may be in the situation where name will be defined in the superclass and in one of the subclasses and the system does not allow this and will forbid your action.</p>
+
+<p>Again run the tests they should pass again.</p>
+
+<p>What the tests execution proves is that we did not change the structure of the instances of <code>MFFile</code> and <code>MFDirectory</code>. Indeed the structure of an instance is computed from the instance variable lists defined in their class and all the superclasses of that class.</p>
+
+<h4 id="moving-parent-to-superclass">Moving parent to superclass</h4>
+<p>Since parent is defined in both subclasses, we can do the same for the instance variable parent to obtain the situation shown in Figure <a href="#FileDirectoryInhFullStateOnly">13.5</a>.
+You can do it manually, as we did for the instance variable <code>name</code>, but you can also use a <i>refactoring</i>: Refactorings are powerful program transformations. Using the system browser, bring the menu on the class <code>MFFile</code>, select refactoring, then the instance variable category, and finally pull up, as shown in Figure <a href="#Refactoring">13.4</a>.</p>
+
+<p><figure id="Refactoring"><img src="Chapters/Inheritance/figures/Refactoring.png" alt="Applying the Pull Up Instance variable refactoring. " style="width: 60%"><figcaption><span class="number">Figure 13.4</span> Applying the Pull Up Instance variable refactoring. </figcaption></img></figure></p>
+
+<p>The system will ask you which variable you want to pull up, select <code>parent</code>. It will show you the changes that it is about to perform: removing the instance variable from both subclasses and adding one to the superclass. Proceed and the changes will be executed. Your
+code should be now in the situation depicted in Figure <a href="#FileDirectoryInhFullStateOnly">13.5</a>.
+Run the tests and they should again all pass!</p>
+
+<p><figure id="FileDirectoryInhFullStateOnly"><img src="Chapters/Inheritance/figures/FileDirectoryInhFullStateOnly.pdf" alt="State factored between the two classes and their superclass. " style="width: 50%"><figcaption><span class="number">Figure 13.5</span> State factored between the two classes and their superclass. </figcaption></img></figure></p>
+
+<p>What is important to see is that if we create a new subclass of <code>MFElement</code>, the instances of such class will automatically get <code>name</code> and <code>parent</code> as instance variables. This is one of the key property of inheritance: you can define a new abstraction structure by extending an existing one.</p>
+
+<p>Now we can do the same for the behavior: we will move similar methods in the superclass and remove them from their respective classes.</p>
+
+<h3 id="factoring-similar-methods"><span class="number">13.5</span> Factoring similar methods</h3>
+<p>The methods <code>parent:</code>, <code>parent</code> and <code>name:</code> are the same and defined in the two classes <code>MFFile</code> and <code>MFDirectory</code>. We will move them to the superclass <code>MFElement</code> following a similar process.</p>
+
+<ul>
+<li>First we will remove the method <code>name:</code> from the two classes <code>MFFile</code> and <code>MFDirectory</code> and add one version to the class <code>MFElement</code>. You can do this manually.</li>
+<li>Second for the method <code>parent:</code>, use the method Refactoring <i>Push Up Method</i> that is available from the method list.  You can repeat this for the method <code>parent</code> too.</li>
+</ul>
+<p>You should obtain the system described in Figure <a href="#FileDirectoryInhAccessors">13.6</a>.</p>
+
+<p><figure id="FileDirectoryInhAccessors"><img src="Chapters/Inheritance/figures/FileDirectoryInhAccessors.png" alt=" State and Methods factored out in the superclass. " style="width: 50%"><figcaption><span class="number">Figure 13.6</span>  State and Methods factored out in the superclass. </figcaption></img></figure></p>
+
+<p>Again run the tests and they should all pass. Why? Let us see what is happening when we send a message.</p>
+
+<h3 id="sending-a-message-and-method-lookup"><span class="number">13.6</span> Sending a message and method lookup</h3>
+<p><figure id="BasicLookup"><img src="Chapters/Inheritance/figures/BasicLookupAndExecution.png" alt="When an object receives a message, the corresponding method is looked up in its class and if necessary its superclasses (Step 1 and 2). Then the method is executed on the message receiver (Step 3)." class="BasicLookup" style="width: 50%"><figcaption><span class="number">Figure 13.7</span> When an object receives a message, the corresponding method is looked up in its class and if necessary its superclasses (Step 1 and 2). Then the method is executed on the message receiver (Step 3).</figcaption></img></figure></p>
+
+<p>Now it is time to explain what is happening when an object receives a message. In fact this is really simple but extremely powerful. When a message is sent to an object, first the corresponding method is looked up and once the method is found, it is executed on the object that initially received the message.</p>
+
+<ul>
+<li><strong>Method Lookup</strong>. When an object, the message receiver, receives a message, the method with the same selector than the message is looked up starting from the <i>class</i> of receiver (See step 1 in Figure <a href="#BasicLookup">13.7</a>). When there is no method with the same selector, the look up continues in the superclass of the current class (See step 2 in Figure <a href="#BasicLookup">13.7</a>).</li>
+<li><strong>Method execution</strong>. When a method with the same selector is found in a class, it is returned and executed on the receiver of the message (See step 3 in Figure <a href="#BasicLookup">13.7</a>).</li>
+</ul>
+<p>Let us look at our example.</p>
+
+<ul>
+<li>When we send the message <code>astroboy parent: oldcomics</code>, the method named <code>parent:</code> is looked up in the class of the receiver i.e., <code>MFFile</code>. This class defines such a method, so it is returned and executed on the file <code>astroboy</code>.</li>
+<li>The tests pass because when we send the message <code>parent:</code> to an instance of the class <code>MFFile</code>, the corresponding method is looked up in the class <code>MFFile</code>. Since there is no method <code>parent:</code> in the class <code>MFFile</code>, the lookup continues in the superclass and find it in the class <code>MFElement</code> as shown in Figure <a href="#BasicLookup">13.7</a>.</li>
+</ul>
+<h4 id="inheritance-properties">Inheritance properties</h4>
+<p>While rather simple, the previous example shows some key properties of inheritance.</p>
+
+<p>Inheritance is a mechanism to define abstraction incrementally: a subclass is defined by expressing the difference to its superclass. A subclass refines a general concept into a more specific one. The classes <code>MFFile</code> and <code>MFDirectory</code> add extra behavior and state to the one defined in the superclass. As such they reuse the state and behavior of their superclass.</p>
+
+<ul>
+<li><i>State reuse</i>: instances of a subclass have at least the structure of their superclasses (<code>name</code> and <code>parent</code>), local state can be added in addition (<code>contents</code> and <code>files</code>).</li>
+<li><i>Behavior reuse</i>: when instances of a subclass receive a message, methods of the superclass may be executed. The method <code>parent:</code>, <code>parent</code>, and <code>name</code> are defined in <code>MFElement</code> but are executed on instances of the subclasses.</li>
+</ul>
+<p>Inheritance creates trees of refined concepts. A superclass represents a more abstract concepts and its subclasses make it more and more specific by refining the superclass behavior or extending it by adding new behavior.</p>
+
+<h3 id="basic-method-overrides"><span class="number">13.7</span> Basic method overrides</h3>
+<p>Since the method lookup starts from the class of the receiver, redefining a method in subclass takes precedence over the method defined in the superclasses.</p>
+
+<p>If we define a method with the same name that one of its superclass, this new method will be executed instead of the one in the superclass. This is called a <i>method override</i>. This is useful to be able to redefine locally a behavior taking advantage of the specificities of the subclasses. In Figure <a href="#BasicLookup">13.7</a>, if we add a new method named <code>parent:</code> in the class <code>MFFile</code>, this method will be executed when the message <code>parent:</code> is sent to an instance of the class <code>File</code>.</p>
+
+<p>We will see later that we can also invoke the method of the superclass while doing a method overrides: it is useful when we want to <i>extend</i> and not just fully change the superclass behavior.</p>
+
+<p>But before explaining this, method lookup and execution are systematically applied and we will see in the following sections that it is even more powerful than it may look at first sight.</p>
+
+<h3 id="self-send-messages-and-lookup-create-hooks"><span class="number">13.8</span> self-send messages and lookup create hooks</h3>
+<p>So far we explained how a message is resolved: first the corresponding method is looked up from the class of the receiver and goes up the inheritance tree. Second, the found method is executed on the message receiver. It means that in response to a message, a superclass method may be executed on its subclass instances. This is the same for message sent to <code>self</code> (the receiver of the message), we invoke the method lookup and <code>self</code> may be one subclass instances.</p>
+
+<p>There is an important implication: when we have a message sent to <code>self</code> in a method, this message may lead to the execution of a method defined in subclasses: because a subclass may override such method. This is why self-sends are also called <i>hooks</i> methods. We will explain carefully this point.</p>
+
+<h4 id="example">Example</h4>
+<p>To explain precisely this important point, let us define a new little behavior: to build a better user interface for end-users we add a new message called <code>describe</code> that presents in more human friendly way the receiver of the message.
+Here is a small example:</p>
+
+<pre><code>| p el1 el2 |
+p := MFDirectory new name: 'comics'.
+el1 := MFFile new name: 'babar'; contents: 'Babar et Celeste'.
+p addElement: el1.
+el2 := MFFile new name: 'astroboy'; contents: 'super cool robot'.
+p addElement: el2.
+p describe
+&gt;&gt;&gt; 'I m a directory named comics'
+el1 describe
+&gt;&gt;&gt; 'I m a file named babar'</code></pre>
+
+<h4 id="describe-implementation">Describe implementation</h4>
+<p>We implement now the situation described by Figure <a href="#fig:SelfSendLateBinding">13.8</a>.
+To implement this behavior, we define the following method <code>describe</code> in the class <code>MFElement</code>.</p>
+
+<pre><code>MFElement &gt;&gt; describe
+	^ 'I m a ', self kind, 'named ', name  </code></pre>
+
+<p>We define the method <code>kind</code> to return a default string, even though we do not expect
+to create instances of this class and subclasses should define their own definition.</p>
+
+<pre><code>MFElement &gt;&gt; kind
+	^ 'element'</code></pre>
+
+<p>In each of the subclasses, we define a corresponding method <code>kind</code>, as follows:</p>
+
+<pre><code>MFDirectory &gt;&gt; kind
+	^ 'directory'</code></pre>
+
+<pre><code>MFFile &gt;&gt; kind
+	^ 'file'</code></pre>
+
+<h3 id="hook-template-explanations"><span class="number">13.9</span> Hook/Template explanations</h3>
+<p>Now we are ready to explain what is happening. Let us illustrate the execution of the <code>(MFFile new name: 'astroboy') describe</code>.</p>
+
+<pre><code>| el1 |
+el1 := (MFFile new name: 'astroboy').
+el1 describe
+&gt;&gt;&gt; 'I m a file named astroboy'</code></pre>
+
+<p>The following steps are executed:</p>
+
+<ul>
+<li>The message <code>describe</code> is sent to <code>el1</code> an instance of the class <code>MFFile</code>.</li>
+<li>The method <code>describe</code> is looked up in the class <code>MFFile</code> (step 1 in Figure <a href="#fig:SelfSendLateBinding">13.8</a>). It is not found, therefore the lookup continues to the superclass.</li>
+<li>The lookup looks for the method <code>describe</code> in the class <code>MFElement</code>  (step 2 in Figure <a href="#fig:SelfSendLateBinding">13.8</a>). It is found and executed on the receiver: <code>el1</code>.</li>
+<li>During the execution of the method <code>describe</code>, a new message <code>kind</code> using the expression <code>self kind</code> is sent (step 3 in Figure <a href="#fig:SelfSendLateBinding">13.8</a>).</li>
+<li>The message <code>kind</code> is looked up starting from the class of the receiver, <code>MFFile</code> (step 4 in Figure <a href="#fig:SelfSendLateBinding">13.8</a>). The method <code>kind</code> is found in class <code>MFFIle</code> and executed.</li>
+<li>The rest of the method <code>describe</code> is executed and the resulting string is returned.</li>
+</ul>
+<p><figure id="fig:SelfSendLateBinding"><img src="Chapters/Inheritance/figures/SelfSendLateBinding.png" alt="A self-send creates a hook ( kind ) that subclasses override. The method   describe  is called a template because it creates a context." class="fig:SelfSendLateBinding" style="width: 65%"><figcaption><span class="number">Figure 13.8</span> A self-send creates a hook (<code>kind</code>) that subclasses override. The method <code> describe</code> is called a template because it creates a context.</figcaption></img></figure></p>
+
+<p>A vocabulary point: the method <code>describe</code> is called a <i>template</i> method because it creates a context in which the <code>kind</code> methods are executed. The message <code>kind</code> is called a hook since subclass implementation may be invoked in this place.</p>
+
+<p>This example illustrates the following important points:</p>
+
+<ul>
+<li>Each time we send a message the system chooses the correct method to be executed.</li>
+<li>Each time we send a self-send message we create a place where subclass methods may be executed. We create customization points.</li>
+<li>Since <code>self</code> represents the receiver and that receiver may be an instance from a class that is not loaded at the time the method containing the self-send, we say that <code>self</code> is dynamic. It represents the receiver of the message and the lookup for the method to execute starts in the class of the receiver.</li>
+</ul>
+<q id="important">Messages sent to the receiver (<code>self</code> sends) define customization points that subclasses can take advantage of to potentially see their code being executed in place of the superclass' one.</q>
+<h3 id="essence-of-self-and-dispatch"><span class="number">13.10</span> Essence of self and dispatch</h3>
+<p>Now we take some time to look abstractly at what we presented so far.
+Imagine a situation as illustrated by Figure <a href="#fig:LookupWithSelfInSuperclassMethod">13.9</a>.</p>
+
+<p>The first questions are simple and should be not a problem for you. Without looking at the solutions guess what are the results of the following messages.</p>
+
+<pre><code>A new foo
+&gt;&gt;&gt; ... 
+B new foo
+&gt;&gt;&gt; ...</code></pre>
+
+<p>What is more interesting is the process to get the result of <code>B new bar</code>.</p>
+
+<pre><code>A new bar
+&gt;&gt;&gt; ...
+B new bar
+&gt;&gt;&gt; ...</code></pre>
+
+<p><figure id="fig:LookupWithSelfInSuperclassMethod"><img src="Chapters/Inheritance/figures/LookupWithSelfInSuperclassMethod.pdf" alt="Self semantics abstractly explained." class="fig:LookupWithSelfInSuperclassMethod" style="width: 35%"><figcaption><span class="number">Figure 13.9</span> Self semantics abstractly explained.</figcaption></img></figure></p>
+
+<h4 id="solutions">Solutions</h4>
+<p>The solutions are the following ones.</p>
+
+<pre><code>A new foo
+&gt;&gt;&gt; 10
+
+B new foo
+&gt;&gt;&gt; 50
+
+A new bar
+&gt;&gt;&gt; 10
+
+B new bar
+&gt;&gt;&gt; 50</code></pre>
+
+<p>The most interesting one is <code>B new bar</code>.  Let us look at the execution of <code>aB bar</code></p>
+
+<ol>
+<li><code>aB</code>'s class is <code>B</code>.</li>
+<li>The method look up starts in the class <code>B</code>.</li>
+<li>There is no method <code>bar</code> in <code>B</code>.</li>
+<li>The look up continues in <code>A</code> and method <code>bar</code> is found.</li>
+<li>The method <code>bar</code> is executed on the receiver  <code>aB</code>.</li>
+<li><code>self</code> refers to the receiver <code>aB</code>.</li>
+<li>The message <code>foo</code> is sent to <code>self</code>.</li>
+<li>The look up of <code>foo</code> starts in the <code>aB</code>'s class: <code>B</code>.</li>
+<li>The method <code>foo</code> is found in class <code>B</code> and executed on the receiver <code>aB</code>.</li>
+</ol>
+<q id="important"><code>self</code> represents the receiver. Messages sent to it are looked up from the class of the receiver.</q>
+<h3 id="instance-variables-vs-messages"><span class="number">13.11</span> Instance variables vs. messages</h3>
+<p>Reading the previous section you should now understand that there is in fact a difference between accessing directly an instance variable such as <code>name</code> in the method below and using an accessor as illustrated in the next redefinition.</p>
+
+<p>The two following method definitions are doing the same but have different extensibility potential.</p>
+
+<pre><code>MFElement &gt;&gt; describe
+	^ 'I m a ', self kind, 'named ', name  </code></pre>
+
+<pre><code>MFElement &gt;&gt; describe
+	^ 'I m a ', self kind, 'named ', self name  </code></pre>
+
+<p>When you use an accessor, subclasses may redefine the behavior of the accessors.</p>
+
+<pre><code>MFElement &gt;&gt; name
+	^ name</code></pre>
+
+<p>There is no systematic rule that states that we should systematically use accessors instead of instance variable access.</p>
+
+<p>What is important when you decide to use an accessor is to use it consistently. Indeed
+if some parts use direct instance variable access and other parts use accessors, then a programmer extending your code may redefine the accessors in a subclass and his code may not be invoked (for example if you left places where you directly access an instance variable).</p>
+
+<p>In addition when you decide to use in your class an accessor it is also better that you do so for all the instance variables of the class. Else we may wonder why and uniformity makes the code more understandable.</p>
+
+<h3 id="conclusion-10"><span class="number">13.12</span> Conclusion</h3>
+<p>We presented the concept of inheritance: a subclass is defined as a refinement of a superclass. It reuses the superclass behavior and may extend the structure its instances will have. We show that method lookup happens dynamically and walks the inheritance tree starting from the receiver class.
+We show that self-sends are creating hooks in the sense that subclass methods may be executed in place of the superclass counterpart.</p>
+
+<p>In the following chapter we will see that we can reuse even more methods between all the superclass and its subclasses.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="looking-at-inheritance.html">← Looking at inheritance</a>
+        <a class="next" rel="next" href="extending-superclass.html">Extending superclass behavior →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

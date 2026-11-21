@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tests, tests and tests</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="tests-tests-and-tests.html" aria-current="page"><span class="number">5</span> Tests, tests and tests</a>
+            
+            <ol>
+              
+              <li><a href="#writing-a-test-in-2-minutes"><span class="number">5.1</span> Writing a test in 2 minutes</a></li>
+              
+              <li><a href="#test-driven-design"><span class="number">5.2</span> Test Driven Design</a></li>
+              
+              <li><a href="#sec:whytest"><span class="number">5.3</span> Why testing is important</a></li>
+              
+              <li><a href="#what-makes-a-good-test"><span class="number">5.4</span> What makes a good test?</a></li>
+              
+              <li><a href="#sunit-by-example"><span class="number">5.5</span> SUnit by example</a></li>
+              
+              <li><a href="#the-sunit-cookbook"><span class="number">5.6</span> The SUnit cookbook</a></li>
+              
+              <li><a href="#defining-a-fixture"><span class="number">5.7</span> Defining a fixture</a></li>
+              
+              <li><a href="#chapter-summary"><span class="number">5.8</span> Chapter summary</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">5</span> Tests, tests and tests</h2><a id="cha:sunit"></a>
+<p>In this chapter we start by showing that tests are simple. Second we present test driven design - basically what we will try to do systematically in this book. Then we discuss why we test, and what makes a good test.
+We then present a series of small examples showing how to use SUnit.</p>
+
+<h3 id="writing-a-test-in-2-minutes"><span class="number">5.1</span> Writing a test in 2 minutes</h3>
+<p>A test is a context, a stimulus and an assertion (verification that we get the correct state).
+Here is an example on sets. Remember that sets are mathematical entities having only one occurrence of their elements.</p>
+
+<p>First we test that adding an element changes the size of the set.</p>
+
+<ul>
+<li><strong>Context:</strong> we take an empty set.</li>
+<li><strong>Stimulus:</strong> we add <code>$A</code> into the empty set.</li>
+<li><strong>Assertion:</strong> the set has one element.</li>
+</ul>
+<p>Another test is that a set only contains only one occurence of one element.</p>
+
+<ul>
+<li><strong>Context:</strong> we take an empty set.</li>
+<li><strong>Stimulus:</strong> we add <code>$A</code> into the empty set.</li>
+<li><strong>Assertion:</strong> the set has one element.</li>
+<li><strong>Stimulus:</strong> we add <code>$A</code> into the empty set.</li>
+<li><strong>Assertion:</strong> the set has still one element.</li>
+</ul>
+<h4 id="how-do-we-declare-a-test-in-pharo">How do we declare a test in Pharo?</h4>
+<p>This is really easy to declare one test: we define one class (that will host multiple test definitions) and one method per test.</p>
+
+<p>Here the class <code>MyExampleSetTest</code> should inherit from <code>TestCase</code>. It is the place to define the tests
+related to the class <code>Set</code>.</p>
+
+<pre><code>TestCase &lt;&lt; #MyExampleSetTest
+	package: 'MySetTest'</code></pre>
+
+<p>Now we can define one test expression as a method. There is one constraint: the method selector should start with <code>test</code>.</p>
+
+<pre><code>MyExampleSetTest &gt;&gt; testAddTwice
+	| s |
+	s := Set new. 
+	self assert: s isEmpty.
+	s add: $A.
+	self assert: s size equals: 1.
+	s add: $A.
+	self assert: s size equals: 1.</code></pre>
+
+<p>Then using the Test runner or pressing on icons of the Pharo browser (as shown in Figure <a href="#fig:browsertests">5.1</a>), you will be able to execute the method <code>testAddTwice</code> and it will tell you if it passes or fails (i.e., if its assertions are true). Now that you know that writing a test is not complex. Let us look a bit at the theory before going into more details.</p>
+
+<q id="note">A test is a context, a stimulus and an <i>assertion</i> (verification that we get the correct state).</q>
+<h3 id="test-driven-design"><span class="number">5.2</span> Test Driven Design</h3>
+<p>The interest in testing and Test Driven Development is not limited to Pharo.
+Automated testing has become a hallmark of the <i>Agile software
+development</i> movement, and any software developer concerned with improving
+software quality would do well to adopt it. Indeed, developers in many languages
+have come to appreciate the power of unit testing.</p>
+
+<p>Neither testing, nor the building of test suites, is new. By now, everybody knows that
+tests are a good way to catch errors. By making testing a core practice and by emphasizing <i>automated</i> tests, Extreme Programming has helped to make testing
+productive and fun, rather than a chore that programmers dislike.</p>
+
+<p>The Pharo community has a long tradition of testing because of the incremental style of
+development supported by its programming environment. In traditional Pharo
+development, a programmer writes tests in a playground as soon as a method
+was finished. Sometimes a test would be incorporated as a comment at the head of
+the method that it exercised, or tests that needed some setup would be included
+as example methods in the class. The problem with these practices is that tests
+in a playground are not available to other programmers who modify the code.</p>
+
+<p>Comments and example methods are better in this respect, but there is still no
+easy way to keep track of them and to run them automatically. Tests that are not
+run do not help you to find bugs! Moreover, an example method does not inform
+the reader of the expected result: you can run the example and see the (perhaps
+surprising) result, but you will not know if the observed behavior is correct.</p>
+
+<p>Using a testing framework such as SUnit  is valuable because it allows us to write tests that are self-checking:
+the test itself defines what the correct result should be. It also helps us (1) to
+organize tests into groups, (2) to describe the context in which the tests must run,
+and (3) to run a group of tests automatically. As you saw, in less than two minutes you can
+write tests using SUnit, so instead of writing small code snippets in a
+playgound, we encourage you to use SUnit and get all the advantages of stored
+and automatically executable tests.</p>
+
+<h3><span class="number">5.3</span> Why testing is important</h3><a id="sec:whytest"></a>
+<p>Now that you see that writing tests is simple. Let's step back and analyze the situation.
+Unfortunately, many developers believe that tests are a waste of their time.
+After all, <i>they</i> do not write bugs, only <i>other</i> programmers do that. Most
+of us have said, at some time or other: <i>I would write tests if I had more
+time.</i> If you never write a bug, and if your code will never be changed in the
+future, then indeed tests are a waste of your time. However, this most likely
+also means that your application is trivial, or that it is not used by you or
+anyone else. Think of tests as an investment for the future: having a test suite
+is quite useful now, but it will be <i>extremely</i> useful when your
+application, or the environment in which it runs, changes in the future.</p>
+
+<p>Tests play several roles:</p>
+
+<ul>
+<li>First, they provide documentation of the functionality that they cover. This documentation is active: watching the tests pass tells you that the documentation is up to date.</li>
+<li>Second, tests help developers to confirm that some changes that they have just made to a package have not broken anything else in the system, and to find the parts that break when that confidence turns out to be misplaced.</li>
+<li>Finally, writing tests during, or even before, programming forces you to think about the functionality that you want to design, <i>and how it should appear to the client code</i>, rather than about how to implement it.</li>
+</ul>
+<p>By writing the tests first, i.e., before the code, you are compelled to state
+the context in which your functionality will run, the way it will interact with the client code, and the expected results. Your code style will definitively improve.</p>
+
+<p>Several software development methodologies such as <i>eXtreme Programming</i> and
+Test-Driven Development (TDD) advocate writing tests before writing code. This
+may seem to go against your deep instincts as software developers. All we can say
+is: go ahead and try it. Writing the tests before the code
+helps you know what we want to code, helps you know when you are done, and helps
+us conceptualize the functionality of a class and to design its interface.
+Moreover, test-first development gives you the courage to change our application, because you will
+know when you break something.</p>
+
+<p>We cannot test all aspects of any realistic application. Covering a complete
+application is simply impossible and is the goal of testing. Even
+with a good test suite, some bugs will still creep into the application, where
+they can lay dormant waiting for an opportunity to damage your system. If you
+find that this has happened, take advantage of it! As soon as you uncover the
+bug, write a test that exposes it, run the test, and watch it fail. Now you can
+start to fix the bug: the test will tell you when you are done.</p>
+
+<h3 id="what-makes-a-good-test"><span class="number">5.4</span> What makes a good test?</h3>
+<p>Writing good tests is a skill that you can learn by practicing.
+Let us look at the properties that tests should have to get the maximum benefit.</p>
+
+<ul>
+<li><i>Tests should be repeatable.</i> You should be able to run a test as often as you want, and always get the same answer.</li>
+<li><i>Tests should run without human intervention</i>. You should be able to run them unattended.</li>
+<li><i>Tests should tell a story.</i> Each test should cover one aspect of a piece of code. A test should act as a scenario that you or someone else can read to understand a piece of functionality.</li>
+<li><i>Tests should have a change frequency lower than that of the functionality they cover</i>. You do not want to have to change all your tests every time you modify your application. One way to achieve this is to write tests based on the public interfaces of the class that you are testing. It is OK to write a test for a private <i>helper</i> method if you feel that the method is complicated enough to need the test, but you should be aware that such a test may have to be changed, or thrown away entirely when you think of a better implementation.</li>
+</ul>
+<p>One consequence of such properties is that the number of tests should be
+somewhat proportional to the number of functions to be tested: changing one
+aspect of the system should not break all the tests but only a limited number.
+This is important because having 100 tests fail should send a much stronger
+message than having 10 tests fail. However, it is not always possible to achieve
+this ideal: in particular, if a change breaks the initialization of an object,
+or the set-up of a test, it is likely to cause all of the tests to fail.</p>
+
+<p>Now let's go back and write a couple of tests using SUnit.</p>
+
+<h3 id="sunit-by-example"><span class="number">5.5</span> SUnit by example</h3>
+<p>We show a step-by-step example. We continue with the example that tests the class <code>Set</code>. Try editing and compiling the code as we go along.</p>
+
+<p>Pay attention: test classes are special classes. As subclasses of <code>TestCase</code>, they have a different behavior than normal classes: their methods, which start with <code>test</code> are automatically executed on newly created instances of the class. This is what happens when you press the icon close to the method in a class browser (as shown in Figure <a href="#fig:browsertests">5.1</a>).</p>
+
+<h4 id="step-1-create-the-test-class">Step 1: Create the test class</h4>
+<p>We use the class <code>MyExampleSetTest</code> to group all the tests related to the class <code>Set</code>. First, you should create a new subclass of <code>TestCase</code> called <code>MyExampleSetTest</code>.</p>
+
+<pre><code>TestCase &lt;&lt; #MyExampleSetTest
+	package: 'MySetTest'</code></pre>
+
+<h4 id="step-2-write-a-test-method">Step 2: Write a test method</h4>
+<p>Let's create some tests by defining some methods in the class
+<code>MyExampleSetTest</code>. Each method represents one test. The names of the methods
+should start with the string <code>'test'</code> so that SUnit collects them into
+test suites. Test methods take no arguments.</p>
+
+<p>Define the following test method named <code>testIncludes</code>. It tests
+the <code>includes:</code> method of class <code>Set</code>. The test says that sending the message
+<code>includes: 5</code> to a set containing 5 should return <code>true</code>.</p>
+
+<pre><code>MyExampleSetTest &gt;&gt; testIncludes
+	| full |
+	full := Set with: 5 with: 6.
+	self assert: (full includes: 5).
+	self assert: (full includes: 6)</code></pre>
+
+<p>As you see this is quite simple. Let's continue.</p>
+
+<h4 id="step-3-run-the-test">Step 3: Run the test</h4>
+<p>The easiest way to run the tests is directly from the browser. Simply click on
+the icon of the class name, or on an individual test method, or use the  <i>Run
+tests (t)</i> . The test methods will be flagged green or red,
+depending on whether they pass or not (as shown in Figure <a href="#fig:browsertests">5.1</a>).</p>
+
+<p><figure id="fig:browsertests"><img src="Chapters/Tests/figures/updatedbrowsertests.png" alt="Running SUnit tests from the System Browser: Just click on the round little button close to the class or method. " style="width: 80%"><figcaption><span class="number">Figure 5.1</span> Running SUnit tests from the System Browser: Just click on the round little button close to the class or method. </figcaption></img></figure></p>
+
+<h4 id="step-4-write-more-tests">Step 4: Write more tests</h4>
+<p>Let's create more tests by defining some methods in the class
+<code>MyExampleSetTest</code>.</p>
+
+<p>The second test, named <code>testOccurrences</code>, verifies that the
+number of occurrences of 5 in <code>full</code> set is equal to one, even if we
+add another element 5 to the set.</p>
+
+<pre><code>MyExampleSetTest &gt;&gt; testOccurrences
+	| empty full |
+	empty := Set new.
+	full := Set with: 5 with: 6.
+	self assert: (empty occurrencesOf: 0) equals: 0.
+	self assert: (full occurrencesOf: 5) equals: 1.
+	full add: 5.
+	self assert: (full occurrencesOf: 5) equals: 1</code></pre>
+
+<p>Finally, we test that the set no longer contains the element 5 after we have
+removed it.</p>
+
+<pre><code>MyExampleSetTest &gt;&gt; testRemove
+	| full |
+	full := Set with: 5 with: 6.
+	full remove: 5.
+	self assert: (full includes: 6).
+	self deny: (full includes: 5)</code></pre>
+
+<p>Note the use of the method <code>TestCase &gt;&gt; deny:</code> to assert something that should
+not be true. <code>aTest deny: anExpression</code> is equivalent to
+<code>aTest assert: anExpression not</code>, but is much more readable.</p>
+
+<h4 id="step-5-run-all-the-tests">Step 5: Run all the tests</h4>
+<p>You can also select sets of test suites to run, and obtain a more detailed log
+of the results using the SUnit Test Runner, which you can open by selecting the menu
+<code>World &gt; Test Runner</code>.</p>
+
+<p>The <i>Test Runner</i>, shown in Figure <a href="#fig:test-runner">5.2</a>, is designed to make it easy to
+execute groups of tests.</p>
+
+<p>The left-most pane lists all of the packages that contain test classes (i.e.,
+subclasses of <code>TestCase</code>). When some of these packages are selected, the test
+classes that they contain appear in the pane to the right. Abstract classes are
+italicized, and the test class hierarchy is shown by indentation, so subclasses
+of <code>ClassTestCase</code> are indented more than subclasses of <code>TestCase</code>.
+<code>ClassTestCase</code> is a class offering utilities methods to compute test
+coverage.</p>
+
+<p><figure id="fig:test-runner"><img src="Chapters/Tests/figures/updatedtestRunner.png" alt="Running SUnit tests using the  TestRunner . " style="width: 80%"><figcaption><span class="number">Figure 5.2</span> Running SUnit tests using the <i>TestRunner</i>. </figcaption></img></figure></p>
+
+<p>Open a Test Runner, select the package <i>MySetTest</i>, and click the <code>Run Selected</code>
+button.</p>
+
+<h4 id="step-6-alternative-ways-to-execute-tests">Step 6: Alternative ways to execute tests</h4>
+<p>You can also run a single test (and print the usual pass/fail result summary) by executing a
+<i>Print it</i> on the following code: <code>MyExampleSetTest run: #testRemove</code>.</p>
+
+<p>Some people include an executable comment in their test methods as in <code>testRemove</code> below. For example the contents of the comment <code>self run: #testRemove</code> can be executed: select the expression inside the comment (but not the comment) and bring the menu to do a <i>Do it</i>.
+It will execute the test.</p>
+
+<pre><code>MyExampleSetTest &gt;&gt; testRemove
+	"self run: #testRemove"
+	| empty full |
+	empty := Set new.
+	full := Set with: 5 with: 6.
+	full remove: 5.
+	self assert: (full includes: 6).
+	self deny: (full includes: 5)</code></pre>
+
+<h4 id="step-7-looking-at-a-bug">Step 7: Looking at a bug</h4>
+<p>Introduce a bug in <code>MyExampleSetTest &gt;&gt; testRemove</code> and run the tests again. For
+example, change <code>6</code> to <code>7</code>, as in:</p>
+
+<pre><code>MyExampleSetTest &gt;&gt; testRemove
+	| empty full |
+	empty := Set new.
+	full := Set with: 5 with: 6.
+	full remove: 5.
+	self assert: (full includes: 7).
+	self deny: (full includes: 5)</code></pre>
+
+<p>The tests that did not pass (if any) are listed in the right-hand panes of the
+<i>Test Runner</i>. If you want to debug one, to see why it failed, just click on
+the name. Alternatively, you can execute one of the following expressions:</p>
+
+<pre><code>(MyExampleSetTest selector: #testRemove) debug
+
+MyExampleSetTest debug: #testRemove</code></pre>
+
+<h4 id="step-8-interpret-the-results">Step 8: Interpret the results</h4>
+<p>The method <code>assert:</code> is defined in the class <code>TestAsserter</code>. This is a superclass
+of <code>TestCase</code> and therefore all other <code>TestCase</code> subclasses and is responsible for
+all kinds of test result assertions.
+The <code>assert:</code> method expects a boolean argument, usually the value of a tested expression. When the
+argument is true, the test passes; when the argument is false, the test fails.</p>
+
+<p>There are actually three possible outcomes of a test: <i>passing</i>, <i>failing</i>, and <i>raising an error</i>.</p>
+
+<ul>
+<li><strong>Passing</strong>. The outcome that we hope for is that all of the assertions in the test are true, in which case the test passes. In the test runner, when all of the tests pass, the bar at the top turns green.</li>
+<li><strong>Failing</strong>. The obvious way is that one of the assertions can be false, causing the test to <i>fail</i>.</li>
+<li><strong>Error</strong>. The other possibility is that some kind of error occurs during the execution of the test, such as a <i>message not understood</i> error or an <i>index out of bounds</i> error. If an error occurs, the assertions in the test method may not have been executed at all, so we can't say that the test has failed; nevertheless, something is clearly wrong!</li>
+</ul>
+<p>In the <i>test runner</i>, failing tests cause the bar at the top to turn yellow, and are listed in the middle pane on
+the right, whereas tests with errors cause the bar to turn red, and are listed in
+the bottom pane on the right.</p>
+
+<p>As an exercise, modify your tests to provoke both errors and failures.</p>
+
+<h3 id="the-sunit-cookbook"><span class="number">5.6</span> The SUnit cookbook</h3>
+<p>This section will give you more details on how to use SUnit. If you have used
+another testing framework such as JUnit, much of this will be familiar, since
+all these frameworks have their roots in SUnit. Normally you will use SUnit's
+GUI to run tests, but there are situations where you may not want to use it.</p>
+
+<h4 id="about-assert-equals">About assert:equals:</h4>
+<p>Note that we either used both <code>assert: aBoolean</code> and <code>assert: expression equals: aValue</code>. The second one provides nicer
+feedback when the assertion fails. The two following lines are equal.</p>
+
+<pre><code>self assert: (empty occurrencesOf: 0) equals: 0.
+self assert: (empty occurrencesOf: 0) = 0.</code></pre>
+
+<p>Using <code>assert:equals:</code> provides a better feedback when the test is failing because we
+said explicitly that the result should be 0.</p>
+
+<h4 id="other-assertions">Other assertions</h4>
+<p>In addition to <code>assert:</code> and <code>deny:</code>, there are several other methods that
+can be used to make assertions.</p>
+
+<p>First, <code>assert:description:</code> and <code>deny:description:</code>
+take a second argument which is a message string that describes
+the reason for the failure, if it is not obvious from the test itself.</p>
+
+<p>Next, SUnit provides two additional methods, <code>should:raise:</code> and
+<code>shouldnt:raise:</code> for testing exception propagation.</p>
+
+<p>For example, you would use <code>self should: aBlock raise: anException</code> to test
+that a particular exception is raised during the execution of <code>aBlock</code>. The
+method below illustrates the use of <code>should:raise:</code>.</p>
+
+<pre><code>MyExampleSetTest &gt;&gt; testIllegal
+	| empty |
+	self should: [ empty at: 5 ] raise: Error.
+	self should: [ empty at: 5 put: #zork ] raise: Error</code></pre>
+
+<p>Try running this test. Note that the first argument of the <code>should:</code> and
+<code>shouldnt:</code> methods is a block that contains the expression to be executed.</p>
+
+<h4 id="running-a-single-test">Running a single test</h4>
+<p>Normally, you will run your tests using the Test Runner or using your code
+browser. If you don't want to launch the Test Runner from the World menu, you
+can execute <code>TestRunner open</code>. You can also run a single test as follows:</p>
+
+<pre><code>MyExampleSetTest run: #testRemove
+&gt;&gt;&gt; 1 run, 1 passed, 0 failed, 0 errors</code></pre>
+
+<h4 id="running-all-the-tests-in-a-test-class">Running all the tests in a test class</h4>
+<p>Any subclass of <code>TestCase</code> responds to the message <code>suite</code> and builds
+a test suite that contains all the methods whose names start with
+the string <i>test</i>.</p>
+
+<p>To run the tests in the suite, send it the message <code>run</code>. For example:</p>
+
+<pre><code>MyExampleSetTest suite run 
+&gt;&gt;&gt; 5 run, 5 passed, 0 failed, 0 errors</code></pre>
+
+<h4 id="must-i-subclass-testcase">Must I subclass TestCase?</h4>
+<p>In JUnit you can build a TestSuite from an arbitrary class containing <code>test*</code>
+methods. In SUnit you can do the same but you will then have to create a suite
+by hand and your class will have to implement all the essential <code>TestCase</code>
+methods like <code>assert:</code>. We recommend, however, that you not try to do this.
+The framework is there: use it.</p>
+
+<h3 id="defining-a-fixture"><span class="number">5.7</span> Defining a fixture</h3>
+<p>In the previous example, we defined the context in each test method and it was a bit boring to
+duplicate all the logic in any tests. In fact, SUnit proposes a solution to this.</p>
+
+<h4 id="step-1-define-the-class-and-context">Step 1: Define the class and context</h4>
+<p>We can define the context using the two instance variables <code>full</code> and <code>empty</code> that
+we will use to represent a full and an empty set.</p>
+
+<pre><code>TestCase &lt;&lt; #MyExampleSetTest
+	slots: { #full . #empt};
+	package: 'MySetTest'</code></pre>
+
+<h4 id="step-2-setting-a-reusable-context">Step 2: Setting a reusable context</h4>
+<p>The method <code>TestCase &gt;&gt; setUp</code> defines the context in which each of the tests will run.
+The message <code>setUp</code> is sent before the execution of each test method defined in the test class.</p>
+
+<p>Define the <code>setUp</code> method as follows, to initialize the <code>empty</code> variable to
+refer to an empty set and the <code>full</code> variable refers to a set containing two
+elements.</p>
+
+<pre><code>MyExampleSetTest &gt;&gt; setUp
+	empty := Set new.
+	full := Set with: 5 with: 6</code></pre>
+
+<p>In testing jargon, the context is called the <i>fixture</i> for the test.</p>
+
+<h4 id="step-3-write-some-test-methods">Step 3: Write some test methods</h4>
+<p>Now the previous test methods are much more compact and contain less duplication.</p>
+
+<pre><code>MyExampleSetTest &gt;&gt; testIncludes
+	self assert: (full includes: 5).
+	self assert: (full includes: 6)</code></pre>
+
+<pre><code>MyExampleSetTest &gt;&gt; testOccurrences
+	self assert: (empty occurrencesOf: 0) equals: 0.
+	self assert: (full occurrencesOf: 5) equals: 1.
+	full add: 5.
+	self assert: (full occurrencesOf: 5) equals: 1</code></pre>
+
+<pre><code>MyExampleSetTest &gt;&gt; testRemove
+	full remove: 5.
+	self assert: (full includes: 6).
+	self deny: (full includes: 5)</code></pre>
+
+<h3 id="chapter-summary"><span class="number">5.8</span> Chapter summary</h3>
+<p>This chapter explained why tests are an important investment in the future of
+your code. We explained in a step-by-step fashion how to define a few tests for
+the class <code>Set</code>.</p>
+
+<ul>
+<li>To maximize their potential, unit tests should be fast, repeatable, independent of any direct human interaction and cover a single unit of functionality.</li>
+<li>Tests for a class called <code>MyClass</code> belong in a class named <code>MyClassTest</code>, which should be introduced as a subclass of <code>TestCase</code>.</li>
+<li>Initialize your test data in a <code>setUp</code> method.</li>
+<li>Each test method should start with the word <i>test</i>.</li>
+<li>Use the <code>TestCase</code> methods <code>assert:</code>, <code>deny:</code> and others to make assertions.</li>
+<li>Run tests!</li>
+</ul>
+<p>As an exercise, turn the examples given in the first chapter into tests.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="a-first-tutorial-developing.html">← A first tutorial: Developing a simple counter</a>
+        <a class="next" rel="next" href="some-collection-katas.html">Some collection katas with words →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

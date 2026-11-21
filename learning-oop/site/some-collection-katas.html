@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Some collection katas with words</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="some-collection-katas.html" aria-current="page"><span class="number">6</span> Some collection katas with words</a>
+            
+            <ol>
+              
+              <li><a href="#isogram"><span class="number">6.1</span> Isogram</a></li>
+              
+              <li><a href="#about-strings"><span class="number">6.2</span> About strings</a></li>
+              
+              <li><a href="#a-solution-using-sets"><span class="number">6.3</span> A solution using sets</a></li>
+              
+              <li><a href="#defining-a-test"><span class="number">6.4</span> Defining a test</a></li>
+              
+              <li><a href="#some-fun-obtaining-french-isograms"><span class="number">6.5</span> Some fun: Obtaining french isograms</a></li>
+              
+              <li><a href="#pangrams"><span class="number">6.6</span> Pangrams</a></li>
+              
+              <li><a href="#handling-alphabet"><span class="number">6.7</span> Handling alphabet</a></li>
+              
+              <li><a href="#identifying-missing-letters"><span class="number">6.8</span> Identifying missing letters</a></li>
+              
+              <li><a href="#palindrome-as-exercise"><span class="number">6.9</span> Palindrome as exercise</a></li>
+              
+              <li><a href="#conclusion-3"><span class="number">6.10</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">6</span> Some collection katas with words</h2><a id="cha:katas"></a>
+<p>This chapter proposes some little challenges around words and sentences as a way to explore Pharo collections.</p>
+
+<h3 id="isogram"><span class="number">6.1</span> Isogram</h3>
+<p>An isogram is a word or phrase without a repeating letter. The following words are examples of isograms in english and french:</p>
+
+<ul>
+<li>egoism, sea, lumberjacks, background, hacking, pathfinder, pharo</li>
+<li>antipode, altruisme, absolument, bigornaux</li>
+</ul>
+<p>Isograms are interesting words also because they are often the basis of simple ciphers. For instance, isograms of length 10 are commonly used by salespeople to encode numbers and write down the original cost of their products.</p>
+
+<p>Using the <i>pathfinder</i> cipher we can decide that <i>p</i> represents the number 1, <i>a</i> represents the number 2 and so on. The price tag for an item selling for 1100 Euros may also bear the cryptic letters <i>frr</i> written on the back or bottom of the tag. A salesman familiar with the pathfinder cipher will know that the original cost of the item is 500 Euros and he can control his sale.</p>
+
+<p>Since we will essentially manipulate strings, let us start with some basic knowledge on strings.</p>
+
+<h3 id="about-strings"><span class="number">6.2</span> About strings</h3>
+<p>A string in Pharo is in fact an array of characters. We can access string elements using the message <code>at: anIndex</code>. Since all collections in Pharo have their first elements at index 1, the message <code>at: 1</code> returns the first element of a string.</p>
+
+<pre><code>'coucou' at: 1
+&gt;&gt;&gt; $c</code></pre>
+
+<pre><code>'coucou' at: 3
+&gt;&gt;&gt; $u</code></pre>
+
+<p>As with any collection, we can apply iterators such <code>select:</code>, <code>do:</code>, or <code>collect:</code>. Here we select all the characters that are after, hence bigger, than character <code>$m</code>.</p>
+
+<pre><code>'coucou' select: [ :aChar | aChar &gt; $m ] 
+&gt;&gt;&gt;'ouou'</code></pre>
+
+<p>We can also apply all kinds of operations on the collection. Here we reverse it.</p>
+
+<pre><code>'coucou' reverse
+&gt;&gt;&gt;	 'uocuoc' </code></pre>
+
+<p>We can also find the index of a string inside another one using the message <code>findString: aString startingAt: anIndex</code>.</p>
+
+<pre><code>'coucou' findString: 'ou' startingAt: 1
+&gt;&gt;&gt; 2</code></pre>
+
+<pre><code>'coucou' findString: 'ou' startingAt: 3
+&gt;&gt;&gt; 5</code></pre>
+
+<p>We simply present some of the possible messages that can be sent to a string. We select some that you can use in the following or in the next chapter. Now let us solve our problem to identify if a string is an isogram.</p>
+
+<h3 id="a-solution-using-sets"><span class="number">6.3</span> A solution using sets</h3>
+<p>We can do a simple (and not really efficient) implementation using sets. Sets are collections that only contain one occurence of each element added to them. Adding twice the same element only adds one.</p>
+
+<p>Note that sets in Pharo can contain any objects, even sets themselves. This is not the case in all languages. In Pharo, there is no restriction about set elements.</p>
+
+<p>You can convert a string into a set of characters sending the string the message <code>asSet</code>.</p>
+
+<pre><code>'coucou' asSet
+&gt;&gt;&gt; a Set($u $c $o)</code></pre>
+
+<p>Now this is your turn: Imagine how using a set of characters, you can determine if a string is a isogram.</p>
+
+<h4 id="hints">Hints</h4>
+<p>If the size of a set with the contents of a string and this string are the same, it means that the string does not contain any letter twice! Bingo we can simply identify an isogram.</p>
+
+<p>To get the size of a collection use the message <code>size</code></p>
+
+<pre><code>'coucou' size 
+&gt;&gt;&gt; 6</code></pre>
+
+<p>Now we convert <code>'coucou'</code> into a set using the message <code>asSet</code>.</p>
+
+<pre><code>'coucou' asSet size
+&gt;&gt;&gt; 3</code></pre>
+
+<p>Note that the message <code>asSet</code> is equivalent to the following script:</p>
+
+<pre><code>| s1 |
+s1 := Set new. 
+'coucou' do: [ :aChar | s1 add: aChar ].
+s1 
+&gt;&gt;&gt; a Set($u $c $o)</code></pre>
+
+<ul>
+<li>Here we define a variable <code>s1</code></li>
+<li>We iterate over all the characters of the string <code>'coucou'</code>, and we add each character one by one to the set <code>s1</code>.</li>
+<li>We return the set.</li>
+<li>The set contains only three elements <code>$c</code>, <code>$o</code>, <code>$u</code> as expected.</li>
+</ul>
+<h4 id="checking-expression">Checking expression</h4>
+<p>So now we can get to the expression that verifies that <code>'pharo'</code> is an isogram.</p>
+
+<pre><code>| s | 
+s := 'pharo'.
+s size = s asSet size 
+&gt;&gt;&gt; true</code></pre>
+
+<p>And that <code>'phaoro'</code> is not!</p>
+
+<pre><code>| s | 
+s := 'phaoro'.
+s size = s asSet size 
+&gt;&gt;&gt; false</code></pre>
+
+<h4 id="adding-a-method-to-the-class-string">Adding a method to the class String</h4>
+<p>Now we can define a new method to the class <code>String</code>. Since you may propose multiple implementations, we postfix the message with the implementation strategy we use. Here we define <code>isIsogramSet</code></p>
+
+<pre><code>String &gt;&gt; isIsogramSet
+	"Returns true if the receiver is an isogram, i.e., a word using no repetitive character."
+	"'pharo' isIsogramSet
+	&gt;&gt;&gt; true"
+	"'phaoro' isIsogramSet
+	&gt;&gt;&gt; false"
+	
+	... Your solution here ... </code></pre>
+
+<p>And we test that our method is correct.</p>
+
+<pre><code>'pharo' isIsogramSet 
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>'phaoro' isIsogramSet 
+&gt;&gt;&gt; false</code></pre>
+
+<p>Wait! We do not want to have to check manually all the time!</p>
+
+<q id="note">When you verify two times the same things, better write a test! Remember you write  a test once and execute it million times!</q>
+<h3 id="defining-a-test"><span class="number">6.4</span> Defining a test</h3>
+<p>To define tests we could extend the <code>StringTest</code> class, but we prefer to keep our experiment contained in a package of its own. To achieve this, we will create a package <code>LoopStarGram</code> and define the <code>String &gt;&gt; isIsogramSet</code> method as a class extension of that package.</p>
+
+<q id="important">To define a method as a class extension of package <code>Foo</code>, just name the protocol of the method <code>*Foo</code>.</q>
+<p>We define the class <code>GramCheckerTest</code> as follow. It inherits from <code>TestCase</code> and belongs to the package <code>LoopStarGram</code>.</p>
+
+<pre><code>TestCase &lt;&lt; #GramCheckerTest
+	package: 'LoopStarGram'</code></pre>
+
+<p>Now we are ready to implement our first automated test for this chapter.</p>
+
+<p>Test methods are special.</p>
+
+<ul>
+<li>A test method should start with <code>'test'</code>.</li>
+<li>A test method is executed automatically when we press the icons displaying the method.</li>
+<li>A test method can contain expressions such as <code>self assert: aTrueExpression</code> or <code>self deny: aFalseExpression</code>.</li>
+</ul>
+<p>Here</p>
+
+<ul>
+<li>Our method is named <code>testIsogramSetImplementation</code>.</li>
+<li>We check (<code>assert:</code>) that 'pharo' is an isogram i.e., that <code>'pharo' isIsogramSet</code> returns <code>true</code>.</li>
+<li>We check (<code>deny:</code>) that 'phaoro' is <i>not</i> an isogram i.e., that <code>'phaoro' isIsogramSet</code> returns <code>false</code>.</li>
+</ul>
+<pre><code>GramCheckerTest &gt;&gt; testIsogramSetImplementation
+	self assert: 'pharo' isIsogramSet.
+	self deny: 'phaoro' isIsogramSet.</code></pre>
+
+<q id="important">When you write a test, make sure that you test different situations or results. Why? Because imagine that your methods always return true, you would never be sure that not all the string are isograms. So always check for positive and negative results.</q>
+<p>Messages <code>assert:</code> and <code>deny:</code> are equivalent as follows: assert (something) is equals to deny(something not) and assert (something not) is equivalent to deny (something). Hence the following expressions are strictly equivalent.
+</p>
+
+<pre><code>self assert: 'phaoro' isIsogramSet not.
+self deny: 'phaoro' isIsogramSet.</code></pre>
+
+<h4 id="testing-several-strings">Testing several strings</h4>
+<p>Writing a test for each new string is tedious; we want to exercise the same test on multiple strings.
+For that we will define a method in the test class that returns a collection of strings, for instance an array of isograms.</p>
+
+<pre><code>GramCheckerTest &gt;&gt; isograms
+	^ #('pharo' 'pathfinder' 'xavier' 'francois' 'lumberjacks' 'altruisme' 'antipode')</code></pre>
+
+<p>Then we define a new test method <code>testAllIsogramSet</code> that simply iterates over the string array and for each verifies using <code>assert:</code> that the element is indeed an isogram.</p>
+
+<p>In Pharo, there are multiple ways to express loops on collections, the easiest being to send the message <code>do:</code> to the collection. The <code>do:</code> message executes the block on each element of the collection one by one.</p>
+
+<q id="note">The <code>do:</code> message executes its argument taking each element of the receiver collection one by one. Note the way we express it, we ask the collection to iterate on itself. Note also that we do not have to worry about the size of the collection and the index of an element as this is often the case in other languages.</q>
+<pre><code>GramCheckerTest &gt;&gt; testAllIsogramSet
+	
+	self isograms do: [ :word |
+		self assert: word isIsogramSet ]</code></pre>
+
+<p>Since we said that we should also tests negative let us to the same for non isograms. We create another method that returns non isogram strings and we enhance our testing method.</p>
+
+<pre><code>GramCheckerTest &gt;&gt; notIsograms
+	^ #('phaoro' 'stephane' 'idiot' 'freedom')</code></pre>
+
+<p>And we make our test using both.</p>
+
+<pre><code>GramCheckerTest &gt;&gt; testAllIsogramSetImplementation
+	
+	self isograms do: [ :word |
+		self assert: word isIsogramSet ].
+	self notIsograms do: [ :word |
+		self deny: word isIsogramSet ]</code></pre>
+
+<h3 id="some-fun-obtaining-french-isograms"><span class="number">6.5</span> Some fun: Obtaining french isograms</h3>
+<p>Now we would like to find some isograms in french. We stored on the github repository of this book some resources as shown below containing french words line by line. We would like to get all the lines. We will use <code>ZnClient</code>, the HTTPClient that comes with Pharo.
+Since this is a lot of data, execute the expression using the <strong>Inspect It</strong> menu or shortcut to get an inspector instead of a simple <strong>Do It</strong>.
+You can try the other file which contains more than 330 000 french words.</p>
+
+<pre><code>(ZnClient new 
+    get: 'https://raw.githubusercontent.com/SquareBracketAssociates/
+	LearningOOPWithPharo/
+	master/resources/listeDeMotsAFrancaisUTF8.txt') lines
+
+(ZnClient new 
+    get: 'https://raw.githubusercontent.com/SquareBracketAssociates/
+	LearningOOPWithPharo/
+	master/resources/listeDeMotsFrancaisFrGutUTF8.txt') lines</code></pre>
+
+<p>The expression above will give you an array of 336531 words (it is a bit slow depending on your internet connection because it is lot of data).</p>
+
+<p>Once you get the inspector opened, you can start to play with the data.
+Make sure that you select <code>self</code> and
+in the text pane you can execute the following expressions:</p>
+
+<p>The first one will select all the words that are isogram and you will see them in the second list that will appear on the right.</p>
+
+<pre><code>self select: #isIsogramSet</code></pre>
+
+<p>Now you can select again all the isogram longer or equal to 10.</p>
+
+<pre><code>self select: [:each | each size &gt;= 10 ]</code></pre>
+
+<p>We have other ways to implement isograms and we will discuss such implementations in the next chapter. Now we will play with pangrams.</p>
+
+<h3 id="pangrams"><span class="number">6.6</span> Pangrams</h3>
+<p>
+The definition of a pangram is the following:  <i>A Pangram or holoalphabetic sentence for a given alphabet is a sentence using every letter of the alphabet at least once</i>.
+
+Here are examples of english pangrams:</p>
+
+<ul>
+<li>the five boxing wizards jump quickly</li>
+<li>the quick brown fox jumps over the lazy dog</li>
+</ul>
+<p>Let us write a test first. Yes we want to make sure that we will be able to control if our code is correct and we do not want to repeat typing the test.</p>
+
+<pre><code>GramCheckerTest &gt;&gt; testIsEnglishPangram
+
+	self assert: 'The quick brown fox jumps over the lazy dog' isEnglishPangram.
+	self deny: 'The quick brown fox jumps over the  dog' isEnglishPangram</code></pre>
+
+<h4 id="imagine-a-solution">Imagine a solution</h4>
+<p>Imagine that we have a collection or string representing the alphabet.
+A solution is to check that the potential pangram string contains each of the characters of the alphabet, as soon as we see that one character is missing we stop and know that the sentence is not a pangram.</p>
+
+<pre><code>'The quick brown fox jumps over the lazy dog' isEnglishPangram
+&gt;&gt;&gt; true
+'The quick brown fox jumps over the dog' isEnglishPangram
+&gt;&gt;&gt; false</code></pre>
+
+<h4 id="a-first-version">A first version</h4>
+<p>Here is a first version. We define a variable <code>isPangram</code> that will represent the information we know about the receiver. We set it to true to start. Then we iterate over an alphabet character by character and as soon as the character is not included in the receiver we set the variable to false.
+At the end we return the variable <code>isPangram</code>.</p>
+
+<pre><code>String &gt;&gt; isEnglishPangram
+	"Returns true is the receiver is a pangram i.e., that it uses all the characters of a given alphabet."
+	
+	| isPangram |
+	isPangram := true. 
+	'abcdefghijklmnopqrstuvwxyz' do: [ :aChar |
+		(self includes: aChar)
+			ifFalse: [ isPangram := false ]
+		].
+	^ isPangram</code></pre>
+
+<p>This first implementation has a problem. Can you see which one?
+If the sentence does not contain <code>$a</code>, we will know it immediately still we will look for all the other letters. So this is clearly inefficient.</p>
+
+<h4 id="a-better-version">A better version</h4>
+<p>Instead for testing all characters, even if we know one is missing, what we should do is to stop looking as soon as we identify that there is one missing character and return the result.</p>
+
+<p>The following definition is doing this and it deserves a word of explanation.</p>
+
+<p>The expression <code>^ something</code>  returns the value <code>something</code> to the caller method. The program execution exits at that point: it does not execute the rest of method. The program execution returns to the method caller. Usually we use <code>^ something</code> as last statement of a method when they need to return a special value. Now <code>^ anExpression</code> can occur anywhere and in particular inside a loop. In such a case the loop is stopped, the method execution is stopped and the value is returned.</p>
+
+<pre><code>String &gt;&gt; isEnglishPangram
+	"Returns true is the receiver is a pangram i.e., that it uses all the characters of a given alphabet."
+	
+	'abcdefghijklmnopqrstuvwxyz' do: [ :aChar |
+		(self includes: aChar)
+			ifFalse: [ ^ false ]
+		].
+	^ true</code></pre>
+
+<p>Note that we do not need the variable <code>isPangram</code> anymore. We return <code>true</code> as last expression because we assume that if the execution arrives to this point, it means that all the characters of the alphabet are in the receiver; otherwise the execution would have been stopped and false would have been returned.</p>
+
+<q id="note">When you define a method returning a boolean value, always think that you should at least return a true and a false value. This sounds like a stupid advice but developing such a basic reflex is important.</q>
+<q id="important">The execution of any expression preceded by a <code>^</code> (a caret) will cause the method to exit at that point, returning the value of that expression. A method that terminates without explicitly returning some expression will implicitly return <code>self</code>.</q>
+<h3 id="handling-alphabet"><span class="number">6.7</span> Handling alphabet</h3>
+<p>A pangram is only valid within a given alphabet. The web site <a target="_blank" href="http://clagnut.com/blog/2380/"><a target="_blank" href="http://clagnut.com/blog/2380/">http://clagnut.com/blog/2380/</a></a> describes pangrams in many different languages. Now we could follow one gag in Gaston Lagaffe with the 'Il y a des poux. Parmi les poux, il y a des poux papas et des poux pas papas. Parmi les poux papas, il y a des poux papas papas et des poux papas non papas....' and all their descendance.
+'les poux papas et les poux pas papas' is not a pangram in french but a pangram in the alphabet 'apouxetl'.</p>
+
+<p>We would like to be able to specify the alphabet to be used to verify. Yes we define a new test.</p>
+
+<pre><code>GramCheckerTest &gt;&gt; testIsPangramIn
+
+	self assert: ('The quick brown fox jumps over the lazy dog' isPangramIn: 'abcdefghijklmnopqrstuvwxyz').
+	self assert: ('les poux papas et les poux pas papas' isPangramIn: 'apouxetl').</code></pre>
+
+<p>You can do it really simply:</p>
+
+<pre><code>String &gt;&gt; isPangramIn: alphabet
+	"Returns true is the receiver is a pangram i.e., that it uses all the characters of a given alphabet."
+	"'The quick brown fox jumps over the lazy dog' isPangramIn: 'abcdefghijklmnopqrstuvwxyz'
+	&gt;&gt;&gt; true"
+	"'tata' isPangramIn: 'at'
+	&gt;&gt;&gt; true"
+
+	... Your solution ...</code></pre>
+
+<pre><code>String &gt;&gt; isEnglishPangram
+	"Returns true is the receiver is a pangram i.e., that it uses all the characters of a given alphabet."
+	"'The quick brown fox jumps over the lazy dog' isEnglishPangram
+	&gt;&gt;&gt; true"
+	"'The quick brown fox jumps over the dog' isEnglishPangram
+	&gt;&gt;&gt; false"
+
+	... Your solution ...</code></pre>
+
+<p>Execute all the tests to verify that we did not change anything.</p>
+
+<p>If we keep to use french words that do not need accents, we can verify that some french sentences are also pangrams.</p>
+
+<pre><code>'portez ce vieux whisky au juge blond qui fume' isEnglishPangram
+&gt;&gt;&gt; true
+
+'portons dix bons whiskys à l''avocat goujat qui fume au zoo.' isEnglishPangram
+&gt;&gt;&gt; true</code></pre>
+
+<h3 id="identifying-missing-letters"><span class="number">6.8</span> Identifying missing letters</h3>
+<p>Building a pangram can be difficult and the question is how we can identify missing letters. Let us define some methods to help us. But first let us write a test.</p>
+
+<p>We will start to write a test for the method <code>detectFirstMissingLetterFor:</code>. As you see we just remove one unique letter from our previous pangram and we are set.</p>
+
+<pre><code>GramCheckerTest &gt;&gt; testDetectFirstMissingLetter
+
+	self assert: ('the quick brown fox jumps over the lzy dog' 
+		detectFirstMissingLetterFor: 'abcdefghijklmnopqrstuvwxyz') equals: $a.
+	self assert: ('the uick brown fox jumps over the lazy dog' 
+		detectFirstMissingLetterFor: 'abcdefghijklmnopqrstuvwxyz') equals: $q.</code></pre>
+
+<p><strong>Your work:</strong> Propose a definition for the method <code>detectFirstMissingLetterFor:</code>.</p>
+
+<pre><code>String &gt;&gt; detectFirstMissingLetterFor: alphabet
+	"Return the first missing letter to make a pangram of the receiver in the context of a given alphabet. 
+	Return '' otherwise"
+	
+	... Your solution ...
+	</code></pre>
+
+<p>In fact this method is close to the method <code>isPangramIn: alphabet</code>.  It should iterate over the alphabet and check that the char is included in the string. When this is not the case, it should return the character and we can return an empty string when there is no missing letter.</p>
+
+<h4 id="about-the-return-values-of-detectfirstmissingletterfor">About the return values of detectFirstMissingLetterFor:</h4>
+<p>Returning objects that are not polymorphic such as a single character or a string (which is not a character but a sequence of characters) is really bad design.
+Why? Because the user of the method will be forced to check if the result is a single character or a collection of characters.</p>
+
+<q id="note">Avoid as much as possible to return objects that are not polymorphic. Return a collection and an empty collection. Not a collection and nil. Write methods returning the same kind of objects, this way their clients will be able to treat them without asking if they are different. This practice reinforces the <strong>Tell do not ask principle</strong>.</q>
+<p>We have two choices: either always return  a collection as for that we convert the character into a string sending it the message <code>asString</code> as follow, or we can return a special character to represent that nothing happens for example Character space.</p>
+
+<pre><code>String &gt;&gt; detectFirstMissingLetterFor: alphabet
+	"Return the first missing letter to make a pangram of the receiver in the context of a given alphabet. 
+	Return '' otherwise"
+	
+	alphabet do: [ :aChar |
+		(self includes: aChar)
+			ifFalse: [ ^ aChar asString ]
+		].
+	^ ''</code></pre>
+
+<p>Here we prefer to return a string since the method is returning the first character.
+In the following one we return a special character.</p>
+
+<pre><code>String &gt;&gt; detectFirstMissingLetterFor: alphabet
+	"Return the first missing letter to make a pangram of the receiver in the context of a given alphabet. 
+	Return '' otherwise"
+	
+	alphabet do: [ :aChar |
+		(self includes: aChar)
+			ifFalse: [ ^ aChar ]
+		].
+	^ Character space</code></pre>
+
+<p>Now it is better to return all the missing letters.</p>
+
+<h4 id="detecting-all-the-missing-letters">Detecting all the missing letters</h4>
+<p>Let us write a test to cover this new behavior. We removed the character a and g from the pangram and we verify that the method returns an array with the corresponding missing letters.</p>
+
+<pre><code>GramCheckerTest &gt;&gt; testDetectAllMissingLetters
+
+	self assert: ('the quick brown fox jumps over the lzy do' 
+		detectAllMissingLettersFor: 'abcdefghijklmnopqrstuvwxyz') equals: #($a $g).
+	self assert: ('the uick brwn fx jumps ver the lazy dg' 
+		detectAllMissingLettersFor: 'abcdefghijklmnopqrstuvwxyz') equals: #($q $o).</code></pre>
+
+<p><strong>Your work:</strong> Implement the method <code>detectAllMissingLettersFor:</code>.</p>
+
+<pre><code>String &gt;&gt; detectAllMissingLettersFor: alphabet
+	
+	... Your solution ...</code></pre>
+
+<p>One of the problem that you can encounter is that the order of the missing letters can make the tests failed. You can create a Set instead of an Array.</p>
+
+<p>Now our test does not work because it  verifies that we get an array of characters while we get an ordered collection. So we change it to take into account the returned collection.</p>
+
+<pre><code>GramCheckerTest &gt;&gt; testDetectAllMissingLetters
+
+	self assert: ('the quick brown fox jumps over the lzy do' 
+		detectAllMissingLettersFor: 'abcdefghijklmnopqrstuvwxyz') equals: (Set withAll: #($a $g)).
+	self assert: ('the uick brwn fx jumps ver the lazy dg' 
+		detectAllMissingLettersFor: 'abcdefghijklmnopqrstuvwxyz') equals: #($q $o) asSet.</code></pre>
+
+<p>Instead of explicitely creating a Set, we could also use the message <code>asSet</code> that converts the receiver into a Set as shown in the second check.</p>
+
+<h3 id="palindrome-as-exercise"><span class="number">6.9</span> Palindrome as exercise</h3>
+<p>We let as an exercise the identification if a string is a palindrom.
+A palindrome is a word or sentence that can be read in both way. 'KAYAK' is a palindrome.</p>
+
+<pre><code>GramCheckerTest &gt;&gt; testIsPalindrome
+
+	self assert: 'ete' isPalindrome.
+	self assert: 'kayak' isPalindrome.
+	self deny: 'etat' isPalindrome.</code></pre>
+
+<h4 id="some-possible-implementations">Some possible implementations</h4>
+<p>Here is a list of possible implementation.</p>
+
+<ul>
+<li>You can iterate on strings and check that the first element and the last element are the same.</li>
+<li>You can also reverse the receiver (message <code>reverse</code>) and compare the character one by one. You can use the message <code>with:do:</code> which iterate on two collections.</li>
+</ul>
+<pre><code>'etat' reverse 
+&gt;&gt;&gt; 'tate'</code></pre>
+
+<pre><code>| res |
+res := OrderedCollection new. 
+#(1 2 3) with: #(10 20 30) do: [ :f :s | res add: f * s ].
+res
+&gt;&gt;&gt; an OrderedCollection(10 40 90)</code></pre>
+
+<p>You can also add the fact that space do not count.</p>
+
+<pre><code>self assert: 'Elu par cette crapule' isPalindrome.</code></pre>
+
+<h3 id="conclusion-3"><span class="number">6.10</span> Conclusion</h3>
+<p>We got some fun around words and sentences. You should know more about strings and collection. In particular, in Pharo a collection can contain any objects. You also saw is that loops to not require to specify the first index and how to increment it. Of course we can do it in Pharo using the message <code>to:do:</code> and <code>to:by:do:</code>. But only when we need it. So play with some iterators such as <code>do:</code> and <code>select:</code>. The iterators are really powerful and this is really important to be fluent with them because they will make you save a lot of time.</p>
+
+<p></p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="tests-tests-and-tests.html">← Tests, tests and tests</a>
+        <a class="next" rel="next" href="about-objects-and-classes.html">About objects and classes →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

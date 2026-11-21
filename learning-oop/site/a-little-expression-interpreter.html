@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A little expression interpreter</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="a-little-expression-interpreter.html" aria-current="page"><span class="number">15</span> A little expression interpreter</a>
+            
+            <ol>
+              
+              <li><a href="#starting-with-constant-expressions-and-a-test"><span class="number">15.1</span> Starting with constant expressions and a test</a></li>
+              
+              <li><a href="#negation"><span class="number">15.2</span> Negation</a></li>
+              
+              <li><a href="#adding-expression-addition"><span class="number">15.3</span> Adding expression addition</a></li>
+              
+              <li><a href="#multiplication"><span class="number">15.4</span> Multiplication</a></li>
+              
+              <li><a href="#stepping-back"><span class="number">15.5</span> Stepping back</a></li>
+              
+              <li><a href="#negated-as-a-message"><span class="number">15.6</span> Negated as a message</a></li>
+              
+              <li><a href="#annoying-repetition"><span class="number">15.7</span> Annoying repetition</a></li>
+              
+              <li><a href="#introducing-the-expression-class"><span class="number">15.8</span> Introducing the Expression class</a></li>
+              
+              <li><a href="#class-creation-messages"><span class="number">15.9</span> Class creation messages</a></li>
+              
+              <li><a href="#introducing-examples-as-class-messages"><span class="number">15.10</span> Introducing examples as class messages</a></li>
+              
+              <li><a href="#printing"><span class="number">15.11</span> Printing</a></li>
+              
+              <li><a href="#revisiting-the-negated-message-for-negation"><span class="number">15.12</span> Revisiting the negated message for Negation</a></li>
+              
+              <li><a href="#secBinaryExpression"><span class="number">15.13</span> Introducing the BinaryExpression class</a></li>
+              
+              <li><a href="#what-did-we-learn"><span class="number">15.14</span> What did we learn</a></li>
+              
+              <li><a href="#about-hook-methods"><span class="number">15.15</span> About hook methods</a></li>
+              
+              <li><a href="#variables"><span class="number">15.16</span> Variables</a></li>
+              
+              <li><a href="#conclusion-12"><span class="number">15.17</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">15</span> A little expression interpreter</h2><a id="cha:expressions"></a>
+<p>In this chapter you will build a small mathematical expression interpreter. You will be able to build an expression such as <code>(3 + 4) * 5</code> and then ask the interpreter to compute its value. You will revisit tests, classes, messages, methods, and inheritance. You will also see an example of expression trees similar to the ones that are used to manipulate programs. Compilers and code refactorings as offered in Pharo and many modern IDEs work by performing manipulations on these trees. In volume two of this book, we will extend this example to present the Visitor design pattern.</p>
+
+<h3 id="starting-with-constant-expressions-and-a-test"><span class="number">15.1</span> Starting with constant expressions and a test</h3>
+<p>We start with constant expressions. A constant expression is an expression whose value is always the same, obviously.</p>
+
+<p>Let us start by defining a test case class as follows:</p>
+
+<pre><code>TestCase &lt;&lt; #EConstantTest
+	package: 'Expressions'</code></pre>
+
+<p>We decided to define one test case class per expression class, even if the classes will not contain many tests to begin with. This way makes it easier to define new tests and navigate them.
+
+Let us write a first test making sure that when we create a constant, sending it the <code>evaluate</code> message returns its value:</p>
+
+<pre><code>EConstantTest &gt;&gt; testEvaluate 
+	self assert: (EConstant new value: 5) evaluate equals: 5</code></pre>
+
+<p>When you compile such a test method, the system should prompt you define the class <code>EConstant</code>. Let the system drive you. Since we need to store the value of a constant expression, let us add an instance variable <code>value</code> to the class definition.</p>
+
+<p>At the end you should have the following definition for the class <code>EConstant</code>:</p>
+
+<pre><code>Object &lt;&lt; #EConstant
+	slots: { #value }; 
+	package: 'Expressions'</code></pre>
+
+<p>We define the method <code>value:</code> to set the value of the instance variable <code>value</code>.
+It is simply a method that takes one argument and stores it in the <code>value</code> instance variable:</p>
+
+<pre><code>EConstant &gt;&gt; value: anInteger
+	value := anInteger</code></pre>
+
+<p>You should define the method <code>evaluate</code> to return the value of the constant.</p>
+
+<pre><code>EConstant &gt;&gt; evaluate
+	... Your code ...</code></pre>
+
+<p>Your test should now pass.</p>
+
+<h3 id="negation"><span class="number">15.2</span> Negation</h3>
+<p>Now we can start to work on negation of expressions. Let us write a test. Define a new test case class named <code>ENegationTest</code>.</p>
+
+<pre><code>TestCase &lt;&lt; #ENegationTest
+	package: 'Expressions'</code></pre>
+
+<p>The test <code>testEvaluate</code> shows that negation applies to an expression (here a constant), and that when we evalute it we get the negated value of the constant:</p>
+
+<pre><code>ENegationTest &gt;&gt; testEvaluate 
+	self
+        assert:
+        (ENegation new expression: (EConstant new value: 5)) evaluate
+        equals: -5</code></pre>
+
+<p>Let us execute the test and let the system help us to define the class. A negation defines an instance variable to hold the expression that it negates:</p>
+
+<pre><code>Object &lt;&lt; #ENegation
+	slots: { #expression };
+	package: 'Expressions'</code></pre>
+
+<p>We define a setter method to be able to set the negated expression:</p>
+
+<pre><code>ENegation &gt;&gt; expression: anExpression 
+	expression := anExpression</code></pre>
+
+<p>Now the <code>evaluate</code> method should request the evaluation of the expression and negate it. To negate a number we would suggest sending the message <code>negated</code>:</p>
+
+<pre><code>ENegation &gt;&gt; evaluate
+	... Your code ...</code></pre>
+
+<p><figure id="figExpression"><img src="Chapters/Expressions/figures/Expressions.png" alt="A flat collection of classes (with a suspect duplication)." class="figExpression" style="width: 70%"><figcaption><span class="number">Figure 15.1</span> A flat collection of classes (with a suspect duplication).</figcaption></img></figure></p>
+
+<p>Following the same steps as above, we will now add addition and multiplication of expressions. Then we will make the system a bit easier to manipulate, and revisit its design.</p>
+
+<h3 id="adding-expression-addition"><span class="number">15.3</span> Adding expression addition</h3>
+<p>To add an expression that supports addition we start by defining a test case class and a simple test:</p>
+
+<pre><code>TestCase &lt;&lt; #EAdditionTest
+	package: 'Expressions'</code></pre>
+
+<p>A simple test for addition is to make sure that we add correctly two constants:</p>
+
+<pre><code>EAdditionTest &gt;&gt; testEvaluate
+	| ep1 ep2 |
+	ep1 := EConstant new value: 5.
+	ep2 := EConstant new value: 3.
+	self assert: (EAddition new right: ep1; left: ep2) evaluate equals: 8</code></pre>
+
+<p>
+You should define the class <code>EAddition</code>. It will have two instance variables for the two subexpressions it adds:</p>
+
+<pre><code>EExpression &lt;&lt; #EAddition
+	slots: { #left . #right }; 
+	package: 'Expressions'</code></pre>
+
+<p>Define the two corresponding setter methods <code>right:</code> and <code>left:</code>.</p>
+
+<p>Now you can define the <code>evaluate</code> method for addition:</p>
+
+<pre><code>EAddition &gt;&gt; evaluate
+	... Your code ...</code></pre>
+
+<p>
+To make sure that our implementation is correct we can also test that we can add negated expressions. It is always good to add tests that cover <i>different</i> scenarios:
+</p>
+
+<pre><code>EAdditionTest &gt;&gt; testEvaluateWithNegation
+	| ep1 ep2 |
+	ep1 := ENegation new expression: (EConstant new value: 5).
+	ep2 := EConstant new value: 3.
+	self
+        assert: (EAddition new right: ep1; left: ep2) evaluate
+        equals: -2</code></pre>
+
+<p>
+</p>
+
+<h3 id="multiplication"><span class="number">15.4</span> Multiplication</h3>
+<p>We do the same for multiplication. Create a test case class named <code>EMultiplicationTest</code>, a test, a new class <code>EMultiplication</code>, a couple of setter methods and finally a new <code>evaluate</code> method. Let us do so quickly and without further comment:</p>
+
+<pre><code>TestCase &lt;&lt; #EMultiplicationTest
+	package: 'Expressions'</code></pre>
+
+<pre><code>EMultiplicationTest &gt;&gt; testEvaluate
+	| ep1 ep2 |
+	ep1 := (EConstant new value: 5).
+	ep2 := (EConstant new value: 3).
+	self
+        assert:
+        (EMultiplication new right: ep1; left: ep2) evaluate
+        equals: 15</code></pre>
+
+<pre><code>Object &lt;&lt; #EMultiplication
+	slots: { #left . #right };
+	package: 'Expressions'</code></pre>
+
+<pre><code>EMultiplication &gt;&gt; right: anExpression
+	right := anExpression</code></pre>
+
+<pre><code>EMultiplication &gt;&gt; left: anExpression
+	left := anExpression</code></pre>
+
+<pre><code>EMultiplication &gt;&gt; evaluate
+	... Your code ...</code></pre>
+
+<h3 id="stepping-back"><span class="number">15.5</span> Stepping back</h3>
+<p>It is interesting to look at what we have built so far. We have a group of classes whose instances can be combined to create complex expressions. Each expression is, in fact, a tree of subexpressions as shown in Figure <a href="#fig:ExpressionTrees">15.2</a>. The figure shows two main trees: one for the constant expression <code>5</code>, and one for the expression <code>-5 + 3</code>. Note that the diagram represents the number 5 as an object because in Pharo even small integers are objects, in the same way that the instances of <code>EConstant</code> are objects.</p>
+
+<p><figure id="fig:ExpressionTrees"><img src="Chapters/Expressions/figures/ExpressionTrees.pdf" alt="Expressions are composed of trees." class="fig:ExpressionTrees" style="width: 60%"><figcaption><span class="number">Figure 15.2</span> Expressions are composed of trees.</figcaption></img></figure></p>
+
+<h4 id="messages-and-methods-2">Messages and methods</h4>
+<p>The implementation of the <code>evaluate</code> message is worth discussing. What we can see is that <i>different</i> classes understand the same message but execute different methods as shown in Figure <a href="#figExpressionEvaluate">15.3</a>.</p>
+
+<q id="important">A message represents an intent: it represents <i>what</i> should be done. A method represents a specification of <i>how</i> something should be executed.</q>
+<p>What we see is that sending the message <code>evaluate</code> to an expression is making a choice out of the different available implementations of the message. This point is central to object-oriented programming.</p>
+
+<q id="important">Sending a message is making a choice from among all the methods with the same name.</q>
+<h4 id="about-common-superclass">About common superclass</h4>
+<p>Up until now we did not see the need to have an inheritance hierarchy, because there is not much that can be shared or reused. But at this point adding a common superclass would be useful to convey to the reader of the code, or someone who wanted to extend the library, that some concepts in our package, represented as messages, are related, and are variations of a general idea.</p>
+
+<p><figure id="figExpressionEvaluate"><img src="Chapters/Expressions/figures/ExpressionsEvaluate.pdf" alt="Evaluation: one message and multiple method implementations." class="figExpressionEvaluate" style="width: 80%"><figcaption><span class="number">Figure 15.3</span> Evaluation: one message and multiple method implementations.</figcaption></img></figure></p>
+
+<h4 id="design-corner-about-the-addition-and-multiplication-model">Design corner: About the addition and multiplication model</h4>
+<p>We could have just one class called, for example, <code>BinaryOperation</code>, and it could have an <code>operator</code> instance variable, either addition or multiplication. This solution would work but, as usual, having a working program does not mean that its design is any good.</p>
+
+<p>In particular having a single class would force us to start to write conditional logic in <code>evaluate</code> based on the operator as follows:</p>
+
+<pre><code>BinaryExpression &gt;&gt; evaluate
+	operator = #+ 
+		ifTrue: [ left evaluate + right evaluate ] 
+		ifFalse: [ left evaluate * right evaluate]</code></pre>
+
+<p>There are ways in Pharo to make such code more compact but we do not want to use them at this stage. (For the interested reader, look for the message <code>perform:</code> that can execute a method based on its name).</p>
+
+<p>This is annoying because the execution engine itself is made to select methods for us so we want to bypass it using an explicit conditional. In addition when we add power, division, and subtraction we will also have to add more cases to our conditional, making the code less readable and more fragile.</p>
+
+<p>As we will see as we read further, one of the key messages of this book is <i>sending a message is making a choice</i> between different implementations. To be able make that choice we should have different implementations, which implies having different classes.</p>
+
+<q id="important">Classes represent choices whose methods can be selected in reaction to a message. Having many little classes is better than few large ones.</q>
+<p>What we could do is to introduce a common superclass between <code>EAddition</code> and <code>EMultiplication</code> but keep the two subclasses. We will do this later in the chapter.</p>
+
+<h3 id="negated-as-a-message"><span class="number">15.6</span> Negated as a message</h3>
+<p>Negating an expression is expressed in a verbose way. We have to create explicitly each time an instance of the class <code>ENegation</code> as shown in the following snippet:</p>
+
+<pre><code>ENegation new expression: (EConstant new value: 5)</code></pre>
+
+<p>We propose defining a message <code>negated</code> on the expressions themselves that will create such instance of <code>ENegation</code>. With this new message, the previous expression can be reduced to:</p>
+
+<pre><code>(EConstant new value: 5) negated</code></pre>
+
+<h4 id="negated-message-for-constants"><code>negated</code> message for constants</h4>
+<p>Let us write a test to make sure that we capture what we want.</p>
+
+<pre><code>EConstantTest &gt;&gt; testNegated
+	self assert: (EConstant new value: 6) negated evaluate equals: -6</code></pre>
+
+<p>And now we can simply implement it as follows:</p>
+
+<pre><code>EConstant &gt;&gt; negated
+	^ ENegation new expression: self</code></pre>
+
+<h4 id="negated-message-for-negations"><code>negated</code> message for negations</h4>
+<pre><code>ENegationTest &gt;&gt; testNegationNegated
+	self assert: (EConstant new value: 6) negated negated evaluate equals: 6</code></pre>
+
+<pre><code>ENegation &gt;&gt; negated
+	^ ENegation new expression: self</code></pre>
+
+<p>This definition is not the best we can do since, in general, it is bad practice to hardcode the class usage inside the class. A better definition would be:</p>
+
+<pre><code>ENegation &gt;&gt; negated
+	^ self class new expression: self</code></pre>
+
+<p>But for now we will keep the first one for the sake of simplicity.</p>
+
+<h4 id="negated-message-for-additions"><code>negated</code> message for additions</h4>
+<p>We proceed similarly for additions:</p>
+
+<pre><code>EEAdditionTest &gt;&gt; testNegated
+	| ep1 ep2 |
+	ep1 := EConstant new value: 5.
+	ep2 := EConstant new value: 3.
+	self assert: (EAddition new right: ep1; left: ep2) negated evaluate equals: -8</code></pre>
+
+<pre><code>EAddition &gt;&gt; negated
+	Your code</code></pre>
+
+<h4 id="negated-message-for-multiplications"><code>negated</code> message for multiplications</h4>
+<p>And finally for multiplications:</p>
+
+<pre><code>EMultiplicationTest &gt;&gt; testEvaluateNegated
+	| ep1 ep2 |
+	ep1 := EConstant new value: 5.
+	ep2 := EConstant new value: 3.
+	self assert: (EMultiplication new right: ep1; left: ep2) negated evaluate equals: -15</code></pre>
+
+<pre><code>EMultiplication &gt;&gt; negated
+	... Your code ...</code></pre>
+
+<p>Now all your tests should pass, and it is a good moment to save your package.</p>
+
+<h3 id="annoying-repetition"><span class="number">15.7</span> Annoying repetition</h3>
+<p>Let us step back and look at what we have. We have a working program - but object-oriented design is meant to bring the code up to a higher standard than merely working!</p>
+
+<p>Similar to the situation with the <code>evaluate</code> message and methods, we see that the functionality of <code>negated</code> is distributed over different classes. What is annoying is that we repeat the exact <i>same</i> code over and over (see Figure <a href="#fig:ExpressionsNegatedRepeated">15.4</a>). This is a poor design because, if we want to change the behavior of negation tomorrow, we will have to change it four times while really only once should be enough.</p>
+
+<p><figure id="fig:ExpressionsNegatedRepeated"><img src="Chapters/Expressions/figures/ExpressionsNegatedRepeated.pdf" alt="Code repetition is a bad smell. " style="width: 70%"><figcaption><span class="number">Figure 15.4</span> Code repetition is a bad smell. </figcaption></img></figure></p>
+
+<p>What are the solutions?</p>
+
+<ul>
+<li>We could define another class, <code>Negator</code>, that would do the job. Each of our current classes would delegate to it. But it does not really solve our problem since we will have to duplicate all the message sends to call <code>Negator</code> instances.</li>
+<li>If we  define the method <code>negated</code> in the superclass (<code>Object</code>) we only need one definition and it will work. Indeed, when we send the message <code>negated</code> to an instance of <code>EConstant</code> or <code>EAddition</code> the system will not find it locally but in the superclass <code>Object</code>. So no need to define it four times but only once in class <code>Object</code>. This solution is nice because it reduces the number of similar definitions of the method <code>negated</code>, but it is not good because, even if we can add methods to the class <code>Object</code>, this is really not a good idea; <code>Object</code> is a class shared by the entire system and so we should take care not to add behavior that only makes sense for a single application.</li>
+<li>The solution is to introduce a new superclass between our classes and the class <code>Object</code>. It will have the same properties of the above solution using <code>Object</code>, but without polluting it (see Figure <a href="#figExpressionHierar">figExpressionHierar</a>). This is what we do in the next section.</li>
+</ul>
+<h3 id="introducing-the-expression-class"><span class="number">15.8</span> Introducing the Expression class</h3>
+<p><figure id="figExpressionHiera"><img src="Chapters/Expressions/figures/ExpressionsHierarchy.png" alt="Introducing a common superclass.  " style="width: 70%"><figcaption><span class="number">Figure 15.5</span> Introducing a common superclass.  </figcaption></img></figure></p>
+
+<p>Let us introduce a new class to obtain the situation depicted by Figure <a href="#figExpressionHierar">figExpressionHierar</a>.
+We can simply do it by adding a new class:</p>
+
+<pre><code>Object &lt;&lt; #EExpression
+	package: 'Expressions'</code></pre>
+
+<p>and changing all the previous definitions to inherit from <code>EExpression</code> instead of <code>Object</code>. For example the class <code>EConstant</code> is then defined as follows:</p>
+
+<pre><code>EExpression &lt;&lt; #EConstant
+	slots: { #value };
+	package: 'Expressions'</code></pre>
+
+<p>For the first transformation we could also use the class refactor <i>Insert superclass</i>. Refactorings are code transformations that do not change the behavior of a program. You can find it under the <i>Refactorings</i> list when you open the context menu on a class. In this case it is only useful for the first change, creating the <code>EExpression</code> class.</p>
+
+<p>Once the classes <code>EConstant</code>, <code>ENegation</code>, <code>EAddition</code>, and <code>EMultiplication</code> are subclasses of <code>EEXpression</code>, we should focus on the method <code>negated</code>. Now the method refactoring <i>Push up</i> will really help us.</p>
+
+<ul>
+<li>Select the method <code>negated</code> in one of the classes</li>
+<li>Select the refactoring <i>Push up</i></li>
+</ul>
+<p>The system will define the method <code>negated</code> in the superclass (<code>EExpression</code>) and remove all the negated methods in the classes. Now achieved the hierarchy described in Figure <a href="#figExpressionHierar">figExpressionHierar</a>. It is a good time to run all your tests again; they should all pass.</p>
+
+<p>Now you may also be thinking that we could introduce a new class named <code>ArithmeticExpression</code> as a superclass of <code>EAddition</code> and <code>EMultiplication</code>. Indeed this is something that we could do to factor out common structure and behavior between the two classes. But we will do so later as it would be repetitive to do it now.</p>
+
+<h3 id="class-creation-messages"><span class="number">15.9</span> Class creation messages</h3>
+<p>So far to create an instance we have always sent a class the message <code>new</code>, followed by a setter method, as shown below:</p>
+
+<pre><code>EConstant new value: 5</code></pre>
+
+<p>This is a good opportunity to demonstrate that we can define simple <strong>class</strong> methods that improve the class instance creation interface. While this case is simple, and has few benefits, we think that it makes a nice example. With this in mind we can write the previous example in the following way:</p>
+
+<pre><code>EConstant value: 5</code></pre>
+
+<p>Notice the important difference: in the first case the message is sent to the newly created instance while in the second case it is sent to the class itself.</p>
+
+<p>We define a class method in the same way we define an instance method. The only difference is that, using the code browser, you need to click on the <i>Class side</i> button to define the method on the class instead of an instance of the class. The class itself is an object; just like its instances, it can also be sent messages and execute methods.</p>
+
+<h4 id="better-instance-creation-for-constants">Better instance creation for constants</h4>
+<p>Define the following method on the class <code>EConstant</code>. Notice the definition now uses <code>EConstant class</code> and not just <code>EConstant</code> to stress that we are defining the class method:</p>
+
+<pre><code>EConstant class &gt;&gt; value: anInteger
+	^ self new value: anInteger</code></pre>
+
+<p>Now define a new test to make sure that our method works correctly:</p>
+
+<pre><code>EConstantTest &gt;&gt; testCreationWithClassCreationMessage
+	self assert: (EConstant value: 5) evaluate equals: 5</code></pre>
+
+<h4 id="better-instance-creation-for-negations">Better instance creation for negations</h4>
+<p>We do the same for the class <code>ENegation</code>:</p>
+
+<pre><code>ENegation class &gt;&gt; expression: anExpression
+	... Your code ...</code></pre>
+
+<p>Of course we write a new test as follows:</p>
+
+<pre><code>ENegationTest &gt;&gt; testEvaluateWithClassCreationMessage
+	self assert: (ENegation expression: (EConstant value: 5)) evaluate equals: -5</code></pre>
+
+<h4 id="better-instance-creation-for-additions">Better instance creation for additions</h4>
+<p>For addition we shall add a class method <code>left:right:</code> that takes two arguments:</p>
+
+<pre><code>left: anEExpression right: anEExpression2
+	^ self new left: anEExpression; right: anEExpression2  </code></pre>
+
+<p>Since by now we are addicted to tests, we add a new one.</p>
+
+<pre><code>EEAdditionTest &gt;&gt; testEvaluateWithClassCreationMessage
+	| ep1 ep2 |
+	ep1 := EConstant value: 5.
+	ep2 := EConstant value: 3.
+	self assert: (EAddition left: ep1 right: ep2) evaluate equals: 8</code></pre>
+
+<h4 id="better-instance-creation-for-multiplications">Better instance creation for multiplications</h4>
+<p>We will let you do the same for multiplication:</p>
+
+<pre><code>EMultiplication class &gt;&gt; left: anEExpression right: anEExpression2
+	... Your code ...</code></pre>
+
+<p>And another test to check that everything is ok.</p>
+
+<pre><code>EMultiplicationTest &gt;&gt; testEvaluateWithClassCreationMessage
+	| ep1 ep2 |
+	ep1 := EConstant value: 5.
+	ep2 := EConstant value: 3.
+	self assert: (EMultiplication left: ep1 right: ep2) evaluate equals: 15</code></pre>
+
+<p>Run your tests! They should all pass.</p>
+
+<h3 id="introducing-examples-as-class-messages"><span class="number">15.10</span> Introducing examples as class messages</h3>
+<p>As you saw when writing the tests, it is quite annoying to repeat all the expressions to generate a given tree. This is especially the case in the tests related to addition and multiplication as we can see below:</p>
+
+<pre><code>EEAdditionTest &gt;&gt; testNegated
+	| ep1 ep2 |
+	ep1 := EConstant new value: 5.
+	ep2 := EConstant new value: 3.
+	self assert: (EAddition new right: ep1; left: ep2) negated evaluate equals: -8</code></pre>
+
+<p>One simple solution is to define some class methods returning typical instances of their classes. To define a class method remember that you should click the <i>Class side</i> button.</p>
+
+<pre><code>EConstant class &gt;&gt; constant5
+	^ self new value: 5</code></pre>
+
+<pre><code>EConstant class &gt;&gt; constant3
+	^ self new value: 3</code></pre>
+
+<p>This way we can define the test as follows:</p>
+
+<pre><code>EEAdditionTest &gt;&gt; testNegated
+	| ep1 ep2 |
+	ep1 := EConstant constant5.
+	ep2 := EConstant constant3.
+	self
+        assert: (EAddition new right: ep1; left: ep2) negated evaluate
+        equals: -8</code></pre>
+
+<p>The tools in Pharo support such a practice. If we tag a class method with the special annotation <code>&lt;sampleInstance&gt;</code>, the browser will show a little icon on the side and, when we click on it, it will open an inspector on the new instance:</p>
+
+<pre><code>EConstant class &gt;&gt; constant3
+	&lt;sampleInstance&gt;
+	^ self new value: 3</code></pre>
+
+<pre><code>EConstant class &gt;&gt; constant3
+	&lt;sampleInstance&gt;
+	^ self new value: 3</code></pre>
+
+<p>Using the same idea we can define the following class methods to return examples of our classes:</p>
+
+<pre><code>EAddition class &gt;&gt; fivePlusThree
+	&lt;sampleInstance&gt;
+	| ep1 ep2 |
+	ep1 := EConstant new value: 5.
+	ep2 := EConstant new value: 3.
+	^ self new left: ep1 ; right: ep2 </code></pre>
+
+<pre><code>EMultiplication class &gt;&gt; fiveTimesThree
+	&lt;sampleInstance&gt;
+	| ep1 ep2 |
+	ep1 := EConstant constant5.
+	ep2 := EConstant constant3.
+   ^ EMultiplication new left: ep1 ; right: ep2 </code></pre>
+
+<p>What is nice about these sample instances is that they:</p>
+
+<ul>
+<li>help document the class by providing objects that we can directly use.</li>
+<li>support the creation of tests by providing objects that can serve as input for tests.</li>
+<li>simplify the writing of tests.</li>
+</ul>
+<p>So consider using them!</p>
+
+<h3 id="printing"><span class="number">15.11</span> Printing</h3>
+<p>It is quite annoying that we cannot really see an expression when we inspect it. We would like to get something better than <code>'an EConstant'</code> and <code>'an EAddition'</code> when we debug our programs. To display this information the debugger and inspector sends the message <code>printString</code> to objects, which by default prefix the name of the class with 'an' or 'a'.</p>
+
+<p>Let us change this. To do so, we will specialize the method <code>printOn: aStream</code>. The message <code>printOn:</code> is sent to an object when a program or the system sends the message <code>printString</code>. From that perspective <code>printOn:</code> is a point of system customization that developers can take advantage of to enhance their programming experience.</p>
+
+<p>Note that we do not redefine the method <code>printString</code> because it is more complex and <code>printString</code> is reused for all the objects in the system. We just have to implement the part that is specific to a given class, in this case <code>printOn:</code>. In object-oriented design jargon, <code>printString</code> is a <i>template method</i>, in the sense that it sets up a context which is shared by other objects, and it hosts <i>hook methods</i> which are program customization points. <code>printOn:</code> is such a hook method. The term hook comes from the fact that code of subclasses are invoked in the hook place (see Figure <a href="#fig:ExpressionsHierarchyPrintOn">15.6</a>).</p>
+
+<p>The default definition of the method <code>printOn:</code> as defined on the class <code>Object</code> is as follows: it takes the class name, checks if it starts with a vowel or not, and writes 'a ' or 'an ' to the stream, followed by the class name. This is why we got <code>'an EConstant'</code> when we printed a constant expression.</p>
+
+<pre><code>Object &gt;&gt; printOn: aStream
+	"Append to the argument, aStream, a sequence of characters that  
+	identifies the receiver."
+	| title |
+	title := self class name.
+	aStream
+		nextPutAll: (title first isVowel ifTrue: ['an '] ifFalse: ['a ']);
+		nextPutAll: title</code></pre>
+
+<p><figure id="fig:ExpressionsHierarchyPrintOn"><img src="Chapters/Expressions/figures/ExpressionsHierarchyPrintOn.pdf" alt="printOn: and printString a "hooks and template" in action.  " style="width: 70%"><figcaption><span class="number">Figure 15.6</span> printOn: and printString a "hooks and template" in action.  </figcaption></img></figure></p>
+
+<h4 id="a-word-about-streams">A word about streams</h4>
+<p>A stream is basically a container for a sequence of objects. Once we get a stream we can either read from it or write to it. In our case we will write to the stream. Since the stream passed to <code>printOn:</code> is a stream expecting characters, we will add characters or strings (sequences of characters) to it. We will use the messages <code>nextPut: aCharacter</code> and <code>nextPutAll: aString</code>.
+They add their arguments to the stream at the next and following positions. Don't worry - it is simple enough and we will guide you through it. You can find more information in the streams chapter of <i>Pharo by Example</i> available at <a target="_blank" href="http://books.pharo.org/"><a target="_blank" href="http://books.pharo.org/">http://books.pharo.org</a></a></p>
+
+<h4 id="printing-constant">Printing constant</h4>
+<p>Let us start with a test. Here we check that a constant is printed as its value.</p>
+
+<pre><code>EConstantTest &gt;&gt; testPrinting
+	self assert: (EConstant value: 5) printString equals: '5'</code></pre>
+
+<p>The implementation is then simple. We just need to put the value converted as a string to the stream.</p>
+
+<pre><code>EConstant &gt;&gt; printOn: aStream
+	aStream nextPutAll: value printString</code></pre>
+
+<h4 id="printing-negation">Printing negation</h4>
+<p>For negation we should first put a '<code>-</code>' and then recurvisely call the printing process on the negated expression. Remember that sending the message <code>printString</code> to an expression should return its string representation.  At least until now it will work for constants.</p>
+
+<pre><code>(EConstant value: 6) printString
+&gt;&gt;&gt; '6'</code></pre>
+
+<p>Here is a possible definition:</p>
+
+<pre><code>ENegation &gt;&gt; printOn: aStream
+	aStream nextPutAll: '- '.
+	aStream nextPutAll: expression printString</code></pre>
+
+<p>But, since all the messages are sent to the same object, this method can be rewritten as:</p>
+
+<pre><code>ENegation &gt;&gt; printOn: aStream
+	aStream 
+		nextPutAll: '- ';
+		nextPutAll: expression printString</code></pre>
+
+<p>We can also define it as follows:</p>
+
+<pre><code>ENegation &gt;&gt; printOn: aStream
+	aStream nextPutAll: '- '.
+	expression printOn: aStream</code></pre>
+
+<p>The difference between the first two solutions and the third is as follows:</p>
+
+<p>In the solution using <code>printString</code>, the system creates two streams: one for each invocation of the message <code>printString</code>. One for printing the expression and one for printing the negation. Once the first stream is used the message <code>printString</code> converts the stream contents into a string. This new string is then put inside the second stream which, at the end, is yet again converted to a string. So the first two solutions are not really efficient, as they keep converting between string and stream.</p>
+
+<p>With the third solution, only one stream is created; each of the methods just put the needed string elements into it. At the end of the process, a single <code>printString</code> message converts it into a string.</p>
+
+<h4 id="printing-addition">Printing addition</h4>
+<p>Now let us write a test for printing addition:</p>
+
+<pre><code>EAdditionTest &gt;&gt; testPrinting
+	self
+        assert: EAddition fivePlusThree printString
+        equals:  '( 5 + 3 )'.
+	self
+        assert: EAddition fivePlusThree negated printString
+        equals:  '- ( 5 + 3 )'</code></pre>
+
+<p>To print an <code>EAddition</code>: put an open parenthesis, print the left expression, put <code> ' + '</code>, print the right expression and put a closing parenthesis in the stream.</p>
+
+<pre><code>EAddition &gt;&gt; printOn: aStream
+	... Your code ...</code></pre>
+
+<h4 id="printing-multiplication">Printing multiplication</h4>
+<p>And now we do the same for multiplication.</p>
+
+<pre><code>EMultiplicationTest &gt;&gt; testPrinting
+	self
+        assert: EMultiplication fiveTimesThree negated printString
+        equals:  '- ( 5 * 3 )'</code></pre>
+
+<pre><code>EMultiplication &gt;&gt; printOn: aStream
+	... Your code ...</code></pre>
+
+<h3 id="revisiting-the-negated-message-for-negation"><span class="number">15.12</span> Revisiting the <code>negated</code> message for Negation</h3>
+<p>Now we can go back on negating an expression. Our implementation is not nice even if we can negate any expression and get the correct value. If you look at it carefully negating a negation could be better. Printing a negated negation illustrates well the problem: we get two minuses instead of none.</p>
+
+<pre><code>(EConstant value: 11) negated 
+&gt;&gt; '- 11'
+
+(EConstant value: 11) negated negated
+&gt;&gt; '- - 11'</code></pre>
+
+<p>One way to fix this would be to change the <code>printOn:</code> definition to check if the expression that is negated is an <code>ENegation</code>, and not to print the <code>'-'</code> if it is. This solution is not ideal as we do not want to write code that explicitly checks if an object is of a given class in a conditional. Remember: we just want to send messages and then let receiving objects perform actions.</p>
+
+<p>A good solution is to <i>specialize</i> the message <code>negated</code> so that when it is sent to a <i>negation</i> it does not create a new <code>ENegation</code> that wraps the receiver, but instead returns the original negated expression. If <code>negated</code> is sent to any of our other expressions, the method implemented in <code>EExpression</code> will be executed. This way the trees created by a <code>negated</code> message can never contain a "negated negation", but the arithmetic values obtained are still correct. To implement this solution, we just need to implement a different version of the method <code>negated</code> for <code>ENegation</code>.</p>
+
+<p>Let's write a test! Since evaluating a single expression or a double negated one gives the same results, we need to define a structural test. This is what we do with the expression <code>exp negated class = ENegation</code> below.</p>
+
+<pre><code>NegationTest &gt;&gt; testNegatedStructureIsCorrect
+	| exp |
+	exp := EConstant constant5.
+	self assert: exp negated class = ENegation. 
+	self assert: exp negated negated equals: exp.</code></pre>
+
+<p>Now you should be able to implement the <code>negated</code> method for <code>ENegation</code>.</p>
+
+<pre><code>ENegation &gt;&gt; negated
+	... Your code ...</code></pre>
+
+<h4 id="understanding-method-override">Understanding method override</h4>
+<p>When we send a message to an object, the system looks for the corresponding method in the class of the receiver. If it is not defined there, the lookup continues in the superclass of the previous class.</p>
+
+<p>By adding a method in the class <code>ENegation</code>, we have created the situation shown in Figure <a href="#fig:ExpressionsHierarchyOptimized">15.7</a>. We say that the message <code>negated</code> is <i>overridden</i> in <code>ENegation</code> because, for instances of <code>ENegation</code>, it hides the method defined in the superclass <code>EExpression</code>.</p>
+
+<p>It works in following way:</p>
+
+<ul>
+<li>When we send the message <code>negated</code> to a constant, the message is not found in the class <code>EConstant</code>, so it is looked up in the class <code>EExpression</code>, where it is found and its corresponding method is applied to the receiver (the instance of <code>EConstant</code>).</li>
+<li>When we send the message <code>negated</code> to a negation, the message is found in the class <code>ENegation</code>, and the method is then executed on the receiver, the negation expression.</li>
+</ul>
+<p><figure id="fig:ExpressionsHierarchyOptimized"><img src="Chapters/Expressions/figures/ExpressionsHierarchyOptimized.png" alt="The message  negated  is overridden in the class  ENegation . " style="width: 70%"><figcaption><span class="number">Figure 15.7</span> The message <code>negated</code> is overridden in the class <code>ENegation</code>. </figcaption></img></figure></p>
+
+<h3><span class="number">15.13</span> Introducing the BinaryExpression class</h3><a id="secBinaryExpression"></a>
+<p>Now we will take a moment to improve our first design. We will factor out the behavior of <code>EAddition</code> and <code>EMultiplication</code>.</p>
+
+<pre><code>EExpression &lt;&lt; #EBinaryExpression
+	package: 'Expressions'</code></pre>
+
+<pre><code>EBinaryExpression &lt;&lt; #EAddition
+	slots: { #left . #right};
+	package: 'Expressions'</code></pre>
+
+<pre><code>EBinaryExpression &lt;&lt; #EMultiplication
+	slots: { #left . #right };
+	package: 'Expressions'</code></pre>
+
+<p>Now we can use again a refactoring to pull up the instance variables <code>left</code> and <code>right</code>, as well as the methods <code>left:</code> and <code>right:</code>.</p>
+
+<p>Select the class <code>EMuplication</code>, bring up the menu and, under the <i>Refactoring</i> menu, select the instance variable refactoring <i>Push Up</i>. Then select the instance variables you want to push up.</p>
+
+<p>Now you should get the following class definitions, where the instance variables are defined in the new class and removed from the two subclasses.</p>
+
+<pre><code>EExpression subclass: #EBinaryExpression
+	slots: { #left . #right };
+	package: 'Expressions'</code></pre>
+
+<pre><code>EBinaryExpression subclass: #EAddition
+	package: 'Expressions'</code></pre>
+
+<pre><code>EBinaryExpression &lt;&lt; #EMultiplication
+	package: 'Expressions'</code></pre>
+
+<p>We should get a situation similar to the one described by Figure <a href="#figExpressionFactoredState">15.8</a>. All your tests should still pass.</p>
+
+<p><figure id="figExpressionFactoredState"><img src="Chapters/Expressions/figures/ExpressionsHierarchyStateFactored.png" alt="Factoring instance variables. " style="width: 70%"><figcaption><span class="number">Figure 15.8</span> Factoring instance variables. </figcaption></img></figure></p>
+
+<p>Now we can move the methods up in the same way. Select the method <code>left:</code> and apply the refactoring <i>Pull Up Method</i>. Do the same for the method <code>right:</code>.</p>
+
+<h4 id="creating-a-template-and-hook-method">Creating a template and hook method</h4>
+<p>Now we can look at the method <code>printOn:</code> in additions and multiplications. The definitions are very similar, only the operator changes. We cannot simply copy one of the definitions because it will not work for the other one, but what we can do is to apply the same design idea that worked between <code>printString</code> and <code>printOn:</code>: we can create a template and hooks that will be specialized in the subclasses.</p>
+
+<p>We will use the method <code>printOn:</code> as a template with a hook redefined in each subclass.</p>
+
+<p>Let define the method <code>printOn:</code> in <code>EBinaryExpression</code> and remove the other ones from the two classes <code>EAddition</code> and <code>EMultiplication</code>.</p>
+
+<pre><code>EBinaryExpression &gt;&gt; printOn: aStream
+	aStream nextPutAll: '( '.
+	left printOn: aStream. 
+	aStream nextPutAll: ' + '.
+	right printOn: aStream.
+	aStream nextPutAll: ' )'</code></pre>
+
+<p>You you can do the next bit manually or use the <i>Extract Method</i> refactoring, which creates a new method from a part of an existing method and sends a message to the new created method: select the <code>' + '</code> inside the method pane and bring the menu and select the Extract Method refactoring, and when prompt give the name <code>operatorString</code>.</p>
+
+<p>Here is the result you should get:</p>
+
+<pre><code>EBinaryExpression &gt;&gt; printOn: aStream
+	aStream nextPutAll: '( '.
+	left printOn: aStream.
+	aStream nextPutAll: self operatorString.
+	right printOn: aStream.
+	aStream nextPutAll: ' )'</code></pre>
+
+<pre><code>EBinaryExpression &gt;&gt; operatorString
+	^ ' + '</code></pre>
+
+<p>Now we can just redefine this method in the <code>EMultiplication</code> class to return the required string.</p>
+
+<pre><code>EMultiplication &gt;&gt; operatorString
+	^ ' * '</code></pre>
+
+<p><figure id="figExpressionsHierarchyStateBehaviorFactored"><img src="Chapters/Expressions/figures/ExpressionsHierarchyStateBehaviorFactored.png" alt="Factoring instance variables and behavior. " style="width: 70%"><figcaption><span class="number">Figure 15.9</span> Factoring instance variables and behavior. </figcaption></img></figure></p>
+
+<h3 id="what-did-we-learn"><span class="number">15.14</span> What did we learn</h3>
+<p>The introduction of the class <code>EBinaryExpression</code> is a rich experience in terms of lessons that we can learn.</p>
+
+<ul>
+<li>Refactorings are more than simple code transformations. Refactorings ensure that their application does not change the behavior of programs. As we have seen, refactorings are powerful operations that really help us perform complex transformations.</li>
+<li>We saw that the introduction of a new superclass, and moving instance variables or method to the superclass, does not change the structure or behavior of the subclasses. This is because (1) for internal state, the structure of an instance is based on the states described by its class and all its superclasses, (2) the lookup starts in the class of the receiver and then looks in its superclasses.</li>
+<li>While the method <code>printOn:</code> is, in itself, a hook for the method <code>printString</code>, it can also play the role of a template method. The method <code>operatorString</code> reuses the context created by the <code>printOn:</code> method which acts as a template method. In fact, each time we do a <code>self</code> send we create a hook method that subclasses can then specialize.</li>
+</ul>
+<h3 id="about-hook-methods"><span class="number">15.15</span> About hook methods</h3>
+<p>When we introduced <code>EBinaryExpression</code> we defined the method <code>operatorString</code> as follows:</p>
+
+<pre><code>EBinaryExpression &gt;&gt; operatorString
+	^ ' + '</code></pre>
+
+<pre><code>EMultiplication &gt;&gt; operatorString
+	^ ' * '</code></pre>
+
+<p>And you may wonder if it was worth creating a new method in the superclass so that only one subclass redefines it.</p>
+
+<h4 id="creating-hooks-is-always-good">Creating hooks is always good</h4>
+<p>Firstly, creating a hook is always a good idea because you rarely know how your system will be extended in the future. To show this, we suggest you to add raising to power and division, and see how this can now be done with one class and two methods per new operator.</p>
+
+<h4 id="avoid-not-documenting-hooks">Avoid not documenting hooks</h4>
+<p>Secondly, we could have just defined one method <code>operatorString</code> in each subclass and no method in the superclass <code>EBinaryExpression</code>. It would have worked because <code>EBinaryExpression</code> is not meant to have direct instances. Therefore there is no risk that a <code>printOn:</code> message is sent to one of its instance and cause an error because no method <code>operatorString</code> is found.</p>
+
+<p>The code would have looked like the following:</p>
+
+<pre><code>EAddition &gt;&gt; operatorString
+	^ ' + '</code></pre>
+
+<pre><code>EMultiplication &gt;&gt; operatorString
+	^ ' * '</code></pre>
+
+<p><figure id="figExpressionsHierarchyBinaryAbstract"><img src="Chapters/Expressions/figures/ExpressionsHierarchyBinaryAbstract.pdf" alt="Better design: Declaring an abstract method as a way to document a hook method. " style="width: 70%"><figcaption><span class="number">Figure 15.10</span> Better design: Declaring an abstract method as a way to document a hook method. </figcaption></img></figure></p>
+
+<p>But such a design is not great because, when extending from the class, developers will have to guess by reading the subclass definitions that they should also define a method <code>operatorString</code>. A better solution would be to define an <i>abstract</i> method in the superclass:</p>
+
+<pre><code>EBinaryExpression &gt;&gt; operatorString
+	^ self subclassResponsibility</code></pre>
+
+<p>Using the message <code>subclassResponsibility</code> declares that a method is abstract and does nothing except force its redefinition in subclasses; a subclass must redefine it explicitly. Using this approach we get the final situation represented in Figure <a href="#figExpressionsHierarchyBinaryAbstract">15.10</a>.</p>
+
+<p>In the solution presented before (section <a href="#secBinaryExpression">15.13</a>) we decided to go for the simplest fix by using one of the operator strings (<code>' + '</code>) as a default definition for the hook in the superclass <code>EExpression</code>. We did this on purpose in order to have this discussion. It was not a good solution since it used a value only useful to a specific subclass in the superclass. It is better to define a default value for a hook in the superclass only when this default value can be used in subclasses, both now and in the future.</p>
+
+<p>Note that we should also define <code>evaluate</code> as an abstract method in <code>EExpression</code> to indicate clearly that each subclass should define an <code>evaluate</code>.</p>
+
+<h3 id="variables"><span class="number">15.16</span> Variables</h3>
+<p>Up until now our mathematical expressions have been rather limited. We have only manipulated constant-based expressions. What we would like is to be able to manipulate variables too. Here is a simple test to show what we mean: we define a variable named <code>'x'</code> and then we can later specify that <code>'x'</code> should take a given value.</p>
+
+<p>Let us create a new test class named <code>EVariableTest</code> and define a first test <code>testValueOfx</code>.</p>
+
+<pre><code>EVariableTest &gt;&gt; testValueOfx
+	self
+        assert: ((EVariable new id: #x) evaluateWith: {#x -&gt; 10} asDictionary)
+        equals: 10.</code></pre>
+
+<h4 id="some-technical-points">Some technical points</h4>
+<p>Let us explain a bit what we are doing with the expression <code>{#x -&gt; 10} asDictionary</code>. We should be able to specify that a given variable name is associated with a given value. For this we create a <i>dictionary</i>. A dictionary is a data structure for storing <i>keys</i> and their associated <i>values</i>. Here a key is the variable name and the value its associated value. Let us present some details first.</p>
+
+<h5 class="paragraph" id="dictionaries">Dictionaries</h5>
+<p>A dictionary is a data structure containing pairs of keys and values, through which we can access the value of a given key. It can use any object as key and any object as a value. Here we simply use a symbol <code>#x</code> since symbols are unique within the system and as such we are sure that we cannot have two keys looking the same but having different values.</p>
+
+<pre><code>| d |
+d := Dictionary new
+	at: #x put: 33;
+	at: #y put: 52;
+	at: #z put: 98.
+d at: y
+&gt;&gt;&gt; 52 </code></pre>
+
+<p>The previous dictionary can be written more concisely as <code>{#x -&gt; 33 . #y -&gt; 52 . #z -&gt; 98} asDictionary</code>.</p>
+
+<pre><code>{#x -&gt; 33 . #y -&gt; 52 . #z -&gt; 98} asDictionary at: #y
+&gt;&gt;&gt; 52 </code></pre>
+
+<h5 class="paragraph" id="dynamic-arrays">Dynamic Arrays</h5>
+<p>The expression <code>{ }</code> creates a dynamic array. Dynamic arrays execute their expressions and store the resulting values.</p>
+
+<pre><code>{2 + 3 . 6 - 2 . 7-2 }
+&gt;&gt;&gt; #(5 4 5)</code></pre>
+
+<h5 class="paragraph" id="pairs">Pairs</h5>
+<p>The expression <code>#x -&gt; 10</code> creates a pair with a key and a value.</p>
+
+<pre><code>| p |
+p := #x -&gt; 10.
+p key 
+&gt;&gt;&gt; #x
+p value
+&gt;&gt;&gt; 10</code></pre>
+
+<h4 id="back-to-variable-expressions">Back to variable expressions</h4>
+<p>If we go a step further, we want to be able to build more complex expressions where, instead of only having constants, we can manipulate variables. This way we will be able to build more advanced behavior such as expression derivations.</p>
+
+<pre><code>EExpression &lt;&lt; #EVariable
+	slots: { #id }; 
+	package: 'Expressions'</code></pre>
+
+<pre><code>EVariable &gt;&gt; id: aSymbol
+	id := aSymbol</code></pre>
+
+<pre><code>EVariable &gt;&gt; printOn: aStream
+	aStream nexPutAll: id asString</code></pre>
+
+<p>We need to pass bindings (a binding is a key-value pair) when evaluating a variable. The value of a variable is the value of the binding whose key is the name of the variable.</p>
+
+<pre><code>EVariable &gt;&gt; evaluateWith: aBindingDictionary
+	^ aBindingDictionary at: id</code></pre>
+
+<p>Your tests should all pass at this point.</p>
+
+<p>For more complex expressions (the ones that interest us) here are two tests:</p>
+
+<pre><code>EVariableTest &gt;&gt; testValueOfxInNegation
+	self assert: ((EVariable new id: #x) negated
+		evaluateWith: {#x -&gt; 10} asDictionary) equals: -10</code></pre>
+
+<p>What the second test shows is that we can have an expression and given a different set of bindings the value of the expression will differ.</p>
+
+<pre><code>EVariableTest &gt;&gt; testEvaluateXplusY
+	| ep1 ep2 add |
+	ep1 := EVariable new id: #x.
+	ep2 := EVariable new id: #y.
+	add := EAddition left: ep1 right: ep2.
+	
+	self
+        assert: (add evaluateWith: { #x -&gt; 10 . #y -&gt; 2 } asDictionary)
+        equals: 12.
+	self
+        assert: (add evaluateWith: { #x -&gt; 10 . #y -&gt; 12 } asDictionary)
+        equals: 22</code></pre>
+
+<h4 id="non-working-approaches">Non working approaches</h4>
+<p>A non-working solution would be to add the following method to <code>EExpression</code></p>
+
+<pre><code>EEXpression &gt;&gt; evaluateWith: aDictionary
+	^ self evaluate</code></pre>
+
+<p>However it does not work for at least the following reasons:</p>
+
+<ul>
+<li>It does not use its argument, and so it only works for trees composed exclusively of constants.</li>
+<li>When we send a message <code>evaluateWith:</code> to an addition, this message is then turned into an <code>evaluate</code> message sent to each of its subexpressions, not an <code>evaluateWith</code> message.</li>
+</ul>
+<p>Alternatively we could add the binding to the variable itself, and only provide an <code>evaluate</code> message as follows:</p>
+
+<pre><code>(EVariable new id: #x) bindings: { #x -&gt; 10 . #y -&gt; 2 } asDictionary</code></pre>
+
+<p>But it defeats the purpose of what a variable is! We should be able to give different values to a variable embedded inside a complex expression.</p>
+
+<h4 id="the-solution-adding-evaluatewith">The solution: adding <code>evaluateWith:</code></h4>
+<p>The solution is simple but far-reaching: we should change all the implementations and message sends from <code>evaluate</code> to <code>evaluateWith:</code>! But since this is a tedious task we will use the refactor <i>Add Parameter</i> on our <code>evaluate</code> method.</p>
+
+<p>Since a refactoring applies itself on the complete system, we need to be a bit cautious because other Pharo classes also implement methods named <code>evaluate</code>, and we really do not want to impact them.</p>
+
+<p>So here are the steps that we should follow:</p>
+
+<ul>
+<li>Select the Expression package.</li>
+<li>Choose <i>Scoped View</i> from the toggle underneath the packages section.</li>
+<li>Select one of the implementations of <code>evaluate</code>.</li>
+<li>Select the <i>Add argument</i> refactoring: type <code>evaluateWith:</code> as method selector and proceed when prompted for a default value <code>Dictionary new</code>. This last expression is needed because the engine will rewrite all the messages <code>evaluate</code> but <code>evaluateWith: Dictionary new</code>.</li>
+<li>The system is performing many changes. Check that they only affect your classes and accept them all.</li>
+</ul>
+<p>A test like the following one:</p>
+
+<pre><code>EConstant &gt;&gt; testEvaluate 
+	self assert: (EConstant constant5) evaluate equals: 5</code></pre>
+
+<p>is transformed to:</p>
+
+<pre><code>EConstant &gt;&gt; testEvaluate
+	self assert: ((EConstant constant5) evaluateWith: Dictionary new) equals: 5</code></pre>
+
+<p>Your tests should nearly all pass except the ones on variables. Why do they fail?
+Because the refactoring transformed message sends of <code>evaluate</code> to <code>evaluateWith: Dictionary new</code>; it did not forward the bindings dictionary to the <code>evaluateWith</code> messages sent to the subexpressions.</p>
+
+<pre><code>EAddition &gt;&gt; evaluateWith: anObject
+	^ (right evaluateWith: Dictionary new) + (left evaluateWith: Dictionary new)</code></pre>
+
+<p>This method should be transformed as follows: we should pass the binding to each of the recursive <code>evaluateWith:</code> message sends.</p>
+
+<pre><code>EAddition &gt;&gt; evaluateWith: anObject
+	^ (right evaluateWith: anObject) + (left evaluateWith: anObject)</code></pre>
+
+<p>Do the same for the multiplications:</p>
+
+<pre><code>EMultiplication &gt;&gt; evaluateWith: anObject
+	^ (right evaluateWith: anObject) * (left evaluateWith: anObject)</code></pre>
+
+<p>And finally negations:</p>
+
+<pre><code>ENegation &gt;&gt; evaluateWith: anObject
+	^ (expression evaluateWith: anObject) negated</code></pre>
+
+<h3 id="conclusion-12"><span class="number">15.17</span> Conclusion</h3>
+<p>This little exercise was full of learning potential. Here is a little summary:</p>
+
+<ul>
+<li>A <i>message</i> specifies an intent while a <i>method</i> is a named list of Pharo instructions. We often have one message and many methods with the same name.</li>
+<li><i>Sending a message</i> is finding the method corresponding to the message selector: this selection is based on the class of the object receiving the message. When we look for a method we start in the class of the receiver and go up through the inheritance chain.</li>
+<li>Tests are a good way to specify what we want to achieve and then to verify after each change that we did not break something. Tests do not prevent bugs, but they help build confidence in the changes we make.</li>
+<li><i>Refactorings</i> are more than simple code transformations. Usually refactorings sufficiently aware of their context that their application does not change the behavior of the program. As we saw, refactorings are powerful operations that really help us perform complex changes.</li>
+<li>We saw that the introduction of a new superclass, and moving instance variables or methods to that superclass, does not change the structure or behavior of the subclasses. This is because (1) for instance variables, the internal structure of an instance is based on the state of its class and all of its superclasses, and (2) the lookup starts in the class of the receiver and then goes through the superclasses in order.</li>
+<li>Each time we send a message we create a potential place (a <i>hook</i>) for subclasses to get their code definition used in place of the superclass's one (the <i>template</i>).</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="extending-superclass.html">← Extending superclass behavior</a>
+        <a class="next" rel="next" href="little-projects.html">Little projects →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

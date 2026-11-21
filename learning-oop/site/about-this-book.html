@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About this book</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li class="current">
+            <a href="about-this-book.html" aria-current="page"><span class="number">1</span> About this book</a>
+            
+            <ol>
+              
+              <li><a href="#a-word-of-presentation"><span class="number">1.1</span> A word of presentation</a></li>
+              
+              <li><a href="#structure-of-the-book"><span class="number">1.2</span> Structure of the book</a></li>
+              
+              <li><a href="#what-you-will-learn"><span class="number">1.3</span> What you will learn</a></li>
+              
+              <li><a href="#pharo-version"><span class="number">1.4</span> Pharo version</a></li>
+              
+              <li><a href="#typographic-conventions"><span class="number">1.5</span> Typographic conventions</a></li>
+              
+              <li><a href="#videos"><span class="number">1.6</span> Videos</a></li>
+              
+              <li><a href="#thanks"><span class="number">1.7</span> Thanks</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">1</span> About this book</h2><a id="ch:about"></a>
+<h3 id="a-word-of-presentation"><span class="number">1.1</span> A word of presentation</h3>
+<p>I started to write this book back in 1998 when I wrote around 900 pages in preparation for <i>Learning Programming with Robots</i>
+(Apparently, I needed to write to understand what I wanted to explain and how). From this, I extracted <i>Learning Programming with Robots</i>, which is a book to teach simple concepts such as variables, loops, and procedures and to help people teach kids how to program. My original objective was to write a second volume to teach object-oriented programming. But while this first volume was a success, I got really frustrated because to be understandable by everyone, I had to remove what I like: object-oriented programming and good object-oriented design.</p>
+
+<p>At that time, I met Harald Wertz, who gave me really nice ideas and pointers such as L-systems, then asked why I focused on procedural thinking and suggested that I should teach object-oriented programming instead. And he was right. This remark was like a bee in my bonnet for more than ten years.
+In fact, it was my original objective but I was exhausted after my first attempt and I had to focus on my academic life.</p>
+
+<p>Now, nearly fifteen years later, I got ready to write a book to start with object-oriented programming. In fact, I rewrote everything I got from that time.
+I hope that you will enjoy it as much as I did — even if, for me, writing a book is a really long and daunting task because I want to make it great.
+I plan to write another volume on patterns of design that will extend this book.</p>
+
+<h3 id="structure-of-the-book"><span class="number">1.2</span> Structure of the book</h3>
+<p>While writing this book, I faced a challenge to find the correct level of difficulty.
+To solve this problem, I structured the book either into key chapters on basic concepts, or into projects on more advanced topics.
+The projects are little tutorials or more realistic examples, with step by step explanations; you can skip over them and come back to read them whenever you feel like it.
+I also propose various paths through the book with different levels of reading; however, many of the <i>simpler</i> chapters also contain design remarks.</p>
+
+<p><figure id="fgmap"><img src="Chapters/Introduction/figures/MapVolume1.pdf" alt="Reading maps. " style="width: 100%"><figcaption><span class="number">Figure 1.1</span> Reading maps. </figcaption></img></figure></p>
+
+<h4 id="fast-track">Fast track</h4>
+<p>The following chapters contain more conceptual information:</p>
+
+<p>In the volume 1:</p>
+
+<ul>
+<li>Glimpse of the syntax</li>
+<li>Tests, tests, and tests</li>
+<li>Objects and classes</li>
+<li>Revisiting objects and classes</li>
+<li>Domain-specific language</li>
+<li>Inheritance and expressions</li>
+<li>Sending messages</li>
+<li>Snakes and ladders</li>
+</ul>
+<p>The other chapters are more exercise and practical. For example, with TinyChat, you will have fun with a web server written in a single page of code. You will find the solutions of the exercises in a separate pdf available on the book website at <a target="_blank" href="http://books.pharo.org/"><a target="_blank" href="http://books.pharo.org/">http://books.pharo.org</a></a> and the associated github repository <a target="_blank" href="https://github.com/SquareBracketAssociates/LearningOOPWithPharo"><a target="_blank" href="https://github.com/SquareBracketAssociates/LearningOOPWithPharo">https://github.com/SquareBracketAssociates/LearningOOPWithPharo</a></a>.</p>
+
+<h3 id="what-you-will-learn"><span class="number">1.3</span> What you will learn</h3>
+<p>I would like to present the concepts that I want to teach you and that hopefully you should acquire. What is key to understand is that I will focus on the <i>key</i> conceptual elements. It is easy for me because I will not explain OOP/D in general but within the context of Pharo and Pharo is the essence of Object-Oriented programming since its object model is minimal but it covers the key and essential aspect of OOP. For example, we will not present method modifiers, types, or overloading (which is a bad concept).</p>
+
+<p>We will focus on object-oriented <i>programming</i> concepts:</p>
+
+<ul>
+<li>Objects / Classes</li>
+<li>Messages / Methods</li>
+<li><code>self</code> and its semantics</li>
+<li>Inheritance</li>
+<li><code>super</code> and its semantics</li>
+</ul>
+<p>…and on object-oriented <i>design</i> concepts:</p>
+
+<ul>
+<li>Class responsibility collaboration</li>
+<li>Delegation</li>
+<li>Message sends are choices</li>
+<li>Message sends are plans for reuse</li>
+<li>The "Don't ask, tell" Principle</li>
+<li>Tests are your life insurance</li>
+<li>Polymorphism</li>
+</ul>
+<p>In addition, we will also present</p>
+
+<ul>
+<li>Tests</li>
+<li>Software refactorings</li>
+</ul>
+<h3 id="pharo-version"><span class="number">1.4</span> Pharo version</h3>
+<p>The current book was written with Pharo 12 as support.
+We suggest to use it as much as possible.</p>
+
+<h4 id="growing-software">Growing software</h4>
+<p>Often, books present a problem and its solution. Now, for non-trivial problems, the solution does not fall from the sky or get developed in one stroke, but it is the constant evolution of a first solution that evolves over time. Such an evolution is often difficult and tedious because the developer jumps from one stable state to a situation where his code may not work anymore. This is where Test-Driven Design and refactorings really help.
+Test-Driven Design helps focusing on new features and captures them as executable entities: tests. Refactorings help by transforming code without breaking its invariants.
+Note that tests do not forbid to break code, they help identify when previous invariants or constraints got violated. Sometimes violated tests identify a bug, but they may be broken just because the requirements changed and the tests should be updated.
+In this book, I wanted to see how software grows in little steps. This is what I do frequently during my coding sessions, and I think that this is important, to cover the hidden paths in software creation.</p>
+
+<h4 id="syntax-blocks-and-iterators">Syntax, blocks, and iterators</h4>
+<p>Since we need a language to express our programs, we will teach you the syntax of Pharo. In particular, we will use some simple chapters to get you started.</p>
+
+<p>Now, in a nutshell, you should know that the Pharo syntax</p>
+
+<ul>
+<li>fits in one postcard and</li>
+<li>is based on objects, messages, and closures.</li>
+</ul>
+<p>Note that closures are not a recent addition to the language but a central cornerstone. Closures are the foundation for conditionals and loops.
+They enable this 'messages all over the place' syntax as well as really powerful iterators.</p>
+
+<h3 id="typographic-conventions"><span class="number">1.5</span> Typographic conventions</h3>
+<p>Pharo expressions or code snippets are represented either in the text as <code>'Hello'</code> and <code>'Hello' reversed</code>, or for more substantial snippets, as follows:</p>
+
+<pre><code>'Hello'</code></pre>
+
+<p>When we want to show the result of evaluating an expression, we show the result after three chevrons <code>&gt;&gt;&gt;</code> on the next line, like so:</p>
+
+<pre><code>'Hello' reversed
+&gt;&gt;&gt; 'olleH'</code></pre>
+
+<p>Whenever we feel the text makes a point that is important or technical enough to be highlighted, we will do so with a thick bar:</p>
+
+<q id="important">This is a point that is worth drawing some more attention.</q>
+<p>Finally, the note highlights some points to take away and serves as a concise summary of the sections:</p>
+
+<q id="note">If you skim through a section, take a few seconds to check for the notes!</q>
+<h3 id="videos"><span class="number">1.6</span> Videos</h3>
+<p>While reading this book, you can also use some of the videos produced for the Pharo Mooc. All the videos are available at <a target="_blank" href="http://mooc.pharo.org/"><a target="_blank" href="http://mooc.pharo.org/">http://mooc.pharo.org</a></a>.
+I strongly suggest watching the videos explaining how to use and interact with the environment.</p>
+
+<h3 id="thanks"><span class="number">1.7</span> Thanks</h3>
+<p>I would like to thank Morgane Pigny, Anne Etien, Quentin Ducasse, Sven van Caekenberghe, Hayatou Oumarou, Kateryna Aloshkina, Ricardo Pacheco, Olivier Auverlot, Mariette Biernacki, Herby Vojcik, Denis Kudriashov, Holger Freyther, Dimitris Chloupis, Amal Noussi, René Paul Mages, Hannes Hirsel, Lorenzo Solano Martinez, Ludvik Galois for their great feedback.
+Alexandre Bergel for his examples on messages. Olivier Auverlot for his constant enthousiam and for TinyChat. Guillermo Polito for the idea of file/directory example. Damien Pollet for this great template, the new LAN implementation, the numerous makefiles and Pillar help.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="index.html">← Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+        <a class="next" rel="next" href="getting-in-touch-with.html">Getting in touch with Pharo →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

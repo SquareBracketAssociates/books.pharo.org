@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TinyChat: a fun and small chat client/server</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="tinychat-a-fun-and-small.html" aria-current="page"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+            <ol>
+              
+              <li><a href="#objectives-and-architecture"><span class="number">18.1</span> Objectives and architecture</a></li>
+              
+              <li><a href="#loading-teapot"><span class="number">18.2</span> Loading Teapot</a></li>
+              
+              <li><a href="#message-representation"><span class="number">18.3</span> Message representation</a></li>
+              
+              <li><a href="#instance-initialisation"><span class="number">18.4</span> Instance initialisation</a></li>
+              
+              <li><a href="#converting-a-message-object-into-a-string"><span class="number">18.5</span> Converting a message object into a string</a></li>
+              
+              <li><a href="#building-a-message-from-a-string"><span class="number">18.6</span> Building a message from a string</a></li>
+              
+              <li><a href="#starting-with-the-server"><span class="number">18.7</span> Starting with the server</a></li>
+              
+              <li><a href="#the-chat-server"><span class="number">18.8</span> The Chat server</a></li>
+              
+              <li><a href="#server-logic"><span class="number">18.9</span> Server logic</a></li>
+              
+              <li><a href="#the-client"><span class="number">18.10</span> The client</a></li>
+              
+              <li><a href="#client-operations"><span class="number">18.11</span> Client operations</a></li>
+              
+              <li><a href="#client-connection-parameters"><span class="number">18.12</span> Client connection parameters</a></li>
+              
+              <li><a href="#user-interface"><span class="number">18.13</span> User interface</a></li>
+              
+              <li><a href="#now-chatting"><span class="number">18.14</span> Now chatting</a></li>
+              
+              <li><a href="#conclusion-and-ideas-for-future-extensions"><span class="number">18.15</span> Conclusion and ideas for future extensions</a></li>
+              
+            </ol>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="tinychat-a-fun-and-small-chat-client-server"><span class="number">18</span> TinyChat: a fun and small chat client/server</h2>
+<p>Pharo allows the definition of a REST server in a couple of lines of code thanks to the Teapot package by zeroflag, which extends the superb HTTP client/server Zinc developed by BetaNine and was given to the community.
+The goal of this chapter is to make you develop, in five small classes, a client/server chat application with a graphical client. This little adventure will familiarize you with Pharo and show the ease with which Pharo lets you define a REST server. Developed in a couple of hours, TinyChat has been designed as a pedagogical application. At the end of the chapter, we propose a list of possible improvements.</p>
+
+<p>TinyChat has been developed by O. Auverlot and S. Ducasse with a lot of fun.</p>
+
+<h3 id="objectives-and-architecture"><span class="number">18.1</span> Objectives and architecture</h3>
+<p>We are going to build a chat server and one graphical client as shown in Figure <a href="#tinychatclient">18.1</a>.</p>
+
+<p><figure id="tinychatclient"><img src="Chapters/TinyChat/figures/tinychatclient.png" alt="Chatting with TinyChat. " style="width: 80%"><figcaption><span class="number">Figure 18.1</span> Chatting with TinyChat. </figcaption></img></figure></p>
+
+<p>The communication between the client and the server will be based on HTTP and REST.
+In addition to the classes <code>TCServer</code> and <code>TinyChat</code> (the client), we will define three other classes:
+<code>TCMessage</code> which represents exchanged messages (as a future exercise you could extend TinyChat to use
+more structured elements such as JSON or STON (the Pharo object format), <code>TCMessageQueue</code> which stores
+messages, and <code>TCConsole</code> the graphical interface.</p>
+
+<h3 id="loading-teapot"><span class="number">18.2</span> Loading Teapot</h3>
+<p>Teapot is hosted on github at <a target="_blank" href="https://github.com/zeroflag/Teapot"><a target="_blank" href="https://github.com/zeroflag/Teapot">https://github.com/zeroflag/Teapot</a></a>
+Use the following script to load it.</p>
+
+<pre><code>Metacello new
+	baseline: 'Teapot';
+	repository: 'github://zeroflag/teapot:master/source';
+	load.</code></pre>
+
+<p>Now we are ready to start.</p>
+
+<h3 id="message-representation"><span class="number">18.3</span> Message representation</h3>
+<p>A message is a really simple object with a text and sender identifier.</p>
+
+<h4 id="class-tcmessage">Class TCMessage</h4>
+<p>We define the class <code>TCMessage</code> in the package <code>TinyChat</code>.</p>
+
+<pre><code>Object &lt;&lt; #TCMessage
+	slots: { #sender . #text . #separator};
+	package: 'TinyChat'</code></pre>
+
+<p>The instance variables are as follows:</p>
+
+<ul>
+<li><code>sender</code>: the identifier of the sender,</li>
+<li><code>text</code>: the message text, and</li>
+<li><code>separator</code>: a character to separate the sender and the text.</li>
+</ul>
+<h4 id="accessor-creation">Accessor creation</h4>
+<p>We create the following accessors:</p>
+
+<pre><code>TCMessage &gt;&gt; sender
+	^ sender
+
+TCMessage &gt;&gt; sender: anObject
+	sender := anObject
+
+TCMessage &gt;&gt; text
+	^ text
+
+TCMessage &gt;&gt; text: anObject
+	text := anObject</code></pre>
+
+<h3 id="instance-initialisation"><span class="number">18.4</span> Instance initialisation</h3>
+<p>Each time an instance is created, its <code>initialize</code> method is invoked.
+We redefine this method to set the separator value to the string <code>&gt;</code>.</p>
+
+<pre><code>TCMessage &gt;&gt; initialize
+	super initialize.
+	separator := '&gt;'.</code></pre>
+
+<p>Now we create a class method named <code>from:text:</code> to instantiate a message (a class method is a method that will be executed on a class and not on an instance of this class):</p>
+
+<pre><code>TCMessage class &gt;&gt; from: aSender text: aText
+	^ self new sender: aSender; text: aText; yourself</code></pre>
+
+<p>The message <code>yourself</code> returns the message receiver: this way we ensure that the returned object is the new instance and not the value returned by the <code>text:</code> message. This definition is equivalent to the following:</p>
+
+<pre><code>TCMessage class &gt;&gt; from: aSender text: aText
+	| instance |
+	instance := self new.
+	instance sender: aSender; text: aText.
+	^ instance</code></pre>
+
+<h3 id="converting-a-message-object-into-a-string"><span class="number">18.5</span> Converting a message object into a string</h3>
+<p>We add the method <code>printOn:</code> to transform a message object into a character string.
+The model we use is sender-separator-text-crlf. Example: 'john>hello !!!'.
+The method <code>printOn:</code> is automatically invoked by the method <code>printString</code>. This method is invoked by tools such
+as the debugger or object inspector.</p>
+
+<pre><code>TCMessage &gt;&gt; printOn: aStream
+
+	aStream 
+		&lt;&lt; self sender; &lt;&lt; separator; 
+		&lt;&lt; self text; &lt;&lt; String crlf</code></pre>
+
+<h3 id="building-a-message-from-a-string"><span class="number">18.6</span> Building a message from a string</h3>
+<p>We also define two methods to create a message object from a plain string of the form: <code>'olivier&gt;tinychat is cool'</code>.</p>
+
+<p>First, we create the method <code>fromString:</code> filling up the instance variables of an instance. It will be invoked like this: <code>TCMessage new fromString: 'olivier&gt;tinychat is cool'</code>, then the class method <code>fromString:</code> which will first create the instance.</p>
+
+<pre><code>TCMessage &gt;&gt; fromString: aString
+	"Compose a message from a string of this form 'sender&gt;message'."
+	| items |
+	items := aString substrings: separator.
+	self sender: items first.
+	self text: items second.</code></pre>
+
+<p>You can test the instance method with the following expression <code>TCMessage new fromString: 'olivier&gt;tinychat is cool'</code>.</p>
+
+<pre><code>TCMessage class &gt;&gt; fromString: aString
+	^ self new 
+		fromString: aString;
+		yourself</code></pre>
+
+<p>When you execute the following expression <code>TCMessage fromString: 'olivier&gt;tinychat is cool'</code> you should get a message.
+We are now ready to work on the server.</p>
+
+<h3 id="starting-with-the-server"><span class="number">18.7</span> Starting with the server</h3>
+<p>For the server, we are going to define a class to manage a message queue. This is not really mandatory but it allows
+us to separate responsibilities.</p>
+
+<h4 id="storing-messages">Storing messages</h4>
+<p>Create the class <code>TCMessageQueue</code> in the package <i>TinyChat-Server</i>.</p>
+
+<pre><code>Object &lt;&lt; #TCMessageQueue
+	slots: { #messages};
+	package: 'TinyChat-server'</code></pre>
+
+<p>The <code>messages</code> instance variable is an ordered collection whose elements are instances <code>TCMessage</code>.
+An <code>OrderedCollection</code> is a collection which dynamically grows when elements are added to it.
+We add an instance initialize method so that each new instance gets a proper messages collection.</p>
+
+<pre><code>TCMessageQueue &gt;&gt; initialize
+	super initialize.
+	messages := OrderedCollection new.</code></pre>
+
+<h4 id="basic-operations-on-message-list">Basic operations on message list</h4>
+<p>We should be able to add, clear the list, and count the number of messages, so we define three methods: <code>add:</code>, <code>reset</code>, and <code>size</code>.</p>
+
+<pre><code>TCMessageQueue &gt;&gt; add: aMessage
+	messages add: aMessage </code></pre>
+
+<pre><code>TCMessageQueue &gt;&gt; reset
+	messages removeAll</code></pre>
+
+<pre><code>TCMessageQueue &gt;&gt; size
+	^ messages size</code></pre>
+
+<h4 id="list-of-messages-from-a-position">List of messages from a position</h4>
+<p>When a client asks the server about the list of the last exchanged messages, it mentions the index of the last
+message it knows. The server then answers the list of messages received since this index.</p>
+
+<pre><code>TCMessageQueue &gt;&gt; listFrom: aIndex
+	^ (aIndex &gt; 0 and: [ aIndex &lt;= messages size]) 
+		ifTrue: [ messages copyFrom: aIndex to: messages size ]
+		ifFalse: [ #() ]</code></pre>
+
+<h4 id="message-formatting">Message formatting</h4>
+<p>The server should be able to transfer a list of messages to its client given an index.
+We add the possibility to format a list of messages (given an index).
+We define the method <code>formattedMessagesFrom:</code> using the formatting of a single message as follows:</p>
+
+<pre><code>TCMessageQueue &gt;&gt; formattedMessagesFrom: aMessageNumber
+	
+	^ String streamContents: [ :formattedMessagesStream |  
+		(self listFrom: aMessageNumber) 
+			do: [ :m | formattedMessagesStream &lt;&lt; m printString ] ]</code></pre>
+
+<p>Note how the <code>streamContents:</code> lets us manipulate a stream of characters.</p>
+
+<h3 id="the-chat-server"><span class="number">18.8</span> The Chat server</h3>
+<p>The core of the server is based on the Teapot REST framework. It supports the sending and receiving of messages.
+In addition, this server keeps a list of messages that it communicates to clients.</p>
+
+<h4 id="tcserver-class-creation">TCServer class creation</h4>
+<p>We create the class <code>TCServer</code> in the <i>TinyChat-Server</i> package.</p>
+
+<pre><code>Object &lt;&lt; #TCServer
+	slots: { #teapotServer . #messagesQueue};
+	package: 'TinyChat-Server'</code></pre>
+
+<p>The instance variable <code>messagesQueue</code> represents the list of received and sent messages.
+We initialize it like this:</p>
+
+<pre><code>TCServer &gt;&gt; initialize
+	super initialize.
+	messagesQueue := TCMessageQueue new.</code></pre>
+
+<p>The instance variable <code>teapotServer</code> refers to an instance of the Teapot server that we will create using the method <code>initializePort:</code></p>
+
+<pre><code>TCServer &gt;&gt; initializePort: anInteger
+	teapotServer := Teapot configure: { 
+		#defaultOutput -&gt; #text.
+		#port -&gt; anInteger.
+		#debugMode -&gt; true
+	}.
+	teapotServer start.</code></pre>
+
+<p>The HTTP routes are defined in the method <code>registerRoutes</code>. Three operations are defined:</p>
+
+<ul>
+<li>GET <code>messages/count</code>: returns to the client the number of messages received by the server,</li>
+<li>GET <code>messages/&lt;id:IsInteger&gt;</code>: the server returns messages from an index, and</li>
+<li>POST <code>/message/add</code>: the client sends a new message to the server.</li>
+</ul>
+<pre><code>TCServer &gt;&gt; registerRoutes
+	teapotServer
+		GET: '/messages/count' -&gt; (Send message: #messageCount to: self);
+		GET: '/messages/&lt;id:IsInteger&gt;' -&gt; (Send message: #messagesFrom: to: self);
+		POST: '/messages/add' -&gt; (Send message: #addMessage: to: self)</code></pre>
+
+<p>Here we express that the path <code>message/count</code> will execute the message <code>messageCount</code> on the server itself.
+The pattern <code>&lt;id:IsInteger&gt;</code> indicates that the argument should be expressed as number and that it will be converted
+into an integer.</p>
+
+<p>Error handling is managed in the method <code>registerErrorHandlers</code>. Here we see how we can get an instance of the class <code>TeaResponse</code>.</p>
+
+<pre><code>TCServer &gt;&gt; registerErrorHandlers
+	teapotServer
+		exception: KeyNotFound -&gt; (TeaResponse notFound body: 'No such message')</code></pre>
+
+<p>Starting the server is done in the class method <code>TCServer class&gt;&gt;startOn:</code> that gets the TCP port as argument.</p>
+
+<pre><code>TCServer class &gt;&gt; startOn: aPortNumber
+	^self new
+		initializePort: aPortNumber;
+		registerRoutes;
+		registerErrorHandlers;
+		yourself</code></pre>
+
+<p>We should also offer the possibility to stop the server. The method <code>stop</code> stops the teapot server and empties the message list.</p>
+
+<pre><code>TCServer &gt;&gt; stop
+	teapotServer stop.
+	messagesQueue reset.</code></pre>
+
+<p>Since there is a chance that you may execute the expression <code>TCServer startOn:</code> multiple times, we define the class method  <code>stopAll</code> which stops all the servers by iterating over all the instances of the class <code>TCServer</code>.
+The method <code>TCServer class&gt;&gt;stopAll</code> stops each server.</p>
+
+<pre><code>TCServer class &gt;&gt; stopAll
+	self allInstancesDo: #stop</code></pre>
+
+<h3 id="server-logic"><span class="number">18.9</span> Server logic</h3>
+<p>Now we should define the logic of the server.
+We define a method <code>addMessage:</code> that extracts the message from the request. It adds a newly created message (instance of class <code>TCMessage</code>) to the list of messages.</p>
+
+<pre><code>TCServer &gt;&gt; addMessage: aRequest
+	messagesQueue add: (TCMessage from: (aRequest at: #sender) text: (aRequest at: #text)).</code></pre>
+
+<p>The method <code>messageCount</code> gives the number of received messages.</p>
+
+<pre><code>TCServer &gt;&gt; messageCount
+	^ messagesQueue size</code></pre>
+
+<p>The method <code>messageFrom:</code> gives the list of messages received by the server since a given index (specified by the client).
+The messages returned to the client are a string of characters. This is definitively a point to improve - using string is a poor choice here.</p>
+
+<pre><code>TCServer &gt;&gt; messagesFrom: request
+	^ messagesQueue formattedMessagesFrom: (request at: #id)  </code></pre>
+
+<p>Now the server is finished and we can test it.
+First, let us begin by starting it:</p>
+
+<pre><code>TCServer startOn: 8181</code></pre>
+
+<p>Now we can verify that it is running either with a web browser (Figure <a href="#running">18.2</a>), or with a Zinc expression as follows:</p>
+
+<pre><code>ZnClient new url: 'http://localhost:8181/messages/count' ; get</code></pre>
+
+<p>Shell lovers can also use the curl command:</p>
+
+<pre><code>curl http://localhost:8181/messages/count</code></pre>
+
+<p><figure id="running"><img src="Chapters/TinyChat/figures/running.png" alt="Testing the server." style="width: 80%"><figcaption><span class="number">Figure 18.2</span> Testing the server.</figcaption></img></figure></p>
+
+<p>We can also add a message the following way:</p>
+
+<pre><code>ZnClient new 
+	url: 'http://localhost:8181/messages/add';
+	formAt: 'sender' put: 'olivier';
+	formAt: 'text' put: 'Super cool ce tinychat' ; post</code></pre>
+
+<h3 id="the-client"><span class="number">18.10</span> The client</h3>
+<p>Now we can concentrate on the client part of TinyChat. We decomposed the client into two classes:</p>
+
+<ul>
+<li><code>TinyChat</code> is the class that defines the connection logic (connection, send, and message reception),</li>
+<li><code>TCConsolePresenter</code> is a class defining the user interface.</li>
+</ul>
+<p>The logic of the client is:</p>
+
+<ul>
+<li>During client startup, it asks the server for the index of the last received message,</li>
+<li>Every two seconds, it requests from the server the messages exchanged since its last connection. To do so, it passes to the server the index of the last message it got.</li>
+</ul>
+<h4 id="tinychat-class">TinyChat class</h4>
+<p>We now define the class <code>TinyChat</code> in the package <code>TinyChat-client</code>.</p>
+
+<pre><code>Object &lt;&lt; #TinyChat
+	slots: {#url . #login . #exit . #messages . #console . #lastMessageIndex};
+	package: 'TinyChat-client'</code></pre>
+
+<p>This class defines the following instance variables:</p>
+
+<ul>
+<li>url that contains the server url,</li>
+<li>login a string identifying the client,</li>
+<li>messages is an ordered collection containing the messages read by the client,</li>
+<li>lastMessageIndex is the index of the last message read by the client,</li>
+<li>exit controls the connection. While exit is false, the client regularly connects to the server to get the unread messages</li>
+<li>console refers to the graphical console that allows the user to enter and read messages.</li>
+</ul>
+<p>We initialize these variables in the following instance <code>initialize</code> method.</p>
+
+<pre><code>TinyChat &gt;&gt; initialize
+	super initialize.
+	exit := false.
+	lastMessageIndex := 0.
+	messages := OrderedCollection new.</code></pre>
+
+<h4 id="http-commands">HTTP commands</h4>
+<p>Now, we define methods to communicate with the server. They are based on the HTTP protocol.
+Two methods will format the request. One, which does not take an argument, builds the requests
+<code>/messages/add</code> and <code>/messages/count</code>. The other has an argument used to get the message given a position.</p>
+
+<pre><code>TinyChat &gt;&gt; command: aPath
+	^'{1}{2}' format: { url . aPath }
+
+TinyChat &gt;&gt; command: aPath argument: anArgument
+	^'{1}{2}/{3}' format: { url . aPath . anArgument asString }</code></pre>
+
+<p>Now that we have these low-level operations we can define the three HTTP commands of the client as follows:</p>
+
+<pre><code>TinyChat &gt;&gt; cmdLastMessageID
+	^ self command: '/messages/count'</code></pre>
+
+<pre><code>TinyChat &gt;&gt; cmdNewMessage
+	^self command: '/messages/add'</code></pre>
+
+<pre><code>TinyChat &gt;&gt; cmdMessagesFromLastIndexToEnd
+	"Returns the server messages from my current last index to the last one on the server."
+	^ self command: '/messages' argument: lastMessageIndex</code></pre>
+
+<p>Now we can create commands but we need to emit them. This is what we look at now.</p>
+
+<h3 id="client-operations"><span class="number">18.11</span> Client operations</h3>
+<p>We need to send the commands to the server and to get back information from the server.
+We define two methods. The method <code>readLastMessageID</code> returns the index of the last message received from the server.</p>
+
+<pre><code>TinyChat &gt;&gt; readLastMessageID
+	| id |
+	id := (ZnClient new url: self cmdLastMessageID; get) asInteger.
+	id = 0 ifTrue: [ id := 1 ].
+	^ id</code></pre>
+
+<p>The method <code>readMissingMessages</code> adds the last messages received from the server to the list of messages known by the client.
+This method returns the number of received messages.</p>
+
+<pre><code>TinyChat &gt;&gt; readMissingMessages
+	"Gets the new messages that have been posted since the last request."
+	| response receivedMessages |
+	response := (ZnClient new url: self cmdMessagesFromLastIndexToEnd; get).
+	^ response 
+		ifNil: [ 0 ]
+		ifNotNil: [  
+			receivedMessages := response substrings: String crlf.
+			receivedMessages do: [ :msg | messages add: (TCMessage fromString: msg) ].
+			receivedMessages size.
+		].</code></pre>
+
+<p>We are now ready to define the refresh behavior of the client via the method <code>refreshMessages</code>.
+It uses a light process to read the messages received from the server at a regular interval.
+The delay is set to 2 seconds. (The message <code>fork</code> sent to a block (a lexical closure in Pharo) executes this block in a light process). The logic of this method is to loop as long as the client does not specify to stop via the state of the <code>exit</code> variable.</p>
+
+<p>The expression <code>(Delay forSeconds: 2) wait</code> suspends the execution of the process in which it is executed for a given number of seconds.</p>
+
+<pre><code>TinyChat &gt;&gt; refreshMessages
+	[  
+		[ exit ] whileFalse: [  
+			(Delay forSeconds: 2) wait.
+			lastMessageIndex := lastMessageIndex + (self readMissingMessages).
+			console print: messages.
+		]
+	] fork</code></pre>
+
+<p>The method <code>sendNewMessage:</code> posts the message written by the client to the server.</p>
+
+<pre><code>TinyChat &gt;&gt; sendNewMessage: aMessage
+	^ ZnClient new
+		url: self cmdNewMessage;
+		formAt: 'sender' put:  (aMessage sender);
+		formAt: 'text' put: (aMessage text);
+		post</code></pre>
+
+<p>This method is used by the method <code>send:</code> that gets the text written by the user.
+The string is converted into an instance of <code>TCMessage</code>. The message is sent and the client updates the index of the last
+message it knows, then it prints the message in the graphical interface.</p>
+
+<pre><code>TinyChat &gt;&gt; send: aString
+	"When we send a message, we push it to the server and in addition we update the local list of posted messages."
+	
+	| msg |
+	msg := TCMessage from: login text: aString.
+	self sendNewMessage: msg.
+	lastMessageIndex := lastMessageIndex + (self readMissingMessages).
+	console print: messages.</code></pre>
+
+<p>We should also handle the server disconnection. We define the method
+<code>disconnect</code> that sends a message to the client indicating that it is disconnecting and also stops
+the connecting loop of the server by putting <code>exit</code> to true.</p>
+
+<pre><code>TinyChat &gt;&gt; disconnect
+	self sendNewMessage: (TCMessage from: login text: 'I exited from the chat room.').
+	exit := true</code></pre>
+
+<h3 id="client-connection-parameters"><span class="number">18.12</span> Client connection parameters</h3>
+<p>Since the client should contact the server on specific ports, we define a method to
+initialize the connection parameters. We define the class method <code>TinyChat class&gt;&gt;connect:port:login:</code> so that we
+can connect the following way to the server: <code>TinyChat connect: 'localhost' port: 8080 login: 'username'</code></p>
+
+<pre><code>TinyChat class &gt;&gt; connect: aHost port: aPort login: aLogin
+
+	^ self new
+		host: aHost port: aPort login: aLogin;
+		start</code></pre>
+
+<p><code>TinyChat class&gt;&gt;connect:port:login:</code> uses the method <code>host:port:login:</code>. This method just updates the <code>url</code> instance variable and sets the <code>login</code> as specified.</p>
+
+<pre><code>TinyChat &gt;&gt; host: aHost port: aPort login: aLogin
+	url := 'http://' , aHost , ':' , aPort asString.
+	login := aLogin</code></pre>
+
+<p>Finally, we define a method <code>start</code>: which creates a graphical console (that we will define later), tells the server
+that there is a new client, and gets the last message received by the server.
+Note that a good evolution would be to decouple the model from its user interface by using notifications.</p>
+
+<pre><code>TinyChat &gt;&gt; start
+	console := TCConsolePresenter attach: self.
+	self sendNewMessage: (TCMessage from: login text: 'I joined the chat room').
+	lastMessageIndex := self readLastMessageID.
+	self refreshMessages.</code></pre>
+
+<h3 id="user-interface"><span class="number">18.13</span> User interface</h3>
+<p>The user interface is composed of a window with a list and an input field as shown in Figure <a href="#tinychatclient">18.1</a>.</p>
+
+<pre><code>SpPresenter &lt;&lt;  #TCConsolePresenter
+	slots: {#chat . #list . #input};
+	package: 'TinyChat-client'</code></pre>
+
+<p>Note that the class <code>TCConsolePresenter</code> inherits from <code>SpPresenter</code>. This class is the root of the user interface logic classes.
+<code>TCConsolePresenter</code> defines the logic of the client interface (i.e. what happens when we enter text in the input field...).
+Based on the information given in this class, the Spec user interface builder automatically builds the visual representation.
+The <code>chat</code> instance variable is a reference to an instance of the client model <code>TinyChat</code> and requires a setter method (<code>chat:</code>). The <code>list</code> and <code>input</code> instance variables both require an accessor.
+This is required by the User Interface builder.</p>
+
+<pre><code>TCConsolePresenter &gt;&gt; input
+	^ input</code></pre>
+
+<pre><code>TCConsolePresenter &gt;&gt; list
+	^ list</code></pre>
+
+<pre><code>TCConsolePresenter &gt;&gt; chat: anObject
+	chat := anObject</code></pre>
+
+<p>We set the title of the window by defining the method <code>title</code>.</p>
+
+<pre><code>TCConsolePresenter &gt;&gt; title
+	^ 'TinyChat'</code></pre>
+
+<p>Now we should specify the layout of the graphical elements that compose the client.
+To do so we define the class method <code>TCConsolePresenter&gt;&gt;defaultLayout</code>. Here we need a column with a list and an input field placed right below.</p>
+
+<pre><code>TCConsolePresenter &gt;&gt; defaultLayout
+
+	^ SpBoxLayout newTopToBottom
+			add: list;
+			add: input ;
+			yourself</code></pre>
+
+<p>We should now initialize the widgets that we will use.
+The method <code>initializeWidgets</code> specifies the nature and behavior of the graphical components.
+The message <code>acceptBlock:</code> defines the action to be executed then the text is entered in the input field.
+Here we send it to the chat model and empty it.</p>
+
+<pre><code>TCConsolePresenter &gt;&gt; initializeWidgets
+
+	list := self newList.
+
+	input := self newTextInput.
+	input 
+		placeholder: 'Type your message here...';
+		whenSubmitDo: [ :string |  
+			chat send: string. 
+			input text: '' ].
+	self focusOrder add: input.</code></pre>
+
+<p>The method <code>print</code> displays the messages received by the client and assigns them to the list contents.</p>
+
+<pre><code>TCConsole &gt;&gt; print: aCollectionOfMessages
+	list items: (aCollectionOfMessages collect: [  :m |  m printString ])</code></pre>
+
+<p>Note that this method is invoked by the method <code>refreshMessages</code> and that changing all the list elements when we add just one element is rather ugly but ok for now.</p>
+
+<p>Finally we need to define the class method <code>TCConsole class&gt;&gt;attach:</code> that gets the client model as argument.
+This method opens the graphical elements and puts in place a mechanism that will close the connection as soon as the client closes the window.
+</p>
+
+<pre><code>TCConsolePresenter class &gt;&gt; attach: aTinyChat
+	| window |
+	window := self new chat: aTinyChat.
+	window open whenClosedDo: [ aTinyChat disconnect ].
+	^ window</code></pre>
+
+<h3 id="now-chatting"><span class="number">18.14</span> Now chatting</h3>
+<p><figure id="messages"><img src="Chapters/TinyChat/figures/messages.png" alt="Server access. " style="width: 60%"><figcaption><span class="number">Figure 18.3</span> Server access. </figcaption></img></figure></p>
+
+<p>Now you can chat with your server. The example resets the server and opens two clients.</p>
+
+<pre><code>| tco tcs |
+TCServer stopAll.
+TCServer startOn: 8080.
+tco := TinyChat connect: 'localhost' port: 8080 login: 'olivier'.
+tco send: 'hello'.
+tcs := TinyChat connect: 'localhost' port: 8080 login: 'Stef'.	
+tcs send: 'salut olivier'</code></pre>
+
+<h3 id="conclusion-and-ideas-for-future-extensions"><span class="number">18.15</span> Conclusion and ideas for future extensions</h3>
+<p>We show that creating a REST server is simple with Teapot.
+TinyChat provides a fun context to explore programming in Pharo and we hope that you like it.
+We designed TinyChat so that it favors extensions and exploration. Here is a list of possible extensions.</p>
+
+<ul>
+<li>Using JSON or STON to exchange information and not plain strings.</li>
+<li>Making sure that the clients can handle a failure of the server.</li>
+<li>Adding only the necessary messages to the list in the graphical client.</li>
+<li>Managing concurrent access in the server message collection (if the server should handle concurrent requests the current implementation is not correct).</li>
+<li>Managing connection errors.</li>
+<li>Getting the list of connected users.</li>
+<li>Editing the delay to check for new messages.</li>
+</ul>
+<p>There are probably more extensions and we hope that you will have fun exploring some.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="snakes-and-ladders.html">← Snakes and ladders</a>
+        
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

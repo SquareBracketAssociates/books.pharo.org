@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Challenge yourself</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="challenge-yourself.html" aria-current="page"><span class="number">3</span> Challenge yourself</a>
+            
+            <ol>
+              
+              <li><a href="#challenge-message-identification"><span class="number">3.1</span> Challenge: Message identification</a></li>
+              
+              <li><a href="#challenge-literal-objects"><span class="number">3.2</span> Challenge: Literal objects</a></li>
+              
+              <li><a href="#challenge-kind-of-messages"><span class="number">3.3</span> Challenge: Kind of messages</a></li>
+              
+              <li><a href="#challenge-results"><span class="number">3.4</span> Challenge: Results</a></li>
+              
+              <li><a href="#challenge-unneeded-parentheses"><span class="number">3.5</span> Challenge: unneeded parentheses</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">3</span> Challenge yourself</h2><a id="cha:challenging"></a>
+<p>In Pharo everything is an object and most computation happens by sending  <i>messages</i> to objects. In this chapter we propose a list of exercises to challenge you with the syntax.</p>
+
+<h3 id="challenge-message-identification"><span class="number">3.1</span> Challenge: Message identification</h3>
+<p>For each of the expressions below, fill in the answers:</p>
+
+<ul>
+<li>What is the receiver object?</li>
+<li>What is the message selector?</li>
+<li>What is/are the argument (s)?</li>
+<li>What is the result returned by this expression execution?</li>
+</ul>
+<pre><code>3 + 4
+
+	receiver: 
+	selector:
+	arguments:
+	result:</code></pre>
+
+<pre><code>Date today
+
+	receiver: 
+	selector:
+	arguments:
+	result:</code></pre>
+
+<pre><code>#('' 'World') at: 1 put: 'Hello'
+
+	receiver: 
+	selector:
+	arguments:
+	result:</code></pre>
+
+<pre><code>#(1 22 333) at: 2
+
+	receiver: 
+	selector:
+	arguments:
+	result:</code></pre>
+
+<pre><code>#(2 33 -4 67) collect: [ :each | each abs ]
+
+	receiver: 
+	selector:
+	arguments:
+	result:</code></pre>
+
+<pre><code>25 @ 50
+
+	receiver: 
+	selector:
+	arguments:
+	result:</code></pre>
+
+<pre><code>SmallInteger maxVal
+
+
+	receiver: 
+	selector:
+	arguments:
+	result:</code></pre>
+
+<pre><code>#(a b c d e f) includesAll: #(f d b)
+
+	receiver: 
+	selector:
+	arguments:
+	result:</code></pre>
+
+<pre><code>true | false
+
+	receiver: 
+	selector:
+	arguments:
+	result:</code></pre>
+
+<pre><code>Point selectors
+
+	receiver: 
+	selector:
+	arguments:
+	result:</code></pre>
+
+<h3 id="challenge-literal-objects"><span class="number">3.2</span> Challenge: Literal objects</h3>
+<p>What kind of object does the following literal expressions refer to? It is the same as asking what is the result of sending the <code>class</code> message to such expressions.</p>
+
+<pre><code>1.3
+
+&gt;</code></pre>
+
+<pre><code>#node1
+
+&gt;</code></pre>
+
+<pre><code>#(2 33 4)
+
+&gt;</code></pre>
+
+<pre><code>'Hello, Dave'
+
+&gt;</code></pre>
+
+<pre><code>[ :each | each scale: 1.5 ]
+
+&gt;</code></pre>
+
+<pre><code>$A 
+
+&gt;</code></pre>
+
+<pre><code>true
+
+&gt;</code></pre>
+
+<pre><code>1
+
+&gt;</code></pre>
+
+<h3 id="challenge-kind-of-messages"><span class="number">3.3</span> Challenge: Kind of messages</h3>
+<p>Examine the following messages and report if the message is unary, binary or keyword-based.</p>
+
+<pre><code>1 log
+
+&gt;</code></pre>
+
+<pre><code>Browser open
+
+&gt;</code></pre>
+
+<pre><code>2 raisedTo: 5
+
+&gt;</code></pre>
+
+<pre><code>'hello', 'world'
+
+&gt;</code></pre>
+
+<pre><code>10@20
+
+&gt;</code></pre>
+
+<pre><code>point1 x
+
+&gt; </code></pre>
+
+<pre><code>point1 distanceFrom: point2
+
+&gt;</code></pre>
+
+<h3 id="challenge-results"><span class="number">3.4</span> Challenge: Results</h3>
+<p>Examine the following expressions. What is the value returned by the execution of the following expressions?</p>
+
+<pre><code>1 + 3 negated
+
+&gt;</code></pre>
+
+<pre><code>1 + (3 negated)
+
+&gt;</code></pre>
+
+<pre><code>2 raisedTo: 3 + 2
+
+&gt;</code></pre>
+
+<pre><code>| anArray |
+anArray := #('first' 'second' 'third' 'fourth').
+anArray at: 2
+
+
+&gt; </code></pre>
+
+<pre><code>#(2 3 -10 3) collect: [ :each | each * each]
+
+&gt;</code></pre>
+
+<pre><code>6 + 4 / 2
+
+&gt;</code></pre>
+
+<pre><code>2 negated raisedTo: 3 + 2
+
+&gt;</code></pre>
+
+<pre><code>#(a b c d e f) includesAll: #(f d b)
+
+&gt;</code></pre>
+
+<h3 id="challenge-unneeded-parentheses"><span class="number">3.5</span> Challenge: unneeded parentheses</h3>
+<p>Putting more  parentheses than necessary is  a good way  to get started. Such  practice however leads to  less readable expressions. Rewrite the following expressions using the least number of parentheses.</p>
+
+<pre><code>x between: (pt1 x) and: (pt2 y)
+
+
+ ...</code></pre>
+
+<pre><code>((#(a b c d e f) asSet) intersection: (#(f d b) asSet))
+
+
+ ...</code></pre>
+
+<pre><code>(x isZero)
+     ifTrue: [....]
+(x includes: y)
+     ifTrue: [....]
+	 
+
+
+
+
+ ...</code></pre>
+
+<pre><code>(OrderedCollection new)
+    add: 56; 
+    add: 33; 
+    yourself
+
+
+
+
+ ...</code></pre>
+
+<pre><code>((3 + 4) + (2 * 2) + (2 * 3))
+
+
+ ...</code></pre>
+
+<pre><code>(Integer primesUpTo: 64) sum
+
+
+ ...</code></pre>
+
+<pre><code>('http://www.pharo.org' asUrl) retrieveContents
+
+
+ ...</code></pre>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="pharo-syntax-in-a-nutshell.html">← Pharo syntax in a nutshell</a>
+        <a class="next" rel="next" href="a-first-tutorial-developing.html">A first tutorial: Developing a simple counter →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

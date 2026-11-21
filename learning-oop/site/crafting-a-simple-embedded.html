@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crafting a simple embedded DSL with Pharo</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="crafting-a-simple-embedded.html" aria-current="page"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+            <ol>
+              
+              <li><a href="#getting-started"><span class="number">11.1</span> Getting started</a></li>
+              
+              <li><a href="#rolling-a-die"><span class="number">11.2</span> Rolling a die</a></li>
+              
+              <li><a href="#creating-another-test"><span class="number">11.3</span> Creating another test</a></li>
+              
+              <li><a href="#instance-creation-interface"><span class="number">11.4</span> Instance creation interface</a></li>
+              
+              <li><a href="#first-specification-of-a-die-handle"><span class="number">11.5</span> First specification of a die handle</a></li>
+              
+              <li><a href="#defining-the-diehandle-class"><span class="number">11.6</span> Defining the DieHandle class</a></li>
+              
+              <li><a href="#improving-programmer-experience"><span class="number">11.7</span> Improving programmer experience</a></li>
+              
+              <li><a href="#rolling-a-die-handle"><span class="number">11.8</span> Rolling a die handle</a></li>
+              
+              <li><a href="#about-dice-and-diehandle-api"><span class="number">11.9</span> About Dice and DieHandle API</a></li>
+              
+              <li><a href="#role-playing-syntax"><span class="number">11.10</span> Role playing syntax</a></li>
+              
+              <li><a href="#handle-s-addition"><span class="number">11.11</span> Handle's addition</a></li>
+              
+              <li><a href="#conclusion-8"><span class="number">11.12</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">11</span> Crafting a simple embedded DSL with Pharo</h2><a id="cha:dsl"></a>
+<p>In this chapter, you will develop a simple domain-specific language (DSL) for rolling dice. Players of games such as Dungeons & Dragons are familiar with such DSL. An example of such DSL is the following expression: <code>2 D20 + 1 D6</code> which means that we should roll two 20-face dices and one 6-face die.
+It is called an embedded DSL because the DSL uses the syntax of the language used to implement it. Here we use the Pharo syntax to implement the Dungeons & Dragons rolling die language.</p>
+
+<p>This little exercise shows how we can (1) simply reuse traditional operators such as <code>+</code>, (2) develop an embedded domain-specific language, and (3) use class extensions (the fact that we can define a method in another package than the one of the class of the method).</p>
+
+<h3 id="getting-started"><span class="number">11.1</span> Getting started</h3>
+<p>Using the code browser, define a package named <code>Dice</code> or any name you like.</p>
+
+<h4 id="create-a-test">Create a test</h4>
+<p>It is always empowering to verify that the code we write is always working as we defining it. For this purpose you should create a unit test. Remember unit testing was promoted by K. Beck first in the ancestor of Pharo. Nowadays this is a common practice but this is always useful to remember our roots!</p>
+
+<p>Define the class <code>DieTest</code> as a subclass of <code>TestCase</code> as follows:</p>
+
+<pre><code>TestCase &lt;&lt; #DieTest
+	package: 'Dice'</code></pre>
+
+<p>What we can test is that the default number of faces of a die is 6.</p>
+
+<pre><code>DieTest &gt;&gt; testInitializeIsOk
+    self assert: Die new faces equals: 6</code></pre>
+
+<p>If you execute the test, the system will prompt you to create a class <code>Die</code>. Do it.</p>
+
+<h4 id="define-the-class-die">Define the class Die</h4>
+<p>The class <code>Die</code> inherits from <code>Object</code> and it has an instance variable, <code>faces</code> to represent the number of faces one instance will have. Figure <a href="#figOneClassDiceDesign">11.1</a> gives an overview of the messages.</p>
+
+<p><figure id="figOneClassDiceDesign"><img src="Chapters/DSL/figures/OneClassDiceDesign.pdf" alt="A single class with a couple of messages. Note that the method  withFaces:  is  a class method." style="width: 25%"><figcaption><span class="number">Figure 11.1</span> A single class with a couple of messages. Note that the method <code>withFaces:</code> is  a class method.</figcaption></img></figure></p>
+
+<pre><code>Object subclass:
+	... Your solution ...</code></pre>
+
+<p>In the <code>initialization</code> protocol, define the method <code>initialize</code> so that it simply sets the default number of faces to 6.</p>
+
+<pre><code>Die &gt;&gt; initialize
+	... Your solution ...</code></pre>
+
+<p>Do not hesitate to add a class comment.</p>
+
+<p>Now define a method to return the number of faces an instance of <code>Die</code> has.</p>
+
+<pre><code>Die &gt;&gt; faces
+	^ faces</code></pre>
+
+<p>Now your tests should all pass (and turn green).</p>
+
+<h3 id="rolling-a-die"><span class="number">11.2</span> Rolling a die</h3>
+<p>To roll a die you should use the method from Number <code>atRandom</code> which draws randomly a
+number between one and the receiver. For example <code>10 atRandom</code> draws number between 1 to 10.
+Therefore we define the method <code>roll</code>:</p>
+
+<pre><code>Die &gt;&gt; roll
+	... Your solution ...</code></pre>
+
+<p>Now we can create an instance <code>Die new</code> and send it the message  <code>roll</code> and get a result.
+Do <code>Die new inspect</code> to get an inspector and then type in the bottom pane <code>self roll</code>.
+You should get an inspector like the one shown in Figure <a href="#figDiceNoDetail">11.2</a>. With it you can interact with a die by writing expression in the bottom pane.</p>
+
+<p><figure id="figDiceNoDetail"><img src="Chapters/DSL/figures/DiceNoDetail.png" alt="Inspecting and interacting with a die. " style="width: 60%"><figcaption><span class="number">Figure 11.2</span> Inspecting and interacting with a die. </figcaption></img></figure></p>
+
+<p></p>
+
+<h3 id="creating-another-test"><span class="number">11.3</span> Creating another test</h3>
+<p>But better, let us define a test that verifies that rolling a new created dice with a default 6 faces only returns
+value comprised between 1 and 6. This is what the following test method is actually specifying.
+</p>
+
+<pre><code>DieTest &gt;&gt; testRolling
+	| d |
+	d := Die new.
+	10 timesRepeat: [ self assert: (d roll between: 1 and: 6) ]</code></pre>
+
+<q id="important">Often it is better to define the test even before the code it tests. Why? Because you can think about the API of your objects and a scenario that illustrate their correct behavior. It helps you to program your solution.</q>
+<h3 id="instance-creation-interface"><span class="number">11.4</span> Instance creation interface</h3>
+<p>We would like to get a simpler way to create <code>Die</code> instances. For example we want to create a 20-face die as follows: <code>Die withFaces: 20</code> instead of always have to send the new message to the class as in <code>Die new faces: 20</code>.
+Both expressions are creating the same die but one is shorter.</p>
+
+<p>Let us look at it:</p>
+
+<ul>
+<li>In the expression <code>Die withFaces:</code>, the message <code>withFaces:</code> is sent to the class <code>Die</code>. It is not new, we constantly sent the message <code>new</code> to <code>Die</code> to created instances.</li>
+<li>Therefore we should define a method that will be executed</li>
+</ul>
+<p>Let us define a test for it.</p>
+
+<pre><code>DieTest &gt;&gt; testCreationIsOk
+	self assert: (Die withFaces: 20) faces equals: 20</code></pre>
+
+<p>What the test clearly shows is that we are sending a message to the <strong>class</strong> <code>Die</code> itself.</p>
+
+<h4 id="defining-a-class-method">Defining a class method</h4>
+<p>Define the <i>class</i> method <code>withFaces:</code> as follows:</p>
+
+<ul>
+<li>Click on the class button in the browser to make sure that you are editing a <strong>class</strong> method.</li>
+<li>Define the method as follows:</li>
+</ul>
+<pre><code>Die class &gt;&gt; withFaces: aNumber
+	"Create and initialize a new die with aNumber faces."
+	| instance |
+	instance := self new.
+	instance faces: aNumber.
+	^ instance</code></pre>
+
+<p>Let us explain this method</p>
+
+<ul>
+<li>The method <code> withFaces:</code> creates an instance using the message <code>new</code>. Since <code>self</code> represents the receiver of the message and the receiver of the message is the class <code>Die</code> itself then <code>self</code> represents the class <code>Die</code>.</li>
+<li>Then the method sends the message <code>faces:</code> to the instance and</li>
+<li>Finally returns the newly created instance.</li>
+</ul>
+<p>Pay really attention that a class method <code>withFaces:</code> is sent to a class, and an instance method sent to the newly created instance <code>faces:</code>. Note that the class method could have also named <code>faces:</code> or any name we want, it does not matter, it is executed when the receiver is the class <code>Die</code>.</p>
+
+<p>This test will not work since we did not create yet the method <code>faces:</code>.  This is now the time to define it. Pay attention the method <code>faces:</code> is sent to an instance of the class <code>Die</code> and not the class itself. It is an instance method, therefore make sure that you deselected the class button before editing it.</p>
+
+<pre><code>Die &gt;&gt; faces: aNumber
+	faces := aNumber</code></pre>
+
+<p>Now your tests should run. So even if the class <code>Die</code> could implement more behavior, we are ready to implement a die handle.</p>
+
+<q id="important">A class method is a method executed in reaction to messages sent to a <i>class</i>. It is defined on the class side of the class. In <code>Die withFaces: 20</code>, the message <code>withFaces:</code> is sent to the class <code>Die</code>. In <code>Die new faces: 20</code>, the message <code>new</code> is sent to the <i>class</i> <code>Die</code> and the message <code>faces:</code> is sent to the <i>instance</i> returned by <code>Die new</code>.</q>
+<h4 id="optional-alternate-instance-creation-definition">[Optional] Alternate instance creation definition</h4>
+<p>In a first reading, you can skip this section. The <i>class</i> method definition <code>withFaces:</code> above is strictly equivalent to the one below.</p>
+
+<pre><code>Die class &gt;&gt; withFaces: aNumber
+	^ self new faces: aNumber; yourself</code></pre>
+
+<p>Let us explain it a bit. <code>self</code> represents the class <code>Die</code> itself. Sending it the message <code>new</code>, we create an instance and send it the <code>faces:</code> message. And we return the expression. So why do we need the message <code>yourself</code>. The message <code>yourself</code> is needed to make sure that whatever value the instance message <code>faces:</code> returns, the instance creation method we are defining returns the new created instance. You can try to redefine the instance method <code>faces:</code> as follows:</p>
+
+<pre><code>Die &gt;&gt; faces: aNumber 
+	faces := aNumber. 
+	^ 33</code></pre>
+
+<p>Without the use of <code>yourself</code>, <code>Die withFaces: 20</code> will return 33. With <code>yourself</code> it will return the instance.</p>
+
+<p>The trick is that <code>yourself</code> is a simple method defined on <code>Object</code> class: The message <code>yourself</code> returns the receiver of a message.
+The use of <code>;</code> sends the message to the receiver of the previous message (here <code>faces:</code>).  The message <code>yourself</code> is then sent to the object resulting from the execution of the expression <code>self new</code> (which returns a new instance of the class <code>Die</code>), as a consequence it returns the new instance.</p>
+
+<h3 id="first-specification-of-a-die-handle"><span class="number">11.5</span> First specification of a die handle</h3>
+<p>Let us define a new class <code>DieHandle</code> that represents a die handle.
+The following code snippet shows the API that we would like to offer for now (as shown in Figure <a href="#fig:DiceDesign">11.3</a>). We create a new handle then add some dice to it. We will use this kind of expressions in future tests below.</p>
+
+<p><figure id="fig:DiceDesign"><img src="Chapters/DSL/figures/DiceDesign.pdf" alt="A die handle is composed of dice. " style="width: 60%"><figcaption><span class="number">Figure 11.3</span> A die handle is composed of dice. </figcaption></img></figure></p>
+
+<pre><code>DieHandle new 
+	addDie: (Die withFaces: 6);
+	addDie: (Die withFaces: 10);
+	yourself</code></pre>
+
+<p>Of course we will define tests first for this new class. We define the class <code>DieHandleTest</code>.</p>
+
+<pre><code>TestCase &lt;&lt; #DieHandleTest
+	package: 'Dice'</code></pre>
+
+<h4 id="testing-a-die-handle">Testing a die handle</h4>
+<p>We define a new test method as follows. We create a new handle and add one die of 6 faces and one die of 10 faces.
+We verify that the handle is composed of two dice.</p>
+
+<pre><code>DieHandleTest &gt;&gt; testCreationAdding
+	| handle |
+	handle := DieHandle new 
+			addDie: (Die withFaces: 6);
+			addDie: (Die withFaces: 10);
+			yourself.
+	self assert: handle diceNumber = 2.</code></pre>
+
+<p>In fact we can do it better. Let us add a new test method to verify that we can even add
+two dice having the same number of faces.</p>
+
+<pre><code>DieHandleTest &gt;&gt; testAddingTwiceTheSameDice
+	| handle |
+	handle := DieHandle new. 
+	handle addDie: (Die withFaces: 6).
+	self assert: handle diceNumber = 1.
+	handle addDie: (Die withFaces: 6).
+	self assert: handle diceNumber = 2.</code></pre>
+
+<p>Now that we specified what we want, we should implement the expected class and messages.
+Easy!</p>
+
+<h3 id="defining-the-diehandle-class"><span class="number">11.6</span> Defining the DieHandle class</h3>
+<p>The class <code>DieHandle</code> inherits from <code>Object</code> and it defines one instance variable to hold the dice it contains.</p>
+
+<pre><code>Object subclass: ...
+	... Your solution ...</code></pre>
+
+<p>We simply initialize it so that its instance variable <code>dice</code> contains an instance of <code>OrderedCollection</code>.</p>
+
+<pre><code>DieHandle &gt;&gt; initialize
+	... Your solution ...</code></pre>
+
+<p>Then define a simple method <code>addDie:</code> to add a die to the list of dice of the handle. You can use the message <code>add:</code> sent to a collection.</p>
+
+<pre><code>DieHandle &gt;&gt; addDie: aDie 
+	... Your solution ...</code></pre>
+
+<p>Now you can execute the code snippet and inspect it. You should get an inspector as shown in Figure <a href="#DieHandleNoDetail">11.4</a></p>
+
+<pre><code>DieHandle new 
+	addDie: (Die withFaces: 6);
+	addDie: (Die withFaces: 10);
+	yourself</code></pre>
+
+<p><figure id="DieHandleNoDetail"><img src="Chapters/DSL/figures/DiceHandleNoDetail.png" alt="Inspecting a DieHandle. " style="width: 60%"><figcaption><span class="number">Figure 11.4</span> Inspecting a DieHandle. </figcaption></img></figure></p>
+
+<p>Finally, we should add the method <code>diceNumber</code> to the <code>DieHandle</code> class to be able to get the number of dice of the handle. We just return the size of the dice collection.</p>
+
+<pre><code>DieHandle &gt;&gt; diceNumber  
+	^ dice size</code></pre>
+
+<p>Now your tests should run and this is a good moment to save and publish your code.</p>
+
+<h3 id="improving-programmer-experience"><span class="number">11.7</span> Improving programmer experience</h3>
+<p>Now when you open an inspector you cannot see well the dice that compose the die handle. Click on the <code>dice</code> instance variable and you will only get a list of <code>a Dice</code> without further information. What we would like to get is something like <code>a Die (6)</code> or <code>a Die (10)</code> so that in a glance we know the faces a die has.</p>
+
+<pre><code>DieHandle new 
+	addDie: (Die withFaces: 6);
+	addDie: (Die withFaces: 10);
+	yourself</code></pre>
+
+<p>This is the  message <code>printOn:</code> that is responsible to provide a textual representation of the message receiver. By default, it just prints the name of the class prefixed with <code>'a'</code> or <code>'an'</code>. So we will enhance the <code>printOn:</code> method of the <code>Die</code> class to provide more information. Here we simply add the number of faces surrounded by parenthesis. The <code>printOn:</code> message is sent with a stream as argument. This is in such stream that we should add information. We use the message <code>nextPutAll:</code> to add a number of characters to the stream. We concatenate the characters to compose <code>()</code> using the message <code>,</code> comma defined on collections (and that concatenate collections and strings).</p>
+
+<pre><code>Die &gt;&gt; printOn: aStream
+
+	super printOn: aStream.
+	aStream nextPutAll: ' (', faces printString, ')'</code></pre>
+
+<p>Now in your inspector you can see effectively the number of faces a die handle has as shown by Figure <a href="#diceDetail">11.5</a> and it is now easier to check the dice contained inside a handle (See Figure <a href="#DieHandleDetail">11.6</a>).</p>
+
+<p><figure id="diceDetail"><img src="Chapters/DSL/figures/DiceDetail.png" alt="Die details. " style="width: 70%"><figcaption><span class="number">Figure 11.5</span> Die details. </figcaption></img></figure></p>
+
+<p><figure id="DieHandleDetail"><img src="Chapters/DSL/figures/DiceHandleDetail.png" alt="A die handle with more information. " style="width: 90%"><figcaption><span class="number">Figure 11.6</span> A die handle with more information. </figcaption></img></figure></p>
+
+<p><strong>Note</strong> This implementation of <code>printOn:</code> is suboptimal. Indeed during the message <code>faces printString</code>, it creates a separate stream instead of using the one pass as argument.
+To understand the problem you can have a look at the implementation of the method <code>printString</code> defined in the class <code>Object</code>.</p>
+
+<pre><code>Die &gt;&gt; printOn: aStream
+	
+	super printOn: aStream.
+	aStream 
+		nextPutAll: '(';
+		print: faces; 
+		nextPutAll: ')'</code></pre>
+
+<h3 id="rolling-a-die-handle"><span class="number">11.8</span> Rolling a die handle</h3>
+<p>Now we can define the rolling of a die handle by simply summing result of rolling each of its dice.
+Implement the <code>roll</code> method of the <code>DieHandle</code> class. This method must collect the results of rolling each dice of the handle and sum them.</p>
+
+<p>You may want to have a look at the method <code>sum:</code> in the class <code>Collection</code> or use a simple loop such as <code>do:</code> to iterate over the dice.</p>
+
+<pre><code>DieHandle &gt;&gt; roll
+	... Your solution ...</code></pre>
+
+<p>Now we can send the message <code>roll</code> to a die handle.</p>
+
+<pre><code>handle := DieHandle new 
+		addDie: (Die withFaces: 6);
+		addDie: (Die withFaces: 10);
+		yourself.
+handle roll</code></pre>
+
+<p>Define a test to cover such behavior. Rolling an handle of n dice should be between n and the sum of the face number of each die.</p>
+
+<pre><code>DieHandleTest &gt;&gt; testRoll
+	... Your solution ...</code></pre>
+
+<h3 id="about-dice-and-diehandle-api"><span class="number">11.9</span> About Dice and DieHandle API</h3>
+<p>It is worth to spend some times looking at the relationship between <code>DieHandle</code> and <code>Dice</code>.
+A die handle is composed of dices. What is an important design decision is that the API of the main behavior (<code>roll</code>) is the same for a die or a die handle. You can send the message <code>roll</code> to a dice or a die handle. This is an important property.</p>
+
+<p>Why? Because it means that from a client perspective, she/he can treat the receiver without having to take care about the kind of object it is manipulating. A client just sends the message <code>roll</code> to an object and get back a number (as shown in Figure <a href="#figDieHandleComposition">11.7</a>). The client is not concerned by the fact that the receiver is composed out a simple object or a complex one. Such design decision supports the <i>Don't ask, tell</i> principle.</p>
+
+<p><figure id="figDieHandleComposition"><img src="Chapters/DSL/figures/DiceHandleComposition.pdf" alt="A polymorphic API supports the  Don't ask, tell  principle. " style="width: 60%"><figcaption><span class="number">Figure 11.7</span> A polymorphic API supports the <i>Don't ask, tell</i> principle. </figcaption></img></figure></p>
+
+<q id="important">Offering polymorphic API is a tenet of good object-oriented design. It enforces the <i>Don't ask, tell</i> principle. Clients do not have to worry about the type of the objects to whom they talk to.</q>
+<p>For example we can write the following expression that adds a die and a dieHandle to a collection and collect the different values (we convert the result into an array so that we can print it in the book).</p>
+
+<pre><code>| col |
+col := OrderedCollection new. 
+col add: (Die withFaces: 20).
+col add: (DieHandle new addDie: (Die withFaces: 4); yourself).
+(col collect: [:each | each roll]) asArray
+&gt;&gt;&gt; #(17 3) </code></pre>
+
+<h4 id="about-composition">About composition</h4>
+<p>Composite objects such document objects (a book is composed of chapters, a chapter is composed of sections, a section is composed of paragraphs) have often a more complex composition relationship than the composition between die and die handle. Often the composition is recursive in the sense that an element can be the whole: for example, a diagram can be composed of lines, circles, and other diagrams. We will see an example of such composition in the Expression Chapter <a href="a-little-expression-interpreter.html#cha:expressions">15</a>.</p>
+
+<h3 id="role-playing-syntax"><span class="number">11.10</span> Role playing syntax</h3>
+<p>Now we are ready to offer a syntax following practice of role playing game, i.e., using <code>2 D20</code> to create a handle of two dice with 20 faces each.  For this purpose we will define class extensions: we will define methods in the class <code>Integer</code> but these methods will be only available when the package Dice will be loaded.</p>
+
+<p>But first let us specify  what we would like to obtain by writing a new  test in the class <code>DieHandleTest</code>. Remember
+to always take  any opportunity to write tests.  When we execute <code>2 D20</code> we  should get a new handle  composed of two
+dice and can verify that. This is what the method <code>testSimpleHandle</code> is doing.</p>
+
+<pre><code>DieHandleTest &gt;&gt; testSimpleHandle
+	self assert: 2 D20 diceNumber = 2.</code></pre>
+
+<p>Verify that the test is not working! It is much more satisfactory to get a test running when it was not working before. Now define the method <code>D20</code> with a protocol named <code>*NameOfYourPackage</code> (<code>'*Dice</code>' if you named your package <code>'Dice'</code>).
+The <code>*</code> (star) prefixing a protocol name indicates that the protocol and its methods belong to another package than the package of the class. Here we want to say that while the method <code>D20</code> is defined in the class <code>Integer</code>, it should be saved with the package <code>Dice</code>.
+
+The method <code>D20</code> simply creates a new die handle, adds the correct number of dice to this handle, and returns the handle.</p>
+
+<pre><code>Integer &gt;&gt; D20
+	... Your solution ...</code></pre>
+
+<h4 id="about-class-extensions">About class extensions</h4>
+<p>We asked you to place the method <code>D20</code> in a protocol starting with a star and having the name of the package (<code>'*Dice'</code>) because we want this method to be saved (and packaged) together with the code of the classes we already created (<code>Die</code>, <code>DieHandle</code>,...)
+Indeed in Pharo we can define methods in classes that are not defined in our package. Pharoers call this action a class extension: we can add methods to a class that is not ours. For example <code>D20</code> is defined on the class <code>Integer</code>. Now such methods only make sense when the package <code>Dice</code> is loaded.
+This is why we want to save and load such methods with the package we created. This is why we are defining the protocol as <code>'*Dice'</code>.
+This notation is a way for the system to know that it should save the methods with the package and not with the package of the class <code>Integer</code>.</p>
+
+<p>Now your tests should pass and this is probably a good moment to save your work either by publishing your package and to save your image.</p>
+
+<p>We can do the same for the default dice with different faces number: 4, 6, 10, and 20. But we should avoid duplicating logic and code. So first we will introduce a new method <code>D:</code> and based on it we will define all the others.</p>
+
+<p>Make sure that all the new methods are placed in the protocol <code>'*Dice'</code>. To verify you can press the button Browse of the Monticello package browser and you should see the methods defined in the class <code>Integer</code>.</p>
+
+<pre><code>Integer &gt;&gt; D: anInteger
+	... Your solution ...</code></pre>
+
+<pre><code>Integer &gt;&gt; D4
+	^ self D: 4</code></pre>
+
+<pre><code>Integer &gt;&gt; D6
+	^ self D: 6</code></pre>
+
+<pre><code>Integer &gt;&gt; D10
+	^ self D: 10</code></pre>
+
+<pre><code>Integer &gt;&gt; D20
+	^ self D: 20</code></pre>
+
+<p>We have now a compact form to create dice and we are ready for the last part: the addition of handles.</p>
+
+<h3 id="handle-s-addition"><span class="number">11.11</span> Handle's addition</h3>
+<p>Now what is missing is that possibility to add several handles as follows: <code>2 D20 + 3 D10</code>. Of course let's write a test first to be clear on what we mean.</p>
+
+<pre><code>DieHandleTest &gt;&gt; testSumming
+	| handle |
+	handle := 2 D20 + 3 D10.
+	self assert: handle diceNumber = 5.</code></pre>
+
+<p>We will define a method <code>+</code> on the <code>DieHandle</code> class. In other languages this is often not possible or is based on operator overloading. In Pharo <code>+</code> is just a message as any other, therefore we can define it on the classes we want.</p>
+
+<p>Now we should ask ourself what is the semantics of adding two handles. Should we modify the receiver of the expression or create a new one. We preferred a more functional style and choose to create a third one.</p>
+
+<p>The method <code>+</code> creates a new handle then add to it the dice of the receiver and the one of the handle passed as argument to the message. Finally we return it.</p>
+
+<pre><code>DieHandle &gt;&gt; + aDieHandle
+	... Your solution ... </code></pre>
+
+<p>Now we can execute the method <code>(2 D20 + 1 D6) roll</code> nicely and start playing role playing games, of course.</p>
+
+<h3 id="conclusion-8"><span class="number">11.12</span> Conclusion</h3>
+<p>This chapter illustrates how to create a small DSL based on the definition of some domain classes (here <code>Dice</code> and
+<code>DieHandle</code>) and the extension of core class such as <code>Integer</code>. It also shows that we can create packages with all the methods that are needed even when such methods are defined on classes external (here <code>Integer</code>) to the package.
+It shows that in Pharo we can use usual operators such as <code>+</code> to express natural models.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="an-electronic-wallet.html">← An electronic wallet</a>
+        <a class="next" rel="next" href="sending-messages.html">Sending messages →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

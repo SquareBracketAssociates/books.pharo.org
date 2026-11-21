@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sending a message is making a choice</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="sending-a-message-is.html" aria-current="page"><span class="number">12</span> Sending a message is making a choice</a>
+            
+            <ol>
+              
+              <li><a href="#negation-the-not-message"><span class="number">12.1</span> Negation: the not message</a></li>
+              
+              <li><a href="#implementing-not"><span class="number">12.2</span> Implementing not</a></li>
+              
+              <li><a href="#implementing-disjunction"><span class="number">12.3</span> Implementing disjunction</a></li>
+              
+              <li><a href="#about-iftrue-iffalse-implementation"><span class="number">12.4</span> About ifTrue:ifFalse: implementation</a></li>
+              
+              <li><a href="#what-is-the-point"><span class="number">12.5</span> What is the point?</a></li>
+              
+              <li><a href="#conclusion-9"><span class="number">12.6</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">12</span> Sending a message is making a choice</h2><a id="cha:messages"></a>
+<p>In this chapter we explore an <i>essential</i> point of object-oriented programming: Sending a message is making a choice!</p>
+
+<p>Object-oriented programming books often present <i>late binding</i>: the fact that the method to execute will only be determined at runtime based on the receiver. In fact, sending a message uses late binding to select the correct method.
+I like to use the term <i>sending a message</i> because it stresses that simple
+actions, such as sending a message, are also a powerful feature when used well.</p>
+
+<p>This aspect is often not really well put in perspective in teaching materials. Lectures often focus on inheritance but understanding the power of message passing it crucial to build good design.
+This point is so central for me that this is the first point that I explain when I start lectures on advanced design to people who already understanding object-oriented programming.
+In addition, most of the Design Patterns are based on the fact that sending a message is actually selecting the correct method based on the message receiver.</p>
+
+<p>To illustrate how sending a message performs a dynamic choice, I will start taking a simple example available in the core of Pharo: the Booleans.
+Pharo defines Booleans as two objects: <code>true</code> and <code>false</code>.
+They are so fundamental that you cannot change their value.
+Still, their implementation also uses late binding in a really elegant way.
+I will explain how the Boolean negation and the disjunction (or) are implemented.
+Then I will step back and analyze the forces in the presence and their importance.</p>
+
+<h3 id="negation-the-not-message"><span class="number">12.1</span> Negation: the not message</h3>
+<p>Boolean negation has nothing special in Pharo: negating a boolean returned the negated value!
+For example, the snippets below show this conventional behavior and vice versa.</p>
+
+<p>Sending the message <code>not</code> to the Boolean <code>true</code> returns the Boolean <code>false</code>.</p>
+
+<pre><code>true not
+&gt;&gt;&gt; false</code></pre>
+
+<pre><code>false not
+&gt;&gt;&gt; true</code></pre>
+
+<p>Nothing fancy. Of course the message <code>not</code> can be sent to Boolean expressions (i.e. expressions whose execution returns Booleans) as shown below:</p>
+
+<pre><code>(2 * 4 &gt; 3) not
+&gt;&gt;&gt; false</code></pre>
+
+<pre><code>(#(1 2 3) includes: 5) not
+&gt;&gt;&gt; true</code></pre>
+
+<p>Now while Pharo follows traditional Boolean logic, what is less traditional is the implementation of the way the computation is done to answer the correct value.</p>
+
+<h3 id="implementing-not"><span class="number">12.2</span> Implementing not</h3>
+<p>Take a couple of minutes and a piece of paper and think about the way you would implement this message.
+Try really to write the code for real.</p>
+
+<h4 id="a-first-hint">A first hint.</h4>
+<p>A first hint that I can give you is that the solution (used in Pharo and that we want to study) does not use explicit conditionals such as <code>ifTrue:</code> or <code>ifTrue:ifFalse:</code>.</p>
+
+<p>Take a bit more time to think how you can implement not.
+What we can tell you is the solution is not based on bit fiddling and logical operation on small integers. The solution we are looking for is simple and elegant.</p>
+
+<h4 id="a-second-hint">A second hint.</h4>
+<p>The second hint is that <code>true</code> and <code>false</code> are instances of different classes. <code>true</code> is (the unique) instance of the class <code>True</code> while <code>false</code> is (the unique) instance of the class <code>False</code>.
+Note the uppercase on class names.
+This situation is depicted in Figure <a href="#figTrueFalseOnly">12.1</a>.</p>
+
+<p>What you should see is that the fact that the solution has two different classes opens the door to having two different <code>not</code> implementations, as shown by Figure <a href="#figTrueFalseOnlySelectors">12.2</a>.
+Indeed, as we mentioned in earlier chapters, we can have one message and multiple methods that we will be selected and executed depending on the receiver of the message.</p>
+
+<p>Now you should be ready to get the solution. We should have a definition for the <code>true</code> defined in the class <code>True</code> and one for <code>false</code> in the class <code>False</code>.</p>
+
+<p><figure id="figTrueFalseOnly"><img src="Chapters/MessageSending/figures/BooleanTrueAndFalseSolelyWithInstances.pdf" alt="The two classes  True  and  False  and their respective unique instances  true  and  false . " style="width: 55%"><figcaption><span class="number">Figure 12.1</span> The two classes <code>True</code> and <code>False</code> and their respective unique instances <code>true</code> and <code>false</code>. </figcaption></img></figure></p>
+
+<p><figure id="figTrueFalseOnlySelectors"><img src="Chapters/MessageSending/figures/BooleanTrueAndFalseWithNotMethodSelectors.pdf" alt="Two methods for one message. " style="width: 65%"><figcaption><span class="number">Figure 12.2</span> Two methods for one message. </figcaption></img></figure></p>
+
+<h4 id="studying-the-implementation">Studying the implementation</h4>
+<p><figure id="figTrueFalseSolution"><img src="Chapters/MessageSending/figures/BooleanTrueAndFalseWithNotMethods.pdf" alt="Two methods for one message each one returning the other instance. " style="width: 75%"><figcaption><span class="number">Figure 12.3</span> Two methods for one message each one returning the other instance. </figcaption></img></figure></p>
+
+<p>The implementation of negation (message <code>not</code>) is defined as illustrated in Figure <a href="#figTrueFalseSolution">12.3</a> and is shown below.
+The method <code>not</code> of the class <code>True</code> simply returns the Boolean <code>false</code>.</p>
+
+<pre><code>True &gt;&gt; not
+   "Negation--answer false since the receiver is true."
+   ^ false</code></pre>
+
+<pre><code>False &gt;&gt; not
+   "Negation--answer true since the receiver is false."
+   ^ true</code></pre>
+
+<p>Figure <a href="#figTrueFalseSolutionLookup">12.4</a> shows that sending a message to one of the two Booleans selects the method in the corresponding class.
+What is important to see is that when a method is executed the receiver is from the class (or subclass we will see that later) that defines the method.
+We can also say that when we define a method in a given class we know that the receiver is from this class.
+Obvious, isn't it!
+But important.
+The implementation can then use this information as an execution context.
+This is exactly what the <code>not</code> implementation does.
+The method <code>not</code> defined on the class <code>True</code> knows that the receiver is true so it just has to return <code>false</code>.</p>
+
+<p><figure id="figTrueFalseSolutionLookup"><img src="Chapters/MessageSending/figures/BooleanTrueAndFalseWithNotMethodsLookup.pdf" alt="Sending a message selects the method in the class of the receiver. " style="width: 75%"><figcaption><span class="number">Figure 12.4</span> Sending a message selects the method in the class of the receiver. </figcaption></img></figure></p>
+
+<q id="note">When we define a method in a given class we know that the receiver is from this class.
+bvious but important.
+he implementation can then use this information.</q>
+<p>Now we will see if you get it... Let us try with a slightly more complex example.</p>
+
+<h3 id="implementing-disjunction"><span class="number">12.3</span> Implementing disjunction</h3>
+<p>Disjunction is also a core functionality of any programming language.
+In Pharo, disjunction is expressed via the message <code>|</code>.
+Here are the traditional tables describing disjunction but expressed in Pharo: first starting with <code>true</code> as receiver.</p>
+
+<table>
+<tr><td><strong>or</strong></td><td>true</td><td>false</td><td></td></tr>
+<tr><td>true</td><td>true</td><td>true</td><td></td></tr>
+<tr><td>false</td><td>true</td><td>false</td><td></td></tr>
+</table>
+<p>Here are a couple of examples expressed in Pharo.</p>
+
+<pre><code>true | true
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>true | false 
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>false | false 
+&gt;&gt;&gt; false</code></pre>
+
+<p>For the record, in fact, the message <code>|</code> implements an eager disjunction since it asks the value of its argument even when not needed and Pharo also offers lazy disjunction implemented in the message <code>or:</code> which only requests the argument value if needed.</p>
+
+<h4 id="when-the-receiver-is-true">When the receiver is true.</h4>
+<p>Propose an implementation of the disjunction for the first case: i.e. when the receiver is the object <code>true</code>.</p>
+
+<table>
+<tr><td><strong>or</strong></td><td>true</td><td>false</td><td></td></tr>
+<tr><td>true</td><td>true</td><td>true</td><td></td></tr>
+</table>
+<p>What you should have learned from the implementation of <code>not</code> is that you have two different methods taking advantage of the fact that they know what is the receiver during their execution.</p>
+
+<pre><code>true | true 
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>true | false 
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>true | anything 
+&gt;&gt;&gt; true</code></pre>
+
+<p>When you look at the table we see that when the receiver is <code>true</code> the result is the same as the receiver (i.e. <code>true</code>). In Pharo the method <code>|</code> on class <code>True</code> express this as follows:</p>
+
+<pre><code>True &gt;&gt; | aBoolean
+   "Evaluating Or -- answer true since the receiver is true."
+   ^ true</code></pre>
+
+<h4 id="when-the-receiver-is-false">When the receiver is false.</h4>
+<p>Similarly, let us study the Boolean table relative to false as receiver.</p>
+
+<table>
+<tr><td><strong>or</strong></td><td>true</td><td>false</td><td></td></tr>
+<tr><td>false</td><td>true</td><td>false</td><td></td></tr>
+</table>
+<p>Here are some snippets</p>
+
+<pre><code>false | true 
+&gt;&gt;&gt; true</code></pre>
+
+<pre><code>false | false 
+&gt;&gt;&gt; false</code></pre>
+
+<pre><code>false | anything 
+&gt;&gt;&gt; anything</code></pre>
+
+<p>We see that when the receiver is <code>false</code>, the result of the disjunction is the other argument.
+In Pharo the method <code>|</code> on class <code>False</code> is then as follows:</p>
+
+<pre><code>False &gt;&gt; | aBoolean
+   "Evaluating Or -- answer with the argument, aBoolean."
+   ^ aBoolean</code></pre>
+
+<p><figure><img src="Chapters/MessageSending/figures/BooleanNoHiearchyAndInstancesWithOrMethods.pdf" alt="Disjunction implementation: two methods. " style="width: 80%"><figcaption><span class="number">Figure 12.5</span> Disjunction implementation: two methods. </figcaption></img></figure></p>
+
+<h3 id="about-iftrue-iffalse-implementation"><span class="number">12.4</span> About ifTrue:ifFalse: implementation</h3>
+<p>Now you should start to get the principle. Let us see how it works to also express conditional messages such as <code>ifTrue:ifFalse:</code>.
+Yes, fundamental messages such as conditionals can be expressed using the same mechanism: late binding.</p>
+
+<p>What you see with the following snippet is that message <code>ifTrue:ifFalse:</code> is expecting two different blocks as argument.</p>
+
+<pre><code>4 factorial &gt; 20
+	ifTrue: [ 'bigger' ]
+	ifFalse: [ 'smaller' ]
+&gt;&gt;&gt; 'bigger'</code></pre>
+
+<p>Now you should know that to execute a block you should use the message <code>value</code> as illustrated:</p>
+
+<pre><code>[1 + 3] value
+&gt;&gt;&gt; 4</code></pre>
+
+<p>Block can contain any expression.
+The execution of the following block will open the Pharo logo.</p>
+
+<pre><code>[ (ZnEasy getPng: 'http://pharo.org/web/files/pharo.png')
+       asMorph openInWindow ] value</code></pre>
+
+<p>Let us come back to the case of condition and in particular to the message <code>ifTrue:ifFalse:</code>.
+Based on the receiver we should execute the corresponding block from the <code>ifTrue:ifFalse:</code> method.
+When the expression (<code>4 factorial &gt; 20</code> in the example above) is true we should execute the <code>ifTrue:</code> argument, when it is false we should execute the <code>ifFalse:</code> argument.</p>
+
+<h4 id="implementation">Implementation.</h4>
+<p>The implementation is then simple and elegant.  In the <code>True</code> class, we want to execute the corresponding block,
+the one passed as <code>ifTrue:</code> argument as shown in Figure <a href="#figFT">12.6</a>.</p>
+
+<pre><code>True &gt;&gt; ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock
+   ^ trueAlternativeBlock value</code></pre>
+
+<p>Similarly in the <code>False</code> class, we want to execute the corresponding block,
+the one passed as <code>ifFalse:</code> argument.</p>
+
+<pre><code>False &gt;&gt; ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock
+   ^ falseAlternativeBlock value</code></pre>
+
+<p><figure id="figFT"><img src="Chapters/MessageSending/figures/BooleanNoHiearchyIFTMethods.pdf" alt="Conditional implementation: again two methods and no explicit tests. " style="width: 100%"><figcaption><span class="number">Figure 12.6</span> Conditional implementation: again two methods and no explicit tests. </figcaption></img></figure></p>
+
+<h4 id="optimisation">Optimisation.</h4>
+<p>What we show above works! But if you modify it, the modification will not be taken into account.
+This is because in Pharo <code>ifTrue:ifFalse:</code> is used so often and its semantics should not change that the compiler in fact does not send a message but converts it in low-level logic for the virtual machine.
+Now you can invent your own conditional message <code>siVrai:siFaux:</code> for a French version for example and you will see that this implementation works.</p>
+
+<h3 id="what-is-the-point"><span class="number">12.5</span> What is the point?</h3>
+<p>Some readers may be intrigued and think that this is spurious because they will never have to reimplement Booleans in their life.
+This is true even if there are different versions of Boolean logic such as the ternary logic that contains also unknown value.</p>
+
+<p>We picked the Boolean examples to illustrate an important point: sending a message is making a choice. The runtime system will dynamically select the method depending on the receiver.
+This is what is called late binding or dynamic dispatch.
+Only at execution, the correct method is selected. Now, the Boolean example is the simplest one I could find to illustrate this point.
+It is also groundbreaking in the sense that it touches something as fundamental as Boolean main operations.</p>
+
+<p>Now the choices can be made over several dozens of classes.
+For example, in Pillar, the document processing system in which this book is written there are around 59 different classes expressing different parts of a document: section, title, bold, paragraph... and the same principle applies there.
+The system selects the correct methods to render text, LaTeX or HTML using exactly the same principle.</p>
+
+<p>Now most of the time you can express the same using conditions (except for the Boolean example and this is why I asked you to implement Boolean logic since you do not want to have Boolean logic based on conditions because this is inefficient) as follows:</p>
+
+<pre><code>emitHTML: stream
+	self == PRList
+		ifTrue: [ ... ]
+		self == PRParagraph 
+			ifTrue: [ ... ]
+			...</code></pre>
+
+<p>The problems with such explicit conditions are the following:</p>
+
+<ul>
+<li>First, they are cumbersome to write. Even using case statements as in other languages, the logic can become complex. Imagine for 59 cases of Pillar. Here is a small part of the document hierarchy.</li>
+</ul>
+<pre><code>PRObject #(''properties'')
+        PRDocumentItem #(''counter'')
+                PRDocumentGroup #(''children'')
+                        PRDocument #()
+                        PRHeader #(''level'')
+                        PRList #()
+                                PROrderedList #()
+                                PRUnorderedList #()
+                        PRParagraph #()
+                        PRReference #(''reference'' ''parameters'')
+                                PRFigure #()
+                        PRSlide #(''title'' ''label'')
+                PRText #(''text'')'</code></pre>
+
+<ul>
+<li>Second, such definitions are not modular. It means that adding a new case requires to edit the method and recompile it.</li>
+</ul>
+<p>With the dynamic dispatch, we can just add a new class as shown in Figure <a href="#figFat">12.7</a>.
+Furthermore, this class can just take advantage of an existing one and extend it (as we will explain in Chapter <a href="inheritance-incremental.html#cha:inheritance">13</a>).</p>
+
+<p><figure id="figFat"><img src="Chapters/MessageSending/figures/Design-FatVsDispatch.pdf" alt="One single class vs. a nice hierarchy. " style="width: 80%"><figcaption><span class="number">Figure 12.7</span> One single class vs. a nice hierarchy. </figcaption></img></figure></p>
+
+<p>You could think that this is not a problem but imagine that now for a business you want to ship different products or solutions to your clients.
+With dynamic dispatch, you can simply package alternate code in separate packages and load them independently as shown in Figure <a href="#inhNoFatPackage">12.8</a>.</p>
+
+<p><figure id="inhNoFatPackage"><img src="Chapters/MessageSending/figures/Design-FatVsDispatchWithPackages.pdf" alt="One single class vs. a nice hierarchy. " style="width: 80%"><figcaption><span class="number">Figure 12.8</span> One single class vs. a nice hierarchy. </figcaption></img></figure></p>
+
+<h4 id="classes-represent-choices">Classes represent choices</h4>
+<p>Sending a message is making a choice.
+Now the following question is which elements represent choices.
+Because you can have the possibility to choose something, but if there is only one choice, you will not go that far and take advantage of the power of late binding.</p>
+
+<p>In fact, classes represent choices. In the <code>Boolean</code> case you have two choices: one for true, and one for false.
+There is a real difference for example between the fat class design (left in Figure <a href="#figFat">12.7</a>) and the modular design (right in Figure <a href="#figFat">12.7</a>) because we see all the choices that can be made at runtime in the latter case.</p>
+
+<p>When I do code review, I look at how domain variations are represented and if there are enough classes.
+What is important to realize is that classes are cheap. It is better to write five little classes than a single huge one.
+Some (even smart) people get confused by measuring the complexity of a system using a number of classes.
+Having many classes representing good abstractions with a single responsibility is much better than having a single class exhibiting multiple responsibilities.</p>
+
+<h3 id="conclusion-9"><span class="number">12.6</span> Conclusion</h3>
+<p>Sending a message is really powerful since it selects the adequate method to be executed on the receiver.
+Now, this is even more powerful than that: Remember that when we execute a method, one key information we have at hand is that the receiver is an instance from this class (or one of its subclasses as we will see later) and we can take advantage of this information to eliminate tests.
+Indeed an object executes a method that has been designed to be executed on it.
+So, there is no need to test more.</p>
+
+<p>Now you should start to understand why, in Pharo, we are picky about the vocabulary: we use sending a message and not calling a method as in other languages. Because sending a message conveys much better the idea that the correct method will be selected and that we do not know a priori which one will be executed.</p>
+
+<p>In future chapters, we will show that sending a message is creating in fact a hook so that other methods can be executed in place.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="sending-messages.html">← Sending messages</a>
+        <a class="next" rel="next" href="looking-at-inheritance.html">Looking at inheritance →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

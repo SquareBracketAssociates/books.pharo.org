@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Converter</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="converter.html" aria-current="page"><span class="number">9</span> Converter</a>
+            
+            <ol>
+              
+              <li><a href="#first-a-test"><span class="number">9.1</span> First a test</a></li>
+              
+              <li><a href="#define-a-test-method-and-more"><span class="number">9.2</span> Define a test method (and more)</a></li>
+              
+              <li><a href="#the-class-temperaturconverter"><span class="number">9.3</span> The class TemperaturConverter</a></li>
+              
+              <li><a href="#converting-from-fahrenheit-to-celsius"><span class="number">9.4</span> Converting from Fahrenheit to Celsius</a></li>
+              
+              <li><a href="#about-floats"><span class="number">9.5</span> About floats</a></li>
+              
+              <li><a href="#printing-rounded-results"><span class="number">9.6</span> Printing rounded results</a></li>
+              
+              <li><a href="#building-a-map-of-degrees"><span class="number">9.7</span> Building a map of degrees</a></li>
+              
+              <li><a href="#adding-logging-behavior"><span class="number">9.8</span> Adding logging behavior</a></li>
+              
+              <li><a href="#discussion"><span class="number">9.9</span> Discussion</a></li>
+              
+              <li><a href="#conclusion-6"><span class="number">9.10</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="an-electronic-wallet.html"><span class="number">10</span> An electronic wallet</a>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">9</span> Converter</h2><a id="cha_converter"></a>
+<p>In this chapter, you will implement a little temperature converter between Celsius and Fahrenheit degrees. It is so simple that it will help us to get started with Pharo and also with test-driven development. Near the end of the chapter, we will add logging facilities to the converter so that we can log the temperatures of certain locations.  For this you will create a simple class and its tests.</p>
+
+<p>We will show how to write tests to specify the expected results. Writing tests is really important. It is one important tenet of Agile Programming and Test Driven Development (TDD). We will explain later why this is really good to have tests. For now, we just implement them. We will also discuss a fundamental aspects of float comparison and we will also present some loops.</p>
+
+<h3 id="first-a-test"><span class="number">9.1</span> First a test</h3>
+<p>First, we define a test class named <code>TemperatureConverterTest</code> within the package <code>MyConverter</code>. It inherits from the class <code>TestCase</code>. This class is special, any method starting with <code>'test'</code> will be executed automatically, one by one each time on a new instance of the class (to make sure that tests do not interfere with each others).</p>
+
+<pre><code>TestCase subclass: #TemperatureConverterTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'MyConverter'</code></pre>
+
+<p>Converting from Fahrenheit to Celsius is done with a simple linear transformation.
+The formula to get Fahrenheit from Celsius is F = C * 1.8 + 32.
+Let us write a test covering such transformation. 30 Celsius should be 86 Fahrenheit.</p>
+
+<pre><code>testCelsiusToFahrenheit
+
+	| converter |
+	converter := TemperatureConverter new. 
+	self assert: ((converter convertCelsius: 30) = 86.0)</code></pre>
+
+<p>The test is structured the following way:</p>
+
+<ul>
+<li>Its selector starts with <code>test</code>, here the method is named <code>testCelsiusToFahrenheit</code>.</li>
+<li>It creates a new instance of <code>TemperatureConverter</code> (it is called the <i>context</i> of the test or more technically its fixture).</li>
+<li>Then we check using the message <code>assert:</code> that the expected behavior is really happening.</li>
+</ul>
+<p>The message <code>assert:</code> expects a boolean. Here the expression <code>((converter convertCelsius: 30) = 86.0)</code> returns a boolean. <code>true</code> if the converter returns the value 86.0, <code>false</code> otherwise.</p>
+
+<p>The testing framework also offers some other similar methods. One is particularly interesting: <code>assert:equals:</code> makes the error reporting more user friendly. The previous method is strictly equivalent to the following one using <code>assert:equals:</code>.</p>
+
+<pre><code>testCelsiusToFahrenheit
+
+	| converter |
+	converter := TemperatureConverter new. 
+	self assert: (converter convertCelsius: 30) equals: 86.0</code></pre>
+
+<p>The message <code>assert:equals:</code> expects an expression and a result. Here <code>(converter convertCelsius: 30)</code> and <code>86.0</code>. You can use the message you prefer and we suggest using <code>assert:equals:</code> since it will help you to understand your mistake by saying: <code>'You expected 86.0 and I got 30'</code> instead of simply telling you that the result is <code>false</code>.</p>
+
+<h3 id="define-a-test-method-and-more"><span class="number">9.2</span> Define a test method (and more)</h3>
+<p>While defining the method <code>testCelsiusToFahrenheit</code> using the class browser, the system will tell you that the class <code>TemperatureConverter</code> does not exist (This is true because we have not defined it so far). The system will propose to create it. Just let the system do it.</p>
+
+<p>Once you are done. You should have two classes: <code>TemperatureConverterTest</code> and <code>TemperatureConverter</code>. As well as one method: <code>testCelsiusToFahrenheit</code>. The test does not pass since we did not implement the conversion method (as shown by the red color in the body of <code>testCelsiusToFahrenheit</code>).</p>
+
+<p>Note that you entered the method above and the system compiled it. Now in this book, we want to make sure that you know about which method we are talking about hence we will prefix the method definitions with their class. For example the method <code>testCelsiusToFahrenheit</code> in the class <code>TemperaturConverterTest</code> is defined as follows:</p>
+
+<pre><code>TemperaturConverterTest &gt;&gt; testCelsiusToFahrenheit
+
+	| converter |
+	converter := TemperatureConverter new. 
+	self assert: (converter convertCelsius: 30) equals: 86.0</code></pre>
+
+<h3 id="the-class-temperaturconverter"><span class="number">9.3</span> The class TemperaturConverter</h3>
+<p>The class <code>TemperaturConverter</code> is defined as shown below. You could have define it before defining the class  <code>TemperaturConverterTest</code> using the class definition below:</p>
+
+<pre><code>Object subclass: #TemperatureConverter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'MyConverter'</code></pre>
+
+<p>This definition in essence, says that:</p>
+
+<ul>
+<li>We want to define a new class named <code>TemperaturConverter</code>.</li>
+<li>It has no instance or class variables (<code>''</code> means empty string).</li>
+<li>It is packaged in package <code>MyConverter</code>.</li>
+</ul>
+<p>Usually when doing Test Driven Development with Pharo, we focus on tests and let the system propose some definitions. Then we can define the method as follows.</p>
+
+<pre><code>TemperatureConverter &gt;&gt; convertCelsius: anInteger 
+	"Convert anInteger from celsius to fahrenheit"
+	
+	^ ((anInteger * 1.8) + 32)</code></pre>
+
+<p>The system may tell you that the method is a utility method since it does not use any object state.
+It is a bit true because the converter is a <i>really</i> simple object. For now, do not care.</p>
+
+<p>Your test should pass. Click on the icon close to the test method to execute it.</p>
+
+<h3 id="converting-from-fahrenheit-to-celsius"><span class="number">9.4</span> Converting from Fahrenheit to Celsius</h3>
+<p>Now you got the idea. Let us define a test for the conversion from Fahrenheit to Celsius.</p>
+
+<pre><code>TemperatureConverterTest &gt;&gt; testFahrenheitToCelsius
+
+	| converter |
+	converter := TemperatureConverter new. 
+	self assert: (converter convertFahrenheit: 86) equals: 30.0.
+	self assert: (converter convertFahrenheit: 50) equals: 10</code></pre>
+
+<p>Define the method <code>convertFahrenheit: anInteger</code></p>
+
+<pre><code>TemperatureConverter &gt;&gt; convertFahrenheit: anInteger 
+	"Convert anInteger from fahrenheit to celsius"
+	
+	... Your solution ...</code></pre>
+
+<p>Run the tests they should all pass.</p>
+
+<h3 id="about-floats"><span class="number">9.5</span> About floats</h3>
+<p>The conversion method we wrote returns floats. Floats are special objects in computer science because it is complex to represent infinite information (such as all the numbers between two consecutive integers) with a finite space (numbers are often represented with a fixed number of bits). In particular, we should pay attention when comparing
+two floats. Here is a surprising case: we add two floats and the sum is not equal to their sums.</p>
+
+<pre><code>(0.1 + 0.2) = 0.3
+&gt; false</code></pre>
+
+<p>This is because the sum is not just equal to <code>0.3</code>. The sum is in fact the number  <code>0.30000000000000004</code></p>
+
+<pre><code>(0.1 + 0.2)
+&gt; 0.30000000000000004</code></pre>
+
+<p>To solve this problem in Pharo (it is the same in most programming languages), we do not use equality to compare
+floats but alternate messages such as <code>closeTo:</code> or <code>closeTo:precision:</code> as shown below:</p>
+
+<pre><code>(0.1 + 0.2) closeTo: 0.3
+&gt; true
+(0.1 + 0.2) closeTo: 0.3 precision: 0.001
+&gt; true</code></pre>
+
+<p>To know more, you can have a look at the Fun with Float chapter in Deep Into Pharo (<a target="_blank" href="http://books.pharo.org/"><a target="_blank" href="http://books.pharo.org/">http://books.pharo.org</a></a>)). The key point is that in computer science,  you should always avoid comparing the floats naively.</p>
+
+<p>So let us go back to our conversion:</p>
+
+<pre><code>((52 - 32) / 1.8)
+&gt; 11.11111111111111</code></pre>
+
+<p>In the following expression we check that the result is close to 11.1 with a precision of 0.1. It means that we
+accept as result 11 or 11.1</p>
+
+<pre><code>((52 -  32) / 1.8) closeTo: 11.1 precision: 0.1
+&gt; true</code></pre>
+
+<p>We can use <code>closeTo:precision:</code> in our tests to make sure that we deal correctly with the float behavior we just described.</p>
+
+<pre><code>((52 -  32) / 1.8) closeTo: 11.1 precision: 0.1
+&gt; true</code></pre>
+
+<p>We change our tests to reflect this</p>
+
+<pre><code>TemperatureConverterTest &gt;&gt; testFahrenheitToCelsius
+
+	| converter |
+	converter := TemperatureConverter new. 
+	self assert: ((converter convertFahrenheit: 86) closeTo: 30.0 precision: 0.1).
+	self assert: ((converter convertFahrenheit: 50) closeTo: 10 precision: 0.1)</code></pre>
+
+<h3 id="printing-rounded-results"><span class="number">9.6</span> Printing rounded results</h3>
+<p>The following expression shows that we may get converted temperature with a too verbose precision.</p>
+
+<pre><code>(TemperatureConverter new convertFahrenheit: 52)
+&gt;11.11111111111111</code></pre>
+
+<p>Here just getting 11.1 is enough. There is no need to get the full version. In fact, we can manipulate floats in full precision but there are case like User Interfaces where we would like to get a shorter sort of information.
+Typically as users of the temperature converter, our bodies do not see the difference between 12.1 and 12.2 degrees.
+Pharo libraries include the message <code>printShowingDecimalPlaces: aNumberOfDigit</code> used to round the <i>textual</i> representation of a float.</p>
+
+<pre><code>(TemperatureConverter new convertFahrenheit: 52) printShowingDecimalPlaces: 1
+&gt;11.1</code></pre>
+
+<h3 id="building-a-map-of-degrees"><span class="number">9.7</span> Building a map of degrees</h3>
+<p>Often when you are travelling you would like to have kind of a map of different degrees as follows:
+Here we want to get the converted values between 50 to 70 fahrenheit degrees.</p>
+
+<pre><code>(TemperatureConverter new convertFahrenheitFrom: 50 to: 70 by: 2).  
+&gt; { 50-&gt;10.0. 
+	52-&gt;11.1. 
+	54-&gt;12.2. 
+	56-&gt;13.3. 
+	58-&gt;14.4. 
+	60-&gt;15.6. 
+	62-&gt;16.7. 
+	64-&gt;17.8. 
+	66-&gt;18.9. 
+	68-&gt;20.0. 
+	70-&gt;21.1}</code></pre>
+
+<p>What we see is that the method <code>convertFahrenheitFrom:to:by:</code> returns an array of pairs.</p>
+
+<p>A pair is created using the message <code>-&gt;</code> and we can access the pair elements using the message <code>key</code> and <code>value</code> as shown below.</p>
+
+<pre><code>| p1 |
+p1 := 50 -&gt; 10.0.
+p1 key 
+&gt;&gt;&gt; 50
+p1 value
+&gt;&gt;&gt; 10.0</code></pre>
+
+<p>Let us write a test first. We want to generate a map containing as key the Fahrenheit and as value the converted Celsius. Therefore we will get a collection with the map named <code>results</code> and a collection of the expected values
+that the value of the elements should have.</p>
+
+<p>On the two last lines of the test method, using the message <code>with:do:</code> we iterate on both collections in parallel
+taking on elements of each collection and compare them.</p>
+
+<pre><code>TemperatureConverterTest &gt;&gt; testFToCScale
+
+	| converter results expectedCelsius |
+	converter := TemperatureConverter new. 
+	results := (converter convertFahrenheitFrom: 50 to: 70 by: 2).
+	expectedCelsius := #(10.0 11.1 12.2 13.3 14.4 15.5 16.6 17.7 18.8 20.0 21.1).
+	
+	results with: expectedCelsius 
+		do: [ :res :cel | res value closeTo: cel ] </code></pre>
+
+<p>Now we are ready to implement the method <code>convertFahrenheitFrom: low to: high by: step</code>.
+Using the message <code>to:by:</code>, we create an interval to generate the collection of numbers starting at low and ending up at high using the increment step. Then we use the message <code>collect:</code> which applies a block to a collection
+and returns a collection containing all the values returned by the block application.
+Here we just create a pair whose key is the Fahrenheit and whose value is its converted Celsius value.</p>
+
+<pre><code>TemperatureConverter &gt;&gt; convertFahrenheitFrom: low to: high by: step 
+	"Returns a collection of pairs (f, c) for all the Fahrenheit temperatures from a low to a high temperature"
+	
+	^ (low to: high by: step)
+		collect: [ :f | f -&gt; (self convertFahrenheit: f) ]</code></pre>
+
+<h3 id="adding-logging-behavior"><span class="number">9.8</span> Adding logging behavior</h3>
+<p>Imagine now that you want to monitor the different temperatures between the locations where you live and where you work. (This is a real scenario since the building where my office is located got its heating broken over winter and I wanted to measure and keep a trace of the different temperatures in both locations.)</p>
+
+<p>Here is a test representing a typical case.
+First, since I want to distinguish my measurements based on the locations, I added the possibility of specifying a location. Then I want to be able to record temperatures either in Celsius or in Fahrenheit. Since the temperature often depends on the moment during the day I want to log the date and time with each measure.</p>
+
+<p>Then we can request a converter for all the dates (message <code>dates</code>) and temperatures (message <code>temperatures</code>) that it contains.</p>
+
+<pre><code>TemperatureConverterTest &gt;&gt; testLocationAndDate
+
+	| office |
+	office := TemperatureConverter new location: 'Office'. 
+	"perform two measures that are logged"
+	office measureCelsius: 19.
+	office measureCelsius: 21.
+	
+	"We got effectively two measures"
+	self assert: office measureCount = 2.
+	
+	"All the measures were done today"
+	self assert: office dates equals: {Date today . Date today} asOrderedCollection.
+	
+	"We logged the correct temperature"
+	self assert: office temperatures equals: { 19 . 21 } asOrderedCollection</code></pre>
+
+<p>The first thing that we do is to add two instance variables to our class: <code>location</code> that will hold the name of the location we measure and <code>measures</code> a collection that will hold all the temperatures and dates.</p>
+
+<pre><code>Object subclass: #TemperatureConverter
+	instanceVariableNames: 'location measures'
+	classVariableNames: ''
+	package: 'MyConverter'</code></pre>
+
+<p>We initialize such variables with the following values.</p>
+
+<pre><code>TemperatureConverter &gt;&gt; initialize
+	location := 'Nice'.
+	measures := OrderedCollection new</code></pre>
+
+<p>It means that each instance will be able to have its own location and its own collection of measures. Now we are ready to record a temperature in Celsius.
+What we do is that we add a pair with the time and the value to our collection of measures.</p>
+
+<pre><code>TemperatureConverter &gt;&gt; measureCelsius: aTemp
+	measures add: DateAndTime now -&gt; aTemp</code></pre>
+
+<p>To support tests we also define a method returning the number of current measures our instance holds.</p>
+
+<pre><code>TemperatureConverter &gt;&gt; measureCount
+	... Your code ...</code></pre>
+
+<p>We now define three methods returning the sequence of temperatures, the dates and the times.
+Since the time has a microsecond precision it is a bit difficult to test. So we only test the dates.</p>
+
+<pre><code>TemperatureConverter &gt;&gt; temperatures
+	^ measures collect: [ :each | each value ]</code></pre>
+
+<p>To produce time without microsecond we suggest to print the time using <code>print24</code>.</p>
+
+<pre><code>DateAndTime now asTime print24
+&gt;&gt;&gt; '22:46:33'</code></pre>
+
+<pre><code>TemperatureConverter &gt;&gt; times
+	^ measures collect: [ :each | each key asTime ]</code></pre>
+
+<pre><code>TemperatureConverter &gt;&gt; dates
+	... Your code ...</code></pre>
+
+<p>Now we can get two converters each with its own location and measurement records.
+The following tests verify that this is the case.</p>
+
+<pre><code>TemperatureConverterTest &gt;&gt; testTwoLocations
+
+	| office home |
+	office := TemperatureConverter new location: 'office'. 
+	office measureFahrenheit: 19.
+	office measureFahrenheit: 21.
+	self assert: office location equals: 'office'.
+	self assert: office measureCount equals: 2. 
+	home := TemperatureConverter new location: 'home'. 
+	home measureFahrenheit: 22.
+	home measureFahrenheit: 22.
+	home measureFahrenheit: 22.
+	self assert: home location equals: 'home'.
+	self assert: home measureCount equals: 3.</code></pre>
+
+<p>We can add now a new method to convert Fahrenheit to Celcius and we define a new test first.</p>
+
+<pre><code>TemperatureConverterTest &gt;&gt; testLocationAndDateWithConversion
+
+	| converter |
+	converter := TemperatureConverter new location: 'Lille'. 
+	converter measureFahrenheit: 86.
+	converter measureFahrenheit: 50.
+	self assert: converter measureCount equals: 2.
+	self assert: converter dates 
+		equals: {Date today . Date today} asOrderedCollection.
+	self assert: converter temperatures 
+		equals: { converter convertFahrenheit: 86 . 
+				converter convertFahrenheit: 50 } asOrderedCollection</code></pre>
+
+<p>What we do is that since Celsius is the scientific unity for temperature we convert to Celsius before recording our temperature.</p>
+
+<pre><code>TemperatureConverter &gt;&gt; measureFahrenheit: aTemp
+	... Your code ...</code></pre>
+
+<h3 id="discussion"><span class="number">9.9</span> Discussion</h3>
+<p>From a design perspective, we see that the logger behavior is a much better object than the converter. The logger keeps some internal data specific to a location while the converter is stateless. Object-oriented programming is much better for capturing objects with state. This is why the converter was a kind of silly object but it was to get you started.
+Now it is rare that the world we want to model and represent is stateless. This is why object-oriented programming is a powerful way to develop complex programs.</p>
+
+<h3 id="conclusion-6"><span class="number">9.10</span> Conclusion</h3>
+<p>In this chapter, we built a simple temperature converter. We showed how to define and execute unit tests using a Test Driven approach. The interest in testing and Test Driven Development is not limited to Pharo. Automated testing has become a hallmark of the <i>Agile software development</i> movement, and any software developer concerned with improving software quality would do well to adopt it.</p>
+
+<p>We showed that tests are an important aid to measure our progress and also are an important aid to define clearly what we want to develop.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="revisiting-objects-and.html">← Revisiting objects and classes</a>
+        <a class="next" rel="next" href="an-electronic-wallet.html">An electronic wallet →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

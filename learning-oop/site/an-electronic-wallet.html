@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>An electronic wallet</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Learning Object-Oriented Programming, Design and TDD with Pharo</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="about-this-book.html"><span class="number">1</span> About this book</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="getting-in-touch-with.html">Getting in touch with Pharo</a>
+            
+          </li>
+          
+          <li>
+            <a href="pharo-syntax-in-a-nutshell.html"><span class="number">2</span> Pharo syntax in a nutshell</a>
+            
+          </li>
+          
+          <li>
+            <a href="challenge-yourself.html"><span class="number">3</span> Challenge yourself</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-first-tutorial-developing.html"><span class="number">4</span> A first tutorial: Developing a simple counter</a>
+            
+          </li>
+          
+          <li>
+            <a href="tests-tests-and-tests.html"><span class="number">5</span> Tests, tests and tests</a>
+            
+          </li>
+          
+          <li>
+            <a href="some-collection-katas.html"><span class="number">6</span> Some collection katas with words</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="about-objects-and-classes.html">About objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="objects-and-classes.html"><span class="number">7</span> Objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="revisiting-objects-and.html"><span class="number">8</span> Revisiting objects and classes</a>
+            
+          </li>
+          
+          <li>
+            <a href="converter.html"><span class="number">9</span> Converter</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="an-electronic-wallet.html" aria-current="page"><span class="number">10</span> An electronic wallet</a>
+            
+            <ol>
+              
+              <li><a href="#a-first-test"><span class="number">10.1</span> A first test</a></li>
+              
+              <li><a href="#adding-coins"><span class="number">10.2</span> Adding coins</a></li>
+              
+              <li><a href="#looking-at-bag"><span class="number">10.3</span> Looking at Bag</a></li>
+              
+              <li><a href="#using-a-bag-for-a-wallet"><span class="number">10.4</span> Using a bag for a wallet</a></li>
+              
+              <li><a href="#more-tests"><span class="number">10.5</span> More tests</a></li>
+              
+              <li><a href="#testing-money"><span class="number">10.6</span> Testing money</a></li>
+              
+              <li><a href="#checking-to-pay-an-amount"><span class="number">10.7</span> Checking to pay an amount</a></li>
+              
+              <li><a href="#biggest-coin"><span class="number">10.8</span> Biggest coin</a></li>
+              
+              <li><a href="#biggest-below-a-value"><span class="number">10.9</span> Biggest below a value</a></li>
+              
+              <li><a href="#improving-the-api"><span class="number">10.10</span> Improving the API</a></li>
+              
+              <li><a href="#coins-for-paying-first-version"><span class="number">10.11</span> Coins for paying: First version</a></li>
+              
+              <li><a href="#better-heuristics"><span class="number">10.12</span> Better heuristics</a></li>
+              
+              <li><a href="#conclusion-7"><span class="number">10.13</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="crafting-a-simple-embedded.html"><span class="number">11</span> Crafting a simple embedded DSL with Pharo</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="sending-messages.html">Sending messages</a>
+            
+          </li>
+          
+          <li>
+            <a href="sending-a-message-is.html"><span class="number">12</span> Sending a message is making a choice</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="looking-at-inheritance.html">Looking at inheritance</a>
+            
+          </li>
+          
+          <li>
+            <a href="inheritance-incremental.html"><span class="number">13</span> Inheritance: Incremental definition and behavior reuse</a>
+            
+          </li>
+          
+          <li>
+            <a href="extending-superclass.html"><span class="number">14</span> Extending superclass behavior</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-expression-interpreter.html"><span class="number">15</span> A little expression interpreter</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="little-projects.html">Little projects</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-basic-lan-application.html"><span class="number">16</span> A basic LAN application</a>
+            
+          </li>
+          
+          <li>
+            <a href="snakes-and-ladders.html"><span class="number">17</span> Snakes and ladders</a>
+            
+          </li>
+          
+          <li>
+            <a href="tinychat-a-fun-and-small.html"><span class="number">18</span> TinyChat: a fun and small chat client/server</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">10</span> An electronic wallet</h2><a id="cha:wallet"></a>
+<p>In this chapter, you will develop a wallet. You will start by designing tests to define the behavior of our program, then we will define the methods according. Pay attention we will not give you all the solutions and the code.</p>
+
+<h3 id="a-first-test"><span class="number">10.1</span> A first test</h3>
+<p>Since we want to know if the code we will develop effectively does what it should do, we will write tests.
+A test can be as simple as verifying if our wallet contains money. To test that a newly created wallet does
+not contain money we can write a test as follows:</p>
+
+<pre><code>| w |
+w := Wallet new.
+w money = 0.</code></pre>
+
+<p>However doing it is tedious because we would have to manually run all the tests.
+We will use SUnit a system that automatically runs tests once we define them.</p>
+
+<p>Our process will be the following:</p>
+
+<ul>
+<li>imagine what we want to define</li>
+<li>define a test method</li>
+<li>execute it and check that it is failing</li>
+<li>define the method and fix it until the test passes.</li>
+</ul>
+<p>With SUnit, tests are defined as methods inside a class subclass from <code>TestCase</code>.
+So let us start to define a test class named <code>WalletTest</code> inside the package <code>Wallet</code>.</p>
+
+<pre><code>TestCase &lt;&lt; #WalletTest
+	package: 'Wallet'</code></pre>
+
+<p>And now we can define a test. To define a test, we define a method starting with <code>test</code>.
+Here is the definition of the same test as before but using SUnit.</p>
+
+<pre><code>WalletTest &gt;&gt; testWalletAtCreationIsZero
+	| w |
+	w := Wallet new.
+	self assert: w money equals: 0</code></pre>
+
+<p>Now executing a test can be done in different ways:</p>
+
+<ul>
+<li>click on the icon close to the method in the class browser,</li>
+<li>use the TestRunner tools,</li>
+<li>execute <code>WalletTest debug: #testWalletAtCreationIsZero</code> or <code>WalletTest run: #testWalletAtCreationIsZero</code></li>
+</ul>
+<p>Now you should get started. Define the class <code>Wallet</code> inside the package <code>Wallet</code>.</p>
+
+<pre><code>Object &lt;&lt; #Wallet
+	package: 'Wallet'	</code></pre>
+
+<p>Run the test! It should be red and now define the method <code>money</code>. For now, this method is plain stupid and will return 0.
+In the following of course, it will sum all the coins and return such sum.</p>
+
+<pre><code>Wallet &gt;&gt; money
+   ^ 0</code></pre>
+
+<h3 id="adding-coins"><span class="number">10.2</span> Adding coins</h3>
+<p>Now we should be able to add coins to a wallet. Let us first define a new test <code>testCoins</code>.</p>
+
+<pre><code>WalletTest &gt;&gt; testCoins
+	| w |
+	w := Wallet new.
+	w add: 2 coinsOfValue: 0.50.
+	w add: 3 coinsOfValue: 0.20.
+	self assert: w coinNumber equals: 5</code></pre>
+
+<p>The test creates a wallet and uses the method <code>add:coinsOfValue:</code> to add several coins of different values.
+Here we add 2 coins of 0.50 cents and 3 of 0.20 cents.
+Finally, the test verifies that we did not lose any coins: i.e., that we have effectively 5 coins in our wallet.
+Doing so the test specifies the behavior of the method <code>add:coinsOfValue:</code> that you
+will have to define later.</p>
+
+<p>Now we should think how we will represent our wallet.
+We need to count how many coins of a given value are added or removed to a wallet.
+If we use an array or an ordered collection, we will have to maintain a mapping between the index and its corresponding value.</p>
+
+<p>Using a set will not really work since we will lose the occurrence of each coins.</p>
+
+<h3 id="looking-at-bag"><span class="number">10.3</span> Looking at Bag</h3>
+<p>A good structure to represent a wallet is a bag, instance of the class <code>Bag</code>: a bag keeps elements and their respective occurrences. Let us have a look at a bag example before continuing.
+You can add and remove elements of a bag and iterate on them.  Let us play with it.</p>
+
+<p>First we create a bag and we expect it to be empty:</p>
+
+<pre><code>| aFruitBag |
+aFruitBag := Bag new.
+aFruitBag size.
+&gt;&gt;&gt; 0</code></pre>
+
+<p>Then we add 3 bananas and verify that our bag really contains the three bananas we just added:</p>
+
+<pre><code>aFruitBag add: #Banana withOccurrences: 3.
+aFruitBag size.
+&gt;&gt;&gt; 3</code></pre>
+
+<p>Now let us add different fruits:</p>
+
+<pre><code>aFruitBag add: #Apple withOccurrences: 10. 
+aFruitBag size.
+&gt;&gt;&gt; 13</code></pre>
+
+<p>Now we check that they are not mixed together.</p>
+
+<pre><code>aFruitBag occurrencesOf: #Apple.
+&gt;&gt;&gt; 10</code></pre>
+
+<p>We can also add a single fruit to our bag.</p>
+
+<pre><code>aFruitBag add: #Banana.
+aFruitBag occurrencesOf: #Banana.
+&gt;&gt;&gt; 4</code></pre>
+
+<p>We can then iterate over all the contents of the bag using the message <code>do:</code>.
+The code snippet will print on the Transcript (open>Tools>Transcript) all the elements one by one.</p>
+
+<pre><code>7 timesRepeat: [aFruitBag remove: #Apple].
+aFruitBag do: [ :each |  each logCr ].</code></pre>
+
+<pre><code>#Banana
+#Banana
+#Banana
+#Banana
+#Apple
+#Apple
+#Apple</code></pre>
+
+<p>Since for an element we know its occurrence we can iterate differently as follows:</p>
+
+<pre><code>aFruitBag doWithOccurrences: [ :each :occurrence | ('There is ' ,  occurrence printString , ' ', each ) logCr ]</code></pre>
+
+<p>We get the following trace in the Transcript.</p>
+
+<pre><code>'There is 4 Banana'
+'There is 10 Apple'</code></pre>
+
+<p>We could change a bit the code to print correctly 'There is' and 'There are' depending on the occurrence. We left this as an exercise for you.</p>
+
+<h3 id="using-a-bag-for-a-wallet"><span class="number">10.4</span> Using a bag for a wallet</h3>
+<p>Since we can know how many coins of a given value are in a bag, a bag is definitively a good structure for our wallet.</p>
+
+<p>We will define add an instance variable <code>bagCoins</code> to the class and the methods</p>
+
+<ul>
+<li><code>add: anInteger coinsOfValue: aCoinNumber</code>,</li>
+<li><code>initialize</code>, and</li>
+<li><code>coinsOfValue:</code>.</li>
+</ul>
+<p>Let us start with the method <code>initialize</code>. We define the method <code>initialize</code> as follows. It is invoked automatically when an instance is created.</p>
+
+<pre><code>Wallet &gt;&gt; initialize
+	bagCoins := Bag new</code></pre>
+
+<p>Now define the method <code>add: anInteger coinsOfValue: aNumber</code>. Browse the class <code>Bag</code> to find the messages that you can send to a bag.</p>
+
+<pre><code>Wallet &gt;&gt; add: anInteger coinsOfValue: aNumber
+	"Add to the receiver, anInteger times a coin of value aNumber"
+	
+	... Your solution ...</code></pre>
+
+<p>We can define the method <code>coinsOfValue:</code> that returns the number of coins of a given value (looks like the same as asking how many bananas are in the fruit bag).</p>
+
+<pre><code>Wallet &gt;&gt; coinsOfValue: aNumber
+
+	^ ... Your solution ...</code></pre>
+
+<h3 id="more-tests"><span class="number">10.5</span> More tests</h3>
+<p>The previous test is limited in the sense that we cannot distinguish if the coins are not mixed.
+It would be bad that a wallet would convert cents into euros. So let us define a new test to verify that the added coins are not mixed.</p>
+
+<pre><code>WalletTest &gt;&gt; testCoinsAddition
+	| w |
+	w := Wallet new.
+	w add: 2 coinsOfValue: 0.50.
+	w add: 3 coinsOfValue: 0.20.
+	self assert: (w coinsOfValue: 0.5) = 2</code></pre>
+
+<p>We should also test that when we add twice the same coins they are effectively added.</p>
+
+<pre><code>WalletTest &gt;&gt; testCoinsAdditionISWorking
+	| w |
+	w := Wallet new.
+	w add: 2 coinsOfValue: 0.50.
+	w add: 6 coinsOfValue: 0.50.
+	self assert: (w coinsOfValue: 0.5) = 8</code></pre>
+
+<h3 id="testing-money"><span class="number">10.6</span> Testing money</h3>
+<p>Now we can test that the <code>money</code> message returns the amount of money contained in the wallet and we should change
+the implementation of the <code>money</code>. We define two tests.</p>
+
+<pre><code>WalletTest &gt;&gt; testMoney
+	| w |
+	w := Wallet new.
+	w add: 2 coinsOfValue: 0.50.
+	w add: 3 coinsOfValue: 0.20.
+	w add: 1 coinsOfValue: 0.02.
+	self assert: w money = 1.62</code></pre>
+
+<pre><code>WalletTest &gt;&gt; testMoney2
+	| w |
+	w := Wallet new.
+	w add: 2 coinsOfValue: 0.50.
+	w add: 3 coinsOfValue: 0.20.
+	w add: 1 coinsOfValue: 0.02.
+	w add: 5 coinsOfValue: 0.05.
+	self assert: w money = 1.87</code></pre>
+
+<p>Now we should implement the method <code>money</code>.</p>
+
+<pre><code>Wallet &gt;&gt; money
+
+	^ ... Your solution ...</code></pre>
+
+<h3 id="checking-to-pay-an-amount"><span class="number">10.7</span> Checking to pay an amount</h3>
+<p>Now we can add a new message to know whether we can pay a certain amount. But let us write some tests first.</p>
+
+<pre><code>WalletTest &gt;&gt; testCanPay
+	| w |
+	w := Wallet new.
+	w add: 2 coinsOfValue: 0.50.
+	w add: 3 coinsOfValue: 0.20.
+	w add: 1 coinsOfValue: 0.02.
+	w add: 5 coinsOfValue: 0.05.
+	self assert: (w canPay: 2) not.
+	self assert: (w canPay: 0.50).</code></pre>
+
+<p>Define the message <code>canPay:</code>.</p>
+
+<pre><code>Wallet &gt;&gt; canPay: amountOfMoney
+	"returns true when we can pay the amount of money"
+	
+	^ ... Your solution ...</code></pre>
+
+<h3 id="biggest-coin"><span class="number">10.8</span> Biggest coin</h3>
+<p>Now let us define a method to determine the largest coin in a wallet. We write a test.</p>
+
+<pre><code>WalletTest &gt;&gt; testBiggestCoins
+	| w |
+	w := Wallet new.
+	w add: 10 coinsOfValue: 0.50.
+	w add: 10 coinsOfValue: 0.20.
+	w add: 10 coinsOfValue: 0.10.
+	self assert: w biggest equals: 0.50.</code></pre>
+
+<p>Note that the <code>assert:</code> message can also be replaced <code>assert:equals:</code> and this is what we did: we replaced the expression <code>self assert: w biggest = 0.5</code> by <code>self assert: w biggest equals: 0.50</code>.</p>
+
+<p>Now we should define the method <code>biggest</code>.</p>
+
+<pre><code>Wallet &gt;&gt; biggest
+	"Returns the biggest coin. For example, {(3 -&gt; 0.5) . (3 -&gt; 0.2) . (5-&gt; 0.1)} biggest -&gt; 0.5"
+
+	^ ... Your solution ...</code></pre>
+
+<h3 id="biggest-below-a-value"><span class="number">10.9</span> Biggest below a value</h3>
+<p>We can also define the method <code>biggestBelow:</code> that returns the first coin whose value is strictly smaller than the argument. <code>{(3 -&gt; 0.5) . (3 -&gt; 0.2) . (5-&gt; 0.1)} biggestBelow: 0.40</code> returns 0.2.
+</p>
+
+<pre><code>WalletTest &gt;&gt; testBiggestCoinsBelow
+	| w |
+	w := Wallet new.
+	w add: 10 coinsOfValue: 0.50.
+	w add: 10 coinsOfValue: 0.20.
+	w add: 10 coinsOfValue: 0.10.
+	self assert: (w biggestBelow: 1) equals: 0.50.
+	self assert: (w biggestBelow: 0.5) equals: 0.20.
+	self assert: (w biggestBelow: 0.48) equals: 0.20.
+	self assert: (w biggestBelow: 0.20) equals: 0.10.
+	self assert: (w biggestBelow: 0.10) equals: 0.</code></pre>
+
+<pre><code>Wallet &gt;&gt; biggestBelow: anAmount
+	"Returns the biggest coin with a value below anAmount. For example, {(3 -&gt; 0.5) . (3 -&gt; 0.2) . (5-&gt; 0.1)} biggestBelow: 0.40 -&gt; 0.2"
+	
+	^ ... Your solution ...</code></pre>
+
+<h3 id="improving-the-api"><span class="number">10.10</span> Improving the API</h3>
+<h4 id="better-string-representation">Better string representation</h4>
+<p>Now it is time to improve the API for our objects. First, we should improve the way the wallet objects are printed so that we can debug more easily. For that, we add the method <code>printOn: aStream</code> as follows:</p>
+
+<pre><code>Wallet &gt;&gt; printOn: aStream
+	super printOn: aStream.
+	aStream nextPutAll: ' (', self money asString, ')'</code></pre>
+
+<h4 id="easier-addition">Easier addition</h4>
+<p>We can improve the API to add coins in particular when we add only one coin.
+So now you start to get used to it. We define a test.</p>
+
+<pre><code>WalletTest &gt;&gt; testAddOneCoin
+	| w |
+	w := Wallet new.
+	w addCoin: 0.50.
+	self assert: (w coinsOfValue: 0.5) = 1.
+	self assert: w money equals: 0.5</code></pre>
+
+<p>Define the method <code>addCoin:</code>.</p>
+
+<pre><code>Wallet &gt;&gt; addCoin: aNumber
+	"Add to the receiver a coin of value aNumber"
+	
+	... Your solution ...</code></pre>
+
+<h4 id="removing-coins">Removing coins</h4>
+<p>We can now implement the removal of a coin.</p>
+
+<pre><code>WalletTest &gt;&gt; testRemove
+	| w |
+	w := Wallet new.
+	w add: 2 coinsOfValue: 0.50.
+	w add: 3 coinsOfValue: 0.20.
+	w add: 1 coinsOfValue: 0.02.
+	w add: 5 coinsOfValue: 0.05.
+	w removeCoin: 0.5.
+	self assert: w money = 1.37</code></pre>
+
+<p>Define the method <code>removeCoin:</code>.</p>
+
+<pre><code>Wallet &gt;&gt; removeCoin: aCoinNumber
+	"Remove from the receiver a coin of value aNumber"
+	
+	... Your solution ...</code></pre>
+
+<p>We can generalize this behavior with a method <code>remove:coinsOfValue:</code>.
+Write a test.</p>
+
+<pre><code>WalletTest &gt;&gt; testRemoveCoins
+	| w |
+	w := Wallet new.
+	
+	... Your solution ...</code></pre>
+
+<pre><code>Wallet &gt;&gt; remove: anInteger coinsOfValue: aCoin
+	"Remove from the receiver, anInteger times a coin of value aNumber"
+
+	bagCoins add: aCoin withOccurrences: anInteger </code></pre>
+
+<p>We can also define the method <code>biggestAndRemove</code> which removes the biggest coin and returns it.</p>
+
+<pre><code>Wallet &gt;&gt; biggestAndRemove
+	| b |
+	b := self biggest.
+	self removeCoin: b.
+	^ b	</code></pre>
+
+<h3 id="coins-for-paying-first-version"><span class="number">10.11</span> Coins for paying: First version</h3>
+<p>Now we would like to know the coins that we can use to pay a certain amount.
+We can define a method <code>coinsFor:</code> that will return a new wallet containing the coins to
+pay a given amount.</p>
+
+<p>This is a more challenging task and we will propose a first version then we will add more complex situations
+and propose a more complex solution. So let us define a test.</p>
+
+<pre><code>WalletTest &gt;&gt; testCoinsForPaying
+
+	| w paid |
+	w := Wallet new.
+	w add: 10 coinsOfValue: 0.50.
+	w add: 10 coinsOfValue: 0.20.
+	w add: 10 coinsOfValue: 0.10.
+	paid := (w coinsFor: 2.5).
+	self assert: paid money equals: 2.5.
+	self assert: (paid coinsOfValue: 0.5) equals: 5 </code></pre>
+
+<pre><code>Wallet &gt;&gt; coinsFor: aValue
+	"Returns a wallet with the largest coins to pay a certain amount and an empty wallet if this is not possible"
+	
+	| res |
+	res := self class new.
+	^ (self canPay: aValue)
+		ifFalse: [ res ]
+		ifTrue: [ self coinsFor: aValue into: res ] </code></pre>
+
+<p>The method <code>coinsFor:</code> creates wallet and fill with the largest coins comprising a given value.</p>
+
+<p>Using the previously defined methods, define a first version of the method <code>coinsFor: aValue into: accuWallet</code>.</p>
+
+<pre><code>Wallet &gt;&gt; coinsFor: aValue into: accuWallet	
+
+	... Your solution ...</code></pre>
+
+<p>Here is a possible simple solution: we remove from the wallet the largest coin and we add it to the resulting wallet.
+This solution is not working well as we will show it.</p>
+
+<pre><code>Wallet &gt;&gt; coinsFor: aValue into: accuWallet	
+	
+	[ accuWallet money &lt; self money ]
+			whileTrue: [ accuWallet addCoin: self biggestAndRemove ].
+	^ accuWallet</code></pre>
+
+<h3 id="better-heuristics"><span class="number">10.12</span> Better heuristics</h3>
+<p>Let us try some tests to see if our previous way to get coins is working. (The previous algorithm does not work with such behavior.)</p>
+
+<p>The first test checks that when there is no more coins of the biggest value, we check that the next coin
+is then used.</p>
+
+<pre><code>WalletTest &gt;&gt; testCoinsForPayingWithOtherCoins
+	| w paid |
+	w := Wallet new.
+	w add: 1 coinsOfValue: 0.50.
+	w add: 10 coinsOfValue: 0.20.
+	w add: 10 coinsOfValue: 0.10.
+	paid := (w coinsFor: 2.4).
+	self assert: paid money equals: 2.4.
+	self assert: (paid coinsOfValue: 0.5) equals: 1.
+	self assert: (paid coinsOfValue: 0.2) equals: 9.</code></pre>
+
+<p>Run the tests and define the method <code>coinsFor:</code> to invoke a copy  of the method <code>coinsFor: aValue into: accuWallet</code> renamed <code>coinsFor: aValue into2: accuWallet</code> to start with.</p>
+
+<pre><code>Wallet &gt;&gt; coinsFor: aValue
+	"Returns a wallet with the largest coins to pay a certain amount and an empty wallet if this is not possible"
+	| res |
+	res := self class new.
+	^ (self canPay: aValue)
+		ifFalse: [ res ]
+		ifTrue: [ self coinsFor: aValue into2: res ] </code></pre>
+
+<p>
+The previous algorithm (implemented above in <code>coinsFor: aValue into:</code>) does not work with such behavior. So you should start to address the problem and add more and more tests. The second test checks that even if there is a coin with a largest value, the algorithm selects the next
+one. Here to pay 0.6, we should get 0.5 then we should not take 0.2 the next coin but 0.1 instead.</p>
+
+<pre><code>WalletTest &gt;&gt; testCoinsForPayingWithOtherThanTop
+	| w paid | 
+	w := Wallet new.
+	w add: 1 coinsOfValue: 0.50.
+	w add: 10 coinsOfValue: 0.20.
+	w add: 10 coinsOfValue: 0.10.
+	paid := (w coinsFor: 0.6).
+	self assert: paid money equals: 0.6.
+	self assert: (paid coinsOfValue: 0.5) equals: 1.
+	self assert: (paid coinsOfValue: 0.1) equals: 1.</code></pre>
+
+<p>In this version, we check that the algorithm should skip multiple available coins. In the example, for 0.6 it should select: 0.5 then skip the remaining 0.5, and 0.2 to get one 0.1.</p>
+
+<pre><code>WalletTest &gt;&gt; testCoinsForPayingWithOtherThanTopMoreDifficult
+	| w paid | 
+	w := Wallet new.
+	w add: 2 coinsOfValue: 0.50.
+	w add: 10 coinsOfValue: 0.20.
+	w add: 10 coinsOfValue: 0.10.
+	paid := (w coinsFor: 0.6).
+	self assert: paid money equals: 0.6.
+	self assert: (paid coinsOfValue: 0.5) equals: 1.
+	self assert: (paid coinsOfValue: 0.1) equals: 1.</code></pre>
+
+<p>The following one is a variant of the previous test where the biggest coin should be skipped.</p>
+
+<pre><code>WalletTest &gt;&gt; testCoinsForPayingWithOtherThanTopMoreDifficult2
+	| w paid | 
+	w := Wallet new.
+	w add: 1 coinsOfValue: 1.
+	w add: 2 coinsOfValue: 0.50.
+	w add: 10 coinsOfValue: 0.20.
+	w add: 10 coinsOfValue: 0.10.
+	paid := (w coinsFor: 0.6).
+	self assert: paid money equals: 0.6.
+	self assert: (paid coinsOfValue: 0.5) equals: 1.
+	self assert: (paid coinsOfValue: 0.1) equals: 1.</code></pre>
+
+<h3 id="conclusion-7"><span class="number">10.13</span> Conclusion</h3>
+<p>What this example shows is that while a wallet is essentially a bag, having a wallet is a much more powerful solution.
+The wallet encapsulates an internal representation and builds a more complex API around it.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="converter.html">← Converter</a>
+        <a class="next" rel="next" href="crafting-a-simple-embedded.html">Crafting a simple embedded DSL with Pharo →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Learning Object-Oriented Programming, Design and TDD with Pharo · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>
