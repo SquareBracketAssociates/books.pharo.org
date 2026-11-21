@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MuTalk: A Mutation Testing Framework</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Testing in Pharo</a>
+    <p class="site-authors">Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="introduction.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="two-minutes-of-theory.html"><span class="number">2</span> Two minutes of theory</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-by-example.html"><span class="number">3</span> SUnit by example</a>
+            
+          </li>
+          
+          <li>
+            <a href="extreme-test-driven-development.html"><span class="number">4</span> Extreme Test-Driven Development  by Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-the-framework.html"><span class="number">5</span> SUnit: The framework</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-cookbook.html"><span class="number">6</span> A little cookbook</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-implementation.html"><span class="number">7</span> SUnit implementation</a>
+            
+          </li>
+          
+          <li>
+            <a href="ui-testing.html"><span class="number">8</span> UI testing</a>
+            
+          </li>
+          
+          <li>
+            <a href="testing-web-applications.html"><span class="number">9</span> Testing web applications with Parasol</a>
+            
+          </li>
+          
+          <li>
+            <a href="mockobject-and-teachable.html"><span class="number">10</span> MockObject and Teachable: Two simple mocking approaches</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="mutalk-a-mutation-testing.html" aria-current="page"><span class="number">11</span> MuTalk: A Mutation Testing Framework</a>
+            
+            <ol>
+              
+              <li><a href="#introduction-to-mutation-testing"><span class="number">11.1</span> Introduction to Mutation Testing</a></li>
+              
+              <li><a href="#mutalk-overview"><span class="number">11.2</span> MuTalk Overview</a></li>
+              
+              <li><a href="#exploring-the-results"><span class="number">11.3</span> Exploring the Results</a></li>
+              
+              <li><a href="#choosing-the-mutant-operators"><span class="number">11.4</span> Choosing the Mutant Operators</a></li>
+              
+              <li><a href="#selection-of-methods-to-be-mutated"><span class="number">11.5</span> Selection of Methods to Be Mutated</a></li>
+              
+              <li><a href="#budgets"><span class="number">11.6</span> Budgeted Analysis</a></li>
+              
+              <li><a href="#selection-of-mutants-to-be-evaluated-for-budgeted-analysis"><span class="number">11.7</span> Selection of Mutants to be Evaluated for Budgeted Analysis</a></li>
+              
+              <li><a href="#testFilters"><span class="number">11.8</span> Test Filtering</a></li>
+              
+              <li><a href="#mutation-matrix-a-visual-representation"><span class="number">11.9</span> Mutation Matrix: a Visual Representation</a></li>
+              
+              <li><a href="#mutant-operator-analysis"><span class="number">11.10</span> Mutant Operator Analysis</a></li>
+              
+              <li><a href="#non-mutated-methods"><span class="number">11.11</span> Non-Mutated Methods</a></li>
+              
+              <li><a href="#handling-core-classes"><span class="number">11.12</span> Handling Core Classes</a></li>
+              
+              <li><a href="#conclusion-5"><span class="number">11.13</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="performance-testing-with.html"><span class="number">12</span> Performance testing with SMark</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="mutalk-a-mutation-testing-framework"><span class="number">11</span> MuTalk: A Mutation Testing Framework</h2>
+<p><i>Authors:</i> Iona Thomas -- Univ. Lille, Inria, CNRS, Centrale Lille, UMR 9189 CRIStAL, Lille, France -- iona.thomas@inria.fr and Pol Durieux -- Univ. Lille, Inria, CNRS, Centrale Lille, UMR 9189 CRIStAL, Lille, France -- pol.durieux@inria.fr</p>
+
+<p>Mutation testing is a technique of measuring the quality and completeness of a test suite. While code coverage is used to make sure that tests execute each method or line of code, mutation testing evaluates the ability to detect new errors. It involves introducing errors and running the tests to see if they are detected. MuTalk is a flexible mutation framework that provides good default values for analyzing a test suite. It can be customized to fit specific domains or projects.
+In this chapter we will discuss:</p>
+
+<ul>
+<li>1. Introduction to Mutation Testing</li>
+<li>2. How to use MuTalk / Quick Start</li>
+<li>3. Available options in MuTalk</li>
+<li>4. Mutation analysis: variants on mutation testing (TO CHECK)</li>
+</ul>
+<h3 id="introduction-to-mutation-testing"><span class="number">11.1</span> Introduction to Mutation Testing</h3>
+<h4>Principles of Mutation Testing and Vocabulary</h4><a id="principles"></a>
+<p>Mutation testing allows one to measure the quality and completeness of a project's test suite. This is done by introducing errors, known as <strong>mutations</strong>, into the source code of a project, for example in a method. This modified method is called a <strong>mutant</strong>. The idea behind mutations is to simulate real mistakes that developers may make.</p>
+
+<p><figure><img src="Chapters/MuTalk/figures/Mutant.png" alt="Mutation vocabulary"><figcaption><span class="number">Figure 11.1</span> Mutation vocabulary</figcaption></img></figure></p>
+
+<p>The mutants are applied one by one, and the tests are run for each mutant. If the test suite is good enough, it should be sensitive to the change made by the mutation. There are two possible scenarios:</p>
+
+<ul>
+<li>if all the tests pass, the mutant was not detected. It is said to have <strong>survived</strong>.</li>
+<li>if at least one test fails, the mutants have been detected. They are said to have been <strong>killed</strong>.</li>
+</ul>
+<p><figure><img src="Chapters/MuTalk/figures/Test.png" alt="Two possible outcomes for each mutant"><figcaption><span class="number">Figure 11.2</span> Two possible outcomes for each mutant</figcaption></img></figure></p>
+
+<p>A common observation when performing mutation testing on a project is that certain use cases have not been tested. The existing test suite is good but it lacks some execution scenarios, revealed by the mutation testing.</p>
+
+<h4 id="an-example">An Example</h4>
+<p>Let's look at the following example method from the class <code>MyVehicle</code>:</p>
+
+<pre><code>MyVehicle&gt;&gt;hasFourWheels:
+	^ self numberOfWheels = 4</code></pre>
+
+<p>Let's consider two instances of mutation: changing the number of wheels and changing the comparison sign. For our example, applying them would result in the following mutants:</p>
+
+<ul>
+<li>Decreasing a "4" into a "3"</li>
+</ul>
+<pre><code>"Mutant on the number of wheels"
+MyVehicle&gt;&gt;hasFourWheels:
+	^ self numberOfWheels = 3</code></pre>
+
+<ul>
+<li>Turning a "=" into a "~=" (not equal)</li>
+</ul>
+<pre><code>"Mutant on comparison sign"
+MyVehicle&gt;&gt;hasFourWheels:
+	^ self numberOfWheels ~= 4</code></pre>
+
+<p>Let's imagine that we have only the following test:</p>
+
+<pre><code>MyVehicleTest&gt;&gt;testHasFourWheels
+ 	"Create a vehicule object with 4 wheels"
+	| aVehicle |
+	aVehicle:= MyVehicle newWithWheels: 4.
+	self assert: aVehicle hasFourWheels</code></pre>
+
+<p>The mutant on the number of wheels will cause this test to fail. This mutant has been killed.
+The mutant on the comparison sign will pass the test. This mutant has survived.</p>
+
+<h4 id="the-mutation-score-a-test-suite-quality-metric">The Mutation Score: a Test Suite Quality Metric.</h4>
+<p>The ideal case for a test suite is to kill all mutants, since the tests are designed to detect errors in the code. If mutants survive, this means that if a real error is introduced into the project's source code during a development phase, it may not be detected before deployment and cause bugs later on.</p>
+
+<p>The percentage of mutants killed is summarized with a mutation score, defined as:</p>
+
+<h3 id="mutalk-overview"><span class="number">11.2</span> MuTalk Overview</h3>
+<p>MuTalk is Pharo's mutation testing library. It can be found on <a target="_blank" href="https://github.com/pharo-contributions/mutalk">GitHub</a>  and is loaded using Metacello (See Quick Start (<a href="#quickStart">11.2</a>) for code snippet). It allows you to perform mutation testing on a set of Pharo classes or on a set of packages.</p>
+
+<h4 id="mutant-operators">Mutant Operators</h4>
+<p>In MuTalk, the mutations are represented by <strong>mutant operators</strong>. A mutant operator is essentially a class that describes a kind of mutation, where it can be applied and the transformation it does to the code. There is an operator for each kind of mutation. If we take back our example from before on the class <code>MyVehicle</code>: decreasing an integer is done through an operator, and changing <code>=</code> to <code>&gt;=</code> is done through another operator.</p>
+
+<h4 id="the-four-steps-of-mutalk-analysis">The Four Steps of MuTalk Analysis</h4>
+<p>MuTalk mutation testing analysis works with two main elements: the source code to mutate and the tests that go with it.
+Once these are provided, the analysis then goes through 4 phases:</p>
+
+<ul>
+<li><a target="_blank" href="/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/MuTalk/MuTalk.md">An initial test run</a></li>
+<li><a target="_blank" href="/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/MuTalk/MuTalk.md">A coverage analysis</a></li>
+<li><a target="_blank" href="/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/MuTalk/MuTalk.md">The generation of mutants</a></li>
+<li><a target="_blank" href="/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/MuTalk/MuTalk.md">The evaluation of mutants, also called the results generation</a></li>
+</ul>
+<h5 class="paragraph" id="initial-test-run">Initial Test Run</h5>
+<p>The analysis runs every test it was given. If a test fails, the analysis stops and informs the user that they should fix the tests. It is important that all tests are passing prior to the application of mutations.</p>
+
+<p>Imagine there are failing tests before any mutation. Then when a mutant is created and when the analysis runs the tests with this mutant, if the same tests are still failing is it because of the mutant or the inital bug?</p>
+
+<p>So to avoid all of this, make sure all the tests are green beforehand, or check the red tests filter (<a href="#redTestFilter">11.8</a>) to ignore failing tests for the analysis.</p>
+
+<h5 class="paragraph" id="coverage-analysis">Coverage Analysis **</h5>
+<p>This phase is a regular coverage analysis used for test selection and mutant selection strategies. It makes the following analysis more efficient.</p>
+
+<h5 class="paragraph" id="mutant-generation">Mutant Generation</h5>
+<p>Here the analysis uses the mutant operators to generate mutants of the source code. It goes through each operator given by the user and apply it to each corresponding location in the code to create a new mutant.</p>
+
+<h5 class="paragraph" id="evaluation-of-mutants">Evaluation of Mutants</h5>
+<p>Finally, the analysis applies and tests the generated mutants one by one. It installs a mutant and runs every tests. The evaluation of a mutant (also described here (<i>principles</i>)) is to classify the said mutant either as killed or survived, and goes like this:</p>
+
+<ul>
+<li>if any test fails the mutant is detected and killed, so the evaluation stops early</li>
+<li>if all the tests pass the mutant is undetected and survived, and the evaluation ends</li>
+</ul>
+<p>Then, the mutant is uninstalled and the analysis moves on to the next mutant until all mutants are evaluated.</p>
+
+<h4>Quick Start</h4><a id="quickStart"></a>
+<h5 class="paragraph" id="loading-mutalk">Loading MuTalk</h5>
+<p>Check the latest release of MuTalk on github.
+As of writing this chapter, the latest release is 2.6.0:</p>
+
+<pre><code>Metacello new
+	baseline: 'MuTalk';
+	repository: 'github://pharo-contributions/mutalk:v2.6.0/src';
+	load.</code></pre>
+
+<p>Latest version (unstable):</p>
+
+<pre><code>Metacello new
+	baseline: 'MuTalk';
+	repository: 'github://pharo-contributions/mutalk/src';
+	load.</code></pre>
+
+<h5 class="paragraph" id="running-an-analysis">Running an Analysis</h5>
+<p>To begin with, you need to create a mutation testing analysis with the <i>MTAnalysis</i> class:</p>
+
+<pre><code>analysis:= MTAnalysis new.</code></pre>
+
+<p>In order to work, MuTalk needs the classes or packages to be mutated, as well as the tests that go with them, because as said before, the purpose of mutation testing is to test tests.</p>
+
+<p>To provide a list of classes:</p>
+
+<pre><code>analysis classesToMutate: { MyVehicle }.
+analysis testClasses: { MyVehicleTest }.</code></pre>
+
+<p>or to provide a list of packages:</p>
+
+<pre><code>analysis packagesToMutate: { 'MuTalk-Examples' }.
+analysis testPackages: { 'MuTalk-Examples-Tests' }.</code></pre>
+
+<p>MuTalk also has a number of configurable options, but they have default values. So you can run the analysis as it is and get the results:</p>
+
+<pre><code>analysis run.
+analysis generalResult inspect</code></pre>
+
+<h3 id="exploring-the-results"><span class="number">11.3</span> Exploring the Results</h3>
+<p>Once an analysis is run, we get a <code>MTGeneralResult</code> object which comes with its specific inspector panels.
+In this section, we go over how to understand the results of the analysis.</p>
+
+<h4 id="example-of-analysis">Example of Analysis</h4>
+<p>Here is an example of a mutation testing analysis using the example classes provided. Let's look at the results.</p>
+
+<pre><code>analysis:= MTAnalysis new
+	classesToMutate: { MyVehicle };
+	testClasses: { MyVehicleTest }.
+"parametrization goes here"
+analysis run.
+analysis generalResult inspect</code></pre>
+
+<h4 id="the-result-object">The Result Object</h4>
+<p><figure><img src="Chapters/MuTalk/figures/Inspector.png" alt="Inspector on generalResult, showing the "Killed mutants" tab. The "Surviving mutants" and "Terminated mutants" tabs look the same. Under the tab there is the list of mutants with their full name. Under it, there is a comparison between the original method and the mutant. At the bottom there is the usual inspector playground."><figcaption><span class="number">Figure 11.3</span> Inspector on generalResult, showing the "Killed mutants" tab. The "Surviving mutants" and "Terminated mutants" tabs look the same. Under the tab there is the list of mutants with their full name. Under it, there is a comparison between the original method and the mutant. At the bottom there is the usual inspector playground.</figcaption></img></figure></p>
+
+<p>This is the inspector on the result object of the analysis. From top to bottom:</p>
+
+<ul>
+<li>The numbers of evaluated, killed, surviving and terminated mutants are displayed at the top of the window.</li>
+<li>The inspector contains 4 more tabs than the normal inspector that are specific to the mutation analysis:
+  1. The <code>Surviving Mutants</code> tab lists all the mutants that survived.
+  2. The <code>Killed Mutants</code> tab lists all the mutants that were killed.
+  3. The <code>Terminated Mutants</code> tab lists the mutants for which there was an issue while performing the installation or uninstallation during the evaluation.
+  4. The <code>Excluded Tests</code> tab lists the tests that were rejected by the test filter (<a href="#testFilters">11.8</a>) and why they were rejected.</li>
+<li>For the mutants tabs, the inspector displays a list of mutants with their names. This includes the type of mutation applied, and the mutated class and method (e.g.: <code>Increase a literal integer in MyVehicle class&gt;&gt;#newSimpleCar</code>). When clicking on a mutant, the original code of the method is displayed on the left and the mutated code on the right. Differences are highlighted in green and red. On the image below, you can see that a number was decreased by the mutation from 4 to 3.</li>
+</ul>
+<p>By looking at the first tab about surviving mutants, you can see which cases should be targeted by new tests to improve the test suite.</p>
+
+<h3 id="choosing-the-mutant-operators"><span class="number">11.4</span> Choosing the Mutant Operators</h3>
+<p>By default, all of the mutant operators defined in MuTalk are used, but it is possible to only use some of them.
+If we take back our example with <code>MyVehicle</code>, to run the analysis only with mutations to replace <code>=</code> by <code>~=</code> and decrease 4 to 3:</p>
+
+<pre><code>analysis:= MTAnalysis new
+	classesToMutate: { MyVehicle };
+	testClasses: { MyVehicleTest }.
+analysis operators: { MTReplaceEqualWithNotEqualOperator new. MTLiteralIntegersDecreaseOperator new }.
+analysis run.
+analysis generalResult inspect</code></pre>
+
+<p>There are many operators in MuTalk. The table below provides a list of what the currently available operators do. If these operators are not sufficient and/or if you require domains specific mutations, check this section **.</p>
+
+<p><figure><img src="Chapters/MuTalk/figures/OperatorTab1.pdf" alt=""><figcaption></figcaption></img></figure></p>
+
+<p><figure><img src="Chapters/MuTalk/figures/OperatorTab2.pdf" alt=""><figcaption></figcaption></img></figure></p>
+
+<h3 id="selection-of-methods-to-be-mutated"><span class="number">11.5</span> Selection of Methods to Be Mutated</h3>
+<p>Mutant generation strategies define how to select which methods to mutate from the source classes. Sometimes not mutating all methods can be a good trade off between potential lesser result quality, according to the relevance of the strategy, and lower execution time.
+To run our example analysis with the strategy of your choice:</p>
+
+<pre><code>analysis:= MTAnalysis new
+	classesToMutate: { MyVehicle };
+	testClasses: { MyVehicleTest }.
+analysis mutantGenerationStrategy: "put the strategy you chose here".
+analysis run.
+analysis generalResult inspect</code></pre>
+
+<h4 id="mutate-all-methods">Mutate all methods</h4>
+<p>The default strategy <code>MTAllMutantGenerationStrategy</code> is to mutate all methods of the provided source classes.</p>
+
+<pre><code>analysis mutantGenerationStrategy: MTAllMutantGenerationStrategy new.</code></pre>
+
+<h4 id="mutate-covered-methods">Mutate covered methods</h4>
+<p>The strategy <code>MTSelectingFromCoverageMutantGenerationStrategy</code> is to mutate only the methods that are covered by tests.</p>
+
+<pre><code>analysis mutantGenerationStrategy: MTSelectingFromCoverageMutantGenerationStrategy new.</code></pre>
+
+<h4 id="mutate-specific-methods">Mutate specific methods</h4>
+<p>The strategy <code>MTManualMutatedMethodGenerationStrategy</code> is based on a manual selection of the methods to be mutated, i.e. providing the mutant selection strategy with a collection of methods. The mutations will then be applied only to these methods and not to the methods of the source classes given during analysis creation.</p>
+
+<pre><code>analysis 
+	mutantGenerationStrategy: MTManualMutatedMethodGenerationStrategy new 	targetMethods: { MyVehicle&gt;&gt;#numberOfWheels: . MyVehicle&gt;&gt;#hasFourWheels }.</code></pre>
+
+<h3><span class="number">11.6</span> Budgeted Analysis</h3><a id="budgets"></a>
+<p>Sometimes it is necessary to impose limitations on the mutation analysis to be able to run it in limited environment. For instance, if the analysis take several hours to run, one might want to execute it in a dedicated server, but with a limited available time.</p>
+
+<p>It is interesting to note that it is not necessary to evaluate all mutants to get a general idea of the mutation score of some classes.
+For example, Figure 1-3 shows a graph of the mutation score as a function of the percentage of mutants evaluated.</p>
+
+<p>Boxplots showing the mutation score distribution for each percentage of mutants evaluated over the total number of mutants available. Mutation analysis were repeated 10 times for each percentage of mutants./figures/ScorePercentGraph.png</p>
+
+<p>For each percent, an analysis was run 10 times with a simple random mutant selection strategy, and the mutation score of each analysis was calculated. Then a boxplot was drawn with these 10 scores.
+It shows that although the lower the percentage is the higher the variance is, the median is still relatively close to the mutation score when all mutants are evaluated, i.e. at 100%.</p>
+
+<p>In MuTalk, these limitations are done through budgets. They define limits on the execution of the analysis.
+To run our example analysis with any budget:</p>
+
+<pre><code>analysis:= MTAnalysis new
+	classesToMutate: { MyVehicle };
+	testClasses: { MyVehicleTest }.
+analysis budget: "put the budget you chose here".
+analysis run.
+analysis generalResult inspect</code></pre>
+
+<h4 id="time-limit">Time limit</h4>
+<p>The default budget <code>MTTimeBudget</code> sets a time limit for the analysis. After this time the analysis stops, whether it evaluated all mutants or not.
+The example analysis can be run for 2 minutes:</p>
+
+<pre><code>analysis budget: (MTTimeBudget for: 2 minutes).</code></pre>
+
+<h4 id="no-limit">No limit</h4>
+<p>The budget <code>MTFreeBudget</code> does not limit the analysis.</p>
+
+<pre><code>analysis budget: MTFreeBudget new.</code></pre>
+
+<h4 id="limit-the-number-of-analyzed-mutants">Limit the number of analyzed mutants</h4>
+<p>The budgets <code>MTFixedNumberOfMutantsBudget</code> and <code>MTPercentageOfMutantsBudget</code> impose a limit on the number of mutants analyzed, respectively either in absolute number of mutants or in percentage of total mutants.
+The example analysis can be run with only 10 mutants:</p>
+
+<pre><code>analysis budget: (MTFixedNumberOfMutantsBudget for: 10).</code></pre>
+
+<p>or only 50% of them:</p>
+
+<pre><code>analysis budget: (MTPercentageOfMutantsBudget for: 50).</code></pre>
+
+<h3 id="selection-of-mutants-to-be-evaluated-for-budgeted-analysis"><span class="number">11.7</span> Selection of Mutants to be Evaluated for Budgeted Analysis</h3>
+<p>When running an analysis with a budget (<a href="#budgets">11.6</a>), it is unlikely that all mutants will be evaluated. In this context it is important to think about which mutants will be selected for the analysis, and not to lose too much information. Even though there is no way to measure the value of a mutant in an analysis in MuTalk, a basic assumption is that it is important to have diversity.</p>
+
+<p>Mutant selection strategies define which mutants are used for analysis, and in which order.
+The default strategy in MuTalk is the operator selection strategy (<a href="#defaultMutantSelectionStrategy">11.7</a>).
+To run our example analysis with mutant selection strategy:</p>
+
+<pre><code>analysis:= MTAnalysis new
+	classesToMutate: { MyVehicle };
+	testClasses: { MyVehicleTest }.
+analysis mutantSelectionStrategy: "the strategy of your choice".
+analysis run.
+analysis generalResult inspect</code></pre>
+
+<h4 id="basic-random-selection">Basic random selection</h4>
+<p>The <code>MTRandomMutantSelectionStrategy</code> is to randomly and indiscriminately shuffle all mutants.</p>
+
+<pre><code>analysis mutantSelectionStrategy: MTRandomMutantSelectionStrategy new.</code></pre>
+
+<h4>Class, method or operator specific mutant selection strategies</h4><a id="defaultMutantSelectionStrategy"></a>
+<p>The strategies <code>MTRandomClassMutantSelectionStrategy</code>, <code>MTRandomMethodMutantSelectionStrategy</code> and <code>MTRandomOperatorMutantSelectionStrategy</code> randomly shuffle mutants, but in a specific way. When selecting the next mutant to be evaluated, they respectively randomly select a class, method or mutant operator, then select a mutant from that class, method, or operator.
+These strategies are particularly useful when reducing the number of mutants analyzed with budgets (<a href="#budgets">11.6</a>). They allow classes/methods/operators that produce few mutants to still be represented in the final results when the number of mutants is reduced.</p>
+
+<p>Here is the illustrated process of these strategies:
+<figure><img src="Chapters/MuTalk/figures/Random2.png" alt="Process of specific random selections"><figcaption><span class="number">Figure 11.4</span> Process of specific random selections</figcaption></img></figure></p>
+
+<p>To better understand the purpose of these strategies, let's take another example. Let's say there are four operators in our analysis: A, B, C and D, and each of them produces some mutants. Operator A produces half of the total mutants, operator D produces very few of them, while operators B and C produce the rest. For the purpose of the example we will assume that each operator still generates a lot of mutants, just that the representation in the total number of generated mutants are different.
+With a mutant selection that chooses randomly and without bias a mutant for the analysis, the final selection would look like this:</p>
+
+<p><figure><img src="Chapters/MuTalk/figures/Distrib.png" alt="Expected mutant distribution among 4 operators with basic random selection. This distribution in fact matches the actual distribution " style="width: 50%"><figcaption><span class="number">Figure 11.5</span> Expected mutant distribution among 4 operators with basic random selection. This distribution in fact matches the actual distribution </figcaption></img></figure>
+Here, A is overrepresented in the final results, while D is barely present. However, an operator that produces fewer mutants than another operator is not necessarily less meaningful. In fact there is no correlation between the number of produced mutants and the importance of the operator.</p>
+
+<p>Then, using a random operator mutant selection, the final selection would look more like this:</p>
+
+<p><figure><img src="Chapters/MuTalk/figures/Distrib2.png" alt="Expected mutant distribution among 4 operators with random operator selection (if there are enough mutants for each operator to select the same amount for each of them) " style="width: 50%"><figcaption><span class="number">Figure 11.6</span> Expected mutant distribution among 4 operators with random operator selection (if there are enough mutants for each operator to select the same amount for each of them) </figcaption></img></figure></p>
+
+<p>In this example, the strategy ensures that operator D is as present in the results as the other operators, as far as there are enough mutants from operator D. This is not guaranteed with basic random selection.</p>
+
+<p>For the mutant selection strategy on classes:</p>
+
+<pre><code>analysis mutantSelectionStrategy: MTRandomClassMutantSelectionStrategy new.</code></pre>
+
+<p>or methods:</p>
+
+<pre><code>analysis mutantSelectionStrategy: MTRandomMethodMutantSelectionStrategy new.</code></pre>
+
+<p>or operators:</p>
+
+<pre><code>analysis mutantSelectionStrategy: MTRandomOperatorMutantSelectionStrategy new.</code></pre>
+
+<h4 id="no-randomization">No randomization</h4>
+<p>The <code>MTMutantSelectionStrategy</code> consists simply of not shuffling the list of mutants and returning it as it is. This should NOT be used with a budgeted analysis as it will result in a very biased selection.</p>
+
+<pre><code>analysis mutantSelectionStrategy: MTMutantSelectionStrategy new.</code></pre>
+
+<h3><span class="number">11.8</span> Test Filtering</h3><a id="testFilters"></a>
+<p>Test filters allow you to block certain tests for the entire analysis according to certain criteria. These blocked tests are not be executed during mutant evaluation.
+MuTalk's default test filter is the <code>MTCompositeTestFilter</code>(<a href="#defaultFilter">11.8</a>).
+To apply a test filter on our example analysis:</p>
+
+<pre><code>analysis:= MTAnalysis new
+	            classesToMutate: { MyVehicle };
+	            testClasses: { MyVehicleTest }.
+analysis testFilter: "the test filter of your choice".
+analysis run.
+analysis generalResult inspect</code></pre>
+
+<h4 id="no-filtering">No filtering</h4>
+<p>The <code>MTFreeTestFilter</code> lets all tests through.</p>
+
+<pre><code>analysis testFilter: MTFreeTestFilter new.</code></pre>
+
+<h4 id="filter-using-bloc">Filter using bloc</h4>
+<p>The <code>MTBlockTestFilter</code> only lets through tests that respect the condition of the given block.
+It is used in this way, for example, to run only tests whose names end with "test" (so, all of them):</p>
+
+<pre><code>analysis testFilter: MTBlockTestFilter for: [:testCase | testCase selector endsWith: 'test' ].</code></pre>
+
+<h4 id="filter-using-pragmas">Filter using pragmas</h4>
+<p>In Pharo pragmas are like tags for methods, and by extension, for tests. Hence they can be used to filter tests. Given a pragma, it is possible to either accept all the tests which use it, or refuse them.
+The <code>MTPragmaSelectionTestFilter</code> does the former, and <code>MTPragmaRejectionTestFilter</code> does the latter.
+To use them with a given pragma <code>#aPragma</code>:</p>
+
+<pre><code>analysis testFilter: MTPragmaSelectionTestFilter for: #aPragma.</code></pre>
+
+<p>or:</p>
+
+<pre><code>analysis testFilter: MTPragmaRejectionTestFilter for: #aPragma.</code></pre>
+
+<h4><code>MTRedTestFilter</code></h4><a id="redTestFilter"></a>
+<p>This filter blocks tests that fail, i.e. that are red. For MuTalk it is important that all tests are green before applying the mutations, because when it evaluates the mutants it is the red tests that will tell whether they are killed or not, hence the usefulness of this filter.</p>
+
+<pre><code>analysis testFilter: MTRedTestFilter new.</code></pre>
+
+<h4 id="mttimetestfilter"><code>MTTimeTestFilter</code></h4>
+<p>This filter blocks tests that take longer than a given time to run. If the duration is chosen well, it can eliminate tests that are too time-consuming.
+This is how it is used:</p>
+
+<pre><code>analysis testFilter: MTTimeTestFilter for: 2 seconds.</code></pre>
+
+<h4><code>MTCompositeTestFilter</code></h4><a id="defaultFilter"></a>
+<p>This is the default test filter used by the analysis, used with a red test filter (to exclude failing tests) and a time test filter (to exclude tests that are too long to run).
+This test filter works as a combination of multiple test filters. It has a collection of test filters as an attribute, and the test collection passes through each filter. A test is blocked by the composite if any of its filters blocks the test, and it passes through the composite if it passes through all of its filters.
+To use it:</p>
+
+<pre><code>analysis testFilter: MTCompositeTestFilter for: { MTRedTestFilter new . MTTimeTestFilter for: 2 seconds }.</code></pre>
+
+<h4 id="per-mutant-test-selection">Per Mutant Test Selection</h4>
+<p>Test selection strategies are ways of choosing which tests to run for each mutant evaluation. In MuTalk, they are used as follows:</p>
+
+<pre><code>analysis testSelectionStrategy: myTestSelectionStrategy.</code></pre>
+
+<h5 class="paragraph" id="mtselectingfromcoveragetestselectionstrategy"><code>MTSelectingFromCoverageTestSelectionStrategy</code></h5>
+<p>The default is to select only tests that cover mutants, to speed up the analysis. In other words when evaluating a mutant, if a test does not use the mutated method, it will not be run for this evaluation.</p>
+
+<pre><code>myTestSelectionStrategy:= MTSelectingFromCoverageTestSelectionStrategy new.</code></pre>
+
+<h5 class="paragraph" id="mtalltestsmethodsrunningtestselectionstrategy"><code>MTAllTestsMethodsRunningTestSelectionStrategy</code></h5>
+<p>Another more basic strategy is to run all tests all the time, but this is more time-consuming.</p>
+
+<pre><code>myTestSelectionStrategy:= MTAllTestsMethodsRunningTestSelectionStrategy new.</code></pre>
+
+<h4 id="loggers">Loggers</h4>
+<p>Loggers provide traces of analysis execution. Depending on the logger used, this trace can be found in different places. In MuTalk, they are used as follows:</p>
+
+<pre><code>analysis logger: myLogger.</code></pre>
+
+<h5 class="paragraph" id="mtprogressbarlogger"><code>MTProgressBarLogger</code></h5>
+<p>This logger is selected by default for any analysis. It uses a progress bar to display the progress of the analysis in real time.</p>
+
+<pre><code>myLogger:= MTProgressBarLogger new.</code></pre>
+
+<h5 class="paragraph" id="mtnulllogger"><code>MTNullLogger</code></h5>
+<p>This logger logs nothing.</p>
+
+<pre><code>myLogger:= MTNullLogger new.</code></pre>
+
+<h5 class="paragraph" id="mtfilelogger"><code>MTFileLogger</code></h5>
+<p>This logger writes the trace to a file whose name must be provided. The logger creates the file.
+To use it:</p>
+
+<pre><code>myLogger:= MTFileLogger toFileNamed: 'log.txt'.</code></pre>
+
+<h5 class="paragraph" id="mttranscriptlogger"><code>MTTranscriptLogger</code></h5>
+<p>This logger writes the trace in the Pharo's Transcript.</p>
+
+<pre><code>myLogger:= MTTranscriptLogger new.</code></pre>
+
+<h3 id="mutation-matrix-a-visual-representation"><span class="number">11.9</span> Mutation Matrix: a Visual Representation</h3>
+<p>The mutation matrix is a matrix that represents the results of tests for each mutant. It shows exactly which test killed which mutant. This can be useful for further analysis of the test suite.</p>
+
+<p>There are several ways to use it:</p>
+
+<ul>
+<li>with a collection of classes, assuming the associated test classes have the same names with the “Test” suffix:
+  <code></code><code>smalltalk  matrix:= MTMatrix forClasses: { MyVehicle }  </code><code></code></li>
+<li>with a collection of classes and a collection of test classes:
+  <code></code><code>smalltalk  matrix:= MTMatrix forClasses: { MyVehicle } andTests: { MyVehicleTest }  </code><code></code></li>
+<li>with a collection of packages, assuming that the corresponding test packages have the same names with the suffix “-Tests”:
+  <code></code><code>smalltalk  matrix:= MTMatrix forPackages: { 'MuTalk-Examples' }  </code><code></code></li>
+<li>with a collection of packages and a collection of test packages:
+  <code></code><code>smalltalk  matrix:= MTMatrix forPackages: { 'MuTalk-Examples' } andTestPackages: { 'MuTalk-Examples-Tests' }  </code><code></code></li>
+</ul>
+<p>Once created, the matrix must be created with <code>build</code> to run the corresponding mutation analysis. Then it can be displayed with <code>generateMatrix</code>. Here is the snippet to analyze the <code>MyVehicle</code> example class:</p>
+
+<pre><code>matrix:= MTMatrix forClasses: { MyVehicle }.
+matrix build.
+matrix generateMatrix.</code></pre>
+
+<p>Here are the first few lines of a matrix built from the analysis of <code>MyVehicle</code>:</p>
+
+<p><figure><img src="Chapters/MuTalk/figures/MyVehicleMatrixCropped.pdf" alt="Matrix of MyVehicle"><figcaption><span class="number">Figure 11.7</span> Matrix of MyVehicle</figcaption></img></figure></p>
+
+<p>Each row represents a mutant, and each column represents a test. A blue cell means that the mutant is killed by the test.
+In this matrix, the mutation that increased a literal integer in MyVehicle>>#hasFourWheels was killed by both #testHasFourWheels and #testSimpleCarHasFourWheels.</p>
+
+<p>A heatmap can also be generated. It groups tests by class and mutants by mutant operator, class, method, or any other grouping condition specified as a block, to better summarize the data.
+The heatmap can be displayed as follows, when mutants are grouped by method:</p>
+
+<pre><code>matrix generateHeatmapByMethod</code></pre>
+
+<p>This is also the heatmap built from the analysis of <code>MyVehicle</code>, but a version that groups mutants by mutant operators:
+<figure><img src="Chapters/MuTalk/figures/MyVehicleHeatmapCropped.pdf" alt="Heatmap of MyVehicle"><figcaption><span class="number">Figure 11.8</span> Heatmap of MyVehicle</figcaption></img></figure>
+Here the number in each cell is the percentage of tests in the test class that killed the mutants of each type of operator used in the analysis.</p>
+
+<p>It is now possible to get several pieces of information:</p>
+
+<h4 id="trivial-mutants">Trivial Mutants</h4>
+<p>Trivial mutants are mutants that are killed by all tests:</p>
+
+<pre><code>matrix trivialMutants inspect</code></pre>
+
+<p>Since these mutants are killed by all tests, we can assume that the real errors they represent will always be detected in real-life situations. This means that these mutants may not be necessary for the data provided.</p>
+
+<h4 id="equivalent-mutants">Equivalent Mutants</h4>
+<p>Equivalent mutants are mutants that are killed by the same tests:</p>
+
+<pre><code>matrix equivalentMutants inspect</code></pre>
+
+<p>This results in several groups of mutants, each containing mutants that are equivalent to each other.
+If two mutants are equivalent, this may mean that they are redundant from the point of view of the tests. In other words, they have the same “profile” with respect to the tests, so one of them can be eliminated.</p>
+
+<h4 id="included-mutants">Included Mutants</h4>
+<p>A mutant A is included in a mutant B if it is killed by a subset of the test set that kills B. In other words, if B is killed by tests 1, 2 and 3, and A is killed by tests 1 and 3, then A is included in B. To get them:</p>
+
+<pre><code>matrix includedMutants inspect</code></pre>
+
+<p>A dictionary is returned, where the keys are each mutant and the values are the mutants included in the key mutant.
+If one mutant is included in another, we can also say here that there is redundancy and that it's better to keep the “bigger” mutant (in the sense of “killed by a greater number of tests”).</p>
+
+<h3 id="mutant-operator-analysis"><span class="number">11.10</span> Mutant Operator Analysis</h3>
+<p>Mutant operator analysis is used to find out how many mutants Mutalk's mutant operator set generates on given classes or packages. In other words, you can find out which operators produce at least a certain number of mutants, and which produce at most a certain number of mutants.
+To use it:</p>
+
+<pre><code>operatorAnalysis:= MTMutantOperatorAnalysis forClasses: { MyVehicle }</code></pre>
+
+<p>or:</p>
+
+<pre><code>operatorAnalysis:= MTMutantOperatorAnalysis forPackages: { 'MuTalk-Examples' }</code></pre>
+
+<p>and then:</p>
+
+<pre><code>operatorAnalysis operatorsProducingAtMost: 2</code></pre>
+
+<p>and:</p>
+
+<pre><code>operatorAnalysis operatorsProducingAtLeast: 10</code></pre>
+
+<p><figure><img src="Chapters/MuTalk/figures/OperatorAnalysis.png" alt="Results of a mutant operator analysis run on MyVehicle. Here are the operators that produced at least 3 mutants " style="width: 75%"><figcaption><span class="number">Figure 11.9</span> Results of a mutant operator analysis run on MyVehicle. Here are the operators that produced at least 3 mutants </figcaption></img></figure></p>
+
+<h3 id="non-mutated-methods"><span class="number">11.11</span> Non-Mutated Methods</h3>
+<p>The analysis of non-mutated methods allows you to find methods on which MuTalk was unable to apply mutations, i.e. methods whose body does not contain any code corresponding to the application domains of the mutant operators.
+This analysis also applies to classes or packages:</p>
+
+<pre><code>analysis:= MTNonMutatedMethodsAnalysis forClasses: { MyVehicle }</code></pre>
+
+<p>or:</p>
+
+<pre><code>analysis:= MTNonMutatedMethodsAnalysis forPackages: { 'MuTalk-Examples' }</code></pre>
+
+<p>Finally, to have the methods without mutation:</p>
+
+<pre><code>analysis methodsWithoutMutation inspect</code></pre>
+
+<h3 id="handling-core-classes"><span class="number">11.12</span> Handling Core Classes</h3>
+<p>Mutation testing modifies the classes under analysis. This is fine if we are studying an application with its own specific classes. However, once we want to analyse classes that are part of the core of the Pharo system, it gets more complicated. Imagine introducing a bug into the UI of all windows with a mutation. Or into the definition of <code>Object</code> or <code>Class</code>. These mutations can crash your Pharo instance.</p>
+
+<p>One solution to run mutation testing on such classes is to create a copy of these classes and their tests. This copy can be mutated without it impacting the stability of  the system. Pharo comes with a tools to help you copy packages and identify dependencies: package duplication with regex to replace class names and the <code>Dependencies browser</code>. The package duplication modify the classes in the copy to reference each other instead of referencing the original package. The dependencies browser allows one to check what are the remaining dependencies after the duplication.</p>
+
+<p>Let's take the example of <code>Color</code>, which is used for all the UI. For this example we will temporarily move the test class of <code>Color</code> into the <code>Colors</code> package. With them together, we can duplicate both at the same time, allowing the duplication to rewrite references to <code>Color</code> into the tests to <code>MyColor</code>, the duplicated version.</p>
+
+<p><figure><img src="Chapters/MuTalk/figures/ColorPackageDuplication.png" alt="Duplicating the Colors package"><figcaption><span class="number">Figure 11.10</span> Duplicating the Colors package</figcaption></img></figure></p>
+
+<p>Using a regular expression, we copy all the classes and we prefix their duplicated name with <code>My</code> to differentiate them.</p>
+
+<p><figure><img src="Chapters/MuTalk/figures/RegexDuplication.png" alt="Renaming classes with a regex"><figcaption><span class="number">Figure 11.11</span> Renaming classes with a regex</figcaption></img></figure></p>
+
+<p>Once the classes are duplicated, the <code>MyColor</code> class needs to be initialized. Once this is done, the 16 tests of <code>MyColorTest</code> are green.</p>
+
+<p><figure><img src="Chapters/MuTalk/figures/ColorClassInitialisation.png" alt="Initalising the MyColor Class"><figcaption><span class="number">Figure 11.12</span> Initalising the MyColor Class</figcaption></img></figure></p>
+
+<p>At this point, we can check that we have no remaining dependencies on the original <code>Colors</code> package by right-clicking on the package name and selecting <code>Browse dependencies</code>. We can check in the picture below that in the left-most column we do not see the <code>Colors</code> package.</p>
+
+<p><figure><img src="Chapters/MuTalk/figures/MyColorsDependenciesBrowser.png" alt="Dependencies browser for MyColors package"><figcaption><span class="number">Figure 11.13</span> Dependencies browser for MyColors package</figcaption></img></figure></p>
+
+<p>We can now run a mutation analysis on our duplicated version of <code>Colors</code>:</p>
+
+<pre><code>analysis:= MTAnalysis new.
+analysis classesToMutate: { MyColor }.
+analysis testClasses: { MyColorTest }.
+analysis run.
+analysis generalResult inspect</code></pre>
+
+<p>However, even these tools have some limitations. For example, implicit references such as pseudo variables or creating objects with literals won't be caught. For example, most tests for booleans use the <code>true</code> and <code>false</code> pseudo-variables. These make the reference to the <code>Boolean</code> class implicit, and it won't be rewritten to point to the new class boolean class when duplicating these. Using a literal notation in tests like <code>#( 1 2 7)</code> won't be rewritten when trying to duplicate <code>Array</code> for mutation testing. Finally, some syntactic sugar, such as sending a message to a first class to create an instance of a second one, also blinds the rewritting during duplication. When duplicating <code>Point</code> and its tests, tests that use the <code>@</code> message to create points (e.g.: 1@6 creates a point where x is 1 and y is 6) are not rewritten.</p>
+
+<p>Studying such core classes requires more work to create an accurate copy before running the mutation analysis on it.</p>
+
+<h3 id="conclusion-5"><span class="number">11.13</span> Conclusion</h3>
+<p>In this chapter we presented Mutalk, a mutation analysis framework. We explained the principle of mutation testing and its original goal: the evaluation of a test suite. We provided examples and documentation on how to run and parameterize such an analysis. We presented the default mutations and how to optimize analysis's run time with budgets, especially for use cases such as continuous integration.</p>
+
+<p>However, the use of this framework is not limited to mutation testing. Mutation analysis uses the mutation testing principle of modifying the code a little, running the tests, and collecting the results. However, mutation analysis can also be used to investigate issues other than the quality of the test suite. Assuming the test suite is good enough, one can use mutation analysis and custom mutation to study the use of reflection (TODO) or to test a refactoring framework for example (TODO)).</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="mockobject-and-teachable.html">← MockObject and Teachable: Two simple mocking approaches</a>
+        <a class="next" rel="next" href="performance-testing-with.html">Performance testing with SMark →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Testing in Pharo · Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

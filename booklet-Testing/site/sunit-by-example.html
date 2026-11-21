@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SUnit by example</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Testing in Pharo</a>
+    <p class="site-authors">Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="introduction.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="two-minutes-of-theory.html"><span class="number">2</span> Two minutes of theory</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="sunit-by-example.html" aria-current="page"><span class="number">3</span> SUnit by example</a>
+            
+            <ol>
+              
+              <li><a href="#step-1-create-the-test-class"><span class="number">3.1</span> Step 1: Create the test class</a></li>
+              
+              <li><a href="#step-2-a-first-test"><span class="number">3.2</span> Step 2: A  first test</a></li>
+              
+              <li><a href="#step-3-run-the-tests"><span class="number">3.3</span> Step 3: Run the tests</a></li>
+              
+              <li><a href="#step-4-another-test"><span class="number">3.4</span> Step 4: Another test</a></li>
+              
+              <li><a href="#step-5-factoring-out-context"><span class="number">3.5</span> Step 5: Factoring out context</a></li>
+              
+              <li><a href="#step-6-initialize-the-test-context"><span class="number">3.6</span> Step 6: Initialize the test context</a></li>
+              
+              <li><a href="#step-7-debugging-a-test"><span class="number">3.7</span> Step 7: Debugging a test</a></li>
+              
+              <li><a href="#step-8-interpret-the-results"><span class="number">3.8</span> Step 8: Interpret the results</a></li>
+              
+              <li><a href="#conclusion"><span class="number">3.9</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="extreme-test-driven-development.html"><span class="number">4</span> Extreme Test-Driven Development  by Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-the-framework.html"><span class="number">5</span> SUnit: The framework</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-cookbook.html"><span class="number">6</span> A little cookbook</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-implementation.html"><span class="number">7</span> SUnit implementation</a>
+            
+          </li>
+          
+          <li>
+            <a href="ui-testing.html"><span class="number">8</span> UI testing</a>
+            
+          </li>
+          
+          <li>
+            <a href="testing-web-applications.html"><span class="number">9</span> Testing web applications with Parasol</a>
+            
+          </li>
+          
+          <li>
+            <a href="mockobject-and-teachable.html"><span class="number">10</span> MockObject and Teachable: Two simple mocking approaches</a>
+            
+          </li>
+          
+          <li>
+            <a href="mutalk-a-mutation-testing.html"><span class="number">11</span> MuTalk: A Mutation Testing Framework</a>
+            
+          </li>
+          
+          <li>
+            <a href="performance-testing-with.html"><span class="number">12</span> Performance testing with SMark</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">3</span> SUnit by example</h2><a id="cha:sunitexample"></a>
+<p>In this chapter we present a small example showing how simple it is to use SUnit.
+Before going into the details of SUnit (see next Chapter), we will show a step-by-step example.
+We use an example that tests the class <code>Set</code>. Try entering the code as we go along.
+We will create a test i.e., create a context (also called a fixture), execute a stimulus, and verify that some assertions are working.</p>
+
+<p>If you already read the SUnit chapter on Pharo by Example book you can skip this chapter since the contents are the same.</p>
+
+<h3 id="step-1-create-the-test-class"><span class="number">3.1</span> Step 1: Create the test class</h3>
+<p>First, you should create a new subclass of <code>TestCase</code> called
+<code>MyExampleSetTest</code> that looks like this:</p>
+
+<figure class="code" id="scr:exSet"><pre><code>TestCase &lt;&lt; #MyExampleSetTest
+	package: 'MySetTest'</code></pre><figcaption><span class="number">Listing 3.1</span> An Example Set Test class</figcaption></figure>
+
+<p>The class <code>MyExampleSetTest</code> groups all the tests related to the class <code>Set</code>.
+As we will show later, we will use it to define the context in which the tests will run.</p>
+
+<p>The name of the class is not critical, but by convention, it should end in
+<code>Test</code>. If you define a class called <code>Pattern</code> and call the corresponding
+test class <code>PatternTest</code>, the two classes will be alphabetized together in the
+browser (assuming that they are in the same package). It <i>is critical</i> that
+your class is a subclass of <code>TestCase</code>.</p>
+
+<h4 id="must-i-subclass-testcase">Must I subclass TestCase?</h4>
+<p>In JUnit you can build a TestSuite from an arbitrary class containing <code>test*</code> methods. In SUnit you can do the same but you will then have to create a suite
+by hand and your class will have to implement all the essential <code>TestCase</code> methods like <code>assert:</code>. We recommend, however, that you not try to do this.
+The framework is there: use it.</p>
+
+<h3 id="step-2-a-first-test"><span class="number">3.2</span> Step 2: A  first test</h3>
+<p>We start by defining a method named <code>testIncludes</code>.
+Pay attention to the <code>'test'</code> part is important.
+Each method represents one test.
+The names of the methods should start with the string <code>'test'</code> so that SUnit will collect them into test suites.
+Test methods take no arguments.</p>
+
+<p>This method creates two sets one empty and one full.
+This is the context or fixture of the test.
+Second we perform some action on the test: here we execute the method <code>includes:</code>,
+and third we validate the output using assertion via the <code> assert:</code> message.
+The method <code>assert:</code> checks that the argument is a boolean true.</p>
+
+<p>Define the following test methods. The first test, named <code>testIncludes</code>, tests the <code>includes:</code> method of <code>Set</code>. For example, the test says that sending the message <code>includes: 5</code> to a set containing 5 should return <code>true</code>.</p>
+
+<figure class="code"><pre><code>MyExampleSetTest &gt;&gt; testIncludes
+	| full empty |
+	full := Set with: 5 with: 6.
+	empty := Set new.
+	self assert: (full includes: 5).
+	self assert: (full includes: 6).
+	self assert: (empty includes: 5) not</code></pre><figcaption><span class="number">Listing 3.2</span> Testing includes</figcaption></figure>
+
+<h3 id="step-3-run-the-tests"><span class="number">3.3</span> Step 3: Run the tests</h3>
+<p>The easiest way to run the tests is directly from the browser. Press on the icon on the side of the class name, or on an individual test method.
+The test methods will be flagged depending on whether they pass or not (as shown in <a href="#fig:browsertests2">3.1</a>).</p>
+
+<p><figure id="fig:browsertests2"><img src="Chapters/SUnit/figures/updatedbrowsertests.png" alt="Running SUnit tests from the System Browser. " class="fig:browsertests2" style="width: 80%"><figcaption><span class="number">Figure 3.1</span> Running SUnit tests from the System Browser. </figcaption></img></figure></p>
+
+<h3 id="step-4-another-test"><span class="number">3.4</span> Step 4: Another test</h3>
+<p>Following the same pattern, here is a test verifying that the method <code>occurrencesOf:</code> works as expected.
+The second test, named <code>testOccurrences</code>, verifies that the number of occurrences of 5 in <code>full</code> set is equal to one, even if we add another element 5 to the set.</p>
+
+<figure class="code"><pre><code>MyExampleSetTest &gt;&gt; testOccurrences
+	| full empty |
+	full := Set with: 5 with: 6.
+	empty := Set new.
+	self assert: (empty occurrencesOf: 0) equals: 0.
+	self assert: (full occurrencesOf: 5) equals: 1.
+	full add: 5.
+	self assert: (full occurrencesOf: 5) equals: 1</code></pre><figcaption><span class="number">Listing 3.3</span> Testing occurrences</figcaption></figure>
+
+<p>Note that we use the message <code>assert:equals:</code> and not <code>assert:</code> as in the first test.
+We could have used <code>assert:</code>.
+But the message <code>assert:equals:</code> is better since it reports the error in a much better way.
+When an assertion is failing, <code>assert:equals:</code> shows the expected value and the value received.
+While <code>assert:</code> just mentions that something is not true.</p>
+
+<p>Now make sure that your test is passing too.</p>
+
+<h3 id="step-5-factoring-out-context"><span class="number">3.5</span> Step 5: Factoring out context</h3>
+<p>As you see in the two previous steps, we started to repeat the same context.
+This is not really nice, so we will factor the fixture out of the tests by defining instance variables in the class and
+a method <code>setUp</code> to initialize them.</p>
+
+<p>A <code>TestCase</code> class defines the context in which the tests will run.
+We will add the two instance variables <code>full</code> and <code>empty</code> that
+we will use to represent a full and an empty set.</p>
+
+<figure class="code" id="scr:exSet2"><pre><code>TestCase &lt;&lt; #MyExampleSetTest
+	slots: { #full . #empty};
+	package: 'MySetTest'</code></pre><figcaption><span class="number">Listing 3.4</span> An Example Set Test class</figcaption></figure>
+
+<p>The next step is to initialize such instance variables.</p>
+
+<h3 id="step-6-initialize-the-test-context"><span class="number">3.6</span> Step 6: Initialize the test context</h3>
+<p>The message <code>TestCase &gt;&gt; setUp</code> defines the context in which the tests will
+run, a bit like an initialize method. <code>setUp</code> is invoked before the execution
+of each test method defined in the test class.</p>
+
+<p>Define the <code>setUp</code> method as follows, to initialize the <code>empty</code> variable to
+refer to an empty set and the <code>full</code> variable to refer to a set containing two
+elements.</p>
+
+<figure class="code"><pre><code>MyExampleSetTest &gt;&gt; setUp
+	super setUp.
+	empty := Set new.
+	full := Set with: 5 with: 6</code></pre><figcaption><span class="number">Listing 3.5</span> Setting up a fixture</figcaption></figure>
+
+<p>In testing jargon, the context is called the <i>fixture</i> for the test and the <code>setUp</code> method is responsible to initialize such fixture.</p>
+
+<h4 id="updating-existing-tests">Updating existing tests</h4>
+<p>We change the two test methods to take advantage of the shared initialization.
+We remove the fixture code and obtain the following methods:</p>
+
+<figure class="code"><pre><code>MyExampleSetTest &gt;&gt; testIncludes
+	
+	self assert: (full includes: 5).
+	self assert: (full includes: 6).
+	self assert: (empty includes: 5) not</code></pre><figcaption><span class="number">Listing 3.6</span> Testing includes</figcaption></figure>
+
+<figure class="code"><pre><code>MyExampleSetTest &gt;&gt; testOccurrences
+	
+	self assert: (empty occurrencesOf: 0) equals: 0.
+	self assert: (full occurrencesOf: 5) equals: 1.
+	full add: 5.
+	self assert: (full occurrencesOf: 5) equals: 1</code></pre><figcaption><span class="number">Listing 3.7</span> Testing occurrences</figcaption></figure>
+
+<p>Clearly, these tests rely on the fact that the <code>setUp</code> method has already run.</p>
+
+<h4 id="taking-advantage-of-setup">Taking advantage of setUp</h4>
+<p>We test that the set no longer contains the element 5 after we have removed it.</p>
+
+<figure class="code"><pre><code>MyExampleSetTest &gt;&gt; testRemove
+	full remove: 5.
+	self assert: (full includes: 6).
+	self deny: (full includes: 5)</code></pre><figcaption><span class="number">Listing 3.8</span> Testing removal</figcaption></figure>
+
+<p>Note the use of the method <code>TestCase &gt;&gt; deny:</code> to assert something that should not be true.
+The expression <code>aTest deny: anExpression</code> is equivalent to
+the expression <code>aTest assert: anExpression not</code>, but is much more readable and expresses the intent more clearly.</p>
+
+<h3 id="step-7-debugging-a-test"><span class="number">3.7</span> Step 7: Debugging a test</h3>
+<p>Introduce a bug in <code>MyExampleSetTest &gt;&gt; testRemove</code> and run the tests again.
+For example, change <code>6</code> to <code>7</code>, as in:</p>
+
+<figure class="code"><pre><code>MyExampleSetTest &gt;&gt; testRemove
+	full remove: 5.
+	self assert: (full includes: 7).
+	self deny: (full includes: 5)</code></pre><figcaption><span class="number">Listing 3.9</span> Introducing a bug in a test</figcaption></figure>
+
+<p>The tests that did not pass (if any) are listed in the right-hand panes of the <i>Test Runner</i>. If you want to debug one, to see why it failed, just click on the name. Alternatively, you can execute one of the following expressions:</p>
+
+<pre><code>(MyExampleSetTest selector: #testRemove) debug
+
+MyExampleSetTest debug: #testRemove</code></pre>
+
+<h3 id="step-8-interpret-the-results"><span class="number">3.8</span> Step 8: Interpret the results</h3>
+<p>The method <code>assert:</code> is defined in the class <code>TestAsserter</code>. This is a
+superclass of <code>TestCase</code> and therefore all other <code>TestCase</code> subclasses and
+is responsible for all kinds of test result assertions. The <code>assert:</code> method
+expects a boolean argument, usually the value of a tested expression. When the
+argument is true, the test passes; when the argument is false, the test fails.</p>
+
+<p>There are actually three possible outcomes of a test: <i>passing</i>, <i>failing</i>,
+and <i>raising an error</i>.</p>
+
+<ul>
+<li><strong>Passing</strong>. The outcome that we hope for is that all of the assertions in the test are true, in which case the test passes. In the test runner, when all of the tests pass, the bar at the top turns green. However, there are two other ways that running a test can go wrong.</li>
+<li><strong>Failing</strong>. The obvious way is that one of the assertions can be false, causing the test to <i>fail</i>.</li>
+<li><strong>Error</strong>. The other possibility is that some kind of error occurs during the execution of the test, such as a <i>message not understood</i> error or an <i>index out of bounds</i> error. If an error occurs, the assertions in the test method may not have been executed at all, so we can't say that the test has failed; nevertheless, something is clearly wrong!</li>
+</ul>
+<p>In the <i>test runner</i>, failing tests cause the bar at the top to turn yellow,
+and are listed in the middle pane on the right, whereas tests with errors cause
+the bar to turn red, and are listed in the bottom pane on the right.</p>
+
+<p>Modify your tests to provoke both errors and failures.</p>
+
+<h3 id="conclusion"><span class="number">3.9</span> Conclusion</h3>
+<ul>
+<li>To maximize their potential, unit tests should be fast, repeatable, independent of any direct human interaction, and cover a single unit of functionality.</li>
+<li>Tests for a class called <code>MyClass</code> belong in a class named <code>MyClassTest</code>, which should be introduced as a subclass of <code>TestCase</code>.</li>
+<li>Initialize your test data in a <code>setUp</code> method.</li>
+<li>Each test method should start with the word <i>test</i>.</li>
+<li>Use the <code>TestCase</code> methods <code>assert:</code>, <code>deny:</code> and others to make assertions.</li>
+<li>Run tests!</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="two-minutes-of-theory.html">← Two minutes of theory</a>
+        <a class="next" rel="next" href="extreme-test-driven-development.html">Extreme Test-Driven Development  by Example →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Testing in Pharo · Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

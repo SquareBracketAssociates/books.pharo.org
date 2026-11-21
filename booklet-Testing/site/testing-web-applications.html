@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Testing web applications with Parasol</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Testing in Pharo</a>
+    <p class="site-authors">Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="introduction.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="two-minutes-of-theory.html"><span class="number">2</span> Two minutes of theory</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-by-example.html"><span class="number">3</span> SUnit by example</a>
+            
+          </li>
+          
+          <li>
+            <a href="extreme-test-driven-development.html"><span class="number">4</span> Extreme Test-Driven Development  by Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-the-framework.html"><span class="number">5</span> SUnit: The framework</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-cookbook.html"><span class="number">6</span> A little cookbook</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-implementation.html"><span class="number">7</span> SUnit implementation</a>
+            
+          </li>
+          
+          <li>
+            <a href="ui-testing.html"><span class="number">8</span> UI testing</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="testing-web-applications.html" aria-current="page"><span class="number">9</span> Testing web applications with Parasol</a>
+            
+            <ol>
+              
+              <li><a href="#getting-started-2"><span class="number">9.1</span> Getting started</a></li>
+              
+              <li><a href="#first-steps-with-selenium"><span class="number">9.2</span> First steps with Selenium</a></li>
+              
+              <li><a href="#locating-elements-with-parasol-the-basics"><span class="number">9.3</span> Locating elements with Parasol: The basics</a></li>
+              
+              <li><a href="#finding-elements-using-xpath"><span class="number">9.4</span> Finding elements using XPath</a></li>
+              
+              <li><a href="#finding-multiple-elements"><span class="number">9.5</span> Finding multiple elements</a></li>
+              
+              <li><a href="#interacting-with-the-elements"><span class="number">9.6</span> Interacting with the elements</a></li>
+              
+              <li><a href="#parasol-in-action"><span class="number">9.7</span> Parasol in action</a></li>
+              
+              <li><a href="#testing-the-page-title"><span class="number">9.8</span> Testing the page title</a></li>
+              
+              <li><a href="#testing-displayed-information"><span class="number">9.9</span> Testing displayed information</a></li>
+              
+              <li><a href="#testing-interactions"><span class="number">9.10</span> Testing interactions</a></li>
+              
+              <li><a href="#conclusion-3"><span class="number">9.11</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="mockobject-and-teachable.html"><span class="number">10</span> MockObject and Teachable: Two simple mocking approaches</a>
+            
+          </li>
+          
+          <li>
+            <a href="mutalk-a-mutation-testing.html"><span class="number">11</span> MuTalk: A Mutation Testing Framework</a>
+            
+          </li>
+          
+          <li>
+            <a href="performance-testing-with.html"><span class="number">12</span> Performance testing with SMark</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="testing-web-applications-with-parasol"><span class="number">9</span> Testing web applications with Parasol</h2>
+<p><i>Chapter Contributors:</i> Evelyn Cusi and Daniel Aparicio</p>
+
+<p>During the construction of a web application, it is exhausting to have to test the entire flow of the application each time you modify it, and much more as the application grows. This chapter introduces Parasol to allow developers to automate tests with a collection of language-specific bindings, giving us the facility to test complex interactions in a matter of seconds.</p>
+
+<p>Parasol, also called <i>Beach Parasol</i>, is a Smalltalk framework to write functional/acceptance tests using Selenium WebDriver. Through Parasol, you can access all functionalities of Selenium WebDriver in an intuitive way. Parasol gives a convenient API to access to the WebDrivers of Selenium such as Chrome, Firefox, and others. Actually, Parasol supports recent versions of Pharo and GemStone.
+Parasol was developed by Johan Brichau and Andy Kellens from Two Rivers.</p>
+
+<h3 id="getting-started-2"><span class="number">9.1</span> Getting started</h3>
+<p>To load Parasol into your Pharo image, you can execute the following script in Playground:</p>
+
+<pre><code>Metacello new
+    baseline: 'Parasol';
+    repository: 'github://SeasideSt/Parasol/repository';
+    load: 'tests'.</code></pre>
+
+<p>Once this is done you can start</p>
+
+<pre><code>ZnZincServerAdaptor startOn: 8080.</code></pre>
+
+<p>Since Parasol uses Selenium WebDriver, you must download Selenium WebDriver and a browser driver, this last one depends on which browser you want to use to test your application.</p>
+
+<h4 id="downloading-selenium-web-driver">Downloading Selenium web driver</h4>
+<p>Selenium server is a project that contains a set of tools and libraries that enable and support the automation of web browsers.
+Selenium is a Java program, therefore it requires a Java Runtime Environment (JRE) 1.6 or a new version to run it.
+If Java Runtime Environment (JRE) is not installed on your system, you can download the JRE from the Oracle website.</p>
+
+<p>In this chapter, we use Selenium server 3.141.x to run our examples.
+You can download it from the official page of Selenium. The name of the file should contain the following prefix:</p>
+
+<pre><code>selenium-server-standalone-3.141.x.jar</code></pre>
+
+<p>You may use the following command to run Selenium server on your computer.</p>
+
+<pre><code>java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-3.141.x.jar</code></pre>
+
+<p>Note that for running the previous command you need to configure Java in the PATH (environment variable).</p>
+
+<h4 id="browser-driver">Browser driver</h4>
+<p>Selenium requires a driver to interact with the web browser. For instance, Chrome requires Chromedriver, which must be installed before the following examples can be run. The table below shows browsers compatible with Parasol and their respective links to download.</p>
+
+<table>
+<tr><th>Browser Driver</th><th>URL</th></tr>
+<tr><td>Chrome</td><td><a target="_blank" href="https://sites.google.com/a/chromium.org/chromedriver/downloads">https://sites.google.com/a/chromium.org/chromedriver/downloads</a></td></tr>
+<tr><td>Firefox</td><td><a target="_blank" href="https://github.com/mozilla/geckodriver/releases">https://github.com/mozilla/geckodriver/releases</a></td></tr>
+<tr><td>Safari</td><td><a target="_blank" href="https://webkit.org/blog/6900/webdriver-support-in-safari-10/">https://webkit.org/blog/6900/webdriver-support-in-safari-10/</a></td></tr>
+</table>
+<p>We use Chromedriver version 80.0.3987.106 to run the chapter examples, but you can use other browser drivers or another version that you want.</p>
+
+<h3 id="first-steps-with-selenium"><span class="number">9.2</span> First steps with Selenium</h3>
+<p>This section describes a simple test written using Parasol.
+This section assumes that you have already installed Parasol and Selenium server is already running.</p>
+
+<h4 id="a-first-test">A first test</h4>
+<p>Let's start easy and assume we want to test if the title of the <a target="_blank" href="http://pharo.org/"><a target="_blank" href="http://pharo.org/">http://pharo.org</a></a> website is correct.
+For this, first, we need to create a class that inherits from <code>TestCase</code>.</p>
+
+<pre><code>TestCase &lt;&lt; #PharoOrgTest
+	package: 'FT-Parasol'</code></pre>
+
+<p>Then, we create a method called <code>testTitleOfPharoPage</code> as  follows:</p>
+
+<pre><code>PharoOrgTest &gt;&gt; testTitleOfPharoPage
+
+	| driver |
+	driver := BPRemoteWebDriver withCapabilities: BPChromeOptions new.
+	driver get: 'https://pharo.org/'.
+	self assert: 'Pharo - Welcome to Pharo!' equals: driver getTitle.
+	driver close.</code></pre>
+
+<h4 id="step-by-step-explanation">Step-by-step explanation</h4>
+<p>First, we create a subclass of <code>TestCase</code>, we do not need instance or class variables for now.
+We placed this subclass in the FT-Parasol package.</p>
+
+<pre><code>TestCase &lt;&lt; #PharoOrgTest
+	package: 'FT-Parasol'</code></pre>
+
+<p>The <code>testTitleOfPharoPage</code> method contains a temporary variable that we use to save our instance of the Chrome WebDriver.</p>
+
+<pre><code>| driver |
+driver := BPRemoteWebDriver withCapabilities: BPChromeOptions new.</code></pre>
+
+<p>Note that if you want to use another driver, you must change the class <code>BPChromeOptions</code> to another browser driver compatible with Parasol.</p>
+
+<p>The <code>get</code> method loads a given URL and allows you to navigate through the website.
+The WebDriver will wait until the page is fully loaded before returning the control to the test.
+If your page loads a large amount of AJAX, then WebDriver may not know when the page has been fully loaded.</p>
+
+<pre><code>driver get: 'https://pharo.org/'.</code></pre>
+
+<p>The next line of our method is an assertion to confirm that the title of the page is equal to: <code>'Pharo - Welcome to Pharo!'</code>.</p>
+
+<pre><code>self assert: 'Pharo - Welcome to Pharo!' equals: driver getTitle.</code></pre>
+
+<p>Finally, we close the browser window.</p>
+
+<pre><code>driver close.</code></pre>
+
+<p>You may also use the method <code>quit</code> instead <code>close</code>. The difference is that <code>quit</code> will come out of the browser, and <code>close</code> will close a tab.
+Note that the <code>close</code> method will close a tab only if there is an open tab, by default most browsers will close completely.</p>
+
+<h4 id="improve-the-structure-of-your-test">Improve the structure of your test</h4>
+<p>In our previous example, we wrote the entire test in one method, however, the best practice is to add all the prerequisites of the tests on the <code>setUp</code> method and all the steps of cleaning on the <code>tearDown</code> method.</p>
+
+<p>Therefore, to improve the structure of these tests, we first will convert the temporary variable driver into an instance variable.</p>
+
+<pre><code>TestCase &lt;&lt; #PharoOrgTest
+	slots: { #driver } ;
+	package: 'FT-Parasol'</code></pre>
+
+<p>Next, we will place the statements that load the driver in the <code>setUp</code> method:</p>
+
+<pre><code>PharoOrgTest &gt;&gt; setUp
+	super setUp.
+	driver := BPRemoteWebDriver withCapabilities: BPChromeOptions new.
+	driver get: 'https://pharo.org/'</code></pre>
+
+<p>In the same way, we move the cleaning statements in the <code>tearDown</code> method:</p>
+
+<pre><code>PharoOrgTest &gt;&gt; tearDown
+	super tearDown.
+	driver quit</code></pre>
+
+<p>Finally, our test method will be rewritten as follows:</p>
+
+<pre><code>PharoOrgTest &gt;&gt; testTitleOfPharoPage
+	self assert: 'Pharo - Welcome to Pharo!' equals: driver getTitle.</code></pre>
+
+<p>Now, if you run this test again, you should behave in the same way as the first version of our test we saw.</p>
+
+<h3 id="locating-elements-with-parasol-the-basics"><span class="number">9.3</span> Locating elements with Parasol: The basics</h3>
+<p>In our tests, we would like to verify also if some particular HTML elements display the information we want.
+But before performing this verification, we first need to find these elements.
+Parasol uses what are called <i>Locators</i> to find and match the elements of the web page.
+Parasol has eight locators as shown in the following table.</p>
+
+<table>
+<tr><th>Locator</th><th>Example</th></tr>
+<tr><td>ID</td><td>findElementByID: 'user'</td></tr>
+<tr><td>Name</td><td>findElementByName: 'username'</td></tr>
+<tr><td>Link Text</td><td>findElementByLinkText: 'Login'</td></tr>
+<tr><td>Partial Link Text</td><td>findElementByPartialLinkText: 'Next'</td></tr>
+<tr><td>XPath</td><td>findElementsByXPath: '//div[@id="login"]/input'</td></tr>
+<tr><td>Tag Name</td><td>findElementsByTagName: 'body'</td></tr>
+<tr><td>Class Name</td><td>findElementsByClassName: 'table'</td></tr>
+<tr><td>CSS</td><td>findElementByCSSSelector: '#login > input[type="text"]'</td></tr>
+</table>
+<p>You can use any of them to find the element that you are looking for in your application. The following paragraphs briefly describe how to use a number of these locators.</p>
+
+<h4 id="find-element-by-id">Find element by ID</h4>
+<p>The use of ID is the easiest and probably the safest way to locate an element in HTML. Test scripts that use IDs are less prone to changes in the application.
+For example, consider the following HTML form:</p>
+
+<pre><code>&lt;form method="get"&gt;
+    &lt;input id="fullName" name="textInfo" type="text"/&gt;
+    &lt;input id="submitButton" type="submit"/&gt;
+&lt;/form&gt;</code></pre>
+
+<p>We may locate the input field by its ID, as follows:</p>
+
+<pre><code>textField := driver findElementByID: 'fullName'.</code></pre>
+
+<p>If no element has the ID attribute that matches the provided one, a <code>BPNoSuchElementException</code> exception will be raised.</p>
+
+<h4 id="find-element-by-name">Find element by name</h4>
+<p>An HTML element may have an attribute called <code>name</code>, they are normally used in the forms such as text fields and selection buttons.
+The values of the attributes of the name are passed to the server when a form is sent.
+In terms of a lower probability of change, the attribute name is probably the second in importance after ID.</p>
+
+<p>Considering the previous HTML code example, you can locate the elements using the <code>findElementByName</code> method:</p>
+
+<pre><code>textField := driver findElementByName: 'textInfo'.</code></pre>
+
+<h4 id="find-element-by-link-and-partial-link">Find element by link and partial link</h4>
+<p>It is possible to find an element based on its link.
+You can use this way of the location of elements when you know the link text used inside of an anchor tag.
+With this strategy, the first element with the value of the text link that matches the location will be returned.
+For instance, we may find the following anchor element:</p>
+
+<pre><code>&lt;a href="https://pharo.org/"&gt;Go to Pharo!&lt;/a&gt;</code></pre>
+
+<p>The HTML element can be located in the following ways:</p>
+
+<pre><code>linkPharo := driver findElementByLinkText: 'Go to Pharo!'.
+linkPharo := driver findElementByPartialLinkText: 'Go to'.</code></pre>
+
+<p>Notice that with <code>findElementByPartialLinkText</code> we don't need to give the full-text link, just part of it.</p>
+
+<h4 id="find-element-by-tag-name">Find element by tag name</h4>
+<p>Finding elements by a tag name is used when you want to locate an element by the name of its label.
+However, because there is a limited set of tag names, it is very possible that more than one element with the same name of tag exists, so this locator is not normally used to identify an element, instead, it is more common to use it in chained locations.</p>
+
+<p>Consider our previous example form:</p>
+
+<pre><code>&lt;form method="get"&gt;
+  &lt;input id="inputField" name="textInfo" type="text"/&gt;
+  &lt;input id="submitButton" type="submit"/&gt;
+&lt;/form&gt;</code></pre>
+
+<p>We could locate the input element (input) as follows:</p>
+
+<pre><code>input := driver findElementByTagName: 'input'</code></pre>
+
+<h4 id="find-element-by-class-name">Find element by class name</h4>
+<p>The class attribute of an HTML element is used to add style to our pages. And it can be used to identify elements too.</p>
+
+<p>In the next example:</p>
+
+<pre><code>&lt;p id="testParagraph" class="testclass1"&gt;Bla bla&lt;/p&gt;
+&lt;a class="testclass2"&gt;foobar&lt;/a&gt;</code></pre>
+
+<p>We can use any of the following lines to locate the <i>testclass</i> elements.</p>
+
+<pre><code>testClassOne := driver findElementByClassName: 'testclass1'.
+testClassTwo := driver findElementByClassName: 'testclass2'.</code></pre>
+
+<p>It is common in web applications to use the same class attribute in several elements, so be careful if you try to get the elements by class name.</p>
+
+<h4 id="find-element-by-css-selector">Find element by CSS selector</h4>
+<p>You can locate an element through the syntax of the CSS selector.</p>
+
+<p>For example, the element <code>p</code> of the next HTML code:</p>
+
+<pre><code>&lt;p class="content"&gt;Hello, how are you?&lt;/p&gt;</code></pre>
+
+<p>It could be located like this:</p>
+
+<pre><code>paragraphHello := driver findElementByCSSSelector: 'p.content'</code></pre>
+
+<h3 id="finding-elements-using-xpath"><span class="number">9.4</span> Finding elements using XPath</h3>
+<p>XPath, the XML Path Language, is a query language for selecting nodes from an XML document.
+When a browser renders a web page, the HTML contents may be parsed into a DOM tree or similar. Therefore, it is possible to find a specific node in the tree using XPath.
+To illustrate how to find an element with XPath, we will use the next HTML code as example:</p>
+
+<pre><code>    &lt;div id="testDiv1"&gt;
+ 	&lt;p id="testDiv1p" class="c1"&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id="testDiv2"&gt;
+ 	&lt;p id="testDiv2p1" class="c2"&gt;&lt;/p&gt;
+ 	&lt;p id="testDiv2p2" class="c1"&gt;&lt;/p&gt;
+ 	&lt;p id="testDiv2p3" class="c1"&gt;&lt;/p&gt;
+    &lt;/div&gt;</code></pre>
+
+<p>Imagine that we need to get the div with ID equal to testDiv2, so we use the next code snippet to get it:</p>
+
+<pre><code>testDiv := driver findElementByXPath: '//div[@id=''testDiv2'']'</code></pre>
+
+<p>For locating elements with XPath, we first need to understand their syntax. Therefore, to use this option, you will first need to learn XPath syntax.</p>
+
+<p>Note that XPath is a very powerful way to locate web elements when by id, by name, or by link text are not applicable.
+However, XPath expressions are vulnerable to structure changes around the web element, because the path from the root to the target element may change.</p>
+
+<h3 id="finding-multiple-elements"><span class="number">9.5</span> Finding multiple elements</h3>
+<p>There are some cases in which you can have more than one element with the same attributes.
+This is the case of the following example: two div siblings have the same attributes.</p>
+
+<pre><code>&lt;div id = "div1"&gt;
+	&lt;input type="checkbox" name = "same" value="on"&gt;Same checkbox in Div1&lt;/input&gt;
+&lt;/div&gt;
+&lt;div id = "div2"&gt;
+	&lt;input type="checkbox" name = "same" value="on"&gt;Same checkbox in Div2&lt;/input&gt;
+&lt;/div&gt;</code></pre>
+
+<h4 id="chaining-findelement-to-find-a-child-element">Chaining findElement to find a child element</h4>
+<p>In these cases, XPATH can be used, however, there is a simpler way, using nested selectors which is nothing else than locating elements in the result of a previous location.
+For example, the following locates the div entry with id <code>'div2'</code>:</p>
+
+<pre><code>inputOfDiv2 := (driver findElementByID: 'div2') findElementByName: 'same'</code></pre>
+
+<h4 id="multiple-elements">Multiple elements</h4>
+<p>As the name suggests, <code>findElementsByTagName</code> returns a list of matching elements. Its syntax is exactly the same as <code>findElement</code>, but in the plural <code>findElements</code>.</p>
+
+<p>For example, to get all div of our previous example:</p>
+
+<pre><code>divElements := driver findElementsByTagName: 'div'.</code></pre>
+
+<p>Sometimes, findElement fails due to multiple matching elements on a page, of which one was not aware. findElements will be useful to find them.</p>
+
+<h3 id="interacting-with-the-elements"><span class="number">9.6</span> Interacting with the elements</h3>
+<p>Until now we saw how to navigate through a URL and how to select elements.
+Now, our next step is to interact with these elements.
+You can do different things with these elements depending on their type.
+Using the following form as an example we will show how to interact with it and its elements.</p>
+
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+&lt;h1&gt;Sign in&lt;/h1&gt;
+&lt;form id="loginForm"&gt;
+    &lt;input name="username" type="text" /&gt;
+    &lt;input name="password" type="password" /&gt;
+    &lt;button name="login" type="submit" class= "btn btn-primary"&gt;Login&lt;/button&gt;
+    &lt;a href="forgotPassworsd.html"&gt;Do you forgot your password?&lt;/a&gt;
+    &lt;p class="content"&gt;
+        "Are you new here?"
+        &lt;a href="register.html"&gt;Create an account&lt;/a&gt;
+    &lt;/p&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;html&gt;</code></pre>
+
+<h4 id="filling-text-in-a-text-field">Filling text in a text field</h4>
+<p>To fill in the username and password fields in this form, we first have to select them, for this, we will use the following code:</p>
+
+<pre><code>name := driver findElementByName: 'username'.
+password := driver findElementByName: 'password'</code></pre>
+
+<p>Now it is possible to fill text in these fields as follows:</p>
+
+<pre><code>name sendKeys: 'John'.
+password sendKeys: 'xxxxxxx'.</code></pre>
+
+<p>It is possible to send the message <code>sendKeys:</code> in any element: This makes it possible to validate keyboard shortcuts.
+However, writing something in a text field does not automatically delete it.
+Instead, what you write will be attached to what is already there.
+You can easily delete the content of a text field or text area with the message <code>clear</code>.</p>
+
+<h4 id="activating-links-and-buttons">Activating links and buttons</h4>
+<p>Another very useful action in the navigation of web pages is to click on links and buttons, such action is activated using the message <code>click</code> on the selected element.
+Below is an example of how to use it with our form.</p>
+
+<pre><code>loginButton := driver findElementByName: 'login'.
+loginButton click.</code></pre>
+
+<h3 id="parasol-in-action"><span class="number">9.7</span> Parasol in action</h3>
+<p>Previous sections introduced Parasol features through basic examples.
+This section applies everything learned during the chapter to create a number of tests for a small but real website called <i>Mercury Tours</i>.
+<i>Mercury Tours</i> is an agency that offers trips.
+Maybe if you worked with automated web tests before, you are familiar with them.</p>
+
+<h4 id="setting-up-tests">Setting up tests</h4>
+<p>First, we will create a subclass of test called <code>EPTest</code>:</p>
+
+<pre><code>TestCase &lt;&lt; #EPTest
+	slots: { #driver } ;
+	package: 'Example-Parasol-Tests'</code></pre>
+
+<p>As we see in previous sections, the instance variable driver represents our browser driver necessary to work with Parasol and its methods.
+Second, we need to initialize the driver and load the page, since we need to do this step for all the tests we will place this in the <code>setUp</code> method.</p>
+
+<pre><code>EPTest &gt;&gt; setUp
+	super setUp.
+	driver := BPRemoteWebDriver withCapabilities: BPChromeOptions new.
+	driver get: self baseURL
+
+EPTest &gt;&gt; baseURL
+	^ 'http://newtours.demoaut.com/'</code></pre>
+
+<p>As you notice, we use <code>self baseURL</code> to get the URL.
+It is not necessary to separate the URL in a method.</p>
+
+<p>Finally, we define the <code>tearDown</code> method:</p>
+
+<pre><code>EPTest &gt;&gt; tearDown
+	driver quit.
+	super tearDown</code></pre>
+
+<p>It is important to use the <code>quit</code> message to close the browser when a test ends, as we mentioned in second section of this chapter.
+With the <code>setUp</code> and <code>tearDown</code> method, we are able to do any test on the page.</p>
+
+<h3 id="testing-the-page-title"><span class="number">9.8</span> Testing the page title</h3>
+<p>Our first test will verify if our URL is the principal URL of web page, which is defined as follows:</p>
+
+<pre><code>EPTest &gt;&gt; testPageEntry
+	| title |
+	title := driver getTitle.
+	self assert: title equals: 'Welcome: Mercury Tours'</code></pre>
+
+<p>Remember that if we run Parasol tests we must first run the Selenium server.
+With the Selenium server and the test running, we can see that our browser was opened and can see the home of our tested page:</p>
+
+<p><figure id="newtours.pdf"><img src="Chapters/Web/figures/newtours" alt="The Mercury Tours WebSite." class="newtours.pdf" style="width: 80%"><figcaption><span class="number">Figure 9.1</span> The Mercury Tours WebSite.</figcaption></img></figure></p>
+
+<p>After the web browser is closed, we can see that the test passed because our page has the title <i>Welcome: Mercury Tours</i> in our tab.
+So it's time to do something more complex.</p>
+
+<h3 id="testing-displayed-information"><span class="number">9.9</span> Testing displayed information</h3>
+<p>The Mercury Tours page has a lot of information on its home page.
+So, why not try to test this information?
+As an example, we will write a test to verify the information in the table called <i>specials</i>.
+Assume that you want to test that the first row is the flight from Atlanta to Las Vegas and the price is $398.
+How do we do that? The first step is to know how our page represents this information.</p>
+
+<p>Use the developer tools of Chrome browser and select the desired row.
+We get the following HTML code:</p>
+
+<pre><code>&lt;tr bgcolor="#CCCCC"&gt;
+    &lt;td width="80%"&gt;
+    &lt;font face="Arial, Helvetica, sans-serif, Verdana" size="2"&gt;
+        Atlanta to Las Vegas
+    &lt;/font&gt;
+    &lt;/td&gt;
+    &lt;td width="20%"&gt;
+    &lt;div align="right"&gt;
+    &lt;font face="Arial, Helvetica, sans-serif, Verdana" size="2"&gt;
+        &lt;b&gt;$398&lt;/b&gt;
+    &lt;/font&gt;
+    &lt;/div&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+
+<p>We can see the following details:</p>
+
+<ul>
+<li>The row is inside a table.</li>
+<li>The table or the row does not contain an ID or a Class that we can use to find this element.</li>
+<li>The CSS or the Tag Name can't help us to find this row.</li>
+</ul>
+<p>In this special case, XPath is a useful locator in this particular case.
+First, we need to create a subclass of <code>EPTest</code>.
+We are using <code>EPTest</code> as a base class for future test classes.
+This decision gives us a number of benefits, for instance, we may find easily all test classes by inspecting the subclasses of <code>EPTest</code>, and we can reuse some methods in the subclasses, in particular, the <code>setUp</code> and <code>tearDown</code> methods.</p>
+
+<p>Therefore, we define the following class:</p>
+
+<pre><code>EPTest &lt;&lt; #EPHomePageTest
+	package: 'Example-Parasol-Tests'</code></pre>
+
+<p><code>EPHomePageTest</code> is a class only dedicated to testing the home page and all elements that are part of this.
+Taking our HTML code as a base, create a method to get the flight and its price, then test if the value of these elements is the same as the expected result.
+The following method gives us the expected result, but it contains some things that we can improve.</p>
+
+<pre><code>EPHomePageTest &gt;&gt; testPriceAndInfoForFlightFromAtlantaToLasVegas
+
+self assert: ((driver findElementByXPath: '/html/body/div/table/tbody/tr/td[2]/table/tbody/
+tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[1]/
+table[1]/tbody/tr[3]/td/table/tbody/tr[1]/td[1]/font') getText)
+     equals: 'Atlanta to Las Vegas'.
+self assert: ((driver findElementByXPath: '/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/
+tr[2]/td[1]/table[1]/tbody/tr[3]/td/table/tbody/tr[1]/
+td[2]/div/font/b') getText)
+    equals: '$398'</code></pre>
+
+<p>We will refactor this method to make it more understandable.
+We will add a method to get the controller element.</p>
+
+<pre><code>EPHomePageTest &gt;&gt; descriptionFlightFromAtlantaToLasVegas
+	^ driver findElementByXPath: '/html/body/div/table/tbody/tr/td[2]/
+	table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[1]/
+	table[1]/tbody/tr[3]/td/table/tbody/tr[1]/td[1]/font'
+
+EPHomePageTest &gt;&gt; priceFlightFromAtlantaToLasVegas
+	^ driver findElementByXPath: '/html/body/div/table/tbody/tr/td[2]/
+	table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/
+	td[1]/table[1]/tbody/tr[3]/td/table/tbody/tr[1]/td[2]/div/font/b'</code></pre>
+
+<p>Then, we may now refactor the test method as follows:</p>
+
+<pre><code>EPHomePageTest &gt;&gt; testFlightFromAtlantaToLasVegas
+	self 
+		assert: self descriptionFlightFromAtlantaToLasVegas getText
+		equals: 'Atlanta to Las Vegas'.
+	self 
+		assert: self priceFlightFromAtlantaToLasVegas getText
+		equals: '$398'</code></pre>
+
+<p>We test a part of the home page, if you want to test other parts, follow the previous steps and try to construct multiple tests.
+The tests above are a good example of how we get elements from an HTML page and test if the displayed page contains the correct information we want to display.</p>
+
+<h3 id="testing-interactions"><span class="number">9.10</span> Testing interactions</h3>
+<p>We will now show how to test interactions.
+It's an important step to test, so we will explain how you could do it.
+In this example, we will create a test that registers a user on the website.
+First, we will create another subclass of <code>EPTest</code> called <code>EPRegisterUserTest</code>.</p>
+
+<pre><code>EPTest &lt;&lt; #EPRegisterUserTest
+	package: 'Example-Parasol-Tests'</code></pre>
+
+<p>In this website to register a user we need first click the <i>REGISTER</i> button in the bar menu.
+Therefore, we will create a method that emulates a click in the <i>REGISTER</i> button.</p>
+
+<pre><code>EPRegisterUserTest &gt;&gt; clickInRegisterButton
+	(driver findElementByLinkText: 'REGISTER') click</code></pre>
+
+<p>We use this method in our <code>setUp</code> method as follows:</p>
+
+<pre><code>EPRegisterUserTest &gt;&gt; setUp
+	super setUp.
+	self clickInRegisterButton</code></pre>
+
+<p>With this little change, the first step that each test will perform is to move to the <i>REGISTER</i> form.
+You may see the <i>REGISTER</i> form in Figure <a href="#registerForm">registerForm</a>.</p>
+
+<p><figure id="registerForm.pdf"><img src="Chapters/Web/figures/registerForm" alt="Registration From" class="registerForm.pdf" style="width: 80%"><figcaption><span class="number">Figure 9.2</span> Registration From</figcaption></img></figure></p>
+
+<p>Now, we are prepared to create tests in <code>EPRegisterUserTest</code>.
+Our first test is to verify if we are in the correct page when we click on the register button.
+So, create the test.</p>
+
+<pre><code>EPRegisterUserTest &gt;&gt; testEntryToRegisterPage
+	| title |
+	title := driver getTitle.
+	self assert: title equals: 'Register: Mercury Tours'</code></pre>
+
+<p>In this page, we have a registration form with multiple fields.
+If we want to register on the page we must complete three sections in the form.
+Contact, mailing, and user information, so we define three tests to complete these sections.</p>
+
+<p>As you remember, the first step is to see how the page renders the elements in the form.
+For this, we inspect the HTML code using the browser tools.
+The following code shows the contact information HTML code:</p>
+
+<pre><code>&lt;tr&gt;
+&lt;td align=right&gt;
+&lt;font face="Arial, Helvetica, sans-serif" size="2"&gt;
+&lt;b&gt;First Name: &lt;/b&gt;
+&lt;/font&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;input maxlength=60 name="firstName" size="20"&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+ &lt;tr&gt;
+&lt;td align=right&gt;
+&lt;font face="Arial, Helvetica, sans-serif" size="2"&gt;
+&lt;b&gt;Last Name: &lt;/b&gt;
+&lt;/font&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;input maxlength=60 name="lastName" size="20"&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=right&gt;
+&lt;font face="Arial, Helvetica, sans-serif" size="2"&gt;
+&lt;b&gt;Phone:&lt;/b&gt;
+&lt;/font&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;input maxlength="20" name="phone" size="15"&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=right&gt;
+&lt;font face="Arial, Helvetica, sans-serif" size="2"&gt;
+&lt;b&gt;Email:&lt;/b&gt;
+&lt;/font&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;input name="userName" id="userName" size="35" maxlength="64"&gt;
+&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+
+<p>We can draw the following conclusions from the HTML code:</p>
+
+<ul>
+<li>All inputs have a name or an ID.</li>
+<li>All forms are in a table.</li>
+</ul>
+<p>With these conclusions, we can start with the tests.
+The test <code>firstNameField</code> tests whether the correct information is entered into the contact information section.
+Like our previous methods, we need to create multiple methods to get the field's elements to put some information into them.
+In the following, we show one method that returns the field with the name <code>firstName</code>.</p>
+
+<pre><code>EPRegisterUserTest &gt;&gt; firstNameField
+	^ driver findElementByName: 'firstName'</code></pre>
+
+<p>You need to create as many of these as you need to get all the form fields you need for your test.
+The next step is to create a method to set information to fields.
+We use the message <code>sendKeys</code> to set the information that we want.</p>
+
+<pre><code>EPRegisterUserTest &gt;&gt; fillInformationToContactSection
+	self firstNameField sendKeys: 'Jhon'.
+	self lastNameField sendKeys: 'Stuart'.
+	self phoneField sendKeys: '10276123'.
+	self emailField sendKeys: 'example@mail.com'</code></pre>
+
+<p>Finally, we create the following test to verify if the introduced information is the same as the fields.</p>
+
+<pre><code>EPRegisterUserTest &gt;&gt; testIntroduceInformationInContactSection
+	self fillInformationToContactSection.
+	self assert: (self firstNameField getAttribute: 'value') equals: 'Jhon'.
+	self assert: (self lastNameField getAttribute: 'value') equals: 'Stuart'.
+	self assert: (self phoneField getAttribute: 'value') equals: '10276123'.
+	self assert: (self emailField getAttribute: 'value') equals: 'example@mail.com'</code></pre>
+
+<p>If we run the test we can see how Parasol introduces the information to the fields (see Figure <a href="#contactInfo">contactInfo</a>).</p>
+
+<p><figure id="contactInfo.pdf"><img src="Chapters/Web/figures/contactInfo" alt="Filling fields using Parasol." class="contactInfo.pdf" style="width: 80%"><figcaption><span class="number">Figure 9.3</span> Filling fields using Parasol.</figcaption></img></figure></p>
+
+<p>Now, we can create tests to fill in the information to other sections.
+An important observation is the select box in the mailing information section.
+If we want to test it, we need to use another method to assert it.
+In this case, the selected option contains the attribute called <code>selected</code>.
+So, we define the next method to get this element:</p>
+
+<pre><code>EPRegisterUserTest &gt;&gt; getSelectedOfCountry
+	(self countryField findElementsByTagName: 'option') do: [ :each |
+		(each getAttribute: 'selected')
+			ifNotNil: [ ^ each ] ]</code></pre>
+
+<p>When you create the test, with this method you only get the element that contain the information that we need.
+So we use the <code>getText</code> message and assert if the fields contain the correct information.</p>
+
+<pre><code>EPRegisterUserTest &gt;&gt; testIntroduceInformationInMailingSection
+	self assert: (self getSelectedOfCountry getText) equals: 'UNITED STATES '.</code></pre>
+
+<p>It is also possible to change the value of the combo box using the <code>sendKeys</code> message as we saw in previous examples.</p>
+
+<p>Now, with all fields tested, we define a test for the user registration on the page.
+If you created the <code>fillInformationToMailingSection</code> and <code>fillInformationToUserSection</code> methods, we will use these methods.
+If you didn't, you need to create these methods.</p>
+
+<p>We need another method to find the submit button and click it, so we create it.</p>
+
+<pre><code>EPRegisterUserTest &gt;&gt; clickInSubmitButton
+	(driver findElementByName: 'register') click</code></pre>
+
+<p>In the page, when you register a user you obtain the following view:</p>
+
+<p><figure id="endRegistration.pdf"><img src="Chapters/Web/figures/endRegistration" alt="Registration successful view." class="endRegistration.pdf" style="width: 80%"><figcaption><span class="number">Figure 9.4</span> Registration successful view.</figcaption></img></figure></p>
+
+<p>We have two options to assert if the user is registered:</p>
+
+<ul>
+<li>Get the text 'sign-off' of the sign-off option</li>
+<li>Get the description text below the register title.</li>
+</ul>
+<p>You can use any of these options, as an example we will get the description text.
+So define the method to find the description text.</p>
+
+<pre><code>EPRegisterUserTest &gt;&gt; descriptionText
+	^ driver findElementByXPath: '/html/body/div/table/tbody/tr/td[2]/
+table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p[2]/font'</code></pre>
+
+<p>And finally create the test to verify if the user is registered successfully.</p>
+
+<pre><code>EPRegisterUserTest &gt;&gt; testRegistrationOfUser
+	
+	self timeLimit: 10 seconds.
+
+	self sendInformationToContactSection.
+	self sendInformationToMailingSection.
+	self sendInformationToUserSection.
+	self clickInSubmitButton.
+	self 
+		assert: (self descriptionText getText)
+		equals: 'Thank you for registering.
+You may now sign-in using the user name
+and password you''ve just entered.'</code></pre>
+
+<p>Sometimes this test can fail because the page needs to save the new user and load the successful message.
+Another problem that can cause the test failure is the time it takes for our Selenium server to use the browser driver.
+So we use the <code>timeLimit:</code> message to give the test more time to run, but you can also use the <code>Delay</code> class.
+If you don't have this problem, delete the line.</p>
+
+<p>Finally, run the test and observe its result. If the test passed, you are now able to create multiple tests using Parasol.</p>
+
+<h3 id="conclusion-3"><span class="number">9.11</span> Conclusion</h3>
+<p>The purpose of this chapter was to introduce the basics of Parasol to create a test suite.
+You should now be able to find elements in a website, fill in the information in fields, and interact with the website through links and buttons.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="ui-testing.html">← UI testing</a>
+        <a class="next" rel="next" href="mockobject-and-teachable.html">MockObject and Teachable: Two simple mocking approaches →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Testing in Pharo · Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About identifier format</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo with Style</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="general-naming-conventions.html"><span class="number">1</span> General naming conventions</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-class-names.html"><span class="number">2</span> About class names</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="about-identifier-format.html" aria-current="page"><span class="number">3</span> About identifier format</a>
+            
+            <ol>
+              
+              <li><a href="#guideline-avoid-underscores-and-favor-camel-case"><span class="number">3.1</span> Guideline: Avoid underscores and favor camel case</a></li>
+              
+              <li><a href="#guideline-camelcase-fully-identifiers"><span class="number">3.2</span> Guideline: CamelCase fully identifiers</a></li>
+              
+              <li><a href="#guideline-shared-variables-start-with-uppercase"><span class="number">3.3</span> Guideline: Shared variables start with uppercase</a></li>
+              
+              <li><a href="#guideline-private-variables-start-with-lowercase"><span class="number">3.4</span> Guideline: Private variables start with lowercase</a></li>
+              
+              <li><a href="#guideline-convey-language-semantics"><span class="number">3.5</span> Guideline: Convey language semantics</a></li>
+              
+              <li><a href="#guideline-method-selectors-start-with-lowercase"><span class="number">3.6</span> Guideline: Method selectors start with lowercase</a></li>
+              
+              <li><a href="#conclusion-3"><span class="number">3.7</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="about-variable-names.html"><span class="number">4</span> About variable names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-method-names.html"><span class="number">5</span> About method names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-code-formatting.html"><span class="number">6</span> About code formatting</a>
+            
+          </li>
+          
+          <li>
+            <a href="comments.html"><span class="number">7</span> Comments</a>
+            
+          </li>
+          
+          <li>
+            <a href="powerful-coding-idioms.html"><span class="number">8</span> Powerful coding idioms</a>
+            
+          </li>
+          
+          <li>
+            <a href="object-initialization.html"><span class="number">9</span> Object initialization</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-a-syntactic.html"><span class="number">10</span> Potential traps: A syntactic perspective</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-about.html"><span class="number">11</span> Potential traps: About printing and Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="use-patterns.html"><span class="number">12</span> Use Patterns</a>
+            
+          </li>
+          
+          <li>
+            <a href="conclusion.html"><span class="number">13</span> Conclusion</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="about-identifier-format"><span class="number">3</span> About identifier format</h2>
+<p>While in the previous chapters we focused on identifiers or class variables, this chapter focuses on the form or format of such names. Indeed, writing software is about writing sentences that seamlessly integrate with existing ones. You do not want your program to be easily identifiable as an existing one. This is particularly true for multiple developer projects with common code ownership. Note that even if you are working on a single-person project, you will use existing class libraries and you do not want to have your 'ugly' code stepping out.</p>
+
+<h3 id="guideline-avoid-underscores-and-favor-camel-case"><span class="number">3.1</span> Guideline: Avoid underscores and favor camel case</h3>
+<p>The form or format of identifiers is also important. Following the form promoted by a complete ecosystem will make your software more readable and acceptable by others.
+This is true in any programming language.</p>
+
+<p>Because Pharo and its ecosystem use camel case for class, variable, and method names.
+Avoid using underscores.</p>
+
+<p>Prefer</p>
+
+<pre><code>timeOfDay</code></pre>
+
+<p>over</p>
+
+<pre><code>timeofday
+time_of_day</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>GnatXmlNode</code></pre>
+
+<p>over</p>
+
+<pre><code>GNAT_XML_Object</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>releasedX</code></pre>
+
+<p>over</p>
+
+<pre><code>released_X</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>| scaledX reducedX |</code></pre>
+
+<p>over</p>
+
+<pre><code>| scaled_X reduced_X |</code></pre>
+
+<p>When creating private low-level methods that bind to external C-libraries, you may want to use underscores to follow C conventions to ease tracing back the communication between libraries. In such a case, limit your use to carefully thought-out cases.</p>
+
+<h3 id="guideline-camelcase-fully-identifiers"><span class="number">3.2</span> Guideline: CamelCase fully identifiers</h3>
+<p>Use consistently camel case on the full length of an identifier.</p>
+
+<p>Prefer</p>
+
+<pre><code>readyForNextItem</code></pre>
+
+<p>over</p>
+
+<pre><code>readyFornextitem</code></pre>
+
+<h3 id="guideline-shared-variables-start-with-uppercase"><span class="number">3.3</span> Guideline: Shared variables start with uppercase</h3>
+<p>Begin class names, global variables, pool variables, and class variables with an uppercase letter. If the word is compound, then use camel case for the rest.</p>
+
+<pre><code>Point	"Class"
+Transcript 	"global variable"
+PackageGlobalOrganizer	"class variables"</code></pre>
+
+<h3 id="guideline-private-variables-start-with-lowercase"><span class="number">3.4</span> Guideline: Private variables start with lowercase</h3>
+<p>Begin instance variables, temporary variables, method parameters, and method selectors with lowercase. If the word is compound, then use camel case for the rest.</p>
+
+<pre><code>address
+classExtensionSelectors
+classTags</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>| dataset f xMatrix scale x |</code></pre>
+
+<p>over</p>
+
+<pre><code>| dataset f Xmatrix scale X |</code></pre>
+
+<h3 id="guideline-convey-language-semantics"><span class="number">3.5</span> Guideline: Convey language semantics</h3>
+<p>Remember <code>MaxLimit</code>, <code>maxLimit</code>, <code>maxlimit</code>, and <code>MAXLIMIT</code> are all different identifiers in Pharo.</p>
+
+<pre><code>| MaxLimit maxLimit |
+MaxLimit := 10.
+maxLimit := 20.
+MaxLimit
+&gt;&gt;&gt; 10</code></pre>
+
+<p>Still, Pharo favors the camel case, so use it systematically for words. Wikipedia defines camel case as: Camel case (stylized as camelCase) is the practice of writing phrases such that each word or abbreviation in the middle of the phrase begins with a capital letter, with no intervening spaces or punctuation.</p>
+
+<h5 class="paragraph" id="for-local-variables">For local variables.</h5>
+<p>Method parameters and instance variables, use</p>
+
+<pre><code>maxLimit</code></pre>
+
+<p>instead of</p>
+
+<pre><code>maxlimit
+MAXLIMIT</code></pre>
+
+<h5 class="paragraph" id="for-classes-or-shared-variables">For classes, or shared variables</h5>
+<p>Use</p>
+
+<pre><code>OrderedCollection
+MaxLimit</code></pre>
+
+<p>instead of</p>
+
+<pre><code>ORDEREDCOLLECTION
+MAXLIMIT</code></pre>
+
+<q id="note">In a compound word, do not confuse a prefix or suffix with a word when trying to determine which words should begin with an uppercase letter. For example, some readers may think that the "c" in <code>subclass</code> should be uppercase, but <code>sub</code> is a prefix, not a word. When in doubt about prefixes and suffixes, check a dictionary.</q>
+<p>Prefer</p>
+
+<pre><code>superclass</code></pre>
+
+<p>over</p>
+
+<pre><code>superClass</code></pre>
+
+<h3 id="guideline-method-selectors-start-with-lowercase"><span class="number">3.6</span> Guideline: Method selectors start with lowercase</h3>
+<p>Prefer</p>
+
+<pre><code>getMethodsNamesFromAClass: aClass
+	| methodsNames |
+	methodsNames := aClass selectors.
+	methodsNames do: [ :each | names add: each ]</code></pre>
+
+<p>over</p>
+
+<pre><code>GetMethodsNamesFromAClass: aClass
+	| methodsNames |
+	methodsNames := aClass selectors.
+	methodsNames do: [ :each | names add: each ]</code></pre>
+
+<p>Also, in this example, the method selector is not good because method names are called selectors in Pharo. In addition in English <code>methodsNames</code> should be written <code>methodNames</code>. It should be <code>gatherSelectorsFrom:</code> or something similar.</p>
+
+<h3 id="conclusion-3"><span class="number">3.7</span> Conclusion</h3>
+<p>This is a bit obvious, but as a developer you should follow language conventions.</p>
+
+<p>This is not because Pharo is permissive that you should bend the rules. Doing so will only confuse you and other developers. So use camel case. Remember, private or local variables start with a lowercase letter, while class variables start with an uppercase letter.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="about-class-names.html">← About class names</a>
+        <a class="next" rel="next" href="about-variable-names.html">About variable names →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo with Style · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

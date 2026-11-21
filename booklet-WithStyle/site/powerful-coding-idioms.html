@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Powerful coding idioms</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo with Style</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="general-naming-conventions.html"><span class="number">1</span> General naming conventions</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-class-names.html"><span class="number">2</span> About class names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-identifier-format.html"><span class="number">3</span> About identifier format</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-variable-names.html"><span class="number">4</span> About variable names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-method-names.html"><span class="number">5</span> About method names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-code-formatting.html"><span class="number">6</span> About code formatting</a>
+            
+          </li>
+          
+          <li>
+            <a href="comments.html"><span class="number">7</span> Comments</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="powerful-coding-idioms.html" aria-current="page"><span class="number">8</span> Powerful coding idioms</a>
+            
+            <ol>
+              
+              <li><a href="#guideline-do-not-query-twice-for-the-same-object"><span class="number">8.1</span> Guideline: Do not query twice for the same object</a></li>
+              
+              <li><a href="#guideline-move-return-outside-branches"><span class="number">8.2</span> Guideline: Move return outside branches</a></li>
+              
+              <li><a href="#guideline-use-streamcontents"><span class="number">8.3</span> Guideline: Use streamContents</a></li>
+              
+              <li><a href="#guideline-preallocate-overly-large-collections"><span class="number">8.4</span> Guideline: Preallocate overly large collections</a></li>
+              
+              <li><a href="#guideline-use-super-to-send-a-message-with-the-same-selector"><span class="number">8.5</span> Guideline: Use super to send a message with the same selector</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="object-initialization.html"><span class="number">9</span> Object initialization</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-a-syntactic.html"><span class="number">10</span> Potential traps: A syntactic perspective</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-about.html"><span class="number">11</span> Potential traps: About printing and Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="use-patterns.html"><span class="number">12</span> Use Patterns</a>
+            
+          </li>
+          
+          <li>
+            <a href="conclusion.html"><span class="number">13</span> Conclusion</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="powerful-coding-idioms"><span class="number">8</span> Powerful coding idioms</h2>
+<p>Some coding idioms will make your code a lot clearer. Knowing them is also good because you will code faster.</p>
+
+<h3 id="guideline-do-not-query-twice-for-the-same-object"><span class="number">8.1</span> Guideline: Do not query twice for the same object</h3>
+<p>The message <code>ifNotNil:</code> expects a block with one argument. This argument is the object that is not nil.</p>
+
+<p>For example,</p>
+
+<pre><code>self doAndReturnThat ifNotNil: [ :that | self doSomethingWith: that ]</code></pre>
+
+<p>is better than:</p>
+
+<pre><code>| that |
+that := self doAndReturnThat.
+that ifNotNil: [self doSomethingWith: that]</code></pre>
+
+<p>Similarly have a look at the messages containing the <code>ifPresent:</code> variations.</p>
+
+<pre><code>aCol at: key ifPresent: [ :present | self doSomethingWith: present]</code></pre>
+
+<h3 id="guideline-move-return-outside-branches"><span class="number">8.2</span> Guideline: Move return outside branches</h3>
+<p>When two branches of a condition are returning a value, better move the return out of the blocks.</p>
+
+<p>When two branches of a condition are returning a value, better move the return out of the blocks.</p>
+
+<p>Prefer</p>
+
+<pre><code>depth: aNode
+	"Returns depth of a tree starting from the given node"
+	...
+	^ leftDepth &gt; rightDepth
+		ifTrue: [ 1 + leftDepth ]
+		ifFalse: [ 1 + rightDepth ]</code></pre>
+
+<p>over</p>
+
+<pre><code>depth:aNode
+	"Returns depth of a tree starting from the given node"
+	...
+	leftDepth &gt; rightDepth
+		ifTrue: [ ^ 1 + leftDepth ]
+		ifFalse: [ ^ 1 + rightDepth ]</code></pre>
+
+<h3 id="guideline-use-streamcontents"><span class="number">8.3</span> Guideline: Use streamContents</h3>
+<p>When you want to manipulate a potentially long stream you can avoid to have to define the explicit stream creation and access using <code>streamContents</code> with a block whose argument is a ready to use stream.</p>
+
+<p>Prefer</p>
+
+<pre><code>String streamContents: [:s | self displayStringOn: s]</code></pre>
+
+<p>over</p>
+
+<pre><code>stream := WriteStream on: (String new: 1000).
+stream ...
+^ stream contents</code></pre>
+
+<h3 id="guideline-preallocate-overly-large-collections"><span class="number">8.4</span> Guideline: Preallocate overly large collections</h3>
+<p>You may work on really large collections, and in such a case, the allocation of the collection can have a speed penalty.</p>
+
+<p>If you know in advance how large your collection will be, preallocate a big one and store elements in it:</p>
+
+<pre><code>| list |
+list := OrderedCollection new: 10000.
+1 to: 10000 do: [ :i |
+	list add: i ]</code></pre>
+
+<p>You can use the method <code>bench</code> to get a first idea.</p>
+
+<pre><code>[| list |
+list := OrderedCollection new: 100000.
+1 to: 100000 do: [ :i |
+	list add: i ] ] bench 
+"for 100,000 get 165.901 per second"
+"for 10,000 get 5484.903 per second"
+
+[| list |
+list := OrderedCollection new.
+1 to: 100000 do: [ :i |
+	list add: i ] ] bench 
+"for 100,000 get 79.368 per second" 
+"for 10,000 get 5278.544 per second"</code></pre>
+
+<h3 id="guideline-use-super-to-send-a-message-with-the-same-selector"><span class="number">8.5</span> Guideline: Use super to send a message with the same selector</h3>
+<p><code>super</code> is used to start the method lookup in the superclass of the class of the method containing <code>super</code>. However, <code>super</code> is only necessary when the method you want to invoke has the same than the current one since using <code>self</code> in such a case simply creates and infinite loop.</p>
+
+<p>For example, the following just creates an infinite loop, since the method <code>initialize</code> is calling itself infinitively.</p>
+
+<pre><code>initialize
+
+	self initialize.
+	self continue</code></pre>
+
+<p>This is the only case where you must use <code>super</code> to invoke a method that cannot be reached by the method lookup when it starts from the class defining the method. The correct definition is then:</p>
+
+<pre><code>initialize
+
+	super initialize.
+	self continue</code></pre>
+
+<p>Now there is no need to use <code>super</code> for messages that have a different selector than the method they belong to. For example, there is no need to use <code>super bar</code> in the following, since the defining method is called <code>foo</code> and you send the message <code>bar</code>.</p>
+
+<pre><code>foo 
+	super bar.
+	self continue</code></pre>
+
+<p>The correct definition is just to use <code>self</code>.</p>
+
+<pre><code>foo 
+	self bar.
+	self continue</code></pre>
+
+<p>While using <code>super</code> often does not break your code, it may because if you have a method named <code>bar</code> in the same class this method will not be invoked. Always be cautious when reading or writing such code.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="comments.html">← Comments</a>
+        <a class="next" rel="next" href="object-initialization.html">Object initialization →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo with Style · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

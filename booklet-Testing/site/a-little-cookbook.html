@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A little cookbook</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Testing in Pharo</a>
+    <p class="site-authors">Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="introduction.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="two-minutes-of-theory.html"><span class="number">2</span> Two minutes of theory</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-by-example.html"><span class="number">3</span> SUnit by example</a>
+            
+          </li>
+          
+          <li>
+            <a href="extreme-test-driven-development.html"><span class="number">4</span> Extreme Test-Driven Development  by Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-the-framework.html"><span class="number">5</span> SUnit: The framework</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="a-little-cookbook.html" aria-current="page"><span class="number">6</span> A little cookbook</a>
+            
+            <ol>
+              
+              <li><a href="#testing-comments"><span class="number">6.1</span> Testing comments</a></li>
+              
+              <li><a href="#parameterized-tests"><span class="number">6.2</span> Parameterized tests</a></li>
+              
+              <li><a href="#matrix-a-more-advanced-case"><span class="number">6.3</span> Matrix: a more advanced case</a></li>
+              
+              <li><a href="#classes-vs-objects-as-parameters"><span class="number">6.4</span> Classes vs. objects as parameters</a></li>
+              
+              <li><a href="#other-assertions"><span class="number">6.5</span> Other assertions</a></li>
+              
+              <li><a href="#running-tests"><span class="number">6.6</span> Running tests</a></li>
+              
+              <li><a href="#advanced-features-of-sunit"><span class="number">6.7</span> Advanced features of SUnit</a></li>
+              
+              <li><a href="#test-resources"><span class="number">6.8</span> Test resources</a></li>
+              
+              <li><a href="#customising-tests-examples-as-tests"><span class="number">6.9</span> Customising tests: Examples as tests</a></li>
+              
+              <li><a href="#inheriting-testcase"><span class="number">6.10</span> Inheriting TestCase</a></li>
+              
+              <li><a href="#manipulate-a-file-system-in-your-tests"><span class="number">6.11</span> Manipulate a file system in your tests</a></li>
+              
+              <li><a href="#conclusion-2"><span class="number">6.12</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-implementation.html"><span class="number">7</span> SUnit implementation</a>
+            
+          </li>
+          
+          <li>
+            <a href="ui-testing.html"><span class="number">8</span> UI testing</a>
+            
+          </li>
+          
+          <li>
+            <a href="testing-web-applications.html"><span class="number">9</span> Testing web applications with Parasol</a>
+            
+          </li>
+          
+          <li>
+            <a href="mockobject-and-teachable.html"><span class="number">10</span> MockObject and Teachable: Two simple mocking approaches</a>
+            
+          </li>
+          
+          <li>
+            <a href="mutalk-a-mutation-testing.html"><span class="number">11</span> MuTalk: A Mutation Testing Framework</a>
+            
+          </li>
+          
+          <li>
+            <a href="performance-testing-with.html"><span class="number">12</span> Performance testing with SMark</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">6</span> A little cookbook</h2><a id="cha:cookbook"></a>
+<p>This chapter will give you more details on the possibilities offered to you to express tests.
+We will start to show that we can also have method comments that are automatically validated and that such executable comments are similar to elementary unit tests.</p>
+
+<p>Note that if you have used another testing framework such as JUnit, much of this will be familiar, since all these frameworks have their roots in SUnit. We will also present a powerful feature of SUnit: parametrized tests.</p>
+
+<h3 id="testing-comments"><span class="number">6.1</span> Testing comments</h3>
+<p>Often you would like to comment your methods with little examples.
+The problem with putting code snippets in the comment of a method is that they are doomed to rot.
+And you do not have an easy way to find outdated comments.</p>
+
+<p>This is why, in Pharo, you can also use executable comments to document your methods.
+An executable comment is a comment containing Pharo code but that follows a certain form (expression <code>&gt;&gt;&gt;</code> resulting expression). This form makes sure that the IDE can check if they are still valid.</p>
+
+<p>Let us look at an example from the class ==String==.</p>
+
+<pre><code>String &gt;&gt; asCamelCase
+	"Convert to CamelCase, i.e, remove spaces, and convert starting lowercase to uppercase."
+
+	"'A man, a plan, a canal, panama' asCamelCase &gt;&gt;&gt; 'AMan,APlan,ACanal,Panama'"
+	"'Here 123should % be 6 the name6 of the method' asCamelCase  &gt;&gt;&gt; 'Here123should%Be6TheName6OfTheMethod'"
+
+		^ self species streamContents: [:stream |
+               self substrings do: [:sub |
+                       stream nextPutAll: sub capitalized]]</code></pre>
+
+<p>The comment <code>"'A man, a plan, a canal, panama' asCamelCase &gt;&gt;&gt; 'AMan,APlan,ACanal,Panama'"</code> is an executable comment.
+It is delimited by <code>"</code> and <code>&gt;&gt;&gt;</code>.</p>
+
+<ul>
+<li>The message <code>&gt;&gt;&gt;</code> delimits the expression from its result.</li>
+<li>On the left, we get the expression.</li>
+<li>On the right, we get the result.</li>
+</ul>
+<p>This way a tool can verify that the comment is correct.</p>
+
+<h3 id="parameterized-tests"><span class="number">6.2</span> Parameterized tests</h3>
+<p>Since Pharo 7.0 you can express parameterized tests.
+Parametrized tests are tests that can be executed on multiple configurations: your tests will run
+on different contexts that you can specify basically as test arguments.
+Parametrized tests are really powerful when you want to check whether two implementations pass the same set of tests.</p>
+
+<p>To declare a parameterized test you have to:</p>
+
+<ul>
+<li>define your test case class as a subclass of <code>ParametrizedTestCase</code> instead of <code>TestCase</code>. This class should define accessors that will be used to configure the tests.</li>
+<li>define a <i>class</i> method named <code>testParameters</code> which specifies the actual parameters.</li>
+</ul>
+<h4 id="a-simple-example-first">A simple example first</h4>
+<p>Here is an example taken from the Enlumineur project which is a pretty printer for Pharo code.
+Using parametrized tests lets us know whether two different pretty printers produce the same outputs.</p>
+
+<p>We define the class <code>BIEnlumineurTest</code>.
+It has different parameters expressed as instance variables such as <code>formatterClass</code> and <code>contextClass</code>.</p>
+
+<pre><code>ParametrizedTestCase &lt;&lt;: #BIEnlumineurTest
+	slots: { #configurationSelector .  #formatterClass . #contextClass};
+	package: 'Enlumineur-Tests'</code></pre>
+
+<p>This class should define accessors for its parameters, here for <code>formatterClass</code> and <code>contextClass</code>.
+The tests should use the test instance variables and should not refer directly to the classes held by the instance variables.
+Else this would shortcut the idea of a parametrized test itself.</p>
+
+<p>Then we define the class method <code>testParameters</code> as follows.</p>
+
+<pre><code>BIEnlumineurTest class &gt;&gt; testParameters
+	^ ParametrizedTestMatrix new
+		addCase: { (#formatterClass -&gt; BIEnlumineurPrettyPrinter) . (#contextClass -&gt; BIEnlumineurContext) };
+		yourself</code></pre>
+
+<p>Now the framework will run the test using the parameters we mentioned.
+To add a new variation we just have to add a case using the <code>addCase:</code> message.</p>
+
+<h4 id="controlling-configuration">Controlling configuration</h4>
+<p>The following example generates 2 cases.
+Exactly the 2 cases listed in <code>testParameters</code> method.
+The values for <code>number1</code> and <code>number2</code> will be set and the test will be executed.</p>
+
+<pre><code>PaSelectedCasesExampleTest class &gt;&gt; testParameters
+
+	^ ParametrizedTestMatrix new
+		addCase: { #number1 -&gt; 2. #number2 -&gt; 1.0. #result -&gt; 3 };
+		addCase: { #number1 -&gt; (2/3). #number2 -&gt; (1/3). #result -&gt; 1 };
+		yourself</code></pre>
+
+<p></p>
+
+<h3 id="matrix-a-more-advanced-case"><span class="number">6.3</span> Matrix: a more advanced case</h3>
+<p>Sometimes you do not want to enumerate all the combinations by hand.
+In that case, you can use a matrix and specify all the possible values of a parameter.
+The class <code>PaSimpleMatrixExampleTest</code> contains some examples.</p>
+
+<p>The following test executes 27 different cases.
+All the combinations in the matrix are executed, i.e. item1 values will be enumerated, and for each one, all the
+values of the other parameters will be also enumerated.
+This way all possible combinations are generated and tests run for each of them.</p>
+
+<pre><code>PaSimpleMatrixExampleTest class &gt;&gt; testParameters
+
+	^ ParametrizedTestMatrix new
+		forSelector: #item1 addOptions: { 1. 'a'. $c };
+		forSelector: #item2 addOptions: { 2. 'b'. $d };
+		forSelector: #collectionClass addOptions: { Set. Bag. OrderedCollection }</code></pre>
+
+<p>The test matrix generates using a cartesian product the configurations or a set of well-known cases.
+Each option is constituted from a set of possible values and a selector that is the name of the parameter to set in the test case instance.
+Another example of <code>testParameters</code> is:</p>
+
+<pre><code>testParameters
+
+	^ ParametrizedTestMatrix new
+		forSelector: #option1 addOptions: #(a b c);
+		forSelector: #option2 addOptions: {[1].[2].[3]};
+		yourself.</code></pre>
+
+<p>This example will generate 9 different configurations. One per each combination of <code>option1</code> and <code>option2</code>.
+Do not forget that the test case should have a setter for each option.</p>
+
+<p>In addition each option can be a literal or a block to generate that value. The block has an optional parameter, the parameter is the test case to configure.</p>
+
+<h3 id="classes-vs-objects-as-parameters"><span class="number">6.4</span> Classes vs. objects as parameters</h3>
+<p>There is a subtle but important point about the kind of parameters.
+Indeed, we may wonder whether it is better to pass a class or an instance as a parameter of a test. Theoretically, there is not much difference between passing a class or an object.
+However, in practice, there is a difference because when we pass an object, as in the following configuration, the framework does not recreate the object
+during each test execution. Therefore if your object accumulates information, then such information will be shared among your tests and this is a bad idea.</p>
+
+<pre><code>CbkDlittleImporterTest class &gt;&gt; testParameters
+
+	^ ParametrizedTestMatrix new
+			addCase: { #importer -&gt; CBkCollectorDLittleImporter new };
+		yourself.</code></pre>
+
+<p>The solution is to favor passing classes as follows and to explicitly create objects in the <code>setUp</code>.
+This way you are sure that your object does not hold its state from the previous execution.</p>
+
+<pre><code>CbkDlittleImporterTest class &gt;&gt; testParameters
+
+	^ ParametrizedTestMatrix new
+			addCase: { #importerClass -&gt; CBkCollectorDLittleImporter };
+		yourself.
+
+CbkDlittleImporterTest &gt;&gt; setUp 
+	super setUp.
+	importer := importerClass new.
+	
+CbkDlittleImporterTest &gt;&gt; importerClass: anImporterClass
+	importerClass := anImporterClass</code></pre>
+
+<p>In conclusion, we suggest passing instances as parameters when the objects are not complex
+and to favor classes otherwise.</p>
+
+<h3 id="other-assertions"><span class="number">6.5</span> Other assertions</h3>
+<p>In addition to <code>assert:</code> and <code>deny:</code>, there are several other methods that
+can be used to make assertions.</p>
+
+<p>First, <code>TestAsserter &gt;&gt; assert:description:</code> and <code>TestAsserter &gt;&gt;deny:description:</code> take a second argument which is a message string that
+describes the reason for the failure, if it is not obvious from the test itself.
+These methods are described in Section <a href="#sec:descriptionStrings">6.5</a>.</p>
+
+<p>Next, SUnit provides two additional methods, <code>TestAsserter &gt;&gt; should:raise:</code>
+and <code>TestAsserter &gt;&gt; shouldnt:raise:</code> for testing exception propagation.</p>
+
+<p>For example, you would use <code>self should: aBlock raise: anException</code> to test
+that a particular exception is raised during the execution of <code>aBlock</code>. The
+method below illustrates the use of <code>should:raise:</code>.</p>
+
+<figure class="code"><pre><code>MyExampleSetTest &gt;&gt; testIllegal
+	self should: [ empty at: 5 ] raise: Error.
+	self should: [ empty at: 5 put: #zork ] raise: Error</code></pre><figcaption><span class="number">Listing 6.1</span> Testing error raising</figcaption></figure>
+
+<p>Try running this test. Note that the first argument of the <code>should:</code> and
+<code>shouldnt:</code> methods is a block that contains the expression to be executed.</p>
+
+<p>Note that this is usually not good to catch exceptions using the <code>Error</code> class since
+it is catching basically everything. In that current case, the <code>at:</code> primitive signals an instance of <code>Error</code> so
+we have to deal with it.</p>
+
+<h4 id="using-assert-equals">Using <code>assert:equals:</code></h4>
+<p>In addition to <code>assert:</code>, there is also <code>assert:equals:</code> that offers a
+better report in case of error (incidentally, <code>assert:equals:</code> uses <code>assert:description:</code>).</p>
+
+<p>For example, the two following tests are equivalent. However, the second one
+will report the value that the test is expecting: this makes it easier to
+understand the failure. In this example, we suppose that <code>aDateAndTime</code> is an
+instance variable of the test class.</p>
+
+<pre><code>testAsDate
+	self assert: aDateAndTime asDate = ('February 29, 2004' asDate translateTo: 2 hours).
+
+testAsDate
+	self
+		assert: aDateAndTime asDate
+		equals: ('February 29, 2004' asDate translateTo: 2 hours).</code></pre>
+
+<h4>Assertion description strings</h4><a id="sec:descriptionStrings"></a>
+<p>The <code>TestAsserter</code> assertion protocol includes a number of methods that allow
+the programmer to supply a description of the assertion. The description is a
+<code>String</code>; if the test case fails, this string will be displayed by the test
+runner. Of course, this string can be constructed dynamically.</p>
+
+<pre><code>...
+e := 42.
+self assert: e = 23 description: 'expected 23, got ', e printString
+...</code></pre>
+
+<p>The relevant methods in <code>TestAsserter</code> are:</p>
+
+<pre><code>assert:description:
+deny:description:
+should:description:
+shouldnt:description:</code></pre>
+
+<h3 id="running-tests"><span class="number">6.6</span> Running tests</h3>
+<h4 id="running-a-single-test">Running a single test</h4>
+<p>Normally, you will run your tests using the Test Runner or using your code
+browser. You can also run a single test as follows:</p>
+
+<pre><code>&gt; MyExampleSetTest run: #testRemove
+1 run, 1 passed, 0 failed, 0 errors</code></pre>
+
+<h4 id="running-all-the-tests-in-a-test-class">Running all the tests in a test class</h4>
+<p>Any subclass of <code>TestCase</code> responds to the message <code>suite</code>, which builds a test suite that contains all the methods in the class whose names start with the string <i>test</i>.</p>
+
+<p>To run the tests in the suite, send it the message <code>run</code>. For example:</p>
+
+<pre><code>&gt; MyExampleSetTest suite run
+5 run, 5 passed, 0 failed, 0 errors</code></pre>
+
+<h3 id="advanced-features-of-sunit"><span class="number">6.7</span> Advanced features of SUnit</h3>
+<p>In addition to <code>TestResource</code> that we present just in the subsequent section, SUnit contains assertion description strings,
+logging support, the ability to skip tests, and resumable test failures.</p>
+
+<h4 id="logging-support">Logging support</h4>
+<p>The description strings mentioned above may also be logged to a <code>Stream</code>, such
+as the <code>Transcript</code> or a file stream. You can choose whether to log by
+overriding <code>isLogging</code> in your test class; you can also choose where to log
+by overriding <code>failureLog</code> to answer an appropriate stream. By default, the
+<code>Transcript</code> is used to log.</p>
+
+<p>To enable logging, you should redefine the method <code>isLogging</code> to say so.</p>
+
+<pre><code>MyExampleSetTest class &gt;&gt; isLogging
+	^ true</code></pre>
+
+<h4 id="skipping-tests">Skipping tests</h4>
+<p>Sometimes in the middle of a development, you may want to skip a test instead of
+removing it or renaming it to prevent it from running.
+You can simply invoke the <code>TestAsserter</code> message <code>skip</code> on your test case instance.
+For example, the following test uses it to define a conditional test.</p>
+
+<pre><code>OCCompiledMethodIntegrityTest &gt;&gt; testPragmas
+
+	| newCompiledMethod originalCompiledMethod |
+	(self class environment hasClassNamed: #Compiler) ifFalse: [ ^ self skip ].
+	...</code></pre>
+
+<p>It is better to use <code>skip</code> than to use a simple <code>^ self</code> because in the latter case
+you may think that your test is executed when it is not!</p>
+
+<h4 id="continuing-after-a-failure">Continuing after a failure</h4>
+<p>SUnit also allows us to specify whether or not a test should continue after a failure.
+This is a really powerful feature that uses Pharo's exception mechanisms.
+To see what this can be used for, let's look at an example.</p>
+
+<p>Consider the following test expression:</p>
+
+<pre><code>aCollection do: [ :each | self assert: each even ]</code></pre>
+
+<p>In this case, as soon as the test finds the first element of the collection that isn't <code>even</code>, the test stops.
+However, we would usually like to continue and see both how many elements, and which elements, aren't <code>even</code> (and maybe also
+log this information).</p>
+
+<p>You can do this as follows:</p>
+
+<pre><code>aCollection do: [ :each |
+	self
+		assert: each even
+		description: each printString, ' is not even'
+		resumable: true ]</code></pre>
+
+<p>This will print out a message on your logging stream for each element that fails.
+It doesn't accumulate failures, i.e, if the assertion fails 10 times in your test method, you'll still only see one failure.
+All the other assertion methods that we have seen are not resumable by default;
+<code>assert: p description: s</code> is equivalent to
+<code>assert: p description: s resumable: false</code>.</p>
+
+<h3 id="test-resources"><span class="number">6.8</span> Test resources</h3>
+<p>One of the important features of a suite of tests is that they should be
+independent of each other.
+The failure of one test should not cause an avalanche of failures of other tests that depend upon it, nor should the order in which
+the tests are run matter.
+Performing <code>setUp</code> before each test and <code>tearDown</code> afterward helps to reinforce this independence.</p>
+
+<p>However, there are occasions where setting up the necessary context is just too time-consuming for it to be done before the execution of each test.
+Moreover, if it is known that the test cases do not disrupt the resources used by the tests, then it is wasteful to set them up afresh for each test.
+It is sufficient to set them up once for each suite of tests.
+Suppose, for example, that a suite of tests needs to query a database, or do analysis on some compiled code.
+In such cases, it may make sense to set up the database and open a connection to it, or to compile some source code, before any of the tests
+start to run.</p>
+
+<p><figure id="fig:setUpAndTearDownWithR"><img src="Chapters/SUnit/figures/setUpAndTearDownWithResources.pdf" alt="setUp  and  teardDown  in action." class="fig:setUpAndTearDownWithR" style="width: 80%"><figcaption><span class="number">Figure 6.1</span> <code>setUp</code> and <code>teardDown</code> in action.</figcaption></img></figure></p>
+
+<p>Where should we cache these resources, so that they can be shared by a suite of tests? The instance variables of a particular <code>TestCase</code> subclass won't
+do, because a TestCase instance persists only for the duration of a single test (as mentioned before, the instance is created anew <i>for each test method</i>).
+A global variable would work, but using too many global variables pollutes the namespace, and the binding between the global and the tests that depend on it will not be explicit.</p>
+
+<p>A better solution is to define a TestResource and use it.
+The class <code>TestResource</code> implements a singleton to manage the execution of setUp and tearDown around a complete test suite as shown in Figure <a href="#fig:setUpAndTearDownWithR">6.1</a>.
+Each subclass of <code>TestResource</code> understands the message <code>current</code>, which will answer a singleton instance of that subclass.
+Methods <code>setUp</code> and <code>tearDown</code> should be overridden in the subclass to ensure that the resource is initialized and finalized.</p>
+
+<p>One thing remains: somehow, SUnit has to be told which resources are associated with which test suite. A resource is associated with a particular subclass of
+<code>TestCase</code> by overriding the <i>class</i> method <code>resources</code>.</p>
+
+<p>By default, the resources of a <code>TestSuite</code> are the union of the resources of the <code>TestCase</code>'s that it contains.</p>
+
+<p>Here is an example. We define a subclass of <code>TestResource</code> called <code>MyTestResource</code>.
+Then we associate it with <code>MyTestCase</code> by overriding the class method <code>MyTestCase class &gt;&gt; resources</code> to return an array of the test resource classes that <code>MyTestCase</code> will use.</p>
+
+<figure class="code"><pre><code>TestResource &lt;&lt; #MyTestResource
+	package: 'MyPackage'
+
+MyTestResource &gt;&gt; setUp
+	...
+
+MyTestCase class &gt;&gt; resources
+	"Associate the resource with this class of test cases"
+
+	^ { MyTestResource }</code></pre><figcaption><span class="number">Listing 6.2</span> An example of a TestResource subclass</figcaption></figure>
+
+<p>You can also define the instance side method <code>isAvailable</code> to indicate whether the resource is available.
+But if you need this, better read the code of the <code>TestResource</code> class.</p>
+
+<h4 id="checking-the-described-behavior">Checking the described behavior</h4>
+<p>The following trace (written to the <code>Transcript</code>) illustrates that a global
+setup is run before and after each test in a sequence. Let's see if you can
+obtain this trace yourself.</p>
+
+<pre><code>MyTestResource &gt;&gt; setUp has run.
+MyTestCase &gt;&gt; setUp has run.
+MyTestCase &gt;&gt; testOne has run.
+MyTestCase &gt;&gt; tearDown has run.
+MyTestCase &gt;&gt; setUp has run.
+MyTestCase &gt;&gt; testTwo has run.
+MyTestCase &gt;&gt; tearDown has run.
+MyTestResource &gt;&gt; tearDown has run.</code></pre>
+
+<p>Create new classes <code>MyTestResource</code> and <code>MyTestCase</code> which are subclasses of
+<code>TestResource</code> and <code>TestCase</code> respectively. Add the appropriate methods so
+that the following messages are written to the <code>Transcript</code> when you run your
+tests.</p>
+
+<h4 id="solution">Solution</h4>
+<p>You will need to write the following six methods.</p>
+
+<pre><code>MyTestCase &gt;&gt; setUp
+	Transcript show: 'MyTestCase&gt;&gt;setUp has run.'; cr
+
+MyTestCase &gt;&gt; tearDown
+	Transcript show: 'MyTestCase&gt;&gt;tearDown has run.'; cr
+
+MyTestCase &gt;&gt; testOne
+	Transcript show: 'MyTestCase&gt;&gt;testOne has run.'; cr
+
+MyTestCase &gt;&gt; testTwo
+	Transcript show: 'MyTestCase&gt;&gt;testTwo has run.'; cr
+
+MyTestCase class &gt;&gt; resources
+	^ Array with: MyTestResource
+
+MyTestResource &gt;&gt; setUp
+	Transcript show: 'MyTestResource&gt;&gt;setUp has run'; cr
+
+MyTestResource &gt;&gt; tearDown
+	Transcript show: 'MyTestResource&gt;&gt;tearDown has run.'; cr</code></pre>
+
+<h3 id="customising-tests-examples-as-tests"><span class="number">6.9</span> Customising tests: Examples as tests</h3>
+<p>In this section, we show that SUnit offers two hooks to define what a test selector is and how to perform the test.</p>
+
+<p>Imagine that we want to support example methods as tests.
+Let us define what are example methods:
+Let us say that an example method is a class method if its selector follows the pattern <code>example*</code>.</p>
+
+<p>For the sake of simplicity imagine that the method <code>classWithExamplesToTest</code> returns a class defining example methods.</p>
+
+<p>We can then define the method <code>testSelectors</code> as follows:</p>
+
+<pre><code>HiExamplesTest class &gt;&gt; testSelectors [
+	^ self classWithExamplesToTest class methods 
+		select: [ :each | (each selector beginsWith: 'example') and: [ each numArgs = 0 ] ]
+		thenCollect: [ :each | each selector ]</code></pre>
+
+<p>Then we can redefine the method <code>performTest</code> to execute the example method on the class itself.</p>
+
+<pre><code>HiExamplesTest &gt;&gt; performTest
+ 	example := self class classWithExamplesToTest perform: testSelector asSymbol</code></pre>
+
+<p>What you can see is that with a couple of methods, we can extend SUnit to support alternative ways to define and execute tests.
+No need for several tenths of classes as in some solutions.</p>
+
+<h3 id="inheriting-testcase"><span class="number">6.10</span> Inheriting TestCase</h3>
+<p>A new <code>TestCase</code> can inherit tests from a superclass.
+The logic is a bit cumbersome.
+By default, a new test case class inherits from a subclass of <code>TestCase</code> that is abstract.
+If your new subclass has no test methods it will inherit from its superclass.</p>
+
+<p>Otherwise, if your new class has selectors and inherits from a concrete superclass, you should redefine <code>shouldInheritSelectors</code>
+to return <code>true</code>.</p>
+
+<p>What developers use in practice is the last part: to redefine the method <code>shouldInheritSelectors</code>.
+For example, this is what the <code>CoCompletionEngineTest</code> class is doing to inherit the tests of <code>CompletionEngineTest</code></p>
+
+<pre><code>CoCompletionEngineTest &gt;&gt; shouldInheritSelectors
+	^ true</code></pre>
+
+<p>Here is the definition of the method <code>shouldInheritSelectors</code>.</p>
+
+<pre><code>TestCase class &gt;&gt; shouldInheritSelectors
+	"I should inherit from an Abstract superclass but not from a concrete one by default 
+	unless I have no testSelectors in which case I must be expecting to inherit them from my superclass.  
+	If a test case with selectors wants to inherit selectors from a concrete superclass, override this to true in that subclass."
+	
+	^self ~~ self lookupHierarchyRoot
+		and: [self superclass isAbstract or: [self testSelectors isEmpty]]</code></pre>
+
+<h3 id="manipulate-a-file-system-in-your-tests"><span class="number">6.11</span> Manipulate a file system in your tests</h3>
+<p>In some cases we need to tests things interacting with the file system. For example, if you have an application parametrized with a configuration file, you might want to implement a functional test checking that for a certain configuration, your application behave a certain way.</p>
+
+<p>It is often discouraged to directly manipulate the file system for multiple reasons:</p>
+
+<ul>
+<li>there is no guarantee files with matching the name of your files exists</li>
+<li>you need to think about the current state of your file system (and maybe delete some existing files before creating your owns)</li>
+<li>you need to think about cleaning the files you are creating</li>
+</ul>
+<p>On technic often used is to create a folder based on an UUID or other random name to avoid conflicts but it exists two other ways provided by Pharo.</p>
+
+<p>The fist way is to use the temp folder of your OS. You can access it using <code>FileLocator</code>:</p>
+
+<pre><code>MyTestCase &gt;&gt; setUp
+	super setUp.
+	application configurationsFolders: (FileLocator temp / UUID new asString) ensureCreateDirectory</code></pre>
+
+<p>This way you do not have to care about the cleaning of the file system and you avoid the risk of clashing with files of your user. But you still have to take care of the existing files in the temp folder since it is often cleaned when you restart and not all the time.</p>
+
+<p>The second method is to use a memory file system! As its name indicates, it is an emulation of a file system existing in memory. You can create this file system using <code>FileSystem memory</code>:</p>
+
+<pre><code>MyTestCase &gt;&gt; setUp
+	super setUp.
+	application configurationsFolders: (FileSystem memory / 'configurations') ensureCreateDirectory</code></pre>
+
+<p>This technic has multiple advantages:</p>
+
+<ul>
+<li>It will never conflict with an existing file</li>
+<li>You will always get a clean file system to setup</li>
+<li>You never need to clean it since it will be automatically garbage collected when the file system will not be references anymore (usually after the execution of the test)</li>
+</ul>
+<p>But this technic also has some drawbacks to keep in mind:</p>
+
+<ul>
+<li>Not all file system features are working on a memory file system so it is possible that you cannot use this for some things event if it is edge cases</li>
+<li><code>FileSystem memory</code> systematically return a new clean file system. This means that if you need to access it again, you need to save your instance!</li>
+</ul>
+<p>Example of memory file system access:</p>
+
+<pre><code>MyTestCase &gt;&gt; setUp
+	super setUp.
+	fileSystem := FileSystem memory.
+	application configurationsFolder: (fileSystem / 'configurations') ensureCreateDirectory</code></pre>
+
+<pre><code>MyTestCase &gt;&gt; testDefaultConfiguration
+	application generateDefaultConfiguration.
+	self assert: FileSystem memory / 'configurations' / 'default.config'. "&lt;=== This will not work because the file system will be new!"
+	self assert: fileSystem / 'configurations' / 'default.config'. "&lt;=== This will work because you saved your file system"
+	self assert: application configurationsFolder / 'default.config' "&lt;=== This will work because it will be the saved file reference"</code></pre>
+
+<p>My personnal advice:</p>
+
+<ul>
+<li>Use a memory file system when possible</li>
+<li>Use temp if your features are exploiting a feature not supported by the memory file system</li>
+<li>Use a folder generated from an UUID only when necessary and both solutions above are impossible to execute</li>
+</ul>
+<h3 id="conclusion-2"><span class="number">6.12</span> Conclusion</h3>
+<p>SUnit is a simple framework but it already provides a powerful set of mechanisms to take real advantage of writing tests.
+In particular parametrized tests are a powerful method when you have several objects that expose the same API, then you can reuse your
+tests.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="sunit-the-framework.html">← SUnit: The framework</a>
+        <a class="next" rel="next" href="sunit-implementation.html">SUnit implementation →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Testing in Pharo · Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

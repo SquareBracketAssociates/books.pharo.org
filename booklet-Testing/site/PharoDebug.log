@@ -1,0 +1,3043 @@
+THERE_BE_DRAGONS_HERE
+Cannot find format!
+7 August 2025 9:13:30.954967 am
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.695.sha.6103a275f1acabf1b4db65b335ed82e6dd9f1e87 (64 Bit)]
+
+[ NotFound signal: 'Cannot find ' , aFlagIdentifier asSymbol, '!' ] in ClapPillarBuildCommand(ClapApplication)>>defaultValueFor:
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+		aFlagIdentifier: 	#format
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build'))
+		project: 	nil
+		strategy: 	nil
+
+
+ClapContext>>defaultValueFor:in:noneBlock:
+	Receiver: a ClapContext(an OrderedCollection('pillar' 'build'))
+	Arguments and temporary variables: 
+		anIdentifier: 	#format
+		application: 	a ClapPillarBuildCommand
+		noDefaultValueBlock: 	[ NotFound signal: 'Cannot find ' , aFlagIdentifier as[..]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('pillar' 'build')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(pillar)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+ClapPillarBuildCommand(ClapApplication)>>defaultValueFor:
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+		aFlagIdentifier: 	#format
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build'))
+		project: 	nil
+		strategy: 	nil
+
+
+[ self defaultValueFor: aFlagIdentifier ] in ClapPillarBuildCommand(ClapApplication)>>positional:
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+		aFlagIdentifier: 	#format
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build'))
+		project: 	nil
+		strategy: 	nil
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ self defaultValueFor: aFlagIdentifier ]
+	Arguments and temporary variables: 
+		anArg: 	NotFound: No positional found with id: format
+	Receiver's instance variables: 
+		outerContext: 	ClapPillarBuildCommand(ClapApplication)>>positional:
+		compiledBlock: 	a CompiledBlock: [ self defaultValueFor: aFlagIdentifier ]
+		numArgs: 	0
+		receiver: 	a ClapPillarBuildCommand
+
+
+Context>>evaluateSignal:
+	Receiver: FullBlockClosure(BlockClosure)>>on:do:
+	Arguments and temporary variables: 
+		exception: 	NotFound: No positional found with id: format
+		value: 	nil
+	Receiver's instance variables: 
+		sender: 	ClapPillarBuildCommand(ClapApplication)>>positional:
+		pc: 	30
+		stackp: 	2
+		method: 	BlockClosure>>#on:do:
+		closureOrNil: 	nil
+		receiver: 	[ self rawPositional: aFlagIdentifier ]
+
+
+Context>>handleSignal:
+	Receiver: FullBlockClosure(BlockClosure)>>on:do:
+	Arguments and temporary variables: 
+		exception: 	NotFound: No positional found with id: format
+	Receiver's instance variables: 
+		sender: 	ClapPillarBuildCommand(ClapApplication)>>positional:
+		pc: 	30
+		stackp: 	2
+		method: 	BlockClosure>>#on:do:
+		closureOrNil: 	nil
+		receiver: 	[ self rawPositional: aFlagIdentifier ]
+
+
+NotFound(Exception)>>signal
+	Receiver: NotFound: No positional found with id: format
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		messageText: 	'No positional found with id: format'
+		tag: 	nil
+		signaler: 	a ClapContext(an OrderedCollection('pillar' 'build'))
+		signalContext: 	NotFound(Exception)>>signal
+		handlerContext: 	FullBlockClosure(BlockClosure)>>on:do:
+		outerContext: 	nil
+		object: 	nil
+
+
+NotFound(Exception)>>signal:
+	Receiver: NotFound: No positional found with id: format
+	Arguments and temporary variables: 
+		signalerText: 	'No positional found with id: format'
+	Receiver's instance variables: 
+		messageText: 	'No positional found with id: format'
+		tag: 	nil
+		signaler: 	a ClapContext(an OrderedCollection('pillar' 'build'))
+		signalContext: 	NotFound(Exception)>>signal
+		handlerContext: 	FullBlockClosure(BlockClosure)>>on:do:
+		outerContext: 	nil
+		object: 	nil
+
+
+NotFound class(Exception class)>>signal:
+	Receiver: NotFound
+	Arguments and temporary variables: 
+		message: 	'No positional found with id: format'
+	Receiver's instance variables: 
+		superclass: 	Error
+		methodDict: 	a MethodDictionary(#collection->NotFound>>#collection #collecti[..]
+		format: 	65543
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (accessing) - 5 selector(s) Protocol (private)[..]
+		subclasses: 	{KeyNotFound. ValueNotFound. FFIVariableNameNotFound}
+		name: 	#NotFound
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	37916160
+		packageTag: 	a PackageTag(Errors)
+
+
+[ NotFound signal: 'No positional found with id: ', anIdentifier  ] in ClapContext>>positional:
+	Receiver: a ClapContext(an OrderedCollection('pillar' 'build'))
+	Arguments and temporary variables: 
+		anIdentifier: 	#format
+		identifierMatches: 	an OrderedCollection()
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('pillar' 'build')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(pillar)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+OrderedCollection(Collection)>>ifEmpty:
+	Receiver: an OrderedCollection()
+	Arguments and temporary variables: 
+		aBlock: 	[ NotFound signal: 'No positional found with id: ', anIdentifier  ]
+	Receiver's instance variables: 
+		array: 	#(nil nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	0
+
+
+ClapContext>>positional:
+	Receiver: a ClapContext(an OrderedCollection('pillar' 'build'))
+	Arguments and temporary variables: 
+		anIdentifier: 	#format
+		identifierMatches: 	an OrderedCollection()
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('pillar' 'build')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(pillar)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+ClapPillarBuildCommand(ClapApplication)>>rawPositional:
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+		anIdentifier: 	#format
+		matches: 	nil
+		values: 	nil
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build'))
+		project: 	nil
+		strategy: 	nil
+
+
+[ self rawPositional: aFlagIdentifier ] in ClapPillarBuildCommand(ClapApplication)>>positional:
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+		aFlagIdentifier: 	#format
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build'))
+		project: 	nil
+		strategy: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [ self rawPositional: aFlagIdentifier ]
+	Arguments and temporary variables: 
+		exception: 	NotFound
+		handlerAction: 	[ self defaultValueFor: aFlagIdentifier ]
+	Receiver's instance variables: 
+		outerContext: 	ClapPillarBuildCommand(ClapApplication)>>positional:
+		compiledBlock: 	a CompiledBlock: [ self rawPositional: aFlagIdentifier ]
+		numArgs: 	0
+		receiver: 	a ClapPillarBuildCommand
+
+
+ClapPillarBuildCommand(ClapApplication)>>positional:
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+		aFlagIdentifier: 	#format
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build'))
+		project: 	nil
+		strategy: 	nil
+
+
+ClapPillarBuildCommand>>format
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build'))
+		project: 	nil
+		strategy: 	nil
+
+
+ClapPillarBuildCommand>>outputTarget
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+		format: 	nil
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build'))
+		project: 	nil
+		strategy: 	nil
+
+
+ClapPillarBuildCommand>>execute
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+		target: 	nil
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build'))
+		project: 	nil
+		strategy: 	nil
+
+
+ClapPillarBuildCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build'))
+		project: 	nil
+		strategy: 	nil
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('pillar' 'build'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('pillar' 'build')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(pillar)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('pillar' 'build'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('pillar' 'build'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('pillar' 'build')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(pillar)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+[ NotFound signal: 'Cannot find ' , aFlagIdentifier asSymbol, '!' ] in ClapPillarBuildCommand(ClapApplication)>>defaultValueFor:
+ClapContext>>defaultValueFor:in:noneBlock:
+ClapPillarBuildCommand(ClapApplication)>>defaultValueFor:
+[ self defaultValueFor: aFlagIdentifier ] in ClapPillarBuildCommand(ClapApplication)>>positional:
+FullBlockClosure(BlockClosure)>>cull:
+Context>>evaluateSignal:
+Context>>handleSignal:
+NotFound(Exception)>>signal
+NotFound(Exception)>>signal:
+NotFound class(Exception class)>>signal:
+[ NotFound signal: 'No positional found with id: ', anIdentifier  ] in ClapContext>>positional:
+OrderedCollection(Collection)>>ifEmpty:
+ClapContext>>positional:
+ClapPillarBuildCommand(ClapApplication)>>rawPositional:
+[ self rawPositional: aFlagIdentifier ] in ClapPillarBuildCommand(ClapApplication)>>positional:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapPillarBuildCommand(ClapApplication)>>positional:
+ClapPillarBuildCommand>>format
+ClapPillarBuildCommand>>outputTarget
+ClapPillarBuildCommand>>execute
+ClapPillarBuildCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+Attempt to read undeclared variable OSSUnixSubprocess
+8 August 2025 4:26:09.182119 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.695.sha.6103a275f1acabf1b4db65b335ed82e6dd9f1e87 (64 Bit)]
+
+UndeclaredVariable>>runtimeUndeclaredReadInContext:
+	Receiver: #OSSUnixSubprocess->nil
+	Arguments and temporary variables: 
+		aContext: 	PRPDFDocument>>executeOnUnixCommand:arguments:workingDirectory:
+	Receiver's instance variables: 
+		name: 	#OSSUnixSubprocess
+		value: 	nil
+
+
+PRPDFDocument>>executeOnUnixCommand:arguments:workingDirectory:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		command: 	'latexmk'
+		arguments: 	#('-pdflatex=lualatex' '-pdf' '-ps-' '-f' '-interaction=nonstopm[..]
+		aWorkingDirectory: 	'/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing[..]
+		process: 	nil
+	Receiver's instance variables: 
+		project: 	a PRProject[750653184]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument>>executeCommand:arguments:workingDirectory:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		command: 	'latexmk'
+		arguments: 	#('-pdflatex=lualatex' '-pdf' '-ps-' '-f' '-interaction=nonstopm[..]
+		aWorkingDirectory: 	'/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing[..]
+	Receiver's instance variables: 
+		project: 	a PRProject[750653184]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument>>postWriteTransform:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		aFile: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Pharo[..]
+		relativePath: 	Path * 'index.md'
+		outputFileReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk[..]
+	Receiver's instance variables: 
+		project: 	a PRProject[750653184]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument(PRAbstractOutputDocument)>>buildOn:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		aPRProject: 	a PRProject[750653184]
+		parsedDocument: 	a MicRootBlock
+		transformedDocument: 	a MicRootBlock
+		writtenFile: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing[..]
+	Receiver's instance variables: 
+		project: 	a PRProject[750653184]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRPdfOutput(PRTarget)>>buildOn:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		aProject: 	a PRProject[750653184]
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		status: 	a PRSuccess
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+Set>>do:
+	Receiver: a Set(MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writin[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+		each file exists ifTrue: [ 
+			status := status and: (([..]
+		index: 	5
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+	Receiver's instance variables: 
+		tally: 	1
+		array: 	an Array(nil nil nil nil MicMicrodownInputDocument(/Users/ducasse/Wo[..]
+
+
+PRPdfOutput(PRTarget)>>buildOn:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		status: 	a PRSuccess
+		aProject: 	a PRProject[750653184]
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+PRProject>>build:
+	Receiver: a PRProject[750653184]
+	Arguments and temporary variables: 
+		output: 	a PRPdfOutput
+	Receiver's instance variables: 
+		properties: 	nil
+		baseDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		templatable: 	false
+		toc: 	nil
+
+
+ClapPillarBuildCommand>>execute
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+		target: 	a PRPdfOutput
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		project: 	a PRProject[750653184]
+		strategy: 	a PRBuildListStrategy
+
+
+ClapPillarBuildCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		project: 	a PRProject[750653184]
+		strategy: 	a PRBuildListStrategy
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('pillar' 'build' 'pdf' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(pillar build pdf index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.[..]
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('pillar' 'build' 'pdf' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(pillar build pdf index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+UndeclaredVariable>>runtimeUndeclaredReadInContext:
+PRPDFDocument>>executeOnUnixCommand:arguments:workingDirectory:
+PRPDFDocument>>executeCommand:arguments:workingDirectory:
+PRPDFDocument>>postWriteTransform:
+PRPDFDocument(PRAbstractOutputDocument)>>buildOn:
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRPdfOutput(PRTarget)>>buildOn:
+Set>>do:
+PRPdfOutput(PRTarget)>>buildOn:
+PRProject>>build:
+ClapPillarBuildCommand>>execute
+ClapPillarBuildCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+Attempt to read undeclared variable PRPillarParserMain
+8 August 2025 5:45:13.125515 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.695.sha.6103a275f1acabf1b4db65b335ed82e6dd9f1e87 (64 Bit)]
+
+UndeclaredVariable>>runtimeUndeclaredReadInContext:
+	Receiver: #PRPillarParserMain->nil
+	Arguments and temporary variables: 
+		aContext: 	PRProject>>tableOfContents
+	Receiver's instance variables: 
+		name: 	#PRPillarParserMain
+		value: 	nil
+
+
+PRProject>>tableOfContents
+	Receiver: a PRProject[639124224]
+	Arguments and temporary variables: 
+		tocFilePath: 	Path * 'index.md'
+		tocFileName: 	'index.md'
+		inputDoc: 	nil
+	Receiver's instance variables: 
+		properties: 	nil
+		baseDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		templatable: 	false
+		toc: 	nil
+
+
+PRHtmlDocument(PRAbstractOutputDocument)>>tableOfContents
+	Receiver: a PRHtmlDocument
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		project: 	a PRProject[639124224]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRHtmlOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRHtmlDocument>>getMustacheTemplateValuesFromDocument:
+	Receiver: a PRHtmlDocument
+	Arguments and temporary variables: 
+		aDocument: 	a MicRootBlock
+		template: 	a ConfigurationForPillar
+	Receiver's instance variables: 
+		project: 	a PRProject[639124224]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRHtmlOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRHtmlDocument(PRAbstractOutputDocument)>>writeDocument:
+	Receiver: a PRHtmlDocument
+	Arguments and temporary variables: 
+		aDocument: 	a MicRootBlock
+		environment: 	nil
+		templatedOutput: 	nil
+		outputFile: 	nil
+	Receiver's instance variables: 
+		project: 	a PRProject[639124224]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRHtmlOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRHtmlDocument(PRAbstractOutputDocument)>>buildOn:
+	Receiver: a PRHtmlDocument
+	Arguments and temporary variables: 
+		aPRProject: 	a PRProject[639124224]
+		parsedDocument: 	a MicRootBlock
+		transformedDocument: 	a MicRootBlock
+		writtenFile: 	nil
+	Receiver's instance variables: 
+		project: 	a PRProject[639124224]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRHtmlOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRHtmlOutput(PRTarget)>>buildOn:
+	Receiver: a PRHtmlOutput
+	Arguments and temporary variables: 
+		aProject: 	a PRProject[639124224]
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		status: 	a PRSuccess
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+Set>>do:
+	Receiver: a Set(MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writin[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+		each file exists ifTrue: [ 
+			status := status and: (([..]
+		index: 	4
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+	Receiver's instance variables: 
+		tally: 	1
+		array: 	an Array(nil nil nil MicMicrodownInputDocument(/Users/ducasse/Worksp[..]
+
+
+PRHtmlOutput(PRTarget)>>buildOn:
+	Receiver: a PRHtmlOutput
+	Arguments and temporary variables: 
+		status: 	a PRSuccess
+		aProject: 	a PRProject[639124224]
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+PRProject>>build:
+	Receiver: a PRProject[639124224]
+	Arguments and temporary variables: 
+		output: 	a PRHtmlOutput
+	Receiver's instance variables: 
+		properties: 	nil
+		baseDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		templatable: 	false
+		toc: 	nil
+
+
+ClapPillarBuildCommand>>execute
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+		target: 	a PRHtmlOutput
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build' 'html' 'index.[..]
+		project: 	a PRProject[639124224]
+		strategy: 	a PRBuildListStrategy
+
+
+ClapPillarBuildCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build' 'html' 'index.[..]
+		project: 	a PRProject[639124224]
+		strategy: 	a PRBuildListStrategy
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('pillar' 'build' 'html' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('pillar' 'build' 'html' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(pillar build html index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('pillar' 'build' 'html' 'index[..]
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('pillar' 'build' 'html' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('pillar' 'build' 'html' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(pillar build html index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+UndeclaredVariable>>runtimeUndeclaredReadInContext:
+PRProject>>tableOfContents
+PRHtmlDocument(PRAbstractOutputDocument)>>tableOfContents
+PRHtmlDocument>>getMustacheTemplateValuesFromDocument:
+PRHtmlDocument(PRAbstractOutputDocument)>>writeDocument:
+PRHtmlDocument(PRAbstractOutputDocument)>>buildOn:
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRHtmlOutput(PRTarget)>>buildOn:
+Set>>do:
+PRHtmlOutput(PRTarget)>>buildOn:
+PRProject>>build:
+ClapPillarBuildCommand>>execute
+ClapPillarBuildCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+Message not understood: AnObsoletePRLaTeXWriter class >> #toLatexPath:
+8 August 2025 8:05:20.701358 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.695.sha.6103a275f1acabf1b4db65b335ed82e6dd9f1e87 (64 Bit)]
+
+AnObsoletePRLaTeXWriter class(Object)>>doesNotUnderstand: #toLatexPath:
+	Receiver: AnObsoletePRLaTeXWriter
+	Arguments and temporary variables: 
+		aMessage: 	toLatexPath: 'index.tex'
+		exception: 	Instance of AnObsoletePRLaTeXWriter class did not understand #to[..]
+		resumeValue: 	nil
+	Receiver's instance variables: 
+		superclass: 	AnObsoletePRDocumentWriter
+		methodDict: 	a MethodDictionary()
+		format: 	65540
+		layout: 	a FixedLayout
+		protocols: 	#()
+		subclasses: 	nil
+		name: 	'AnObsoletePRLaTeXWriter'
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	6634225
+		packageTag: 	a PackageTag(Uncategorized)
+
+
+PRPDFDocument>>postWriteTransform:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		aFile: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Pharo[..]
+		relativePath: 	Path * 'index.md'
+		outputFileReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk[..]
+	Receiver's instance variables: 
+		project: 	a PRProject[680559872]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+PRPDFDocument(PRAbstractOutputDocument)>>buildOn:
+	Receiver: a PRPDFDocument
+	Arguments and temporary variables: 
+		aPRProject: 	a PRProject[680559872]
+		parsedDocument: 	a MicRootBlock
+		transformedDocument: 	a MicRootBlock
+		writtenFile: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing[..]
+	Receiver's instance variables: 
+		project: 	a PRProject[680559872]
+		file: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		target: 	a PRPdfOutput
+		outputDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+
+
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRPdfOutput(PRTarget)>>buildOn:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		aProject: 	a PRProject[680559872]
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+		status: 	a PRSuccess
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+Set>>do:
+	Receiver: a Set(MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writin[..]
+	Arguments and temporary variables: 
+		aBlock: 	[ :each |
+		each file exists ifTrue: [ 
+			status := status and: (([..]
+		index: 	7
+		each: 	MicMicrodownInputDocument(/Users/ducasse/Workspace/FirstCircle/MyBook[..]
+	Receiver's instance variables: 
+		tally: 	1
+		array: 	an Array(nil nil nil nil nil nil MicMicrodownInputDocument(/Users/du[..]
+
+
+PRPdfOutput(PRTarget)>>buildOn:
+	Receiver: a PRPdfOutput
+	Arguments and temporary variables: 
+		status: 	a PRSuccess
+		aProject: 	a PRProject[680559872]
+	Receiver's instance variables: 
+		buildStrategy: 	a PRBuildListStrategy
+		transformations: 	a Set()
+
+
+PRProject>>build:
+	Receiver: a PRProject[680559872]
+	Arguments and temporary variables: 
+		output: 	a PRPdfOutput
+	Receiver's instance variables: 
+		properties: 	nil
+		baseDirectory: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writi[..]
+		templatable: 	false
+		toc: 	nil
+
+
+ClapPillarBuildCommand>>execute
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+		target: 	a PRPdfOutput
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		project: 	a PRProject[680559872]
+		strategy: 	a PRBuildListStrategy
+
+
+ClapPillarBuildCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBuildCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+		project: 	a PRProject[680559872]
+		strategy: 	a PRBuildListStrategy
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('pillar' 'build' 'pdf' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(pillar build pdf index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.[..]
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('pillar' 'build' 'pdf' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('pillar' 'build' 'pdf' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(pillar build pdf index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+AnObsoletePRLaTeXWriter class(Object)>>doesNotUnderstand: #toLatexPath:
+PRPDFDocument>>postWriteTransform:
+PRPDFDocument(PRAbstractOutputDocument)>>buildOn:
+[ :each |
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	] in PRPdfOutput(PRTarget)>>buildOn:
+Set>>do:
+PRPdfOutput(PRTarget)>>buildOn:
+PRProject>>build:
+ClapPillarBuildCommand>>execute
+ClapPillarBuildCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+
+24 March 2026 3:48:59.052063 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+MicAnalysisReportWriter class(Object)>>halt
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[643211264]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[643211264]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+MicAnalysisReportWriter class(Object)>>halt
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+
+24 March 2026 3:49:03.021606 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+MicAnalysisReportWriter class(Object)>>halt
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		aConfiguration: 	a ConfigurationForPillar
+		availableCheckers: 	a Dictionary('CodeBlockValidator'->MicCodeBlockValidator[..]
+		configuredCheckers: 	nil
+		onlyCheckers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[643211264]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[643211264]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+MicAnalysisReportWriter class(Object)>>halt
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+
+24 March 2026 3:49:03.823422 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+MicAnalysisReportWriter class(Object)>>halt
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	{MicEnglishTypographyChecker}
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[643211264]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[643211264]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+MicAnalysisReportWriter class(Object)>>halt
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+
+24 March 2026 3:50:29.23861 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+MicAnalysisReportWriter class(Object)>>halt
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[643211264]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[643211264]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+MicAnalysisReportWriter class(Object)>>halt
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+
+24 March 2026 3:50:35.938774 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+MicAnalysisReportWriter class(Object)>>halt
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		aConfiguration: 	a ConfigurationForPillar
+		availableCheckers: 	a Dictionary('CodeBlockValidator'->MicCodeBlockValidator[..]
+		configuredCheckers: 	nil
+		onlyCheckers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[643211264]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[643211264]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+MicAnalysisReportWriter class(Object)>>halt
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+
+24 March 2026 4:08:34.592766 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+MicAnalysisReportWriter class(Object)>>halt
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[643211264]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[643211264]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+MicAnalysisReportWriter class(Object)>>halt
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+
+24 March 2026 4:08:48.816735 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+MicAnalysisReportWriter class(Object)>>halt
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		aConfiguration: 	a ConfigurationForPillar
+		availableCheckers: 	a Dictionary('CodeBlockValidator'->MicCodeBlockValidator[..]
+		configuredCheckers: 	nil
+		onlyCheckers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+	Receiver: MicAnalysisReportWriter
+	Arguments and temporary variables: 
+		folderReference: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Wri[..]
+		fileReference: 	File @ index.md
+		aConfiguration: 	a ConfigurationForPillar
+		reporter: 	a MicAnalysisReportWriter
+		checkers: 	nil
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addResults:->MicAnalysisReportWriter>>#addR[..]
+		format: 	65537
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (adding) - 1 selector(s) Protocol (reporting) [..]
+		subclasses: 	nil
+		name: 	#MicAnalysisReportWriter
+		classPool: 	nil
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	5662465
+		packageTag: 	a PackageTag(Core)
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	File @ index.md
+		reporter: 	nil
+		parent: 	File @ /Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/Phar[..]
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[350222848]
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+		project: 	a PRProject[350222848]
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check' 'index.md'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check' 'index.md'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check' 'index.md')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch(check index.md)
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+MicAnalysisReportWriter class(Object)>>halt
+MicAnalysisReportWriter class>>checkersFromConfiguration:
+MicAnalysisReportWriter class>>reportForFolder:startingFrom:configuration:
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+Cannot find requestedFile!
+9 April 2026 4:34:11.202809 pm
+
+VM: Mac OS - arm64 - 1000 - CoInterpreter VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+StackToRegisterMappingCogit VMMaker-tonel.1 uuid: cd2868a3-3dee-0d00-bd87-dbbf06d86bc4 Apr  3 2025
+v10.3.4+0.62881b73c - Commit: 62881b73c - Date: 2025-04-03 10:29:49 +0200
+
+Image: Pharo13.1.0SNAPSHOT [Build information: Pharo-13.1.0+SNAPSHOT.build.731.sha.c4d03ecd531b9f32fcc7cd9e3b61728bce0d4c7f (64 Bit)]
+
+[ NotFound signal: 'Cannot find ' , aFlagIdentifier asSymbol, '!' ] in ClapPillarBookTesterCommand(ClapApplication)>>defaultValueFor:
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		aFlagIdentifier: 	#requestedFile
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check'))
+		project: 	nil
+
+
+ClapContext>>defaultValueFor:in:noneBlock:
+	Receiver: a ClapContext(an OrderedCollection('check'))
+	Arguments and temporary variables: 
+		anIdentifier: 	#requestedFile
+		application: 	a ClapPillarBookTesterCommand
+		noDefaultValueBlock: 	[ NotFound signal: 'Cannot find ' , aFlagIdentifier as[..]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch()
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>defaultValueFor:
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		aFlagIdentifier: 	#requestedFile
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check'))
+		project: 	nil
+
+
+[ self defaultValueFor: aFlagIdentifier ] in ClapPillarBookTesterCommand(ClapApplication)>>positional:
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		aFlagIdentifier: 	#requestedFile
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check'))
+		project: 	nil
+
+
+FullBlockClosure(BlockClosure)>>cull:
+	Receiver: [ self defaultValueFor: aFlagIdentifier ]
+	Arguments and temporary variables: 
+		anArg: 	NotFound: No positional found with id: requestedFile
+	Receiver's instance variables: 
+		outerContext: 	ClapPillarBookTesterCommand(ClapApplication)>>positional:
+		compiledBlock: 	a CompiledBlock: [ self defaultValueFor: aFlagIdentifier ]
+		numArgs: 	0
+		receiver: 	a ClapPillarBookTesterCommand
+
+
+Context>>evaluateSignal:
+	Receiver: FullBlockClosure(BlockClosure)>>on:do:
+	Arguments and temporary variables: 
+		exception: 	NotFound: No positional found with id: requestedFile
+		value: 	nil
+	Receiver's instance variables: 
+		sender: 	ClapPillarBookTesterCommand(ClapApplication)>>positional:
+		pc: 	30
+		stackp: 	2
+		method: 	BlockClosure>>#on:do:
+		closureOrNil: 	nil
+		receiver: 	[ self rawPositional: aFlagIdentifier ]
+
+
+Context>>handleSignal:
+	Receiver: FullBlockClosure(BlockClosure)>>on:do:
+	Arguments and temporary variables: 
+		exception: 	NotFound: No positional found with id: requestedFile
+	Receiver's instance variables: 
+		sender: 	ClapPillarBookTesterCommand(ClapApplication)>>positional:
+		pc: 	30
+		stackp: 	2
+		method: 	BlockClosure>>#on:do:
+		closureOrNil: 	nil
+		receiver: 	[ self rawPositional: aFlagIdentifier ]
+
+
+NotFound(Exception)>>signal
+	Receiver: NotFound: No positional found with id: requestedFile
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		messageText: 	'No positional found with id: requestedFile'
+		tag: 	nil
+		signaler: 	a ClapContext(an OrderedCollection('check'))
+		signalContext: 	NotFound(Exception)>>signal
+		handlerContext: 	FullBlockClosure(BlockClosure)>>on:do:
+		outerContext: 	nil
+		object: 	nil
+
+
+NotFound(Exception)>>signal:
+	Receiver: NotFound: No positional found with id: requestedFile
+	Arguments and temporary variables: 
+		signalerText: 	'No positional found with id: requestedFile'
+	Receiver's instance variables: 
+		messageText: 	'No positional found with id: requestedFile'
+		tag: 	nil
+		signaler: 	a ClapContext(an OrderedCollection('check'))
+		signalContext: 	NotFound(Exception)>>signal
+		handlerContext: 	FullBlockClosure(BlockClosure)>>on:do:
+		outerContext: 	nil
+		object: 	nil
+
+
+NotFound class(Exception class)>>signal:
+	Receiver: NotFound
+	Arguments and temporary variables: 
+		message: 	'No positional found with id: requestedFile'
+	Receiver's instance variables: 
+		superclass: 	Error
+		methodDict: 	a MethodDictionary(#collection->NotFound>>#collection #collecti[..]
+		format: 	65543
+		layout: 	a FixedLayout
+		protocols: 	an Array(Protocol (accessing) - 5 selector(s) Protocol (private)[..]
+		subclasses: 	{KeyNotFound. ValueNotFound. FFIVariableNameNotFound}
+		name: 	#NotFound
+		classPool: 	nil
+		sharedPools: 	nil
+		environment: 	a SystemEnvironment(lots of globals)
+		commentSourcePointer: 	37997966
+		packageTag: 	a PackageTag(Errors)
+
+
+[ 
+			aMatch parent isClapContext
+				ifTrue: [ NotFound signal: 'No positional found with id: ', anIdentifier  ]
+				ifFalse: [ self positional: anIdentifier in: aMatch parent ] ] in ClapContext>>positional:in:
+	Receiver: a ClapContext(an OrderedCollection('check'))
+	Arguments and temporary variables: 
+		anIdentifier: 	#requestedFile
+		aMatch: 	a ClapCompositeMatch()
+		identifierMatches: 	an OrderedCollection()
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch()
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+OrderedCollection(Collection)>>ifEmpty:
+	Receiver: an OrderedCollection()
+	Arguments and temporary variables: 
+		aBlock: 	[ 
+			aMatch parent isClapContext
+				ifTrue: [ NotFound signal: 'N[..]
+	Receiver's instance variables: 
+		array: 	#(nil nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	0
+
+
+ClapContext>>positional:in:
+	Receiver: a ClapContext(an OrderedCollection('check'))
+	Arguments and temporary variables: 
+		anIdentifier: 	#requestedFile
+		aMatch: 	a ClapCompositeMatch()
+		identifierMatches: 	an OrderedCollection()
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch()
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[ 
+			aMatch parent isClapContext
+				ifTrue: [ NotFound signal: 'No positional found with id: ', anIdentifier  ]
+				ifFalse: [ self positional: anIdentifier in: aMatch parent ] ] in ClapContext>>positional:in:
+	Receiver: a ClapContext(an OrderedCollection('check'))
+	Arguments and temporary variables: 
+		anIdentifier: 	#requestedFile
+		aMatch: 	a ClapNamedMatch()
+		identifierMatches: 	an OrderedCollection()
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch()
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+OrderedCollection(Collection)>>ifEmpty:
+	Receiver: an OrderedCollection()
+	Arguments and temporary variables: 
+		aBlock: 	[ 
+			aMatch parent isClapContext
+				ifTrue: [ NotFound signal: 'N[..]
+	Receiver's instance variables: 
+		array: 	#(nil nil nil nil nil nil nil nil nil nil)
+		firstIndex: 	1
+		lastIndex: 	0
+
+
+ClapContext>>positional:in:
+	Receiver: a ClapContext(an OrderedCollection('check'))
+	Arguments and temporary variables: 
+		anIdentifier: 	#requestedFile
+		aMatch: 	a ClapNamedMatch()
+		identifierMatches: 	an OrderedCollection()
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch()
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+ClapContext>>positional:
+	Receiver: a ClapContext(an OrderedCollection('check'))
+	Arguments and temporary variables: 
+		anIdentifier: 	#requestedFile
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch()
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>rawPositional:
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		anIdentifier: 	#requestedFile
+		matches: 	nil
+		values: 	nil
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check'))
+		project: 	nil
+
+
+[ self rawPositional: aFlagIdentifier ] in ClapPillarBookTesterCommand(ClapApplication)>>positional:
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		aFlagIdentifier: 	#requestedFile
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check'))
+		project: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [ self rawPositional: aFlagIdentifier ]
+	Arguments and temporary variables: 
+		exception: 	NotFound
+		handlerAction: 	[ self defaultValueFor: aFlagIdentifier ]
+	Receiver's instance variables: 
+		outerContext: 	ClapPillarBookTesterCommand(ClapApplication)>>positional:
+		compiledBlock: 	a CompiledBlock: [ self rawPositional: aFlagIdentifier ]
+		numArgs: 	0
+		receiver: 	a ClapPillarBookTesterCommand
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>positional:
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		aFlagIdentifier: 	#requestedFile
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check'))
+		project: 	nil
+
+
+ClapPillarBookTesterCommand>>requestedFile
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check'))
+		project: 	nil
+
+
+ClapPillarBookTesterCommand>>execute
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+		file: 	nil
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check'))
+		project: 	nil
+
+
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+	Receiver: a ClapPillarBookTesterCommand
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		context: 	a ClapContext(an OrderedCollection('check'))
+		project: 	nil
+
+
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch()
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+FullBlockClosure(BlockClosure)>>on:do:
+	Receiver: [
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailur[..]
+	Arguments and temporary variables: 
+		exception: 	Exit
+		handlerAction: 	[ :exception |
+			exitException := exception.
+			exitBlock v[..]
+	Receiver's instance variables: 
+		outerContext: 	ClapContext>>executeToExit:
+		compiledBlock: 	a CompiledBlock: [
+		self rememberSession.
+		self ifMismatch[..]
+		numArgs: 	0
+		receiver: 	a ClapContext(an OrderedCollection('check'))
+
+
+ClapContext>>executeToExit:
+	Receiver: a ClapContext(an OrderedCollection('check'))
+	Arguments and temporary variables: 
+		exitBlock: 	[ :exit | self handleExit: exit ]
+	Receiver's instance variables: 
+		specification: 	a ClapRoot(clap)
+		arguments: 	an OrderedCollection('check')
+		obeyingExits: 	true
+		stdio: 	Stdio
+		match: 	a ClapCompositeMatch()
+		leftovers: 	an OrderedCollection()
+		session: 	a WorkingSession
+		exitException: 	nil
+
+
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+	Receiver: a ClapCommandLineHandler
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		commandLine: 	a CommandLineArguments
+		session: 	a WorkingSession
+		stdout: 	a VTermOutputDriver
+		stderr: 	a VTermOutputDriver
+
+
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+	Receiver: [
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments[..]
+	Arguments and temporary variables: 
+x
+	Receiver's instance variables: 
+		outerContext: 	ClapCommandLineHandler>>activate
+		compiledBlock: 	a CompiledBlock: [
+		ClapContext withPragmaCommands
+			beObe[..]
+		numArgs: 	0
+		receiver: 	a ClapCommandLineHandler
+
+
+
+--- The full stack ---
+[ NotFound signal: 'Cannot find ' , aFlagIdentifier asSymbol, '!' ] in ClapPillarBookTesterCommand(ClapApplication)>>defaultValueFor:
+ClapContext>>defaultValueFor:in:noneBlock:
+ClapPillarBookTesterCommand(ClapApplication)>>defaultValueFor:
+[ self defaultValueFor: aFlagIdentifier ] in ClapPillarBookTesterCommand(ClapApplication)>>positional:
+FullBlockClosure(BlockClosure)>>cull:
+Context>>evaluateSignal:
+Context>>handleSignal:
+NotFound(Exception)>>signal
+NotFound(Exception)>>signal:
+NotFound class(Exception class)>>signal:
+[ 
+			aMatch parent isClapContext
+				ifTrue: [ NotFound signal: 'No positional found with id: ', anIdentifier  ]
+				ifFalse: [ self positional: anIdentifier in: aMatch parent ] ] in ClapContext>>positional:in:
+OrderedCollection(Collection)>>ifEmpty:
+ClapContext>>positional:in:
+[ 
+			aMatch parent isClapContext
+				ifTrue: [ NotFound signal: 'No positional found with id: ', anIdentifier  ]
+				ifFalse: [ self positional: anIdentifier in: aMatch parent ] ] in ClapContext>>positional:in:
+OrderedCollection(Collection)>>ifEmpty:
+ClapContext>>positional:in:
+ClapContext>>positional:
+ClapPillarBookTesterCommand(ClapApplication)>>rawPositional:
+[ self rawPositional: aFlagIdentifier ] in ClapPillarBookTesterCommand(ClapApplication)>>positional:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapPillarBookTesterCommand(ClapApplication)>>positional:
+ClapPillarBookTesterCommand>>requestedFile
+ClapPillarBookTesterCommand>>execute
+ClapPillarBookTesterCommand(ClapApplication)>>executeOrPrintHelp
+[
+		self rememberSession.
+		self ifMismatch: [ self command printHelp. self exitFailure ].
+		self validateAll.
+		self command executeOrPrintHelp.
+		self exitSuccess ] in ClapContext>>executeToExit:
+FullBlockClosure(BlockClosure)>>on:do:
+ClapContext>>executeToExit:
+[
+		ClapContext withPragmaCommands
+			beObeyingExits;
+			setStdio: Stdio;
+			arguments: self arguments;
+			executeToExit: [ :exit | self handleExit: exit ]
+	] in ClapCommandLineHandler>>activate
+[self value.
+			"IMPORTANT: Do not step over next line of code. See method comments for details"
+			Processor terminateRealActive] in FullBlockClosure(BlockClosure)>>newProcess
+-------------------------------------------------------------------------------
+

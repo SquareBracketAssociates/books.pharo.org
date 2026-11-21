@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Extreme Test-Driven Development  by Example</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Testing in Pharo</a>
+    <p class="site-authors">Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="introduction.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="two-minutes-of-theory.html"><span class="number">2</span> Two minutes of theory</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-by-example.html"><span class="number">3</span> SUnit by example</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="extreme-test-driven-development.html" aria-current="page"><span class="number">4</span> Extreme Test-Driven Development  by Example</a>
+            
+            <ol>
+              
+              <li><a href="#a-simple-and-powerful-principle"><span class="number">4.1</span> A simple and powerful principle</a></li>
+              
+              <li><a href="#studying-an-example"><span class="number">4.2</span> Studying an example</a></li>
+              
+              <li><a href="#before-executing-a-test"><span class="number">4.3</span> Before executing a test</a></li>
+              
+              <li><a href="#executing-a-test-to-define-missing-methods"><span class="number">4.4</span> Executing a test to define missing methods</a></li>
+              
+              <li><a href="#stepping-back-supporting-the-programmer-flow"><span class="number">4.5</span> Stepping back: Supporting the programmer flow</a></li>
+              
+              <li><a href="#one-cycle"><span class="number">4.6</span> One cycle</a></li>
+              
+              <li><a href="#why-xtdd-is-powerful"><span class="number">4.7</span> Why XTDD is powerful?</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-the-framework.html"><span class="number">5</span> SUnit: The framework</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-cookbook.html"><span class="number">6</span> A little cookbook</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-implementation.html"><span class="number">7</span> SUnit implementation</a>
+            
+          </li>
+          
+          <li>
+            <a href="ui-testing.html"><span class="number">8</span> UI testing</a>
+            
+          </li>
+          
+          <li>
+            <a href="testing-web-applications.html"><span class="number">9</span> Testing web applications with Parasol</a>
+            
+          </li>
+          
+          <li>
+            <a href="mockobject-and-teachable.html"><span class="number">10</span> MockObject and Teachable: Two simple mocking approaches</a>
+            
+          </li>
+          
+          <li>
+            <a href="mutalk-a-mutation-testing.html"><span class="number">11</span> MuTalk: A Mutation Testing Framework</a>
+            
+          </li>
+          
+          <li>
+            <a href="performance-testing-with.html"><span class="number">12</span> Performance testing with SMark</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="extreme-test-driven-development-by-example"><span class="number">4</span> Extreme Test-Driven Development  by Example</h2>
+<p>In this chapter we will describe eXtreme Test-Driven Development (XTDD).
+XTDD is a unique feature of Pharo and its tools.
+We show that XTDD is Test-Driven Development on steroids.
+What is really exciting is that XTDD takes live programming at its best.
+It shows that in Pharo we can develop smart tools that offer to developers
+an absolutely gorgeous development flow.</p>
+
+<h3 id="a-simple-and-powerful-principle"><span class="number">4.1</span> A simple and powerful principle</h3>
+<p>The main idea behind XTDD is to avoid breaking the development flow and to take advantage of live programming.
+It is as simple as:</p>
+
+<ul>
+<li>First, you write a test.</li>
+<li>Second, you execute the test.</li>
+<li>When it breaks, you define classes, methods, or add instance variables on the fly in the debugger.</li>
+<li>Then, you resume the execution from the debugger and continue the execution until the test is green.</li>
+</ul>
+<p>What you should see is that there is no border between specifying a test and developing the code under test.
+You develop in the flow of the executed program interacting with the objects as you go along.</p>
+
+<h3 id="studying-an-example"><span class="number">4.2</span> Studying an example</h3>
+<p>Let us illustrate eXtreme Test-Driven Development.
+We use a dead simple counter. Nothing simpler.
+This way we will focus on the essence of the process.
+We want to show you that you can do it.</p>
+
+<p>Basically we will define a test, and the system will help define missing entities (classes).
+Then we will execute the test. It will break and via the debugger, we will create new methods, add new instance variables
+and continue the execution without getting out of the debugger.</p>
+
+<p>Let us get started.</p>
+
+<h3 id="before-executing-a-test"><span class="number">4.3</span> Before executing a test</h3>
+<h4 id="define-a-package-and-an-empty-test-case-class">Define a package and an empty test case class</h4>
+<p>First we define a package <code>Counter</code> and define a subclass of <code>TestCase</code> named <code>CounterTest</code>.</p>
+
+<pre><code>TestCase &lt;&lt; #CounterTest
+	package: 'Counter'</code></pre>
+
+<p><figure id="fig:gettingDefined"><img src="Chapters/XTDD/figures/XTDD3.png" alt="Pharo class browser  shows the class  Counter  slanted because that classdoes not exist." class="fig:gettingDefined" style="width: 55%"><figcaption><span class="number">Figure 4.1</span> Pharo class browser  shows the class <code>Counter</code> slanted because that class
+does not exist.</figcaption></img></figure></p>
+
+<h4 id="define-a-first-test">Define a first test</h4>
+<p>We define a first test <code>testSetAndGetCounter</code> that</p>
+
+<ul>
+<li>creates a new instance of the class <code>Counter</code>,</li>
+<li>defines its count value using the setter <code>count:</code>,</li>
+<li>and verifies that the count value is correct.</li>
+</ul>
+<pre><code>CounterTest &gt;&gt; testSetAndGetCounter
+	self assert: (Counter new count: 22) count equals: 22</code></pre>
+
+<p>Now during the definition of the method, the system will notify you because the class <code>Counter</code> does not exist.
+Figure <a href="#fig:gettingDefined">4.1</a> shows that the IDE presents the class <code>Counter</code> slanted to show that this class
+does not exist.</p>
+
+<p>When you compile the method, the system asks you to define the missing class (see Figure <a href="#fig:DefinesPrompt">4.2</a>).</p>
+
+<p><figure id="fig:DefinesPrompt"><img src="Chapters/XTDD/figures/XTDD4.png" alt="Pharo class browser  request actions to handle the fact that the class  Counter  is undefined." class="fig:DefinesPrompt" style="width: 55%"><figcaption><span class="number">Figure 4.2</span> Pharo class browser  request actions to handle the fact that the class <code>Counter</code> is undefined.</figcaption></img></figure></p>
+
+<p>Finally, the class browser proposes you a class definition so that you can define the missing class on the spot (See Figure <a href="#fig:Defined">4.3</a>).
+Once the class is defined you will see that it is not slanted anymore in the class browser.
+And you are ready to execute the test even if you did not define any method yet!
+This is the whole point of XTDD.</p>
+
+<p><figure id="fig:Defined"><img src="Chapters/XTDD/figures/NXTDD5.png" alt="Pharo class browser proposes a class definition for the class  Counter ." class="fig:Defined" style="width: 55%"><figcaption><span class="number">Figure 4.3</span> Pharo class browser proposes a class definition for the class <code>Counter</code>.</figcaption></img></figure></p>
+
+<h3 id="executing-a-test-to-define-missing-methods"><span class="number">4.4</span> Executing a test to define missing methods</h3>
+<p>Even if we did not define any methods yet, we will execute the test.
+We will just press the little grey button on the left of the method name in the rightmost list as shown in Figure <a href="#readyToTun">4.4</a>.
+It will raise an error because the methods <code>count:</code> and <code>count</code> are not defined.</p>
+
+<p><figure id="readyToTun"><img src="Chapters/XTDD/figures/XTDD7.png" alt="Executing a test pressing the grey button on the left of the method name will raise an error." class="readyToTun" style="width: 55%"><figcaption><span class="number">Figure 4.4</span> Executing a test pressing the grey button on the left of the method name will raise an error.</figcaption></img></figure></p>
+
+<p>Figure <a href="#error1">4.5</a> shows the debugger: It indicates that an instance of the class Counter did not understand the message <code>count:</code>.
+So far so good, this is what we expected.</p>
+
+<p><figure id="error1"><img src="Chapters/XTDD/figures/NXTDD8.png" alt="A debugger showing that the method  count:  is not defined hence led to an error." class="error1" style="width: 55%"><figcaption><span class="number">Figure 4.5</span> A debugger showing that the method <code>count:</code> is not defined hence led to an error.</figcaption></img></figure></p>
+
+<h4 id="define-a-method-on-the-fly">Define a method on the fly</h4>
+<p>Now we are ready to create a method on the fly.
+Just press the button Create. You will get prompted for the class: pick up the class <code>Counter</code>.</p>
+
+<p>The debugger will show you that the system created a generic method named <code>count:</code> for you.
+It is generic because there is no magic. As shown in Figure <a href="#genericMethodDefined">4.6</a>, this method is the following one:</p>
+
+<pre><code>Counter &gt;&gt; count: anInteger
+	self shouldBeImplemented</code></pre>
+
+<p>The message <code>shouldBeImplemented</code> is just a method to raise a specific error. So that the debugger reopens and you can redefine the method.</p>
+
+<p><figure id="genericMethodDefined"><img src="Chapters/XTDD/figures/NXTDD10.png" alt="The system defined a generic method and restarted the execution: it is now waiting for a definition." class="genericMethodDefined" style="width: 55%"><figcaption><span class="number">Figure 4.6</span> The system defined a generic method and restarted the execution: it is now waiting for a definition.</figcaption></img></figure></p>
+
+<h4 id="edit-the-method-in-the-debugger">Edit the method in the debugger</h4>
+<p>Now just edit the method right in the debugger as follows and shown in Figure <a href="#countInDebu">4.7</a>.
+Here we just want a setter that sets the value of the instance variable <code>count</code>.
+So we just type it!</p>
+
+<pre><code>count: anInteger
+	count := anInteger</code></pre>
+
+<p>Here we define the method as we want it and yes the instance variable <code>count</code> does not exist yet.
+Do it and compile the method. The class browser will prompt you for the creation of <code>count</code> as an instance variable.</p>
+
+<p><figure id="countInDebu"><img src="Chapters/XTDD/figures/XTDD11.png" alt="Before compiling the method, the class browser shows us that the instance variable  count  does not exist yet." class="countInDebu" style="width: 55%"><figcaption><span class="number">Figure 4.7</span> Before compiling the method, the class browser shows us that the instance variable <code>count</code> does not exist yet.</figcaption></img></figure></p>
+
+<p><figure id="InstVarInDebu"><img src="Chapters/XTDD/figures/NXTDD12.png" alt="Defining a new instance variable from within the debugger." class="InstVarInDebu" style="width: 55%"><figcaption><span class="number">Figure 4.8</span> Defining a new instance variable from within the debugger.</figcaption></img></figure></p>
+
+<p>Compile the method, answer the prompt and you should get the method that we defined previously.
+Now continue the execution by pressing the Proceed button.</p>
+
+<p>The system will fail again because we did not define the method <code>count</code> as shown in Figure <a href="#countUndefined">4.9</a>.
+You should just add this method as previously shown.</p>
+
+<p><figure id="countUndefined"><img src="Chapters/XTDD/figures/XTDD15.png" alt="The debugger opens because the method  count  was not defined." class="countUndefined" style="width: 55%"><figcaption><span class="number">Figure 4.9</span> The debugger opens because the method <code>count</code> was not defined.</figcaption></img></figure></p>
+
+<p>Now notice that the compiler is guessing that the method is an accessor since it has the same name as the instance variable <code>count</code> (see Figure <a href="#accessor">4.10</a>). It proposes you the method body as:</p>
+
+<pre><code>Counter &gt;&gt; count 
+	^ count</code></pre>
+
+<p>So just accept and press proceed. Your test should be green and you get done.</p>
+
+<p><figure id="accessor"><img src="Chapters/XTDD/figures/NXTDD16.png" alt="Compiler proposed a definition for your accessor." class="accessor" style="width: 55%"><figcaption><span class="number">Figure 4.10</span> Compiler proposed a definition for your accessor.</figcaption></img></figure></p>
+
+<h3 id="stepping-back-supporting-the-programmer-flow"><span class="number">4.5</span> Stepping back: Supporting the programmer flow</h3>
+<p>The system performed several actions to improve the flow of programming:</p>
+
+<ul>
+<li>It created new methods for us.</li>
+<li>It removed from the stack, the element with Error.</li>
+<li>It replaced it by re-executing the method that was invoking the missing one.</li>
+<li>It relaunched the execution so that we can define the method and proceed with the execution.</li>
+</ul>
+<p>We edited and recompiled the method.  And we could continue within the exact same flow of programming.</p>
+
+<h3 id="one-cycle"><span class="number">4.6</span> One cycle</h3>
+<p>We show you one simple cycle and now you are ready to:</p>
+
+<ul>
+<li>Run all the tests to check if nothing was broken.</li>
+<li>Commit your changes if the tests are green.</li>
+<li>Write a new test for the next cycle.</li>
+</ul>
+<h3 id="why-xtdd-is-powerful"><span class="number">4.7</span> Why XTDD is powerful?</h3>
+<p>EXtreme Test-Driven development is powerful because for the following reasons:</p>
+
+<ul>
+<li>You do not have to guess what will be the exact context of the call of a method. Since you are in the debugger you can access all the objects (receiver or arguments), and you can inspect their specific state. So you avoid guessing, the objects are at your fingers just interact with them to validate the hypotheses you need for defining your methods.</li>
+<li>Tests are not a side effect artifact but a strong driving force.</li>
+<li>The development flow is smooth and strongly connected with your scenario. You write a test and use the test execution to define a context</li>
+</ul>
+<p>that helps you define the method. You define methods or instance variables as you go and when you need them.
+You do not have to plan and guess in advance.</p>
+
+<h4 id="protip-from-expert-pharo-developers">Protip from expert Pharo developers</h4>
+<p>Pharo pro developers know what they can gain from XTDD this is why they try to grab an instance as fast as they can and send this object
+a message. The best way is to write a test fixture and execute it.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="sunit-by-example.html">← SUnit by example</a>
+        <a class="next" rel="next" href="sunit-the-framework.html">SUnit: The framework →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Testing in Pharo · Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

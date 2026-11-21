@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About code formatting</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo with Style</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="general-naming-conventions.html"><span class="number">1</span> General naming conventions</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-class-names.html"><span class="number">2</span> About class names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-identifier-format.html"><span class="number">3</span> About identifier format</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-variable-names.html"><span class="number">4</span> About variable names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-method-names.html"><span class="number">5</span> About method names</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="about-code-formatting.html" aria-current="page"><span class="number">6</span> About code formatting</a>
+            
+            <ol>
+              
+              <li><a href="#guideline-be-consistent"><span class="number">6.1</span> Guideline: Be consistent</a></li>
+              
+              <li><a href="#guideline-use-the-general-method-template"><span class="number">6.2</span> Guideline: Use the general method template</a></li>
+              
+              <li><a href="#guideline-indent-method-body"><span class="number">6.3</span> Guideline: Indent method body</a></li>
+              
+              <li><a href="#guideline-separate-signature-and-comments-from-method-body"><span class="number">6.4</span> Guideline: Separate signature and comments from method body</a></li>
+              
+              <li><a href="#guideline-use-space-to-give-breath-to-code"><span class="number">6.5</span> Guideline: Use space to give breath to code</a></li>
+              
+              <li><a href="#guideline-align-properly"><span class="number">6.6</span> Guideline: Align properly</a></li>
+              
+              <li><a href="#guideline-use-tabs-not-spaces-to-indent-and-use-spaces-to-help-reading"><span class="number">6.7</span> Guideline: Use tabs not spaces to indent and use spaces to help reading</a></li>
+              
+              <li><a href="#guideline-do-not-break-lines-randomly"><span class="number">6.8</span> Guideline: Do not break lines randomly</a></li>
+              
+              <li><a href="#guideline-highlight-control-flow"><span class="number">6.9</span> Guideline: Highlight control flow</a></li>
+              
+              <li><a href="#guideline-declare-temporary-close-their-use"><span class="number">6.10</span> Guideline: Declare temporary close their use</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="comments.html"><span class="number">7</span> Comments</a>
+            
+          </li>
+          
+          <li>
+            <a href="powerful-coding-idioms.html"><span class="number">8</span> Powerful coding idioms</a>
+            
+          </li>
+          
+          <li>
+            <a href="object-initialization.html"><span class="number">9</span> Object initialization</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-a-syntactic.html"><span class="number">10</span> Potential traps: A syntactic perspective</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-about.html"><span class="number">11</span> Potential traps: About printing and Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="use-patterns.html"><span class="number">12</span> Use Patterns</a>
+            
+          </li>
+          
+          <li>
+            <a href="conclusion.html"><span class="number">13</span> Conclusion</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="about-code-formatting"><span class="number">6</span> About code formatting</h2>
+<p>Code formatting improves code comprehension. Readers are used to regular formatting. Don't produce blobs of code. Copy the pros, follow the conventions.</p>
+
+<h3 id="guideline-be-consistent"><span class="number">6.1</span> Guideline: Be consistent</h3>
+<p>One important guideline when writing code is to follow conventions and, in addition, to be consistent. Systematically apply a formatting style. Keep the violations of conventions to a minimum.</p>
+
+<p>This applies at all levels:</p>
+
+<ul>
+<li>Class names,</li>
+<li>Method names,</li>
+<li>Instance variable names,</li>
+<li>Method body, and</li>
+<li>Comments.</li>
+</ul>
+<p>Inconsistencies will break the reading flow and understanding of the code. Inconsistencies often indicate that different developers touched the code, and they may also be the source of bugs or indicate difficult places in the code.</p>
+
+<h3 id="guideline-use-the-general-method-template"><span class="number">6.2</span> Guideline: Use the general method template</h3>
+<ul>
+<li>Separate method signature and comments from method body with an empty line.</li>
+<li>Add an extra tab to the comments.</li>
+<li>Add an extra line to stress the beginning of the method body.</li>
+<li>Use a tab to separate the method body from the left margin.</li>
+</ul>
+<pre><code>message selector and argument names
+	"A comment following the guidelines."
+	
+	| temporary variables |
+	statements</code></pre>
+
+<p>For example:</p>
+
+<pre><code>addLast: newObject
+	"Add newObject to the end of the receiver. Answer newObject."
+
+	lastIndex = array size ifTrue: [ self makeRoomAtLast ].
+	lastIndex := lastIndex + 1.
+	array at: lastIndex put: newObject.
+	^ newObject</code></pre>
+
+<p>Do not let space before the first word of the comment, align comment with method body, make sure that the reader can identify the beginning of the method body by placing an empty line between the method signature and the method body.</p>
+
+<p>Prefer the following</p>
+
+<pre><code>collectionNotIncluded
+	"Return a collection for wich each element is not included in 'nonEmpty'"
+	
+	^ collectionWithoutNil </code></pre>
+
+<p>over</p>
+
+<pre><code> collectionNotIncluded
+" return a collection for wich each element is not included in 'nonEmpty' "
+	^ collectionWithoutNil </code></pre>
+
+<p>and over</p>
+
+<pre><code>collectionWithoutEqualElements
+
+" return a collection not including equal elements "
+	^collectionWithoutEqualElements </code></pre>
+
+<h3 id="guideline-indent-method-body"><span class="number">6.3</span> Guideline: Indent method body</h3>
+<p>Use indentation to convey structure! Do not glue everything on the left margin.</p>
+
+<p>Don't indent your method like this:</p>
+
+<pre><code>initialize
+super initialize.
+symbols := Bag new.
+names := Set new</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>initialize
+
+	super initialize.
+	symbols := Bag new.
+	names := Set new</code></pre>
+
+<h3 id="guideline-separate-signature-and-comments-from-method-body"><span class="number">6.4</span> Guideline: Separate signature and comments from method body</h3>
+<p>Separating method comments from the method implementation favor focusing our understanding to the right level. When we want to understand what the method does, we just have to read the comments. When we want to understand how the method is implemented, we just read the method body.</p>
+
+<p>Prefer</p>
+
+<pre><code>performCrawling: aName
+	"Takes the last word in uppercase as a symbol and eventually add it to the bag symbols"
+
+	name := aName copy.
+	self getUpperCase.
+	self stemSymbolFrom: aName.
+	self toUpperCase.
+	^ symbol</code></pre>
+
+<p>over</p>
+
+<pre><code>performCrawling: aName
+	"Takes the last word in uppercase as a symbol and eventually add it to the bag symbols"
+	name := aName copy.
+	self getUpperCase.
+	self stemSymbolFrom: aName.
+	self toUpperCase.
+	^ symbol</code></pre>
+
+<p><figure><img src="Chapters/PWS-Guidelines-1.pdf" alt="A summary of good practices for code."><figcaption><span class="number">Figure 6.1</span> A summary of good practices for code.</figcaption></img></figure></p>
+
+<h3 id="guideline-use-space-to-give-breath-to-code"><span class="number">6.5</span> Guideline: Use space to give breath to code</h3>
+<p>Gluing all the characters together slows down reading. The reader needs to separate expressions. Gluing characters also hampers the identification of logical groups such as conditional branches.</p>
+
+<p>Put horizontal space to make it easier to read code and clearly identify variables, arguments, assignments, block delimiters and returns.</p>
+
+<p>Prefer</p>
+
+<pre><code>stemSymbolFrom: aName
+
+	| stemmer symbol |
+	stemmer := SymbolStemmer new.
+	symbol := stemmer performCrawling: aName.
+	^ symbol</code></pre>
+
+<p>over</p>
+
+<pre><code>stemSymbolFrom:aName
+
+	|stemmer symbol|
+	stemmer:=SymbolStemmer new.
+	symbol:=stemmer performCrawling:aName.
+	^symbol</code></pre>
+
+<p>Parentheses do not need spaces (after <code>(</code> and before <code>)</code>) since they show that an expression fits together. But favor space for <code>[</code> and <code>]</code>, since they may contain complex expressions.</p>
+
+<pre><code>drawOnAthensCanvas: aCanvas bounds: aRectangle color: aColor
+
+	(self canDrawDecoratorsOn: aCanvas) ifFalse: [ ^ self ].
+	self drawOnAthensCanvas: aCanvas.
+	next drawOnAthensCanvas: aCanvas bounds: aRectangle color: aColor</code></pre>
+
+<h3 id="guideline-align-properly"><span class="number">6.6</span> Guideline: Align properly</h3>
+<p>Understanding that a piece of code is a coherent expression eases understanding of more complex expressions.</p>
+
+<p>Make sure that your indentation reinforce the identification of block of functionality.</p>
+
+<p>Prefer</p>
+
+<pre><code>self phoneBook add: 
+	(Person new
+		name: 'Robin';
+		city: 'Ottawa'; 
+		country: 'Canada').</code></pre>
+
+<p>over</p>
+
+<pre><code>self phoneBook add: 
+	(Person new
+	name: 'Robin'; 
+	city: 'Ottawa'; 
+	country: 'Canada').</code></pre>
+
+<h3 id="guideline-use-tabs-not-spaces-to-indent-and-use-spaces-to-help-reading"><span class="number">6.7</span> Guideline: Use tabs not spaces to indent and use spaces to help reading</h3>
+<p>When navigating from one element to the next one, spaces and tabs are the same. Since they do not have a visual representation the reader cannot know in advance if the white space in front of word is a tab or multiple spaces. It is then annoying to handle spaces manually.</p>
+
+<ul>
+<li>Avoid extra spaces at the beginning and use tabs to indent.</li>
+<li>Use one space to separate instructions.</li>
+<li>Avoid extra spaces everywhere: one is enough!</li>
+<li>Avoid extra spaces at the end of the line.</li>
+</ul>
+<p>Prefer</p>
+
+<pre><code>stemSymbolFrom: aName
+
+	| stemmer symbol |
+	stemmer := SymbolStemmer new.
+	symbol := stemmer performCrawling: aName.
+	^ symbol</code></pre>
+
+<p>over</p>
+
+<pre><code>stemSymbolFrom: aName
+	|stemmer symbol|
+      stemmer:=SymbolStemmer new. 
+  symbol:=stemmer performCrawling: aName.
+   ^symbol</code></pre>
+
+<h3 id="guideline-do-not-break-lines-randomly"><span class="number">6.8</span> Guideline: Do not break lines randomly</h3>
+<p>White lines attract the eyes and force the reader to ask himself why the code is separated that way.
+Only separate method signature and comment from method body with a new line.</p>
+
+<p>Prefer</p>
+
+<pre><code>paragraph
+	"this method is here to find the paragraph in the chain, instead of relying on implementing #doesNotUnderstand: !!!"
+
+	| p |
+	p := next.
+	[ p isNotNil and: [ p isKindOf: RubParagraph ] ]
+		whileFalse: [ p := p next ].
+	^ p</code></pre>
+
+<p>over</p>
+
+<pre><code>paragraph
+	"this method is here to find the paragraph in the chain, instead of relying on implementing #doesNotUnderstand: !!!"
+
+	| p |
+	
+	p := next.
+	
+	[ p  isNotNil and: [ p isKindOf: RubParagraph ] ] whileFalse: [ 
+		p := p next.
+	].
+
+	^p</code></pre>
+
+<h3 id="guideline-highlight-control-flow"><span class="number">6.9</span> Guideline: Highlight control flow</h3>
+<p>Help the reader to understand control flow logic of your code by using indentation.</p>
+
+<p>Prefer</p>
+
+<pre><code>size
+	"Returns size of a tree - number of nodes in a tree"
+	self root isNil 
+		ifTrue: [ ^0 ].
+	^ self size: self root</code></pre>
+
+<p>over</p>
+
+<pre><code>size
+	"Returns size of a tree - number of nodes in a tree"
+	self root isNil 
+	ifTrue: [ ^0 ].
+	^self size: self root.</code></pre>
+
+<p>And prefer</p>
+
+<pre><code>depth: aNode
+	"Returns depth of a tree starting from the given node"
+
+	| leftDepth rightDepth |
+	leftDepth := -1.
+	aNode leftChild isNotNil 
+		ifTrue: [ leftDepth := self depth: aNode leftChild ].
+	rightDepth := -1.
+	aNode rightChild isNotNil 
+		ifTrue: [ rightDepth := self depth: aNode rightChild ].	
+	leftDepth &gt; rightDepth
+		ifTrue: [ ^ 1 + leftDepth ]
+		ifFalse: [^ 1 + rightDepth ].</code></pre>
+
+<p>over the terribly unreadable <code>depth:aNode</code> method.</p>
+
+<pre><code>depth:aNode
+	"Returns depth of a tree starting from the given node"
+	| leftDepth rightDepth |
+	leftDepth := -1.
+	aNode leftChild isNotNil 
+	ifTrue: [ leftDepth := self depth: aNode leftChild ].
+	rightDepth := -1.
+	aNode rightChild isNotNil 
+	ifTrue: [ rightDepth := self depth: aNode rightChild ].
+	
+	( leftDepth &gt; rightDepth )
+	ifTrue: [ ^ (1 + leftDepth) ]
+	ifFalse: [^ (1 + rightDepth ) ].</code></pre>
+
+<h3 id="guideline-declare-temporary-close-their-use"><span class="number">6.10</span> Guideline: Declare temporary close their use</h3>
+<p>Temporary variables that will only be used within the block should not be defined outside of the block but in the local block.</p>
+
+<p>Prefer</p>
+
+<pre><code>| block |
+block := [ :arg |
+  | local | 
+  ... local ... ]</code></pre>
+
+<p>over</p>
+
+<pre><code>| block local |
+block := [: arg | 
+  ... local ... ]</code></pre>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="about-method-names.html">← About method names</a>
+        <a class="next" rel="next" href="comments.html">Comments →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo with Style · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

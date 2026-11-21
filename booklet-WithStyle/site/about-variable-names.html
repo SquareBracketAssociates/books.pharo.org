@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About variable names</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo with Style</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="general-naming-conventions.html"><span class="number">1</span> General naming conventions</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-class-names.html"><span class="number">2</span> About class names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-identifier-format.html"><span class="number">3</span> About identifier format</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="about-variable-names.html" aria-current="page"><span class="number">4</span> About variable names</a>
+            
+            <ol>
+              
+              <li><a href="#guideline-favor-semantic-variables"><span class="number">4.1</span> Guideline: Favor semantic variables</a></li>
+              
+              <li><a href="#guideline-use-typed-variables-to-indicate-api"><span class="number">4.2</span> Guideline: Use typed variables to indicate API</a></li>
+              
+              <li><a href="#guideline-get-the-best-from-semantic-and-type-variable"><span class="number">4.3</span> Guideline: Get the best from semantic and type variable</a></li>
+              
+              <li><a href="#guideline-use-semantics-for-state-variable"><span class="number">4.4</span> Guideline: Use semantics for state variable</a></li>
+              
+              <li><a href="#guideline-use-predicate-for-boolean"><span class="number">4.5</span> Guideline: Use predicate for Boolean</a></li>
+              
+              <li><a href="#guideline-use-common-nouns-and-phrases"><span class="number">4.6</span> Guideline: Use common nouns and phrases</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="about-method-names.html"><span class="number">5</span> About method names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-code-formatting.html"><span class="number">6</span> About code formatting</a>
+            
+          </li>
+          
+          <li>
+            <a href="comments.html"><span class="number">7</span> Comments</a>
+            
+          </li>
+          
+          <li>
+            <a href="powerful-coding-idioms.html"><span class="number">8</span> Powerful coding idioms</a>
+            
+          </li>
+          
+          <li>
+            <a href="object-initialization.html"><span class="number">9</span> Object initialization</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-a-syntactic.html"><span class="number">10</span> Potential traps: A syntactic perspective</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-about.html"><span class="number">11</span> Potential traps: About printing and Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="use-patterns.html"><span class="number">12</span> Use Patterns</a>
+            
+          </li>
+          
+          <li>
+            <a href="conclusion.html"><span class="number">13</span> Conclusion</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="about-variable-names"><span class="number">4</span> About variable names</h2>
+<p>When choosing an appropriate name for a variable, the developer is faced with the decision: <i>Should I choose a name that conveys semantic meaning to tell the user how to use the variable, or should I choose a name that indicates the type of object the variable is storing?</i>
+There are good arguments for both styles. Let us see what the guidelines are that can help us find the right balance.</p>
+
+<h3 id="guideline-favor-semantic-variables"><span class="number">4.1</span> Guideline: Favor semantic variables</h3>
+<p>A semantic name is less restrictive than a type name. When modifying code, it is possible that a variable may change type. But unless one redefines the method, the semantics of it will not change. We recommend using semantically meaningful names wherever possible.</p>
+
+<p>In the example below, the typed variable does not indicate how it will be used, whereas the semantic variable does.</p>
+
+<p>Prefer</p>
+
+<pre><code>"Semantic variable"
+newSizeOfArray := numberOfAdults size max: numberOfChildren size</code></pre>
+
+<p>over</p>
+
+<pre><code>"Typed variable"
+anInteger := numberOfAdults size max: numberOfChildren size</code></pre>
+
+<p>Note that semantic names can convey variable roles. Having more information is definitely useful for clients of the code.</p>
+
+<p>Prefer</p>
+
+<pre><code>"Semantic variable"
+selectFrom: aBeginningDate to: anEndDate</code></pre>
+
+<p>over</p>
+
+<pre><code>"Type variable"
+selectFrom: aDate to: anotherDate</code></pre>
+
+<p>Finding a semantic name is not always as obvious as demonstrated above. There are cases in which choosing a descriptive semantic name is difficult.</p>
+
+<h3 id="guideline-use-typed-variables-to-indicate-api"><span class="number">4.2</span> Guideline: Use typed variables to indicate API</h3>
+<p>Using a type variable is an interesting way to convey the API (set of messages) that the object held in the variable responds to.</p>
+
+<p>Below <code>aDictionary</code> conveys that the argument should have the same API as a Dictionary (<code>at:</code>, <code>at:put:</code>)</p>
+
+<p>Prefer</p>
+
+<pre><code>properties: aDictionary</code></pre>
+
+<p>over</p>
+
+<pre><code>properties: map</code></pre>
+
+<p>You may also want to stress specific types in an API reference to the interface that the object implements.</p>
+
+<p>Prefer</p>
+
+<pre><code>properties: aPuttable</code></pre>
+
+<p>over</p>
+
+<pre><code>properties: aCollection</code></pre>
+
+<p>Suppose a String, a Symbol, and nil are valid for a parameter. A developer may be tempted to use the name <code>aStringOrSymbolOrNil</code>.</p>
+
+<p>You may be tempted to <code>aString</code> or <code>anObject</code>. <code>anObject</code> is not really helping the developer who will have to use such variables. At the minimum, such a use should be accompanied by a comment that says, "anObject can be a String or aSymbol"</p>
+
+<p>Some developers may argue that type variables should not refer to classes that do not exist. We disagree. As shown in the following guidelines, it is a lot better to indicate that an argument is a block expecting two arguments (hence a binary block) than to just mention a block. And this works even if there is no binary block class in the system.</p>
+
+<p>Prefer</p>
+
+<pre><code>inject: anObject into: aBinaryBlock </code></pre>
+
+<p>over</p>
+
+<pre><code>inject: anObject into: aBlock </code></pre>
+
+<p>Note that for <code>inject:into:</code> the best naming is to mix semantic and type naming as in</p>
+
+<pre><code>inject: initialValue into: aBinaryBlock </code></pre>
+
+<h3 id="guideline-get-the-best-from-semantic-and-type-variable"><span class="number">4.3</span> Guideline: Get the best from semantic and type variable</h3>
+<p>A good practice is to use a mixture of both semantic and typed variable names. Method parameter names are usually named after their type. Instances, classes, and temporary variables usually have a semantic name. In some cases, a combination of both can be given in the names.</p>
+
+<p>Prefer</p>
+
+<pre><code>ifTrue: trueBlock ifFalse: falseBlock</code></pre>
+
+<p>over</p>
+
+<pre><code>ifTrue: block1 ifFalse: block2
+ifTrue: action1 ifFalse: action2</code></pre>
+
+<p>The following are other examples of good names.</p>
+
+<pre><code>inject: initialValue into: aBinaryBlock 
+copyFrom: start to: stop
+findFirst: aBlock ifNone: errorBlock 
+paddedTo: newLength with: anObject </code></pre>
+
+<h3 id="guideline-use-semantics-for-state-variable"><span class="number">4.4</span> Guideline: Use semantics for state variable</h3>
+<p>State variable names (instance variables, class variables, or class instance variables) are usually semantic-based. A combination of semantic and type information can be really powerful, too.</p>
+
+<p>Prefer</p>
+
+<pre><code>"In class PhoneBook"
+phoneNumber 
+name</code></pre>
+
+<p>over</p>
+
+<pre><code>number
+labelForPerson</code></pre>
+
+<h3 id="guideline-use-predicate-for-boolean"><span class="number">4.5</span> Guideline: Use predicate for Boolean</h3>
+<p>Use predicate clauses or adjectives for Boolean objects or states. Do not use predicate clauses for non-Boolean states.</p>
+
+<p>Prefer</p>
+
+<pre><code>alarmEnabled
+isAlarmEnabled</code></pre>
+
+<p>over</p>
+
+<pre><code>alarm</code></pre>
+
+<h3 id="guideline-use-common-nouns-and-phrases"><span class="number">4.6</span> Guideline: Use common nouns and phrases</h3>
+<p>Use common nouns and phrases for objects that are not Boolean.</p>
+
+<pre><code>"In class Vehicle..."
+	numberOfTires 
+	numberOfDoors
+
+"In class AlarmClock..."
+	time 
+	alarmTime
+
+"In class TypeSetter..."
+	page
+	font 
+	outputDevice</code></pre>
+
+<p>Note that you can also use <code>count</code> instead of <code>numberOf</code> as in the following example:</p>
+
+<pre><code>numberOfTires
+tireCount</code></pre>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="about-identifier-format.html">← About identifier format</a>
+        <a class="next" rel="next" href="about-method-names.html">About method names →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo with Style · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

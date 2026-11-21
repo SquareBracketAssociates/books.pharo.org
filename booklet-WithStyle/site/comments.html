@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comments</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo with Style</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="general-naming-conventions.html"><span class="number">1</span> General naming conventions</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-class-names.html"><span class="number">2</span> About class names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-identifier-format.html"><span class="number">3</span> About identifier format</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-variable-names.html"><span class="number">4</span> About variable names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-method-names.html"><span class="number">5</span> About method names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-code-formatting.html"><span class="number">6</span> About code formatting</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="comments.html" aria-current="page"><span class="number">7</span> Comments</a>
+            
+            <ol>
+              
+              <li><a href="#guideline-method-comments"><span class="number">7.1</span> Guideline: Method comments</a></li>
+              
+              <li><a href="#guideline-good-comment-do-not-paraphrase-code"><span class="number">7.2</span> Guideline: Good comment do not paraphrase code</a></li>
+              
+              <li><a href="#guideline-use-active-voice-and-short-sentences"><span class="number">7.3</span> Guideline: Use active voice and short sentences</a></li>
+              
+              <li><a href="#guideline-include-executable-comments"><span class="number">7.4</span> Guideline: Include executable comments</a></li>
+              
+              <li><a href="#guideline-use-crc-driven-class-comments"><span class="number">7.5</span> Guideline: Use CRC-driven class comments</a></li>
+              
+              <li><a href="#guideline-comment-the-unusual"><span class="number">7.6</span> Guideline: Comment the unusual</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="powerful-coding-idioms.html"><span class="number">8</span> Powerful coding idioms</a>
+            
+          </li>
+          
+          <li>
+            <a href="object-initialization.html"><span class="number">9</span> Object initialization</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-a-syntactic.html"><span class="number">10</span> Potential traps: A syntactic perspective</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-about.html"><span class="number">11</span> Potential traps: About printing and Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="use-patterns.html"><span class="number">12</span> Use Patterns</a>
+            
+          </li>
+          
+          <li>
+            <a href="conclusion.html"><span class="number">13</span> Conclusion</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="comments"><span class="number">7</span> Comments</h2>
+<p>Comments are important. Comments tell readers that they are smart guys and that they correctly guessed your intentions or your code. Do not believe those who claim that methods do not require comments. Obviously, this is what they mean:</p>
+
+<ol>
+<li>"Obvious methods" such as accessors do not need comments.</li>
+<li>A good comment does not describe how the code works in English.</li>
+<li>It is better to split long methods into smaller ones with a single responsibility,</li>
+<li>But a good comment is always welcome because it reinforces the understanding of the reader.</li>
+</ol>
+<p>A comment should be adapted to the level of granularity (i.e., package, class, or method) to which it applies.</p>
+
+<h3 id="guideline-method-comments"><span class="number">7.1</span> Guideline: Method comments</h3>
+<p>Method comments should contain sufficient information for a user to know exactly <strong>how to use</strong> the method, <strong>what</strong> the method does, including any side effects, and <strong>what it answers</strong> without having to look at the source code. Imagine that the source code is not available.</p>
+
+<p>The main method comment is not about its implementation. Do not rephrase the implementation. The second level comments can include information about the implementation. Insert a new line to separate the method comments from the method body.</p>
+
+<pre><code>Collection &gt;&gt; asCommaString
+    "Return collection printed as 'a, b, c' "
+    "#('a' 'b' 'c') asCommaString &gt;&gt;&gt; 'a, b, c'"
+    
+    ^ String streamContents: [:s | self asStringOn: s delimiter: ', ']</code></pre>
+
+<p>The comments of a  method should typically include:</p>
+
+<ol>
+<li>the method purpose (even if implemented or supplemented by a subclass)</li>
+<li>the parameters and their types</li>
+<li>the possible return values and their types</li>
+<li>complex or tricky implementation details</li>
+<li>example usage, if applicable, as a separate comment</li>
+</ol>
+<p>Finally accessors do not need comments; the only comment that accessor could have is the purpose of the instance variable.</p>
+
+<pre><code>day
+	"Answer number of days (an instance of Integer) from 
+	the receiver to January 1, 1901."
+
+	^ day</code></pre>
+
+<h3 id="guideline-good-comment-do-not-paraphrase-code"><span class="number">7.2</span> Guideline: Good comment do not paraphrase code</h3>
+<p>Good Pharo source code is self-documenting, often making comments on statements redundant. Statements need only be commented upon to draw the reader's attention. If the source code implements an algorithm that requires an explanation, then the steps of the algorithm should be commented as needed.</p>
+
+<p>Do not comment on an obvious fact that is expressed simply as plain code.</p>
+
+<p>Prefer</p>
+
+<pre><code>| result |
+result := self employees
+	collect: [:employee | employee salary &gt; amount].</code></pre>
+
+<p>over</p>
+
+<pre><code>| result |
+"Store the employees who have a salary greater than in result." 
+result := self employees
+	collect: [:employee |  employee salary &gt; amount].</code></pre>
+
+<h3 id="guideline-use-active-voice-and-short-sentences"><span class="number">7.3</span> Guideline: Use active voice and short sentences</h3>
+<p>When writing comments, use active voice and avoid long, convoluted sentences. A method comment should state what the method does, its arguments, its effects, and its output.</p>
+
+<p>Prefer</p>
+
+<pre><code>"Active voice"
+createShell
+	"Create the receiver's shell. Hook the focus callback."</code></pre>
+
+<p>over</p>
+
+<pre><code>"Passive voice"
+createShell
+	"The receiver's shell is created. The focus callback is hooked."</code></pre>
+
+<h3 id="guideline-include-executable-comments"><span class="number">7.4</span> Guideline: Include executable comments</h3>
+<p>Pharo offers executable examples in a comment using the message <code>&gt;&gt;&gt;</code>. Executable examples in comments are super cool because, as the reader, you can execute the code and understand the parameters. In addition, the documentation is always synchronized because tools such as the test runner can check that examples are correct.</p>
+
+<pre><code>ProtoObject &gt;&gt; ifNil: nilBlock ifNotNil: ifNotNilBlock
+	"If the receiver is not nil, pass it as argument to the ifNotNilBlock block
+	else execute the nilBlock block "
+	
+	"(nil ifNil: [42] ifNotNil: [:o | o + 3 ] ) &gt;&gt;&gt; 42"
+	"(3 ifNil: [42] ifNotNil: [:o | o + 3 ]) &gt;&gt;&gt; 6"
+	
+	^ ifNotNilBlock cull: self</code></pre>
+
+<pre><code>Object &gt;&gt; split: aSequenceableCollection
+	"Split the argument using the receiver as a separator."
+	"optimized version for single delimiters"
+	"($/ split: '/foo/bar')&gt;&gt;&gt;#('' 'foo' 'bar') asOrderedCollection"
+	"([:c| c isSeparator] split: 'aa bb cc dd') &gt;&gt;&gt; #('aa' 'bb' 'cc' 'dd') asOrderedCollection"
+		
+	| result |
+	result := OrderedCollection new: (aSequenceableCollection size / 2) asInteger.
+	self split: aSequenceableCollection do: [ :item |
+		result add: item ].
+	^ result</code></pre>
+
+<h3 id="guideline-use-crc-driven-class-comments"><span class="number">7.5</span> Guideline: Use CRC-driven class comments</h3>
+<p>A class is not in isolation, but <i>implements</i> responsibilities (mainly one) and <i>collaborates</i> with other entities. Therefore a class comment should be composed of at least 3 parts: the class, its responsibilities and how it uses its collaborators.
+The Class Responsibility Collaboration (CRC) pattern is powerful to design but also to comment classes. Use it for commenting class.</p>
+
+<p>Knowing the instance variables is the least important!</p>
+
+<p>Follow the template given by Pharo that is shown below.</p>
+
+<pre><code>Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:
+
+For the Class part:  
+	State a one line summary. For example, "I represent a paragraph of text".
+
+For the Responsibility part: 
+	Three sentences about my main responsibilities - what I do, what I know.
+
+For the Collaborators Part: 
+	State my main collaborators and one line about how I interact with them. 
+
+Public API and Key Messages
+	- message one   
+	- message two 
+	- (for bonus points) how to create instances.
+
+One simple example is simply gorgeous.
+ 
+Internal Representation and Key Implementation Points.
+
+Implementation Points</code></pre>
+
+<h3 id="guideline-comment-the-unusual"><span class="number">7.6</span> Guideline: Comment the unusual</h3>
+<p>When a behavior is unusual, performing unexpected actions or using an unexpected algorithm, it is important to comment on it.</p>
+
+<p>In general, comments should make irregular and unusual aspects clearer. You may want to include implementation-dependent or platform specific idiosyncrasies.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="about-code-formatting.html">← About code formatting</a>
+        <a class="next" rel="next" href="powerful-coding-idioms.html">Powerful coding idioms →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo with Style · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

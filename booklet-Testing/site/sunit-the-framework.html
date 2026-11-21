@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SUnit: The framework</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Testing in Pharo</a>
+    <p class="site-authors">Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="introduction.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="two-minutes-of-theory.html"><span class="number">2</span> Two minutes of theory</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-by-example.html"><span class="number">3</span> SUnit by example</a>
+            
+          </li>
+          
+          <li>
+            <a href="extreme-test-driven-development.html"><span class="number">4</span> Extreme Test-Driven Development  by Example</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="sunit-the-framework.html" aria-current="page"><span class="number">5</span> SUnit: The framework</a>
+            
+            <ol>
+              
+              <li><a href="#understanding-the-framework"><span class="number">5.1</span> Understanding the framework</a></li>
+              
+              <li><a href="#during-test-execution"><span class="number">5.2</span> During test execution</a></li>
+              
+              <li><a href="#the-framework-in-a-nutshell"><span class="number">5.3</span> The framework in a nutshell</a></li>
+              
+              <li><a href="#test-states"><span class="number">5.4</span> Test states</a></li>
+              
+              <li><a href="#glossary"><span class="number">5.5</span> Glossary</a></li>
+              
+              <li><a href="#chapter-summary"><span class="number">5.6</span> Chapter summary</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-cookbook.html"><span class="number">6</span> A little cookbook</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-implementation.html"><span class="number">7</span> SUnit implementation</a>
+            
+          </li>
+          
+          <li>
+            <a href="ui-testing.html"><span class="number">8</span> UI testing</a>
+            
+          </li>
+          
+          <li>
+            <a href="testing-web-applications.html"><span class="number">9</span> Testing web applications with Parasol</a>
+            
+          </li>
+          
+          <li>
+            <a href="mockobject-and-teachable.html"><span class="number">10</span> MockObject and Teachable: Two simple mocking approaches</a>
+            
+          </li>
+          
+          <li>
+            <a href="mutalk-a-mutation-testing.html"><span class="number">11</span> MuTalk: A Mutation Testing Framework</a>
+            
+          </li>
+          
+          <li>
+            <a href="performance-testing-with.html"><span class="number">12</span> Performance testing with SMark</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2><span class="number">5</span> SUnit: The framework</h2><a id="cha:sunit"></a>
+<p>Now that you see that writing a test is easy, we will take the time to put into perspective the different aspects of SUnit.
+SUnit is a framework in the sense that it proposes an architecture that can be adapted. We will not cover the techniques
+to extend the framework but we will present the key classes and discuss some important points.</p>
+
+<h3 id="understanding-the-framework"><span class="number">5.1</span> Understanding the framework</h3>
+<p>What we saw in the previous chapter is that a test method defines a test.
+Now there is a catch:</p>
+
+<ul>
+<li>A method (called a test method) of a subclass of the class <code>TestCase</code> represents a test.</li>
+<li>A <code>TestCase</code> subclass groups together all the tests sharing a similar context, called a <i>fixture</i>.</li>
+<li>A <code>setUp</code> method is run systematically before a test method is run and a <code>tearDown</code> after.</li>
+<li>The framework builds a <code>TestSuite</code> (a composite of tests) to execute the tests.</li>
+</ul>
+<h3 id="during-test-execution"><span class="number">5.2</span> During test execution</h3>
+<p>Figure <a href="#fig:sunit-execution">5.1</a> shows the steps during the execution <code>run</code> of a test:</p>
+
+<ul>
+<li>An instance of <code>TestCase</code> is created.</li>
+<li>It creates an instance of <code>TestResult</code>.</li>
+<li>This instance calls back the <code>TestCase</code> instance which executes
+<ul>
+<li>the test <code>setUp</code></li>
+<li>the test method</li>
+<li>and finally the test <code>tearDown</code> method.</li>
+</ul></li>
+</ul>
+<p><figure id="fig:sunit-execution"><img src="Chapters/SUnit/figures/sunit-scenario.png" alt="During  run  execution." class="fig:sunit-execution" style="width: 45%"><figcaption><span class="number">Figure 5.1</span> During <code>run</code> execution.</figcaption></img></figure></p>
+
+<p>In fact, the framework ensures that any test method is always surrounded by the execution of the <code>setUp</code> and <code>tearDown</code> methods.
+Figure <a href="#fig:setUpAndTearDown">5.2</a> illustrates this point.
+It ensures that the fixture is always in a correct state and avoids dependencies between test execution.</p>
+
+<p><figure id="fig:setUpAndTearDown"><img src="Chapters/SUnit/figures/setUpAndTearDown.pdf" alt="setUp and teardDown in action." class="fig:setUpAndTearDown" style="width: 80%"><figcaption><span class="number">Figure 5.2</span> setUp and teardDown in action.</figcaption></img></figure></p>
+
+<h3 id="the-framework-in-a-nutshell"><span class="number">5.3</span> The framework in a nutshell</h3>
+<p>SUnit consists of four main classes: <code>TestCase</code>, <code>TestSuite</code>,
+<code>TestResult</code>, and <code>TestResource</code>, as shown in Figure <a href="#fig:sunit-classes">5.3</a>.</p>
+
+<p><figure id="fig:sunit-classes"><img src="Chapters/SUnit/figures/sunit-classes.png" alt="The four classes representing the core of SUnit." class="fig:sunit-classes" style="width: 80%"><figcaption><span class="number">Figure 5.3</span> The four classes representing the core of SUnit.</figcaption></img></figure></p>
+
+<h4 id="testcase">TestCase</h4>
+<p><code>TestCase</code> is an abstract class that is designed to be subclassed. Each of its
+subclasses represents a <strong>group</strong> of tests that share a common context: such a group is called a <strong>test suite</strong>.</p>
+
+<p>Each test is run by creating a new instance of a subclass of <code>TestCase</code>, running <code>setUp</code> to initialize the test fixture, running the test method itself, and then sending the <code>tearDown</code> to clean up the test fixture.</p>
+
+<p>The fixture is specified by instance variables of the subclass and by the specialization of the method <code>setUp</code>, which initializes those instance
+variables. Subclasses of <code>TestCase</code> can also override method <code>tearDown</code>,
+which is invoked after the execution of each test, and can be used to release
+any objects allocated during <code>setUp</code>.</p>
+
+<h4 id="testsuite">TestSuite</h4>
+<p>Instances of the class <code>TestSuite</code> contain a collection of test cases. An
+instance of <code>TestSuite</code> contains tests and other test suites. That is, a test
+suite contains sub-instances of <code>TestCase</code> and <code>TestSuite</code>.
+Both individual test cases and test suites understand the same protocol, so
+they can be treated in the same way (for example, both can be <code>run</code>). This is
+in fact an application of the Composite pattern in which <code>TestSuite</code> is the
+composite and the test cases are the leaves.</p>
+
+<h4 id="testresult">TestResult</h4>
+<p>The class <code>TestResult</code> represents the results of a <code>TestSuite</code> execution.
+It records the number of tests passed, the number of tests failed, and the
+number of errors signaled.</p>
+
+<h4 id="testresources">TestResources</h4>
+<p>The notion of a <i>test resource</i> represents a resource that is expensive to
+set-up but which can be used by a whole series of tests.
+A <code>TestResource</code> specifies a <code>setUp</code> method that is executed just once before a full suite of tests;
+this is in distinction to the <code>TestCase &gt;&gt; setUp</code> method, which is executed before each test.
+The class <code>TestResource</code> represents resources that can be shared among a test suite:
+Subclasses of <code>TestResource</code> are associated with test case classes and this means that all the suite of tests
+represented by the test case class (See Chapter <a href="a-little-cookbook.html#cha:cookbook">6</a>).</p>
+
+<h3 id="test-states"><span class="number">5.4</span> Test states</h3>
+<p>As we mentioned earlier, the result of a test execution is mainly: passed (meaning that it succeeded), fails (that an assertion is not valid) or error (that an unexpected problem occurred).</p>
+
+<h4 id="failures-vs-error">Failures vs. Error</h4>
+<p>In fact, this is really important to understand the difference between a failure and an error. A failure is something that you plan and you check whether is happened or not. When it happens your tests pass, or else it fails.</p>
+
+<p>Removing an element that is not in a set from that set raises an error. If we write the following test, the test will fail.</p>
+
+<figure class="code"><pre><code>MyExampleSetTest &gt;&gt; testRemoveNonexistentElement
+	empty remove: 5.</code></pre><figcaption><span class="number">Listing 5.1</span> Testing removal of a non-existing element.</figcaption></figure>
+
+<p>Now using the message <code>should:raise:</code> we make sure that we check that the expression effectively raises an error.
+It means that our test can either pass (i.e., it means that the test fulfills our requirement here that it should raise an error when removing an unknown element) or fail. We planned such behavior. It can fail or pass.</p>
+
+<figure class="code"><pre><code>MyExampleSetTest &gt;&gt; testRemoveNonexistentElement
+
+	self should: [ empty remove: 5 ] raise: NotFound</code></pre><figcaption><span class="number">Listing 5.2</span> Testing removal of a non-existing element.</figcaption></figure>
+
+<p>For an error this is different, an error occurs in an unplanned manner.
+The execution of the first version of <code>testRemoveNonexistentElement</code> would lead to an error.</p>
+
+<h4 id="expected-failures-and-skip">Expected Failures and Skip</h4>
+<p>In addition, a test can be in two other states: skipped and expected failures.
+Such states are handy during development.</p>
+
+<p>The idea is that if you write a complex test and suddenly you realize that you will have more work than expected to make your test pass, you can mark it as skipped.</p>
+
+<figure class="code"><pre><code>MyExampleSetTest &gt;&gt; testToBeRevisitedLater
+
+	self skip.
+	...</code></pre><figcaption><span class="number">Listing 5.3</span> An example of a skipped test.</figcaption></figure>
+
+<p>In fact, it is much better to use the message <code>skip</code> than to use a guard.
+Why because the framework can report clearly that your test is skipped.
+Using a guard as below is the best way to confuse yourself because the framework
+will return that the test passes while it does NOT.</p>
+
+<figure class="code"><pre><code>MyExampleSetTest &gt;&gt; testToBeRevisitedLater
+
+	true ifTrue: [^ self ].
+	...</code></pre><figcaption><span class="number">Listing 5.4</span> A not so nice example of a skipped test.</figcaption></figure>
+
+<p>You can also tag your test with the <code>&lt;expectedFailure&gt;</code> pragma to indicate to the framework that you expect
+your test to fail. This is to be taken into account by the framework when running and reporting all your tests. Hence you will be
+aware that some of your tests did not run correctly.
+Here is an example from Pharo.</p>
+
+<pre><code>testFromClassWhichTraitIsExtendedButNotItself
+	"I'm tagging this expected failure because I'm not sure now if it is appropriate to keep 
+	 or not with the removal of the 'traits-as-multiple-inheritance' stuff."
+	&lt;expectedFailure&gt;
+
+	self queryFromScope: ClyClassScope of: ClyClassWithTraits.
+	self assert: resultItems size equals: 0</code></pre>
+
+<p></p>
+
+<h3 id="glossary"><span class="number">5.5</span> Glossary</h3>
+<ul>
+<li><strong>Test case.</strong> A test case is a single test. It defines a context, a stimulus, and at the minimum one assertion. It is described as a method of a TestCase subclass starting with <strong>test</strong>.</li>
+<li><strong>Test suite.</strong> A test suite (Composite design pattern) is a group of tests. The tests belonging to a test suite do not have to be from the same class. In practice, the test runner builds a test suite for all the test cases defined in a class and executes them one by one.  Instances of the class <code>TestSuite</code> contain a collection of test cases.  An instance of <code>TestSuite</code> contains tests and other test suites. That is, a test suite contains sub-instances of <code>TestCase</code> and <code>TestSuite</code>.</li>
+<li><strong>Fixture.</strong> A fixture is a context in which a stimulus will be executed and assertions verified. To share a fixture amongst multiple tests you can define the <code>setUp</code> method. It is automatically invoked before any test method execution.</li>
+<li><strong>Failure.</strong> A failure is the situation where you planned something and checked it and it is not correct.</li>
+<li><strong>Error.</strong> An error is the situation where your test is not working but it is not covered by an assertion. For example, a message not understood is sent and it was unexpected.</li>
+</ul>
+<h3 id="chapter-summary"><span class="number">5.6</span> Chapter summary</h3>
+<p>In this chapter we gave an overview of the core of the SUnit framework
+by presenting the classes <code>TestCase</code>, <code>TestResult</code>, <code>TestSuite</code> and
+<code>TestResources</code>. We described the setUp/tearDown logic and the different states a test can be in.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="extreme-test-driven-development.html">← Extreme Test-Driven Development  by Example</a>
+        <a class="next" rel="next" href="a-little-cookbook.html">A little cookbook →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Testing in Pharo · Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+% -*- mode: latex; -*-
+\ifx\wholebook\relax\else
+
+	\documentclass[10pt,twoside,ustradelulu]{_support/latex/sbabook/sbabook}
+  \usepackage{import}
+  \subimport{_support/latex/}{common.tex}
+
+	\InputIfFileExists{_support/latex/custom.tex}{}{}% the changes of the book, see doc/book-layout.md
+	\begin{document}
+\fi
+
+{{=« »=}}
+
+«! the '&' below prevents HTML escaping. »
+«& content»
+
+\ifx\wholebook\relax\else
+\end{document}
+\fi

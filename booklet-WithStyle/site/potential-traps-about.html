@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Potential traps: About printing and Streams</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo with Style</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="general-naming-conventions.html"><span class="number">1</span> General naming conventions</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-class-names.html"><span class="number">2</span> About class names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-identifier-format.html"><span class="number">3</span> About identifier format</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-variable-names.html"><span class="number">4</span> About variable names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-method-names.html"><span class="number">5</span> About method names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-code-formatting.html"><span class="number">6</span> About code formatting</a>
+            
+          </li>
+          
+          <li>
+            <a href="comments.html"><span class="number">7</span> Comments</a>
+            
+          </li>
+          
+          <li>
+            <a href="powerful-coding-idioms.html"><span class="number">8</span> Powerful coding idioms</a>
+            
+          </li>
+          
+          <li>
+            <a href="object-initialization.html"><span class="number">9</span> Object initialization</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-a-syntactic.html"><span class="number">10</span> Potential traps: A syntactic perspective</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="potential-traps-about.html" aria-current="page"><span class="number">11</span> Potential traps: About printing and Streams</a>
+            
+            <ol>
+              
+              <li><a href="#guideline-printstring-vs-displaystring"><span class="number">11.1</span> Guideline: printString vs. displayString</a></li>
+              
+              <li><a href="#guideline-about-printstring"><span class="number">11.2</span> Guideline: About printString</a></li>
+              
+              <li><a href="#guideline-unnecessary-stream-creation"><span class="number">11.3</span> Guideline: Unnecessary stream creation</a></li>
+              
+              <li><a href="#guideline-printstring-vs-asstring"><span class="number">11.4</span> Guideline: printString vs. asString</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="use-patterns.html"><span class="number">12</span> Use Patterns</a>
+            
+          </li>
+          
+          <li>
+            <a href="conclusion.html"><span class="number">13</span> Conclusion</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="potential-traps-about-printing-and-streams"><span class="number">11</span> Potential traps: About <code>printing</code> and Streams</h2>
+<p>Stream usage in the case of printing objects may be sometimes confusing. In this chapter we clarify some of pitfalls.</p>
+
+<h3 id="guideline-printstring-vs-displaystring"><span class="number">11.1</span> Guideline: <code>printString</code> vs. <code>displayString</code></h3>
+<p>Newcomers are often confused between <code>printString</code> and <code>displayString</code> and their counterparts <code>printOn:</code> and <code>displayStringOn::</code>.</p>
+
+<ul>
+<li><code>printString</code> is used for debugging, that's why the default  implementation shows the class name. It's implemented by specializing <code>printOn:</code> on your classes.</li>
+<li><code>displayString</code> is used for nicely display objects in list. It is implemented by specializing <code>displayStringOn:</code> on your classes.</li>
+</ul>
+<p>If you have aPerson:</p>
+
+<pre><code>aPerson printString 
+&gt;&gt;&gt; 'aPerson ('John Doe')'</code></pre>
+
+<pre><code>aPerson displayString 
+&gt;&gt;&gt; 'John Doe' </code></pre>
+
+<h3 id="guideline-about-printstring"><span class="number">11.2</span> Guideline: About <code>printString</code></h3>
+<p>Let us take a moment to step back about stream usage in <code>printOn:</code> methods.
+The <code>printString</code> method creates a stream and passes this stream as argument of the <code>printOn:</code> method as shown below:</p>
+
+<pre><code>Object &gt;&gt; printString
+	"Answer a String whose characters are a description of the receiver. 
+	If you want to print without a character limit, use fullPrintString."
+
+	^ self printStringLimitedTo: 50000</code></pre>
+
+<pre><code>Object &gt;&gt; printStringLimitedTo: limit
+	"Answer a String whose characters are a description of the receiver.
+	If you want to print without a character limit, use fullPrintString."
+
+	^self printStringLimitedTo: limit using: [:s | self printOn: s]</code></pre>
+
+<pre><code>Object &gt;&gt; printStringLimitedTo: limit using: printBlock
+	"Answer a String whose characters are a description of the receiver
+	produced by given printBlock. It ensures the result will be not bigger than given limit"
+
+	| limitedString |
+	limitedString := String streamContents: printBlock limitedTo: limit.
+	limitedString size &lt; limit ifTrue: [^ limitedString].
+	^ limitedString , '...etc...'</code></pre>
+
+<p>What you should see is that the method  <code>printStringLimitedTo:using:</code> is creating a stream and passing it around.</p>
+
+<p>When you redefine the method <code>printOn:</code> in your class, if you send the message  <code>printString</code> on the instance variables of your object, you are in fact creating yet another stream and copying its contents in the first one.</p>
+
+<p>Here is an example:</p>
+
+<pre><code>MessageTally &gt;&gt; displayStringOn: aStream
+	self displayIdentifierOn: aStream.
+	aStream 
+		nextPutAll: ' (';
+		nextPutAll: self tally printString;
+		nextPutAll: ')'</code></pre>
+
+<p>This is clearly counterproductive. It is much better to send the message <code>print:</code> to the stream or <code>printOn:</code> to the instance variable it as follows:</p>
+
+<pre><code>MessageTally &gt;&gt; displayStringOn: aStream
+	self displayIdentifierOn: aStream.
+	aStream 
+		nextPutAll: ' (';
+		print: self tally;
+		nextPutAll: ')'</code></pre>
+
+<p>To understand what the method <code>print:</code>, here its definition:</p>
+
+<pre><code>Stream &gt;&gt; print: anObject
+	"Have anObject print itself on the receiver."
+
+	anObject printOn: self</code></pre>
+
+<p>Pay attention, sending the <code>printString</code> message is often wrong and it is the duties of the system to do it.</p>
+
+<h3 id="guideline-unnecessary-stream-creation"><span class="number">11.3</span> Guideline: Unnecessary stream creation</h3>
+<p>Unnecessary stream creation can happen in other situations than <code>printString</code>.
+Here is an example taken from Pharo.</p>
+
+<pre><code>printProtocol: protocol sourceCode: sourceCode
+
+	^ String streamContents: [ :stream |
+		stream
+			nextPutAll: '"protocol: '; 
+			nextPutAll: protocol printString;
+			nextPut: $"; cr; cr;
+			nextPutAll: sourceCode ]	</code></pre>
+
+<p>What you should see is that a stream is created and then another stream is created and discarded with the expression <code>protocol printString</code>. A better implementation is the following using <code>print:</code>.</p>
+
+<pre><code>printProtocol: protocol sourceCode: sourceCode
+
+	^ String streamContents: [ :stream |
+		stream
+			nextPutAll: '"protocol: '; 
+			print: protocol;
+			nextPut: $"; cr; cr;
+			nextPutAll: sourceCode ]	</code></pre>
+
+<h3 id="guideline-printstring-vs-asstring"><span class="number">11.4</span> Guideline: <code>printString</code> vs. <code>asString</code></h3>
+<p>Another difficulty you may encounter is to see the difference between <code>printString</code> and <code>asString</code>.</p>
+
+<ul>
+<li><code>printString</code> is used for debugging, that's why the default  implementation shows the class name. It's implemented by specializing <code>printOn:</code> on your classes.</li>
+<li><code>asString</code> converts an object into a string. It is equivalent to the  <code>toString()</code> in other languages.</li>
+</ul>
+<p>Let us take an example with the symbol <code>#foo</code>.</p>
+
+<p>Printing the symbol <code>#foo</code> is just printing it as symbol.</p>
+
+<pre><code>#foo printString 
+&gt;&gt;&gt; '#foo'</code></pre>
+
+<p>Sending the message <code>asString</code> to the symbol <code>#foo</code> converts it to a string.</p>
+
+<pre><code>#foo asString 
+&gt;&gt;&gt; 'foo'</code></pre>
+
+<p>The situation is the same for strings but it can be a bit more destabilizing.
+The conversion of a string to a string is the string itself.</p>
+
+<pre><code>'foo' asString 
+&gt;&gt;&gt; 'foo'</code></pre>
+
+<p>Now printing a string includes the quotes and quotes should be double quoted.</p>
+
+<pre><code>'foo' printString
+&gt;&gt;&gt; '''foo'''</code></pre>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="potential-traps-a-syntactic.html">← Potential traps: A syntactic perspective</a>
+        <a class="next" rel="next" href="use-patterns.html">Use Patterns →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo with Style · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

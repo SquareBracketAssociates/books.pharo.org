@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Object initialization</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo with Style</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="general-naming-conventions.html"><span class="number">1</span> General naming conventions</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-class-names.html"><span class="number">2</span> About class names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-identifier-format.html"><span class="number">3</span> About identifier format</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-variable-names.html"><span class="number">4</span> About variable names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-method-names.html"><span class="number">5</span> About method names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-code-formatting.html"><span class="number">6</span> About code formatting</a>
+            
+          </li>
+          
+          <li>
+            <a href="comments.html"><span class="number">7</span> Comments</a>
+            
+          </li>
+          
+          <li>
+            <a href="powerful-coding-idioms.html"><span class="number">8</span> Powerful coding idioms</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="object-initialization.html" aria-current="page"><span class="number">9</span> Object initialization</a>
+            
+            <ol>
+              
+              <li><a href="#guideline-take-advantage-of-automatic-object-initialization"><span class="number">9.1</span> Guideline: Take advantage of automatic object initialization</a></li>
+              
+              <li><a href="#guideline-no-automatic-initialize"><span class="number">9.2</span> Guideline: No automatic initialize</a></li>
+              
+              <li><a href="#guideline-no-double-super-new-initialize"><span class="number">9.3</span> Guideline: No double super new initialize</a></li>
+              
+              <li><a href="#guideline-initialize-does-not-need-to-return-super"><span class="number">9.4</span> Guideline: initialize does not need to return super</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-a-syntactic.html"><span class="number">10</span> Potential traps: A syntactic perspective</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-about.html"><span class="number">11</span> Potential traps: About printing and Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="use-patterns.html"><span class="number">12</span> Use Patterns</a>
+            
+          </li>
+          
+          <li>
+            <a href="conclusion.html"><span class="number">13</span> Conclusion</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="object-initialization"><span class="number">9</span> Object initialization</h2>
+<p>One key responsibility for a class is to correctly initialize the instance it creates.
+This avoids placing the burden on clients of such objects. In this chapter, we will present some patterns to initialize objects.</p>
+
+<h3 id="guideline-take-advantage-of-automatic-object-initialization"><span class="number">9.1</span> Guideline: Take advantage of automatic object initialization</h3>
+<p>By default Pharo offers a way to initialize your objects. The method <code>initialize</code> is automatically sent by the method <code>new</code>.</p>
+
+<p>Imagine that we implement a game and that this game needs to initialize the number of turns it plays. Avoid forcing the clients of the game to have the responsibility of initializing the turn. Indeed, if the clients forget to send the expression <code>turn:</code>, the game logic may be simply broken.</p>
+
+<pre><code>Game new turn: 0</code></pre>
+
+<p>Therefore, when you want to initialize the state of your object, simply redefine</p>
+
+<pre><code>Game &gt;&gt; initialize
+	super initialize.
+	turn := 0.</code></pre>
+
+<p>This way <code>Game new</code> will automatically set the value for <code>turn</code>.</p>
+
+<p>From a test perspective, it is often a good practice to have a test covering the default initialization.</p>
+
+<pre><code>GameTest &gt;&gt; testDefaultInitialization
+
+	self assert: Game new turn equals: 0</code></pre>
+
+<h3 id="guideline-no-automatic-initialize"><span class="number">9.2</span> Guideline: No automatic initialize</h3>
+<p>When you do not want to get the automatic initialization to happen you should use the message <code>basicNew</code> on the class side and create your own <code>initializeSomething:</code> method.</p>
+
+<p>Let us imagine that the computation of the tiles of a game would be costly or that there would be no simple default. We can propose a class creation interface whose responsibility is to request the mandatory information and initialize only what is needed for the object creation.</p>
+
+<p>Here we define a class method <code>tileNumber:</code>, and we do not invoke <code>new</code> but <code>basicNew</code>. Indeed <code>new</code> sends the message <code>initialize</code> and we do not want to pay the price for it. <code>basicNew</code> just allocates the new object and does not perform any other operations.</p>
+
+<pre><code>Game class &gt;&gt; tileNumber: aNumber
+	^ self basicNew 
+		initializeTiles: aNumber ; 
+		yourself</code></pre>
+
+<p>Now on the instance side we can define the initialization of tiles as shown by the method <code>initializeTiles:</code>.</p>
+
+<pre><code>Game &gt;&gt; initializeTiles: aNumber
+	tiles := Array new: aNumber</code></pre>
+
+<p>If you use <code>new</code> instead of <code>basicNew</code> in previous definition, the <code>initialize</code> method and the method <code>initializeTiles:</code> will be executed.</p>
+
+<h3 id="guideline-no-double-super-new-initialize"><span class="number">9.3</span> Guideline: No double super new initialize</h3>
+<p>Since Pharo is automatically sending the message <code>initialize</code> as part of the object creation process using the  pattern below, there is no need for the developer to do it in addition.</p>
+
+<p>Now you may wonder what the problem is if you inadvertently redefine new in one of your classes as follows: </p>
+
+<pre><code>Game class &gt;&gt; new
+
+	^ super new initialize</code></pre>
+
+<p>In Pharo, the method <code>initialize</code> of the class <code>Game</code> will be invoked twice.</p>
+
+<h3 id="guideline-initialize-does-not-need-to-return-super"><span class="number">9.4</span> Guideline: initialize does not need to return super</h3>
+<p>The method <code>initialize</code> is a method that modifies the receiver. It is used by convention to initialize the default value of the receiver. It is invoked by default by the message <code>new</code></p>
+
+<p>The following definition is not idiomatic:</p>
+
+<pre><code>initialize
+
+	default := 'no'.
+	^ super initialize</code></pre>
+
+<p>First it returns a value and this value is not really used. Prefer the following definition:</p>
+
+<pre><code>initialize
+
+	default := 'no'.
+	super initialize</code></pre>
+
+<p>Second, the ordering implies that the first local information should be computed, then one of the superclasses. It may happen that you need this order, but it is rare, so prefer the following canonical form:</p>
+
+<pre><code>initialize
+
+	super initialize
+	default := 'no'.</code></pre>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="powerful-coding-idioms.html">← Powerful coding idioms</a>
+        <a class="next" rel="next" href="potential-traps-a-syntactic.html">Potential traps: A syntactic perspective →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo with Style · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

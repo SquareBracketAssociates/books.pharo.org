@@ -1,0 +1,103 @@
+
+File index.md has reference problems.
+
+## English Typography Violations
+
+- Text: " and the following method:
+" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Benchs/Smark.md contains a mistake: There is no space after :
+- Text: "MuTalk : A Mutation Testing Framework" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is a space before :
+- Text: "Mutation testing is a technique of measuring the quality and completeness of a test suite. While code coverage is used to make sure that tests execute each method or line of code, mutation testing evaluates the ability to detect new errors. It involves introducing errors and running the tests to see if they are detected. MuTalk is a flexible mutation framework that provides good default values for analyzing a test suite. It can be customized to fit specific domains or projects.
+In this chapter we will discuss :" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is a space before :
+- Text: "4. Mutation analysis : variants on mutation testing (TO CHECK)" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is a space before :
+- Text: " :" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is a space before :
+- Text: "The Mutation Score : a Test Suite Quality Metric." in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is a space before :
+- Text: "This is the inspector on the result object of the analysis. From top to bottom :" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is a space before :
+- Text: "The inspector contains 4 more tabs than the normal inspector that are specific to the mutation analysis:
+  1. The " in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is no space after :
+- Text: "Here is the illustrated process of these strategies:
+" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is no space after :
+- Text: "To better understand the purpose of these strategies, let's take another example. Let's say there are four operators in our analysis: A, B, C and D, and each of them produces some mutants. Operator A produces half of the total mutants, operator D produces very few of them, while operators B and C produce the rest. For the purpose of the example we will assume that each operator still generates a lot of mutants, just that the representation in the total number of generated mutants are different.
+With a mutant selection that chooses randomly and without bias a mutant for the analysis, the final selection would look like this:
+" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is no space after :
+- Text: "Then using a random operator mutant selection, the final selection would look more like this:
+" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is no space after :
+- Text: "with a collection of classes, assuming the associated test classes have the same names with the “Test” suffix:
+  " in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is no space after :
+- Text: "with a collection of classes and a collection of test classes:
+  " in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is no space after :
+- Text: "with a collection of packages, assuming that the corresponding test packages have the same names with the suffix “-Tests”:
+  " in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is no space after :
+- Text: "with a collection of packages and a collection of test packages:
+  " in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is no space after :
+- Text: ", but a version that groups mutants by mutant operators:
+" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is no space after :
+- Text: "One solution to run mutation testing on such classes is to create a copy of these classes and their tests. This copy can be mutated without it impacting the stability of  the system. Pharo comes with a tools to help you copy packages and identify dependencies : package duplication with regex to replace class names and the " in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mutalk/Mutalk.md contains a mistake: There is a space before :
+- Text: "https://github.com/astares/Pharo-Teachable" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Mocking/SimpleMock.md contains a mistake: There is no space after :
+- Text: "http://pharo.org" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Web/Web.md contains a mistake: There is no space after :
+- Text: " :" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Web/Web.md contains a mistake: There is a space before :
+- Text: "The Mercury Tours page has a lot of information on its home page.
+So, why not try to test this information?
+As an example, we will write a test to verify the information in the table called " in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/Web/Web.md contains a mistake: There is no space after ?
+- Text: " that we present just in the subsequent section, SUnit contains assertion description strings,
+logging support, the ability to skip tests, and resumable test failures." in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/Cookbook.md contains a mistake: There is no space after ,
+- Text: "This will print out a message on your logging stream for each element that fails.
+It doesn't accumulate failures, i.e, if the assertion fails 10 times in your test method, you'll still only see one failure.
+All the other assertion methods that we have seen are not resumable by default;
+" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/Cookbook.md contains a mistake: There is no space after ;
+- Text: "Imagine that we want to support example methods as tests.
+Let us define what are example methods:
+Let us say that an example method is a class method if its selector follows the pattern " in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/Cookbook.md contains a mistake: There is no space after :
+- Text: ",
+" in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/SUnit.md contains a mistake: There is no space after ,
+- Text: ",
+which is invoked after the execution of each test, and can be used to release
+any objects allocated during " in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/SUnit.md contains a mistake: There is no space after ,
+- Text: " method that is executed just once before a full suite of tests;
+this is in distinction to the " in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/SUnit.md contains a mistake: There is no space after ;
+- Text: " represents resources that can be shared among a test suite:
+Subclasses of " in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/SUnit.md contains a mistake: There is no space after :
+- Text: ").
+Once the class is defined you will see that it is not slanted anymore in the class browser.
+And you are ready to execute the test even if you did not define any method yet!
+This is the whole point of XTDD." in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/XTDD/XTDD.md contains a mistake: There is no space after !
+- Text: ",
+and third we validate the output using assertion via the " in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/SUnitExample.md contains a mistake: There is no space after ,
+- Text: ",
+and " in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/SUnitExample.md contains a mistake: There is no space after ,
+- Text: ", failing tests cause the bar at the top to turn yellow,
+and are listed in the middle pane on the right, whereas tests with errors cause
+the bar to turn red, and are listed in the bottom pane on the right." in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/SUnitExample.md contains a mistake: There is no space after ,
+- Text: " run do not help you to find bugs!
+Moreover, an example method does not inform the reader of the expected result: you can run the example and see
+the (perhaps surprising) result, but you will not know if the observed behavior is correct." in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/Testing.md contains a mistake: There is no space after !
+- Text: "SUnit is valuable to support this scenario.
+It allows us to write tests that are automated and self-checking:
+the test itself defines what the correct result should be.
+It also helps us to organize tests into groups, describe the context in which the tests must run,
+and run a group of tests automatically.
+In less than two minutes you can write tests using SUnit, so instead of writing small code snippets in a
+playground, we encourage you to use SUnit and get all the advantages of stored
+and automatically executable tests." in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/Testing.md contains a mistake: There is no space after :
+- Text: "SUnit is valuable to support this scenario.
+It allows us to write tests that are automated and self-checking:
+the test itself defines what the correct result should be.
+It also helps us to organize tests into groups, describe the context in which the tests must run,
+and run a group of tests automatically.
+In less than two minutes you can write tests using SUnit, so instead of writing small code snippets in a
+playground, we encourage you to use SUnit and get all the advantages of stored
+and automatically executable tests." in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/Testing.md contains a mistake: There is no space after ,
+- Text: "We cannot test all aspects of any realistic application.
+Covering a complete application is simply impossible and should not be the goal of testing.
+Even with a good test suite, some bugs will still creep into the application, where
+they can lay dormant waiting for an opportunity to damage your system.
+If you find that this has happened, take advantage of it!
+As soon as you uncover the bug, write a test that exposes it, run the test, and watch it fail.
+Now you can start to fix the bug: the test will tell you when you are done." in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/Testing.md contains a mistake: There is no space after !
+- Text: " method if you feel that the method is complicated enough to
+need the test, but you should be aware that such a test may have to be changed,
+or thrown away entirely when you think of a better implementation." in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/Testing.md contains a mistake: There is no space after ,
+- Text: "You do not want to have to change your tests each time you change your code,
+so try to write the tests so that they are self-contained. This can be
+difficult but pays off in the long term. Writing tests against stable
+interfaces supports this effort." in file/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-TestingInPharo/Chapters/SUnit/Testing.md contains a mistake: There is no space after ,
+

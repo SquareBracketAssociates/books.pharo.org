@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About method names</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo with Style</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="general-naming-conventions.html"><span class="number">1</span> General naming conventions</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-class-names.html"><span class="number">2</span> About class names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-identifier-format.html"><span class="number">3</span> About identifier format</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-variable-names.html"><span class="number">4</span> About variable names</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="about-method-names.html" aria-current="page"><span class="number">5</span> About method names</a>
+            
+            <ol>
+              
+              <li><a href="#guideline-choose-selectors-to-form-short-sentences"><span class="number">5.1</span> Guideline: Choose selectors to form short sentences</a></li>
+              
+              <li><a href="#guideline-use-imperative-verbs-for-actions"><span class="number">5.2</span> Guideline: Use imperative verbs for actions</a></li>
+              
+              <li><a href="#guideline-prefix-selector-with-as-for-conversion"><span class="number">5.3</span> Guideline: Prefix selector with as for conversion</a></li>
+              
+              <li><a href="#guideline-indicate-flow-with-preposition"><span class="number">5.4</span> Guideline: Indicate flow with preposition</a></li>
+              
+              <li><a href="#guideline-indicate-returned-type"><span class="number">5.5</span> Guideline: Indicate returned type</a></li>
+              
+              <li><a href="#guideline-use-interrogative-form-for-testing"><span class="number">5.6</span> Guideline: Use interrogative form for testing</a></li>
+              
+              <li><a href="#guideline-avoid-using-parameter-and-variable-name-type"><span class="number">5.7</span> Guideline: Avoid using parameter and variable name type</a></li>
+              
+              <li><a href="#guideline-use-accessors-or-not"><span class="number">5.8</span> Guideline: Use accessors or not</a></li>
+              
+              <li><a href="#guideline-name-accessors-following-variable-name"><span class="number">5.9</span> Guideline: Name accessors following variable name</a></li>
+              
+              <li><a href="#guideline-avoid-return-in-lazy-blocks"><span class="number">5.10</span> Guideline: Avoid return in lazy blocks</a></li>
+              
+              <li><a href="#guideline-avoid-prefixing-setters-with-set"><span class="number">5.11</span> Guideline: Avoid prefixing setters with set</a></li>
+              
+              <li><a href="#guideline-use-basic-or-raw-to-access-low-level"><span class="number">5.12</span> Guideline: Use basic or raw to access low-level</a></li>
+              
+              <li><a href="#guideline-follow-conventions-and-idioms"><span class="number">5.13</span> Guideline: Follow conventions and idioms</a></li>
+              
+              <li><a href="#guideline-distinguish-between-class-and-instance-selectors"><span class="number">5.14</span> Guideline: Distinguish between class and instance selectors</a></li>
+              
+              <li><a href="#guidelines-follow-existing-protocols"><span class="number">5.15</span> Guidelines: Follow existing protocols</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="about-code-formatting.html"><span class="number">6</span> About code formatting</a>
+            
+          </li>
+          
+          <li>
+            <a href="comments.html"><span class="number">7</span> Comments</a>
+            
+          </li>
+          
+          <li>
+            <a href="powerful-coding-idioms.html"><span class="number">8</span> Powerful coding idioms</a>
+            
+          </li>
+          
+          <li>
+            <a href="object-initialization.html"><span class="number">9</span> Object initialization</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-a-syntactic.html"><span class="number">10</span> Potential traps: A syntactic perspective</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-about.html"><span class="number">11</span> Potential traps: About printing and Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="use-patterns.html"><span class="number">12</span> Use Patterns</a>
+            
+          </li>
+          
+          <li>
+            <a href="conclusion.html"><span class="number">13</span> Conclusion</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="about-method-names"><span class="number">5</span> About method names</h2>
+<p>Method names in Pharo are called selectors. They are used in messages and are the main vehicle to convey adequate meaning to computation. From that perspective, it is really important to use them to convey the exact meaning of the computation they perform. The correct use of words and the design of selectors are then important.</p>
+
+<h3 id="guideline-choose-selectors-to-form-short-sentences"><span class="number">5.1</span> Guideline: Choose selectors to form short sentences</h3>
+<p>Choose method names so that someone reading the message can read the expression as if it were a sentence.</p>
+
+<p>Prefer</p>
+
+<pre><code>FileDescriptor seekTo: word from: self position</code></pre>
+
+<p>over</p>
+
+<pre><code>FileDescriptor lseek: word at: self position</code></pre>
+
+<p>Write the test first, and make sure that your test scenario reads well.</p>
+
+<h3 id="guideline-use-imperative-verbs-for-actions"><span class="number">5.2</span> Guideline: Use imperative verbs for actions</h3>
+<p>Use imperative verbs for message which perform an action.</p>
+
+<pre><code>transform
+	selectors do: [:each | self pushDown: each].
+	selectors do: [:each | class removeMethod: each]</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>aReadStream peek</code></pre>
+
+<p>over</p>
+
+<pre><code>aReadStream word</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>aFace lookSurprised 
+aFace beSurprised</code></pre>
+
+<p>over</p>
+
+<pre><code>aFace surprised</code></pre>
+
+<pre><code>skipSeparators</code></pre>
+
+<p>Pay attention to the fact that some words can be interpreted as interrogatives, whereas you want to give them an imperative meaning.</p>
+
+<p>For example, compare:</p>
+
+<pre><code>optimized</code></pre>
+
+<p>and</p>
+
+<pre><code>triggerOptimization</code></pre>
+
+<p>This is why using <code>beOptimized</code> would be better than a simple <code>optimized</code> and why <code>isOptimized</code> is better for the interrogative form.</p>
+
+<h3 id="guideline-prefix-selector-with-as-for-conversion"><span class="number">5.3</span> Guideline: Prefix selector with as for conversion</h3>
+<p>When converting an object to another one, the convention is to prefix the class name of the target with <code>as</code>.</p>
+
+<pre><code>anArray asOrderedCollection </code></pre>
+
+<p>Favor the use of existing classes.</p>
+
+<h3 id="guideline-indicate-flow-with-preposition"><span class="number">5.4</span> Guideline: Indicate flow with preposition</h3>
+<p>When a process state is going from one object to another, indicate the direction using meaningful names.</p>
+
+<p>For example, <code>flattenProperties:</code> is not a good name because it does not convey where the properties will be flattened.</p>
+
+<pre><code>aConfiguration flattenProperties: aDictionary</code></pre>
+
+<p>Better names such as <code>flattenPropertiesFrom:</code> and <code>flattenPropertiesInto:</code> are much better because there are no ambiguities.</p>
+
+<pre><code>aConfiguration flattenPropertiesFrom: aDictionary
+aConfiguration flattenPropertiesInto: aDictionary</code></pre>
+
+<p>Here are more examples</p>
+
+<pre><code>changeField: anInteger to: anObject</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>ReadWriteStream on: aCollection.</code></pre>
+
+<p>over</p>
+
+<pre><code>ReadWriteStream for: aCollection.</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>File openOn: stream</code></pre>
+
+<p>over</p>
+
+<pre><code>File with: stream</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>display: anObject on: aMedium</code></pre>
+
+<p>over</p>
+
+<pre><code>display: anObject using: aMedium</code></pre>
+
+<h3 id="guideline-indicate-returned-type"><span class="number">5.5</span> Guideline: Indicate returned type</h3>
+<p>When a method returns an object (different from the receiver) and this object is not polymorphic with the receiver, it is important to mention it. Since Pharo is not statically typed, we can use the selector name to give such information to the sender of the message.</p>
+
+<p>For example, the method <code>characterSeparatorMethodSignatureFor:</code> of the pretty printer did not return a character but a block, as shown below:</p>
+
+<pre><code>characterSeparatorMethodSignatureFor: aMethodNode
+	^ [
+		(self needsMethodSignatureOnMultipleLinesFor: aMethodNode)
+			ifTrue: [ self newLine ]
+			ifFalse: [ self space ] ]</code></pre>
+
+<p>Favor <code>characterSeparatorMethodSignatureBlockFor:</code> over <code>characterSeparatorMethodSignatureFor:</code> when the method returns block and not a character as <code>characterSeparatorMethodSignatureFor:</code> indicates.</p>
+
+<p>A much better design is to rewrite this method and its users to use a character.
+Returning a block in such a situation is overkill.</p>
+
+<p>The following method is corresponding to its name.</p>
+
+<pre><code>characterSeparatorMethodSignatureFor: aMethodNode
+	^ (self needsMethodSignatureOnMultipleLinesFor: aMethodNode)
+			ifTrue: [ self newLine ]
+			ifFalse: [ self space ]</code></pre>
+
+<p>A good example is the API of the <code>FileReference</code> class. The message <code>pathString</code> indicates clearly that it returns the path as a string while to access the path object the message <code>path</code> should be used.</p>
+
+<h3 id="guideline-use-interrogative-form-for-testing"><span class="number">5.6</span> Guideline: Use interrogative form for testing</h3>
+<p>When interrogating the state of an object, use a selector beginning with a verb such as <code>has</code>, <code>is</code>, <code>does</code>,...</p>
+
+<p>Prefer</p>
+
+<pre><code>isAtLineEnd</code></pre>
+
+<p>over</p>
+
+<pre><code>atLineEnd</code></pre>
+
+<pre><code>aVehicle hasFourWheels</code></pre>
+
+<p>over</p>
+
+<pre><code>aVehicle fourWheels</code></pre>
+
+<h3 id="guideline-avoid-using-parameter-and-variable-name-type"><span class="number">5.7</span> Guideline: Avoid using parameter and variable name type</h3>
+<p>Avoid the parameter type or name in the method name if you are using typed parameter names.</p>
+
+<p>Prefer</p>
+
+<pre><code>fileSystem at: aKey put: aFile</code></pre>
+
+<p>over</p>
+
+<pre><code>fileSystem atKey: aKey putFiIe: aFile</code></pre>
+
+<pre><code>"for semantic-based parameter names"	
+fileSystem atKey: index putFile: pathName</code></pre>
+
+<pre><code>"useful when your class has several #at:put: methods"
+fileSystem definitionAt: aKey put: definition</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>aFace changeTo: expression</code></pre>
+
+<p>over</p>
+
+<pre><code>aFace changeExpressionTo: expression</code></pre>
+
+<h3 id="guideline-use-accessors-or-not"><span class="number">5.8</span> Guideline: Use accessors or not</h3>
+<p>There are different schools about whether to use accessors. In his seminal book, Kent Beck discusses it in depth. Here we give a list of arguments for and against, and you should decide and follow the conventions of the project you work on. In any case, whether you use accessors or not, be consistent.</p>
+
+<p>Arguments in favor of accessors:</p>
+
+<ul>
+<li>Accessors abstract from the exact state internal representation.</li>
+<li>Accessors may hide that values are derived or not.</li>
+<li>Subclasses may freely redefine the way accessors are implemented.</li>
+</ul>
+<p>Arguments against accessor use:</p>
+
+<ul>
+<li>Accessors expose the internal state of an object.</li>
+<li>When the class is small, using accessors may increase the number of methods.</li>
+<li>Using refactorings, we can always easily introduce accessors.</li>
+</ul>
+<h3 id="guideline-name-accessors-following-variable-name"><span class="number">5.9</span> Guideline: Name accessors following variable name</h3>
+<p>When you use accessors, name them consistently:</p>
+
+<ul>
+<li>The getter is name as the variable it refers to.</li>
+<li>The setter is the same but with an extra terminating colon <code>:</code>.</li>
+</ul>
+<p>For getter, prefer</p>
+
+<pre><code>tiles
+	^ tiles</code></pre>
+
+<p>over</p>
+
+<pre><code>getTiles
+	^ tiles</code></pre>
+
+<p>Do not use <code>get</code> or <code>set</code> in accessor selectors!</p>
+
+<h4 id="watch-out">Watch out</h4>
+<p>Pay attention: a Setter is just setting a value and just returning (implicitly) the receiver. The following setter definition is not correct.</p>
+
+<pre><code>BinaryNode &gt;&gt; root: rootNode
+    "Set a root node"
+    ^ root := rootNode</code></pre>
+
+<p>Favor the following one instead:</p>
+
+<pre><code>BinaryNode &gt;&gt; root: rootNode
+
+    root := rootNode</code></pre>
+
+<p>Note that we do not need to comment a basic setter.</p>
+
+<p>For lazy initialization:</p>
+
+<pre><code>tiles
+	^ tiles ifNil: [ tiles := OrderedCollection new ]</code></pre>
+
+<p>For setters</p>
+
+<pre><code>tiles: aCollection
+	tiles := aCollection </code></pre>
+
+<p>Put accessors in the <code>'accessing'</code> protocols. When you have accessors doing extra work place them in a separate protocols to stress their difference.</p>
+
+<h3 id="guideline-avoid-return-in-lazy-blocks"><span class="number">5.10</span> Guideline: Avoid return in lazy blocks</h3>
+<p>You may want to use accessors to implement lazy initialization: the instance variable is initialized only if needed by checking if its value is nil.</p>
+
+<p>Do not place returns inside the block.</p>
+
+<p>Prefer</p>
+
+<pre><code>tiles
+	^ tiles ifNil: [ tiles := OrderedCollection new.</code></pre>
+
+<p>over</p>
+
+<pre><code>tiles
+	^ tiles ifNil: [ tiles := OrderedCollection new. ^tiles ]</code></pre>
+
+<p>or even</p>
+
+<pre><code>tiles
+	tiles ifNil: [ tiles := OrderedCollection new ].
+	^ tiles</code></pre>
+
+<h3 id="guideline-avoid-prefixing-setters-with-set"><span class="number">5.11</span> Guideline: Avoid prefixing setters with set</h3>
+<p>Some developers may be tempted to name setter methods by prefixing the variable name</p>
+
+<p>Prefer</p>
+
+<pre><code>tiles: aCollection
+	tiles := aCollection </code></pre>
+
+<p>over</p>
+
+<pre><code>setTiles: aCollection
+	tiles := aCollection </code></pre>
+
+<p>Following K. Beck's advice, use <code>setTitles:</code> only for private messages to initialize objects from class side methods.</p>
+
+<h3 id="guideline-use-basic-or-raw-to-access-low-level"><span class="number">5.12</span> Guideline: Use basic or raw to access low-level</h3>
+<p>When two methods are needed for the same state variable, e.g., one returning the actual stored object and one returning and raising an event, prefix the one returning the actual object with the word <code>basic</code> or <code>raw</code>.</p>
+
+<pre><code>method: aCompiledMethod
+	self basicMethod: aCompiledMethod.
+	self signal: MethodChanged</code></pre>
+
+<pre><code>basicMethod: aCompiledMethod
+	method := aCompiledMethod</code></pre>
+
+<p>When you have a getter that returns an object and a getter that returns a different representation of the same object, add a suffix.</p>
+
+<pre><code>path
+	^ path</code></pre>
+
+<pre><code>pathString
+	^ self path asString</code></pre>
+
+<h3 id="guideline-follow-conventions-and-idioms"><span class="number">5.13</span> Guideline: Follow conventions and idioms</h3>
+<p>When designing new objects, you may mimic some of the practices that the system already uses, for example, dictionaries, sets, etc.</p>
+
+<h4 id="example">Example</h4>
+<p>Since a style sheet acts as a dictionary of properties, it is much better to use
+<code>at:</code> instead of <code>get:</code>, especially if you define the message to set a value to a property as <code>at:put:</code> and not <code>set:</code>.</p>
+
+<p>Prefer</p>
+
+<pre><code>stylesheet at: #fontColor</code></pre>
+
+<p>over</p>
+
+<pre><code>stylesheet get: #fontColor</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>aCollection groupedBy: [ :each | each odd ]</code></pre>
+
+<p>over</p>
+
+<pre><code>aCollection groupBy: [ :each | each odd ]</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>series at: #k3 put: 'x'.</code></pre>
+
+<p>over</p>
+
+<pre><code>series atKey: #k3 put: 'x'</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>aCollection at: #toto</code></pre>
+
+<p>over</p>
+
+<pre><code>aCollection atKey: #toto</code></pre>
+
+<h3 id="guideline-distinguish-between-class-and-instance-selectors"><span class="number">5.14</span> Guideline: Distinguish between class and instance selectors</h3>
+<p>When defining a class method, we may name it the same way as an accessor of the class.
+Such practice hampers code readability in the sense that it is difficult to identify rapidly class methods. The senders will report both the instance and class usage.
+You may think that you will identify the message because the receiver is a class or an instance, but there are many situations where this is not the case. So it's better to enrich the class method with a distinct word.</p>
+
+<h4 id="example-2">Example</h4>
+<p>In Pillar, a markup syntax to write documentation, annotations have parameters and the accessor method <code>parameters:</code>. In some versions, an instance creation method with the same name as the accessor method exists.</p>
+
+<p>Reading the code of the parser and in particular the message <code>parameters</code>, it is not clear whether array second is a class or an instance.</p>
+
+<pre><code>annotation
+	^ super annotation
+		==&gt;
+			[ :array | array second parameters: (array third ifNil: [ SmallDictionary new ]) ]</code></pre>
+
+<p>To create an instance, it is better to name the method <code>newParameter:</code>. This way, we can immediately spot that the second element is a class.</p>
+
+<pre><code>annotation
+	^ super annotation
+		==&gt;
+			[ :array | array second newParameters: (array third ifNil: [ SmallDictionary new ]) ]</code></pre>
+
+<pre><code>PRAbstractAnnotation class &gt;&gt; newParameters: aCollection
+
+	| parameters |
+	parameters := self checkKeysOf: aCollection.
+	^ self new
+		hadAllKeys: aCollection = parameters;
+		parameters: parameters;
+		yourself</code></pre>
+
+<p>is better than</p>
+
+<pre><code>PRAbstractAnnotation class &gt;&gt; parameters: aCollection
+	| parameters |
+	parameters := self checkKeysOf: aCollection.
+	^ self new
+		hadAllKeys: aCollection = parameters;
+		parameters: parameters;
+		yourself</code></pre>
+
+<p>
+Now, if you favor a fluid interface with many parameters, using <code>withParameters:</code> may not be good.</p>
+
+<h3 id="guidelines-follow-existing-protocols"><span class="number">5.15</span> Guidelines: Follow existing protocols</h3>
+<p>Protocols are ways to sort methods. It is important to place your methods into adequate protocols since it will ease future exploration of your class.</p>
+
+<p>Pharo provides auto categorisation of protocols for the common methods. So use it as much as possible. If you override your specific methods, place them in similar protocols.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="about-variable-names.html">← About variable names</a>
+        <a class="next" rel="next" href="about-code-formatting.html">About code formatting →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo with Style · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

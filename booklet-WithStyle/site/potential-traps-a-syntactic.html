@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Potential traps: A syntactic perspective</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo with Style</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="general-naming-conventions.html"><span class="number">1</span> General naming conventions</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-class-names.html"><span class="number">2</span> About class names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-identifier-format.html"><span class="number">3</span> About identifier format</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-variable-names.html"><span class="number">4</span> About variable names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-method-names.html"><span class="number">5</span> About method names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-code-formatting.html"><span class="number">6</span> About code formatting</a>
+            
+          </li>
+          
+          <li>
+            <a href="comments.html"><span class="number">7</span> Comments</a>
+            
+          </li>
+          
+          <li>
+            <a href="powerful-coding-idioms.html"><span class="number">8</span> Powerful coding idioms</a>
+            
+          </li>
+          
+          <li>
+            <a href="object-initialization.html"><span class="number">9</span> Object initialization</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="potential-traps-a-syntactic.html" aria-current="page"><span class="number">10</span> Potential traps: A syntactic perspective</a>
+            
+            <ol>
+              
+              <li><a href="#guideline-use-parentheses-to-disambiguate-messages-with-the-same-priority"><span class="number">10.1</span> Guideline: Use parentheses to disambiguate messages with the same priority</a></li>
+              
+              <li><a href="#guideline-no-need-for-extra-parentheses"><span class="number">10.2</span> Guideline: no need for extra parentheses</a></li>
+              
+              <li><a href="#guideline-receiver-of-iftrue-iffalse-is-a-boolean"><span class="number">10.3</span> Guideline: receiver of ifTrue:ifFalse: is a boolean</a></li>
+              
+              <li><a href="#guideline-receiver-of-whiletrue-is-a-block"><span class="number">10.4</span> Guideline: receiver of whileTrue: is a block</a></li>
+              
+              <li><a href="#guideline-use-a-block-when-you-do-not-know-execution-time"><span class="number">10.5</span> Guideline: Use a Block when you do not know execution time</a></li>
+              
+              <li><a href="#guideline-avoid-when-in-loop"><span class="number">10.6</span> Guideline: Avoid , when in loop</a></li>
+              
+              <li><a href="#guideline-super-is-just-self"><span class="number">10.7</span> Guideline: super is just self</a></li>
+              
+              <li><a href="#guideline-do-not-reuse-temporaries"><span class="number">10.8</span> Guideline: Do not reuse temporaries</a></li>
+              
+              <li><a href="#guideline-do-not-change-behavior-of-well-known-messages"><span class="number">10.9</span> Guideline: Do not change behavior of well-known messages</a></li>
+              
+              <li><a href="#guideline-use-iterators"><span class="number">10.10</span> Guideline: Use iterators</a></li>
+              
+              <li><a href="#guideline-avoid-low-level-messages"><span class="number">10.11</span> Guideline: Avoid low-level messages</a></li>
+              
+              <li><a href="#guideline-do-not-abuse-blocks"><span class="number">10.12</span> Guideline: Do not abuse blocks</a></li>
+              
+              <li><a href="#guideline-do-not-write-lengthly-blocks"><span class="number">10.13</span> Guideline: Do not write lengthly blocks</a></li>
+              
+              <li><a href="#guideline-exception-catch-must-not-be-empty"><span class="number">10.14</span> Guideline: Exception catch MUST not be empty</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-about.html"><span class="number">11</span> Potential traps: About printing and Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="use-patterns.html"><span class="number">12</span> Use Patterns</a>
+            
+          </li>
+          
+          <li>
+            <a href="conclusion.html"><span class="number">13</span> Conclusion</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="potential-traps-a-syntactic-perspective"><span class="number">10</span> Potential traps: A syntactic perspective</h2>
+<p>Understanding possible mistakes is a nice way to avoid them or to spot errors made in your code. Here are some common mistakes.</p>
+
+<h3 id="guideline-use-parentheses-to-disambiguate-messages-with-the-same-priority"><span class="number">10.1</span> Guideline: Use parentheses to disambiguate messages with the same priority</h3>
+<h4 id="for-keyword-messages">For keyword-messages</h4>
+<p>The Pharo compiler does not know where to cut an expression composed on multiple keyword-based messages. For example, assert:includes: in the expression <code>self assert: uUMLClass variables includes: 'name'</code> can be a message that the object <code>self</code> can understand. For example testcases understand the message <code>assert:equals:</code> and the following expression is fully valid: <code>self assert: uUMLClass variables equals: 'name'</code>.</p>
+
+<p>Therefore, this is the programmer responsibility to use parenthese to separate correctly the messages having the same priority. The following example illustrates this point.</p>
+
+<pre><code>testDefineASimpleClass
+
+	| uUMLClass |
+	uUMLClass := UMLClass named: 'ComixSerie'.
+	uUMLClass instVar: 'name'.
+	self assert: uUMLClass variables includes: 'name'</code></pre>
+
+<p>There is no message <code>assert:includes:</code>. The expression <code>uUMLClass variables includes: 'name'</code> should be parenthesized, because this is the result of the execution of this expression that should be passed as argument of the message <code>assert:</code>.</p>
+
+<pre><code>testDefineASimpleClass
+
+	| uUMLClass |
+	uUMLClass := UMLClass named: 'ComixSerie'.
+	uUMLClass instVar: 'name'.
+	self assert: (uUMLClass variables includes: 'name')</code></pre>
+
+<h4 id="between-binary-messages">Between binary messages</h4>
+<p>Pharo does not make any assumption about the possible mathematical meaning of messages. As a programmer you cannot describe the weight of a binary messages.
+It means that in an expression composed of multiple binary messages, they will be executed from left to right.</p>
+
+<p>For example <code>1 + 2 * 3</code> returns <code>9</code> since first the message plus is resolved and its result is the receiver of the message <code>*</code>.</p>
+
+<pre><code>1 + 2 * 3
+&gt;&gt;&gt; 9 </code></pre>
+
+<p>To get the correct mathematical behavior, one should use parentheses.</p>
+
+<pre><code>1 + (2 * 3)
+&gt;&gt;&gt; 7 </code></pre>
+
+<h3 id="guideline-no-need-for-extra-parentheses"><span class="number">10.2</span> Guideline: no need for extra parentheses</h3>
+<p>There is no need for parentheses surrounding unary message. There is not much benefit to add parentheses around unaray messages. In Pharo unary messages are the messages that have the highest priority. They are executed first.</p>
+
+<p>Prefer</p>
+
+<pre><code>xMatrix := PMMatrix rows: x asArrayOfRows.</code></pre>
+
+<p>over</p>
+
+<pre><code>xMatrix := PMMatrix rows: ( x asArrayOfRows ).</code></pre>
+
+<h4 id="no-parentheses-around-message-with-higher-priority">No parentheses around message with higher priority</h4>
+<p>In the similar way, there is no need to put parentheses around binary messages involved in keyword-based expressions. Binary messages are executed prior to
+keyword-messages. In the following <code>=</code> is executed before <code>ifTrue:</code>.</p>
+
+<p>Prefer</p>
+
+<pre><code>reducedX do: [ :row | 
+	(row at: 'target') = 'Iris-setosa' 
+		ifTrue: [ a add: row asArray ] ].</code></pre>
+
+<p>over</p>
+
+<pre><code>reducedX do: [ :row | 
+	( (row at: 'target') = 'Iris-setosa') 
+		ifTrue: [ a add: (row asArray) ] ].</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>depth: aNode
+	"Returns depth of a tree starting from the given node"
+	
+	| leftDepth rightDepth |
+	leftDepth := -1.
+	aNode leftChild isNotNil 
+		ifTrue: [ leftDepth := self depth: aNode leftChild ].
+	rightDepth := -1.
+	aNode rightChild isNotNil 
+		ifTrue: [ rightDepth := self depth: aNode rightChild ].
+	^ leftDepth &gt; rightDepth
+		ifTrue: [ 1 + leftDepth ]
+		ifFalse: [ 1 + rightDepth ]</code></pre>
+
+<p>over</p>
+
+<pre><code>depth:aNode
+	"Returns depth of a tree starting from the given node"
+	| leftDepth rightDepth |
+	leftDepth := -1.
+	aNode leftChild isNotNil 
+	ifTrue: [ leftDepth := self depth: (aNode leftChild) ].
+	rightDepth := -1.
+	aNode rightChild isNotNil 
+	ifTrue: [ rightDepth := self depth: (aNode rightChild) ].
+	
+	( leftDepth &gt; rightDepth )
+	ifTrue: [ ^ (1 + leftDepth) ]
+	ifFalse: [^ (1 + rightDepth ) ].</code></pre>
+
+<h4 id="no-parentheses-around-variable">No parentheses around variable</h4>
+<p>Putting parentheses around a variable does not produce an array, it has no effect.
+Do not confuse parentheses and curly braces. Curly braces is a shortcut to produce an array with the elements they surround: <code>{ a }</code> produces an array with one element whose value is the value held by the variable <code>a</code> as shown by the examples below.</p>
+
+<p>In this code snippet, <code>{}</code> creates an array.</p>
+
+<pre><code>| a |
+a := 12.  
+{a} printString
+&gt;&gt;&gt; #(12)</code></pre>
+
+<p>In this snippet, the parentheses do not do anything.</p>
+
+<pre><code>| a |
+a := 12.  
+(a) printString
+&gt;&gt;&gt; 12</code></pre>
+
+<h4 id="no-parentheses-around-single-message">No parentheses around single message</h4>
+<p>There is no need to put extra parentheses over a single message. It has no effect.
+Parentheses make sense to disambiguate one message over a set of messages composing an expression.</p>
+
+<p>Prefer</p>
+
+<pre><code>m := pca transform: xMatrix</code></pre>
+
+<p>over</p>
+
+<pre><code>m := (pca transform: xMatrix)</code></pre>
+
+<h3 id="guideline-receiver-of-iftrue-iffalse-is-a-boolean"><span class="number">10.3</span> Guideline: receiver of ifTrue:ifFalse: is a boolean</h3>
+<p>Do not use a block as receiver of a <code>ifTrue:</code>, <code>ifFalse:</code>, <code>ifTrue:ifFalse:</code> or <code>ifFalse:ifTrue:</code> messages.</p>
+
+<p>The following expression is the following:</p>
+
+<pre><code>lastNode = 0 
+	ifTrue:[ lastNode := curNode ]
+	ifFalse:[ lastNode next: curNode ]</code></pre>
+
+<p>The following expressions do not work</p>
+
+<pre><code>[lastNode =0] value 
+	ifTrue:[ lastNode := curNode ]
+	ifFalse:[ lastNode next: curNode ]</code></pre>
+
+<pre><code>[lastNode =0] 
+	ifTrue:[ lastNode := curNode ]
+	ifFalse:[ lastNode next: curNode ]</code></pre>
+
+<h3 id="guideline-receiver-of-whiletrue-is-a-block"><span class="number">10.4</span> Guideline: receiver of whileTrue: is a block</h3>
+<p>The receiver of the message <code>whileTrue:</code> is a block, and its argument is, too.</p>
+
+<p>The following line is incorrect:</p>
+
+<pre><code>(number &lt; limit) whileTrue: [ do something ]</code></pre>
+
+<p>The following line is correct:</p>
+
+<pre><code>[ number &lt; limit ] whileTrue: [ do something ]</code></pre>
+
+<h3 id="guideline-use-a-block-when-you-do-not-know-execution-time"><span class="number">10.5</span> Guideline: Use a Block when you do not know execution time</h3>
+<p>Often newcomers get confused about when to use <code>( )</code> and <code>[ ]</code>.
+A good way to understand is that we should use <code>[ ]</code> when we do know whether an expression will be executed (may be multiple times).</p>
+
+<h4 id="iftrue-iffalse">ifTrue:ifFalse:</h4>
+<p>The conditional is always executed, while each of the arguments is a block because we do not know which ones will be executed.</p>
+
+<pre><code>lastNode = 0 
+	ifTrue: [ lastNode := curNode ]
+	ifFalse: [ lastNode next: curNode ]</code></pre>
+
+<h4 id="timesrepeat">timesRepeat:</h4>
+<p><code>timesRepeat:</code>'s argument is a block because we do not know how many times it will be executed.</p>
+
+<pre><code>n timesRepeat: [ lastNode := curNode next ]</code></pre>
+
+<h4 id="do-collect">do:/collect:</h4>
+<p>The argument of iterators such as <code>do:</code>, <code>collect:</code>,... is a block because we do not know how many times (if any) the block will be executed.</p>
+
+<pre><code>aCol do: [ :node | ...]</code></pre>
+
+<h3 id="guideline-avoid-when-in-loop"><span class="number">10.6</span> Guideline: Avoid , when in loop</h3>
+<p>In Pharo string concatenations are expressed using the message <code>#,</code>.</p>
+
+<pre><code>'Pharo' , ' with Style'
+&gt;&gt;&gt; 'Pharo with Style'</code></pre>
+
+<p>The implementation of the method is however not really efficient since it copies the underlying collection during each concatenation
+as we show below.
+The alternative is to use a write stream or to use <code>streamContents:</code> but using a stream makes the code more complex.
+Therefore there is a key question to be answered: When is it pointless to use a  WriteStream and just use <code>#,</code> ?</p>
+
+<p>Avoid <code>#,</code> when the code is in a loop or recursion, use a stream.</p>
+
+<pre><code>String streamContents: [:s | 1 to: 10000 do: [ :i | s &lt;&lt; i asString ]]</code></pre>
+
+<p>Use <code>#,</code> when constructing error messages, class initialisation code, or situations where there is no loop.</p>
+
+<p>Note that in <code>printOn:</code> methods, the argument is already a stream so we use it and avoid using message <code>#,</code>.</p>
+
+<h5 class="paragraph" id="difference-in-speed">Difference in speed</h5>
+<p>The following snippets shows the difference in execution on large concatenations.</p>
+
+<pre><code>[ String streamContents: [:s | 1 to: 10000 do: [ :i | s &lt;&lt; i asString ]] ] bench
+&gt;&gt;&gt; '551.890 per second'</code></pre>
+
+<pre><code>[ | s |
+  s := ''.
+  1 to: 10000 do: [ :i | s := s, i asString ]  ] bench
+&gt;&gt;&gt; '8.465 per second'</code></pre>
+
+<pre><code>[ String streamContents: [:s | 1 to: 1000 do: [ :i | s &lt;&lt; i asString ]]  ] bench 
+&gt;&gt;&gt; '6313.137 per second'</code></pre>
+
+<pre><code>[ | s |
+  s := ''.
+  1 to: 1000 do: [ :i | s := s, i asString ]  ] bench  
+&gt;&gt;&gt; '967.819 per second'</code></pre>
+
+<h3 id="guideline-super-is-just-self"><span class="number">10.7</span> Guideline: super is just self</h3>
+<p><code>super</code> is the receiver of the message, just as <code>self</code>. No <code>super</code> is not the superclass, nor an instance of the superclass. <code>super</code> is the receiver of the message.</p>
+
+<p>There is no need to use <code>super</code> when returning an expression not passing it as argument. For example passing <code>super</code> as argument is useless and show that the developer did fully get what <code>super</code> it.</p>
+
+<pre><code>foo
+
+	anotherObject bar: super.
+	self continue.</code></pre>
+
+<p>Better use <code>self</code></p>
+
+<pre><code>foo
+
+	anotherObject bar: self.
+	self continue.</code></pre>
+
+<p>Similarly</p>
+
+<pre><code>foo
+	^ super</code></pre>
+
+<p>Better use <code>self</code></p>
+
+<pre><code>foo
+	^ self</code></pre>
+
+<h3 id="guideline-do-not-reuse-temporaries"><span class="number">10.8</span> Guideline: Do not reuse temporaries</h3>
+<p>Readable code is key and reusing a local temporary variable to store different objects during the execution of a method should be avoided. Creating a separate temporary does not incur any execution cost. Therefore, create a temporary variable instead of storing different objects inside the same variable at different execution points of a method.</p>
+
+<h3 id="guideline-do-not-change-behavior-of-well-known-messages"><span class="number">10.9</span> Guideline: Do not change behavior of well-known messages</h3>
+<p>When reading code, developers read it in the context of core libraries, a common vocabulary, and expected behavior. Therefore, it is important not to define methods having the same name as a common message but that exhibit different behaviors. </p>
+
+<p>When you define a method, you can check really fast using implementors if existing libraries have already defined such a message.</p>
+
+<h3 id="guideline-use-iterators"><span class="number">10.10</span> Guideline: Use iterators</h3>
+<p>Pharo has a large collection of really powerful iterators in its deep core. Use <code>do:</code>, <code>collect:</code>, <code>select:</code>, <code>reject:</code> to start with.</p>
+
+<p>Prefer</p>
+
+<pre><code>collection do: [ :element | ... ]</code></pre>
+
+<p>over</p>
+
+<pre><code>1 to: collection size do: [ :index | ... ]</code></pre>
+
+<p>This is the only case where you must use <code>super</code> to invoke the method that cannot be reach by the method lookup when it starts from the class defining the method.
+The correct definition is then:</p>
+
+<h3 id="guideline-avoid-low-level-messages"><span class="number">10.11</span> Guideline: Avoid low-level messages</h3>
+<p>Pharo offers a large set of low-level messages such as <code>isKindOf:</code>, <code>isMemberOf:</code>, <code>become:</code>, <code>canUnderstand:</code>, <code>doesNotUnderstand:</code>, ....
+Such messages are handy for constructing tools and the infrastructure of the language. However, such methods make the code more complex and often more fragile. In addition, some are more costly and, in addition, break basic cross-references. So, always consider whether such methods are truly necessary.</p>
+
+<h3 id="guideline-do-not-abuse-blocks"><span class="number">10.12</span> Guideline: Do not abuse blocks</h3>
+<p>Blocks are powerful. They are handy because they are like anonymous methods created on the fly. Avoid nest blocks and complex flow when explicit methods are possible.</p>
+
+<p>Prefer</p>
+
+<pre><code>action1 
+	... code1
+
+action2
+	... code2
+
+some method 
+	x &lt;y 
+		ifTrue: [ self action1 ]
+		ifFasel: [ self action2  ]</code></pre>
+
+<p>over</p>
+
+<pre><code>action1 := [ ... code1 ].
+action2 := [ ... code2 ]
+
+some method 
+	x &lt;y 
+		ifTrue: [ action1 value ]
+		ifFasel: [ action2 value ]</code></pre>
+
+<h3 id="guideline-do-not-write-lengthly-blocks"><span class="number">10.13</span> Guideline: Do not write lengthly blocks</h3>
+<p>Now, writing long blocks is a problem because blocks are not methods and you cannot simply call them. In addition, blocks do not create simple hook methods that subclasses can customize.</p>
+
+<p>A good practice is to keep the block body length short and to convert long blocks into methods and call such methods from the block. </p>
+
+<p>Prefer</p>
+
+<pre><code>messageWithBlock
+	body of a long block
+
+anObject use: [ self messageWithBlock ]</code></pre>
+
+<p>over</p>
+
+<pre><code>anObject use: [ ... body of a long block ... ]</code></pre>
+
+<h3 id="guideline-exception-catch-must-not-be-empty"><span class="number">10.14</span> Guideline: Exception catch MUST not be empty</h3>
+<p>Exceptional behavior can be captured and controlled using <code>on:do:</code>. Now this is important not to catch an exceptional behavior and do nothing.  This is basically the worst thing you can do, and it will backfire on you months later. In addition, it makes your code super difficult to debug.</p>
+
+<p>Prefer</p>
+
+<pre><code>[ expression ] on: Error do: [:ex | Stdio stderr nextPutAll: 'Error in...' ]</code></pre>
+
+<p>over</p>
+
+<pre><code>[ expression ] on: Error do: []</code></pre>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="object-initialization.html">← Object initialization</a>
+        <a class="next" rel="next" href="potential-traps-about.html">Potential traps: About printing and Streams →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo with Style · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

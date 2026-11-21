@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About class names</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo with Style</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="general-naming-conventions.html"><span class="number">1</span> General naming conventions</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="about-class-names.html" aria-current="page"><span class="number">2</span> About class names</a>
+            
+            <ol>
+              
+              <li><a href="#guideline-use-direct-and-natural-style"><span class="number">2.1</span> Guideline: Use direct and natural style</a></li>
+              
+              <li><a href="#guideline-use-natural-language"><span class="number">2.2</span> Guideline: Use natural language</a></li>
+              
+              <li><a href="#guideline-do-not-expose-implementation"><span class="number">2.3</span> Guideline: Do not expose implementation</a></li>
+              
+              <li><a href="#guideline-avoid-to-use-plural-for-class-names"><span class="number">2.4</span> Guideline: Avoid to use plural for class names</a></li>
+              
+              <li><a href="#guideline-avoid-name-collisions"><span class="number">2.5</span> Guideline: Avoid name collisions</a></li>
+              
+              <li><a href="#guideline-class-names-should-indicate-the-class-parent"><span class="number">2.6</span> Guideline: Class names should indicate the class' parent</a></li>
+              
+              <li><a href="#conclusion-2"><span class="number">2.7</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="about-identifier-format.html"><span class="number">3</span> About identifier format</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-variable-names.html"><span class="number">4</span> About variable names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-method-names.html"><span class="number">5</span> About method names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-code-formatting.html"><span class="number">6</span> About code formatting</a>
+            
+          </li>
+          
+          <li>
+            <a href="comments.html"><span class="number">7</span> Comments</a>
+            
+          </li>
+          
+          <li>
+            <a href="powerful-coding-idioms.html"><span class="number">8</span> Powerful coding idioms</a>
+            
+          </li>
+          
+          <li>
+            <a href="object-initialization.html"><span class="number">9</span> Object initialization</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-a-syntactic.html"><span class="number">10</span> Potential traps: A syntactic perspective</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-about.html"><span class="number">11</span> Potential traps: About printing and Streams</a>
+            
+          </li>
+          
+          <li>
+            <a href="use-patterns.html"><span class="number">12</span> Use Patterns</a>
+            
+          </li>
+          
+          <li>
+            <a href="conclusion.html"><span class="number">13</span> Conclusion</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="about-class-names"><span class="number">2</span> About class names</h2>
+<p>In object-oriented programming, classes play an important role. They are factories of objects, and as such, they are important for conveying the main abstractions within an application.</p>
+
+<h3 id="guideline-use-direct-and-natural-style"><span class="number">2.1</span> Guideline: Use direct and natural style</h3>
+<p>Often, classes represent objects, even abstract ones. Use the names that fit the best without inventing some clunky new terms.</p>
+
+<p>Prefer</p>
+
+<pre><code>Terminal</code></pre>
+
+<p>over</p>
+
+<pre><code>PlaceToDisplayInformation</code></pre>
+
+<p>Some classes represent an action (such as Visitor) or process.</p>
+
+<pre><code>RBReadBeforeWrittenTester
+MicHTMLWriter</code></pre>
+
+<p>Finally, some may represent a particular state. In Pharo, announcements follow the convention of finishing with the verb in the past tense. It contradicts English conventions, but it is applied uniformly.</p>
+
+<pre><code>IcePackageLoaded
+MCVersionSaved
+RubBoundsChanged</code></pre>
+
+<p>Avoid class name using gerund</p>
+
+<pre><code>RBParsing
+OpeningFile</code></pre>
+
+<h3 id="guideline-use-natural-language"><span class="number">2.2</span> Guideline: Use natural language</h3>
+<p>When defining class names, avoid abbreviations that are not obvious, avoid shortening names, and favor natural language.</p>
+
+<p>Prefer</p>
+
+<pre><code>RandomNumberGenerator</code></pre>
+
+<p>over</p>
+
+<pre><code>RandNumbGen</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>CSVImporter</code></pre>
+
+<p>over</p>
+
+<pre><code>CSVImport</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>RemoteControl</code></pre>
+
+<p>over</p>
+
+<pre><code>RemControl</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>Player</code></pre>
+
+<p>over</p>
+
+<pre><code>BoardMan</code></pre>
+
+<h3 id="guideline-do-not-expose-implementation"><span class="number">2.3</span> Guideline: Do not expose implementation</h3>
+<p>A class name should not expose the implementation the class uses. This is important because implementation may change in the future.</p>
+
+<p>Prefer</p>
+
+<pre><code>PropertyName
+ContactBook</code></pre>
+
+<p>over</p>
+
+<pre><code>PropertyNameString
+ContactDictionary</code></pre>
+
+<h3 id="guideline-avoid-to-use-plural-for-class-names"><span class="number">2.4</span> Guideline: Avoid to use plural for class names</h3>
+<p>A class often has many instances. TestCase classes are special classes where their methods are individual tests. Still, it is really awkward to have a class ending with S.</p>
+
+<p>Prefer</p>
+
+<pre><code>AthensTextRenderManualTest</code></pre>
+
+<p>over</p>
+
+<pre><code>AthensTextRenderManualTests</code></pre>
+
+<p>Of course some domain names ends with S, in such as case just follow the convention.</p>
+
+<p>Prefer</p>
+
+<pre><code>NetworkSystemSettings</code></pre>
+
+<h3 id="guideline-avoid-name-collisions"><span class="number">2.5</span> Guideline: Avoid name collisions</h3>
+<p>To avoid name space collisions, add a prefix indicative of the project to the name of the class.</p>
+
+<p>Prefer</p>
+
+<pre><code>PRDocument
+CmdMessage</code></pre>
+
+<q id="note">You may find that Pharo is lacking a namespace. If you have a couple hundred thousand euros, we can fix that!
+ote, however, that even with a namespace you will have to pay attention that your namespace name does not collide with another one.</q>
+<h3 id="guideline-class-names-should-indicate-the-class-parent"><span class="number">2.6</span> Guideline: Class names should indicate the class' parent</h3>
+<p>Suffix class names with the root class to convey the kind of object we are talking about.</p>
+
+<p>For example, without the <code>Morph</code> suffix, the reader is forced to check the superclass to understand if the class is about a graphical object or not.</p>
+
+<p>Prefer</p>
+
+<pre><code>ClyBrowserButtonMorph</code></pre>
+
+<p>over</p>
+
+<pre><code>ClyBrowserButton</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>ClyQueryViewMorph</code></pre>
+
+<p>over</p>
+
+<pre><code>ClyQueryView</code></pre>
+
+<p>Prefer</p>
+
+<pre><code>SpLayoutHelpTopics</code></pre>
+
+<p>over</p>
+
+<pre><code>SpLayouts</code></pre>
+
+<p>In the following, not mentioning the <code>Presenter</code> suffix makes it unclear to the reader that it is a Presenter object as opposed to a Model object.</p>
+
+<p>Prefer</p>
+
+<pre><code>ApplicationWithToolBarPresenter</code></pre>
+
+<p>over</p>
+
+<pre><code>ApplicationWithToolbar</code></pre>
+
+<p>In the next example, <code>DynamicWidgetChange</code> does not convey that this is not a <i>domain</i> object representing a change, but a <code>Presenter</code> object in the Model-View-Presenter triad:</p>
+
+<pre><code>DynamicWidgetChangePresenter</code></pre>
+
+<p>over</p>
+
+<pre><code>DynamicWidgetChange</code></pre>
+
+<h3 id="conclusion-2"><span class="number">2.7</span> Conclusion</h3>
+<p>Finding a good name is often difficult. However, nobody forces you to find it right upfront. And you can always change a name once you find a good one.</p>
+
+<p>A good way to find good names is to write unit tests.</p>
+
+<p>When you write unit tests, you are the first client of your code. You can then see if the names you chose let you write coherent and comprehensible little stories. You can explore the names you picked up and rename them.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="general-naming-conventions.html">← General naming conventions</a>
+        <a class="next" rel="next" href="about-identifier-format.html">About identifier format →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo with Style · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

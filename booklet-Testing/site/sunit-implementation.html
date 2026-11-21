@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SUnit implementation</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Testing in Pharo</a>
+    <p class="site-authors">Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="introduction.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="two-minutes-of-theory.html"><span class="number">2</span> Two minutes of theory</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-by-example.html"><span class="number">3</span> SUnit by example</a>
+            
+          </li>
+          
+          <li>
+            <a href="extreme-test-driven-development.html"><span class="number">4</span> Extreme Test-Driven Development  by Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-the-framework.html"><span class="number">5</span> SUnit: The framework</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-cookbook.html"><span class="number">6</span> A little cookbook</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="sunit-implementation.html" aria-current="page"><span class="number">7</span> SUnit implementation</a>
+            
+            <ol>
+              
+              <li><a href="#running-one-test"><span class="number">7.1</span> Running one test</a></li>
+              
+              <li><a href="#running-a-testsuite"><span class="number">7.2</span> Running a TestSuite</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="ui-testing.html"><span class="number">8</span> UI testing</a>
+            
+          </li>
+          
+          <li>
+            <a href="testing-web-applications.html"><span class="number">9</span> Testing web applications with Parasol</a>
+            
+          </li>
+          
+          <li>
+            <a href="mockobject-and-teachable.html"><span class="number">10</span> MockObject and Teachable: Two simple mocking approaches</a>
+            
+          </li>
+          
+          <li>
+            <a href="mutalk-a-mutation-testing.html"><span class="number">11</span> MuTalk: A Mutation Testing Framework</a>
+            
+          </li>
+          
+          <li>
+            <a href="performance-testing-with.html"><span class="number">12</span> Performance testing with SMark</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="sunit-implementation"><span class="number">7</span> SUnit implementation</h2>
+<p>The implementation of SUnit makes an interesting case study of a Pharo
+framework. Let's look at some key aspects of the implementation by following the
+execution of a test.</p>
+
+<h3 id="running-one-test"><span class="number">7.1</span> Running one test</h3>
+<p>To execute one test, we execute the expression <code>(aTestClass selector: aSymbol)run.</code></p>
+
+<p><figure id="fig:sunit-scenario"><img src="Chapters/SUnit/figures/sunit-scenario.png" alt="Running one test." class="fig:sunit-scenario" style="width: 60%"><figcaption><span class="number">Figure 7.1</span> Running one test.</figcaption></img></figure></p>
+
+<p>The method <code>TestCase &gt;&gt; run</code> creates an instance of <code>TestResult</code> that will
+accumulate the results of the test, then it sends itself the message
+<code>TestCase &gt;&gt; run:</code> (See Figure <a href="#fig:sunit-scenario">7.1</a>).</p>
+
+<pre><code>TestCase &gt;&gt; run
+	| result |
+	result := self classForTestResult new.
+	[ self run: result ]
+		ensure: [ self classForTestResource resetResources: self resources ].
+	^ result</code></pre>
+
+<p>The method <code>TestCase &gt;&gt; run:</code> sends the message <code>runCase:</code> to the test result:</p>
+
+<figure class="code"><pre><code>TestCase &gt;&gt; run: aResult
+	aResult runCase: self</code></pre><figcaption><span class="number">Listing 7.1</span> Passing the test case to the test result</figcaption></figure>
+
+<p>The method <code>TestResult &gt;&gt; runCase:</code> sends the message <code>TestCase &gt;&gt; runCase</code>
+to an individual test, to execute the test. <code>TestResult &gt;&gt; runCase</code> deals with
+any exceptions that may be raised during the execution of a test, runs a
+<code>TestCase</code> by sending it the <code>runCase</code>, and counts the errors, failures, and
+passes.</p>
+
+<figure class="code"><pre><code>TestResult &gt;&gt; runCase: aTestCase
+	[
+	aTestCase announce: TestCaseStarted withResult: self.
+	aTestCase runCase.
+	aTestCase announce: TestCaseEnded withResult: self.
+	self addPass: aTestCase ]
+		on: self class failure, self class skip, self class warning, self class error
+		do: [ :ex | ex sunitAnnounce: aTestCase toResult: self ]</code></pre><figcaption><span class="number">Listing 7.2</span> Catching test case errors and failures</figcaption></figure>
+
+<p>The method <code>TestCase &gt;&gt; runCase</code> sends the messages <code>TestCase &gt;&gt; setUp</code> and
+<code>TestCase &gt;&gt; tearDown</code> as shown below.</p>
+
+<pre><code>TestCase &gt;&gt; runCase
+		self resources do: [ :each | each availableFor: self ].
+		[ self setUp.
+		self performTest ] ensure: [
+			self tearDown.
+			self cleanUpInstanceVariables ]</code></pre>
+
+<h3 id="running-a-testsuite"><span class="number">7.2</span> Running a TestSuite</h3>
+<p>To run more than one test, we send the message <code>run</code> to a <code>TestSuite</code> that
+contains the relevant tests. <code>TestCase class</code> provides some functionality to
+build a test suite from its methods. The expression <code>MyTestCasebuildSuiteFromSelectors</code> returns a suite containing all the tests defined in
+the <code>MyTestCase</code> class. The core of this process is:</p>
+
+<figure class="code"><pre><code>TestCase class &gt;&gt; testSelectors
+	^ (self selectors select: [ :each | (each beginsWith: 'test') and: [ each numArgs isZero ]])</code></pre><figcaption><span class="number">Listing 7.3</span> Auto-building the test suite</figcaption></figure>
+
+<p>The method <code>TestSuite &gt;&gt; run</code> creates an instance of <code>TestResult</code>, verifies
+that all the resources are available, and then sends itself the message
+<code>TestSuite &gt;&gt; run:</code>, which runs all the tests in the suite. All the resources
+are then released.</p>
+
+<pre><code>TestSuite &gt;&gt; run: aResult
+	self setUp.
+	[ self tests
+		do: [ :each |
+			each run: aResult.
+			self announceTest: each.
+			self changed: each ] ]
+		ensure: [ self tearDown ]
+
+TestSuite &gt;&gt; setUp
+	self resources do: [ :each |
+				each isAvailable ifFalse: [ each signalInitializationError ]
+		].
+
+TestSuite &gt;&gt; tearDown
+	self resourceClass resetResources: self resources</code></pre>
+
+<p>The class <code>TestResource</code> and its subclasses keep track of their currently
+created singleton instances that can be accessed and created using the class
+method <code>TestResource class &gt;&gt; current</code>. This instance is cleared when the
+tests have finished running and the resources are reset.</p>
+
+<p>The resource availability check makes it possible for the resource to be
+re-created if needed, as shown in the class method <code>TestResourceclass &gt;&gt; isAvailable</code>. During the <code>TestResource</code> instance creation, it is
+initialized and the message <code>setUp</code> is sent to a test resource.</p>
+
+<figure class="code"><pre><code>TestResource class &gt;&gt; isAvailable
+	"This is (and must be) a lazy method. If my current has a value, an attempt to make me available has already been made: trust its result. If not, try to make me available."
+
+	current ifNil: [ self makeAvailable ].
+	^ self isAlreadyAvailable</code></pre><figcaption><span class="number">Listing 7.4</span> Test resource availability</figcaption></figure>
+
+<figure class="code"><pre><code>TestResource class &gt;&gt; current
+	"This is a lazy accessor: the assert of self isAvailable does no work unless current isNil. However this method should normally be sent only to a resource that should already have been made available, e.g. in a test whose test case class has the resource class in its #resources, so should never be able to fail the assert.
+	If the intent is indeed to access a possibly-unprepared or reset-in-earlier-test resource lazily, then preface the call of 'MyResource current' with 'MyResource availableFor: self'."
+
+	self
+		assert: self isAvailable
+		description:
+			'Sent #current to unavailable resource ', self name,
+				'. Add it to test case'' class-side #resources (recommended) or send #availableFor: beforehand'.
+	^ current</code></pre><figcaption><span class="number">Listing 7.5</span> Test resource creation</figcaption></figure>
+
+<ul>
+<li>To maximize their potential, unit tests should be fast, repeatable, independent of any direct human interaction and cover a single unit of functionality.</li>
+<li>Tests for a class called <code>MyClass</code> belong in a class named <code>MyClassTest</code>, which should be introduced as a subclass of <code>TestCase</code>.</li>
+<li>Initialize your test data in a <code>setUp</code> method.</li>
+<li>Each test method should start with the word <i>test</i>.</li>
+<li>Use the <code>TestCase</code> methods <code>assert:</code>, <code>deny:</code> and others to make assertions.</li>
+<li>Run tests!</li>
+</ul>
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="a-little-cookbook.html">← A little cookbook</a>
+        <a class="next" rel="next" href="ui-testing.html">UI testing →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Testing in Pharo · Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

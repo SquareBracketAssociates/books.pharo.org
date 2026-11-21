@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Use Patterns</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Pharo with Style</a>
+    <p class="site-authors">Stéphane Ducasse</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="general-naming-conventions.html"><span class="number">1</span> General naming conventions</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-class-names.html"><span class="number">2</span> About class names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-identifier-format.html"><span class="number">3</span> About identifier format</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-variable-names.html"><span class="number">4</span> About variable names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-method-names.html"><span class="number">5</span> About method names</a>
+            
+          </li>
+          
+          <li>
+            <a href="about-code-formatting.html"><span class="number">6</span> About code formatting</a>
+            
+          </li>
+          
+          <li>
+            <a href="comments.html"><span class="number">7</span> Comments</a>
+            
+          </li>
+          
+          <li>
+            <a href="powerful-coding-idioms.html"><span class="number">8</span> Powerful coding idioms</a>
+            
+          </li>
+          
+          <li>
+            <a href="object-initialization.html"><span class="number">9</span> Object initialization</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-a-syntactic.html"><span class="number">10</span> Potential traps: A syntactic perspective</a>
+            
+          </li>
+          
+          <li>
+            <a href="potential-traps-about.html"><span class="number">11</span> Potential traps: About printing and Streams</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="use-patterns.html" aria-current="page"><span class="number">12</span> Use Patterns</a>
+            
+            <ol>
+              
+              <li><a href="#guideline-write-small-methods"><span class="number">12.1</span> Guideline: Write small methods</a></li>
+              
+              <li><a href="#guideline-avoid-singletons"><span class="number">12.2</span> Guideline: Avoid singletons</a></li>
+              
+              <li><a href="#guideline-avoid-explicit-transcript"><span class="number">12.3</span> Guideline: Avoid explicit Transcript</a></li>
+              
+              <li><a href="#the-real-concern"><span class="number">12.4</span> The real concern</a></li>
+              
+              <li><a href="#guideline-parametrized-your-object-with-log-stream"><span class="number">12.5</span> Guideline: Parametrized your object with log stream</a></li>
+              
+              <li><a href="#when-instance-creation-is-delicate"><span class="number">12.6</span> When instance creation is delicate</a></li>
+              
+              <li><a href="#guideline-wrap-explicit-signal-raising"><span class="number">12.7</span> Guideline: Wrap explicit signal raising</a></li>
+              
+            </ol>
+            
+          </li>
+          
+          <li>
+            <a href="conclusion.html"><span class="number">13</span> Conclusion</a>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="use-patterns"><span class="number">12</span> Use Patterns</h2>
+<p>In this chapter we present some points about existing libraries or functionality that are often misunderstood and lead to code of lesser quality.</p>
+
+<h3 id="guideline-write-small-methods"><span class="number">12.1</span> Guideline: Write small methods</h3>
+<p>Long methods are a sign of less mature code. Indeed, small methods offer many strong advantages:</p>
+
+<ul>
+<li>Are easier to read and understand,</li>
+<li>Are easier to test,</li>
+<li>Are easier to reuse and compose,</li>
+<li>Are elementary pieces of customization. Indeed, sending a message to self creates a hook that subclasses can customize within their context. This is the foundation of object-oriented programming.</li>
+</ul>
+<p>As measured by Zaitsev and Ducasse, Pharo methods (excluding test methods) have 3 lines of code as a median value. Therefore, this is not just anecdotal but an important point.</p>
+
+<h3 id="guideline-avoid-singletons"><span class="number">12.2</span> Guideline: Avoid singletons</h3>
+<p>Singletons are evil because they make you feel that you are writing object-oriented code, but in reality they are disguided global variables. Now you can ask yourself why this would be a problem.</p>
+
+<p>This is a problem when you want to modularize your code. In essence, you cannot subtitute a singleton with another object, and any change to the singleton is widely visible.</p>
+
+<p>A symptom of the problem is when you want to write tests. You often do not want to have your tests impact the complete system. So think twice before using a singleton.</p>
+
+<p>A good way to know if you need a singleton is whether you can add an instance variable to your domain objects and pass a reference to the object that you would like to have as a singleton. If you can avoid the singleton just with the addition of an instance variable, it means that you did not need the singleton.</p>
+
+<p>This is why good object-oriented designers say that Singleton is about time and not space, meaning that you need a singleton when you cannot have two instances working at the same time - Think about a scheduler. You cannot have two scheduler manipulating threads at the same time.</p>
+
+<p>The following guideline is an example of a Singleton bad use.</p>
+
+<h3 id="guideline-avoid-explicit-transcript"><span class="number">12.3</span> Guideline: Avoid explicit Transcript</h3>
+<p>We present why <code>Transcript</code> can be really badly used. We present that with some simple care we can develop modular solutions that are flexible and can take advantages of using <code>Transcript</code> without the inconvenients. Let us imagine that you still want to log strings.</p>
+
+<h5 class="paragraph" id="first-simple-case">First simple case</h5>
+<p><code>Transcript</code> is a kind of stdout on which you can write some strings outputs. It is cheap. The class exposes a stream-based API (and this is a really important design point as we will see in the future).</p>
+
+<p>Here is a typical not really good use of <code>Transcript</code></p>
+
+<pre><code>myMethod
+    Transcript show: 'foo' ; cr  </code></pre>
+
+<p>It is not really good because it hardcodes a reference to <code>Transcript</code> while Pharo proposes some helpers methods such as <code>traceCr:</code>.</p>
+
+<pre><code>myMethod
+   self traceCr: 'foo'</code></pre>
+
+<p>Some developers may think that this is not important but it can help you if one day you want to control the logging and for example use an object with the same API but to do something else. So avoid hardcoding globals. But there is more. </p>
+
+<h3 id="the-real-concern"><span class="number">12.4</span> The real concern</h3>
+<p>The problem amongst others is that Transcript is a singleton and in fact a global variable. Once you use it for real in your code, you basically killed the modularity of your program and the only thing that you can do is to hope that nothing bad can happen.</p>
+
+<p>Let us look at a concrete simple case. The microdown Parser came (yes we removed this) with a simple method named closeMe:</p>
+
+<pre><code>MicAbstractBlock &gt;&gt; closeMe
+	
+    Transcript &lt;&lt; 'Closing ' &lt;&lt; self class name; cr; endEntry</code></pre>
+
+<p>So this method is producing a little trace so that the parser developer could understand what was happening. So you can think that this is ok.</p>
+
+<p>There are two main problems:</p>
+
+<ul>
+<li>First what if you want to deploy your application in a system where you do not want at all to get Transcript its class and all its family. Think for example about people producing minimal images.</li>
+<li>Second, when Pharo is built on Jenkins all the tests are executed because we love tests. And this Transcript expression produces dirt on the build log. You do not want to have read such a trace when you are trying to understand why the build is not working.</li>
+</ul>
+<pre><code>Closing MicCodeBlock
+Closing MicCodeBlock
+Closing MicCodeBlock
+Closing MicCodeBlock
+Closing MicCodeBlock
+Closing MicCodeBlock
+Closing MicCodeBlock
+Closing MicCodeBlock
+Closing MicHeaderBlock
+Closing MicHeaderBlock
+Closing MicHeaderBlock
+Closing MicHeaderBlock
+Closing MicListItemBlock
+Closing MicListItemBlock
+Closing MicOrderedListBlock</code></pre>
+
+<p>Now let us see the good way to have a log and be able to unplug it.</p>
+
+<h3 id="guideline-parametrized-your-object-with-log-stream"><span class="number">12.5</span> Guideline: Parametrized your object with log stream</h3>
+<p>The solution is really simple.
+Just use object-oriented programming and encapsulation.
+To support the Parser developer, we can simply add a stream to the class.</p>
+
+<p>For example we define a new variable to and initialize it to a write stream.</p>
+
+<pre><code>Object subclass: #MicAbstractBlock
+	instanceVariableNames: 'parent children parser logStream'
+	classVariableNames: ''
+	package: 'Microdown-Model'</code></pre>
+
+<pre><code>MicAbstractBlock &gt;&gt; initialize
+	super initialize. 
+	children := OrderedCollection new.
+   logStream := WriteStream on: (String new: 1000)</code></pre>
+
+<p>Then we can rewrite the method <code>closeMe</code> as follows</p>
+
+<pre><code>MicAbstractBlock &gt;&gt; closeMe
+	logStream &lt;&lt; 'Closing ' &lt;&lt; self class name; cr</code></pre>
+
+<p>Then we can provide a simple setter method so that the developer can set for example the Transcript as a stream to write to. </p>
+
+<pre><code>MicAbstractBlock &gt;&gt; logStream: aStream 
+	logStream := aStream</code></pre>
+
+<h3 id="when-instance-creation-is-delicate"><span class="number">12.6</span> When instance creation is delicate</h3>
+<p>If we do not control the creation of instances of the class using the stream, we will have difficulties configuring it with the correct stream. So if you want to be able to configure the class to use a different logger, we should define a class variable so that we can send message to the class and at initialization time, we can take the value from the class variable instead of hardcoding the WriteStream.</p>
+
+<p>Here is a sketch to illustrate the idea.</p>
+
+<p>We add a class variable <code>DefaultStream</code> to the class.</p>
+
+<pre><code>Object subclass: #MicAbstractBlock
+	instanceVariableNames: 'parent children parser logStream'
+	classVariableNames: 'DefaultStream'
+	package: 'Microdown-Model'</code></pre>
+
+<p>We define one setter. This is using this setter that we will be able to say to the system that for a given execution it should write to the <code>Transcript</code>: for example doing <code>MicAbstractBlock logStream: Transcript</code>.</p>
+
+<pre><code>MicAbstractBlock class &gt;&gt; logStream: aStream 
+	DefaultStream := aStream</code></pre>
+
+<p>We make sure that the class variable is initialized to a default stream. Now we do it in way that we can later reset the stream to such default stream.</p>
+
+<pre><code>MicAbstractBlock class &gt;&gt; reset
+	self logStream: (WriteStream on: (String new: 1000))</code></pre>
+
+<p>Here we hardcode the stream and alternate solution that extract this expression in a separate messages if it makes sense for subclass to specialize.</p>
+
+<pre><code>MicAbstractBlock class &gt;&gt; initialize
+	self reset</code></pre>
+
+<p>And we will be able to reset the default solution either by reinitializing the class <code>MicAbstractBlock initialize</code> or <code>MicAbstractBlock logStream: MicAbstractBlock defaultValueForStream</code></p>
+
+<p>Now we make sure that the instance creation uses the default stream hold by the class.</p>
+
+<pre><code>MicAbstractBlock &gt;&gt; initialize
+	super initialize. 
+	children := OrderedCollection new.
+   logStream := DefaultStream</code></pre>
+
+<p>The net result is that we have control and can decide what is happening. In addition, we can write tests to make sure that the logging is correct. Because using Transcript makes this a brittle exercise since someone else may write to the Transcript when you do not expect it. </p>
+
+<h4 id="conclusion-4">Conclusion</h4>
+<p><code>Transcript</code> is not bad per se. But it promotes bad coding practices. Developers should stop listening to the sirens of easy and cheap global variables. With a little bit of care and a limited infrastructure, it is possible to get the best of both worlds: modular objects and taking advantage of the existing infrastructure whose <code>Transcript</code> belongs to. </p>
+
+<p>What we presented about <code>Transcript</code> can be applied to any global object or singleton. This is not because a library exposes a singleton that you have to blindly use. You should apply sound principles and protect yourself from the impact of changes.</p>
+
+<h3 id="guideline-wrap-explicit-signal-raising"><span class="number">12.7</span> Guideline: Wrap explicit signal raising</h3>
+<p>One question that you can ask yourself is which one of the two following situation is the best:</p>
+
+<ul>
+<li>Case one. Using the expression <code>self error: 'Oh no!'</code> and defining the method <code>error:</code> in your class (or calling)</li>
+<li>Case two. Using the expression <code>Error signal: 'Oh no!'</code></li>
+</ul>
+<p>The case one is better. As general principle, defining a method and sending a message is often better because sending self-send messages create hooks that your subclasses can take advantage of.</p>
+
+<p>For example imagine the following situation</p>
+
+<pre><code>MyClass &gt;&gt; ohNoError
+	Error signal: 'Oh no!'</code></pre>
+
+<pre><code>MyClass &gt;&gt; ohNoErrorUser
+	x isSomethingBad
+		ifTrue: [ self error: 'Oh no!' ]</code></pre>
+
+<p>Then you can redefine <code>ohNoError</code> in your subclass.</p>
+
+<pre><code>MyClassSubclass &gt;&gt; ohNoError
+	Error signal: 'Oh no! Really no!'</code></pre>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="potential-traps-about.html">← Potential traps: About printing and Streams</a>
+        <a class="next" rel="next" href="conclusion.html">Conclusion →</a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Pharo with Style · Stéphane Ducasse · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>

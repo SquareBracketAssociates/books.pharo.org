@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Performance testing with SMark</title>
+  <meta name="description" content="">
+  <meta name="author" content="Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval">
+  <link rel="stylesheet" href="_support/html/css/book.css">
+  <link rel="stylesheet" href="_support/html/css/custom.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Testing in Pharo</a>
+    <p class="site-authors">Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+        <ol>
+          
+          <li>
+            <a href="introduction.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li>
+            <a href="two-minutes-of-theory.html"><span class="number">2</span> Two minutes of theory</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-by-example.html"><span class="number">3</span> SUnit by example</a>
+            
+          </li>
+          
+          <li>
+            <a href="extreme-test-driven-development.html"><span class="number">4</span> Extreme Test-Driven Development  by Example</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-the-framework.html"><span class="number">5</span> SUnit: The framework</a>
+            
+          </li>
+          
+          <li>
+            <a href="a-little-cookbook.html"><span class="number">6</span> A little cookbook</a>
+            
+          </li>
+          
+          <li>
+            <a href="sunit-implementation.html"><span class="number">7</span> SUnit implementation</a>
+            
+          </li>
+          
+          <li>
+            <a href="ui-testing.html"><span class="number">8</span> UI testing</a>
+            
+          </li>
+          
+          <li>
+            <a href="testing-web-applications.html"><span class="number">9</span> Testing web applications with Parasol</a>
+            
+          </li>
+          
+          <li>
+            <a href="mockobject-and-teachable.html"><span class="number">10</span> MockObject and Teachable: Two simple mocking approaches</a>
+            
+          </li>
+          
+          <li>
+            <a href="mutalk-a-mutation-testing.html"><span class="number">11</span> MuTalk: A Mutation Testing Framework</a>
+            
+          </li>
+          
+          <li class="current">
+            <a href="performance-testing-with.html" aria-current="page"><span class="number">12</span> Performance testing with SMark</a>
+            
+            <ol>
+              
+              <li><a href="#installing-smark"><span class="number">12.1</span> Installing SMark</a></li>
+              
+              <li><a href="#measuring-execution-time"><span class="number">12.2</span> Measuring execution time</a></li>
+              
+              <li><a href="#a-first-benchmark-in-smark"><span class="number">12.3</span> A first benchmark in SMark</a></li>
+              
+              <li><a href="#setup-and-teardown"><span class="number">12.4</span> Setup and teardown</a></li>
+              
+              <li><a href="#smark-benchmark-runners"><span class="number">12.5</span> SMark benchmark runners</a></li>
+              
+              <li><a href="#benchmark-suites"><span class="number">12.6</span> Benchmark suites</a></li>
+              
+              <li><a href="#result-reports"><span class="number">12.7</span> Result reports</a></li>
+              
+              <li><a href="#conclusion-6"><span class="number">12.8</span> Conclusion</a></li>
+              
+            </ol>
+            
+          </li>
+          
+        </ol>
+    </nav>
+
+
+    <main id="content" class="page">
+      
+
+<h2 id="performance-testing-with-smark"><span class="number">12</span> Performance testing with SMark</h2>
+<p>Measuring performance is not an easy activity.
+It involves many considerations that you need to take into account such as the pertinence of what you want to measure, how you can isolate it from other computations, ...
+Indeed an execution may be affected by different factors, for instance, the hardware you have, the VM you are using, the run-time optimizations that the VM perform while your program is running, the unpredictable garbage collection, among many others.
+All these factors combined make it difficult to have a good estimation of the performance of an execution.</p>
+
+<p>This chapter introduces SMark, a  testing framework for benchmarking Pharo applications.
+SMark is developed and maintained by Stephan Marr.
+SMark encapsulates a number of benchmarking best practices that are useful to take into account these factors and help us to have a decent execution time estimation.</p>
+
+<h3 id="installing-smark"><span class="number">12.1</span> Installing SMark</h3>
+<p>You can install SMark with the following code snippet:</p>
+
+<pre><code>Metacello new
+    baseline: 'SMark';
+    repository: 'github://smarr/SMark';
+    load.</code></pre>
+
+<p>The examples in this chapter were performed in Pharo 8.</p>
+
+<h3 id="measuring-execution-time"><span class="number">12.2</span> Measuring execution time</h3>
+<p>Measuring execution time needs to be done carefully, otherwise, we can get a very far estimation of it.
+To illustrate the extent of this situation, we will use the recursive Fibonacci function as a subject under analysis.
+Define a new class named <code>Math</code> and the following method:
+</p>
+
+<pre><code>Math &gt;&gt; fib: n
+  ^n &lt;= 1 
+  	ifTrue: [ n ] 
+	ifFalse: [ (self fib: (n - 1)) + (self fib: (n - 2)) ]</code></pre>
+
+<p>We now will measure how many seconds take to compute the 40th Fibonacci, using the message <code>timeToRun</code> method of the BlockClosure class as follows:</p>
+
+<pre><code>[ Math new fib: 40 ] timeToRun</code></pre>
+
+<p>The method <code>timeToRun</code> basically records the system clock time before and after the execution of the code block.
+We execute this script 5 times, you may find the results of each execution in the following lines:</p>
+
+<pre><code>1 execution: 1091 milliseconds
+2 execution: 1046 milliseconds
+3 execution: 1098 milliseconds
+4 execution: 1069 milliseconds
+5 execution: 1085 milliseconds</code></pre>
+
+<p>As you can see, even in this small example, there is a variation between the results in the five iterations.
+Even though the measurements were done on the same computer, in the same Pharo Image.
+What happened? As we mentioned in the introduction the VM and the Hardware perform plenty of activities at the moment to execute a piece of code, and some of these activities are not deterministic, for instance, without going too far, some collections like the class Set that save objects without a defined (or let say, deterministic) order.</p>
+
+<p>For this reason, it is necessary to consider a number of good practices to measure execution time, and minimize the measurement bias and uncertainty.
+For instance, execute the benchmarks a number of times before starting our measurements to let the VM perform the dynamic optimizations.
+Another recommendation is to execute multiple times the benchmark, use the media as a point of reference, and consider the error margin.
+These recommendations may vary depending on the VM you are using, and the characteristics of your benchmark.
+For instance, it is well known that time measurements have more variations in micro-benchmarks than macro-benchmarks.</p>
+
+<p>But, don’t worry, SMark takes many of these recommendations into account to help you in executing your benchmarks and get a decent execution time estimation.</p>
+
+<h3 id="a-first-benchmark-in-smark"><span class="number">12.3</span> A first benchmark in SMark</h3>
+<p>SMark has been designed to run benchmarks in a similar fashion to we run tests.
+Therefore, their creation is quite similar too.
+First, we need to create a subclass of the class <code>SMarkSuite</code>.</p>
+
+<pre><code>SMarkSuite &lt;&lt; #MyBenchSuite
+	package: 'SMark-Demo'</code></pre>
+
+<p>Then, we need to write the piece of code in which we are interested to measure the execution time (the benchmark), in our case, we will use our Fibonacci benchmark that we introduced in the previous section.</p>
+
+<pre><code>MyBenchSuite &gt;&gt; benchFib40
+	self fib: 40.</code></pre>
+
+<p>To execute our benchmark, we only need to execute the following script in a playground.</p>
+
+<pre><code>MyBenchSuite runOnly: #benchFib40</code></pre>
+
+<p>If you print the script answer it shows a small report like this one:</p>
+
+<pre><code>Report for: MyBenchSuite
+Benchmark Fib40
+Fib40 total: iterations=1 runtime: 1099ms</code></pre>
+
+<p>As you can see, the execution time is similar to the ones we got in the previous section, but now we can use SMark to execute multiple times the benchmark and get a better time estimation.</p>
+
+<pre><code>MyBenchSuite runOnly:#benchFib40 iterations: 25</code></pre>
+
+<p>And we got the following report:</p>
+
+<pre><code>Report for: MyBenchSuite
+Benchmark Fib40
+Fib40 total: iterations=25 runtime: 1022.7ms +/-1.5</code></pre>
+
+<p>There you go, now we have the average execution time and error margin, the error margin measured with a 90% confidence degree assuming that the variable distribution is normal.</p>
+
+<h3 id="setup-and-teardown"><span class="number">12.4</span> Setup and teardown</h3>
+<p>Similarly to SUnit, SMark offers two hook methods to define the actions to be done before and after a benchmark is executed.</p>
+
+<h3 id="smark-benchmark-runners"><span class="number">12.5</span> SMark benchmark runners</h3>
+<p>The way that SMark will run benchmarks depends on the Smark runner you use.
+There are five different runners:</p>
+
+<ul>
+<li><code>SMarkRunner</code></li>
+<li><code>SMarkAutosizeRunner</code>,</li>
+<li><code>SMarkCogRunner</code>,</li>
+<li><code>SMarkProfileRunner</code>, and</li>
+<li><code>SMarkWeakScalingRunner</code>.</li>
+</ul>
+<p>Each runner provides a particular way to perform the benchmarks.
+You may specify which runner you want to use by overriding  the following method.</p>
+
+<pre><code>SMarkSuite class &gt;&gt; defaultRunner
+  ^self onCog: [ SMarkCogRunner ] else: [ SMarkRunner ]</code></pre>
+
+<p>The message <code>defaultRunner</code> returns a CogRunner or a normal Runner depending on the VM on which the benchmark is executed. The next subsection describes each one of these runners.</p>
+
+<p><strong>SMarkRunner.</strong> It is the standard way to run a benchmark provided by SMark. <code>SMarkRunner</code> only performs the benchmark N times, where N is the number of iterations defined by the user, as we saw in the previous section. It records the time measurements of each execution to build a report.</p>
+
+<p><strong>SMarkCogRunner.</strong> It adds warning up instructions before executing the benchmark. <code>SMarkCogRunner</code> executes a benchmark twice before taking the measurements. The first execution is to execute the inline cache optimization done by the VM. The second execution is to trigger the JIT compiler to produce code. Once these two executions are performed the benchmark is executed N times similarly as SMarkRunner does.</p>
+
+<p><strong>SMarkAutosizeRunner.</strong> It increases the execution time of the benchmark to reach a target time, this is used mostly with micro-benchmarks. The default target time is 300 milliseconds. Therefore, if a benchmark takes less than 300 milliseconds to run, this runner will measure how many times this benchmark needs to be executed to meet the target time. Once the benchmark execution time meets the target time, this runner executes this increased benchmark N iterations to take the time measurements similar to SMarkRunner.</p>
+
+<p><strong>SMarkProfileRunner.</strong> It automatically opens and uses Pharo standard time profiler to monitor the execution of all the benchmarks in the suite. Then, the time profilers show the call context tree of this execution reporting which methods were executed by the benchmarks, and how much time each method consumes.</p>
+
+<p><strong>SMarkWeakScallingRunner.</strong> It is specific to platforms with support for real parallelism. Weak scaling is defined as how the solution time varies with the number of processors for a fixed problem size per processor.</p>
+
+<h3 id="benchmark-suites"><span class="number">12.6</span> Benchmark suites</h3>
+<p>Having a good benchmark already packaged and identified is important to be able to compare changes for example in the compiler or other aspects of execution.
+SMark provides  four benchmarks suites:</p>
+
+<ul>
+<li><i>SMarkCompiler</i>, a  benchmark that measures the time needed to compile a regular-size method.</li>
+<li><i>SMarkLoops</i>, a set of microbenchmarks measuring a number of basic aspects such as message send, instance field access, and array access cost.</li>
+<li><i>SMarkSlopstone</i>, a Smalltalk Low-level OPeration Stones Portable Low-Level Benchmarks for ST80 and ST/V (using 16-bit SmallIntegers) - Placed in public domain January 1993 (c) Bruce Samuelson Permission is given to place this in public Smalltalk archives.</li>
+<li><i>SMarkSmopstone</i>, a Smalltalk Medium level OPeration Stones Portable Medium level Benchmarks for ST80 and ST/V (using 16-bit SmallInts) Placed in public domain January 1993  (c) Bruce Samuelson Permission is given to place this in public Smalltalk archives.</li>
+</ul>
+<p>You may run any of these benchmark suites by performing the class method run of any of the previous classes. For instance:</p>
+
+<pre><code>SMarkLoops run</code></pre>
+
+<h3 id="result-reports"><span class="number">12.7</span> Result reports</h3>
+<p>SMark provides an option to export the benchmarking results using the class <code>SMarkSimpleStatisticsReporter</code>.
+For instance, consider the following example:</p>
+
+<pre><code>| stream result textReport|
+result := SMarkLoops run.
+stream := TextStream on: String new.
+SMarkSimpleStatisticsReporter reportFor: result on: stream.
+testReport := stream contents.</code></pre>
+
+<p>It runs the benchmark suite SMarkLoops and uses the class <code>SMarkSimpleStatisticsReporter</code> to export the results in a stream, in this particular case on a TextStream.
+This report is particularly useful to integrate SMark in a continuous integration environment.</p>
+
+<h3 id="conclusion-6"><span class="number">12.8</span> Conclusion</h3>
+<p>This chapter introduces SMark, a framework to help you define, execute and report your benchmarks.
+It provides different ways to run your benchmarks, collect the results, and perform a simple statistical analysis to measure the error margin.
+In addition, SMark provides four benchmark suites that are useful to test the performance of a number of core functionalities in Pharo.</p>
+
+      <nav class="pager" aria-label="Chapters">
+        <a class="previous" rel="prev" href="mutalk-a-mutation-testing.html">← MuTalk: A Mutation Testing Framework</a>
+        
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Testing in Pharo · Stéphane Ducasse, Guillermo Polito and Juan Pablo Sandoval · Generated on 2026-11-21</p>
+  </footer>
+</body>
+</html>
