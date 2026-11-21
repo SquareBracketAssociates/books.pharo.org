@@ -7,185 +7,185 @@
   <meta name="description" content="">
   <meta name="author" content="K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano">
   <link rel="stylesheet" href="_support/html/css/book.css">
+  
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to the text</a>
 
   <header class="site-header">
     <a class="site-name" href="index.html">Application Building with Spec 2.0</a>
+    <p class="site-authors">K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano</p>
   </header>
 
   <div class="layout">
 
     <nav class="toc" aria-label="Table of contents">
-      <details open>
-        <summary>Contents</summary>
+      <p class="toc-title">Contents</p>
         <ol>
           
           <li>
-            <a href="chaintroductions.html"><span class="number">1</span> Introduction</a>
+            <a href="introduction.html"><span class="number">1</span> Introduction</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="all-spec-in-one-example.html">All Spec in One Example</a>
             
           </li>
           
           <li>
-            <a href="all-spec-in-one-example.html"><span class="number">2</span> All Spec in One Example</a>
-            
-          </li>
-          
-          <li>
-            <a href="chaSmallExample.html"><span class="number">3</span> A 10 min small example</a>
+            <a href="a-10-min-small-example.html"><span class="number">2</span> A 10 min small example</a>
             
           </li>
           
           <li class="current">
-            <a href="chacasestudyone.html" aria-current="page"><span class="number">4</span> Most of Spec in one example</a>
+            <a href="most-of-spec-in-one-example.html" aria-current="page"><span class="number">3</span> Most of Spec in one example</a>
             
             <ol>
               
-              <li><a href="#application"><span class="number">4.1</span> Application</a></li>
+              <li><a href="#application"><span class="number">3.1</span> Application</a></li>
               
-              <li><a href="#a-basic-film-model"><span class="number">4.2</span> A basic film model</a></li>
+              <li><a href="#a-basic-film-model"><span class="number">3.2</span> A basic film model</a></li>
               
-              <li><a href="#list-of-films"><span class="number">4.3</span> List of films</a></li>
+              <li><a href="#list-of-films"><span class="number">3.3</span> List of films</a></li>
               
-              <li><a href="#filling-up-the-film-list"><span class="number">4.4</span> Filling up the film list</a></li>
+              <li><a href="#filling-up-the-film-list"><span class="number">3.4</span> Filling up the film list</a></li>
               
-              <li><a href="#opening-presenters-via-the-application"><span class="number">4.5</span> Opening presenters via the application</a></li>
+              <li><a href="#opening-presenters-via-the-application"><span class="number">3.5</span> Opening presenters via the application</a></li>
               
-              <li><a href="#improving-the-window"><span class="number">4.6</span> Improving the window</a></li>
+              <li><a href="#improving-the-window"><span class="number">3.6</span> Improving the window</a></li>
               
-              <li><a href="#an-application-manages-icons"><span class="number">4.7</span> An application manages icons</a></li>
+              <li><a href="#an-application-manages-icons"><span class="number">3.7</span> An application manages icons</a></li>
               
-              <li><a href="#filmpresenter"><span class="number">4.8</span> FilmPresenter</a></li>
+              <li><a href="#filmpresenter"><span class="number">3.8</span> FilmPresenter</a></li>
               
-              <li><a href="#better-looking-filmpresenter"><span class="number">4.9</span> Better looking FilmPresenter</a></li>
+              <li><a href="#better-looking-filmpresenter"><span class="number">3.9</span> Better looking FilmPresenter</a></li>
               
-              <li><a href="#opening-filmpresenter-in-a-modal-dialog"><span class="number">4.10</span> Opening FilmPresenter in a modal dialog</a></li>
+              <li><a href="#opening-filmpresenter-in-a-modal-dialog"><span class="number">3.10</span> Opening FilmPresenter in a modal dialog</a></li>
               
-              <li><a href="#customizing-the-modal-dialog"><span class="number">4.11</span> Customizing the modal dialog</a></li>
+              <li><a href="#customizing-the-modal-dialog"><span class="number">3.11</span> Customizing the modal dialog</a></li>
               
-              <li><a href="#invoking-a-presenter"><span class="number">4.12</span> Invoking a presenter</a></li>
+              <li><a href="#invoking-a-presenter"><span class="number">3.12</span> Invoking a presenter</a></li>
               
-              <li><a href="#embedding-a-filmpresenter-into-the-filmlistpresenter"><span class="number">4.13</span> Embedding a FilmPresenter into the FilmListPresenter</a></li>
+              <li><a href="#embedding-a-filmpresenter-into-the-filmlistpresenter"><span class="number">3.13</span> Embedding a FilmPresenter into the FilmListPresenter</a></li>
               
-              <li><a href="#section_define_component_communication"><span class="number">4.14</span> Define component communication</a></li>
+              <li><a href="#section_define_component_communication"><span class="number">3.14</span> Define component communication</a></li>
               
-              <li><a href="#testing-your-application-ui"><span class="number">4.15</span> Testing your application UI</a></li>
+              <li><a href="#testing-your-application-ui"><span class="number">3.15</span> Testing your application UI</a></li>
               
-              <li><a href="#adding-more-tests"><span class="number">4.16</span> Adding more tests</a></li>
+              <li><a href="#adding-more-tests"><span class="number">3.16</span> Adding more tests</a></li>
               
-              <li><a href="#changing-layout"><span class="number">4.17</span> Changing layout</a></li>
+              <li><a href="#changing-layout"><span class="number">3.17</span> Changing layout</a></li>
               
-              <li><a href="#using-transmissions"><span class="number">4.18</span> Using transmissions</a></li>
+              <li><a href="#using-transmissions"><span class="number">3.18</span> Using transmissions</a></li>
               
-              <li><a href="#styling-the-application"><span class="number">4.19</span> Styling the application</a></li>
+              <li><a href="#styling-the-application"><span class="number">3.19</span> Styling the application</a></li>
               
-              <li><a href="#conclusion-2"><span class="number">4.20</span> Conclusion</a></li>
+              <li><a href="#conclusion-2"><span class="number">3.20</span> Conclusion</a></li>
               
             </ol>
             
           </li>
           
-          <li>
-            <a href="spec-essentials.html"><span class="number">5</span> Spec Essentials</a>
+          <li data-part>
+            <a href="spec-essentials.html">Spec Essentials</a>
             
           </li>
           
           <li>
-            <a href="cha_core.html"><span class="number">6</span> Spec core in a nutshell</a>
+            <a href="spec-core-in-a-nutshell.html"><span class="number">4</span> Spec core in a nutshell</a>
             
           </li>
           
           <li>
-            <a href="cha_testing.html"><span class="number">7</span> Testing Spec applications</a>
+            <a href="testing-spec-applications.html"><span class="number">5</span> Testing Spec applications</a>
             
           </li>
           
           <li>
-            <a href="cha_fundamentals_of_spec.html"><span class="number">8</span> The dual aspects of presenters: Domain and interaction model</a>
+            <a href="the-dual-aspects-of-presenters.html"><span class="number">6</span> The dual aspects of presenters: Domain and interaction model</a>
             
           </li>
           
           <li>
-            <a href="cha_reuse.html"><span class="number">9</span> Reuse and composition at work</a>
+            <a href="reuse-and-composition.html"><span class="number">7</span> Reuse and composition at work</a>
             
           </li>
           
           <li>
-            <a href="lists-tables-and-trees.html"><span class="number">10</span> Lists, tables and trees</a>
+            <a href="lists-tables-and-trees.html"><span class="number">8</span> Lists, tables and trees</a>
             
           </li>
           
           <li>
-            <a href="cha_managing_windows.html"><span class="number">11</span> Managing windows</a>
+            <a href="managing-windows.html"><span class="number">9</span> Managing windows</a>
             
           </li>
           
           <li>
-            <a href="cha_layout.html"><span class="number">12</span> Layouts</a>
+            <a href="layouts.html"><span class="number">10</span> Layouts</a>
             
           </li>
           
           <li>
-            <a href="cha_dynamic_presenter.html"><span class="number">13</span> Dynamic presenters</a>
+            <a href="dynamic-presenters.html"><span class="number">11</span> Dynamic presenters</a>
             
           </li>
           
           <li>
-            <a href="cha_mailapp.html"><span class="number">14</span> A Concrete Case: A Mail Application</a>
+            <a href="a-concrete-case-a-mail.html"><span class="number">12</span> A Concrete Case: A Mail Application</a>
             
           </li>
           
           <li>
-            <a href="cha_menus.html"><span class="number">15</span> Menubar, Toolbar, Status Bar, and Context Menus</a>
+            <a href="menubar-toolbar-status.html"><span class="number">13</span> Menubar, Toolbar, Status Bar, and Context Menus</a>
             
           </li>
           
           <li>
-            <a href="using-transmissions-and-ports.html"><span class="number">16</span> Using transmissions and ports</a>
+            <a href="using-transmissions-and.html"><span class="number">14</span> Using transmissions and ports</a>
             
           </li>
           
           <li>
-            <a href="cha_style.html"><span class="number">17</span> Styling applications</a>
+            <a href="styling-applications.html"><span class="number">15</span> Styling applications</a>
             
           </li>
           
           <li>
-            <a href="using-athens-and-roassal-in-spec.html"><span class="number">18</span> Using Athens and Roassal in Spec</a>
+            <a href="using-athens-and-roassal.html"><span class="number">16</span> Using Athens and Roassal in Spec</a>
             
           </li>
           
           <li>
-            <a href="customizing-your-inspector.html"><span class="number">19</span> Customizing your Inspector</a>
+            <a href="customizing-your-inspector.html"><span class="number">17</span> Customizing your Inspector</a>
+            
+          </li>
+          
+          <li data-part>
+            <a href="working-with-commands.html">Working with Commands</a>
             
           </li>
           
           <li>
-            <a href="working-with-commands.html"><span class="number">20</span> Working with Commands</a>
-            
-          </li>
-          
-          <li>
-            <a href="cha_commander.html"><span class="number">21</span> Commander: A powerful and simple command framework</a>
+            <a href="commander-a-powerful.html"><span class="number">18</span> Commander: A powerful and simple command framework</a>
             
           </li>
           
         </ol>
-      </details>
     </nav>
 
 
     <main id="content" class="page">
       
 
-<h2><span class="number">4</span> Most of Spec in one example</h2><a id="chacasestudyone"></a>
-<p>In this chapter, we will guide you through the building of a simple but non-trivial application to manage films as shown in Figure <a href="#FullApp">4.1</a>.
+<h2><span class="number">3</span> Most of Spec in one example</h2><a id="chacasestudyone"></a>
+<p>In this chapter, we will guide you through the building of a simple but non-trivial application to manage films as shown in Figure <a href="#FullApp">3.1</a>.
 We will show many aspects of Spec that we will revisit in depth in the rest of this book: the application, presenters, the separation between domain and presenter, layout, transmissions to connect widgets,  and styles.</p>
 
-<p><figure id="FullApp"><img src="Chapters/CaseStudyOne/figures/FullApp.png" alt="Film app: reusing the same component to edit and browsing a film." class="FullApp" style="width: 90%"><figcaption><span class="number">Figure 4.1</span> Film app: reusing the same component to edit and browsing a film.</figcaption></img></figure></p>
+<p><figure id="FullApp"><img src="Chapters/CaseStudyOne/figures/FullApp.png" alt="Film app: reusing the same component to edit and browsing a film." class="FullApp" style="width: 90%"><figcaption><span class="number">Figure 3.1</span> Film app: reusing the same component to edit and browsing a film.</figcaption></img></figure></p>
 
-<h3 id="application"><span class="number">4.1</span> Application</h3>
+<h3 id="application"><span class="number">3.1</span> Application</h3>
 <p>Spec 2.0 introduces the concept of an application. An application is a small object responsible for keeping the state of your application. It manages, for example, the multiple windows that compose your application, and its backend (Morphic or GTK), and can hold properties shared by the presenters.</p>
 
 <p>We start with the definition of the example application class:</p>
@@ -193,7 +193,7 @@ We will show many aspects of Spec that we will revisit in depth in the rest of t
 <pre><code>SpApplication &lt;&lt; #ImdbApp
 	package: 'CodeOfSpec20Book'</code></pre>
 
-<h3 id="a-basic-film-model"><span class="number">4.2</span> A basic film model</h3>
+<h3 id="a-basic-film-model"><span class="number">3.2</span> A basic film model</h3>
 <p>Since we will manage films we define an <code>ImdbFilm</code> class as follows. It has a name, a year, and a director. We generate the companion accessors.</p>
 
 <pre><code>Object &lt;&lt; #ImdbFilm
@@ -221,7 +221,7 @@ We will show many aspects of Spec that we will revisit in depth in the rest of t
 
 <p>Now we are ready to define a first presenter that manages a list of films.</p>
 
-<h3 id="list-of-films"><span class="number">4.3</span> List of films</h3>
+<h3 id="list-of-films"><span class="number">3.3</span> List of films</h3>
 <p>We define a presenter to manage a list of films by introducing a new class named <code>ImdbFilmListPresenter</code> which inherits from <code>SpPresenter</code>. We add an instance variable named <code>filmList</code> that will hold an elementary list presenter.</p>
 
 <pre><code>SpPresenter &lt;&lt; #ImdbFilmListPresenter
@@ -230,7 +230,7 @@ We will show many aspects of Spec that we will revisit in depth in the rest of t
 
 <p>We define how the information should be presented by defining a method named <code>defaultLayout</code>. We specify a simple vertical box layout with the <code>filmList</code> as the only element.</p>
 
-<h4 id="defaultlayout"><span class="number">4.3.1</span> defaultLayout</h4>
+<h4 id="defaultlayout">defaultLayout</h4>
 <pre><code>ImdbFilmListPresenter &gt;&gt; defaultLayout
 
 	^ SpBoxLayout newTopToBottom
@@ -247,7 +247,7 @@ We will show many aspects of Spec that we will revisit in depth in the rest of t
 </ol>
 <p>In Spec, layouts are dynamic by default and are expressed at the instance level. To allow backward compatibility, it is still possible to define a <code>defaultLayout</code> <i>class-side</i> method that returns a layout instead of using a <code>defaultLayout</code> instance-side method, but it is not the recommended way.</p>
 
-<h4 id="initializepresenters"><span class="number">4.3.2</span> initializePresenters</h4>
+<h4 id="initializepresenters">initializePresenters</h4>
 <p>So far, we have not initialized <code>filmList</code>.</p>
 
 <p>The place to initialize the subpresenters is the method <code>initializePresenters</code> as shown below. There we define that <code>filmList</code> is a table with three columns. The message <code>newTable</code> instantiates a <code>SpTablePresenter</code>.</p>
@@ -263,13 +263,13 @@ We will show many aspects of Spec that we will revisit in depth in the rest of t
 			evaluated: #year);
 		yourself</code></pre>
 
-<p>The following expression creates an instance of the film list presenter and opens it. You get the window shown in Figure <a href="#LayoutInitilalizePresenters">4.2</a>.</p>
+<p>The following expression creates an instance of the film list presenter and opens it. You get the window shown in Figure <a href="#LayoutInitilalizePresenters">3.2</a>.</p>
 
 <pre><code>ImdbFilmListPresenter new open</code></pre>
 
-<p><figure id="LayoutInitilalizePresenters"><img src="Chapters/CaseStudyOne/figures/FilmList-01-LayoutInitilalizePresenters.png" alt="A layout and a simple  initializePresenters  showing an empty list of films. " style="width: 60%"><figcaption><span class="number">Figure 4.2</span> A layout and a simple <code>initializePresenters</code> showing an empty list of films. </figcaption></img></figure></p>
+<p><figure id="LayoutInitilalizePresenters"><img src="Chapters/CaseStudyOne/figures/FilmList-01-LayoutInitilalizePresenters.png" alt="A layout and a simple  initializePresenters  showing an empty list of films. " style="width: 60%"><figcaption><span class="number">Figure 3.2</span> A layout and a simple <code>initializePresenters</code> showing an empty list of films. </figcaption></img></figure></p>
 
-<h3 id="filling-up-the-film-list"><span class="number">4.4</span> Filling up the film list</h3>
+<h3 id="filling-up-the-film-list"><span class="number">3.4</span> Filling up the film list</h3>
 <p>We define the method <code>updatePresenter</code> which is automatically invoked after <code>initializePresenters</code>. It just queries the domain (<code>ImdbFilm</code>) to get the list of the recorded films and populates the internal table. Right now we do not have any film in the singleton so the list of films is empty.</p>
 
 <pre><code>ImdbFilmListPresenter &gt;&gt; updatePresenter
@@ -284,7 +284,7 @@ We will show many aspects of Spec that we will revisit in depth in the rest of t
 	year: '1982';
 	yourself)</code></pre>
 
-<h3 id="opening-presenters-via-the-application"><span class="number">4.5</span> Opening presenters via the application</h3>
+<h3 id="opening-presenters-via-the-application"><span class="number">3.5</span> Opening presenters via the application</h3>
 <p>While directly creating a presenter is possible during development, a more canonical way to create a presenter is to ask the application using the message <code>newPresenter:</code> as follows.</p>
 
 <pre><code>| app |
@@ -293,10 +293,10 @@ app := ImdbApp new.
 
 <p>The application is responsible for managing windows and other information, therefore it is important to use it to create presenters that compose the application.</p>
 
-<h3 id="improving-the-window"><span class="number">4.6</span> Improving the window</h3>
+<h3 id="improving-the-window"><span class="number">3.6</span> Improving the window</h3>
 <p>A presenter can be embedded in another presenter as we will show later. It can also be placed within a window and this is what the message <code>open</code> does. Spec offers another hook, the method <code>initializeWindow:</code>, to specialize the information presented when a presenter is displayed within a window.</p>
 
-<p><figure id="figFilmListPresenter2"><img src="Chapters/CaseStudyOne/figures/FilmList-02-initalizeWindows.png" alt="Film list presenter with a toolbar and a decorated window. " style="width: 60%"><figcaption><span class="number">Figure 4.3</span> Film list presenter with a toolbar and a decorated window. </figcaption></img></figure></p>
+<p><figure id="figFilmListPresenter2"><img src="Chapters/CaseStudyOne/figures/FilmList-02-initalizeWindows.png" alt="Film list presenter with a toolbar and a decorated window. " style="width: 60%"><figcaption><span class="number">Figure 3.3</span> Film list presenter with a toolbar and a decorated window. </figcaption></img></figure></p>
 
 <p>The method <code>initializeWindow:</code> allows you to define a title, a default size (message <code>initialExtent:</code>), and a toolbar.</p>
 
@@ -316,19 +316,19 @@ app := ImdbApp new.
 		initialExtent: 600@400;
 		toolbar: toolbar</code></pre>
 
-<p>You should obtain the window with a toolbar as shown in Figure <a href="#figFilmListPresenter2">4.3</a>. To make sure that the <code>Add film</code> button does not raise an error, we trigger an <code>addFilm</code> method that is defined with no behavior. In fact, we will define a different presenter to be able to define a film.</p>
+<p>You should obtain the window with a toolbar as shown in Figure <a href="#figFilmListPresenter2">3.3</a>. To make sure that the <code>Add film</code> button does not raise an error, we trigger an <code>addFilm</code> method that is defined with no behavior. In fact, we will define a different presenter to be able to define a film.</p>
 
 <pre><code>ImdbFilmListPresenter &gt;&gt; addFilm
 
 	"empty for now"</code></pre>
 
-<p>As we will see in Chapter <a href="cha_commander.html#cha_commander">21</a>, toolbars can be automatically created out of commands. We could have added the toolbar in that way to the <code>filmList</code> (e.g. using an instance variable) as part of the <code>ImdbFilmListPresenter</code> because the toolbar is also a presenter (similar to the table presenter or other predefined presenters). But doing it that way is less modular. Note also that the toolbar we created could be factored in a separate class to increase reuse too.</p>
+<p>As we will see in Chapter <a href="commander-a-powerful.html#cha_commander">18</a>, toolbars can be automatically created out of commands. We could have added the toolbar in that way to the <code>filmList</code> (e.g. using an instance variable) as part of the <code>ImdbFilmListPresenter</code> because the toolbar is also a presenter (similar to the table presenter or other predefined presenters). But doing it that way is less modular. Note also that the toolbar we created could be factored in a separate class to increase reuse too.</p>
 
-<h3 id="an-application-manages-icons"><span class="number">4.7</span> An application manages icons</h3>
+<h3 id="an-application-manages-icons"><span class="number">3.7</span> An application manages icons</h3>
 <p>What we can see from the definition of the method <code>initializeWindow:</code> is that an application manages icons with the message <code>iconNamed:</code>. Indeed, a presenter defines the <code>iconNamed:</code> message as a delegation to its application.
 In addition, your application can define its own icon set using the message <code>iconProvider:</code>.</p>
 
-<h3 id="filmpresenter"><span class="number">4.8</span> FilmPresenter</h3>
+<h3 id="filmpresenter"><span class="number">3.8</span> FilmPresenter</h3>
 <p>We are ready to define a simple presenter to edit a film. We will use it to add a new film or simply display it.
 We create a new subclass of <code>SpPresenter</code> named <code>ImdbFilmPresenter</code>. This class has three instance variables: <code>nameText</code>, <code>directorText</code>, and <code>yearNumber</code>.</p>
 
@@ -372,7 +372,7 @@ ImdbFilmPresenter &gt;&gt; name
 
 <p>Pay attention: do not add a <code>yourself</code> message here because you would return the class and not the layout instance.</p>
 
-<p><figure id="figFilmPresenter1"><img src="Chapters/CaseStudyOne/figures/FilmList-03-OpenFilmPresenter-1.png" alt="A single film presenter. " style="width: 50%"><figcaption><span class="number">Figure 4.4</span> A single film presenter. </figcaption></img></figure></p>
+<p><figure id="figFilmPresenter1"><img src="Chapters/CaseStudyOne/figures/FilmList-03-OpenFilmPresenter-1.png" alt="A single film presenter. " style="width: 50%"><figcaption><span class="number">Figure 3.4</span> A single film presenter. </figcaption></img></figure></p>
 
 <p>And as before, we define the method <code>initializePresenters</code> to initialize the variables to the corresponding elementary presenters. Here <code>nameText</code> and <code>directorText</code> are initialized to a text input, and <code>yearNumber</code> is a number input.</p>
 
@@ -384,14 +384,14 @@ ImdbFilmPresenter &gt;&gt; name
 		rangeMinimum: 1900 maximum: Year current year;
 		yourself</code></pre>
 
-<p>Now we can try our little application with the following script and obtain a window similar to the one shown in Figure <a href="#figFilmPresenter1">4.4</a>:</p>
+<p>Now we can try our little application with the following script and obtain a window similar to the one shown in Figure <a href="#figFilmPresenter1">3.4</a>:</p>
 
 <pre><code>| app |
 app := ImdbApp new.
 (app newPresenter: ImdbFilmPresenter) open</code></pre>
 
-<h3 id="better-looking-filmpresenter"><span class="number">4.9</span> Better looking FilmPresenter</h3>
-<p>We improve the look of the film presenter by specifying column behavior and setting window properties. As you can see, the form to present Film data has very large labels. Indeed, they take half of the form width. We can solve that by using non-homogenous columns and asking the second column to take the biggest possible width with <code>column:expand:</code>. See Figure <a href="#FilmListPresenter2">4.5</a>.</p>
+<h3 id="better-looking-filmpresenter"><span class="number">3.9</span> Better looking FilmPresenter</h3>
+<p>We improve the look of the film presenter by specifying column behavior and setting window properties. As you can see, the form to present Film data has very large labels. Indeed, they take half of the form width. We can solve that by using non-homogenous columns and asking the second column to take the biggest possible width with <code>column:expand:</code>. See Figure <a href="#FilmListPresenter2">3.5</a>.</p>
 
 <pre><code>ImdbFilmPresenter &gt;&gt; defaultLayout
 
@@ -403,9 +403,9 @@ app := ImdbApp new.
 				add: 'Director'; add: directorText; nextRow;
 				add: 'Year'; add: yearNumber ]</code></pre>
 
-<p><figure id="FilmListPresenter2"><img src="Chapters/CaseStudyOne/figures/FilmList-04-OpenFilmPresenter-2.png" alt="Using a non-homogenous grid layout. " style="width: 50%"><figcaption><span class="number">Figure 4.5</span> Using a non-homogenous grid layout. </figcaption></img></figure></p>
+<p><figure id="FilmListPresenter2"><img src="Chapters/CaseStudyOne/figures/FilmList-04-OpenFilmPresenter-2.png" alt="Using a non-homogenous grid layout. " style="width: 50%"><figcaption><span class="number">Figure 3.5</span> Using a non-homogenous grid layout. </figcaption></img></figure></p>
 
-<p>Now we set the window properties by adding the following new <code>initializeWindow:</code> method. We get the situation shown in Figure <a href="#FilmListPresenter3">4.6</a>.</p>
+<p>Now we set the window properties by adding the following new <code>initializeWindow:</code> method. We get the situation shown in Figure <a href="#FilmListPresenter3">3.6</a>.</p>
 
 <pre><code>ImdbFilmPresenter &gt;&gt; initializeWindow: aWindowPresenter
 
@@ -413,9 +413,9 @@ app := ImdbApp new.
 		title: 'Film';
 		initialExtent: 400@250</code></pre>
 
-<p><figure id="FilmListPresenter3"><img src="Chapters/CaseStudyOne/figures/FilmList-05-OpenFilmPresenter-3.png" alt="Better window. " style="width: 50%"><figcaption><span class="number">Figure 4.6</span> Better window. </figcaption></img></figure></p>
+<p><figure id="FilmListPresenter3"><img src="Chapters/CaseStudyOne/figures/FilmList-05-OpenFilmPresenter-3.png" alt="Better window. " style="width: 50%"><figcaption><span class="number">Figure 3.6</span> Better window. </figcaption></img></figure></p>
 
-<h3 id="opening-filmpresenter-in-a-modal-dialog"><span class="number">4.10</span> Opening FilmPresenter in a modal dialog</h3>
+<h3 id="opening-filmpresenter-in-a-modal-dialog"><span class="number">3.10</span> Opening FilmPresenter in a modal dialog</h3>
 <p>Instead of opening the film presenter in a separate window, we like to open it in a modal dialog window. The modal dialog blocks the user interface until the user confirms or cancels the dialog. A modal dialog has no window decorations and it cannot be moved.</p>
 
 <p>While a window can be opened by sending <code>open</code> to an instance of a presenter class, a dialog can be opened by sending <code>openModal</code>.</p>
@@ -424,12 +424,12 @@ app := ImdbApp new.
 app := ImdbApp new.
 (app newPresenter: ImdbFilmPresenter) openModal</code></pre>
 
-<p><figure id="dialog"><img src="Chapters/CaseStudyOne/figures/FilmList-06-Modal.png" alt="A modal dialog. " style="width: 50%"><figcaption><span class="number">Figure 4.7</span> A modal dialog. </figcaption></img></figure></p>
+<p><figure id="dialog"><img src="Chapters/CaseStudyOne/figures/FilmList-06-Modal.png" alt="A modal dialog. " style="width: 50%"><figcaption><span class="number">Figure 3.7</span> A modal dialog. </figcaption></img></figure></p>
 
-<p>Figure <a href="#dialog">4.7</a> shows the result. Note that there are no UI components to close the dialog. Press the "Esc" key on the keyboard to close it.</p>
+<p>Figure <a href="#dialog">3.7</a> shows the result. Note that there are no UI components to close the dialog. Press the "Esc" key on the keyboard to close it.</p>
 
-<h3 id="customizing-the-modal-dialog"><span class="number">4.11</span> Customizing the modal dialog</h3>
-<p>Spec lets us adapt the dialog window, for example, to add interaction buttons. We specialize the method <code>initializeDialogWindow:</code> to add two buttons that control the behavior of the application, as shown in Figure <a href="#Customizeddialog">4.8</a>. We also center the dialog on screen by sending <code>centered</code> to the dialog presenter.</p>
+<h3 id="customizing-the-modal-dialog"><span class="number">3.11</span> Customizing the modal dialog</h3>
+<p>Spec lets us adapt the dialog window, for example, to add interaction buttons. We specialize the method <code>initializeDialogWindow:</code> to add two buttons that control the behavior of the application, as shown in Figure <a href="#Customizeddialog">3.8</a>. We also center the dialog on screen by sending <code>centered</code> to the dialog presenter.</p>
 
 <pre><code>ImdbFilmPresenter &gt;&gt; initializeDialogWindow: aDialogPresenter
 
@@ -438,9 +438,9 @@ app := ImdbApp new.
 		addButton: 'Cancel' do: [ :button | button close ];
 		addButton: 'Save Film' do: [ :button | button beOk; close ].</code></pre>
 
-<p><figure id="Customizeddialog"><img src="Chapters/CaseStudyOne/figures/FilmList-07-DecoratedModal.png" alt="Customizing the dialog window. " style="width: 60%"><figcaption><span class="number">Figure 4.8</span> Customizing the dialog window. </figcaption></img></figure></p>
+<p><figure id="Customizeddialog"><img src="Chapters/CaseStudyOne/figures/FilmList-07-DecoratedModal.png" alt="Customizing the dialog window. " style="width: 60%"><figcaption><span class="number">Figure 3.8</span> Customizing the dialog window. </figcaption></img></figure></p>
 
-<h3 id="invoking-a-presenter"><span class="number">4.12</span> Invoking a presenter</h3>
+<h3 id="invoking-a-presenter"><span class="number">3.12</span> Invoking a presenter</h3>
 <p>We are ready to use the film presenter from within the film list presenter. We define the method <code>addFilm</code> in the class <code>ImdbFilmListPresenter</code>. When the user clicks on the button, we create a new film presenter that we associate with the current application.</p>
 
 <p>We open the film presenter as a modal dialog using the message <code>openModal</code>. When the user presses the "Save Film" button, a new film is added to our little database and we update the list.</p>
@@ -459,14 +459,14 @@ app := ImdbApp new.
 	ImdbFilm addFilm: film.
 	self updatePresenter</code></pre>
 
-<p>Now we can open the <code>FilmListPresenter</code> and click on the <code>Add film</code> button. When the film data has been entered and the <code>Save Film</code> button has been clicked, you will see that the FilmListPresenter is updated with the added film, as shown in Figure <a href="#refreshed">4.9</a>.</p>
+<p>Now we can open the <code>FilmListPresenter</code> and click on the <code>Add film</code> button. When the film data has been entered and the <code>Save Film</code> button has been clicked, you will see that the FilmListPresenter is updated with the added film, as shown in Figure <a href="#refreshed">3.9</a>.</p>
 
 <pre><code>app := ImdbApp new.
 (app newPresenter: ImdbFilmListPresenter) open</code></pre>
 
-<p><figure id="refreshed"><img src="Chapters/CaseStudyOne/figures/FilmList-08-ListRefreshed.png" alt="The refreshed film list. " style="width: 60%"><figcaption><span class="number">Figure 4.9</span> The refreshed film list. </figcaption></img></figure></p>
+<p><figure id="refreshed"><img src="Chapters/CaseStudyOne/figures/FilmList-08-ListRefreshed.png" alt="The refreshed film list. " style="width: 60%"><figcaption><span class="number">Figure 3.9</span> The refreshed film list. </figcaption></img></figure></p>
 
-<h3 id="embedding-a-filmpresenter-into-the-filmlistpresenter"><span class="number">4.13</span> Embedding a FilmPresenter into the FilmListPresenter</h3>
+<h3 id="embedding-a-filmpresenter-into-the-filmlistpresenter"><span class="number">3.13</span> Embedding a FilmPresenter into the FilmListPresenter</h3>
 <p>We have two main visual elements: a list of films and the film details. We can imagine that we would like to see the film details in the same container as the list, especially because a film description is larger than the list columns.</p>
 
 <p>To achieve that, we add a new instance variable named <code>detail</code> to the class <code>ImdbFilmListPresenter</code>.</p>
@@ -497,7 +497,7 @@ app := ImdbApp new.
 <ul>
 <li>First we instantiate <code>ImdbFilmPresenter</code>.</li>
 <li>Second, we configure it as read-only by sending the <code>editable: false</code> message.</li>
-<li>Third, when an element of the list is selected, we should display the information in the detail presenter. While we can express this in the <code>initializePresenters</code> method, we prefer specifying it in the <code>connectPresenters</code> method. See Section <a href="#section_define_component_communication">4.14</a>.</li>
+<li>Third, when an element of the list is selected, we should display the information in the detail presenter. While we can express this in the <code>initializePresenters</code> method, we prefer specifying it in the <code>connectPresenters</code> method. See Section <a href="#section_define_component_communication">3.14</a>.</li>
 </ul>
 <pre><code>ImdbFilmListPresenter &gt;&gt; initializePresenters
 
@@ -512,7 +512,7 @@ app := ImdbApp new.
 	detail := self instantiate: ImdbFilmPresenter.
 	detail editable: false</code></pre>
 
-<h3><span class="number">4.14</span> Define component communication</h3><a id="section_define_component_communication"></a>
+<h3><span class="number">3.14</span> Define component communication</h3><a id="section_define_component_communication"></a>
 <p>We add a helper method named <code>setModel:</code> in class <code>ImdbFilmPresenter</code> to be able to pass a film and populate the presenter accordingly.</p>
 
 <pre><code>ImdbFilmPresenter &gt;&gt; setModel: aFilm
@@ -540,11 +540,11 @@ app := ImdbApp new.
 filmList whenSelectionChangedDo: [ :selectedItemMode |
 	detail setModel: selectedItemMode selectedItem ]</code></pre>
 
-<p>With <code>connectPresenters</code> in place, selecting an item in the list results in showing the details of the selected item, as shown in Figure <a href="#embedded">4.10</a>.</p>
+<p>With <code>connectPresenters</code> in place, selecting an item in the list results in showing the details of the selected item, as shown in Figure <a href="#embedded">3.10</a>.</p>
 
-<p><figure id="embedded"><img src="Chapters/CaseStudyOne/figures/FilmList-09-Embedded.png" alt="Embedding the film description in the list: selecting a list item populates the detailed visual component. " style="width: 60%"><figcaption><span class="number">Figure 4.10</span> Embedding the film description in the list: selecting a list item populates the detailed visual component. </figcaption></img></figure></p>
+<p><figure id="embedded"><img src="Chapters/CaseStudyOne/figures/FilmList-09-Embedded.png" alt="Embedding the film description in the list: selecting a list item populates the detailed visual component. " style="width: 60%"><figcaption><span class="number">Figure 3.10</span> Embedding the film description in the list: selecting a list item populates the detailed visual component. </figcaption></img></figure></p>
 
-<h3 id="testing-your-application-ui"><span class="number">4.15</span> Testing your application UI</h3>
+<h3 id="testing-your-application-ui"><span class="number">3.15</span> Testing your application UI</h3>
 <p>A strong property of Spec is that we can write tests to describe the interaction and the logic of a UI. Tests are so powerful to help us create nice designs and make sure that we can spot errors, that we will show that writing tests for a UI is not complex.</p>
 
 <p>We define <code>ImdbFilmListPresenterTest</code> as a subclass of <code>TestCase</code>.</p>
@@ -629,7 +629,7 @@ ImdbFilmListPresenter &gt;&gt; clickFilmAtIndex: anIndex
 	presenter ifNotNil: [ presenter delete ].
 	super tearDown</code></pre>
 
-<h3 id="adding-more-tests"><span class="number">4.16</span> Adding more tests</h3>
+<h3 id="adding-more-tests"><span class="number">3.16</span> Adding more tests</h3>
 <p>Tests are addictive because we can change programs and check that they still work and limit our stress. So we will write another one.</p>
 
 <p>Let us add the following getter method to support our tests.</p>
@@ -668,7 +668,7 @@ ImdbFilmListPresenter &gt;&gt; clickFilmAtIndex: anIndex
 
 <p>What you see is that it is relatively simple to test that the interaction you specified actually works as expected.</p>
 
-<h3 id="changing-layout"><span class="number">4.17</span> Changing layout</h3>
+<h3 id="changing-layout"><span class="number">3.17</span> Changing layout</h3>
 <p>With Spec, a presenter can have multiple layouts, even layouts that are created on the fly as we will see with dynamic layouts. We can decide which layout to use when opening a presenter. Let us illustrate that. Imagine that we prefer to have the list positioned below the film details, or just the list alone.</p>
 
 <pre><code>ImdbFilmListPresenter &gt;&gt; listBelowLayout
@@ -678,14 +678,14 @@ ImdbFilmListPresenter &gt;&gt; clickFilmAtIndex: anIndex
 		add: filmList;
 		yourself</code></pre>
 
-<p>The following example shows that we can open <code>ImdbFilmListPresenter</code> with the layout <code>listBelowLayout</code> that we just defined. See Figure <a href="#changedlayout">4.11</a>.</p>
+<p>The following example shows that we can open <code>ImdbFilmListPresenter</code> with the layout <code>listBelowLayout</code> that we just defined. See Figure <a href="#changedlayout">3.11</a>.</p>
 
 <pre><code>| app presenter |
 app := ImdbApp new.
 presenter := app newPresenter: ImdbFilmListPresenter.
 presenter openWithLayout: presenter listBelowLayout.</code></pre>
 
-<p><figure id="changedlayout"><img src="Chapters/CaseStudyOne/figures/FilmList-10-EmbeddedAbove.png" alt="A presenter can have multiple layouts for its subpresenters." class="changedlayout" style="width: 60%"><figcaption><span class="number">Figure 4.11</span> A presenter can have multiple layouts for its subpresenters.</figcaption></img></figure></p>
+<p><figure id="changedlayout"><img src="Chapters/CaseStudyOne/figures/FilmList-10-EmbeddedAbove.png" alt="A presenter can have multiple layouts for its subpresenters." class="changedlayout" style="width: 60%"><figcaption><span class="number">Figure 3.11</span> A presenter can have multiple layouts for its subpresenters.</figcaption></img></figure></p>
 
 <p>We can also define a layout with a part of the subpresenters. Here <code>listOnlyLayout</code> only shows the list.</p>
 
@@ -707,7 +707,7 @@ presenter open</code></pre>
 
 <p>Now you can see that the layout with only one list has been applied dynamically.</p>
 
-<h3 id="using-transmissions"><span class="number">4.18</span> Using transmissions</h3>
+<h3 id="using-transmissions"><span class="number">3.18</span> Using transmissions</h3>
 <p>Spec 2.0 introduces a nice concept to propagate selections from one presenter to another, thinking about the "flow" of information more than the implementation details of this propagation, which can change from presenter to presenter.</p>
 
 <p>With transmissions, each presenter can define a set of output ports (ports to transmit information) and input ports (ports to receive information). Widget presenters already have defined the output/input ports you can use with them, but you can add your own ports to your presenters.</p>
@@ -740,7 +740,7 @@ presenter open</code></pre>
 app := ImdbApp new.
 (app newPresenter: ImdbFilmListPresenter) open</code></pre>
 
-<h3 id="styling-the-application"><span class="number">4.19</span> Styling the application</h3>
+<h3 id="styling-the-application"><span class="number">3.19</span> Styling the application</h3>
 <p>Different UI components in an application can have different look and feels, for example to change the size or color of a font for a header. To support this, Spec introduces the concept of "styles" for components.</p>
 
 <p>In Spec, an application defines a stylesheet (or a set of them). A stylesheet defines a set of "style classes" that can be assigned to presenter widgets. Defining a style class, however, works differently for each backend. While GTK accepts (mostly) regular CSS to style widgets, Morphic has its own subframework.</p>
@@ -808,22 +808,22 @@ app := ImdbApp new.
 			add: 'Director'; add: directorText; nextRow;
 			add: 'Year'; add: yearNumber ]</code></pre>
 
-<p>Now we see that the name label of a film detail has been styled, as shown in Figure <a href="#FilmListPresenterStyled">4.12</a>.</p>
+<p>Now we see that the name label of a film detail has been styled, as shown in Figure <a href="#FilmListPresenterStyled">3.12</a>.</p>
 
-<p><figure id="FilmListPresenterStyled"><img src="Chapters/CaseStudyOne/figures/FilmList-11-styling.png" alt="Styled film name label. " style="width: 60%"><figcaption><span class="number">Figure 4.12</span> Styled film name label. </figcaption></img></figure></p>
+<p><figure id="FilmListPresenterStyled"><img src="Chapters/CaseStudyOne/figures/FilmList-11-styling.png" alt="Styled film name label. " style="width: 60%"><figcaption><span class="number">Figure 3.12</span> Styled film name label. </figcaption></img></figure></p>
 
-<h3 id="conclusion-2"><span class="number">4.20</span> Conclusion</h3>
+<h3 id="conclusion-2"><span class="number">3.20</span> Conclusion</h3>
 <p>We saw that with Spec the developer defines how a visual element (a presenter) is composed of other visual elements. Such a presenter has the responsibility to describe the interaction with other presenters, but also with the domain objects. It has also the responsibility to describe its visual aspects.</p>
 
       <nav class="pager" aria-label="Chapters">
-        <a class="previous" rel="prev" href="chaSmallExample.html">← A 10 min small example</a>
+        <a class="previous" rel="prev" href="a-10-min-small-example.html">← A 10 min small example</a>
         <a class="next" rel="next" href="spec-essentials.html">Spec Essentials →</a>
       </nav>
     </main>
   </div>
 
   <footer class="site-footer">
-    <p>Application Building with Spec 2.0 · K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano</p>
+    <p>Application Building with Spec 2.0 · K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano · Generated on 2026-11-21</p>
   </footer>
 </body>
 </html>
